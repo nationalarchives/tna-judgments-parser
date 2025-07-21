@@ -33,6 +33,15 @@ namespace Backlog.Test
         [SetUp]
         public void SetUp()
         {
+            // Set environment variables for this test
+            Environment.SetEnvironmentVariable("COURT_METADATA_PATH", courtMetadataPath);
+            Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", dataDir);
+            Environment.SetEnvironmentVariable("TRACKER_PATH", trackerPath);
+            Environment.SetEnvironmentVariable("OUTPUT_PATH", outputPath);
+            Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", bulkNumbersPath);
+            Environment.SetEnvironmentVariable("BUCKET_NAME", TEST_BUCKET);
+            Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
+
             // Use the test data directory with pre-populated files
             tempDir = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "..", "..", "backlog", "test-data"));
             dataDir = tempDir;
@@ -52,23 +61,6 @@ namespace Backlog.Test
             mockS3Client = new Mock<IAmazonS3>();
             Backlog.Src.Bucket.Configure(mockS3Client.Object, TEST_BUCKET);
 
-            // Ensure we're using a clean environment for each test
-            Environment.SetEnvironmentVariable("COURT_METADATA_PATH", null);
-            Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", null);
-            Environment.SetEnvironmentVariable("TRACKER_PATH", null);
-            Environment.SetEnvironmentVariable("OUTPUT_PATH", null);
-            Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", null);
-            Environment.SetEnvironmentVariable("BUCKET_NAME", null);
-            Environment.SetEnvironmentVariable("AWS_DEFAULT_REGION", null);
-
-            // Set environment variables for this test
-            Environment.SetEnvironmentVariable("AWS_DEFAULT_REGION", "eu-west-2");
-            Environment.SetEnvironmentVariable("COURT_METADATA_PATH", courtMetadataPath);
-            Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", dataDir);
-            Environment.SetEnvironmentVariable("TRACKER_PATH", trackerPath);
-            Environment.SetEnvironmentVariable("OUTPUT_PATH", outputPath);
-            Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", bulkNumbersPath);
-            Environment.SetEnvironmentVariable("BUCKET_NAME", TEST_BUCKET);
         }
 
         [OneTimeTearDown]
@@ -81,7 +73,7 @@ namespace Backlog.Test
             Environment.SetEnvironmentVariable("OUTPUT_PATH", null);
             Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", null);
             Environment.SetEnvironmentVariable("BUCKET_NAME", null);
-            Environment.SetEnvironmentVariable("AWS_DEFAULT_REGION", null);
+            Environment.SetEnvironmentVariable("AWS_REGION", null);
             
             // Only clean up output files and tracker, leave test data intact
             if (File.Exists(trackerPath))

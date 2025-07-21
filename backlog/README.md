@@ -35,9 +35,9 @@ The module uses environment variables for configuration. All paths default to th
 
 ### AWS Configuration
 
-The module requires access to an S3 bucket for storing processed judgments. The AWS SDK will automatically use:
+The module requires access to an S3 bucket for storing processed judgments. The AWS SDK for .NET will automatically use:
 
-1. The region from the `AWS_DEFAULT_REGION` environment variable if set
+1. The region from the `AWS_REGION` environment variable if set
 2. The region configured in the AWS deployment environment (EC2, Lambda, ECS, etc.)
 3. The region configured in your local AWS CLI configuration
 
@@ -53,9 +53,9 @@ For local development or CI environments where AWS configuration isn't automatic
 | `OUTPUT_PATH` | Path where generated bundle files will be saved | `{BaseDir}` |
 | `BULK_NUMBERS_PATH` | Path to the CSV file tracking bulk numbers | `{BaseDir}/bulk_numbers.csv` |
 | `LAST_BEFORE_BATCH` | The last bulk number used before this batch started | `0` |
-| `AWS_DEFAULT_REGION` | AWS region for S3 bucket operations | Defaults to the region configured in AWS deployment environment |
+| `AWS_REGION` | AWS region for S3 bucket operations | Defaults to the region configured in AWS deployment environment |
 
-Note: The `AWS_DEFAULT_REGION` variable (e.g., 'eu-west-2' for London) is typically automatically set in AWS deployment environments (EC2, Lambda, ECS, etc.). You only need to set it manually when running locally or in environments without AWS configuration. In CI/CD pipelines, ensure this is set to match your S3 bucket's region.
+Note: The `AWS_REGION` variable (e.g., 'eu-west-2' for London) is typically automatically set in AWS deployment environments (EC2, Lambda, ECS, etc.). You only need to set it manually when running locally or in environments without AWS configuration. In CI/CD pipelines, ensure this is set to match your S3 bucket's region.
 
 where `{BaseDir}` is the application's base directory (`AppDomain.CurrentDomain.BaseDirectory`).
 
