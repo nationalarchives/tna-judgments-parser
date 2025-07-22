@@ -25,18 +25,20 @@ namespace Backlog.Src
 
         internal byte[] TarGz { get; init; }
 
-        internal class Source {
+        internal class Source
+        {
             public string Filename { get; init; }
             public byte[] Content { get; init; }
             public string MimeType { get; init; }
         }
 
-        private static string Hash(byte[] content) {
+        private static string Hash(byte[] content)
+        {
             byte[] hash = SHA256.HashData(content);
             return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
         }
 
-        internal static Bundle Make(Source source, Judgments.Api.Response response, bool autoPublish = false)
+        internal static Bundle Make(Source source, Judgments.Api.Response response, List<CustomField> customMetadata, bool autoPublish = false)
         {
             string uuid = Guid.NewGuid().ToString();
             Metadata metadata = new()
@@ -57,11 +59,13 @@ namespace Backlog.Src
                     IngestorOptions = new IngestorOptions()
                     {
                         AutoPublish = autoPublish,
-                        Source = new() {
+                        Source = new()
+                        {
                             Format = source.MimeType,
                             Hash = Hash(source.Content)
                         }
-                    }
+                    },
+                    CustomFields = customMetadata
                 }
             };
             using var memStream = new MemoryStream();
@@ -74,7 +78,8 @@ namespace Backlog.Src
             tar.Close();
             gz.Close();
             byte[] tarGz = memStream.ToArray();
-            return new() {
+            return new()
+            {
                 Uuid = uuid,
                 Data = metadata,
                 TarGz = tarGz
@@ -106,10 +111,10 @@ namespace Backlog.Src
             if (images is null)
                 return;
             foreach (var image in images)
-                {
-                    var name = uuid + "/" + image.Name;
-                    Write(image.Content, name, tar);
-                }
+            {
+                var name = uuid + "/" + image.Name;
+                Write(image.Content, name, tar);
+            }
         }
 
         private static void Write(byte[] data, string name, TarOutputStream tar)
@@ -142,6 +147,9 @@ namespace Backlog.Src
             [JsonPropertyName("INGESTER_OPTIONS")]
             public IngestorOptions IngestorOptions { get; set; }
 
+            [JsonPropertyName("CUSTOM_METADATA")]
+            public List<CustomField> CustomFields  { get; set; }
+
         }
 
         public class IngestorOptions
@@ -154,7 +162,8 @@ namespace Backlog.Src
             [JsonPropertyName("source_document")]
             public SourceDocument Source { get; set; }
 
-            public class SourceDocument {
+            public class SourceDocument
+            {
 
                 [JsonPropertyName("format")]
                 public string Format { get; set; }
@@ -163,6 +172,19 @@ namespace Backlog.Src
                 public string Hash { get; set; }
 
             }
+
+        }
+
+        public class CustomField
+        {
+            [JsonPropertyName("name")]
+            public string Name { get; set; }
+
+            [JsonPropertyName("source")]
+            public string Source { get; set; }
+
+            [JsonPropertyName("value")]
+            public string Value { get; set; }
 
         }
 
