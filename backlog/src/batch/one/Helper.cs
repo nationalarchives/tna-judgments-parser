@@ -11,7 +11,7 @@ namespace Backlog.Src.Batch.One
 
         internal string PathToCourtMetadataFile { get; init; }
 
-        internal string PathDoDataFolder { get; init; }
+        internal string PathToDataFolder { get; init; }
 
         internal List<Metadata.Line> FindLines(uint id)
         {
@@ -20,7 +20,7 @@ namespace Backlog.Src.Batch.One
         }
 
         internal Bundle GenerateBundle(Metadata.Line line, bool autoPublish = false) {
-            if (line.Extension == ".pdf")
+            if (line.Extension.ToLower() == ".pdf")
                 return MakePdfBundle(line, autoPublish);
             else
                 return MakeDocxBundle(line, autoPublish);
@@ -28,7 +28,7 @@ namespace Backlog.Src.Batch.One
 
         internal Bundle MakePdfBundle(Metadata.Line line, bool autoPublish) {
             var meta = Metadata.MakeMetadata(line);
-            var pdf = Files.ReadFile(PathDoDataFolder, line);
+            var pdf = Files.ReadFile(PathToDataFolder, line);
             var stub = Stub.Make(meta);
             Api.Meta meta2 = new() {
                 DocumentType = "decision",
@@ -45,12 +45,23 @@ namespace Backlog.Src.Batch.One
                 Content = pdf,
                 MimeType = "application/pdf"
             };
-            return Bundle.Make(source, resp2, autoPublish);
+            List<Bundle.CustomField> custom = [];
+            if (!string.IsNullOrWhiteSpace(line.headnote_summary))
+            {
+                custom.Add(new Bundle.CustomField
+                {
+                    Name = "headnote_summary",
+                    Source = meta.Court?.Code,
+                    Value = line.headnote_summary
+                });
+
+            }
+            return Bundle.Make(source, resp2, custom, autoPublish);
         }
 
         internal Bundle MakeDocxBundle(Metadata.Line line, bool autoPublish) {
             var meta = Metadata.MakeMetadata(line);
-            var docx = Files.ReadFile(PathDoDataFolder, line);
+            var docx = Files.ReadFile(PathToDataFolder, line);
             Api.Meta meta2 = new()
             {
                 DocumentType = "decision",
@@ -77,7 +88,18 @@ namespace Backlog.Src.Batch.One
                 Content = docx,
                 MimeType = meta.SourceFormat
             };
-            return Bundle.Make(source, resp2, autoPublish);
+            List<Bundle.CustomField> custom = [];
+            if (!string.IsNullOrWhiteSpace(line.headnote_summary))
+            {
+                custom.Add(new Bundle.CustomField
+                {
+                    Name = "headnote_summary",
+                    Source = meta.Court?.Code,
+                    Value = line.headnote_summary
+                });
+
+            }
+            return Bundle.Make(source, resp2, custom, autoPublish);
         }
 
     }
