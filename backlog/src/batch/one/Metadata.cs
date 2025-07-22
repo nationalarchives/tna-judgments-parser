@@ -23,25 +23,35 @@ namespace Backlog.Src.Batch.One
             public string publication_datetime { get; set; }
             public string last_updatedtime { get; set; }
             public string decision_datetime { get; set; }
+            // public string reported_no_1 { get; set; }
+            // public string reported_no_2 { get; set; }
+            // public string reported_no_3 { get; set; }
             public string file_no_1 { get; set; }
             public string file_no_2 { get; set; }
             public string file_no_3 { get; set; }
+            // public string decision_type { get; set; }
             public string claimants { get; set; }
             public string respondent { get; set; }
             public string headnote_summary { get; set; }
             public string is_published { get; set; }
-            public string main_subcategory_description { get; set; }
-            public string sec_subcategory_description { get; set; }
+            public string main_category { get; set; }
+            public string main_subcategory { get; set; }
+            public string sec_category { get; set; }
+            public string sec_subcategory { get; set; }
             public string Name { get; set; }
             public string FilePath { get; set; }
             public string Extension { get; set; }
             public string SizeInMB { get; set; }
             public string FileLastEditTime { get; set; }
+            public string Skip { get; set; }
 
-            private readonly string DateFormat = "yyyy-MM-dd HH:mm:ss";
+            // private readonly string DateFormat = "yyyy-MM-dd HH:mm:ss";
+            private readonly string DateFormat = "M/d/yyyy H:mm";
             internal string DecisionDate { get => System.DateTime.ParseExact(decision_datetime, DateFormat, CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"); }
 
             internal string CaseNo { get => string.Join('/', file_no_1, file_no_2, file_no_3); }
+
+            internal bool ShouldSkip() { return Skip == "1"; }
 
         }
 
@@ -59,9 +69,11 @@ namespace Backlog.Src.Batch.One
 
         internal static ExtendedMetadata MakeMetadata(Line line) {
             List<ExtendedMetadata.Category> categories = [];
-            categories.Add(new ExtendedMetadata.Category { Name = line.main_subcategory_description });
-            if (!string.IsNullOrWhiteSpace(line.sec_subcategory_description)) {
-                categories.Add(new ExtendedMetadata.Category { Name = line.sec_subcategory_description, Parent = line.main_subcategory_description });
+            categories.Add(new ExtendedMetadata.Category { Name = line.main_category });
+            categories.Add(new ExtendedMetadata.Category { Name = line.main_subcategory, Parent = line.main_category });
+            if (!string.IsNullOrWhiteSpace(line.sec_category)) {
+                categories.Add(new ExtendedMetadata.Category { Name = line.sec_category });
+                categories.Add(new ExtendedMetadata.Category { Name = line.sec_subcategory, Parent = line.sec_category });
             }
             string sourceFormat;
             if (line.Extension == ".doc" || line.Extension == ".docx")
