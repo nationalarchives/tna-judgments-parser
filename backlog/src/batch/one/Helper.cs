@@ -21,24 +21,19 @@ namespace Backlog.Src.Batch.One
             return Metadata.FindLines(lines, id);
         }
 
-        private Api.Meta CreateMetadata(Metadata.Line line, ExtendedMetadata meta, bool isPdf)
+        private Api.Meta CreateMetadata(string court, string date, string name, ExtendedMetadata meta = null)
         {
-            var baseMeta = new Api.Meta
+            var metadata = new Api.Meta
             {
                 DocumentType = "decision",
-                Court = meta.Court?.Code
+                Court = court,
+                Date = date,
+                Name = name
             };
 
-            if (isPdf)
+            if (meta != null)
             {
-                baseMeta.Date = line.DecisionDate;
-                baseMeta.Name = line.claimants + " v " + line.respondent;
-            }
-            else
-            {
-                baseMeta.Date = meta.Date?.Date;
-                baseMeta.Name = meta.Name;
-                baseMeta.Extensions = new()
+                metadata.Extensions = new()
                 {
                     SourceFormat = meta.SourceFormat,
                     CaseNumbers = meta.CaseNumbers,
@@ -47,7 +42,7 @@ namespace Backlog.Src.Batch.One
                 };
             }
 
-            return baseMeta;
+            return metadata;
         }
 
         private List<Bundle.CustomField> CreateCustomFields(Metadata.Line line, string courtCode)
@@ -65,30 +60,47 @@ namespace Backlog.Src.Batch.One
             return custom;
         }
 
-        internal Bundle GenerateBundle(Metadata.Line line, bool autoPublish = false)
+        private Api.Response CreateResponse(ExtendedMetadata meta, Metadata.Line line, byte[] content, bool isPdf)
         {
-            var isPdf = line.Extension.ToLower() == ".pdf";
-            var meta = Metadata.MakeMetadata(line);
-            var content = Files.ReadFile(PathToDataFolder, line);
-            var metadata = CreateMetadata(line, meta, isPdf);
-
-            Api.Response response;
-            
             if (isPdf)
             {
+                var metadata = CreateMetadata(
+                    meta.Court?.Code,
+                    line.DecisionDate?.ToString(),
+                    line.claimants + " v " + line.respondent
+                );
+
                 var stub = Stub.Make(meta);
-                response = new Api.Response { Xml = stub.Serialize(), Meta = metadata };
+                var response = new Api.Response { Xml = stub.Serialize(), Meta = metadata };
+                return response;
             }
             else
             {
+                var metadata = CreateMetadata(
+                    meta.Court?.Code,
+                    meta.Date?.Date.ToString(),
+                    meta.Name,
+                    meta
+                );
+
                 var request = new Api.Request
                 {
                     Meta = metadata,
                     Hint = Api.Hint.UKUT,
                     Content = content
                 };
-                response = Api.Parser.Parse(request);
+                var response = Api.Parser.Parse(request);
+                return response;
             }
+        }
+
+        internal Bundle GenerateBundle(Metadata.Line line, bool autoPublish = false)
+        {
+            var isPdf = line.Extension.ToLower() == ".pdf";
+            var meta = Metadata.MakeMetadata(line);
+            var content = Files.ReadFile(PathToDataFolder, line);
+            
+            var response = CreateResponse(meta, line, content, isPdf);
             
             var source = new Bundle.Source
             {
@@ -96,7 +108,7 @@ namespace Backlog.Src.Batch.One
                 Content = content,
                 MimeType = meta.SourceFormat
             };
-            
+
             var custom = CreateCustomFields(line, meta.Court?.Code);
             
             return Bundle.Make(source, response, custom, autoPublish);
