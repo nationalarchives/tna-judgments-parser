@@ -21,30 +21,6 @@ namespace Backlog.Src.Batch.One
             return Metadata.FindLines(lines, id);
         }
 
-        private Api.Meta CreateMetadata(string court, string date, string name, ExtendedMetadata meta = null)
-        {
-            var metadata = new Api.Meta
-            {
-                DocumentType = "decision",
-                Court = court,
-                Date = date,
-                Name = name
-            };
-
-            if (meta != null)
-            {
-                metadata.Extensions = new()
-                {
-                    SourceFormat = meta.SourceFormat,
-                    CaseNumbers = meta.CaseNumbers,
-                    Parties = meta.Parties,
-                    Categories = meta.Categories
-                };
-            }
-
-            return metadata;
-        }
-
         private List<Bundle.CustomField> CreateCustomFields(Metadata.Line line, string courtCode)
         {
             List<Bundle.CustomField> customFields = [];
@@ -64,11 +40,13 @@ namespace Backlog.Src.Batch.One
         {
             if (isPdf)
             {
-                var metadata = CreateMetadata(
-                    meta.Court?.Code,
-                    line.DecisionDate?.ToString(),
-                    line.claimants + " v " + line.respondent
-                );
+                var metadata = new Api.Meta
+                {
+                    DocumentType = "decision",
+                    Court = meta.Court?.Code,
+                    Date = line.DecisionDate?.ToString(),
+                    Name = line.claimants + " v " + line.respondent,
+                };
 
                 var stub = Stub.Make(meta);
                 var response = new Api.Response { Xml = stub.Serialize(), Meta = metadata };
@@ -76,12 +54,20 @@ namespace Backlog.Src.Batch.One
             }
             else
             {
-                var metadata = CreateMetadata(
-                    meta.Court?.Code,
-                    meta.Date?.Date.ToString(),
-                    meta.Name,
-                    meta
-                );
+                var metadata = new Api.Meta
+                {
+                    DocumentType = "decision",
+                    Court = meta.Court?.Code,
+                    Date = meta.Date?.Date.ToString(),
+                    Name = meta.Name,
+                    Extensions = new()
+                    {
+                        SourceFormat = meta.SourceFormat,
+                        CaseNumbers = meta.CaseNumbers,
+                        Parties = meta.Parties,
+                        Categories = meta.Categories
+                    }
+                };
 
                 var request = new Api.Request
                 {
