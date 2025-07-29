@@ -69,7 +69,7 @@ namespace Backlog.Src.Batch.One
             else if (line.Extension == ".pdf")
                 sourceFormat = "application/pdf";
             else
-                throw new Exception(line.Extension);
+                throw new Exception($"Unexpected extension {line.Extension}");
             bool old = String.Compare(line.DecisionDate, "2010-01-18") < 0;
             Court court = old ? Courts.OldImmigrationServicesTribunal : Courts.FirstTierTribunal_GRC;
             ExtendedMetadata meta = new()
