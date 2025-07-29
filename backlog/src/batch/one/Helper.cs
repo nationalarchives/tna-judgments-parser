@@ -21,8 +21,6 @@ namespace Backlog.Src.Batch.One
             return Metadata.FindLines(lines, id);
         }
 
-        private record FormatSpecificData(string MimeType, Func<Api.Meta, byte[], Api.Response> ProcessContent);
-
         private Api.Meta CreateMetadata(Metadata.Line line, ExtendedMetadata meta, bool isPdf)
         {
             var baseMeta = new Api.Meta
@@ -67,59 +65,41 @@ namespace Backlog.Src.Batch.One
             return custom;
         }
 
-        private Bundle.Source CreateSource(string fileName, byte[] content, string mimeType)
-        {
-            return new Bundle.Source
-            {
-                Filename = Path.GetFileName(fileName),
-                Content = content,
-                MimeType = mimeType
-            };
-        }
-
-        private FormatSpecificData GetFormatData(bool isPdf, ExtendedMetadata metadata)
-        {
-            if (isPdf)
-            {
-                return new FormatSpecificData(
-                    "application/pdf",
-                    (meta, content) =>
-                    {
-                        var stub = Stub.Make(metadata);
-                        return new Api.Response { Xml = stub.Serialize(), Meta = meta };
-                    }
-                );
-            }
-
-            return new FormatSpecificData(
-                metadata.SourceFormat,
-                (meta, content) =>
-                {
-                    var request = new Api.Request
-                    {
-                        Meta = meta,
-                        Hint = Api.Hint.UKUT,
-                        Content = content
-                    };
-                    return Api.Parser.Parse(request);
-                }
-            );
-        }
-
         internal Bundle GenerateBundle(Metadata.Line line, bool autoPublish = false)
         {
             var isPdf = line.Extension.ToLower() == ".pdf";
             var meta = Metadata.MakeMetadata(line);
             var content = Files.ReadFile(PathToDataFolder, line);
-            var formatData = GetFormatData(isPdf, meta);
+            var metadata = CreateMetadata(line, meta, isPdf);
+
+            Api.Response response;
             
-            var meta2 = CreateMetadata(line, meta, isPdf);
-            var resp2 = formatData.ProcessContent(meta2, content);
+            if (isPdf)
+            {
+                var stub = Stub.Make(meta);
+                response = new Api.Response { Xml = stub.Serialize(), Meta = metadata };
+            }
+            else
+            {
+                var request = new Api.Request
+                {
+                    Meta = metadata,
+                    Hint = Api.Hint.UKUT,
+                    Content = content
+                };
+                response = Api.Parser.Parse(request);
+            }
             
-            var source = CreateSource(line.FilePath, content, formatData.MimeType);
+            var source = new Bundle.Source
+            {
+                Filename = Path.GetFileName(line.FilePath),
+                Content = content,
+                MimeType = meta.SourceFormat
+            };
+            
             var custom = CreateCustomFields(line, meta.Court?.Code);
             
-            return Bundle.Make(source, resp2, custom, autoPublish);
+            return Bundle.Make(source, response, custom, autoPublish);
         }
     }
 }
