@@ -50,6 +50,7 @@ namespace Backlog.Src.Batch.One
                 };
 
                 var stub = Stub.Make(meta);
+
                 var response = new Api.Response { Xml = stub.Serialize(), Meta = metadata };
                 return response;
             }
