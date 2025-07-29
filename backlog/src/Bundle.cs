@@ -146,7 +146,7 @@ namespace Backlog.Src
             public IngestorOptions IngestorOptions { get; set; }
 
             [JsonPropertyName("CUSTOM_METADATA")]
-            public List<CustomField> CustomFields  { get; set; }
+            public List<CustomField> CustomFields { get; set; }
 
         }
 
