@@ -51,7 +51,7 @@ namespace Backlog.Src
                         Payload = new TRE.Payload
                         {
                             Filename = source.Filename,
-                            Images = [.. response.Images.Select(i => i.Name)],
+                            Images = response.Images is null ? [] : [.. response.Images.Select(i => i.Name)],
                             Log = null
                         }
                     },
@@ -108,6 +108,8 @@ namespace Backlog.Src
 
         private static void WriteImages(IEnumerable<Judgments.Api.Image> images, string uuid, TarOutputStream tar)
         {
+            if (images is null)
+                return;
             foreach (var image in images)
             {
                 var name = uuid + "/" + image.Name;

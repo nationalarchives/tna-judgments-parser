@@ -83,11 +83,22 @@ namespace Backlog.Src.Batch.One
             }
         }
 
-        internal Bundle GenerateBundle(Metadata.Line line, bool autoPublish = false)
+        internal Bundle GenerateBundle(Metadata.Line line, string judgmentsFilePath, string hmctsFilePath, bool autoPublish = false)
         {
+            if (line == null)
+                throw new ArgumentNullException(nameof(line));
+
+            if (string.IsNullOrWhiteSpace(line.FilePath))
+                throw new ArgumentException("FilePath cannot be empty", nameof(line));
+
+            if (string.IsNullOrWhiteSpace(line.Extension))
+                throw new ArgumentException("Extension cannot be empty", nameof(line));
+
             var meta = Metadata.MakeMetadata(line);
-            var content = Files.ReadFile(PathToDataFolder, line);
-            
+
+            var content = Files.ReadFile(PathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
+
+
             var response = CreateResponse(meta, line, content);
             
             var source = new Bundle.Source
@@ -96,9 +107,11 @@ namespace Backlog.Src.Batch.One
                 Content = content,
                 MimeType = meta.SourceFormat
             };
+            
 
             var customFields = CreateCustomFields(line, meta.Court?.Code);
-            
+            System.Console.WriteLine($"Creating bundle with source: {source.Filename}");
+            System.Console.WriteLine($"Creating bundle with content: {source.Content.Length} bytes");
             return Bundle.Make(source, response, customFields, autoPublish);
         }
     }

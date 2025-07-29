@@ -14,23 +14,25 @@ namespace Backlog.Src.Batch.One
         private const string TDR_METADATA_DIR = "tdr_metadata";
         private const string COURT_DOCUMENTS_DIR = "court_documents";
         private const string METADATA_FILENAME = "file-metadata.csv";
-        private const string JUDGMENT_FILES_PATH = "JudgmentFiles";
-        private const string HMCTS_FILES_PATH = "data/HMCTS_Judgment_Files";
 
         /// <summary>
         /// Gets the relative path from a judgment file path.
         /// </summary>
         /// <param name="filePath">The full file path to normalize</param>
         /// <returns>The normalized relative path</returns>
-        private static string GetNormalizedRelativePath(string filePath) {
+        private static string GetNormalizedRelativePath(string filePath, string judgmentsFilePath)
+        {
             if (string.IsNullOrEmpty(filePath))
                 throw new ArgumentException("FilePath cannot be empty", nameof(filePath));
 
             var normalizedPath = filePath.Replace('\\', '/');
-            if (!normalizedPath.StartsWith(JUDGMENT_FILES_PATH))
-                throw new ArgumentException($"FilePath must start with {JUDGMENT_FILES_PATH}", nameof(filePath));
+            // Console.WriteLine($"Normalized file path: {normalizedPath}");
+            var normalizedJudgmentsFilePath = judgmentsFilePath.Replace('\\', '/');
+            // Console.WriteLine($"Normalized judgments file path: {normalizedJudgmentsFilePath}");
+            if (!normalizedPath.StartsWith(normalizedJudgmentsFilePath))
+                throw new ArgumentException($"FilePath must start with {normalizedJudgmentsFilePath}", nameof(filePath));
 
-            return normalizedPath.Substring(JUDGMENT_FILES_PATH.Length + 1);
+            return normalizedPath.Substring(normalizedJudgmentsFilePath.Length + 1);
         }
 
         /// <summary>
@@ -51,16 +53,21 @@ namespace Backlog.Src.Batch.One
         /// <param name="metadataPath">Path to the metadata CSV file</param>
         /// <param name="relativePath">The relative path to match</param>
         /// <returns>The matching UUID from the metadata</returns>
-        private static string FindUuidInMetadata(string metadataPath, string relativePath) {
+        private static string FindUuidInMetadata(string metadataPath, string relativePath, string hmctsFilePath) {
             foreach (var line in File.ReadLines(metadataPath)) {
                 if (string.IsNullOrEmpty(line)) continue;
                 var parts = line.Split(',');
                 if (parts.Length < 27) continue;  // Need at least up to the UUID column (27th column)
 
                 var filePath = parts[4].Replace('\\', '/');  // clientside_original_filepath is column 5
-                if (!filePath.StartsWith(HMCTS_FILES_PATH)) continue;
-                
-                var metadataRelativePath = filePath.Substring(HMCTS_FILES_PATH.Length + 1);
+                if (!filePath.StartsWith(hmctsFilePath)) continue;
+
+                // Console.WriteLine($"Checking file path: {filePath} against relative path: {relativePath}");
+                // Console.WriteLine($"HMCTS file path length: {hmctsFilePath}");
+                // Console.WriteLine($"Relative path length: {relativePath.Length}");
+                // Console.WriteLine($"File path length: {filePath.Length}");
+                // Console.WriteLine($"HMCTS File path length: {hmctsFilePath.Length}");
+                var metadataRelativePath = filePath.Substring(hmctsFilePath.Length + 1);
                 if (metadataRelativePath == relativePath)
                     return parts[26];  // UUID is the 27th column
             }
@@ -76,10 +83,10 @@ namespace Backlog.Src.Batch.One
         /// <param name="pathToDataFolder">Base path to the data folder</param>
         /// <param name="meta">Metadata line containing file information</param>
         /// <returns>UUID from the metadata file</returns>
-        private static string GetUuid(string pathToDataFolder, Metadata.Line meta) {
-            var relativePath = GetNormalizedRelativePath(meta.FilePath);
+        private static string GetUuid(string pathToDataFolder, Metadata.Line meta, string judgmentsFilePath, string hmctsFilePath) {
+            var relativePath = GetNormalizedRelativePath(meta.FilePath, judgmentsFilePath);
             var metadataPath = GetMetadataFilePath(pathToDataFolder);
-            return FindUuidInMetadata(metadataPath, relativePath);
+            return FindUuidInMetadata(metadataPath, relativePath, hmctsFilePath);
         }
 
         /// <summary>
@@ -88,13 +95,15 @@ namespace Backlog.Src.Batch.One
         /// <param name="pathToDataFolder">Base path to the data folder</param>
         /// <param name="meta">Metadata line containing file information</param>
         /// <returns>File contents as a byte array</returns>
-        internal static byte[] ReadFile(string pathToDataFolder, Metadata.Line meta) {
-            string uuid = GetUuid(pathToDataFolder, meta);
+        internal static byte[] ReadFile(string pathToDataFolder, Metadata.Line meta, string judgmentsFilePath, string hmctsFilePath) {
+            string uuid = GetUuid(pathToDataFolder, meta, judgmentsFilePath, hmctsFilePath);
             string documentPath = Path.Combine(pathToDataFolder, COURT_DOCUMENTS_DIR);
             string path = Path.Combine(documentPath, uuid);
             
             if (meta.Extension.ToLower() == ".doc")
                 path += ".docx";
+            if (meta.Extension.ToLower() == ".pdf")
+                path += ".pdf";
                 
             return File.ReadAllBytes(path);
         }
@@ -104,10 +113,10 @@ namespace Backlog.Src.Batch.One
         /// </summary>
         /// <param name="pathToDataFolder">Base path to the data folder</param>
         /// <param name="lines">List of metadata lines containing file information</param>
-        internal static void CopyAllFilesWithExtension(string pathToDataFolder, List<Metadata.Line> lines) {
+        internal static void CopyAllFilesWithExtension(string pathToDataFolder, List<Metadata.Line> lines, string judgmentsFilePath, string hmctsFilePath) {
             foreach (var line in lines)
             {
-                string uuid = GetUuid(pathToDataFolder, line);
+                string uuid = GetUuid(pathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
                 string sourcePath = Path.Combine(pathToDataFolder, COURT_DOCUMENTS_DIR, uuid);
                 string targetPath = sourcePath + line.Extension.ToLower();
                 
