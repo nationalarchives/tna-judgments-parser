@@ -36,8 +36,9 @@ namespace Backlog.Src.Batch.One
             return customFields;
         }
 
-        private Api.Response CreateResponse(ExtendedMetadata meta, Metadata.Line line, byte[] content, bool isPdf)
+        private Api.Response CreateResponse(ExtendedMetadata meta, Metadata.Line line, byte[] content)
         {
+            var isPdf = line.Extension.ToLower() == ".pdf";
             if (isPdf)
             {
                 var metadata = new Api.Meta
@@ -82,11 +83,10 @@ namespace Backlog.Src.Batch.One
 
         internal Bundle GenerateBundle(Metadata.Line line, bool autoPublish = false)
         {
-            var isPdf = line.Extension.ToLower() == ".pdf";
             var meta = Metadata.MakeMetadata(line);
             var content = Files.ReadFile(PathToDataFolder, line);
             
-            var response = CreateResponse(meta, line, content, isPdf);
+            var response = CreateResponse(meta, line, content);
             
             var source = new Bundle.Source
             {
