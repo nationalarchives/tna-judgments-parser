@@ -26,42 +26,58 @@ namespace Backlog.Src.Batch.One
                 return MakeDocxBundle(line, autoPublish);
         }
 
-        internal Bundle MakePdfBundle(Metadata.Line line, bool autoPublish) {
-            var meta = Metadata.MakeMetadata(line);
-            var pdf = Files.ReadFile(PathToDataFolder, line);
-            var stub = Stub.Make(meta);
-            Api.Meta meta2 = new() {
-                DocumentType = "decision",
-                Court = meta.Court?.Code,
-                Date = line.DecisionDate,
-                Name = line.claimants + " v " + line.respondent
-            };
-            Api.Response resp2 = new() {
-                Xml = stub.Serialize(),
-                Meta = meta2
-            };
-            Bundle.Source source = new() {
-                Filename = Path.GetFileName(line.FilePath),
-                Content = pdf,
-                MimeType = "application/pdf"
-            };
+        private List<Bundle.CustomField> CreateCustomFields(Metadata.Line line, string courtCode)
+        {
             List<Bundle.CustomField> custom = [];
             if (!string.IsNullOrWhiteSpace(line.headnote_summary))
             {
                 custom.Add(new Bundle.CustomField
                 {
                     Name = "headnote_summary",
-                    Source = meta.Court?.Code,
+                    Source = courtCode,
                     Value = line.headnote_summary
                 });
-
             }
+            return custom;
+        }
+
+        private Bundle.Source CreateSource(string fileName, byte[] content, string mimeType)
+        {
+            return new Bundle.Source
+            {
+                Filename = Path.GetFileName(fileName),
+                Content = content,
+                MimeType = mimeType
+            };
+        }
+
+        internal Bundle MakePdfBundle(Metadata.Line line, bool autoPublish) {
+            var meta = Metadata.MakeMetadata(line);
+            var pdf = Files.ReadFile(PathToDataFolder, line);
+            var stub = Stub.Make(meta);
+            
+            Api.Meta meta2 = new() {
+                DocumentType = "decision",
+                Court = meta.Court?.Code,
+                Date = line.DecisionDate,
+                Name = line.claimants + " v " + line.respondent
+            };
+            
+            Api.Response resp2 = new() {
+                Xml = stub.Serialize(),
+                Meta = meta2
+            };
+
+            var source = CreateSource(line.FilePath, pdf, "application/pdf");
+            var custom = CreateCustomFields(line, meta.Court?.Code);
+            
             return Bundle.Make(source, resp2, custom, autoPublish);
         }
 
         internal Bundle MakeDocxBundle(Metadata.Line line, bool autoPublish) {
             var meta = Metadata.MakeMetadata(line);
             var docx = Files.ReadFile(PathToDataFolder, line);
+
             Api.Meta meta2 = new()
             {
                 DocumentType = "decision",
@@ -75,28 +91,17 @@ namespace Backlog.Src.Batch.One
                     Categories = meta.Categories
                 }
             };
+            
             Api.Request request = new() {
                 Meta = meta2,
                 Hint = Api.Hint.UKUT,
                 Content = docx
             };
             Api.Response resp2 = Api.Parser.Parse(request);
-            Bundle.Source source = new() {
-                Filename = Path.GetFileName(line.FilePath),
-                Content = docx,
-                MimeType = meta.SourceFormat
-            };
-            List<Bundle.CustomField> custom = [];
-            if (!string.IsNullOrWhiteSpace(line.headnote_summary))
-            {
-                custom.Add(new Bundle.CustomField
-                {
-                    Name = "headnote_summary",
-                    Source = meta.Court?.Code,
-                    Value = line.headnote_summary
-                });
 
-            }
+            var source = CreateSource(line.FilePath, docx, meta.SourceFormat);
+            var custom = CreateCustomFields(line, meta.Court?.Code);
+            
             return Bundle.Make(source, resp2, custom, autoPublish);
         }
 
