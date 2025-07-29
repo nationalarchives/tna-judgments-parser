@@ -22,7 +22,7 @@ namespace Backlog.Src.Batch.One
 
         internal bool WasDone(Metadata.Line line) {
             var key = MakeKey(line);
-            return File.ReadAllLines(file).Where(line => line.Contains(key)).Any();
+            return File.ReadAllLines(file).Where(entry => entry.Contains(key)).Any();
         }
 
         internal void MarkDone(Metadata.Line line, string uuid) {
