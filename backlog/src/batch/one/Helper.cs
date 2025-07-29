@@ -47,17 +47,17 @@ namespace Backlog.Src.Batch.One
 
         private List<Bundle.CustomField> CreateCustomFields(Metadata.Line line, string courtCode)
         {
-            List<Bundle.CustomField> custom = [];
+            List<Bundle.CustomField> customFields = [];
             if (!string.IsNullOrWhiteSpace(line.headnote_summary))
             {
-                custom.Add(new Bundle.CustomField
+                customFields.Add(new Bundle.CustomField
                 {
                     Name = "headnote_summary",
                     Source = courtCode,
                     Value = line.headnote_summary
                 });
             }
-            return custom;
+            return customFields;
         }
 
         private Api.Response CreateResponse(ExtendedMetadata meta, Metadata.Line line, byte[] content, bool isPdf)
@@ -109,9 +109,9 @@ namespace Backlog.Src.Batch.One
                 MimeType = meta.SourceFormat
             };
 
-            var custom = CreateCustomFields(line, meta.Court?.Code);
+            var customFields = CreateCustomFields(line, meta.Court?.Code);
             
-            return Bundle.Make(source, response, custom, autoPublish);
+            return Bundle.Make(source, response, customFields, autoPublish);
         }
     }
 }
