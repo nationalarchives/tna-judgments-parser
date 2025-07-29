@@ -342,6 +342,13 @@ public readonly partial struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/upper-tribunal-immigration-and-asylum-chamber",
         CitationPattern = new Regex(@"^\[\d{4}\] UKUT \d+ \(IAC\)$")
     };
+
+    public static readonly Court OldImmigrationServicesTribunal = new Court {
+        Code = "UKIST",
+        LongName = "The Immigation Services Tribunal", //United Kingdom Immigration Services Tribunal",
+        URL = "", //https://www.gov.uk/courts-tribunals/first-tier-tribunal-immigration-and-asylum"
+        CitationPattern = new Regex(@"^\[\d{4}\] UKIST \d+$")
+    };
     public static readonly Court UpperTribunal_LandsChamber = new Court {
         Code = "UKUT-LC",
         LongName = "United Kingdom Upper Tribunal (Lands Chamber)",
@@ -425,7 +432,7 @@ public readonly partial struct Courts {
         EWCR,
 
         UpperTribunal_AdministrativeAppealsChamber,
-        UpperTribunal_ImmigrationAndAsylumChamber, OldAsylumAndImmigrationTribunal,
+        UpperTribunal_ImmigrationAndAsylumChamber, OldAsylumAndImmigrationTribunal, OldImmigrationServicesTribunal,
         UpperTribunal_LandsChamber,
         UpperTribunal_TaxAndChanceryChamber,
 

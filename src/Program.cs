@@ -16,6 +16,7 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 using EM = UK.Gov.Legislation.ExplanatoryMemoranda;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("backlog")]
 
 class Program {
 
