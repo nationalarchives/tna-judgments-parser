@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/dotnet:7@sha256:5434516a138eb44786c9c3a4dc557fc2ad1cd87dc31c4c1043e0df456fa89fbe
+FROM public.ecr.aws/lambda/dotnet:9@sha256:9009e2c6f46e28a6ec49dc0c18e5a913ac1c0a6eff6f7fcb0df12681bdffd69d
 
 WORKDIR /var/task
 
