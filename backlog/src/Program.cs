@@ -29,8 +29,8 @@ namespace Backlog.Src
 
                 DotNetEnv.Env.Load();  // required for bucket name
 
-                string judgmentsFilePath = Environment.GetEnvironmentVariable("JUDGMENTS_FILE_PATH") ?? "JudgmentFiles"; // ?? "JudgmentFiles"; "Documents\decisions"
-                string hmctsFilePath = Environment.GetEnvironmentVariable("HMCTS_FILES_PATH") ?? "data/HMCTS_Judgment_Files"; //?? "data/HMCTS_Judgment_Files"; "data/Consumer Credit Appeals/Documents"
+                string judgmentsFilePath = Environment.GetEnvironmentVariable("JUDGMENTS_FILE_PATH");
+                string hmctsFilePath = Environment.GetEnvironmentVariable("HMCTS_FILES_PATH");
 
                 Helper helper = new()
                 {
