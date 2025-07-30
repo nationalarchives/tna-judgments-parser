@@ -21,21 +21,6 @@ namespace Backlog.Src.Batch.One
             return Metadata.FindLines(lines, id);
         }
 
-        private List<Bundle.CustomField> CreateCustomFields(Metadata.Line line, string courtCode)
-        {
-            List<Bundle.CustomField> customFields = [];
-            if (!string.IsNullOrWhiteSpace(line.headnote_summary))
-            {
-                customFields.Add(new Bundle.CustomField
-                {
-                    Name = "headnote_summary",
-                    Source = courtCode,
-                    Value = line.headnote_summary
-                });
-            }
-            return customFields;
-        }
-
         private Api.Response CreateResponse(ExtendedMetadata meta, Metadata.Line line, byte[] content)
         {
             var isPdf = line.Extension.ToLower() == ".pdf";
@@ -108,11 +93,9 @@ namespace Backlog.Src.Batch.One
                 MimeType = meta.SourceFormat
             };
             
-
-            var customFields = CreateCustomFields(line, meta.Court?.Code);
             System.Console.WriteLine($"Creating bundle with source: {source.Filename}");
             System.Console.WriteLine($"Creating bundle with content: {source.Content.Length} bytes");
-            return Bundle.Make(source, response, customFields, autoPublish);
+            return Bundle.Make(source, response, autoPublish);
         }
     }
 }
