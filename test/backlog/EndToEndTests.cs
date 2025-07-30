@@ -81,9 +81,21 @@ namespace Backlog.Test
         [TearDown]
         public void TestTearDown()
         {
-            // Clean up tracker file after each test to ensure fresh state
             try
             {
+                // Clean up output directory after each test
+                if (Directory.Exists(outputPath))
+                {
+                    Console.WriteLine($"Cleaning up output directory: {outputPath}");
+                    Directory.Delete(outputPath, true);
+                    Console.WriteLine("Output directory deleted successfully");
+                }
+                else
+                {
+                    Console.WriteLine("No output directory to clean up");
+                }
+
+                // Clean up tracker file after each test to ensure fresh state
                 if (File.Exists(trackerPath))
                 {
                     Console.WriteLine($"Cleaning up tracker file: {trackerPath}");
@@ -97,7 +109,7 @@ namespace Backlog.Test
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error cleaning up tracker: {ex}");
+                Console.WriteLine($"Error during cleanup: {ex}");
             }
 
             // Clear all relevant environment variables to ensure clean state
@@ -108,7 +120,7 @@ namespace Backlog.Test
 
         [OneTimeTearDown]
         public void TearDown()
-        {            
+        {
             // Clean up environment variables
             Environment.SetEnvironmentVariable("COURT_METADATA_PATH", null);
             Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", null);
