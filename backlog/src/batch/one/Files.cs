@@ -26,9 +26,7 @@ namespace Backlog.Src.Batch.One
                 throw new ArgumentException("FilePath cannot be empty", nameof(filePath));
 
             var normalizedPath = filePath.Replace('\\', '/');
-            // Console.WriteLine($"Normalized file path: {normalizedPath}");
             var normalizedJudgmentsFilePath = judgmentsFilePath.Replace('\\', '/');
-            // Console.WriteLine($"Normalized judgments file path: {normalizedJudgmentsFilePath}");
             if (!normalizedPath.StartsWith(normalizedJudgmentsFilePath))
                 throw new ArgumentException($"FilePath must start with {normalizedJudgmentsFilePath}", nameof(filePath));
 
@@ -61,12 +59,6 @@ namespace Backlog.Src.Batch.One
 
                 var filePath = parts[4].Replace('\\', '/');  // clientside_original_filepath is column 5
                 if (!filePath.StartsWith(hmctsFilePath)) continue;
-
-                // Console.WriteLine($"Checking file path: {filePath} against relative path: {relativePath}");
-                // Console.WriteLine($"HMCTS file path length: {hmctsFilePath}");
-                // Console.WriteLine($"Relative path length: {relativePath.Length}");
-                // Console.WriteLine($"File path length: {filePath.Length}");
-                // Console.WriteLine($"HMCTS File path length: {hmctsFilePath.Length}");
                 var metadataRelativePath = filePath.Substring(hmctsFilePath.Length + 1);
                 if (metadataRelativePath == relativePath)
                     return parts[26];  // UUID is the 27th column
