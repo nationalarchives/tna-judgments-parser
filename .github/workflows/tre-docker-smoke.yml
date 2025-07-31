@@ -34,7 +34,17 @@ jobs:
           curl -s -X POST "http://localhost:9000/2015-03-31/functions/function/invocations" \
             -H "Content-Type: application/json" \
             --data-binary @test-event.json > response.json
-          cat response.json
+      - name: Assert response output
+        run: |
+          expected='{"parser-outputs":{"xml":null,"metadata":null,"images":[],"log":null,"error-messages":["error saving xml","error saving metadata","error saving log file"]}}'
+          actual=$(cat response.json | jq -c .)
+          if [ "$actual" = "$expected" ]; then
+            echo "Response matches expected output."
+            echo "$actual"
+          else
+            echo "Unexpected response: $actual"
+            exit 1
+          fi
 
       - name: Stop and remove container
         run: |
