@@ -1,0 +1,52 @@
+name: TRE Docker Smoke Test
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -f TRE/DockerfileV2 -t tre-lambda-test .
+
+      - name: Run Docker container
+        run: |
+          docker run -d --name tre-lambda-test -p 9000:8080 tre-lambda-test
+
+      - name: Wait for container to start
+        run: |
+          sleep 10
+
+      - name: Smoke test with test-event.json
+        run: |
+          curl -s -X POST "http://localhost:9000/2015-03-31/functions/function/invocations" \
+            -H "Content-Type: application/json" \
+            --data-binary @test-event.json > response.json
+      - name: Assert response output
+        run: |
+          expected='{"parser-outputs":{"xml":null,"metadata":null,"images":[],"log":null,"error-messages":["error saving xml","error saving metadata","error saving log file"]}}'
+          actual=$(cat response.json | jq -c .)
+          if [ "$actual" = "$expected" ]; then
+            echo "Response matches expected output."
+            echo "$actual"
+          else
+            echo "Unexpected response: $actual"
+            exit 1
+          fi
+
+      - name: Stop and remove container
+        run: |
+          docker stop tre-lambda-test
+          docker rm tre-lambda-test
