@@ -30,8 +30,10 @@ namespace Backlog.Src.Batch.One
             public string respondent { get; set; }
             public string headnote_summary { get; set; }
             public string is_published { get; set; }
-            public string main_subcategory_description { get; set; }
-            public string sec_subcategory_description { get; set; }
+            public string main_category { get; set; }
+            public string main_subcategory { get; set; }
+            public string sec_category { get; set; }
+            public string sec_subcategory { get; set; }
             public string Name { get; set; }
             public string FilePath { get; set; }
             public string Extension { get; set; }
@@ -59,9 +61,11 @@ namespace Backlog.Src.Batch.One
 
         internal static ExtendedMetadata MakeMetadata(Line line) {
             List<ExtendedMetadata.Category> categories = [];
-            categories.Add(new ExtendedMetadata.Category { Name = line.main_subcategory_description });
-            if (!string.IsNullOrWhiteSpace(line.sec_subcategory_description)) {
-                categories.Add(new ExtendedMetadata.Category { Name = line.sec_subcategory_description, Parent = line.main_subcategory_description });
+            categories.Add(new ExtendedMetadata.Category { Name = line.main_category });
+            categories.Add(new ExtendedMetadata.Category { Name = line.main_subcategory, Parent = line.main_category });
+            if (!string.IsNullOrWhiteSpace(line.sec_category)) {
+                categories.Add(new ExtendedMetadata.Category { Name = line.sec_category });
+                categories.Add(new ExtendedMetadata.Category { Name = line.sec_subcategory, Parent = line.sec_category });
             }
             string sourceFormat;
             if (line.Extension == ".doc" || line.Extension == ".docx")
