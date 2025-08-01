@@ -32,7 +32,7 @@ namespace Backlog.Src
                 Helper helper = new()
                 {
                     PathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "court_metadata.csv"),
-                    PathDoDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ?? AppDomain.CurrentDomain.BaseDirectory
+                    PathToDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ?? AppDomain.CurrentDomain.BaseDirectory
                 };
                 string trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
                 Tracker tracker = new Tracker(trackerPath);
@@ -55,7 +55,7 @@ namespace Backlog.Src
                     {
                         System.Console.WriteLine($"Processing file: {line.FilePath}");
                         System.Console.WriteLine($"Using court metadata from: {helper.PathToCourtMetadataFile}");
-                        System.Console.WriteLine($"Using data folder: {helper.PathDoDataFolder}");
+                        System.Console.WriteLine($"Using data folder: {helper.PathToDataFolder}");
                         
                         Bundle bundle = helper.GenerateBundle(line, autoPublish);
 

@@ -11,7 +11,7 @@ namespace Backlog.Src.Batch.One
 
         internal string PathToCourtMetadataFile { get; init; }
 
-        internal string PathDoDataFolder { get; init; }
+        internal string PathToDataFolder { get; init; }
 
         internal List<Metadata.Line> FindLines(uint id)
         {
@@ -28,7 +28,7 @@ namespace Backlog.Src.Batch.One
 
         internal Bundle MakePdfBundle(Metadata.Line line, bool autoPublish) {
             var meta = Metadata.MakeMetadata(line);
-            var pdf = Files.ReadFile(PathDoDataFolder, line);
+            var pdf = Files.ReadFile(PathToDataFolder, line);
             var stub = Stub.Make(meta);
             Api.Meta meta2 = new() {
                 DocumentType = "decision",
@@ -50,7 +50,7 @@ namespace Backlog.Src.Batch.One
 
         internal Bundle MakeDocxBundle(Metadata.Line line, bool autoPublish) {
             var meta = Metadata.MakeMetadata(line);
-            var docx = Files.ReadFile(PathDoDataFolder, line);
+            var docx = Files.ReadFile(PathToDataFolder, line);
             Api.Meta meta2 = new()
             {
                 DocumentType = "decision",
