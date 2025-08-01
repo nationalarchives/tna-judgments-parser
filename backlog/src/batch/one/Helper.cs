@@ -68,6 +68,22 @@ namespace Backlog.Src.Batch.One
             }
         }
 
+
+        private List<Bundle.CustomField> CreateCustomFields(Metadata.Line line, string courtCode)
+        {
+            List<Bundle.CustomField> customFields = [];
+            if (!string.IsNullOrWhiteSpace(line.headnote_summary))
+            {
+                customFields.Add(new Bundle.CustomField
+                {
+                    Name = "headnote_summary",
+                    Source = courtCode,
+                    Value = line.headnote_summary
+                });
+            }
+            return customFields;
+        }
+
         internal Bundle GenerateBundle(Metadata.Line line, string judgmentsFilePath, string hmctsFilePath, bool autoPublish = false)
         {
             if (line == null)
@@ -92,10 +108,10 @@ namespace Backlog.Src.Batch.One
                 Content = content,
                 MimeType = meta.SourceFormat
             };
-            
+            var customFields = CreateCustomFields(line, meta.Court?.Code);
             System.Console.WriteLine($"Creating bundle with source: {source.Filename}");
             System.Console.WriteLine($"Creating bundle with content: {source.Content.Length} bytes");
-            return Bundle.Make(source, response, autoPublish);
+            return Bundle.Make(source, response, customFields, autoPublish);
         }
     }
 }
