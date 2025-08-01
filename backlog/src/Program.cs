@@ -29,6 +29,9 @@ namespace Backlog.Src
 
                 DotNetEnv.Env.Load();  // required for bucket name
 
+                string judgmentsFilePath = Environment.GetEnvironmentVariable("JUDGMENTS_FILE_PATH");
+                string hmctsFilePath = Environment.GetEnvironmentVariable("HMCTS_FILES_PATH");
+
                 Helper helper = new()
                 {
                     PathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "court_metadata.csv"),
@@ -57,7 +60,7 @@ namespace Backlog.Src
                         System.Console.WriteLine($"Using court metadata from: {helper.PathToCourtMetadataFile}");
                         System.Console.WriteLine($"Using data folder: {helper.PathToDataFolder}");
                         
-                        Bundle bundle = helper.GenerateBundle(line, autoPublish);
+                        Bundle bundle = helper.GenerateBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
 
                         string outputPath = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
                         string output = Path.Combine(outputPath, bundle.Uuid + ".tar.gz");
@@ -77,7 +80,8 @@ namespace Backlog.Src
                     }
                     catch (Exception ex)
                     {
-                        System.Console.WriteLine($"Error processing line {line.id}: {ex.Message}");
+                        System.Console.WriteLine($"Error processing line {line.id}:");
+                        System.Console.WriteLine(ex.ToString());
                         return 1;
                     }
                 }
@@ -86,7 +90,8 @@ namespace Backlog.Src
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine($"Fatal error: {ex.Message}");
+                System.Console.WriteLine("Fatal error:");
+                System.Console.WriteLine(ex.ToString());
                 return 1;
             }
         }
