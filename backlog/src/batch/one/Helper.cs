@@ -1,8 +1,10 @@
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
+using ExtendedMetadata = Backlog.Src.ExtendedMetadata;
 
 namespace Backlog.Src.Batch.One
 {
@@ -19,65 +21,81 @@ namespace Backlog.Src.Batch.One
             return Metadata.FindLines(lines, id);
         }
 
-        internal Bundle GenerateBundle(Metadata.Line line, string judgmentsFilePath, string hmctsFilePath, bool autoPublish = false) {
-            if (line.Extension == ".pdf")
-                return MakePdfBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
-            else
-                return MakeDocxBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
-        }
-
-        internal Bundle MakePdfBundle(Metadata.Line line, string judgmentsFilePath, string hmctsFilePath, bool autoPublish) {
-            var meta = Metadata.MakeMetadata(line);
-            var pdf = Files.ReadFile(PathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
-            var stub = Stub.Make(meta);
-            Api.Meta meta2 = new() {
-                DocumentType = "decision",
-                Court = meta.Court?.Code,
-                Date = line.DecisionDate,
-                Name = line.claimants + " v " + line.respondent
-            };
-            Api.Response resp2 = new() {
-                Xml = stub.Serialize(),
-                Meta = meta2
-            };
-            Bundle.Source source = new() {
-                Filename = Path.GetFileName(line.FilePath),
-                Content = pdf,
-                MimeType = "application/pdf"
-            };
-            return Bundle.Make(source, resp2, autoPublish);
-        }
-
-        internal Bundle MakeDocxBundle(Metadata.Line line,string judgmentsFilePath, string hmctsFilePath, bool autoPublish) {
-            var meta = Metadata.MakeMetadata(line);
-            var docx = Files.ReadFile(PathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
-            Api.Meta meta2 = new()
+        private Api.Response CreateResponse(ExtendedMetadata meta, Metadata.Line line, byte[] content)
+        {
+            var isPdf = line.Extension.ToLower() == ".pdf";
+            if (isPdf)
             {
-                DocumentType = "decision",
-                Court = meta.Court?.Code,
-                Date = meta.Date?.Date,
-                Name = meta.Name,
-                Extensions = new() {
-                    SourceFormat = meta.SourceFormat,
-                    CaseNumbers = meta.CaseNumbers,
-                    Parties = meta.Parties,
-                    Categories = meta.Categories
-                }
-            };
-            Api.Request request = new() {
-                Meta = meta2,
-                Hint = Api.Hint.UKUT,
-                Content = docx
-            };
-            Api.Response resp2 = Api.Parser.Parse(request);
-            Bundle.Source source = new() {
+                var metadata = new Api.Meta
+                {
+                    DocumentType = "decision",
+                    Court = meta.Court?.Code,
+                    Date = line.DecisionDate?.ToString(),
+                    Name = line.claimants + " v " + line.respondent,
+                };
+
+                var stub = Stub.Make(meta);
+
+                var response = new Api.Response { Xml = stub.Serialize(), Meta = metadata };
+                return response;
+            }
+            else
+            {
+                var metadata = new Api.Meta
+                {
+                    DocumentType = "decision",
+                    Court = meta.Court?.Code,
+                    Date = meta.Date?.Date.ToString(),
+                    Name = meta.Name,
+                    Extensions = new()
+                    {
+                        SourceFormat = meta.SourceFormat,
+                        CaseNumbers = meta.CaseNumbers,
+                        Parties = meta.Parties,
+                        Categories = meta.Categories
+                    }
+                };
+
+                var request = new Api.Request
+                {
+                    Meta = metadata,
+                    Hint = Api.Hint.UKUT,
+                    Content = content
+                };
+
+                var response = Api.Parser.Parse(request);
+                return response;
+            }
+        }
+
+        internal Bundle GenerateBundle(Metadata.Line line, string judgmentsFilePath, string hmctsFilePath, bool autoPublish = false)
+        {
+            if (line == null)
+                throw new ArgumentNullException(nameof(line));
+
+            if (string.IsNullOrWhiteSpace(line.FilePath))
+                throw new ArgumentException("FilePath cannot be empty", nameof(line));
+
+            if (string.IsNullOrWhiteSpace(line.Extension))
+                throw new ArgumentException("Extension cannot be empty", nameof(line));
+
+            var meta = Metadata.MakeMetadata(line);
+
+            var content = Files.ReadFile(PathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
+
+
+            var response = CreateResponse(meta, line, content);
+            
+            var source = new Bundle.Source
+            {
                 Filename = Path.GetFileName(line.FilePath),
-                Content = docx,
+                Content = content,
                 MimeType = meta.SourceFormat
             };
-            return Bundle.Make(source, resp2, autoPublish);
+            
+            System.Console.WriteLine($"Creating bundle with source: {source.Filename}");
+            System.Console.WriteLine($"Creating bundle with content: {source.Content.Length} bytes");
+            return Bundle.Make(source, response, autoPublish);
         }
-
     }
-
 }
