@@ -19,16 +19,16 @@ namespace Backlog.Src.Batch.One
             return Metadata.FindLines(lines, id);
         }
 
-        internal Bundle GenerateBundle(Metadata.Line line, bool autoPublish = false) {
+        internal Bundle GenerateBundle(Metadata.Line line, string judgmentsFilePath, string hmctsFilePath, bool autoPublish = false) {
             if (line.Extension == ".pdf")
-                return MakePdfBundle(line, autoPublish);
+                return MakePdfBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
             else
-                return MakeDocxBundle(line, autoPublish);
+                return MakeDocxBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
         }
 
-        internal Bundle MakePdfBundle(Metadata.Line line, bool autoPublish) {
+        internal Bundle MakePdfBundle(Metadata.Line line, string judgmentsFilePath, string hmctsFilePath, bool autoPublish) {
             var meta = Metadata.MakeMetadata(line);
-            var pdf = Files.ReadFile(PathToDataFolder, line);
+            var pdf = Files.ReadFile(PathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
             var stub = Stub.Make(meta);
             Api.Meta meta2 = new() {
                 DocumentType = "decision",
@@ -48,9 +48,9 @@ namespace Backlog.Src.Batch.One
             return Bundle.Make(source, resp2, autoPublish);
         }
 
-        internal Bundle MakeDocxBundle(Metadata.Line line, bool autoPublish) {
+        internal Bundle MakeDocxBundle(Metadata.Line line,string judgmentsFilePath, string hmctsFilePath, bool autoPublish) {
             var meta = Metadata.MakeMetadata(line);
-            var docx = Files.ReadFile(PathToDataFolder, line);
+            var docx = Files.ReadFile(PathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
             Api.Meta meta2 = new()
             {
                 DocumentType = "decision",

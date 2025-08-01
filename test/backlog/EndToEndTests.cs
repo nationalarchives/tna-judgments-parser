@@ -51,6 +51,8 @@ namespace Backlog.Test
             Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", bulkNumbersPath);
             Environment.SetEnvironmentVariable("BUCKET_NAME", TEST_BUCKET);
             Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
+            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles");
+            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files");
 
             // Set up mock S3 client
             mockS3Client = new Mock<IAmazonS3>();
@@ -69,7 +71,9 @@ namespace Backlog.Test
             Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", null);
             Environment.SetEnvironmentVariable("BUCKET_NAME", null);
             Environment.SetEnvironmentVariable("AWS_REGION", null);
-            
+            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", null);
+            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", null);
+
             // Only clean up output files and tracker, leave test data intact
             if (File.Exists(trackerPath))
                 File.Delete(trackerPath);
