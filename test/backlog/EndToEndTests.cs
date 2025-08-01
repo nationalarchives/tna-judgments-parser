@@ -14,10 +14,7 @@ namespace Backlog.Test
     [TestFixture]
     public class EndToEndTests
     {
-        private string tempDir;
         private string dataDir;
-        private string courtDocsDir;
-        private string tdrMetadataDir;
         private string courtMetadataPath;
         private string trackerPath;
         private string outputPath;
@@ -25,22 +22,18 @@ namespace Backlog.Test
         private Mock<IAmazonS3> mockS3Client;
         private const string TEST_BUCKET = "test-bucket";
 
-        [SetUp]
-        public void SetUp()
+        private void ConfigureTestEnvironment(string testCaseName)
         {
             // Use the test data directory with pre-populated files
-            tempDir = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "..", "..", "backlog", "test-data"));
-            dataDir = tempDir;
-            courtDocsDir = Path.Combine(dataDir, "court_documents");
-            tdrMetadataDir = Path.Combine(dataDir, "tdr_metadata");
+            dataDir = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "..", "..", "backlog", "test-data", testCaseName));
             
             // Create paths for required files
-            courtMetadataPath = Path.Combine(tempDir, "court_metadata.csv");
-            trackerPath = Path.Combine(tempDir, "uploaded-production.csv");
-            outputPath = Path.Combine(tempDir, "output");
-            bulkNumbersPath = Path.Combine(tempDir, "bulk_numbers.csv");
+            courtMetadataPath = Path.Combine(dataDir, "court_metadata.csv");
+            trackerPath = Path.Combine(dataDir, "uploaded-production.csv");
+            outputPath = Path.Combine(dataDir, "output");
+            bulkNumbersPath = Path.Combine(dataDir, "bulk_numbers.csv");
 
-            // Create output directory - other directories should already exist
+            // Create the output directory - input directories should already exist with test data
             Directory.CreateDirectory(outputPath);
 
             // Set environment variables for this test
@@ -51,18 +44,18 @@ namespace Backlog.Test
             Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", bulkNumbersPath);
             Environment.SetEnvironmentVariable("BUCKET_NAME", TEST_BUCKET);
             Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files");
-
-            // Set up mock S3 client
-            mockS3Client = new Mock<IAmazonS3>();
-            Backlog.Src.Bucket.Configure(mockS3Client.Object, TEST_BUCKET);
-
         }
 
-        [OneTimeTearDown]
+        [SetUp]
+        public void SetUp()
+        {
+            // Reset mock S3 client for each test to ensure clean state
+            mockS3Client = new Mock<IAmazonS3>();
+        }
+
+        [TearDown]
         public void TearDown()
-        {            
+        {
             // Clean up environment variables
             Environment.SetEnvironmentVariable("COURT_METADATA_PATH", null);
             Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", null);
@@ -81,15 +74,15 @@ namespace Backlog.Test
                 Directory.Delete(outputPath, true);
         }
 
-        [Test]
-        public async Task ProcessBacklogJudgment_SuccessfullyUploadsToS3()
+        private class S3UploadCapture
         {
-            // Arrange
-            const uint docId = 5;  // doc id 5 from the court_metadata.csv being tested
+            public byte[] CapturedContent { get; set; }
+            public string CapturedKey { get; set; }
+        }
 
-            // Configure mock S3 client to capture the uploaded content
-            byte[] capturedContent = null;
-            string capturedKey = null;
+        private S3UploadCapture SetupS3Mock()
+        {
+            var capture = new S3UploadCapture();
             var putObjectResponse = new PutObjectResponse { HttpStatusCode = System.Net.HttpStatusCode.OK };
             var taskCompletionSource = new TaskCompletionSource<PutObjectResponse>();
             taskCompletionSource.SetResult(putObjectResponse);
@@ -103,19 +96,18 @@ namespace Backlog.Test
                 .Callback<PutObjectRequest, CancellationToken>((req, token) => 
                 {
                     // Capture the key (UUID) and content
-                    capturedKey = req.Key;
+                    capture.CapturedKey = req.Key;
                     using var ms = new MemoryStream();
                     req.InputStream.CopyTo(ms);
-                    capturedContent = ms.ToArray();
+                    capture.CapturedContent = ms.ToArray();
                 })
                 .Returns(taskCompletionSource.Task);
 
-            // Act
-            var exitCode = Backlog.Src.Program.Main(new[] { "--id", docId.ToString() });
+            return capture;
+        }
 
-            // Assert
-            Assert.That(exitCode, Is.EqualTo(0), "Program should exit successfully");
-
+        private async Task AssertS3UploadResults(byte[] capturedContent, string capturedKey, string expectedXmlFileName)
+        {
             // Verify content was uploaded
             Assert.That(capturedContent, Is.Not.Null, "No content was uploaded to S3");
             Assert.That(capturedContent.Length, Is.GreaterThan(0), "Uploaded content was empty");
@@ -137,6 +129,11 @@ namespace Backlog.Test
             Assert.That(outputContent, Is.EqualTo(capturedContent), "Output file should match uploaded content");
 
             // Check if generated XML matches expected output
+            await AssertXmlOutput(outputContent, expectedXmlFileName);
+        }
+
+        private async Task AssertXmlOutput(byte[] outputContent, string expectedXmlFileName)
+        {
             using (var gzipStream = new ICSharpCode.SharpZipLib.GZip.GZipInputStream(new MemoryStream(outputContent)))
             using (var archive = new ICSharpCode.SharpZipLib.Tar.TarInputStream(gzipStream, System.Text.Encoding.UTF8))
             {
@@ -152,16 +149,66 @@ namespace Backlog.Test
                 var actualXml = await reader.ReadToEndAsync();
                 var expectedXml = await File.ReadAllTextAsync(
                     Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "..", "..", "backlog", "expected-output", 
-                               "Altaf Ebrahim t_a Ebrahim & Co v OISC.xml"));
+                               expectedXmlFileName));
                 
                 // Remove timestamps that will differ
-                actualXml = System.Text.RegularExpressions.Regex.Replace(actualXml, 
-                    @"date=""\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}""", "date=\"TIMESTAMP\"");
-                expectedXml = System.Text.RegularExpressions.Regex.Replace(expectedXml,
-                    @"date=""\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}""", "date=\"TIMESTAMP\"");
+                actualXml = NormalizeTimestamps(actualXml);
+                expectedXml = NormalizeTimestamps(expectedXml);
                 
                 Assert.That(actualXml, Is.EqualTo(expectedXml), "Generated XML does not match expected output");
             }
+        }
+
+        private string NormalizeTimestamps(string xml)
+        {
+            return System.Text.RegularExpressions.Regex.Replace(xml, 
+                @"date=""\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}""", "date=\"TIMESTAMP\"");
+        }
+
+        [Test]
+        public async Task ProcessBacklogJudgment_SuccessfullyUploadsToS3()
+        {
+            // Setup test environment for DOCX test
+            ConfigureTestEnvironment("Altaf Ebrahim t_a Ebrahim & Co v OISC");
+            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles");
+            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files");
+            
+            // Configure S3 client
+            Backlog.Src.Bucket.Configure(mockS3Client.Object, TEST_BUCKET);
+
+            // Arrange
+            const uint docId = 5;  // doc id 5 from the court_metadata.csv being tested
+            var s3Capture = SetupS3Mock();
+
+            // Act
+            var exitCode = Backlog.Src.Program.Main(new[] { "--id", docId.ToString() });
+
+            // Assert
+            Assert.That(exitCode, Is.EqualTo(0), "Program should exit successfully");
+            await AssertS3UploadResults(s3Capture.CapturedContent, s3Capture.CapturedKey, "Altaf Ebrahim t_a Ebrahim & Co v OISC.xml");
+        }
+
+        [Test]
+        public async Task ProcessBacklogJudgment_SuccessfullyProcessesPDF()
+        {
+            // Setup test environment for PDF test
+            ConfigureTestEnvironment("Money Worries Ltd v Office of Fair Trading");
+            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "Documents");
+            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/Consumer Credit Appeals/Documents");
+
+            // Configure S3 client
+            Backlog.Src.Bucket.Configure(mockS3Client.Object, TEST_BUCKET);
+
+            // Arrange
+            const uint docId = 20;  // Using doc id of a PDF
+            var s3Capture = SetupS3Mock();
+
+            // Act
+            var exitCode = Backlog.Src.Program.Main(new[] { "--id", docId.ToString() });
+
+            // Assert
+            Assert.That(exitCode, Is.EqualTo(0), "Program should exit successfully");
+            await AssertS3UploadResults(s3Capture.CapturedContent, s3Capture.CapturedKey, "Money Worries Ltd v Office of Fair Trading.xml");
         }
 
     }
