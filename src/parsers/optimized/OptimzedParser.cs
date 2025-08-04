@@ -752,8 +752,8 @@ abstract class OptimizedParser {
             return true;
         if (text.Equals("- Annex -" , StringComparison.InvariantCultureIgnoreCase))
             return true;
-        // if (Regex.IsMatch(text, @"^Annex \d+$", RegexOptions.IgnoreCase))
-        //     return true;
+        if (Regex.IsMatch(text, @"^Annex \d+$", RegexOptions.IgnoreCase))
+            return true;
         if (text.Equals("Appendix" , StringComparison.InvariantCultureIgnoreCase))
             return true;
         // if (Regex.IsMatch(text, @"^\s*Appendix\s+No\.?\s*\d+\s*$", RegexOptions.IgnoreCase))
