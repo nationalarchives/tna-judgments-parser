@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="decision">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="" />
+          <FRBRuri value="" />
+          <FRBRdate date="2013-01-18" name="decision" />
+          <FRBRauthor href="#ukftt-grc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRname value="Money Worries Ltd v Office of Fair Trading" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="" />
+          <FRBRuri value="" />
+          <FRBRdate date="2013-01-18" name="decision" />
+          <FRBRauthor href="#ukftt-grc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="" />
+          <FRBRuri value="" />
+          <FRBRdate date="2025-07-29T12:47:42" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2013-01-18" refersTo="#decision" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCOrganization eId="ukftt-grc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-general-regulatory-chamber" showAs="United Kingdom First-tier Tribunal (General Regulatory Chamber)" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
+      </references>
+      <proprietary xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" source="#">
+        <uk:court>UKFTT-GRC</uk:court>
+        <uk:year>2013</uk:year>
+        <uk:caseNumber>CCA/2012/0008/</uk:caseNumber>
+        <uk:party role="Claimant">Money Worries Ltd</uk:party>
+        <uk:party role="Respondent">Office of Fair Trading</uk:party>
+        <uk:category>Consumer Credit Appeals</uk:category>
+        <uk:category parent="Consumer Credit Appeals">Refusal</uk:category>
+        <uk:sourceFormat>application/pdf</uk:sourceFormat>
+        <uk:parser>0.27.0</uk:parser>
+      </proprietary>
+    </meta>
+    <header />
+    <judgmentBody>
+      <decision>
+        <p />
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
