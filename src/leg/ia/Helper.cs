@@ -1,0 +1,34 @@
+
+using System.IO;
+using System.Xml;
+
+using DocumentFormat.OpenXml.Packaging;
+
+using UK.Gov.NationalArchives.AkomaNtoso;
+
+namespace UK.Gov.Legislation.ImpactAssessments {
+
+class Helper {
+
+    public static IXmlDocument Parse(Stream docx, bool simplify = true) {
+        WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
+        return Parse(word, simplify);
+    }
+
+    public static IXmlDocument Parse(byte[] docx, bool simplify = true) {
+        WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
+        return Parse(word, simplify);
+    }
+
+    private static IXmlDocument Parse(WordprocessingDocument docx, bool simplify) {
+        IDocument doc = ImpactAssessments.Parser.Parse(docx);
+        XmlDocument xml = Builder.Build(doc);
+        docx.Dispose();
+        if (simplify)
+            Simplifier.Simplify(xml);
+        return new XmlDocument_ { Document = xml };
+    }
+
+}
+
+}
