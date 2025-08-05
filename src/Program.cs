@@ -1,4 +1,3 @@
-
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -45,10 +44,18 @@ class Program {
             ILogger logger = Logging.Factory.CreateLogger<Program>();
             logger.LogInformation("parsing " + input.FullName);
         }
+
+        if (!string.IsNullOrEmpty(hint) && !"em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
+            Console.Error.WriteLine($"Error: Invalid hint '{hint}'. Supported values: 'em'.");
+            Environment.Exit(1);
+            return;
+        }
+
         if ("em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
             TransformEM(input, output, outputZip, log, test, attachment);
             return;
         }
+
         byte[] docx = File.ReadAllBytes(input.FullName);
         Api.Request request;
         if (attachment is null) {
