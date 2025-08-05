@@ -13,6 +13,7 @@ using UK.Gov.Legislation;
 using UK.Gov.Legislation.Judgments;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using EM = UK.Gov.Legislation.ExplanatoryMemoranda;
+using IA = UK.Gov.Legislation.ImpactAssessments;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("backlog")]
@@ -29,7 +30,7 @@ class Program {
             new Option<FileInfo>("--log", description: "the log file") { ArgumentHelpName = "file" },
             new Option<bool>("--test", description: "whether to test the result"),
             new Option<FileInfo>("--attachment", description: "an associated file to include") { ArgumentHelpName = "file" },
-            new Option<string>("--hint", description: "the type of document: 'em'")
+            new Option<string>("--hint", description: "the type of document: 'em', 'ia'")
         };
         command.Handler = CommandHandler.Create<FileInfo, FileInfo, FileInfo, FileInfo, bool, FileInfo, string>(Transform);
     }
@@ -45,14 +46,19 @@ class Program {
             logger.LogInformation("parsing " + input.FullName);
         }
 
-        if (!string.IsNullOrEmpty(hint) && !"em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            Console.Error.WriteLine($"Error: Invalid hint '{hint}'. Supported values: 'em'.");
+        if (!string.IsNullOrEmpty(hint) && !"em".Equals(hint, StringComparison.InvariantCultureIgnoreCase) && !"ia".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
+            Console.Error.WriteLine($"Error: Invalid hint '{hint}'. Supported values: 'em', 'ia'.");
             Environment.Exit(1);
             return;
         }
 
         if ("em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
             TransformEM(input, output, outputZip, log, test, attachment);
+            return;
+        }
+
+        if ("ia".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
+            TransformIA(input, output, outputZip, log, test, attachment);
             return;
         }
 
@@ -81,6 +87,19 @@ class Program {
             throw new Exception();
         byte[] docx = File.ReadAllBytes(input.FullName);
         var parsed = EM.Helper.Parse(docx);
+        if (outputZip is not null)
+            SaveZip(parsed, outputZip);
+        else if (output is not null)
+            File.WriteAllText(output.FullName, parsed.Serialize());
+        else
+            Console.WriteLine(parsed.Serialize());
+    }
+
+    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
+        if (attachment is not null)
+            throw new Exception();
+        byte[] docx = File.ReadAllBytes(input.FullName);
+        var parsed = IA.Helper.Parse(docx);
         if (outputZip is not null)
             SaveZip(parsed, outputZip);
         else if (output is not null)
