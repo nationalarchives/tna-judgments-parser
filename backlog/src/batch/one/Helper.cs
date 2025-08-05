@@ -21,17 +21,17 @@ namespace Backlog.Src.Batch.One
             return Metadata.FindLines(lines, id);
         }
 
-        private Api.Response CreateResponse(ExtendedMetadata meta, Metadata.Line line, byte[] content)
+        private Api.Response CreateResponse(ExtendedMetadata meta, byte[] content)
         {
-            var isPdf = line.Extension.ToLower() == ".pdf";
+            var isPdf = meta.SourceFormat.ToLower() == "application/pdf";
             if (isPdf)
             {
                 var metadata = new Api.Meta
                 {
                     DocumentType = "decision",
                     Court = meta.Court?.Code,
-                    Date = line.DecisionDate?.ToString(),
-                    Name = line.claimants + " v " + line.respondent,
+                    Date = meta.Date?.Date.ToString(),
+                    Name = meta.Name,
                 };
 
                 var stub = Stub.Make(meta);
@@ -99,9 +99,8 @@ namespace Backlog.Src.Batch.One
 
             var content = Files.ReadFile(PathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
 
+            var response = CreateResponse(meta, content);
 
-            var response = CreateResponse(meta, line, content);
-            
             var source = new Bundle.Source
             {
                 Filename = Path.GetFileName(line.FilePath),
