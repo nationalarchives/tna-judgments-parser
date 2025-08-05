@@ -73,6 +73,28 @@ Contains metadata extracted from tribunal-specific spreadsheets about courts and
 
 The current implementation is tailored to one specific tribunal's metadata format, but the structure allows for expansion to handle different metadata schemas from other tribunals.
 
+#### Required Columns
+
+The CSV file must contain the following columns (case-sensitive):
+
+- `id` - Unique identifier for each judgment record
+- `FilePath` - Path to the document file
+- `Extension` - File extension (.pdf, .docx, .doc)
+- `decision_datetime` - Date and time when the decision was made (format: "yyyy-MM-dd HH:mm:ss")
+- `file_no_1`, `file_no_2`, `file_no_3` - Components of the case number (joined with "/" to form case number)
+- `claimants` - Name(s) of the claimant(s)
+- `respondent` - Name(s) of the respondent(s)
+
+#### Optional Columns
+
+The following columns are optional:
+
+- `main_subcategory_description` - Primary category classification
+- `sec_subcategory_description` - Secondary category classification
+- `headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
+
+**Note**: Column names are case-sensitive. If required columns are missing, the system will throw a validation error listing the missing columns.
+
 ### Tracker CSV
 
 Tracks which judgments have been uploaded to production, preventing duplicate processing. This is particularly important for batch processing where:
