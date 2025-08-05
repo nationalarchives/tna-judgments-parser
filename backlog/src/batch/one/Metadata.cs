@@ -19,37 +19,55 @@ namespace Backlog.Src.Batch.One
         internal class Line
         {
             public string id { get; set; }
-            public string created_datetime { get; set; }
-            public string publication_datetime { get; set; }
-            public string last_updatedtime { get; set; }
+            public string FilePath { get; set; }
+            public string Extension { get; set; }
             public string decision_datetime { get; set; }
             public string file_no_1 { get; set; }
             public string file_no_2 { get; set; }
             public string file_no_3 { get; set; }
             public string claimants { get; set; }
             public string respondent { get; set; }
-            public string headnote_summary { get; set; }
-            public string is_published { get; set; }
             public string main_subcategory_description { get; set; }
             public string sec_subcategory_description { get; set; }
-            public string Name { get; set; }
-            public string FilePath { get; set; }
-            public string Extension { get; set; }
-            public string SizeInMB { get; set; }
-            public string FileLastEditTime { get; set; }
-
+            public string headnote_summary { get; set; }
+            
             private readonly string DateFormat = "yyyy-MM-dd HH:mm:ss";
             internal string DecisionDate { get => System.DateTime.ParseExact(decision_datetime, DateFormat, CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"); }
-
             internal string CaseNo { get => string.Join('/', file_no_1, file_no_2, file_no_3); }
-
         }
+
+
 
         internal static List<Line> Read(string path)
         {
+            ValidateCsvHeaders(path);
             using var reader = new StreamReader(path);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             return csv.GetRecords<Line>().ToList();
+        }
+
+        private static void ValidateCsvHeaders(string path)
+        {
+            using var reader = new StreamReader(path);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            
+            // Read the header to get column names
+            csv.Read();
+            csv.ReadHeader();
+            var headers = csv.HeaderRecord;
+
+            // Get required columns
+            var requiredColumns = new[] { "id", "FilePath", "Extension", "decision_datetime", "file_no_1", "file_no_2", "file_no_3", "claimants", "respondent"};
+            var missingColumns = requiredColumns.Where(col => !headers.Contains(col, StringComparer.OrdinalIgnoreCase)).ToList();
+
+            if (missingColumns.Any())
+            {
+                throw new InvalidOperationException(
+                    $"CSV validation failed. Missing required columns: {string.Join(", ", missingColumns)}.\n\n" +
+                    $"Found headers:\n{string.Join(", ", headers)}\n\n" +
+                    "Please preprocess your CSV to match the expected column names exactly."
+                );
+            }
         }
 
         internal static List<Line> FindLines(List<Line> lines, uint id)

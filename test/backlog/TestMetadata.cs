@@ -20,9 +20,6 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "123",
-                created_datetime = "2023-01-15 10:30:00",
-                publication_datetime = "2023-01-16 09:00:00",
-                last_updatedtime = "2023-01-17 11:45:00",
                 decision_datetime = "2023-01-14 14:30:00",
                 file_no_1 = "ABC",
                 file_no_2 = "2023",
@@ -30,14 +27,10 @@ namespace Backlog.Test
                 claimants = "John Smith",
                 respondent = "HMRC",
                 headnote_summary = "This is a test headnote summary",
-                is_published = "true",
                 sec_subcategory_description = "Immigration",
                 main_subcategory_description = "Asylum",
-                Name = "test-document.pdf",
                 FilePath = "/path/to/test-document.pdf",
                 Extension = ".pdf",
-                SizeInMB = "1.5",
-                FileLastEditTime = "2023-01-15 10:30:00"
             };
 
             // Act
