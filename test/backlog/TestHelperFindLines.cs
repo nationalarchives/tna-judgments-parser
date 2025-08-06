@@ -171,8 +171,8 @@ namespace Backlog.Test
             };
 
             // Act & Assert - CsvHelper will throw when required headers are missing
-            var ex = Assert.Throws<CsvHelper.HeaderValidationException>(() => malformedHelper.FindLines(123),
-                "Should throw CsvHelper.HeaderValidationException for CSV missing required headers");
+            var ex = Assert.Throws<CsvHelper.MissingFieldException>(() => malformedHelper.FindLines(123),
+                "Should throw CsvHelper.MissingFieldException for CSV missing required headers");
                 
             // Verify the exception message contains information about missing headers
             Assert.That(ex.Message, Does.Contain("FilePath").Or.Contain("Extension").Or.Contain("file_no_1"), 
@@ -194,8 +194,8 @@ namespace Backlog.Test
             };
 
             // Act & Assert - CsvHelper will throw when required columns are missing
-            var ex = Assert.Throws<CsvHelper.HeaderValidationException>(() => partialHelper.FindLines(123),
-                "Should throw CsvHelper.HeaderValidationException for partially missing required columns");
+            var ex = Assert.Throws<CsvHelper.MissingFieldException>(() => partialHelper.FindLines(123),
+                "Should throw CsvHelper.MissingFieldException for partially missing required columns");
                 
             // Verify the exception message contains information about the missing FilePath column
             Assert.That(ex.Message, Does.Contain("FilePath"), 
@@ -226,6 +226,82 @@ namespace Backlog.Test
             // Verify computed properties work correctly
             Assert.That(line.DecisionDate, Is.EqualTo("2025-01-15"));
             Assert.That(line.CaseNo, Is.EqualTo("IA/2025/001"));
+        }
+
+        [Test]
+        public void FindLines_WithMainSubcategoryButNoMainCategory_ThrowsCsvValidationException()
+        {
+            // Arrange - Create CSV with main_subcategory but no main_category
+            var invalidCategoryCsvPath = Path.Combine(testDataDirectory, "invalid-category-metadata.csv");
+            var invalidCategoryContent = @"id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
+126,/test/data/test-case-invalid.pdf,.pdf,2025-01-15 09:00:00,IA,2025,001,Smith,Secretary of State,,Appeals,Tax,VAT,Test case with orphaned main_subcategory";
+            File.WriteAllText(invalidCategoryCsvPath, invalidCategoryContent);
+            
+            var invalidCategoryHelper = new Helper
+            {
+                PathToCourtMetadataFile = invalidCategoryCsvPath,
+                PathToDataFolder = testDataDirectory
+            };
+
+            // Act & Assert - Should throw CsvHelperException during CSV reading
+            var ex = Assert.Throws<CsvHelper.CsvHelperException>(() => invalidCategoryHelper.FindLines(126),
+                "Should throw CsvHelper.CsvHelperException for main_subcategory without main_category during CSV reading");
+                
+            // Verify the exception message contains information about the validation rule
+            Assert.That(ex.Message, Does.Contain("main_subcategory").And.Contain("main_category"), 
+                "Exception message should mention the validation rule for main_subcategory and main_category");
+        }
+
+        [Test]
+        public void FindLines_WithSecSubcategoryButNoSecCategory_ThrowsCsvValidationException()
+        {
+            // Arrange - Create CSV with sec_subcategory but no sec_category
+            var invalidSecCategoryCsvPath = Path.Combine(testDataDirectory, "invalid-sec-category-metadata.csv");
+            var invalidSecCategoryContent = @"id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
+127,/test/data/test-case-invalid2.pdf,.pdf,2025-01-15 09:00:00,IA,2025,001,Smith,Secretary of State,Immigration,Appeals,,VAT,Test case with orphaned sec_subcategory";
+            File.WriteAllText(invalidSecCategoryCsvPath, invalidSecCategoryContent);
+            
+            var invalidSecCategoryHelper = new Helper
+            {
+                PathToCourtMetadataFile = invalidSecCategoryCsvPath,
+                PathToDataFolder = testDataDirectory
+            };
+
+            // Act & Assert - Should throw CsvHelperException during CSV reading
+            var ex = Assert.Throws<CsvHelper.CsvHelperException>(() => invalidSecCategoryHelper.FindLines(127),
+                "Should throw CsvHelper.CsvHelperException for sec_subcategory without sec_category during CSV reading");
+                
+            // Verify the exception message contains information about the validation rule
+            Assert.That(ex.Message, Does.Contain("sec_subcategory").And.Contain("sec_category"), 
+                "Exception message should mention the validation rule for sec_subcategory and sec_category");
+        }
+
+        [Test]
+        public void FindLines_WithValidCategoryHierarchy_ProcessesSuccessfully()
+        {
+            // Arrange - Create CSV with proper category hierarchy
+            var validCategoryCsvPath = Path.Combine(testDataDirectory, "valid-category-metadata.csv");
+            var validCategoryContent = @"id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
+128,/test/data/test-case-valid.pdf,.pdf,2025-01-15 09:00:00,IA,2025,001,Smith,Secretary of State,Immigration,Appeals,Tax,VAT,Test case with valid category hierarchy";
+            File.WriteAllText(validCategoryCsvPath, validCategoryContent);
+            
+            var validCategoryHelper = new Helper
+            {
+                PathToCourtMetadataFile = validCategoryCsvPath,
+                PathToDataFolder = testDataDirectory
+            };
+
+            // Act - Should process successfully without throwing (validation happens during CSV reading)
+            var lines = validCategoryHelper.FindLines(128);
+            
+            // Assert
+            Assert.That(lines, Is.Not.Null);
+            Assert.That(lines.Count, Is.EqualTo(1));
+            
+            // Verify the metadata can be created successfully
+            var metadata = Metadata.MakeMetadata(lines.First());
+            Assert.That(metadata.Categories, Is.Not.Null);
+            Assert.That(metadata.Categories.Count, Is.EqualTo(4)); // main, main_sub, sec, sec_sub
         }
     }
 }
