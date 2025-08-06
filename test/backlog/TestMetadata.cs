@@ -47,6 +47,56 @@ namespace Backlog.Test
             Assert.That(result.CaseNumbers.Count, Is.EqualTo(1));
             Assert.That(result.CaseNumbers[0], Is.EqualTo("ABC/2023/001"));
             Assert.That(result.SourceFormat, Is.EqualTo("application/pdf"));
+            Assert.That(result.Parties.Count, Is.EqualTo(2));
+            
+            var firstParty = result.Parties.Find(p => p.Role == PartyRole.Claimant);
+            var secondParty = result.Parties.Find(p => p.Role == PartyRole.Respondent);
+            
+            Assert.That(firstParty, Is.Not.Null);
+            Assert.That(firstParty.Name, Is.EqualTo("John Smith"));
+            Assert.That(secondParty, Is.Not.Null);
+            Assert.That(secondParty.Name, Is.EqualTo("HMRC"));
+        }
+
+        [Test]
+        public void MakeMetadata_WithAppellants_CreatesCorrectMetadata()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "124",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/002",
+                appellants = "Jane Doe",
+                respondent = "Home Office",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
+                Extension = ".pdf"
+            };
+
+            // Act
+            var result = Metadata.MakeMetadata(line);
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Type, Is.EqualTo(JudgmentType.Decision));
+            Assert.That(result.Court, Is.EqualTo(Courts.FirstTierTribunal_GRC));
+            Assert.That(result.Date.Date, Is.EqualTo("2023-01-14"));
+            Assert.That(result.Date.Name, Is.EqualTo("decision"));
+            Assert.That(result.Name, Is.EqualTo("Jane Doe v Home Office"));
+            Assert.That(result.CaseNumbers, Is.Not.Null);
+            Assert.That(result.CaseNumbers.Count, Is.EqualTo(1));
+            Assert.That(result.CaseNumbers[0], Is.EqualTo("ABC/2023/002"));
+            Assert.That(result.SourceFormat, Is.EqualTo("application/pdf"));
+            Assert.That(result.Parties.Count, Is.EqualTo(2));
+            
+            var firstParty = result.Parties.Find(p => p.Role == PartyRole.Appellant);
+            var secondParty = result.Parties.Find(p => p.Role == PartyRole.Respondent);
+            
+            Assert.That(firstParty, Is.Not.Null);
+            Assert.That(firstParty.Name, Is.EqualTo("Jane Doe"));
+            Assert.That(secondParty, Is.Not.Null);
+            Assert.That(secondParty.Name, Is.EqualTo("Home Office"));
         }
 
         [Test]
@@ -184,6 +234,38 @@ namespace Backlog.Test
             
             Assert.That(claimant, Is.Not.Null);
             Assert.That(claimant.Name, Is.EqualTo("Jane Doe & John Smith"));
+            
+            Assert.That(respondent, Is.Not.Null);
+            Assert.That(respondent.Name, Is.EqualTo("Home Office"));
+        }
+
+        [Test]
+        public void MakeMetadata_WithAppellantPartiesData_CreatesCorrectParties()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/001",
+                appellants = "Jane Doe & John Smith",
+                respondent = "Home Office",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
+                Extension = ".pdf"
+            };
+
+            // Act
+            var result = Metadata.MakeMetadata(line);
+
+            // Assert
+            Assert.That(result.Parties, Is.Not.Null);
+            Assert.That(result.Parties.Count, Is.EqualTo(2));
+            
+            var appellant = result.Parties.Find(p => p.Role == PartyRole.Appellant);
+            var respondent = result.Parties.Find(p => p.Role == PartyRole.Respondent);
+            
+            Assert.That(appellant, Is.Not.Null);
+            Assert.That(appellant.Name, Is.EqualTo("Jane Doe & John Smith"));
             
             Assert.That(respondent, Is.Not.Null);
             Assert.That(respondent.Name, Is.EqualTo("Home Office"));
@@ -403,6 +485,113 @@ namespace Backlog.Test
             
             // Before boundary date, should use OldImmigrationServicesTribunal
             Assert.That(beforeResult.Court, Is.EqualTo(Courts.OldImmigrationServicesTribunal));
+        }
+
+        [Test]
+        public void Line_ValidateCategoryRules_WithBothClaimantsAndAppellants_ThrowsException()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "125",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/003",
+                claimants = "John Smith",
+                appellants = "Jane Doe", // Both provided - should fail
+                respondent = "HMRC",
+                Extension = ".pdf"
+            };
+
+            // Act & Assert
+            var ex = Assert.Throws<ArgumentException>(() => line.ValidateCategoryRules());
+            Assert.That(ex.Message, Does.Contain("Cannot have both claimants and appellants"));
+        }
+
+        [Test]
+        public void Line_ValidateCategoryRules_WithNeitherClaimantsNorAppellants_ThrowsException()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "126",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/004",
+                // Neither claimants nor appellants provided - should fail
+                respondent = "HMRC",
+                Extension = ".pdf"
+            };
+
+            // Act & Assert
+            var ex = Assert.Throws<ArgumentException>(() => line.ValidateCategoryRules());
+            Assert.That(ex.Message, Does.Contain("Must have either claimants or appellants"));
+        }
+
+        [Test]
+        public void Line_FirstPartyName_WithClaimants_ReturnsClaimants()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                claimants = "John Smith",
+                respondent = "HMRC"
+            };
+
+            // Act
+            var result = line.FirstPartyName;
+
+            // Assert
+            Assert.That(result, Is.EqualTo("John Smith"));
+        }
+
+        [Test]
+        public void Line_FirstPartyName_WithAppellants_ReturnsAppellants()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                appellants = "Jane Doe",
+                respondent = "HMRC"
+            };
+
+            // Act
+            var result = line.FirstPartyName;
+
+            // Assert
+            Assert.That(result, Is.EqualTo("Jane Doe"));
+        }
+
+        [Test]
+        public void Line_FirstPartyRole_WithClaimants_ReturnsClaimant()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                claimants = "John Smith",
+                respondent = "HMRC"
+            };
+
+            // Act
+            var result = line.FirstPartyRole;
+
+            // Assert
+            Assert.That(result, Is.EqualTo(PartyRole.Claimant));
+        }
+
+        [Test]
+        public void Line_FirstPartyRole_WithAppellants_ReturnsAppellant()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                appellants = "Jane Doe",
+                respondent = "HMRC"
+            };
+
+            // Act
+            var result = line.FirstPartyRole;
+
+            // Assert
+            Assert.That(result, Is.EqualTo(PartyRole.Appellant));
         }
     }
 }
