@@ -9,7 +9,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public abstract class Bill
     {
 
-        public abstract string Type { get; protected init; }
+        public abstract DocName Type { get; protected init; }
 
         internal Dictionary<string, Dictionary<string, string>> Styles { get; init; }
 
@@ -28,7 +28,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public class NIPublicBill : Bill
     {
 
-        public override string Type { get; protected init; } = "nipubb";
+        public override DocName Type { get; protected init; } = DocName.NIPUBB;
 
     }
 

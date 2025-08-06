@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
         private HContainer ParseSchedule(WLine line)
