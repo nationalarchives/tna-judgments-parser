@@ -27,8 +27,10 @@ namespace Backlog.Test
                 claimants = "John Smith",
                 respondent = "HMRC",
                 headnote_summary = "This is a test headnote summary",
-                sec_subcategory_description = "Immigration",
-                main_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
+                sec_category = "Human Rights",
+                sec_subcategory = "Article 8",
                 FilePath = "/path/to/test-document.pdf",
                 Extension = ".pdf",
             };
@@ -61,8 +63,8 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                sec_subcategory_description = "Immigration",
-                main_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".docx"
             };
 
@@ -85,8 +87,8 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                sec_subcategory_description = "Immigration",
-                main_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".doc"
             };
 
@@ -109,8 +111,8 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                sec_subcategory_description = "Immigration",
-                main_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".txt"
             };
 
@@ -131,8 +133,8 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                sec_subcategory_description = "Immigration",
-                main_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".pdf"
             };
 
@@ -155,8 +157,8 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                main_subcategory_description = "Immigration",
-                sec_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".pdf"
             };
 
@@ -179,8 +181,8 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "Jane Doe & John Smith",
                 respondent = "Home Office",
-                main_subcategory_description = "Immigration",
-                sec_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".pdf"
             };
 
@@ -213,8 +215,10 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                main_subcategory_description = "Immigration",
-                sec_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
+                sec_category = "Human Rights",
+                sec_subcategory = "Article 8",
                 Extension = ".pdf"
             };
 
@@ -223,14 +227,21 @@ namespace Backlog.Test
 
             // Assert
             Assert.That(result.Categories, Is.Not.Null);
-            Assert.That(result.Categories.Count, Is.EqualTo(2));
+            Assert.That(result.Categories.Count, Is.EqualTo(4));
 
-            // Check main and sec subcategory exist
-            var mainSubCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
-            var secSubCategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
+            // Check main category and subcategory
+            var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
+            var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
             
-            Assert.That(mainSubCategory, Is.Not.Null);
-            Assert.That(secSubCategory, Is.Not.Null);
+            Assert.That(mainCategory, Is.Not.Null);
+            Assert.That(mainSubcategory, Is.Not.Null);
+
+            // Check secondary category and subcategory
+            var secCategory = result.Categories.Find(c => c.Name == "Human Rights" && c.Parent == null);
+            var secSubcategory = result.Categories.Find(c => c.Name == "Article 8" && c.Parent == "Human Rights");
+            
+            Assert.That(secCategory, Is.Not.Null);
+            Assert.That(secSubcategory, Is.Not.Null);
         }
 
         [Test]
@@ -245,8 +256,10 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                main_subcategory_description = "Immigration",
-                sec_subcategory_description = null,
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
+                sec_category = null, // No secondary category
+                sec_subcategory = null,
                 Extension = ".pdf"
             };
 
@@ -255,14 +268,14 @@ namespace Backlog.Test
 
             // Assert
             Assert.That(result.Categories, Is.Not.Null);
-            Assert.That(result.Categories.Count, Is.EqualTo(1));
+            Assert.That(result.Categories.Count, Is.EqualTo(2));
 
-            // Check only main and sec subcategory exist exist
-            var mainSubCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
-            var secSubCategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
+            // Check only main category and subcategory exist
+            var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
+            var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
             
-            Assert.That(mainSubCategory, Is.Not.Null);
-            Assert.That(secSubCategory, Is.Null);
+            Assert.That(mainCategory, Is.Not.Null);
+            Assert.That(mainSubcategory, Is.Not.Null);
         }
 
         [Test]
@@ -277,8 +290,10 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                main_subcategory_description = "Immigration",
-                sec_subcategory_description = "   ", // Whitespace only
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
+                sec_category = "   ", // Whitespace only
+                sec_subcategory = "Article 8",
                 Extension = ".pdf"
             };
 
@@ -287,14 +302,14 @@ namespace Backlog.Test
 
             // Assert
             Assert.That(result.Categories, Is.Not.Null);
-            Assert.That(result.Categories.Count, Is.EqualTo(1));
+            Assert.That(result.Categories.Count, Is.EqualTo(2));
 
-            // Check only main and sec subcategory exist exist
-            var mainSubCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
-            var secSubCategory = result.Categories.Find(c => c.Name == "" && c.Parent == "Immigration");
+            // Check only main category and subcategory exist
+            var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
+            var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
             
-            Assert.That(mainSubCategory, Is.Not.Null);
-            Assert.That(secSubCategory, Is.Null);
+            Assert.That(mainCategory, Is.Not.Null);
+            Assert.That(mainSubcategory, Is.Not.Null);
         }
 
         [Test]
@@ -309,8 +324,8 @@ namespace Backlog.Test
                 file_no_3 = "2023",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                sec_subcategory_description = "Immigration",
-                main_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".pdf"
             };
 
@@ -333,8 +348,8 @@ namespace Backlog.Test
                 file_no_3 = "2023",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                sec_subcategory_description = "Immigration",
-                main_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".pdf"
             };
 
@@ -357,8 +372,8 @@ namespace Backlog.Test
                 file_no_3 = "2023",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                sec_subcategory_description = "Immigration",
-                main_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".pdf"
             };
 
@@ -381,8 +396,8 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                sec_subcategory_description = "Immigration",
-                main_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".pdf"
             };
 
@@ -453,8 +468,8 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                sec_subcategory_description = "Immigration",
-                main_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".pdf"
             };
 
@@ -472,8 +487,8 @@ namespace Backlog.Test
                 file_no_3 = "001",
                 claimants = "John Smith",
                 respondent = "HMRC",
-                sec_subcategory_description = "Immigration",
-                main_subcategory_description = "Asylum",
+                main_category = "Immigration",
+                main_subcategory = "Asylum",
                 Extension = ".pdf"
             };
 

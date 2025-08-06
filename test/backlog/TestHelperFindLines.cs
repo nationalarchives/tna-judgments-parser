@@ -46,12 +46,12 @@ namespace Backlog.Test
 
         private void CreateValidCsvFile(string path)
         {
-            var csvContent = @"id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_subcategory_description,sec_subcategory_description,headnote_summary
-123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA,2025,001,Smith,Secretary of State for the Home Department,Immigration Appeals,Asylum,This is a test headnote summary
-124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA,2025,002,Jones,HMRC,Tax Appeals,VAT,Another test case
-125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC,2025,003,Williams,DWP,Social Security,ESA,Benefits case
-123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA,2025,004,Brown,Home Office,Immigration Appeals,Human Rights,Duplicate ID case";
-            
+            var csvContent = @"id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
+123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA,2025,001,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary
+124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA,2025,002,Jones,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case
+125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC,2025,003,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case
+123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA,2025,004,Brown,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case";
+
             File.WriteAllText(path, csvContent);
         }
 
@@ -137,7 +137,7 @@ namespace Backlog.Test
         {
             // Arrange - Create empty CSV file with just headers
             var emptyCsvPath = Path.Combine(testDataDirectory, "empty-metadata.csv");
-            var emptyContent = "id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_subcategory_description,sec_subcategory_description,headnote_summary";
+            var emptyContent = "id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary";
             File.WriteAllText(emptyCsvPath, emptyContent);
             
             var emptyHelper = new Helper
@@ -173,7 +173,7 @@ namespace Backlog.Test
             // Act & Assert - CsvHelper will throw when required headers are missing
             var ex = Assert.Throws<CsvHelper.HeaderValidationException>(() => malformedHelper.FindLines(123),
                 "Should throw CsvHelper.HeaderValidationException for CSV missing required headers");
-
+                
             // Verify the exception message contains information about missing headers
             Assert.That(ex.Message, Does.Contain("FilePath").Or.Contain("Extension").Or.Contain("file_no_1"), 
                 "Exception message should mention at least one of the missing required columns");
