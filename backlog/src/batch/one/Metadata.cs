@@ -1,11 +1,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 
 using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 
 using UK.Gov.Legislation.Judgments;
@@ -13,10 +15,45 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace Backlog.Src.Batch.One
 {
+    /// <summary>
+    /// Custom validation attribute to ensure subcategories can only exist if their parent category is defined
+    /// </summary>
+    public class CategoryValidationAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            if (value is Metadata.Line line)
+            {
+                try
+                {
+                    line.ValidateCategoryRules();
+                    return true;
+                }
+                catch (ArgumentException)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public override string FormatErrorMessage(string name)
+        {
+            return "Subcategory columns can only exist if their main category is defined";
+        }
+    }
 
     class Metadata
     {
+        internal class LineMap : ClassMap<Line>
+        {
+            public LineMap()
+            {
+                AutoMap(CultureInfo.InvariantCulture);
+            }
+        }
 
+        [CategoryValidation]
         internal class Line
         {
             public string id { get; set; }
@@ -47,6 +84,25 @@ namespace Backlog.Src.Batch.One
             private readonly string DateFormat = "yyyy-MM-dd HH:mm:ss";
             internal string DecisionDate { get => System.DateTime.ParseExact(decision_datetime, DateFormat, CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"); }
             internal string CaseNo { get => string.Join('/', file_no_1, file_no_2, file_no_3); }
+
+            /// <summary>
+            /// Validates that subcategory columns can only exist if their main category is defined.
+            /// </summary>
+            /// <exception cref="ArgumentException">Thrown when a subcategory exists without its parent category</exception>
+            internal void ValidateCategoryRules()
+            {
+                // Check if main_subcategory exists without main_category
+                if (!string.IsNullOrWhiteSpace(main_subcategory) && string.IsNullOrWhiteSpace(main_category))
+                {
+                    throw new ArgumentException($"Line {id}: main_subcategory '{main_subcategory}' cannot exist without main_category being defined");
+                }
+
+                // Check if sec_subcategory exists without sec_category
+                if (!string.IsNullOrWhiteSpace(sec_subcategory) && string.IsNullOrWhiteSpace(sec_category))
+                {
+                    throw new ArgumentException($"Line {id}: sec_subcategory '{sec_subcategory}' cannot exist without sec_category being defined");
+                }
+            }
         }
 
 
@@ -54,9 +110,46 @@ namespace Backlog.Src.Batch.One
         internal static List<Line> Read(string path)
         {
             using var reader = new StreamReader(path);
-            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                ShouldSkipRecord = args => false
+            };
+            using var csv = new CsvReader(reader, config);
             
-            return csv.GetRecords<Line>().ToList();
+            csv.Context.RegisterClassMap<LineMap>();
+            
+            var records = new List<Line>();
+            
+            // Read the header first
+            csv.Read();
+            csv.ReadHeader();
+            
+            // Now read data rows
+            while (csv.Read())
+            {
+                try
+                {
+                    var record = csv.GetRecord<Line>();
+                    
+                    // Use DataAnnotations validation
+                    var validationContext = new ValidationContext(record);
+                    var validationResults = new List<ValidationResult>();
+                    
+                    if (!Validator.TryValidateObject(record, validationContext, validationResults, true))
+                    {
+                        var errors = string.Join(", ", validationResults.Select(r => r.ErrorMessage));
+                        throw new ArgumentException($"Validation failed: {errors}");
+                    }
+                    
+                    records.Add(record);
+                }
+                catch (ArgumentException ex)
+                {
+                    throw new CsvHelper.CsvHelperException(csv.Context, $"CSV validation error at row {csv.Context.Parser.Row}: {ex.Message}", ex);
+                }
+            }
+            
+            return records;
         }
 
         internal static List<Line> FindLines(List<Line> lines, uint id)
@@ -65,6 +158,7 @@ namespace Backlog.Src.Batch.One
         }
 
         internal static ExtendedMetadata MakeMetadata(Line line) {
+            // Validation is now handled during CSV reading
             List<ExtendedMetadata.Category> categories = [];
             
             // Only add categories if they exist and are not empty
