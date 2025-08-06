@@ -12,6 +12,7 @@ using CsvHelper.Configuration.Attributes;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.CaseLaw.Model;
 
 namespace Backlog.Src.Batch.One
 {
@@ -39,7 +40,7 @@ namespace Backlog.Src.Batch.One
 
         public override string FormatErrorMessage(string name)
         {
-            return "Subcategory columns can only exist if their main category is defined";
+            return "Subcategory columns can only exist if their main category is defined, and exactly one of claimants or appellants must be provided";
         }
     }
 
@@ -61,7 +62,13 @@ namespace Backlog.Src.Batch.One
             public string Extension { get; set; }
             public string decision_datetime { get; set; }
             public string CaseNo { get; set; }
+            
+            [Optional]
             public string claimants { get; set; }
+            
+            [Optional]
+            public string appellants { get; set; }
+            
             public string respondent { get; set; }
 
             [Optional]
@@ -84,8 +91,9 @@ namespace Backlog.Src.Batch.One
 
             /// <summary>
             /// Validates that subcategory columns can only exist if their main category is defined.
+            /// Also validates that only one of claimants or appellants is provided, but not both.
             /// </summary>
-            /// <exception cref="ArgumentException">Thrown when a subcategory exists without its parent category</exception>
+            /// <exception cref="ArgumentException">Thrown when a subcategory exists without its parent category or when both claimants and appellants are provided</exception>
             internal void ValidateCategoryRules()
             {
                 // Check if main_subcategory exists without main_category
@@ -98,6 +106,50 @@ namespace Backlog.Src.Batch.One
                 if (!string.IsNullOrWhiteSpace(sec_subcategory) && string.IsNullOrWhiteSpace(sec_category))
                 {
                     throw new ArgumentException($"Line {id}: sec_subcategory '{sec_subcategory}' cannot exist without sec_category being defined");
+                }
+
+                // Check that exactly one of claimants or appellants is provided
+                bool hasClaimants = !string.IsNullOrWhiteSpace(claimants);
+                bool hasAppellants = !string.IsNullOrWhiteSpace(appellants);
+
+                if (hasClaimants && hasAppellants)
+                {
+                    throw new ArgumentException($"Line {id}: Cannot have both claimants and appellants. Please provide only one.");
+                }
+
+                if (!hasClaimants && !hasAppellants)
+                {
+                    throw new ArgumentException($"Line {id}: Must have either claimants or appellants. At least one is required.");
+                }
+            }
+
+            /// <summary>
+            /// Gets the name of the first party (either claimants or appellants)
+            /// </summary>
+            internal string FirstPartyName
+            {
+                get
+                {
+                    if (!string.IsNullOrWhiteSpace(claimants))
+                        return claimants;
+                    if (!string.IsNullOrWhiteSpace(appellants))
+                        return appellants;
+                    throw new InvalidOperationException("No first party (claimants or appellants) is defined");
+                }
+            }
+
+            /// <summary>
+            /// Gets the role of the first party (either Claimant or Appellant)
+            /// </summary>
+            internal PartyRole FirstPartyRole
+            {
+                get
+                {
+                    if (!string.IsNullOrWhiteSpace(claimants))
+                        return PartyRole.Claimant;
+                    if (!string.IsNullOrWhiteSpace(appellants))
+                        return PartyRole.Appellant;
+                    throw new InvalidOperationException("No first party (claimants or appellants) is defined");
                 }
             }
         }
@@ -188,10 +240,10 @@ namespace Backlog.Src.Batch.One
                 Type = JudgmentType.Decision,
                 Court = court,
                 Date = new WNamedDate { Date = line.DecisionDate, Name = "decision" },
-                Name = line.claimants + " v " + line.respondent,
+                Name = line.FirstPartyName + " v " + line.respondent,
                 CaseNumbers = [line.CaseNo],
                 Parties = [
-                    new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.claimants, Role = PartyRole.Claimant },
+                    new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.FirstPartyName, Role = line.FirstPartyRole },
                     new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.respondent, Role = PartyRole.Respondent }
                 ],
                 SourceFormat = sourceFormat,
