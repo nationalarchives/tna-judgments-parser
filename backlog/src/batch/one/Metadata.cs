@@ -60,9 +60,7 @@ namespace Backlog.Src.Batch.One
             public string FilePath { get; set; }
             public string Extension { get; set; }
             public string decision_datetime { get; set; }
-            public string file_no_1 { get; set; }
-            public string file_no_2 { get; set; }
-            public string file_no_3 { get; set; }
+            public string CaseNo { get; set; }
             public string claimants { get; set; }
             public string respondent { get; set; }
 
@@ -83,7 +81,6 @@ namespace Backlog.Src.Batch.One
             
             private readonly string DateFormat = "yyyy-MM-dd HH:mm:ss";
             internal string DecisionDate { get => System.DateTime.ParseExact(decision_datetime, DateFormat, CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"); }
-            internal string CaseNo { get => string.Join('/', file_no_1, file_no_2, file_no_3); }
 
             /// <summary>
             /// Validates that subcategory columns can only exist if their main category is defined.
