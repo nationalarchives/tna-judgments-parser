@@ -8,7 +8,7 @@ namespace UK.Gov.Legislation.Lawmaker
 {
     // TODO: Move this responsibility to the actual GroupOfParts object
     // e.g. GroupOfParts.Parse(WLine line)
-    public partial class BillParser
+    public partial class LegislationParser
     {
         private HContainer ParseGroupOfParts(WLine line)
         {
@@ -69,6 +69,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (!IsCenterAligned(line))
                 return false;
+            // Group of parts **always** has a part num, part heading and something beneath it
             if (i > Document.Body.Count - 3)
                 return false;
             string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);

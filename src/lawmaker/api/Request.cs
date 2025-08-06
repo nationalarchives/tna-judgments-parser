@@ -11,7 +11,7 @@ namespace UK.Gov.Legislation.Lawmaker.Api {
         public byte[] Content { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
-        public DocType? DocType { get; set; }
+        public DocName? DocName { get; set; }
 
         private static JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
 
@@ -21,5 +21,4 @@ namespace UK.Gov.Legislation.Lawmaker.Api {
 
     }
 
-    public enum DocType { bill }
 }

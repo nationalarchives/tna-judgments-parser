@@ -31,7 +31,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
 
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
-            main.SetAttribute("name", this.bill.Type);
+            main.SetAttribute("name", this.bill.Type.ToString().ToLower());
 
             string title = Metadata.Extract(bill).Title;
             MetadataBuilder.Add(main, title);
@@ -39,7 +39,7 @@ namespace UK.Gov.Legislation.Lawmaker
             AddCoverPage(main, bill.CoverPage);
             AddPreface(main, bill.Preface);
             AddPreamble(main, bill.Preamble);
-            AddBody(main, bill.Body, bill.Schedules);
+            AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
 
             return doc;
         }
