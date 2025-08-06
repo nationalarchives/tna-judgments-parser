@@ -9,7 +9,7 @@ using UK.Gov.NationalArchives.CaseLaw.Parse;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
         private IBlock Current() => Document.Body[i].Block;
