@@ -81,7 +81,7 @@ The CSV file must contain the following columns (case-sensitive):
 - `FilePath` - Path to the document file
 - `Extension` - File extension (.pdf, .docx, .doc)
 - `decision_datetime` - Date and time when the decision was made (format: "yyyy-MM-dd HH:mm:ss")
-- `file_no_1`, `file_no_2`, `file_no_3` - Components of the case number (joined with "/" to form case number)
+- `CaseNo` - Case number(s) (with space inbetween if multiple)
 - `claimants` - Name(s) of the claimant(s)
 - `respondent` - Name(s) of the respondent(s)
 
