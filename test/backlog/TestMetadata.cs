@@ -21,9 +21,7 @@ namespace Backlog.Test
             {
                 id = "123",
                 decision_datetime = "2023-01-14 14:30:00",
-                file_no_1 = "ABC",
-                file_no_2 = "2023",
-                file_no_3 = "001",
+                CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 headnote_summary = "This is a test headnote summary",
@@ -58,9 +56,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 decision_datetime = "2023-01-14 14:30:00",
-                file_no_1 = "ABC",
-                file_no_2 = "2023",
-                file_no_3 = "001",
+                CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
@@ -82,9 +78,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 decision_datetime = "2023-01-14 14:30:00",
-                file_no_1 = "ABC",
-                file_no_2 = "2023",
-                file_no_3 = "001",
+                CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
@@ -106,9 +100,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 decision_datetime = "2023-01-14 14:30:00",
-                file_no_1 = "ABC",
-                file_no_2 = "2023",
-                file_no_3 = "001",
+                CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
@@ -128,9 +120,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 decision_datetime = "2009-12-15 14:30:00",
-                file_no_1 = "ABC",
-                file_no_2 = "2009",
-                file_no_3 = "001",
+                CaseNo = "ABC/2009/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
@@ -152,9 +142,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 decision_datetime = "2010-01-18 14:30:00",
-                file_no_1 = "ABC",
-                file_no_2 = "2010",
-                file_no_3 = "001",
+                CaseNo = "ABC/2010/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
@@ -176,9 +164,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 decision_datetime = "2023-01-14 14:30:00",
-                file_no_1 = "ABC",
-                file_no_2 = "2023",
-                file_no_3 = "001",
+                CaseNo = "ABC/2023/001",
                 claimants = "Jane Doe & John Smith",
                 respondent = "Home Office",
                 main_category = "Immigration",
@@ -210,9 +196,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 decision_datetime = "2023-01-14 14:30:00",
-                file_no_1 = "ABC",
-                file_no_2 = "2023",
-                file_no_3 = "001",
+                CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
@@ -251,9 +235,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 decision_datetime = "2023-01-14 14:30:00",
-                file_no_1 = "ABC",
-                file_no_2 = "2023",
-                file_no_3 = "001",
+                CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
@@ -285,9 +267,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 decision_datetime = "2023-01-14 14:30:00",
-                file_no_1 = "ABC",
-                file_no_2 = "2023",
-                file_no_3 = "001",
+                CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
@@ -319,9 +299,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 decision_datetime = "2023-01-14 14:30:00",
-                file_no_1 = "IA",
-                file_no_2 = "12345",
-                file_no_3 = "2023",
+                CaseNo = "IA/12345/2023",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
@@ -337,63 +315,13 @@ namespace Backlog.Test
         }
 
         [Test]
-        public void MakeMetadata_WithEmptyFileNumberPart_HandlesCorrectly()
-        {
-            // Arrange
-            var line = new Metadata.Line
-            {
-                decision_datetime = "2023-01-14 14:30:00",
-                file_no_1 = "IA",
-                file_no_2 = "", // Empty part
-                file_no_3 = "2023",
-                claimants = "John Smith",
-                respondent = "HMRC",
-                main_category = "Immigration",
-                main_subcategory = "Asylum",
-                Extension = ".pdf"
-            };
-
-            // Act
-            var result = Metadata.MakeMetadata(line);
-
-            // Assert
-            Assert.That(result.CaseNumbers[0], Is.EqualTo("IA//2023"));
-        }
-
-        [Test]
-        public void MakeMetadata_WithNullFileNumberPart_HandlesCorrectly()
-        {
-            // Arrange
-            var line = new Metadata.Line
-            {
-                decision_datetime = "2023-01-14 14:30:00",
-                file_no_1 = "IA",
-                file_no_2 = null, // Null part
-                file_no_3 = "2023",
-                claimants = "John Smith",
-                respondent = "HMRC",
-                main_category = "Immigration",
-                main_subcategory = "Asylum",
-                Extension = ".pdf"
-            };
-
-            // Act
-            var result = Metadata.MakeMetadata(line);
-
-            // Assert
-            Assert.That(result.CaseNumbers[0], Is.EqualTo("IA//2023"));
-        }
-
-        [Test]
         public void MakeMetadata_DecisionDate_ParsesCorrectly()
         {
             // Arrange
             var line = new Metadata.Line
             {
                 decision_datetime = "2023-12-25 15:45:30",
-                file_no_1 = "ABC",
-                file_no_2 = "2023",
-                file_no_3 = "001",
+                CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
@@ -425,23 +353,6 @@ namespace Backlog.Test
             Assert.That(decisionDate, Is.EqualTo("2023-07-04"));
         }
 
-        [Test]
-        public void Line_CaseNo_Property_CombinesFileNumbers()
-        {
-            // Arrange
-            var line = new Metadata.Line
-            {
-                file_no_1 = "TEST",
-                file_no_2 = "456",
-                file_no_3 = "2024"
-            };
-
-            // Act
-            var caseNo = line.CaseNo;
-
-            // Assert
-            Assert.That(caseNo, Is.EqualTo("TEST/456/2024"));
-        }
 
         [Test]
         public void Line_DecisionDate_Property_WithInvalidDate_ThrowsException()
@@ -463,9 +374,7 @@ namespace Backlog.Test
             var boundaryLine = new Metadata.Line
             {
                 decision_datetime = "2010-01-18 00:00:00",
-                file_no_1 = "ABC",
-                file_no_2 = "2010",
-                file_no_3 = "001",
+                CaseNo = "ABC/2010/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
@@ -482,9 +391,7 @@ namespace Backlog.Test
             var beforeBoundaryLine = new Metadata.Line
             {
                 decision_datetime = "2010-01-17 23:59:59",
-                file_no_1 = "ABC",
-                file_no_2 = "2010",
-                file_no_3 = "001",
+                CaseNo = "ABC/2010/001",
                 claimants = "John Smith",
                 respondent = "HMRC",
                 main_category = "Immigration",
