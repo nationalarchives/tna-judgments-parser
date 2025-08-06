@@ -89,8 +89,10 @@ The CSV file must contain the following columns (case-sensitive):
 
 The following columns are optional:
 
-- `main_subcategory_description` - Primary category classification
-- `sec_subcategory_description` - Secondary category classification
+- `main_category` - Primary category name
+- `main_subcategory` - Primary subcategory name (child of main_category)
+- `sec_category` - Secondary category name (optional)
+- `sec_subcategory` - Secondary subcategory name (child of sec_category, only used if sec_category is provided)
 - `headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
 
 **Note**: Column names are case-sensitive. If required columns are missing, the system will throw a validation error listing the missing columns.
