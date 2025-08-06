@@ -8,7 +8,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
         private readonly Dictionary<(string, int, int), (object Result, int NextPosition)> memo = [];
@@ -163,7 +163,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         /*
          * Returns a list of blocks starting with the current paragraph, plus any
-         * additional blocks (i.e extra paragraphs, quoted structures, and/or tables) 
+         * additional blocks (i.e extra paragraphs, quoted structures, and/or tables)
         */
         private List<IBlock> HandleParagraphs(WLine line)
         {
@@ -228,7 +228,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (next is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable table)
                 return [table];
-            // UnknownLevels are treated as extra paragraphs of the previous division 
+            // UnknownLevels are treated as extra paragraphs of the previous division
             if (next is not UnnumberedLeaf && next is not UnknownLevel)
                 return null;
             Leaf leaf = next as Leaf;
@@ -260,7 +260,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (children.Count == 0)
                 return wrapUp;
             if (children.Last() is not UnnumberedLeaf leaf)
-                // Closing Words must be the final child 
+                // Closing Words must be the final child
                 return wrapUp;
             if (children.Count == 1)
             {
@@ -289,8 +289,8 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!isInSchedules && PeekProv1(line))
                 return true;
             // Disabled for now, as numbered list items appear identical to SchProv1 elements
-            // and were causing an unnecessary and problematic break  
-            /*          
+            // and were causing an unnecessary and problematic break
+            /*
             if (PeekSchProv1(line))
                 return true;
             */
