@@ -46,11 +46,11 @@ namespace Backlog.Test
 
         private void CreateValidCsvFile(string path)
         {
-            var csvContent = @"id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
-123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA,2025,001,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary
-124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA,2025,002,Jones,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case
-125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC,2025,003,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case
-123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA,2025,004,Brown,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case";
+            var csvContent = @"id,FilePath,Extension,decision_datetime,CaseNo,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
+123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary
+124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,Jones,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case
+125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC/2025/003,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case
+123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA/2025/004,Brown,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case";
 
             File.WriteAllText(path, csvContent);
         }
@@ -73,7 +73,7 @@ namespace Backlog.Test
             var firstLine = result.First();
             Assert.That(firstLine.claimants, Is.EqualTo("Smith"));
             Assert.That(firstLine.respondent, Is.EqualTo("Secretary of State for the Home Department"));
-            Assert.That(firstLine.file_no_1, Is.EqualTo("IA"));
+            Assert.That(firstLine.CaseNo, Is.EqualTo("IA/2025/001"));
             Assert.That(firstLine.Extension, Is.EqualTo(".pdf"));
         }
 
@@ -137,7 +137,7 @@ namespace Backlog.Test
         {
             // Arrange - Create empty CSV file with just headers
             var emptyCsvPath = Path.Combine(testDataDirectory, "empty-metadata.csv");
-            var emptyContent = "id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary";
+            var emptyContent = "id,FilePath,Extension,decision_datetime,CaseNo,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary";
             File.WriteAllText(emptyCsvPath, emptyContent);
             
             var emptyHelper = new Helper
@@ -175,7 +175,7 @@ namespace Backlog.Test
                 "Should throw CsvHelper.MissingFieldException for CSV missing required headers");
                 
             // Verify the exception message contains information about missing headers
-            Assert.That(ex.Message, Does.Contain("FilePath").Or.Contain("Extension").Or.Contain("file_no_1"), 
+            Assert.That(ex.Message, Does.Contain("FilePath").Or.Contain("Extension").Or.Contain("CaseNo"), 
                 "Exception message should mention at least one of the missing required columns");
         }
         [Test]
@@ -183,8 +183,8 @@ namespace Backlog.Test
         {
             // Arrange - Create CSV missing only 'FilePath' column
             var partialCsvPath = Path.Combine(testDataDirectory, "partial-metadata.csv");
-            var partialContent = @"id,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent
-123,.pdf,2025-01-15 09:00:00,IA,2025,001,Smith,Secretary of State for the Home Department";
+            var partialContent = @"id,Extension,decision_datetime,CaseNo,claimants,respondent
+123,.pdf,2025-01-15 09:00:00,IA/2025/001,Smith,Secretary of State for the Home Department";
             File.WriteAllText(partialCsvPath, partialContent);
             
             var partialHelper = new Helper
@@ -219,7 +219,7 @@ namespace Backlog.Test
             Assert.That(line.decision_datetime, Is.TypeOf<string>());
             Assert.That(line.claimants, Is.TypeOf<string>());
             Assert.That(line.respondent, Is.TypeOf<string>());
-            Assert.That(line.file_no_1, Is.TypeOf<string>());
+            Assert.That(line.CaseNo, Is.TypeOf<string>());
             Assert.That(line.Extension, Is.TypeOf<string>());
             Assert.That(line.FilePath, Is.TypeOf<string>());
             
@@ -233,8 +233,8 @@ namespace Backlog.Test
         {
             // Arrange - Create CSV with main_subcategory but no main_category
             var invalidCategoryCsvPath = Path.Combine(testDataDirectory, "invalid-category-metadata.csv");
-            var invalidCategoryContent = @"id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
-126,/test/data/test-case-invalid.pdf,.pdf,2025-01-15 09:00:00,IA,2025,001,Smith,Secretary of State,,Appeals,Tax,VAT,Test case with orphaned main_subcategory";
+            var invalidCategoryContent = @"id,FilePath,Extension,decision_datetime,CaseNo,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
+126,/test/data/test-case-invalid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,Smith,Secretary of State,,Appeals,Tax,VAT,Test case with orphaned main_subcategory";
             File.WriteAllText(invalidCategoryCsvPath, invalidCategoryContent);
             
             var invalidCategoryHelper = new Helper
@@ -257,8 +257,8 @@ namespace Backlog.Test
         {
             // Arrange - Create CSV with sec_subcategory but no sec_category
             var invalidSecCategoryCsvPath = Path.Combine(testDataDirectory, "invalid-sec-category-metadata.csv");
-            var invalidSecCategoryContent = @"id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
-127,/test/data/test-case-invalid2.pdf,.pdf,2025-01-15 09:00:00,IA,2025,001,Smith,Secretary of State,Immigration,Appeals,,VAT,Test case with orphaned sec_subcategory";
+            var invalidSecCategoryContent = @"id,FilePath,Extension,decision_datetime,CaseNo,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
+127,/test/data/test-case-invalid2.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,Smith,Secretary of State,Immigration,Appeals,,VAT,Test case with orphaned sec_subcategory";
             File.WriteAllText(invalidSecCategoryCsvPath, invalidSecCategoryContent);
             
             var invalidSecCategoryHelper = new Helper
@@ -281,8 +281,8 @@ namespace Backlog.Test
         {
             // Arrange - Create CSV with proper category hierarchy
             var validCategoryCsvPath = Path.Combine(testDataDirectory, "valid-category-metadata.csv");
-            var validCategoryContent = @"id,FilePath,Extension,decision_datetime,file_no_1,file_no_2,file_no_3,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
-128,/test/data/test-case-valid.pdf,.pdf,2025-01-15 09:00:00,IA,2025,001,Smith,Secretary of State,Immigration,Appeals,Tax,VAT,Test case with valid category hierarchy";
+            var validCategoryContent = @"id,FilePath,Extension,decision_datetime,CaseNo,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary
+128,/test/data/test-case-valid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,Smith,Secretary of State,Immigration,Appeals,Tax,VAT,Test case with valid category hierarchy";
             File.WriteAllText(validCategoryCsvPath, validCategoryContent);
             
             var validCategoryHelper = new Helper
