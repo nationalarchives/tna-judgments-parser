@@ -28,10 +28,19 @@ namespace Backlog.Src.Batch.One
             public string file_no_3 { get; set; }
             public string claimants { get; set; }
             public string respondent { get; set; }
+
             [Optional]
-            public string main_subcategory_description { get; set; }
+            public string main_category { get; set; }
+
             [Optional]
-            public string sec_subcategory_description { get; set; }
+            public string main_subcategory { get; set; }
+
+            [Optional]
+            public string sec_category { get; set; }
+
+            [Optional]
+            public string sec_subcategory { get; set; }
+            
             [Optional]
             public string headnote_summary { get; set; }
             
@@ -46,6 +55,7 @@ namespace Backlog.Src.Batch.One
         {
             using var reader = new StreamReader(path);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            
             return csv.GetRecords<Line>().ToList();
         }
 
@@ -56,9 +66,22 @@ namespace Backlog.Src.Batch.One
 
         internal static ExtendedMetadata MakeMetadata(Line line) {
             List<ExtendedMetadata.Category> categories = [];
-            categories.Add(new ExtendedMetadata.Category { Name = line.main_subcategory_description });
-            if (!string.IsNullOrWhiteSpace(line.sec_subcategory_description)) {
-                categories.Add(new ExtendedMetadata.Category { Name = line.sec_subcategory_description, Parent = line.main_subcategory_description });
+            
+            // Only add categories if they exist and are not empty
+            if (!string.IsNullOrWhiteSpace(line.main_category)) {
+                categories.Add(new ExtendedMetadata.Category { Name = line.main_category });
+                
+                if (!string.IsNullOrWhiteSpace(line.main_subcategory)) {
+                    categories.Add(new ExtendedMetadata.Category { Name = line.main_subcategory, Parent = line.main_category });
+                }
+            }
+            
+            if (!string.IsNullOrWhiteSpace(line.sec_category)) {
+                categories.Add(new ExtendedMetadata.Category { Name = line.sec_category });
+                
+                if (!string.IsNullOrWhiteSpace(line.sec_subcategory)) {
+                    categories.Add(new ExtendedMetadata.Category { Name = line.sec_subcategory, Parent = line.sec_category });
+                }
             }
             string sourceFormat;
             if (line.Extension == ".doc" || line.Extension == ".docx")
