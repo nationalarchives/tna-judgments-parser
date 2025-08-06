@@ -11,7 +11,7 @@ using UK.Gov.NationalArchives.Enrichment;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
         private int quoteDepth = 0;
@@ -136,14 +136,14 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!groups["context"].Success)
             {
                 // Frame info has DocName but no Context - valid scenario.
-                // Resort to default Context. 
+                // Resort to default Context.
                 frames.Push(docName, defaultContext);
                 return true;
             }
             if (!Enum.TryParse(groups["context"].Value.ToUpper(), out context))
             {
                 // Frame info has a Context, but it is malformed - invalid scenario.
-                // Resort to default Context. 
+                // Resort to default Context.
                 frames.Push(docName, defaultContext);
                 return false;
             }
@@ -207,7 +207,7 @@ namespace UK.Gov.Legislation.Lawmaker
             string lastParagraphText = LastLine.GetLastParagraphText(division);
             return IsEndOfQuotedStructure(lastParagraphText);
         }
-        
+
         private static bool IsEndOfQuotedStructure(IList<IBlock> contents, ILine heading = null, IFormattedText number = null, bool headingPrecedesNumber = false)
         {
             // Squash text content into single string
@@ -272,7 +272,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return [];
             int save = i;
 
-            // Handle the case where the start quote of the first quoted structure is NOT at the 
+            // Handle the case where the start quote of the first quoted structure is NOT at the
             // start of a new line, but rather is at the end of the previous line.
             (int left, int right) = CountStartAndEndQuotes(line);
             bool isAtStartOfLine = (left == right + 1) && Regex.IsMatch(line.NormalizedContent, QuotedStructureStartPattern());
@@ -316,7 +316,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             return ParseAndMemoize(line, "QuotedStructure", ParseQuotedStructure);
         }
-  
+
         private BlockQuotedStructure ParseQuotedStructure(WLine line)
         {
             List<IDivision> contents = [];
@@ -442,8 +442,8 @@ namespace UK.Gov.Legislation.Lawmaker
             }
 
             /*
-              Note that the end quote and appended text may span across multiple of the line's inline children. 
-              For example, when portions of the line have different styling.  
+              Note that the end quote and appended text may span across multiple of the line's inline children.
+              For example, when portions of the line have different styling.
             */
             public WLine Invoke(WLine line)
             {

@@ -6,24 +6,21 @@ using UK.Gov.Legislation.Lawmaker.Api;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
-
-    public enum Hint { Bill }
-
     public class Helper
     {
 
         // Invoked via CLI when running locally
-        public static Bundle LocalParse(string path)
+        public static Bundle LocalParse(string path, LegislationClassifier classifier)
         {
             byte[] docx = File.ReadAllBytes(path);
-            return Parse(docx);
+            return Parse(docx, classifier);
         }
 
-        // Invoked via AWS Lambda function handler 
-        public static Response LambdaParse(Request request)
+        // Invoked via AWS Lambda function handler
+        public static Response LambdaParse(Request request, LegislationClassifier classifier)
         {
             byte[] docx = request.Content;
-            Bundle bundle = Parse(docx);
+            Bundle bundle = Parse(docx, classifier);
             return new Response()
             {
                 Xml = bundle.Xml,
@@ -32,9 +29,10 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
 
-        public static Bundle Parse(byte[] docx)
+        public static Bundle Parse(byte[] docx, LegislationClassifier classifier)
         {
-            Bill bill = BillParser.Parse(docx);
+
+            Bill bill = LegislationParser.Parse(docx, classifier);
             XmlDocument doc = Builder.Build(bill);
             Simplifier.Simplify(doc, bill.Styles);
             string xml = NationalArchives.Judgments.Api.Parser.SerializeXml(doc);
