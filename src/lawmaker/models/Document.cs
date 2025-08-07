@@ -6,10 +6,10 @@ using UK.Gov.Legislation.Judgments;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public abstract class Bill
+    public class Document
     {
 
-        public abstract DocName Type { get; protected init; }
+        public DocName Type { get; init; }
 
         internal Dictionary<string, Dictionary<string, string>> Styles { get; init; }
 
@@ -24,12 +24,4 @@ namespace UK.Gov.Legislation.Lawmaker
         internal IList<Schedule> Schedules { get; init; }
 
     }
-
-    public class NIPublicBill : Bill
-    {
-
-        public override DocName Type { get; protected init; } = DocName.NIPUBB;
-
-    }
-
 }
