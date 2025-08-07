@@ -58,6 +58,7 @@ namespace Backlog.Src.Batch.One
         internal class Line
         {
             public string id { get; set; }
+            public string court { get; set; }
             public string FilePath { get; set; }
             public string Extension { get; set; }
             public string decision_datetime { get; set; }
@@ -236,8 +237,7 @@ namespace Backlog.Src.Batch.One
                 sourceFormat = "application/pdf";
             else
                 throw new Exception($"Unexpected extension {line.Extension}");
-            bool old = String.Compare(line.DecisionDate, "2010-01-18") < 0;
-            Court court = old ? Courts.OldImmigrationServicesTribunal : Courts.FirstTierTribunal_GRC;
+            Court court = Courts.ByCode[line.court];
             ExtendedMetadata meta = new()
             {
                 Type = JudgmentType.Decision,
