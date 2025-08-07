@@ -84,6 +84,9 @@ namespace Backlog.Src.Batch.One
             public string sec_subcategory { get; set; }
             
             [Optional]
+            public string ncn { get; set; }
+            
+            [Optional]
             public string headnote_summary { get; set; }
             
             private readonly string DateFormat = "yyyy-MM-dd HH:mm:ss";
@@ -247,7 +250,8 @@ namespace Backlog.Src.Batch.One
                     new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.respondent, Role = PartyRole.Respondent }
                 ],
                 SourceFormat = sourceFormat,
-                Categories = [.. categories]
+                Categories = [.. categories],
+                NCN = line.ncn
             };
             return meta;
         }
