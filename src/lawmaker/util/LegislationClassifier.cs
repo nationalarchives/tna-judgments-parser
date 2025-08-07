@@ -1,6 +1,5 @@
 #nullable enable
 using System;
-using System.Security.Cryptography;
 namespace UK.Gov.Legislation.Lawmaker;
 
 public enum DocName
