@@ -93,6 +93,7 @@ The following columns are optional:
 - `main_subcategory` - Primary subcategory name (child of main_category)
 - `sec_category` - Secondary category name (optional)
 - `sec_subcategory` - Secondary subcategory name (child of sec_category, only used if sec_category is provided)
+- `ncn` - Neutral Citation Number (NCN) for the judgment, when available. If provided, this appears as `uk:cite` in the generated AkomaNtoso XML
 - `headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
 
 **Note**: Column names are case-sensitive. If required columns are missing, the system will throw a validation error listing the missing columns.

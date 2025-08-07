@@ -35,6 +35,8 @@ public class Extensions {
 
     public List<ICategory> Categories { get; set; }
 
+    public string NCN { get; set; }
+
 }
 
 public class ExternalAttachment {
