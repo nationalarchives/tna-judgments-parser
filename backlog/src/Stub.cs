@@ -184,6 +184,12 @@ namespace Backlog.Src
             {
                 AddCategory(proprietary, cat);
             }
+            if (!string.IsNullOrWhiteSpace(Data.NCN))
+            {
+                XmlElement cite = CreateAndAppendUK("cite", proprietary);
+                proprietary.AppendChild(cite);
+                cite.AppendChild(Document.CreateTextNode(Data.NCN));
+            }
             XmlElement sourceFormat = CreateAndAppendUK("sourceFormat", proprietary);
             proprietary.AppendChild(sourceFormat);
             sourceFormat.AppendChild(Document.CreateTextNode(Data.SourceFormat));
