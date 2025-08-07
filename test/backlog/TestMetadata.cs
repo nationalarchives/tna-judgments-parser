@@ -20,6 +20,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "123",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -65,6 +66,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "124",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/002",
                 appellants = "Jane Doe",
@@ -105,6 +107,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -127,6 +130,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -149,6 +153,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -164,33 +169,12 @@ namespace Backlog.Test
         }
 
         [Test]
-        public void MakeMetadata_WithOldDate_UsesOldImmigrationServicesTribunal()
-        {
-            // Arrange - Date before 2010-01-18
-            var line = new Metadata.Line
-            {
-                decision_datetime = "2009-12-15 14:30:00",
-                CaseNo = "ABC/2009/001",
-                claimants = "John Smith",
-                respondent = "HMRC",
-                main_category = "Immigration",
-                main_subcategory = "Asylum",
-                Extension = ".pdf"
-            };
-
-            // Act
-            var result = Metadata.MakeMetadata(line);
-
-            // Assert
-            Assert.That(result.Court, Is.EqualTo(Courts.OldImmigrationServicesTribunal));
-        }
-
-        [Test]
         public void MakeMetadata_WithNewDate_UsesFirstTierTribunal()
         {
             // Arrange - Date on or after 2010-01-18
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2010-01-18 14:30:00",
                 CaseNo = "ABC/2010/001",
                 claimants = "John Smith",
@@ -213,6 +197,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "Jane Doe & John Smith",
@@ -245,6 +230,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 appellants = "Jane Doe & John Smith",
@@ -277,6 +263,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -316,6 +303,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -348,6 +336,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -380,6 +369,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "IA/12345/2023",
                 claimants = "John Smith",
@@ -402,6 +392,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-12-25 15:45:30",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -425,6 +416,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-07-04 09:15:22"
             };
 
@@ -442,49 +434,12 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 decision_datetime = "invalid-date"
             };
 
             // Act & Assert
             Assert.Throws<FormatException>(() => _ = line.DecisionDate);
-        }
-
-        [Test]
-        public void MakeMetadata_BoundaryDate_IdentifiesCorrectCourt()
-        {
-            // Test the exact boundary date 2010-01-18
-            var boundaryLine = new Metadata.Line
-            {
-                decision_datetime = "2010-01-18 00:00:00",
-                CaseNo = "ABC/2010/001",
-                claimants = "John Smith",
-                respondent = "HMRC",
-                main_category = "Immigration",
-                main_subcategory = "Asylum",
-                Extension = ".pdf"
-            };
-
-            var result = Metadata.MakeMetadata(boundaryLine);
-            
-            // On the boundary date, should use FirstTierTribunal_GRC (new court)
-            Assert.That(result.Court, Is.EqualTo(Courts.FirstTierTribunal_GRC));
-
-            // Test one day before boundary
-            var beforeBoundaryLine = new Metadata.Line
-            {
-                decision_datetime = "2010-01-17 23:59:59",
-                CaseNo = "ABC/2010/001",
-                claimants = "John Smith",
-                respondent = "HMRC",
-                main_category = "Immigration",
-                main_subcategory = "Asylum",
-                Extension = ".pdf"
-            };
-
-            var beforeResult = Metadata.MakeMetadata(beforeBoundaryLine);
-            
-            // Before boundary date, should use OldImmigrationServicesTribunal
-            Assert.That(beforeResult.Court, Is.EqualTo(Courts.OldImmigrationServicesTribunal));
         }
 
         [Test]
@@ -494,6 +449,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "123",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -518,6 +474,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "123",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -542,6 +499,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "123",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -566,6 +524,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "123",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -590,6 +549,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "123",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -615,6 +575,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "123",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -641,6 +602,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "123",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -667,6 +629,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "123",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -693,6 +656,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "123",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/001",
                 claimants = "John Smith",
@@ -720,6 +684,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "125",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/003",
                 claimants = "John Smith",
@@ -740,6 +705,7 @@ namespace Backlog.Test
             var line = new Metadata.Line
             {
                 id = "126",
+                court = "UKFTT-GRC",
                 decision_datetime = "2023-01-14 14:30:00",
                 CaseNo = "ABC/2023/004",
                 // Neither claimants nor appellants provided - should fail
@@ -758,6 +724,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 claimants = "John Smith",
                 respondent = "HMRC"
             };
@@ -775,6 +742,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 appellants = "Jane Doe",
                 respondent = "HMRC"
             };
@@ -792,6 +760,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 claimants = "John Smith",
                 respondent = "HMRC"
             };
@@ -809,6 +778,7 @@ namespace Backlog.Test
             // Arrange
             var line = new Metadata.Line
             {
+                court = "UKFTT-GRC",
                 appellants = "Jane Doe",
                 respondent = "HMRC"
             };
