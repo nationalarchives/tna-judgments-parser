@@ -32,7 +32,7 @@ namespace UK.Gov.Legislation.Lawmaker
         public static Bundle Parse(byte[] docx, LegislationClassifier classifier)
         {
 
-            Bill bill = LegislationParser.Parse(docx, classifier);
+            Document bill = LegislationParser.Parse(docx, classifier);
             XmlDocument doc = Builder.Build(bill);
             Simplifier.Simplify(doc, bill.Styles);
             string xml = NationalArchives.Judgments.Api.Parser.SerializeXml(doc);
