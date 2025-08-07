@@ -488,6 +488,232 @@ namespace Backlog.Test
         }
 
         [Test]
+        public void MakeMetadata_WithNCN_SetsNCNProperty()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "123",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/001",
+                claimants = "John Smith",
+                respondent = "HMRC",
+                main_category = "Immigration",
+                Extension = ".pdf",
+                ncn = "[2023] UKUT 123 (IAC)"
+            };
+
+            // Act
+            var result = Metadata.MakeMetadata(line);
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.NCN, Is.EqualTo("[2023] UKUT 123 (IAC)"));
+        }
+
+        [Test]
+        public void MakeMetadata_WithoutNCN_NCNPropertyIsNull()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "123",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/001",
+                claimants = "John Smith",
+                respondent = "HMRC",
+                main_category = "Immigration",
+                Extension = ".pdf"
+                // ncn is not set
+            };
+
+            // Act
+            var result = Metadata.MakeMetadata(line);
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.NCN, Is.Null);
+        }
+
+        [Test]
+        public void MakeMetadata_WithEmptyNCN_NCNPropertyIsEmpty()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "123",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/001",
+                claimants = "John Smith",
+                respondent = "HMRC",
+                main_category = "Immigration",
+                Extension = ".pdf",
+                ncn = ""
+            };
+
+            // Act
+            var result = Metadata.MakeMetadata(line);
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.NCN, Is.EqualTo(""));
+        }
+
+        [Test]
+        public void MakeMetadata_WithWhitespaceNCN_NCNPropertyIsWhitespace()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "123",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/001",
+                claimants = "John Smith",
+                respondent = "HMRC",
+                main_category = "Immigration",
+                Extension = ".pdf",
+                ncn = "   "
+            };
+
+            // Act
+            var result = Metadata.MakeMetadata(line);
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.NCN, Is.EqualTo("   "));
+        }
+
+        [Test]
+        public void Stub_WithNCN_AppearsInXmlAsCite()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "123",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/001",
+                claimants = "John Smith",
+                respondent = "HMRC",
+                main_category = "Immigration",
+                Extension = ".pdf",
+                ncn = "[2023] UKUT 123 (IAC)"
+            };
+            var metadata = Metadata.MakeMetadata(line);
+
+            // Act
+            var stub = Stub.Make(metadata);
+            var xml = stub.Serialize();
+
+            // Assert
+            Assert.That(xml, Does.Contain("<uk:cite>[2023] UKUT 123 (IAC)</uk:cite>"));
+        }
+
+        [Test]
+        public void Stub_WithEmptyNCN_DoesNotAppearInXml()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "123",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/001",
+                claimants = "John Smith",
+                respondent = "HMRC",
+                main_category = "Immigration",
+                Extension = ".pdf",
+                ncn = ""
+            };
+            var metadata = Metadata.MakeMetadata(line);
+
+            // Act
+            var stub = Stub.Make(metadata);
+            var xml = stub.Serialize();
+
+            // Assert
+            Assert.That(xml, Does.Not.Contain("<uk:cite"));
+            Assert.That(xml, Does.Not.Contain("</uk:cite>"));
+        }
+
+        [Test]
+        public void Stub_WithNullNCN_DoesNotAppearInXml()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "123",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/001",
+                claimants = "John Smith",
+                respondent = "HMRC",
+                main_category = "Immigration",
+                Extension = ".pdf"
+                // ncn is not set (null)
+            };
+            var metadata = Metadata.MakeMetadata(line);
+
+            // Act
+            var stub = Stub.Make(metadata);
+            var xml = stub.Serialize();
+
+            // Assert
+            Assert.That(xml, Does.Not.Contain("<uk:cite"));
+            Assert.That(xml, Does.Not.Contain("</uk:cite>"));
+        }
+
+        [Test]
+        public void Stub_WithWhitespaceNCN_DoesNotAppearInXml()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "123",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/001",
+                claimants = "John Smith",
+                respondent = "HMRC",
+                main_category = "Immigration",
+                Extension = ".pdf",
+                ncn = "   "
+            };
+            var metadata = Metadata.MakeMetadata(line);
+
+            // Act
+            var stub = Stub.Make(metadata);
+            var xml = stub.Serialize();
+
+            // Assert
+            Assert.That(xml, Does.Not.Contain("<uk:cite"));
+            Assert.That(xml, Does.Not.Contain("</uk:cite>"));
+        }
+
+        [Test]
+        public void Stub_WithNCNSpecialCharacters_AppearsCorrectlyInXml()
+        {
+            // Arrange
+            var line = new Metadata.Line
+            {
+                id = "123",
+                decision_datetime = "2023-01-14 14:30:00",
+                CaseNo = "ABC/2023/001",
+                claimants = "John Smith",
+                respondent = "HMRC",
+                main_category = "Immigration",
+                Extension = ".pdf",
+                ncn = "[2023] EWCA Civ 123 & 124"
+            };
+            var metadata = Metadata.MakeMetadata(line);
+
+            // Act
+            var stub = Stub.Make(metadata);
+            var xml = stub.Serialize();
+
+            // Assert
+            Assert.That(xml, Does.Contain("<uk:cite"));
+            Assert.That(xml, Does.Contain("[2023] EWCA Civ 123 &amp; 124"));
+            Assert.That(xml, Does.Contain("</uk:cite>"));
+        }
+
+        [Test]
         public void Line_ValidateCategoryRules_WithBothClaimantsAndAppellants_ThrowsException()
         {
             // Arrange
