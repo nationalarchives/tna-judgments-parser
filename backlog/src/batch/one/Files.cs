@@ -89,10 +89,6 @@ namespace Backlog.Src.Batch.One
             string uuid = GetUuid(pathToDataFolder, meta, judgmentsFilePath, hmctsFilePath);
             string documentPath = Path.Combine(pathToDataFolder, COURT_DOCUMENTS_DIR);
             string path = Path.Combine(documentPath, uuid);
-            
-            if (meta.Extension.ToLower() == ".doc")
-                path += ".docx";
-                
             return File.ReadAllBytes(path);
         }
 
