@@ -12,17 +12,17 @@ using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    partial class Builder(Bill bill) : AkN.Builder
+    partial class Builder(Document bill) : AkN.Builder
     {
 
         override protected string UKNS => "https://www.legislation.gov.uk/namespaces/UK-AKN";
 
-        public static XmlDocument Build(Bill bill)
+        public static XmlDocument Build(Document bill)
         {
             return new Builder(bill).Build();
         }
 
-        private readonly Bill bill = bill;
+        private readonly Document bill = bill;
 
         private XmlDocument Build()
         {

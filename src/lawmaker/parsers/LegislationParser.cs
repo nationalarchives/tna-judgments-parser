@@ -17,7 +17,7 @@ namespace UK.Gov.Legislation.Lawmaker
         // at the root.
         private readonly string? subType;
         private readonly string? procedure;
-
+        private readonly DocName docName;
         /*
           This class takes a list of "pre-parsed" blocks, and arranges them into a bill structure.
           The pre-parsed list contains blocks of only four types:
@@ -26,7 +26,7 @@ namespace UK.Gov.Legislation.Lawmaker
            = WTable
            - WTableOfContents
         */
-        public static Bill Parse(byte[] docx, LegislationClassifier classifier)
+        public static Document Parse(byte[] docx, LegislationClassifier classifier)
         {
             WordprocessingDocument doc = AkN.Parser.Read(docx);
             CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
@@ -36,6 +36,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier)
         {
             Document = doc;
+            docName = classifier.DocName;
             frames = new Frames(classifier.DocName,  Context.BODY);
         }
 
@@ -49,7 +50,7 @@ namespace UK.Gov.Legislation.Lawmaker
         int parseAndMemoizeDepth = 0;
         int parseAndMemoizeDepthMax = 0;
 
-        private Bill Parse()
+        private Lawmaker.Document Parse()
         {
             ParseAndEnrichHeader();
             ParseBody();
@@ -68,8 +69,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
             var styles = DOCX.CSS.Extract(Document.Docx.MainDocumentPart, "#bill");
 
-            return new NIPublicBill
+            return new Lawmaker.Document
             {
+                Type = docName,
                 Styles = styles,
                 CoverPage = coverPage,
                 Preface = preface,
