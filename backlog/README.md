@@ -158,14 +158,14 @@ The module implements robust file handling with several key features:
 2. **Extension Handling and File Type Processing**:
    - **PDF files** (`.pdf`): Processed as-is, wrapped in a simple XML structure for output
    - **DOCX files** (`.docx`): Processed through the full parser to generate rich XML output  
-   - **DOC files** (`.doc`): **Must be pre-converted to DOCX format before processing**
-   
+   - **DOC files** (`.doc`): **Must be manually pre-converted to DOCX format before processing**
+
 3. **Pre-conversion Requirements for DOC Files**:
    - The backlog parser **does not** perform DOC to DOCX conversion
    - If a record in the metadata CSV has `Extension` set to `.doc`, the corresponding file in the `court_documents/` directory must already be in DOCX format
    - The original file type (`.doc`) is preserved in the metadata for tracking purposes, but the actual file content must be in DOCX format
    - This pre-conversion should be done using external tools (e.g., LibreOffice, Microsoft Word automation) before running the backlog parser
-   
+
    **Example for DOC files**:
 
    ```plaintext
