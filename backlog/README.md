@@ -190,50 +190,74 @@ The module implements robust file handling with several key features:
 
 ### Batch Processing
 
-The module processes files in batches by ID, where each ID maps to one or more related judgment files. The process includes:
+The module processes files in batches, supporting both individual record processing and bulk operations. The process flow is:
 
-1. **Metadata Lookup**:
-   - Files are found by looking up their ID in the court metadata CSV
-   - Each ID may have multiple associated files
-
-2. **UUID Resolution**:
-   - Each judgment file's UUID is looked up in the TDR metadata
-   - The UUID is used to locate the actual file in the court_documents directory
-
-3. **Content Processing**:
-   - Files are read and converted to the appropriate format
-   - XML is generated for DOCX files
-   - PDFs are wrapped in a simple XML structure
+1. **Metadata Lookup**: Records are found by ID in the court metadata CSV
+2. **UUID Resolution**: File UUIDs are looked up in the TDR metadata
+3. **File Location**: Files are located in the court_documents directory using UUIDs
+4. **Content Processing**: Files are processed according to type (PDF wrapped in XML, DOCX through full parser)
 
 ## Usage
 
-To process backlog judgments:
+The backlog processor supports three modes of operation:
 
-1. Set up the environment variables:
+### Processing Modes
 
-    ```bash
-    export COURT_METADATA_PATH=/path/to/metadata.csv
-    export DATA_FOLDER_PATH=/path/to/data
-    export TRACKER_PATH=/path/to/tracker.csv
-    export OUTPUT_PATH=/path/to/output
-    export BULK_NUMBERS_PATH=/path/to/bulk_numbers.csv
-    export LAST_BEFORE_BATCH=0
-    ```
+1. **Process the Entire CSV** (default):
 
-2. Prepare your data directory structure as shown in the directory structure section above.
+   ```bash
+   dotnet run
+   ```
 
-3. Run the backlog processor with an ID:
+   Processes every record in the court metadata CSV sequentially, skipping already processed records.
 
-    ```bash
-    backlog --id <id>
-    ```
+2. **Process Specific Records by ID**:
 
-The program will:
+   ```bash
+   dotnet run --id <id>
+   ```
 
-- Look up the ID in the court metadata
-- Process all associated judgment files
-- Generate bundles and upload them to S3
-- Track the processed files in the tracker CSV
+   Processes a specific judgment record by its ID from the court metadata CSV.
+
+### CSV Line Example
+
+```csv
+id,court,FilePath,Extension,decision_datetime,CaseNo,claimants,respondent,main_category,main_subcategory
+123,UKFTT-GRC,a1b2c3d4-e5f6-7890-abcd-ef1234567890,.pdf,2025-01-15 09:00:00,GRC/2025/001,Smith,Secretary of State,Immigration,Appeal Rights
+124,EWHC-QBD-Admin,b2c3d4e5-f6g7-8901-bcde-f23456789012,.docx,2025-01-16 10:00:00,IA/2025/002,Jones,HMRC,Tax,VAT Appeals
+125,UKUT-IAC,c3d4e5f6-g7h8-9012-cdef-34567890123a,.doc,2025-01-17 11:00:00,UKUT/2025/003,Williams,Home Office,Immigration,Entry Clearance
+```
+
+- Line 1 = ID 123 (Smith vs Secretary of State)
+- Line 2 = ID 124 (Jones vs HMRC)  
+- Line 3 = ID 125 (Williams vs Home Office)
+
+### Setup and Execution
+
+1. **Set environment variables**:
+
+   ```bash
+   export COURT_METADATA_PATH=/path/to/metadata.csv
+   export DATA_FOLDER_PATH=/path/to/data
+   export TRACKER_PATH=/path/to/tracker.csv
+   export OUTPUT_PATH=/path/to/output
+   export BULK_NUMBERS_PATH=/path/to/bulk_numbers.csv
+   export LAST_BEFORE_BATCH=0
+   ```
+
+2. **Prepare data directory structure** as shown in the Implementation Details section.
+
+3. **Run the processor** using one of the modes above.
+
+### Processing Workflow
+
+All modes follow the same workflow:
+
+- Look up records in the court metadata CSV
+- Resolve UUIDs and locate files in the court_documents directory
+- Process files according to their type (PDF, DOCX, DOC)
+- Generate bundles and upload to S3
+- Track processed files to prevent duplicates
 
 ## Development
 
