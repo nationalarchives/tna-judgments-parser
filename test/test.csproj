@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="../version.targets" />
 
@@ -27,8 +27,8 @@
     <EmbeddedResource Include="./leg/em/*.docx" />
     <EmbeddedResource Include="./leg/em/*.xml" />
 
-    <EmbeddedResource Include="./lawmaker/*.docx" />
-    <EmbeddedResource Include="./lawmaker/*.xml" />
+    <EmbeddedResource Include="./lawmaker/**/*.docx" />
+    <EmbeddedResource Include="./lawmaker/**/*.xml" />
 
   </ItemGroup>
 
