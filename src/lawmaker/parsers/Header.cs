@@ -128,7 +128,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 if (IsLeftAligned(line) && IsFlushLeft(line))
                     preamble.Add(block);
-                /* TODO: Handle the preface of Statutory Instruments (in an upcoming ticket)
+                /* TODO: Handle the preface of Statutory Instruments (in an upcoming ticket) 
                 else if (!foundContents)
                     preface.Add(block);
                 */
