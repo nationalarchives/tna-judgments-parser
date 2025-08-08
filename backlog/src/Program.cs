@@ -19,9 +19,30 @@ namespace Backlog.Src
         {
             try
             {
-                if (args.Length < 2 || args[0] != "--id" || !uint.TryParse(args[1], out uint id))
+               uint? id = null;
+                
+                // Parse arguments - --id is optional
+                if (args.Length == 0)
                 {
-                    System.Console.WriteLine("Usage: backlog --id <id>");
+                    // No arguments - process all records
+                    id = null;
+                }
+                else if (args.Length == 2 && args[0] == "--id")
+                {
+                    if (!uint.TryParse(args[1], out uint parsedId))
+                    {
+                        System.Console.WriteLine("Usage: dotnet run [--id <id>]");
+                        System.Console.WriteLine("Error: Invalid ID format");
+                        return 1;
+                    }
+                    id = parsedId;
+                }
+                else
+                {
+                    System.Console.WriteLine("Usage: dotnet run [--id <id>]");
+                    System.Console.WriteLine("Examples:");
+                    System.Console.WriteLine("  dotnet run       - Process all records");
+                    System.Console.WriteLine("  dotnet run --id 4 - Process only record with ID 4");
                     return 1;
                 }
 
@@ -40,11 +61,26 @@ namespace Backlog.Src
                 string trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
                 Tracker tracker = new Tracker(trackerPath);
 
-                List<Metadata.Line> lines = helper.FindLines(id);
-                if (!lines.Any())
+                List<Metadata.Line> lines;
+                if (id.HasValue)
                 {
-                    System.Console.WriteLine($"No records found for id {id}");
-                    return 1;
+                    // Process only the specific ID
+                    lines = helper.FindLines(id.Value);
+                    if (!lines.Any())
+                    {
+                        System.Console.WriteLine($"No records found for id {id.Value}");
+                        return 1;
+                    }
+                }
+                else
+                {
+                    // Process all lines from the document
+                    lines = Metadata.Read(helper.PathToCourtMetadataFile);
+                    if (!lines.Any())
+                    {
+                        System.Console.WriteLine("No records found in the metadata file");
+                        return 1;
+                    }
                 }
 
                 foreach (var line in lines)
