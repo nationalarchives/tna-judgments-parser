@@ -122,12 +122,15 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement formula = CreateAndAppend("formula", e);
             formula.SetAttribute("name", "enactingText");
 
-            XmlElement element =  doc.CreateElement("p", ns);
-            element.InnerText = preamble.OfType<WLine>()
-            .Select(line => line.NormalizedContent)
-            .Aggregate((string acc, string element) => acc + " " + element);
-            element = TransformPreambleText(element);
-            formula.AppendChild(element);
+            foreach (IBlock block in preamble)
+            {
+                XmlElement element = doc.CreateElement("p", ns);
+                if (!(block is WLine line))
+                    continue;
+                element.InnerText = line.NormalizedContent;
+                element = TransformPreambleText(element);
+                formula.AppendChild(element);
+            }
         }
 
         private XmlElement TransformPreambleText(XmlElement pElement)
