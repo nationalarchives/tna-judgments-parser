@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="nipubb">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Secretary of State makes the following Regulations in exercise of the powers conferred by section 41(1), (2)(a) and (5) of the Road Traffic Act 1988 (the “1988 Act”)().</p>
+        <p>Representative organisations have been consulted in accordance with section 195(2) of the 1988 Act.</p>
+      </formula>
+    </preamble>
+    <body>
+      <hcontainer name="regulation" eId="sec_1" class="prov1">
+        <heading>Citation, commencement and extent</heading>
+        <num>1.</num>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>These Regulations may be cited as the Road Vehicles (Construction and Use) (Amendment) Regulations 2022.</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>These Regulations come into force on 14th February 2022.</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(2)</num>
+          <content>
+            <p>These Regulations extend to England and Wales and Scotland.</p>
+          </content>
+        </paragraph>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>
