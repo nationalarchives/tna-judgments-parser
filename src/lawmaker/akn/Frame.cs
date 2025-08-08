@@ -57,7 +57,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsSecondaryDocName(DocName docName)
         {
-            return new[] { DocName.NISI, DocName.NISR, DocName.UKSI, DocName.SSI }.Contains(docName);
+            return DocNames.GetLegislationType(docName) == LegislationType.SECONDARY;
         }
 
         public bool Pop()
