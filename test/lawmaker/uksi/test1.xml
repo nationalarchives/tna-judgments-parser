@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="nipubb">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>An application has been made to the Secretary of State under section 37 of the Planning Act 2008 (the “2008 Act”)()for an order granting development consent in accordance with the Infrastructure Planning (Applications: Prescribed Forms and Procedure) Regulations 2009().</p>
+        <p>The application was examined by the Examining Authority appointed by the Secretary of State pursuant to sections 61() and 65() of Part 6 of the 2008 Act and carried out in accordance with Chapter 4 of Part 6 of the 2008 Act and with the Infrastructure Planning (Examination Procedure) Rules 2010(). The Examining Authority has submitted a report to the Secretary of State under section 74(2) of the 2008 Act.</p>
+        <p>The Secretary of State has considered the report and recommendation of the Examining Authority, has taken into account the environmental information in accordance with regulation 4 of the Infrastructure Planning (Environmental Impact Assessment) Regulations 2017() and as a national policy statement has effect in relation to the proposed development, has had regard to the documents and matters referred to in section 104(2) of the 2008 Act.</p>
+        <p>The Secretary of State, having decided the application, has determined to make an order giving effect to the proposals comprised in the application on terms that in the opinion of the Secretary of State are not materially different from those proposed in the application.</p>
+        <p>In accordance with section 127() of the 2008 Act, the Secretary of State has applied the relevant tests and is satisfied that they have been met.</p>
+        <p>The Secretary of State, in exercise of the powers in sections 114, 115, 120, 122, 123, 140 and 149A of the 2008 Act, makes the following Order—</p>
+      </formula>
+    </preamble>
+    <body>
+      <part eId="pt_1" class="group2">
+        <num>Part 1</num>
+        <heading>PRELIMINARY</heading>
+        <hcontainer name="regulation" eId="sec_1" class="prov1">
+          <heading>Citation and commencement</heading>
+          <num>1.</num>
+          <content>
+            <p> This Order may be cited as the Boston Alternative Energy Facility Order 2023 and comes into force on 27th July 2023.</p>
+          </content>
+        </hcontainer>
+      </part>
+    </body>
+  </bill>
+</akomaNtoso>
