@@ -13,67 +13,33 @@ namespace UK.Gov.Legislation.Lawmaker
     public class LawmakerTest
     {
 
-        private static ILogger logger = Logging.Factory.CreateLogger<LawmakerTest>();
-
-        private static string relativeTestPath = "../../../lawmaker";
-
-        public static IEnumerable<object[]> TestFilePaths()
-        {            
-            foreach (string filePath in Directory.GetFiles(relativeTestPath, "*.docx", SearchOption.AllDirectories))
+        public static IEnumerable<object[]> Filenames()
+        {
+            string relativeTestPath = "../../../lawmaker";
+            foreach (string filePath in Directory.GetFiles(relativeTestPath, "*.docx"))
             {
-                string subdirectory = null;
-                string filename = null;
-                try
-                {
-                    DirectoryInfo directoryInfo = new DirectoryInfo(Path.GetDirectoryName(filePath));
-                    subdirectory = directoryInfo.Name;
-                    filename = Path.GetFileNameWithoutExtension(filePath);
-                }
-                catch (Exception) { }
-
-                if (String.IsNullOrEmpty(subdirectory) || String.IsNullOrEmpty(filename))
-                {
-                    logger.LogWarning($"Invalid filepath: {filePath}. Ignoring test.");
-                    continue;
-                }
-                yield return new object[] { subdirectory + "/" + filename };
+                yield return new object[] { Path.GetFileNameWithoutExtension(filePath) };
             }
         }
 
         [Theory]
-        [MemberData(nameof(TestFilePaths))]
-        public void Test(string test)
+        [MemberData(nameof(Filenames))]
+        public void Test(string filename)
         {
-            String[] parts = test.Split('/');
-            string subdirectory = parts[0];
-            string filename = parts[1];
-
-            DocName docName;
-            try
-            {
-                DocName? tmp = DocNames.GetDocName(subdirectory);
-                if (tmp == null) throw new Exception();
-                docName = (DocName)tmp;
-            }
-            catch (Exception e)
-            {
-                throw new IOException($"DocName could not be determined from subdirectory {subdirectory}.");
-            }
-
-            var docx = ReadDocx(subdirectory, filename);
-            var actual = Helper.Parse(docx, new LegislationClassifier(docName, null, null)).Xml;
+            var docx = ReadDocx(filename);
+            var actual = Helper.Parse(docx, new LegislationClassifier(DocName.NIPUBB, null, null)).Xml;
             XmlDocument actualDoc = new();
             actualDoc.LoadXml(actual);
 
-            var expected = ReadXml(subdirectory, filename);
+            var expected = ReadXml(filename);
             XmlDocument expectedDoc = new();
             expectedDoc.LoadXml(expected);
 
             Assert.Equal(expectedDoc.OuterXml, actualDoc.OuterXml);
         }
-        private static byte[] ReadDocx(string subdirectory, string filename)
+        private static byte[] ReadDocx(string filename)
         {
-            var resource = $"test.lawmaker.{subdirectory}.{filename}.docx";
+            var resource = $"test.lawmaker.{filename}.docx";
             var assembly = Assembly.GetExecutingAssembly();
             using Stream stream = assembly.GetManifestResourceStream(resource);
             if (stream == null)
@@ -83,13 +49,13 @@ namespace UK.Gov.Legislation.Lawmaker
             return ms.ToArray();
         }
 
-        private static string ReadXml(string subdirectory, string filename)
+        private static string ReadXml(string filename)
         {
-            var resource = $"test.lawmaker.{subdirectory}.{filename}.xml";
+            var resource = $"test.lawmaker.{filename}.xml";
             var assembly = Assembly.GetExecutingAssembly();
             using Stream stream = assembly.GetManifestResourceStream(resource);
             if (stream == null)
-                throw new FileNotFoundException($"{subdirectory}/{filename}.xml could not be found.");
+                throw new FileNotFoundException($"{filename}.xml could not be found.");
             using StreamReader reader = new(stream);
             return reader.ReadToEnd();
         }
