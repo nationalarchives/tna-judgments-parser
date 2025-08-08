@@ -19,10 +19,15 @@ namespace Backlog.Src
         {
             try
             {
-                uint? id = null;
+               uint? id = null;
                 
                 // Parse arguments - --id is optional
-                if (args.Length >= 2 && args[0] == "--id")
+                if (args.Length == 0)
+                {
+                    // No arguments - process all records
+                    id = null;
+                }
+                else if (args.Length == 2 && args[0] == "--id")
                 {
                     if (!uint.TryParse(args[1], out uint parsedId))
                     {
@@ -32,9 +37,12 @@ namespace Backlog.Src
                     }
                     id = parsedId;
                 }
-                else if (args.Length > 0)
+                else
                 {
                     System.Console.WriteLine("Usage: dotnet run [--id <id>]");
+                    System.Console.WriteLine("Examples:");
+                    System.Console.WriteLine("  dotnet run       - Process all records");
+                    System.Console.WriteLine("  dotnet run --id 4 - Process only record with ID 4");
                     return 1;
                 }
 
