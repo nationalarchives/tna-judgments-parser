@@ -26,7 +26,7 @@ namespace Backlog.Src
                 {
                     if (!uint.TryParse(args[1], out uint parsedId))
                     {
-                        System.Console.WriteLine("Usage: backlog [--id <id>]");
+                        System.Console.WriteLine("Usage: dotnet run [--id <id>]");
                         System.Console.WriteLine("Error: Invalid ID format");
                         return 1;
                     }
@@ -34,7 +34,7 @@ namespace Backlog.Src
                 }
                 else if (args.Length > 0)
                 {
-                    System.Console.WriteLine("Usage: backlog [--id <id>]");
+                    System.Console.WriteLine("Usage: dotnet run [--id <id>]");
                     return 1;
                 }
 
