@@ -353,5 +353,29 @@ namespace UK.Gov.Legislation.Lawmaker
             return null;
         }
 
+        /*
+         * Attempts to identify the current line as one of a small number of provisions 
+         * which can exist as the very first provision in the body of a document.
+         * Otherwise, returns null. 
+         */
+        private HContainer PeekBodyStartProvision()
+        {
+            if (Current() is not WLine line)
+                return null;
+
+            if (PeekGroupOfPartsHeading(line))
+                return new GroupOfPartsLeaf { };
+            if (PeekPartHeading(line))
+                return new PartLeaf { };
+            if (PeekProv1(line))
+                return new Prov1Leaf { TagName = GetProv1Name() };
+            if (PeekSchedules(line))
+                return new Schedules { };
+            if (PeekSchedule(line))
+                return new ScheduleLeaf { };
+
+            return null;
+        }
+
     }
 }
