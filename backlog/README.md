@@ -127,6 +127,12 @@ This tracking ensures consistency across multiple processing runs and helps main
 
 The `court` field in the CSV must contain a valid court code that corresponds to a Court object defined in the system. Court codes are used to identify specific courts and tribunals.
 
+### Court Code Validation
+
+- All available court codes are defined in `src/model/Courts.cs`
+- Court codes are case-sensitive and must exactly match those **defined in** `Courts.ByCode`
+- Invalid court codes will cause processing to fail with a `KeyNotFoundException`
+
 ### Common Court Codes
 
 Examples of valid court codes include:
@@ -136,12 +142,6 @@ Examples of valid court codes include:
 - `EWHC-Family` - Family Division
 - `UKFTT-GRC` - First-tier Tribunal (General Regulatory Chamber)
 - `UKIST` - Immigration Services Tribunal (pre-2010)
-
-### Court Code Validation
-
-- Court codes are case-sensitive and must exactly match those defined in `Courts.ByCode`
-- Invalid court codes will cause processing to fail with a KeyNotFoundException  
-- All available court codes are defined in `src/model/Courts.cs`
 
 ## Implementation Details
 
