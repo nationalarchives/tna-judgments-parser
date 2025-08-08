@@ -11,29 +11,33 @@ namespace UK.Gov.Legislation.Lawmaker
     public class LawmakerTest
     {
 
-        private static readonly int N = 10;
-
-        public static readonly IEnumerable<object[]> Indices = Enumerable.Range(1, N)
-            .Select(i => new object[] { i });
+        public static IEnumerable<object[]> Filenames()
+        {
+            string relativeTestPath = "../../../lawmaker";
+            foreach (string filePath in Directory.GetFiles(relativeTestPath, "*.docx"))
+            {
+                yield return new object[] { Path.GetFileNameWithoutExtension(filePath) };
+            }
+        }
 
         [Theory]
-        [MemberData(nameof(Indices))]
-        public void Test(int i)
+        [MemberData(nameof(Filenames))]
+        public void Test(string filename)
         {
-            var docx = ReadDocx(i);
+            var docx = ReadDocx(filename);
             var actual = Helper.Parse(docx, new LegislationClassifier(DocName.NIPUBB, null, null)).Xml;
             XmlDocument actualDoc = new();
             actualDoc.LoadXml(actual);
 
-            var expected = ReadXml(i);
+            var expected = ReadXml(filename);
             XmlDocument expectedDoc = new();
             expectedDoc.LoadXml(expected);
 
             Assert.Equal(expectedDoc.OuterXml, actualDoc.OuterXml);
         }
-        private static byte[] ReadDocx(int i)
+        private static byte[] ReadDocx(string filename)
         {
-            var resource = $"test.lawmaker.test{i}.docx";
+            var resource = $"test.lawmaker.{filename}.docx";
             var assembly = Assembly.GetExecutingAssembly();
             using Stream stream = assembly.GetManifestResourceStream(resource);
             using MemoryStream ms = new();
@@ -41,11 +45,13 @@ namespace UK.Gov.Legislation.Lawmaker
             return ms.ToArray();
         }
 
-        private static string ReadXml(int i)
+        private static string ReadXml(string filename)
         {
-            var resource = $"test.lawmaker.test{i}.xml";
+            var resource = $"test.lawmaker.{filename}.xml";
             var assembly = Assembly.GetExecutingAssembly();
             using Stream stream = assembly.GetManifestResourceStream(resource);
+            if (stream == null)
+                throw new FileNotFoundException($"{filename}.xml could not be found.");
             using StreamReader reader = new(stream);
             return reader.ReadToEnd();
         }
