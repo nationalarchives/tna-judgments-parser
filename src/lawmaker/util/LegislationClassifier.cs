@@ -50,25 +50,31 @@ public static class DocNames
         return docName switch
         {
             DocName.NIA => DocName.NIA,
-            DocName.UKPGA => DocName.UKPGA,
-            DocName.UKCM => DocName.UKCM,
-            DocName.ASP => DocName.ASP,
+            DocName.NIPUBB => DocName.NIA,
+
             DocName.NISI => DocName.NISI,
+            DocName.NIDSI => DocName.NISI,
             DocName.NISR => DocName.NISR,
-            DocName.UKSI => DocName.UKSI,
-            DocName.SSI => DocName.SSI,
+            DocName.NIDSR => DocName.NISR,
+
+            DocName.UKPGA => DocName.UKPGA,
             DocName.UKPUBB => DocName.UKPGA,
             DocName.UKPRIB => DocName.UKPGA,
             DocName.UKHYBB => DocName.UKPGA,
+
             DocName.UKDCM => DocName.UKCM,
-            DocName.UKDSI => DocName.UKDSI,
+            DocName.UKCM => DocName.UKCM,
+
+            DocName.UKSI => DocName.UKSI,
+            DocName.UKDSI => DocName.UKSI,
+
+            DocName.ASP => DocName.ASP,
             DocName.SPPUBB => DocName.ASP,
             DocName.SPPRIB => DocName.ASP,
             DocName.SPHYBB => DocName.ASP,
+
+            DocName.SSI => DocName.SSI,
             DocName.SDSI => DocName.SSI,
-            DocName.NIPUBB => DocName.NIA,
-            DocName.NIDSI => DocName.NISI,
-            DocName.NIDSR => DocName.NISR,
         };
     }
 
@@ -77,26 +83,26 @@ public static class DocNames
         return docName switch
         {
             DocName.NIA =>             LegislationType.PRIMARY,
+            DocName.NIPUBB =>          LegislationType.PRIMARY,
             DocName.UKPGA =>           LegislationType.PRIMARY,
-            DocName.UKCM =>            LegislationType.PRIMARY,
-            DocName.ASP =>             LegislationType.PRIMARY,
             DocName.UKPUBB =>          LegislationType.PRIMARY,
             DocName.UKPRIB =>          LegislationType.PRIMARY,
             DocName.UKHYBB =>          LegislationType.PRIMARY,
+            DocName.UKCM =>            LegislationType.PRIMARY,
             DocName.UKDCM =>           LegislationType.PRIMARY,
-            DocName.UKDSI =>           LegislationType.PRIMARY,
+            DocName.ASP =>             LegislationType.PRIMARY,
             DocName.SPPUBB =>          LegislationType.PRIMARY,
             DocName.SPPRIB =>          LegislationType.PRIMARY,
             DocName.SPHYBB =>          LegislationType.PRIMARY,
 
             DocName.NISI =>            LegislationType.SECONDARY,
+            DocName.NIDSI =>           LegislationType.SECONDARY,
             DocName.NISR =>            LegislationType.SECONDARY,
+            DocName.NIDSR =>           LegislationType.SECONDARY,
             DocName.UKSI =>            LegislationType.SECONDARY,
+            DocName.UKDSI =>           LegislationType.SECONDARY,
             DocName.SSI =>             LegislationType.SECONDARY,
             DocName.SDSI =>            LegislationType.SECONDARY,
-            DocName.NIPUBB =>          LegislationType.SECONDARY,
-            DocName.NIDSI =>           LegislationType.SECONDARY,
-            DocName.NIDSR =>           LegislationType.SECONDARY,
         };
     }
 }
