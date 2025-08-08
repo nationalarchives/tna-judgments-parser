@@ -78,8 +78,9 @@ The current implementation is tailored to one specific tribunal's metadata forma
 The CSV file must contain the following columns (case-sensitive):
 
 - `id` - Unique identifier for each judgment record
-- `FilePath` - Path to the document file
-- `Extension` - File extension (.pdf, .docx, .doc)
+- `court` - Court code that maps to a Court object (e.g., "EWHC-QBD-Admin", "UKFTT-GRC"). Must match a valid court code defined in the Courts.ByCode dictionary
+- `FilePath` - Path to the judgment file relative to the base directory (UUID without extension)
+- `Extension` - File extension indicating the original file type (.pdf, .docx, .doc)
 - `decision_datetime` - Date and time when the decision was made (format: "yyyy-MM-dd HH:mm:ss")
 - `CaseNo` - Case number(s) (with space inbetween if multiple)
 - `claimants` - Name(s) of the claimant(s)
@@ -131,27 +132,58 @@ The expected directory structure for data processing is:
 ```plaintext
 data/
 ├── tdr_metadata/
-│   └── file-metadata.csv    # Maps judgment files to UUIDs
-└── court_documents/         # Contains the actual judgment documents
-    ├── {uuid}              # Original files (no extension)
-    └── {uuid}.{ext}        # Processed files with extensions
+│   └── file-metadata.csv              # Maps original judgment filenames to UUIDs
+└── court_documents/                   # Contains the actual judgment documents
+    ├── {uuid}                        # UUID-named files without extensions
+    ├── {uuid}                        # (e.g., a1b2c3d4-e5f6-7890-abcd-ef1234567890)
+    └── {uuid}                        # All files stored using UUID as filename
 ```
+
+**Important Notes on File Naming:**
+
+- All files in `court_documents/` are named using only their UUID (no file extension)
+- The file extension information is stored in the court metadata CSV for reference
+- The parser determines file type processing based on the `Extension` field in the metadata, not from the actual filename
 
 ### File Processing
 
 The module implements robust file handling with several key features:
 
 1. **UUID-based File Management**:
-   - Files are stored internally using UUIDs
+   - Files are stored internally using UUIDs without file extensions
    - Original filenames are mapped to UUIDs in `file-metadata.csv`
-   - Supports tracking of original file locations and names
+   - The actual files in the `court_documents/` directory are named using just the UUID (e.g., `a1b2c3d4-e5f6-7890-abcd-ef1234567890`)
+   - File extensions are tracked separately in the court metadata CSV
 
-2. **Extension Handling**:
-   - Handles `.doc`, `.docx`, and `.pdf` files
-   - Preserves original file extensions for tracking
-   - Note: For `.doc` files, corresponding `.docx` files must be pre-converted and available in the court_documents directory
+2. **Extension Handling and File Type Processing**:
+   - **PDF files** (`.pdf`): Processed as-is, wrapped in a simple XML structure for output
+   - **DOCX files** (`.docx`): Processed through the full parser to generate rich XML output  
+   - **DOC files** (`.doc`): **Must be pre-converted to DOCX format before processing**
+   
+3. **Pre-conversion Requirements for DOC Files**:
+   - The backlog parser **does not** perform DOC to DOCX conversion
+   - If a record in the metadata CSV has `Extension` set to `.doc`, the corresponding file in the `court_documents/` directory must already be in DOCX format
+   - The original file type (`.doc`) is preserved in the metadata for tracking purposes, but the actual file content must be in DOCX format
+   - This pre-conversion should be done using external tools (e.g., LibreOffice, Microsoft Word automation) before running the backlog parser
+   
+   **Example for DOC files**:
 
-3. **Error Handling**:
+   ```plaintext
+   Court Metadata CSV entry:
+   FilePath: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+   Extension: .doc
+   
+   Expected file in court_documents/:
+   Filename: a1b2c3d4-e5f6-7890-abcd-ef1234567890 (no extension)
+   Content: Must be in DOCX format (pre-converted from original DOC)
+   ```
+
+4. **File Location and Naming**:
+   - Files are located using the UUID from the `FilePath` field in the court metadata
+   - The UUID is used directly as the filename (without any extension) in the `court_documents/` directory
+   - Example: If `FilePath` contains `a1b2c3d4-e5f6-7890-abcd-ef1234567890`, the parser looks for a file named exactly `a1b2c3d4-e5f6-7890-abcd-ef1234567890` in the `court_documents/` directory
+
+5. **Error Handling**:
    - Continues processing on individual file errors
    - Logs issues for manual review
    - Maintains processing state for partial batch completion
