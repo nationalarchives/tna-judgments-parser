@@ -75,7 +75,7 @@ The current implementation is tailored to one specific tribunal's metadata forma
 
 #### Required Columns
 
-The CSV file must contain the following columns (case-sensitive):
+The CSV file must contain the following columns (case-sensitive) for each judgment:
 
 - `id` - Unique identifier for each judgment record
 - `court` - Court code that maps to a Court object (e.g., "EWHC-QBD-Admin", "UKFTT-GRC"). Must match a valid court code defined in the Courts.ByCode dictionary
@@ -122,6 +122,26 @@ bulk_num,trib_id
 ```
 
 This tracking ensures consistency across multiple processing runs and helps maintain referential integrity between the source tribunal system and our system.
+
+## Court Codes
+
+The `court` field in the CSV must contain a valid court code that corresponds to a Court object defined in the system. Court codes are used to identify specific courts and tribunals.
+
+### Court Code Validation
+
+- All available court codes are defined in `src/model/Courts.cs`
+- Court codes are case-sensitive and must exactly match those **defined in** `Courts.ByCode`
+- Invalid court codes will cause processing to fail with a `KeyNotFoundException`
+
+### Common Court Codes
+
+Examples of valid court codes include:
+
+- `EWHC-QBD-Admin` - Administrative Court (Queen's Bench Division)
+- `EWHC-Chancery` - Chancery Division  
+- `EWHC-Family` - Family Division
+- `UKFTT-GRC` - First-tier Tribunal (General Regulatory Chamber)
+- `UKIST` - Immigration Services Tribunal (pre-2010)
 
 ## Implementation Details
 
