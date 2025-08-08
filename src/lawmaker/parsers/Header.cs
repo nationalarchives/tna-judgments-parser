@@ -20,20 +20,74 @@ namespace UK.Gov.Legislation.Lawmaker
         private void ParseAndEnrichHeader()
         {
             if (frames.IsSecondaryDocName())
-            {
                 ParseSecondaryHeader();
-            }
             else
-            {
                 ParsePrimaryHeader();
-                EnrichPrimaryHeader();
-            }
 
+            EnrichHeader();
         }
 
-        /*
-         * Parses the header of a piece of primary legislation (i.e. a Bill or Act).
-         */
+        private void ParseSecondaryHeader()
+        {
+            bool foundContents = false;
+            while (i < Document.Body.Count)
+            {
+                if (!foundContents)
+                {
+                    // TODO: Handle preface content here
+                    foundContents = SkipContents();
+                }
+                IBlock block = Document.Body[i].Block;
+
+                HContainer peek = PeekBodyStartProvision();
+                if (peek != null)
+                    return;
+
+                if (block is WLine line && IsLeftAligned(line) && IsFlushLeft(line))
+                    preamble.Add(block);
+
+                i += 1;
+            }
+            coverPage.Clear();
+            preface.Clear();
+            preamble.Clear();
+            i = 0;
+        }
+
+        private bool SkipContents()
+        {
+            // Identify 'CONTENTS' heading
+            IBlock block = Document.Body[i].Block;
+            if (!(block is WLine line))
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (!line.NormalizedContent.ToUpper().Equals("CONTENTS"))
+                return false;
+
+            // Skip contents
+            while (i < Document.Body.Count - 1)
+            {
+                i += 1;
+                block = Document.Body[i].Block;
+                if (!(block is WLine contentsLine))
+                    break;
+
+                // ToC Grouping provisions are center aligned
+                if (IsCenterAligned(contentsLine))
+                    continue;
+                // ToC Prov1 elements are numbered
+                if (contentsLine is WOldNumberedParagraph)
+                    continue;
+                // ToC Schedules (and associated grouping provisions) have hanging indents
+                if (contentsLine.FirstLineIndentWithNumber < 0)
+                    continue;
+
+                break;
+            }
+            return true;
+        }
+
         private void ParsePrimaryHeader()
         {
             bool foundPreface = false;
