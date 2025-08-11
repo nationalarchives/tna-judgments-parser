@@ -403,7 +403,7 @@ public readonly partial struct Courts {
     };
 
     public static readonly Court ClaimsManagementServicesTribunal = new() {
-        Code = "UKFTT-Claims",
+        Code = "FTT-Claims",
         LongName = "Claims Management Services Tribunal",
         URL = "https://webarchive.nationalarchives.gov.uk/ukgwa/20200626120017/http://claimsmanagement.decisions.tribunals.gov.uk/",
     };
