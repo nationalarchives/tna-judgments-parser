@@ -463,6 +463,7 @@ public readonly partial struct Courts {
 
         InvestigatoryPowersTribunal,
         ConsumerCreditAppealsTribunal,
+        ClaimsManagementServicesTribunal,
         EstateAgentsTribunal
     };
 
