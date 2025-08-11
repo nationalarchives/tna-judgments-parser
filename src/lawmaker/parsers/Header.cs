@@ -126,7 +126,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     continue;
                 }
 
-                if (IsLeftAligned(line) && IsFlushLeft(line))
+                if (IsLeftAligned(line) && IsFlushLeft(line) && !line.IsAllItalicized())
                     preamble.Add(block);
                 /* TODO: Handle the preface of Statutory Instruments (in an upcoming ticket) 
                 else if (!foundContents)
