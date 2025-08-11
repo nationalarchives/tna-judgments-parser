@@ -31,7 +31,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 catch (Exception) { }
 
-                if (String.IsNullOrEmpty(subdirectory) || String.IsNullOrEmpty(filename))
+                if (String.IsNullOrEmpty(subdirectory) || String.IsNullOrEmpty(filename) || filename.StartsWith("~$"))
                 {
                     logger.LogWarning($"Invalid filepath: {filePath}. Ignoring test.");
                     continue;
