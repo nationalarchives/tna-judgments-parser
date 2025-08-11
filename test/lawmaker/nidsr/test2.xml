@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="nidsr">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Department for Agriculture, Environment and Rural Affairs() being an appropriate authority for the purposes of paragraph 8 of Schedule 4 to the European Union (Withdrawal) Act 2018(), and in exercise of the powers conferred by paragraph 7(2) of Schedule 4 to that Act and Article 39(1), (2) and (3) of the Waste and Contaminated Land (Northern Ireland) Order 1997() and now vested in it(), makes the following regulations.</p>
+        <p>In accordance with paragraph 12(3) of Schedule 7 to the European Union (Withdrawal) Act 2018 a draft of these Regulations was laid before, and approved by a resolution of, the Assembly.</p>
+      </formula>
+    </preamble>
+    <body>
+      <hcontainer name="regulation" eId="sec_1" class="prov1">
+        <heading>Citation, commencement and interpretation</heading>
+        <num>1.</num>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>These Regulations may be cited as the Waste (Fees and Charges) (Amendment) Regulations (Northern Ireland) 2025 and shall come into operation on xxxx 2025.</p>
+          </content>
+        </paragraph>
+      </hcontainer>
+      <hcontainer name="regulation" eId="sec_2" class="prov1">
+        <heading>Amendment of the Controlled Waste (Registration of Carriers and Seizure of Vehicles) Regulations (Northern Ireland) 1999</heading>
+        <num>2.</num>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>The Controlled Waste (Registration of Carriers and Seizure of Vehicles) Regulations (Northern Ireland) 1999(<authorialNote marker="5"><p>()S.R. 1999 No. 362 the relevant amendments are S.R. 2003 No. 493, S.R. 2010 No. 84, S.R. 2011 No. 127, S.R. 2012 No. 112, S.R. 2013 No. 248, S.R. 2015 No. 21, S.R. 2016 No. 401, S.R. 2017 No. 221, S.R. 2018 No. 91, S.R. 2019 No. 83 and S.R.2020 No. 112, S.R. 2022 No. 127 and S.R. 2023 No. 211.</p></authorialNote>) are amended in accordance with paragraph (2).</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(2)</num>
+          <intro>
+            <p>In regulation 4 (applications for registration)—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p><mod>In paragraph (8)(a) for <quotedText startQuote="“" endQuote="”">£164</quotedText> substitute <quotedText startQuote="“" endQuote="”">£180</quotedText>;</mod></p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p><mod>In paragraph (8)(b) for <quotedText startQuote="“" endQuote="”">£82</quotedText> substitute <quotedText startQuote="“" endQuote="”">£90</quotedText>;</mod></p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(c)</num>
+            <content>
+              <p><mod>In paragraph (8)(c) for <quotedText startQuote="“" endQuote="”">£42</quotedText> substitute <quotedText startQuote="“" endQuote="”">£46</quotedText>.</mod></p>
+            </content>
+          </level>
+        </paragraph>
+      </hcontainer>
+      <hcontainer name="regulation" eId="sec_3" class="prov1">
+        <heading>Amendment of the Waste Management Licensing Regulations (Northern Ireland) 2003</heading>
+        <num>3.</num>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>The Waste Management Licensing Regulations (Northern Ireland) 2003 (<authorialNote marker="6"><p>()S.R. 2003 No. 493 the relevant amendments are S.R. 2010 No. 84, S.R. 2011 No. 232, S.R. 2012 No. 112, S.R. 2013 No.248, S.R. 2015 No. 21, S.R. 2016 No. 401, S.R. 2017 No. 221, S.R. 2018 No. 91, S.R. 2019 No. 83, S.R. 2020 No. 112, S.R. 2021 No.182, S.R. 2022 No. 127 and S.R. 2023 No. 211.</p></authorialNote>) are amended in accordance with paragraph (2).</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(2)</num>
+          <intro>
+            <p>In Schedule 4 (registration of brokers and dealers of controlled waste)—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p><mod>In paragraph 3(10)(a) for <quotedText startQuote="“" endQuote="”">£164</quotedText> substitute <quotedText startQuote="“" endQuote="”">£180</quotedText>;</mod></p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p><mod>In paragraph 3(10)(b) for <quotedText startQuote="“" endQuote="”">£82</quotedText> substitute <quotedText startQuote="“" endQuote="”">£90</quotedText>;</mod></p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(c)</num>
+            <content>
+              <p><mod>In paragraph 3(10)(c) for <quotedText startQuote="“" endQuote="”">£42</quotedText> substitute <quotedText startQuote="“" endQuote="”">£46</quotedText>.</mod></p>
+            </content>
+          </level>
+        </paragraph>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>
