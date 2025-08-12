@@ -16,7 +16,7 @@ class Metadata : DocumentMetadata {
     internal static Metadata Make(List<IBlock> header, WordprocessingDocument doc) {
         string name = HeaderSplitter.GetDocumentType(header);
         string number = HeaderSplitter.GetDocumentNumber(header);
-        string uri = number is null ? null : RegulationNumber.MakeURI(number) + "/em";
+        string uri = number is null ? null : RegulationNumber.MakeURI(number) + "/ia";
         // Tuple<string, int> altNum = RegulationNumber.ExtractAltNumber(number);
         DateTime? modified = doc.PackageProperties.Modified;
         Dictionary<string, Dictionary<string, string>> css = DOCX.CSS.Extract(doc.MainDocumentPart, "#doc");

@@ -131,7 +131,7 @@ partial class Parser : CaseLaw.OptimizedParser {
     private static bool IsSectionHeading(IBlock block) {
         if (block is not WOldNumberedParagraph np)
             return false;
-        if (np.Style != "EMSectionTitle")
+        if (np.Style != "IASectionTitle")
             return false;
         if (!SectionNumberRegex().IsMatch(np.Number.Text))
             return false;
@@ -189,7 +189,7 @@ partial class Parser : CaseLaw.OptimizedParser {
             return false;
         if (block is WOldNumberedParagraph)
             return false;
-        if (line.Style != "EMLevel1Subheading")
+        if (line.Style != "IALevel1Subheading")
             return false;
         return true;
     }
@@ -228,7 +228,7 @@ partial class Parser : CaseLaw.OptimizedParser {
             return false;
         if (block is WOldNumberedParagraph)
             return false;
-        if (line.Style != "EMLevel2Subheading")
+        if (line.Style != "IALevel2Subheading")
             return false;
         return true;
     }
