@@ -75,7 +75,7 @@ class HeaderSplitter {
         }
     }
 
-    readonly string[] Titles = { "Explanatory Memorandum To", "Policy Note" };
+    readonly string[] Titles = { "Impact Assessment" };
 
     internal static string GetDocumentType(List<IBlock> header) {
         Model.DocType2 docType = Util.Descendants<Model.DocType2>(header).FirstOrDefault();
@@ -83,10 +83,8 @@ class HeaderSplitter {
             return null;
         string name = IInline.ToString(docType.Contents);
         name = Regex.Replace(name, @"\s+", " ").Trim();
-        if ("Explanatory Memorandum To".Equals(name, System.StringComparison.InvariantCultureIgnoreCase))
-            return "ExplanatoryMemorandum";
-        if ("Policy Note".Equals(name, System.StringComparison.InvariantCultureIgnoreCase))
-            return "PolicyNote";
+        if ("Impact Assessment".Equals(name, System.StringComparison.InvariantCultureIgnoreCase))
+            return "ImpactAssessment";
         return null;
     }
 
