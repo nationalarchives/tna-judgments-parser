@@ -27,7 +27,7 @@ namespace Backlog.Src.Batch.One
         private static string GetFilePathFromTribunalMetadata(string filePath, string judgmentsFilePath) {
             if (!filePath.StartsWith(judgmentsFilePath))
                 throw new ArgumentException($"FilePath {filePath} must start with {judgmentsFilePath}", nameof(filePath));
-            var relativePath = filePath.Substring(judgmentsFilePath.Length + 1);
+            var relativePath = filePath.Substring(judgmentsFilePath.Length);
             return relativePath;
         }
 
@@ -57,7 +57,7 @@ namespace Backlog.Src.Batch.One
 
                 var filePath = parts[4];  // clientside_original_filepath is column 5
                 if (!filePath.StartsWith(hmctsFilePath)) continue;
-                var metadataRelativePath = filePath.Substring(hmctsFilePath.Length + 1);
+                var metadataRelativePath = filePath.Substring(hmctsFilePath.Length);
 
                 if (metadataRelativePath.Replace('\\', '/').Equals(tribunalDataFilePath.Replace('\\', '/')))
                     return parts[26];  // UUID is the 27th column

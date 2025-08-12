@@ -171,8 +171,8 @@ namespace Backlog.Test
         {
             // Setup test environment for DOCX test
             ConfigureTestEnvironment("Altaf Ebrahim t_a Ebrahim & Co v OISC");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files");
+            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
+            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
             
             // Configure S3 client
             Backlog.Src.Bucket.Configure(mockS3Client.Object, TEST_BUCKET);
@@ -194,8 +194,8 @@ namespace Backlog.Test
         {
             // Setup test environment for PDF test
             ConfigureTestEnvironment("Money Worries Ltd v Office of Fair Trading");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "Documents");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/Consumer Credit Appeals/Documents");
+            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "Documents\\");
+            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/Consumer Credit Appeals/Documents/");
 
             // Configure S3 client
             Backlog.Src.Bucket.Configure(mockS3Client.Object, TEST_BUCKET);
@@ -217,8 +217,8 @@ namespace Backlog.Test
         {
             // Setup test environment for multi-line CSV test
             ConfigureTestEnvironment("MultiLineTest");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files");
+            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
+            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
 
             // Configure S3 client
             Backlog.Src.Bucket.Configure(mockS3Client.Object, TEST_BUCKET);
@@ -276,8 +276,8 @@ namespace Backlog.Test
         {
             // Setup test environment
             ConfigureTestEnvironment("MultiLineTest");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files");
+            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
+            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
 
             // Pre-populate tracker to mark first item as already processed
             await File.WriteAllTextAsync(trackerPath, "100/JudgmentFiles\\j100\\test1.doc,some-uuid-1,132345678901234567\n");
