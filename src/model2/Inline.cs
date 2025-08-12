@@ -381,6 +381,12 @@ internal class WRole : IRole {
 
 }
 
+internal class WSignatureName : ISignatureName {
+
+    public IEnumerable<IInline> Content { get; init; }
+
+}
+
 internal class WDocTitle : WText, IDocTitle {
 
     public WDocTitle(string text, RunProperties rProps) : base(text, rProps) { }

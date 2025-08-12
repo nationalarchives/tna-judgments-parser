@@ -5,6 +5,7 @@ using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -31,6 +32,20 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             var alignment = line.GetEffectiveAlignment();
             return alignment == AlignmentValues.Right;
+        }
+
+        private static bool ContentHasTabbedText(WLine line)
+        {
+            if (line.Contents.Count() >= 2 && line.Contents.Last() is WText && line.Contents.SkipLast(1).Last() is WTab)
+                return true;
+            return false;
+
+            Style style = Judgments.DOCX.Styles.GetStyle(line.main, line.properties.ParagraphStyleId);
+            Tabs tabs = style.StyleParagraphProperties.Tabs;
+            return tabs.ChildElements.Where(tab => {
+                TabStop tabStop = tab as TabStop;
+                return tabStop.Val == "right" && tabStop.Position > 5000;
+            }).Any();
         }
 
         private static bool IsFlushLeft(WLine line) => OptimizedParser.IsFlushLeft(line);
