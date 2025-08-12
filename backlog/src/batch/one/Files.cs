@@ -15,6 +15,12 @@ namespace Backlog.Src.Batch.One
         private const string TDR_METADATA_DIR = "tdr_metadata";
         private const string COURT_DOCUMENTS_DIR = "court_documents";
         private const string METADATA_FILENAME = "file-metadata.csv";
+        
+        private const int MIN_METADATA_COLUMNS = 27; // Minimum columns expected in transfer metadata
+
+        private const int FILE_TYPE_COLUMN = 2; // file_type is column 3 (0-indexed)
+        private const int FILE_PATH_COLUMN = 4; // clientside_original_filepath is column 5 (0-indexed)
+        private const int UUID_COLUMN = 26; // UUID is the 27th column (0-indexed)
 
         /// <summary>
         /// Extracts the relative file path from tribunal metadata by removing the base judgments file path prefix.
@@ -24,7 +30,8 @@ namespace Backlog.Src.Batch.One
         /// <param name="judgmentsFilePath">The base judgments file path prefix to remove from the full path</param>
         /// <returns>The relative file path for matching against transfer metadata</returns>
         /// <exception cref="ArgumentException">Thrown when filePath does not start with judgmentsFilePath</exception>
-        private static string GetFilePathFromTribunalMetadata(string filePath, string judgmentsFilePath) {
+        private static string GetFilePathFromTribunalMetadata(string filePath, string judgmentsFilePath)
+        {
             if (!filePath.StartsWith(judgmentsFilePath))
                 throw new ArgumentException($"FilePath {filePath} must start with {judgmentsFilePath}", nameof(filePath));
             var relativePath = filePath.Substring(judgmentsFilePath.Length);
@@ -50,17 +57,17 @@ namespace Backlog.Src.Batch.One
             {
                 if (string.IsNullOrEmpty(line)) continue;
                 var parts = line.Split(',');
-                if (parts.Length < 27) continue;  // Need at least up to the UUID column (27th column)
+                if (parts.Length < MIN_METADATA_COLUMNS) continue;
 
-                var fileType = parts[2];  // file_type is column 3
+                var fileType = parts[FILE_TYPE_COLUMN];
                 if (!fileType.Equals("File")) continue;
 
-                var filePath = parts[4];  // clientside_original_filepath is column 5
+                var filePath = parts[FILE_PATH_COLUMN];
                 if (!filePath.StartsWith(hmctsFilePath)) continue;
                 var metadataRelativePath = filePath.Substring(hmctsFilePath.Length);
 
                 if (metadataRelativePath.Replace('\\', '/').Equals(tribunalDataFilePath.Replace('\\', '/')))
-                    return parts[26];  // UUID is the 27th column
+                    return parts[UUID_COLUMN];
             }
 
             throw new FileNotFoundException(
