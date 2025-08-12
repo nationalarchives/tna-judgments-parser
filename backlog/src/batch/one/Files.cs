@@ -6,7 +6,8 @@ using System.IO;
 namespace Backlog.Src.Batch.One
 {
     /// <summary>
-    /// Handles file operations for the backlog processing module.
+    /// Provides file operations for processing backlog documents, including UUID lookup,
+    /// file reading, and copying operations between tribunal and transfer metadata systems.
     /// </summary>
     class Files
     {
@@ -16,75 +17,86 @@ namespace Backlog.Src.Batch.One
         private const string METADATA_FILENAME = "file-metadata.csv";
 
         /// <summary>
-        /// Gets the relative path from a judgment file path.
+        /// Extracts the relative file path from tribunal metadata by removing the base judgments file path prefix.
+        /// This normalizes full file paths to relative paths for consistent matching against transfer metadata.
         /// </summary>
-        /// <param name="filePath">The full file path to normalize</param>
-        /// <returns>The normalized relative path</returns>
-        private static string GetNormalizedRelativePath(string filePath, string judgmentsFilePath) {
-            if (string.IsNullOrEmpty(filePath))
-                throw new ArgumentException("FilePath cannot be empty", nameof(filePath));
-
-            var normalizedPath = filePath.Replace('\\', '/');
-            if (!normalizedPath.StartsWith(judgmentsFilePath))
-                throw new ArgumentException($"FilePath must start with {judgmentsFilePath}", nameof(filePath));
-
-            return normalizedPath.Substring(judgmentsFilePath.Length + 1);
+        /// <param name="filePath">The full file path from tribunal metadata to normalize</param>
+        /// <param name="judgmentsFilePath">The base judgments file path prefix to remove from the full path</param>
+        /// <returns>The relative file path for matching against transfer metadata</returns>
+        /// <exception cref="ArgumentException">Thrown when filePath does not start with judgmentsFilePath</exception>
+        private static string GetFilePathFromTribunalMetadata(string filePath, string judgmentsFilePath) {
+            if (!filePath.StartsWith(judgmentsFilePath))
+                throw new ArgumentException($"FilePath {filePath} must start with {judgmentsFilePath}", nameof(filePath));
+            var relativePath = filePath.Substring(judgmentsFilePath.Length + 1);
+            return relativePath;
         }
 
         /// <summary>
-        /// Gets the metadata file path and verifies it exists.
+        /// Searches the transfer metadata CSV file to find the UUID matching the given tribunal data file path.
+        /// Performs path normalization and comparison to locate the corresponding UUID in the transfer metadata.
         /// </summary>
-        /// <param name="pathToDataFolder">Base path to the data folder</param>
-        /// <returns>The full path to the metadata file</returns>
-        private static string GetMetadataFilePath(string pathToDataFolder) {
-            var metadataPath = Path.Combine(pathToDataFolder, TDR_METADATA_DIR, METADATA_FILENAME);
-            if (!File.Exists(metadataPath))
-                throw new FileNotFoundException($"Metadata file not found at {metadataPath}");
-            return metadataPath;
-        }
+        /// <param name="pathToDataFolder">Path to the data folder containing the metadata subdirectories</param>
+        /// <param name="tribunalDataFilePath">The tribunal data file path to match against metadata entries</param>
+        /// <param name="hmctsFilePath">The HMCTS file path prefix used for path normalization</param>
+        /// <returns>The matching UUID from the transfer metadata file</returns>
+        /// <exception cref="FileNotFoundException">Thrown when the metadata file is not found or no matching UUID is found</exception>
+        private static string FindUuidInTransferMetadata(string pathToDataFolder, string tribunalDataFilePath, string hmctsFilePath) {
+            var transferMetadataPath = Path.Combine(pathToDataFolder, TDR_METADATA_DIR, METADATA_FILENAME);
+            System.Console.WriteLine($"Finding UUID for {tribunalDataFilePath} in transfer metadata file {transferMetadataPath}");
+            if (!File.Exists(transferMetadataPath))
+                throw new FileNotFoundException($"Metadata file not found at {transferMetadataPath}");
 
-        /// <summary>
-        /// Finds the UUID in the metadata file matching the given relative path.
-        /// </summary>
-        /// <param name="metadataPath">Path to the metadata CSV file</param>
-        /// <param name="relativePath">The relative path to match</param>
-        /// <returns>The matching UUID from the metadata</returns>
-        private static string FindUuidInMetadata(string metadataPath, string relativePath, string hmctsFilePath) {
-            foreach (var line in File.ReadLines(metadataPath)) {
+            foreach (var line in File.ReadLines(transferMetadataPath))
+            {
                 if (string.IsNullOrEmpty(line)) continue;
                 var parts = line.Split(',');
                 if (parts.Length < 27) continue;  // Need at least up to the UUID column (27th column)
 
-                var filePath = parts[4].Replace('\\', '/');  // clientside_original_filepath is column 5
+                var fileType = parts[2];  // file_type is column 3
+                if (!fileType.Equals("File")) continue;
+
+                var filePath = parts[4];  // clientside_original_filepath is column 5
                 if (!filePath.StartsWith(hmctsFilePath)) continue;
                 var metadataRelativePath = filePath.Substring(hmctsFilePath.Length + 1);
-                if (metadataRelativePath == relativePath)
+
+                if (metadataRelativePath.Replace('\\', '/').Equals(tribunalDataFilePath.Replace('\\', '/')))
                     return parts[26];  // UUID is the 27th column
             }
 
             throw new FileNotFoundException(
-                $"No UUID found for {relativePath} in {metadataPath}"
+                $"No UUID found for {tribunalDataFilePath} in {transferMetadataPath}"
             );
         }
 
         /// <summary>
-        /// Gets the UUID for a given metadata line by looking it up in the metadata CSV.
+        /// Retrieves the UUID for a given metadata line by performing path normalization and lookup 
+        /// in the transfer metadata CSV file. Combines tribunal metadata path extraction with UUID searching.
         /// </summary>
-        /// <param name="pathToDataFolder">Base path to the data folder</param>
-        /// <param name="meta">Metadata line containing file information</param>
-        /// <returns>UUID from the metadata file</returns>
+        /// <param name="pathToDataFolder">Base path to the data folder containing metadata and documents</param>
+        /// <param name="meta">Metadata line containing file information from tribunal metadata</param>
+        /// <param name="judgmentsFilePath">The base judgments file path for path normalization</param>
+        /// <param name="hmctsFilePath">The HMCTS file path prefix for metadata matching</param>
+        /// <returns>UUID from the transfer metadata file corresponding to the metadata line</returns>
+        /// <exception cref="FileNotFoundException">Thrown when no matching UUID is found in transfer metadata</exception>
+        /// <exception cref="ArgumentException">Thrown when file path normalization fails</exception>
         private static string GetUuid(string pathToDataFolder, Metadata.Line meta, string judgmentsFilePath, string hmctsFilePath) {
-            var relativePath = GetNormalizedRelativePath(meta.FilePath, judgmentsFilePath);
-            var metadataPath = GetMetadataFilePath(pathToDataFolder);
-            return FindUuidInMetadata(metadataPath, relativePath, hmctsFilePath);
+            var tribunalDataFilePath = GetFilePathFromTribunalMetadata(meta.FilePath, judgmentsFilePath);
+            System.Console.WriteLine($"Tribunal Metadata filepath: {tribunalDataFilePath}");
+            return FindUuidInTransferMetadata(pathToDataFolder, tribunalDataFilePath, hmctsFilePath);
         }
 
         /// <summary>
-        /// Reads a file's contents using its metadata information.
+        /// Reads the contents of a file using its metadata information by resolving the UUID
+        /// and locating the corresponding document in the court documents directory.
+        /// Handles special case for .doc files which are stored as .docx files.
         /// </summary>
-        /// <param name="pathToDataFolder">Base path to the data folder</param>
-        /// <param name="meta">Metadata line containing file information</param>
+        /// <param name="pathToDataFolder">Base path to the data folder containing court documents</param>
+        /// <param name="meta">Metadata line containing file information and extension details</param>
+        /// <param name="judgmentsFilePath">The base judgments file path for path normalization</param>
+        /// <param name="hmctsFilePath">The HMCTS file path prefix for UUID lookup</param>
         /// <returns>File contents as a byte array</returns>
+        /// <exception cref="FileNotFoundException">Thrown when the file or its UUID cannot be found</exception>
+        /// <exception cref="ArgumentException">Thrown when path normalization fails</exception>
         internal static byte[] ReadFile(string pathToDataFolder, Metadata.Line meta, string judgmentsFilePath, string hmctsFilePath) {
             string uuid = GetUuid(pathToDataFolder, meta, judgmentsFilePath, hmctsFilePath);
             string documentPath = Path.Combine(pathToDataFolder, COURT_DOCUMENTS_DIR);
@@ -97,10 +109,16 @@ namespace Backlog.Src.Batch.One
         }
 
         /// <summary>
-        /// Copies files to new locations with their correct extensions.
+        /// Copies all files from the court documents directory to new locations with their correct file extensions.
+        /// Handles the special case where .doc files are stored as .docx files but should be copied with 
+        /// their original .doc extension. Processes multiple metadata lines in batch.
         /// </summary>
-        /// <param name="pathToDataFolder">Base path to the data folder</param>
-        /// <param name="lines">List of metadata lines containing file information</param>
+        /// <param name="pathToDataFolder">Base path to the data folder containing court documents</param>
+        /// <param name="lines">List of metadata lines containing file information and extensions</param>
+        /// <param name="judgmentsFilePath">The base judgments file path for path normalization</param>
+        /// <param name="hmctsFilePath">The HMCTS file path prefix for UUID resolution</param>
+        /// <exception cref="FileNotFoundException">Thrown when source files or UUIDs cannot be found</exception>
+        /// <exception cref="ArgumentException">Thrown when path normalization fails</exception>
         internal static void CopyAllFilesWithExtension(string pathToDataFolder, List<Metadata.Line> lines, string judgmentsFilePath, string hmctsFilePath) {
             foreach (var line in lines)
             {
