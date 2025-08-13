@@ -109,6 +109,8 @@ class WMetadata3 : WMetadata, IMetadataExtended {
 
     public List<ICategory> Categories => outside.Categories;
 
+    public string NCN => outside.NCN;
+
 }
 
 }
