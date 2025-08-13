@@ -122,12 +122,21 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement formula = CreateAndAppend("formula", e);
             formula.SetAttribute("name", "enactingText");
 
-            XmlElement element =  doc.CreateElement("p", ns);
-            element.InnerText = preamble.OfType<WLine>()
-            .Select(line => line.NormalizedContent)
-            .Aggregate((string acc, string element) => acc + " " + element);
-            element = TransformPreambleText(element);
-            formula.AppendChild(element);
+            if (Frames.IsSecondaryDocName(this.bill.Type))
+            {
+                AddBlocks(formula, preamble);
+                return;
+            }
+
+            foreach (IBlock block in preamble)
+            {
+                XmlElement element = doc.CreateElement("p", ns);
+                if (!(block is WLine line))
+                    continue;
+                element.InnerText = line.NormalizedContent;
+                element = TransformPreambleText(element);
+                formula.AppendChild(element);
+            }
         }
 
         private XmlElement TransformPreambleText(XmlElement pElement)
@@ -191,10 +200,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     AddTable(parent, table);
                 }
-                else if (block is LdappTableBlock tableBlock)
-                {
-                    AddTableBlock(parent, tableBlock);
-                }
                 else if (block is IQuotedStructure qs)
                 {
                     AddQuotedStructure(parent, qs);
@@ -240,8 +245,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 e.SetAttribute("indent", UKNS, "indent0");
 
                 // These contexts modify parsing behaviour, but should NOT be reflected in the context attribute
-                if (new[] { Context.REGULATIONS, Context.RULES, Context.ARTICLES }.Contains(qs2.Context))
-                    qs2.Context = Context.SECTIONS;
+                if (new[] { Context.REGS, Context.RULES, Context.ORDER }.Contains(qs2.Context))
+                    qs2.Context = Context.BODY;
                 e.SetAttribute("context", UKNS, qs2.Context.ToString().ToLower());
                 e.SetAttribute("docName", UKNS, qs2.DocName.ToString().ToLower());
 
@@ -252,6 +257,17 @@ namespace UK.Gov.Legislation.Lawmaker
             AddDivisions(e, qs.Contents);
             quoteDepth -= 1;
         }
+
+        protected override void AddFootnote(XmlElement parent, IFootnote fn)
+        {
+            XmlElement authorialNote = doc.CreateElement("authorialNote", ns);
+            parent.AppendChild(authorialNote);
+            authorialNote.SetAttribute("class", ns, "footnote");
+            authorialNote.SetAttribute("marker", fn.Marker);
+            IEnumerable<IBlock> content = FootnoteEnricher.EnrichInside(fn.Content);
+            blocks(authorialNote, content);
+        }
+
 
     }
 
