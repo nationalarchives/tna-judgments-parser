@@ -19,9 +19,30 @@ namespace Backlog.Src
         {
             try
             {
-                if (args.Length < 2 || args[0] != "--id" || !uint.TryParse(args[1], out uint id))
+               uint? id = null;
+                
+                // Parse arguments - --id is optional
+                if (args.Length == 0)
                 {
-                    System.Console.WriteLine("Usage: backlog --id <id>");
+                    // No arguments - process all records
+                    id = null;
+                }
+                else if (args.Length == 2 && args[0] == "--id")
+                {
+                    if (!uint.TryParse(args[1], out uint parsedId))
+                    {
+                        System.Console.WriteLine("Usage: dotnet run [--id <id>]");
+                        System.Console.WriteLine("Error: Invalid ID format");
+                        return 1;
+                    }
+                    id = parsedId;
+                }
+                else
+                {
+                    System.Console.WriteLine("Usage: dotnet run [--id <id>]");
+                    System.Console.WriteLine("Examples:");
+                    System.Console.WriteLine("  dotnet run       - Process all records");
+                    System.Console.WriteLine("  dotnet run --id 4 - Process only record with ID 4");
                     return 1;
                 }
 
@@ -29,19 +50,37 @@ namespace Backlog.Src
 
                 DotNetEnv.Env.Load();  // required for bucket name
 
+                string judgmentsFilePath = Environment.GetEnvironmentVariable("JUDGMENTS_FILE_PATH");
+                string hmctsFilePath = Environment.GetEnvironmentVariable("HMCTS_FILES_PATH");
+
                 Helper helper = new()
                 {
                     PathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "court_metadata.csv"),
-                    PathDoDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ?? AppDomain.CurrentDomain.BaseDirectory
+                    PathToDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ?? AppDomain.CurrentDomain.BaseDirectory
                 };
                 string trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
                 Tracker tracker = new Tracker(trackerPath);
 
-                List<Metadata.Line> lines = helper.FindLines(id);
-                if (!lines.Any())
+                List<Metadata.Line> lines;
+                if (id.HasValue)
                 {
-                    System.Console.WriteLine($"No records found for id {id}");
-                    return 1;
+                    // Process only the specific ID
+                    lines = helper.FindLines(id.Value);
+                    if (!lines.Any())
+                    {
+                        System.Console.WriteLine($"No records found for id {id.Value}");
+                        return 1;
+                    }
+                }
+                else
+                {
+                    // Process all lines from the document
+                    lines = Metadata.Read(helper.PathToCourtMetadataFile);
+                    if (!lines.Any())
+                    {
+                        System.Console.WriteLine("No records found in the metadata file");
+                        return 1;
+                    }
                 }
 
                 foreach (var line in lines)
@@ -55,9 +94,9 @@ namespace Backlog.Src
                     {
                         System.Console.WriteLine($"Processing file: {line.FilePath}");
                         System.Console.WriteLine($"Using court metadata from: {helper.PathToCourtMetadataFile}");
-                        System.Console.WriteLine($"Using data folder: {helper.PathDoDataFolder}");
+                        System.Console.WriteLine($"Using data folder: {helper.PathToDataFolder}");
                         
-                        Bundle bundle = helper.GenerateBundle(line, autoPublish);
+                        Bundle bundle = helper.GenerateBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
 
                         string outputPath = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
                         string output = Path.Combine(outputPath, bundle.Uuid + ".tar.gz");
@@ -77,7 +116,8 @@ namespace Backlog.Src
                     }
                     catch (Exception ex)
                     {
-                        System.Console.WriteLine($"Error processing line {line.id}: {ex.Message}");
+                        System.Console.WriteLine($"Error processing line {line.id}:");
+                        System.Console.WriteLine(ex.ToString());
                         return 1;
                     }
                 }
@@ -86,7 +126,8 @@ namespace Backlog.Src
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine($"Fatal error: {ex.Message}");
+                System.Console.WriteLine("Fatal error:");
+                System.Console.WriteLine(ex.ToString());
                 return 1;
             }
         }

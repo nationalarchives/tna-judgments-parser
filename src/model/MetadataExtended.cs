@@ -17,6 +17,8 @@ namespace UK.Gov.NationalArchives.CaseLaw.Model
 
         List<ICategory> Categories { get; }
 
+        string NCN { get; }
+
     }
 
     public class Party {

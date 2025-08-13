@@ -396,6 +396,24 @@ public readonly partial struct Courts {
         CitationPattern = new Regex(@"^\[\d{4}\] UKIPTrib \d+$")
     };
 
+    public static readonly Court ConsumerCreditAppealsTribunal = new() {
+        Code = "UKFTT-Credit",
+        LongName = "Consumer Credit Appeals Tribunal",
+        URL = "https://webarchive.nationalarchives.gov.uk/ukgwa/20090516110219/http://www.consumercreditappeals.tribunals.gov.uk/",
+    };
+
+    public static readonly Court ClaimsManagementServicesTribunal = new() {
+        Code = "FTT-Claims",
+        LongName = "Claims Management Services Tribunal",
+        URL = "https://webarchive.nationalarchives.gov.uk/ukgwa/20200626120017/http://claimsmanagement.decisions.tribunals.gov.uk/",
+    };
+
+    public static readonly Court EstateAgentsTribunal = new() {
+        Code = "UKFTT-Estate",
+        LongName = "Estate Agents Tribunal",
+        URL = "https://webarchive.nationalarchives.gov.uk/ukgwa/20130206050212/https://www.justice.gov.uk/tribunals/estate-agents",
+    }; 
+
     public static readonly Court[] All = {
         SupremeCourt,
         PrivyCouncil,
@@ -443,7 +461,10 @@ public readonly partial struct Courts {
 
         EmploymentTribunal,
 
-        InvestigatoryPowersTribunal
+        InvestigatoryPowersTribunal,
+        ConsumerCreditAppealsTribunal,
+        ClaimsManagementServicesTribunal,
+        EstateAgentsTribunal
     };
 
     public static readonly ImmutableDictionary<string, Court> ByCode =
