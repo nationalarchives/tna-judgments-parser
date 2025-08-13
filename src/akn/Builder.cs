@@ -725,10 +725,10 @@ abstract class Builder {
         TextWithoutFormatting(parent, fText);
     }
 
-    private void AddFootnote(XmlElement parent, IFootnote fn) {
+    protected virtual void AddFootnote(XmlElement parent, IFootnote fn) {
         XmlElement authorialNote = doc.CreateElement("authorialNote", ns);
         parent.AppendChild(authorialNote);
-        authorialNote.SetAttribute("class", "footnote");
+        authorialNote.SetAttribute("class", ns, "footnote");
         authorialNote.SetAttribute("marker", fn.Marker);
         blocks(authorialNote, fn.Content);
     }
