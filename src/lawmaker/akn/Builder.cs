@@ -122,6 +122,12 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement formula = CreateAndAppend("formula", e);
             formula.SetAttribute("name", "enactingText");
 
+            if (Frames.IsSecondaryDocName(this.bill.Type))
+            {
+                AddBlocks(formula, preamble);
+                return;
+            }
+
             foreach (IBlock block in preamble)
             {
                 XmlElement element = doc.CreateElement("p", ns);
@@ -251,6 +257,17 @@ namespace UK.Gov.Legislation.Lawmaker
             AddDivisions(e, qs.Contents);
             quoteDepth -= 1;
         }
+
+        protected override void AddFootnote(XmlElement parent, IFootnote fn)
+        {
+            XmlElement authorialNote = doc.CreateElement("authorialNote", ns);
+            parent.AppendChild(authorialNote);
+            authorialNote.SetAttribute("class", ns, "footnote");
+            authorialNote.SetAttribute("marker", fn.Marker);
+            IEnumerable<IBlock> content = FootnoteEnricher.EnrichInside(fn.Content);
+            blocks(authorialNote, content);
+        }
+
 
     }
 
