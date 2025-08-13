@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <bill name="nipubb">
+  <bill name="uksi">
     <meta>
       <identification source="#author">
         <FRBRWork>
@@ -72,16 +72,16 @@
     <coverPage />
     <preamble eId="preamble">
       <formula name="enactingText">
-        <p>The Secretary of State makes the following Regulations in exercise of the powers conferred by sections 13(1) and (2), 14(1), 15(3) and (4), 17(1), 22(1) and 25(1) of the Haulage Permits and Trailer Registration Act 2018().</p>
+        <p>The Secretary of State makes the following Regulations in exercise of the powers conferred by sections 13(1) and (2), 14(1), 15(3) and (4), 17(1), 22(1) and 25(1) of the Haulage Permits and Trailer Registration Act 2018<authorialNote marker="1" class="footnote"><p>2018 c.19.</p></authorialNote>.</p>
         <p>In accordance with section 23(1) of that Act, the Secretary of State has consulted such persons as the Secretary of State thought fit before making these Regulations.</p>
       </formula>
     </preamble>
     <body>
-      <article eId="sec_1" class="prov1">
+      <hcontainer name="regulation" eId="sec_1" class="prov1">
         <heading>Citation, commencement, extent and application</heading>
         <num>1.</num>
 			   
-																																							
+																																																				
 				
         <paragraph class="prov2">
           <num>(1)</num>
@@ -95,14 +95,14 @@
             <p>These Regulations extend and apply to the United Kingdom.</p>
           </content>
         </paragraph>
-      </article>
-      <article eId="sec_2" class="prov1">
+      </hcontainer>
+      <hcontainer name="regulation" eId="sec_2" class="prov1">
         <heading>Amendment of the Trailer Registration Regulations 2018</heading>
         <num>2.</num>
         <paragraph class="prov2">
           <num>(1)</num>
           <content>
-            <p>The Trailer Registration Regulations 2018(<authorialNote marker="2"><p>()S.I. 2018/1203.</p></authorialNote>) are amended as follows.</p>
+            <p>The Trailer Registration Regulations 2018<authorialNote marker="2" class="footnote"><p>S.I. 2018/1203.</p></authorialNote> are amended as follows.</p>
           </content>
         </paragraph>
         <paragraph class="prov2">
@@ -153,7 +153,7 @@
             <p><mod>In regulation 14(4) (requests for further inspections), for <quotedText startQuote="“" endQuote="”">paragraph (3) and</quotedText> to the end, substitute <quotedText startQuote="“" endQuote="”">paragraph (3).</quotedText>.</mod></p>
           </content>
         </paragraph>
-      </article>
+      </hcontainer>
     </body>
   </bill>
 </akomaNtoso>
