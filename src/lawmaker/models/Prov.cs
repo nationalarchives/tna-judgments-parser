@@ -134,7 +134,7 @@ namespace UK.Gov.Legislation.Lawmaker
         // Note that the num of the first Prov2 is not necessarily (1). It could be (A1), for example.
         public static bool IsFirstProv2Start(string text)
         {
-            string pattern = @"^\u2014\([A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\).*";
+            string pattern = @"^\s*\u2014\([A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\).*";
             return Regex.IsMatch(text, pattern);
         }
 
