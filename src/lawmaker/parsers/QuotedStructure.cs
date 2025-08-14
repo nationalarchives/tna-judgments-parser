@@ -131,7 +131,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 frames.PushDefault();
                 return false;
             }
-            Context? context = Contexts.ToEnum(groups["context"].Value);
+            Context context;
             Context defaultContext = Frames.IsSecondaryDocName(docName) ? Context.REGULATIONS : Context.SECTIONS;
             if (!groups["context"].Success)
             {
@@ -140,7 +140,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 frames.Push(docName, defaultContext);
                 return true;
             }
-            if (context == null)
+            if (!Enum.TryParse(groups["context"].Value.ToUpper(), out context))
             {
                 // Frame info has a Context, but it is malformed - invalid scenario.
                 // Resort to default Context.
@@ -148,7 +148,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             }
             // Frame info has valid DocName and Context
-            frames.Push(docName, (Context) context);
+            frames.Push(docName, context);
             return true;
         }
 

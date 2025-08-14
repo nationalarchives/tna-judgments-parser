@@ -9,43 +9,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
     public enum Context { SECTIONS, SCHEDULES, ARTICLES, RULES, REGULATIONS }
 
-    public class Contexts
-    {
-        public static string ToBodyOrSch(Context context)
-        {
-            switch (context)
-            {
-                case Context.SCHEDULES:
-                    return "schedule";
-                case Context.SECTIONS:
-                case Context.ARTICLES:
-                case Context.RULES:
-                case Context.REGULATIONS:
-                default:
-                    return "body";
-            }
-        }
-
-        public static Context? ToEnum(string value)
-        {
-            switch (value.ToLower())
-            {
-                case "body":
-                    return Context.SECTIONS;
-                case "regs":
-                    return Context.REGULATIONS;
-                case "rules":
-                    return Context.RULES;
-                case "order":
-                    return Context.ARTICLES;
-                case "sch":
-                    return Context.SCHEDULES;
-                default:
-                    return null;
-            }
-        }
-    }
-
 
     class Frames
     {
