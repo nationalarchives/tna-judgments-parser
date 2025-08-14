@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml;
 
 using Microsoft.Extensions.Logging;
+using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Model;
 using CSS2 = UK.Gov.Legislation.Judgments.CSS;
 
@@ -407,77 +408,79 @@ abstract class Builder {
     }
 
     protected virtual void AddInline(XmlElement parent, IInline model) {
-        if (model is IDocType1 docType1) {
-            AddAndWrapText(parent, "docType", docType1);
-        } else if (model is IDocType2 docType) {
-            XmlElement courtType = CreateAndAppend("docType", parent);
-            foreach (IInline inline in docType.Contents)
-                AddInline(courtType, inline);
-        } else if (model is INeutralCitation cite)
-            AddAndWrapText(parent, "neutralCitation", cite);
-        else if (model is INeutralCitation2 cite2) {
-            XmlElement ncn2 = CreateAndAppend("neutralCitation", parent);
-            foreach (IInline inline in cite2.Contents)
-                AddInline(ncn2, inline);
-        } else if (model is ICourtType1 courtType1)
-            AddCourtType1(parent, courtType1);
-        else if (model is ICourtType2 courtType2)
-            AddCourtType2(parent, courtType2);
-        else if (model is ICaseNo caseNo)
-            AddAndWrapText(parent, "docketNumber", caseNo);
-        else if (model is IParty1 party)
-            AddParty(parent, party);
-        else if (model is IParty2 party2)
-            AddParty2(parent, party2);
-        else if (model is IRole role)
-            AddRole(parent, role);
-        else if (model is IDocTitle docTitle)
-            AddDocTitle(parent, docTitle);
-        else if (model is IDocTitle2 docTitle2)
-            AddDocTitle(parent, docTitle2);
-        else if (model is IJudge judge)
-            AddJudge(parent, judge);
-        else if (model is ILawyer lawyer)
-            AddLawyer(parent, lawyer);
-        else if (model is IDocJurisdiction juris)
-            AddDocJurisdiction(parent, juris);
-        else if (model is ILocation loc)
-            AddLocation(parent, loc);
-        else if (model is IHyperlink1 link)
-            AddHperlink(parent, link);
-        else if (model is IHyperlink2 link2)
-            AddHperlink(parent, link2);
-        else if (model is IInternalLink iLink)
-            AddInternalLink(parent, iLink);
-        else if (model is IFormattedText fText)
-            AddOrWrapText(parent, fText);
-        else if (model is IDocDate docDate)
-            AddDocDate(parent, docDate);
-        else if (model is IDate date)
-            AddDate(parent, date);
-        else if (model is IDateTime time)
-            AddTime(parent, time);
-        else if (model is IFootnote footnote)
-            AddFootnote(parent, footnote);
-        else if (model is IImageRef imageRef)
-            AddImageRef(parent, imageRef);
-        else if (model is IExternalImage eImg)
-            AddExternalImage(parent, eImg);
-        else if (model is IMath math)
-            AddMath(parent, math);
-        else if (model is IPageReference page)
-            AddInlineContainer(parent, page, "page");
-        else if (model is ILineBreak)
-            AddLineBreak(parent);
-        else if (model is ITab)
-            AddTab(parent);
+            if (model is IDocType1 docType1) {
+                AddAndWrapText(parent, "docType", docType1);
+            } else if (model is IDocType2 docType) {
+                XmlElement courtType = CreateAndAppend("docType", parent);
+                foreach (IInline inline in docType.Contents)
+                    AddInline(courtType, inline);
+            } else if (model is INeutralCitation cite)
+                AddAndWrapText(parent, "neutralCitation", cite);
+            else if (model is INeutralCitation2 cite2) {
+                XmlElement ncn2 = CreateAndAppend("neutralCitation", parent);
+                foreach (IInline inline in cite2.Contents)
+                    AddInline(ncn2, inline);
+            } else if (model is ICourtType1 courtType1)
+                AddCourtType1(parent, courtType1);
+            else if (model is ICourtType2 courtType2)
+                AddCourtType2(parent, courtType2);
+            else if (model is ICaseNo caseNo)
+                AddAndWrapText(parent, "docketNumber", caseNo);
+            else if (model is IParty1 party)
+                AddParty(parent, party);
+            else if (model is IParty2 party2)
+                AddParty2(parent, party2);
+            else if (model is IRole role)
+                AddRole(parent, role);
+            else if (model is IDocTitle docTitle)
+                AddDocTitle(parent, docTitle);
+            else if (model is IDocTitle2 docTitle2)
+                AddDocTitle(parent, docTitle2);
+            else if (model is IJudge judge)
+                AddJudge(parent, judge);
+            else if (model is ILawyer lawyer)
+                AddLawyer(parent, lawyer);
+            else if (model is IDocJurisdiction juris)
+                AddDocJurisdiction(parent, juris);
+            else if (model is ILocation loc)
+                AddLocation(parent, loc);
+            else if (model is IHyperlink1 link)
+                AddHperlink(parent, link);
+            else if (model is IHyperlink2 link2)
+                AddHperlink(parent, link2);
+            else if (model is IInternalLink iLink)
+                AddInternalLink(parent, iLink);
+            else if (model is IFormattedText fText)
+                AddOrWrapText(parent, fText);
+            else if (model is IDocDate docDate)
+                AddDocDate(parent, docDate);
+            else if (model is IDate date)
+                AddDate(parent, date);
+            else if (model is IDateTime time)
+                AddTime(parent, time);
+            else if (model is IFootnote footnote)
+                AddFootnote(parent, footnote);
+            else if (model is IImageRef imageRef)
+                AddImageRef(parent, imageRef);
+            else if (model is IExternalImage eImg)
+                AddExternalImage(parent, eImg);
+            else if (model is IMath math)
+                AddMath(parent, math);
+            else if (model is IPageReference page)
+                AddInlineContainer(parent, page, "page");
+            else if (model is ILineBreak)
+                AddLineBreak(parent);
+            else if (model is ISignatureName signatureName)
+                AddSignatureName(parent, signatureName);
+            else if (model is ITab)
+                AddTab(parent);
         else if (model is IBookmark) { ; }
         else if (model is IInvalidRef reference) {
-            reference.Add(parent);
-        }
+                reference.Add(parent);
+            }
 
-        else
-            throw new Exception(model.GetType().ToString());
+            else
+                throw new Exception(model.GetType().ToString());
     }
 
     protected XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model) {
@@ -729,6 +732,14 @@ abstract class Builder {
         authorialNote.SetAttribute("class", "footnote");
         authorialNote.SetAttribute("marker", fn.Marker);
         blocks(authorialNote, fn.Content);
+    }
+
+    private void AddSignatureName(XmlElement parent, ISignatureName sn)
+    {
+        XmlElement block = doc.CreateElement("block", ns);
+        parent.AppendChild(block);
+        block.SetAttribute("name", ns, "signature");
+        AddInlines(block, sn.Content);
     }
 
     private void AddImageRef(XmlElement parent, IImageRef model) {
