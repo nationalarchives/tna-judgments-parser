@@ -194,6 +194,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     AddTable(parent, table);
                 }
+                else if (block is LdappTableBlock tableBlock)
+                {
+                    AddTableBlock(parent, tableBlock);
+                }
                 else if (block is IQuotedStructure qs)
                 {
                     AddQuotedStructure(parent, qs);

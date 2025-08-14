@@ -17,8 +17,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (div is HContainer hc)
             {
                 AddHContainer(parent, hc);
-            }
-            else
+            } else
             {
                 base.AddDivision(parent, div);
             }
