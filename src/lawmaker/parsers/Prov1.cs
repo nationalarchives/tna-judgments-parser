@@ -177,7 +177,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return frames.CurrentContext switch
             {
                 Context.RULES => Prov1Name.rule,
-                Context.ORDER => Prov1Name.article,
+                Context.ARTICLES => Prov1Name.article,
                 _ => Prov1Name.regulation
             };
 
