@@ -147,17 +147,17 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private WOldNumberedParagraph FixFirstProv2(WLine line)
         {
-            WOldNumberedParagraph rest = null;
-            if (line.Contents.FirstOrDefault() is WText t && Prov2.IsFirstProv2Start(t.Text))
+            if (line.Contents.FirstOrDefault() is WText t && Prov2.IsFirstProv2Start(t.Text.TrimStart()))
             {
+                string text = t.Text.TrimStart(); // Sometimes there's a leading space
                 WText num = new("(1)", t.properties);
-                WText remainder = new(t.Text[5..], t.properties);
+                WText remainder = new(text.TrimStart()[5..], t.properties);
                 return new(num, line.Contents.Skip(1).Prepend(remainder), line);
             }
             else if (line.Contents.FirstOrDefault() is WText t1 && line.Contents.Skip(1).FirstOrDefault() is WText t2)
             {
                 string combined = t1.Text + t2.Text;
-                if (!Prov2.IsFirstProv2Start(combined))
+                if (!Prov2.IsFirstProv2Start(combined.TrimStart()))
                     return null;
 
                 WText num = new("(1)", t1.Text.Length > 2 ? t1.properties : t2.properties);
