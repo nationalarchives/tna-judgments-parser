@@ -37,8 +37,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             Document = doc;
             docName = classifier.DocName;
-            LegislationClassifier legislationClassifier = new LegislationClassifier();
-            frames = new Frames(classifier.DocName,  legislationClassifier.GetContext()); 
+            frames = new Frames(classifier.DocName, classifier.GetContext()); 
         }
 
         private readonly ILogger Logger = Logging.Factory.CreateLogger<LegislationParser>();
