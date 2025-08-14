@@ -35,6 +35,24 @@ namespace UK.Gov.Legislation.Lawmaker
             return alignment == AlignmentValues.Right;
         }
 
+        private static string GetRightTabbedText(WLine line)
+        {
+            if (ContentHasTabbedText(line))
+            {
+                return new WLine(line, [line.Contents.Last()]).NormalizedContent;
+            }
+            return null;
+        }
+
+        private static string IgnoreRightTabbedText(WLine line)
+        {
+            if (ContentHasTabbedText(line))
+            {
+                return new WLine(line, line.Contents.SkipLast(1)).NormalizedContent;
+            }
+            return line.NormalizedContent;
+        }
+
         private static bool ContentHasTabbedText(WLine line)
         {
             if (line.Contents.Count() >= 2 && line.Contents.Last() is WText && line.Contents.SkipLast(1).Last() is WTab)
