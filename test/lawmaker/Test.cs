@@ -18,7 +18,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private static string relativeTestPath = "../../../lawmaker";
 
         public static IEnumerable<object[]> TestFilePaths()
-        {            
+        {
             foreach (string filePath in Directory.GetFiles(relativeTestPath, "*.docx", SearchOption.AllDirectories))
             {
                 string subdirectory = null;
@@ -55,7 +55,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (tmp == null) throw new Exception();
                 docName = (DocName)tmp;
             }
-            catch (Exception e)
+            catch
             {
                 throw new IOException($"DocName could not be determined from subdirectory {subdirectory}.");
             }
