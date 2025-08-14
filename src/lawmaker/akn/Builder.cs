@@ -241,7 +241,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 // These contexts modify parsing behaviour, but should NOT be reflected in the context attribute
                 if (new[] { Context.REGULATIONS, Context.RULES, Context.ARTICLES }.Contains(qs2.Context))
                     qs2.Context = Context.SECTIONS;
-                e.SetAttribute("context", UKNS, Contexts.ToBodyOrSch(qs2.Context));
+                e.SetAttribute("context", UKNS, qs2.Context.ToString().ToLower());
                 e.SetAttribute("docName", UKNS, qs2.DocName.ToString().ToLower());
 
                 if (qs2.HasInvalidCode)

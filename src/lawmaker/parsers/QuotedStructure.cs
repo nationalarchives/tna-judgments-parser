@@ -131,7 +131,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 frames.PushDefault();
                 return false;
             }
-            Context? context = Contexts.ToEnum(groups["context"].Value);
+            Context context;
             Context defaultContext = Frames.IsSecondaryDocName(docName) ? Context.REGULATIONS : Context.SECTIONS;
             if (!groups["context"].Success)
             {
