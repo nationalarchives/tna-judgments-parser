@@ -78,6 +78,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hContainer != null)
                 return hContainer;
 
+            hContainer = ParseAndMemoize(line, "Signatures", ParseSignatures);
+            if (hContainer != null)
+                return hContainer;
+
             hContainer = ParseAndMemoize(line, "UnnumberedParagraph", ParseUnnumberedParagraph);
             if (hContainer != null)
                 return hContainer;
