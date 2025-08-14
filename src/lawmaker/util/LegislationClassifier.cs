@@ -133,10 +133,10 @@ public readonly record struct LegislationClassifier(
     {
         return this switch
         {
-            { SubType: "reg" } => Context.REGULATIONS,
+            { SubType: "reg" }  => Context.REGULATIONS,
             { SubType: "rules" } => Context.RULES,
-            _ when DocNames.IsSecondaryDocName(DocName) => Context.ARTICLES,
-            _ => Context.SECTIONS
+            { SubType: "order" } => Context.ARTICLES,
+            _ => DocNames.IsSecondaryDocName(DocName) ? Context.ARTICLES : Context.SECTIONS
         };
     }
 }
