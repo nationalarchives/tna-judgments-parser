@@ -7,7 +7,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
         // matches only a heading above numbered section
@@ -171,9 +171,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 return Prov1Name.article;
             return frames.CurrentContext switch
             {
+                Context.REGULATIONS => Prov1Name.regulation,
                 Context.RULES => Prov1Name.rule,
-                Context.ORDER => Prov1Name.article,
-                _ => Prov1Name.regulation
+                Context.ARTICLES => Prov1Name.article,
+                _ => Prov1Name.article
             };
 
         }

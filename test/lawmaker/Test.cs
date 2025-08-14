@@ -21,7 +21,7 @@ namespace UK.Gov.Legislation.Lawmaker
         public void Test(int i)
         {
             var docx = ReadDocx(i);
-            var actual = Helper.Parse(docx).Xml;
+            var actual = Helper.Parse(docx, new LegislationClassifier(DocName.NIPUBB, null, null)).Xml;
             XmlDocument actualDoc = new();
             actualDoc.LoadXml(actual);
 

@@ -1,4 +1,4 @@
-
+#nullable enable
 using DocumentFormat.OpenXml.Packaging;
 using Microsoft.Extensions.Logging;
 
@@ -10,9 +10,14 @@ using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
+        // We may need to hold this information in the Frames, but that may be tricky. For now we store them
+        // at the root.
+        private readonly string? subType;
+        private readonly string? procedure;
+        private readonly DocName docName;
         /*
           This class takes a list of "pre-parsed" blocks, and arranges them into a bill structure.
           The pre-parsed list contains blocks of only four types:
@@ -21,20 +26,22 @@ namespace UK.Gov.Legislation.Lawmaker
            = WTable
            - WTableOfContents
         */
-        public static Bill Parse(byte[] docx)
+        public static Document Parse(byte[] docx, LegislationClassifier classifier)
         {
             WordprocessingDocument doc = AkN.Parser.Read(docx);
             CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
-            return new BillParser(simple).Parse();
+            return new LegislationParser(simple, classifier).Parse();
         }
 
-        private BillParser(CaseLaw.WordDocument doc)
+        private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier)
         {
             Document = doc;
+            docName = classifier.DocName;
+            frames = new Frames(classifier.DocName, classifier.GetContext()); 
         }
 
-        private readonly ILogger Logger = Logging.Factory.CreateLogger<BillParser>();
-        private Frames frames = new Frames(DocName.NIA, Context.BODY);
+        private readonly ILogger Logger = Logging.Factory.CreateLogger<LegislationParser>();
+        private Frames frames;
         private readonly CaseLaw.WordDocument Document;
         private int i = 0;
 
@@ -43,7 +50,7 @@ namespace UK.Gov.Legislation.Lawmaker
         int parseAndMemoizeDepth = 0;
         int parseAndMemoizeDepthMax = 0;
 
-        private NIPublicBill Parse()
+        private Lawmaker.Document Parse()
         {
             ParseAndEnrichHeader();
             ParseBody();
@@ -62,8 +69,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
             var styles = DOCX.CSS.Extract(Document.Docx.MainDocumentPart, "#bill");
 
-            return new NIPublicBill
+            return new Lawmaker.Document
             {
+                Type = docName,
                 Styles = styles,
                 CoverPage = coverPage,
                 Preface = preface,
