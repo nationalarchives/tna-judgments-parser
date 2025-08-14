@@ -7,7 +7,7 @@ namespace UK.Gov.Legislation.Lawmaker
 {
 
 
-    public enum Context { BODY, SCH, ORDER, RULES, REGS }
+    public enum Context { SECTIONS, SCHEDULES, ARTICLES, RULES, REGULATIONS }
 
 
     class Frames
@@ -42,12 +42,12 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public void PushScheduleContext()
         {
-            frames.Push(new Frame(CurrentDocName, Context.SCH));
+            frames.Push(new Frame(CurrentDocName, Context.SCHEDULES));
         }
 
         public bool IsScheduleContext()
         {
-            return CurrentContext == Context.SCH;
+            return CurrentContext == Context.SCHEDULES;
         }
 
         public bool IsSecondaryDocName()
@@ -57,7 +57,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsSecondaryDocName(DocName docName)
         {
-            return DocNames.GetLegislationType(docName) == LegislationType.SECONDARY;
+            return DocNames.IsSecondaryDocName(docName);
         }
 
         public bool Pop()
