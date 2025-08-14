@@ -6,7 +6,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
         private HContainer ParsePara1(WLine line)
@@ -37,7 +37,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
                 if (next is Para1) {
-                    // Para1 & Para2 nums are both lowercase alphabetical 
+                    // Para1 & Para2 nums are both lowercase alphabetical
                     // Para1 parser has higher precedence, so must force parse as Para2
                     i = save;
                     next = ParseCurrentAsPara2();
