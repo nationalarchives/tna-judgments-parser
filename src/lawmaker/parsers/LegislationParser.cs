@@ -35,7 +35,7 @@ public partial class LegislationParser
         {
             Document = doc;
             docName = classifier.DocName;
-            frames = new Frames(classifier.DocName, classifier.GetContext());
+            frames = new Frames(classifier.DocName, classifier.GetContext()); 
         }
 
     private readonly ILogger Logger = Logging.Factory.CreateLogger<LegislationParser>();
