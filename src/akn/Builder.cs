@@ -259,11 +259,11 @@ abstract class Builder {
 
     /* tables */
 
-    protected int getColspan(XmlElement td) {
+    protected static int getColspan(XmlElement td) {
         string attr = td.GetAttribute("colspan");
         return string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
     }
-    protected void incrementRowspan(XmlElement td) {
+    protected static void incrementRowspan(XmlElement td) {
         string attr = td.GetAttribute("rowspan");
         int rowspan = string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
         rowspan += 1;
