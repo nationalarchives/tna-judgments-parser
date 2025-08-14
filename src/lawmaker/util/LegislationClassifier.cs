@@ -98,6 +98,11 @@ public static class DocNames
             DocName.NIDSR =>           LegislationType.SECONDARY,
         };
     }
+
+    public static bool IsSecondaryDocName(DocName docName)
+    {
+        return DocNames.GetLegislationType(docName) == LegislationType.SECONDARY;
+    }
 }
 
 public enum LegislationType
@@ -115,7 +120,17 @@ public readonly record struct LegislationClassifier(
     // only applicable for secondary doctypes, ideally we'd have a discriminated union between primary and secondary types since
     // they hold different data, but they're not available until C#14
     string? Procedure
-) {
-
-    public LegislationType LegislationType => DocNames.GetLegislationType(DocName);
+)
+{
+    
+    public Context GetContext()
+    {
+        return this switch
+        {
+            { SubType: "reg" } => Context.REGULATIONS,
+            { SubType: "rules" } => Context.RULES,
+            _ when DocNames.IsSecondaryDocName(DocName) => Context.ARTICLES,
+            _ => Context.SECTIONS
+        };
+    }
 }
