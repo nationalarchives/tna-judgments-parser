@@ -12,17 +12,17 @@ using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    partial class Builder(Bill bill) : AkN.Builder
+    partial class Builder(Document bill) : AkN.Builder
     {
 
         override protected string UKNS => "https://www.legislation.gov.uk/namespaces/UK-AKN";
 
-        public static XmlDocument Build(Bill bill)
+        public static XmlDocument Build(Document bill)
         {
             return new Builder(bill).Build();
         }
 
-        private readonly Bill bill = bill;
+        private readonly Document bill = bill;
 
         private XmlDocument Build()
         {
@@ -31,7 +31,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
 
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
-            main.SetAttribute("name", this.bill.Type);
+            main.SetAttribute("name", this.bill.Type.ToString().ToLower());
 
             string title = Metadata.Extract(bill).Title;
             MetadataBuilder.Add(main, title);
@@ -39,7 +39,7 @@ namespace UK.Gov.Legislation.Lawmaker
             AddCoverPage(main, bill.CoverPage);
             AddPreface(main, bill.Preface);
             AddPreamble(main, bill.Preamble);
-            AddBody(main, bill.Body, bill.Schedules);
+            AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
 
             return doc;
         }
@@ -236,8 +236,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 e.SetAttribute("indent", UKNS, "indent0");
 
                 // These contexts modify parsing behaviour, but should NOT be reflected in the context attribute
-                if (new[] { Context.REGS, Context.RULES, Context.ORDER }.Contains(qs2.Context))
-                    qs2.Context = Context.BODY;
+                if (new[] { Context.REGULATIONS, Context.RULES, Context.ARTICLES }.Contains(qs2.Context))
+                    qs2.Context = Context.SECTIONS;
                 e.SetAttribute("context", UKNS, qs2.Context.ToString().ToLower());
                 e.SetAttribute("docName", UKNS, qs2.DocName.ToString().ToLower());
 
