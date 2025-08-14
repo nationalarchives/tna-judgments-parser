@@ -33,12 +33,11 @@ namespace UK.Gov.Legislation.Lawmaker
                 case "groupOfParts":
                 case "crossheading":
                 case "schedules":
+                case "schedule":
                 case "definition":
                 case "regulation":
-                    level = CreateAndAppend("hcontainer", parent);
-                    level.SetAttribute("name", name);
-                    break;
-                case "schedule":
+                case "signatureBlock":
+                case "signatures":
                     level = CreateAndAppend("hcontainer", parent);
                     level.SetAttribute("name", name);
                     break;
