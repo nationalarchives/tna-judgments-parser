@@ -226,27 +226,31 @@ abstract class Builder {
 
     protected void blocks(XmlElement parent, IEnumerable<IBlock> blocks) {
         foreach (IBlock block in blocks) {
-            if (block is IOldNumberedParagraph np) {
-                XmlElement container = doc.CreateElement("blockContainer", ns);
-                parent.AppendChild(container);
-                if (np.Number is not null)
-                    AddAndWrapText(container, "num", np.Number);
-                this.p(container, np);
-            } else if (block is IRestriction restrict) {
-                AddNamedBlock(parent, restrict, "restriction");
-            } else if (block is ILine line) {
-                this.p(parent, line);
-            } else if (block is ITable table) {
-                AddTable(parent, table);
-            } else if (block is ITableOfContents2 toc) {
-                AddTableOfContents(parent, toc);
-            } else if (block is IQuotedStructure qs) {
-                AddQuotedStructure(parent, qs);
-            } else if (block is IDivWrapper wrapper) {
-                AddDivision(parent, wrapper.Division);
-            } else {
-                throw new Exception(block.GetType().ToString());
-            }
+            Block(parent, block);
+        }
+    }
+
+    protected virtual void Block(XmlElement parent, IBlock block) {
+        if (block is IOldNumberedParagraph np) {
+            XmlElement container = doc.CreateElement("blockContainer", ns);
+            parent.AppendChild(container);
+            if (np.Number is not null)
+                AddAndWrapText(container, "num", np.Number);
+            this.p(container, np);
+        } else if (block is IRestriction restrict) {
+            AddNamedBlock(parent, restrict, "restriction");
+        } else if (block is ILine line) {
+            this.p(parent, line);
+        } else if (block is ITable table) {
+            AddTable(parent, table);
+        } else if (block is ITableOfContents2 toc) {
+            AddTableOfContents(parent, toc);
+        } else if (block is IQuotedStructure qs) {
+            AddQuotedStructure(parent, qs);
+        } else if (block is IDivWrapper wrapper) {
+            AddDivision(parent, wrapper.Division);
+        } else {
+            throw new Exception(block.GetType().ToString());
         }
     }
 
@@ -261,11 +265,11 @@ abstract class Builder {
 
     /* tables */
 
-    protected int getColspan(XmlElement td) {
+    protected static int getColspan(XmlElement td) {
         string attr = td.GetAttribute("colspan");
         return string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
     }
-    protected void incrementRowspan(XmlElement td) {
+    protected static void incrementRowspan(XmlElement td) {
         string attr = td.GetAttribute("rowspan");
         int rowspan = string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
         rowspan += 1;
