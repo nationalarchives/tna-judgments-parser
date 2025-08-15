@@ -13,27 +13,20 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseProv1(WLine line)
         {
-            int save = i;
-            WLine heading;
-            if (PeekBareProv1(line))
-                heading = null;
-            else if (PeekProv1(line))
-            {
-                heading = line;
-                i += 1;
-            }
-            else
+            if (!PeekProv1(line))
                 return null;
 
+            int save = i;
+            i += 1;
             WOldNumberedParagraph np = Current() as WOldNumberedParagraph;
-            HContainer next = ParseBareProv1(np, heading);
+            HContainer next = ParseBareProv1(np, line);
             if (next is null)
             {
                 i = save;
                 return null;
             }
 
-            next.Heading = heading;
+            next.Heading = line;
             return next;
         }
 
@@ -41,7 +34,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             bool quoted = quoteDepth > 0;
             if (line is WOldNumberedParagraph)
-                return PeekBareProv1(line);
+                return false;  // could ParseBaseProv1(np);
             if (!IsFlushLeft(line) && !quoted)
                 return false;
             if (i > Document.Body.Count - 2)
