@@ -122,12 +122,15 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement formula = CreateAndAppend("formula", e);
             formula.SetAttribute("name", "enactingText");
 
-            XmlElement element =  doc.CreateElement("p", ns);
-            element.InnerText = preamble.OfType<WLine>()
-            .Select(line => line.NormalizedContent)
-            .Aggregate((string acc, string element) => acc + " " + element);
-            element = TransformPreambleText(element);
-            formula.AppendChild(element);
+            foreach (IBlock block in preamble)
+            {
+                XmlElement element = doc.CreateElement("p", ns);
+                if (!(block is WLine line))
+                    continue;
+                element.InnerText = line.NormalizedContent;
+                element = TransformPreambleText(element);
+                formula.AppendChild(element);
+            }
         }
 
         private XmlElement TransformPreambleText(XmlElement pElement)
@@ -191,6 +194,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     AddTable(parent, table);
                 }
+                else if (block is LdappTableBlock tableBlock)
+                {
+                    AddTableBlock(parent, tableBlock);
+                }
                 else if (block is IQuotedStructure qs)
                 {
                     AddQuotedStructure(parent, qs);
@@ -238,7 +245,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 // These contexts modify parsing behaviour, but should NOT be reflected in the context attribute
                 if (new[] { Context.REGULATIONS, Context.RULES, Context.ARTICLES }.Contains(qs2.Context))
                     qs2.Context = Context.SECTIONS;
-                e.SetAttribute("context", UKNS, qs2.Context.ToString().ToLower());
+                e.SetAttribute("context", UKNS, Contexts.ToBodyOrSch(qs2.Context));
                 e.SetAttribute("docName", UKNS, qs2.DocName.ToString().ToLower());
 
                 if (qs2.HasInvalidCode)
