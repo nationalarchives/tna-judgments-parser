@@ -19,11 +19,22 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private void ParseAndEnrichHeader()
         {
-            ParseHeader();
-            EnrichHeader();
+            if (frames.IsSecondaryDocName())
+            {
+                ParseSecondaryHeader();
+            }
+            else
+            {
+                ParsePrimaryHeader();
+                EnrichPrimaryHeader();
+            }
+
         }
 
-        private void ParseHeader()
+        /*
+         * Parses the header of a piece of primary legislation (i.e. a Bill or Act).
+         */
+        private void ParsePrimaryHeader()
         {
             bool foundPreface = false;
             while (i < Document.Body.Count - 10)
@@ -70,7 +81,7 @@ namespace UK.Gov.Legislation.Lawmaker
             i = 0;
         }
 
-        private void EnrichHeader()
+        private void EnrichPrimaryHeader()
         {
             EnrichCoverPage();
         }
@@ -87,6 +98,84 @@ namespace UK.Gov.Legislation.Lawmaker
             WLine replacement = WLine.Make(first, [shortTitle]);
             coverPage.RemoveAt(0);
             coverPage.Insert(0, replacement);
+        }
+
+
+        /*
+         * Parses the header of Statutory Instrument (whether draft or enacted).
+         */
+        private void ParseSecondaryHeader()
+        {
+            bool foundContents = false;
+            while (i < Document.Body.Count)
+            {
+                if (!foundContents)
+                    foundContents = SkipTableOfContents();
+
+                IBlock block = Document.Body[i].Block;
+
+                // If we encounter a provision heading (outside of the ToC),
+                // then the body must have started.
+                HContainer peek = PeekBodyStartProvision();
+                if (peek != null)
+                    return;
+
+                if (!(block is WLine line))
+                {
+                    i += 1;
+                    continue;
+                }
+
+                if (IsLeftAligned(line) && IsFlushLeft(line) && !line.IsAllItalicized())
+                    preamble.Add(block);
+                /* TODO: Handle the preface of Statutory Instruments (in an upcoming ticket) 
+                else if (!foundContents)
+                    preface.Add(block);
+                */
+
+                i += 1;
+            }
+            coverPage.Clear();
+            preface.Clear();
+            preamble.Clear();
+            i = 0;
+        }
+
+        /*
+         * Identifies and skips over the Table of Contents.
+         */
+        private bool SkipTableOfContents()
+        {
+            // Identify 'CONTENTS' heading
+            IBlock block = Document.Body[i].Block;
+            if (!(block is WLine line))
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (!line.NormalizedContent.ToUpper().Equals("CONTENTS"))
+                return false;
+
+            // Skip contents
+            while (i < Document.Body.Count - 1)
+            {
+                i += 1;
+                block = Document.Body[i].Block;
+                if (!(block is WLine contentsLine))
+                    break;
+
+                // ToC Grouping provisions are center aligned
+                if (IsCenterAligned(contentsLine))
+                    continue;
+                // ToC Prov1 elements are numbered
+                if (contentsLine is WOldNumberedParagraph)
+                    continue;
+                // ToC Schedules (and associated grouping provisions) have hanging indents
+                if (contentsLine.FirstLineIndentWithNumber < 0)
+                    continue;
+
+                break;
+            }
+            return true;
         }
 
     }
