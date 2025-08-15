@@ -40,8 +40,12 @@ namespace UK.Gov.Legislation.Lawmaker
         private bool PeekProv1(WLine line)
         {
             bool quoted = quoteDepth > 0;
-            if (line is WOldNumberedParagraph)
-                return PeekBareProv1(line);
+            if (line is WOldNumberedParagraph np)
+            {
+                bool bold = np.Number.Bold ?? false;
+                if (bold) 
+                    return PeekBareProv1(line);
+            }
             if (!IsFlushLeft(line) && !quoted)
                 return false;
             if (i > Document.Body.Count - 2)

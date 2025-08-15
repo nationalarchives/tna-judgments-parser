@@ -52,16 +52,26 @@ internal class WText : IFormattedText {
 
     public bool? Bold {
         get {
-            Bold bold = properties?.Bold;
-            if (bold == null)
+            if (properties == null)
                 return null;
-            OnOffValue val = bold.Val;
-            if (val == null)
+
+            Bold bold = properties.Bold;
+            if (bold != null)
+            {
+                OnOffValue val = bold.Val;
+                if (val == null)
+                    return true;
+                return val.Value;
+            }
+
+            MainDocumentPart main = properties.Ancestors<Document>().First().MainDocumentPart;
+            Style style = DOCX.Styles.GetStyle(main, Style);
+            if (style != null && style.StyleRunProperties.Bold != null)
                 return true;
-            return val.Value;
+            return null;
         }
     }
-
+        
     public UnderlineValues2? Underline {
         get {
             Underline underline = properties?.Underline;
