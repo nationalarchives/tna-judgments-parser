@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="ukdsi">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>This Order in Council is made in exercise of the powers conferred by sections 60(1)(a), (2)(h) and (2A)(b) and (c) and 62(4) and (4A) of, and paragraphs 1(e), 2, 3 and 6 of Schedule 3 to, the Health Act 1999().</p>
+        <p>The Secretary of State published a draft of this Order in Council and invited representations as required by paragraph 9(1) of Schedule 3 to the Health Act 1999.</p>
+        <p>The period of three months mentioned in paragraph 9(2) of that Schedule expired before a draft of this Order in Council, together with a report about the consultation, was laid before Parliament.</p>
+        <p>A draft of this Order in Council has been approved by resolution of each House of Parliament in accordance with section 62(9) of the Health Act 1999.</p>
+        <p>Accordingly, His Majesty is pleased, by and with the advice of His Privy Council, to make the following Order in Council:</p>
+      </formula>
+    </preamble>
+    <body>
+      <part eId="pt_1" class="group2">
+        <num>Part 1</num>
+        <heading>Introductory Provisions</heading>
+        <article eId="sec_1" class="prov1">
+          <heading>Citation and commencement</heading>
+          <num>1.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>This Order may be cited as the Human Medicines (Authorisation by Pharmacists and Supervision by Pharmacy Technicians) Order 2025.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>This article and the listed provisions come into force on the twenty-eighth day after the day on which this Order is made.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <content>
+              <p>This Order, apart from this article and the listed provisions, comes into force on such days as the Privy Council may by order appoint.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(4)</num>
+            <content>
+              <p>Different days may be appointed under paragraph (3) for different purposes or areas.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(5)</num>
+            <intro>
+              <p><mod>In this article, <quotedText startQuote="“" endQuote="”">the listed provisions</quotedText> means—</mod></p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>articles 2, 3 and 7(1) in so far as it relates to article 7(2) and (4), and article 7(2), (4) and (5);</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>article 8(1) in so far as it relates to article 8(2), and article 8(2) and (4);</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p>article 12(3), (4), (5), (7) to (10), (12) to (14), and (16)(b), and article 12(1) in so far as it relates to article 12(3), (4), (5), (7) to (10), (12) to (14), and (16)(b); and</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(d)</num>
+              <content>
+                <p>article 12(19).</p>
+              </content>
+            </level>
+          </paragraph>
+        </article>
+        <article eId="sec_2" class="prov1">
+          <heading>Extent</heading>
+          <num>2.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>This Order, apart from articles 9 and 10, extends to England and Wales, Scotland and Northern Ireland.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Articles 9 and 10 extend to England and Wales and Scotland.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_3" class="prov1">
+          <heading>Privy Council procedures and legislative procedures</heading>
+          <num>3.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>The power vested in the Privy Council to make an order under article 1(3) may be exercised by any two or more members of the Privy Council.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p><mod>The power vested in the Privy Council to make an order under article 1(3) is exercisable by statutory instrument, and for the purposes of section 1 of the Statutory Instruments Act 1946(<authorialNote marker="2"><p>()1946 c. 36. Section 1 was amended by the Government of Wales Act 1998 (c. 38), Schedule 12, paragraph 2, and the Government of Wales Act 2006 (c. 32), Schedule 10, paragraphs 1 and 2.</p></authorialNote>) (definition of <quotedText startQuote="“" endQuote="”">Statutory Instrument</quotedText>), that power is to be taken to be conferred by an Act of Parliament.</mod></p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <content>
+              <p>Any act of the Privy Council under this Order is sufficiently signified by an instrument signed by the Clerk of the Privy Council.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(4)</num>
+            <intro>
+              <p>Where an order of the Privy Council under article 1(3) is signified by an instrument purporting to be signed by the Clerk of the Privy Council, that is evidence and in Scotland sufficient evidence of—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>the fact that the order was duly made; and</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>the order’s terms.</p>
+              </content>
+            </level>
+          </paragraph>
+        </article>
+      </part>
+      <part eId="pt_2" class="group2">
+        <num>Part 2</num>
+        <heading>Authorisation by a Pharmacist and, in Great Britain, Supervision by a Pharmacy Technician</heading>
+        <article eId="sec_4" class="prov1">
+          <heading>Exemption from requirement for manufacturer’s licence or marketing authorisation: authorisation of a pharmacist</heading>
+          <num>4.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>The Medicines Act 1968(<authorialNote marker="3"><p>()1968 c. 67.</p></authorialNote>) is amended as follows.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <intro>
+              <p>In section 10 (exemptions for pharmacists)(<authorialNote marker="4"><p>()Amendments have been made to subsections (1), (3) and (4) by S.S.I 2002/162, S.I 2006/2407, 2012/1916, 1971/1445 and 2022/849.</p></authorialNote>)—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <intro>
+                <p>in subsection (1)—</p>
+              </intro>
+              <level class="para2">
+                <num>(i)</num>
+                <content>
+                  <p><mod>in the words before paragraph (a), after <quotedText startQuote="“" endQuote="”">pharmacist</quotedText> insert <quotedText startQuote="“" endQuote="”">or in accordance with subsection (1A)</quotedText>, and</mod></p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(ii)</num>
+                <content>
+                  <p><mod>in the words after paragraph (b), for <quotedText startQuote="“" endQuote="”">done by or under the supervision of a pharmacist</quotedText> substitute <quotedText startQuote="“" endQuote="”">which is done by or under the supervision of a pharmacist or in accordance with subsection (1A) and</quotedText>;</mod></p>
+                </content>
+              </level>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p><mod>after subsection (1) insert—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="uksi"><paragraph class="prov2"><num>(1A)</num><intro><p>Something is done in accordance with this subsection if—</p></intro><level class="para1"><num>(a)</num><content><p>it is done in Great Britain in a registered pharmacy, a hospital, a care home service or a health centre,</p></content></level><level class="para1"><num>(b)</num><intro><p>it is done—</p></intro><level class="para2"><num>(i)</num><content><p>by a registered pharmacy technician who has the authorisation of a pharmacist to do it, or</p></content></level><level class="para2"><num>(ii)</num><content><p>under the supervision of a registered pharmacy technician who has the authorisation of a pharmacist to supervise the doing of it, and</p></content></level></level><level class="para1"><num>(c)</num><content><p>it is done with due regard to patient safety.</p></content></level></paragraph><paragraph class="prov2"><num>(1B)</num><content><p>See section 10A for provision about authorisations given for the purposes of subsection (1A)(b)(i) and (ii).</p></content></paragraph></quotedStructure><inline name="AppendText">;</inline></mod></p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p><mod>in subsection (3), for <quotedText startQuote="“" endQuote="”">Those restrictions</quotedText> substitute <quotedText startQuote="“" endQuote="”">The restrictions imposed by regulations 17(1) (manufacturing of medicinal products) and 46 (requirement for authorisation) of the 2012 Regulations</quotedText>;</mod></p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(d)</num>
+              <intro>
+                <p>in subsection (4), in the words after paragraph (b)—</p>
+              </intro>
+              <level class="para2">
+                <num>(i)</num>
+                <content>
+                  <p><mod>after <quotedText startQuote="“" endQuote="”">health centre</quotedText> insert <quotedText startQuote="“" endQuote="”">and is done there</quotedText>, and</mod></p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(ii)</num>
+                <content>
+                  <p><mod>after <quotedText startQuote="“" endQuote="”">pharmacist</quotedText> insert <quotedText startQuote="“" endQuote="”">or in accordance with subsection (1A)</quotedText>;</mod></p>
+                </content>
+              </level>
+            </level>
+            <level class="para1">
+              <num>(e)</num>
+              <content>
+                <p><mod>in subsection (7A), after <quotedText startQuote="“" endQuote="”">pharmacist</quotedText> insert <quotedText startQuote="“" endQuote="”">or registered pharmacy technician</quotedText>; and</mod></p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(f)</num>
+              <content>
+                <p><mod>in subsection (7B), after <quotedText startQuote="“" endQuote="”">pharmacist</quotedText> insert <quotedText startQuote="“" endQuote="”">or registered pharmacy technician</quotedText>.</mod></p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <content>
+              <p><mod>After section 10 insert—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="uksi"><level class="unnumberedParagraph"><content><p>10A Authorisation for the purposes of section 10(1A)(b)(i) or (ii)</p></content></level><paragraph class="prov2"><num>(1)</num><intro><p>An authorisation given to a registered pharmacy technician for the purposes of section 10(1A)(b)(i) or (ii)—</p></intro><level class="para1"><num>(a)</num><content><p>may be general or specific,</p></content></level><level class="para1"><num>(b)</num><content><p>may be given orally or in writing,</p></content></level><level class="para1"><num>(c)</num><content><p>may be given subject to conditions or restrictions, and</p></content></level><level class="para1"><num>(d)</num><content><p>may be varied or withdrawn by the pharmacist by whom it is given.</p></content></level></paragraph><paragraph class="prov2"><num>(2)</num><content><p>An authorisation given for the purposes of section 10(1A)(b)(i) must state, in relation to anything it authorises a registered pharmacy technician to do, that it authorises the registered pharmacy technician to do it only in a registered pharmacy, hospital, care home service or health centre specified in the authorisation.</p></content></paragraph><paragraph class="prov2"><num>(3)</num><content><p>An authorisation given for the purposes of section 10(1A)(b)(ii) must state, in relation to anything it authorises the registered pharmacy technician to supervise, that it authorises the registered pharmacy technician to supervise it only if it is done in a registered pharmacy, hospital, care home service or health centre specified in the authorisation.</p></content></paragraph><paragraph class="prov2"><num>(4)</num><intro><p>An authorisation given for the purposes of section 10(1A)(b)(i) may (among other things) authorise a registered pharmacy technician—</p></intro><level class="para1"><num>(a)</num><content><p>to prepare or dispense medicinal products in accordance with prescriptions given after the authorisation is given, or</p></content></level><level class="para1"><num>(b)</num><content><p>to procure the preparation or dispensing of medicinal products in accordance with prescriptions given after the authorisation is given.</p></content></level></paragraph><paragraph class="prov2"><num>(5)</num><intro><p>An authorisation given for the purposes of section 10(1A)(b)(ii) may (among other things) authorise a registered pharmacy technician to supervise—</p></intro><level class="para1"><num>(a)</num><content><p>the preparation or dispensing of medicinal products in accordance with prescriptions given after the authorisation is given, or</p></content></level><level class="para1"><num>(b)</num><content><p>the procurement of the preparation or dispensing of medicinal products in accordance with prescriptions given after the authorisation is given.</p></content></level></paragraph><paragraph class="prov2"><num>(6)</num><content><p>In giving an authorisation for the purposes of section 10(1A)(b)(i) or (ii), a pharmacist must have due regard to patient safety.</p></content></paragraph><paragraph class="prov2"><num>(7)</num><intro><p>A failure to comply with subsection (6)—</p></intro><level class="para1"><num>(a)</num><content><p>does not affect the validity of the authorisation, but</p></content></level><level class="para1"><num>(b)</num><content><p>may constitute misconduct for the purposes of section 80 of this Act (power for relevant disciplinary committee to disqualify and direct removal from register) or article 51(1)(a) of the Pharmacy Order 2010 (impairment of fitness to practise) and the relevant disciplinary committee may deal with any such failure accordingly.</p></content></level></paragraph></quotedStructure><inline name="AppendText">.</inline></mod></p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_5" class="prov1">
+          <heading>Exemption from the requirement for manufacturer’s licence or marketing authorisation: registered pharmacy technicians at hospital aseptic facilities</heading>
+          <num>5.</num>
+          <content>
+            <p><mod> After regulation 4 of the Human Medicines Regulations 2012(<authorialNote marker="5"><p>()S.I. 2012/1916. Regulation 4 has been amended by S.I. 2019/775 and 2024/832.</p></authorialNote>) (special provisions for pharmacies etc.) insert—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="uksi"><article class="prov1"><heading>Special provisions for registered pharmacy technicians at hospital aseptic facilities</heading><num>4A.</num><paragraph class="prov2"><num>(1)</num><intro><p>The prohibitions in regulations 17(1) (manufacturing of medicinal products: requirement for licence) and 46 (requirement for authorisation) do not apply to anything which is done in Great Britain in a hospital aseptic facility in the course of the provision of a relevant pharmacy service if—</p></intro><level class="para1"><num>(a)</num><content><p>it is done as part of a clinical process;</p></content></level><level class="para1"><num>(b)</num><content><p>it is done by or under the supervision of a registered pharmacy technician;</p></content></level><level class="para1"><num>(c)</num><intro><p>in the case of anything done to a medicinal product prior to the retail sale of the medicinal product or the supply of that product in circumstances corresponding to retail sale, what is done consists of—</p></intro><level class="para2"><num>(i)</num><content><p>preparing or dispensing a medicinal product in pursuance of a prescription for a magistral formula product or an officinal formula product, or</p></content></level><level class="para2"><num>(ii)</num><content><p>preparing, assembling or dispensing a medicinal product that has already been lawfully placed on the market in the United Kingdom, or the component medicinal products or medical devices of which have already been so placed,</p></content></level><wrapUp><p>and is with a view to the retail sale of the medicinal product or the supply of that medicinal product in circumstances corresponding to retail sale;</p></wrapUp></level><level class="para1"><num>(d)</num><intro><p>in a case where sub-paragraph (c)(ii) applies, the composition of the medicinal product is not modified by, nor are its components modified by, the preparation, assembly or dispensing in such a way or to the extent that it is appropriate to treat—</p></intro><level class="para2"><num>(i)</num><content><p>the retail sale of that medicinal product, or</p></content></level><level class="para2"><num>(ii)</num><content><p>the supply of that medicinal product in circumstances corresponding to retail sale,</p></content></level><wrapUp><p>as an occasion on which a new medicinal product is placed on the market in the United Kingdom; and</p></wrapUp></level><level class="para1"><num>(e)</num><content><p>in the case of the dispensing of a medicinal product in pursuance of a prescription or direction given by an appropriate practitioner, the dispensing is in accordance with that prescription or direction.</p></content></level></paragraph><paragraph class="prov2"><num>(2)</num><intro><p>Chapter 1 of Part 13 (requirements for packaging and package leaflets relating to medicinal products) does not apply to a medicinal product that, as the result of a process of preparation or assembly that is in accordance with paragraph (1), is no longer supplied in accordance with the terms of any authorisation or registration in force for the product of a type mentioned in regulation 3(15), but only if the medicinal product has been labelled with—</p></intro><level class="para1"><num>(a)</num><content><p>the name of the patient for whom it has been ordered; and</p></content></level><level class="para1"><num>(b)</num><content><p>such other information as the person preparing or assembling the medicinal product considers it appropriate to add to the label.</p></content></level></paragraph><paragraph class="prov2"><num>(3)</num><intro><p>For the purposes of paragraph (1)—</p></intro><level class="para1"><num>(a)</num><content><p><mod>a pharmacy service is a <quotedText startQuote="“" endQuote="”">relevant pharmacy service</quotedText> if conditions A and B in section 67F of the Medicines Act 1968 (sections 67A to 67D: <quotedText startQuote="“" endQuote="”">relevant pharmacy service</quotedText>) are met in respect of it; and</mod></p></content></level><level class="para1"><num>(b)</num><intro><p>a medicinal product (including a component medicinal product) has been lawfully placed on the market in the United Kingdom if—</p></intro><level class="para2"><num>(i)</num><content><p>there is an authorisation or a registration in force for the product of the type mentioned in regulation 3(15), or</p></content></level><level class="para2"><num>(ii)</num><content><p>there is no such authorisation or registration in force but it has been supplied to the hospital aseptic facility in accordance with Part 10 (exceptions to requirement for marketing authorisation) or as an investigational medicinal product in accordance with the Clinical Trials Regulations.</p></content></level></level></paragraph></article></quotedStructure><inline name="AppendText">.</inline></mod></p>
+          </content>
+        </article>
+        <article eId="sec_6" class="prov1">
+          <heading>Assembly of investigational medicinal products in hospitals and health centres</heading>
+          <num>6.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Regulation 37 of the Medicines for Human Use (Clinical Trials) Regulations 2004 (exemption for hospitals and health centres)(<authorialNote marker="6"><p>()S.I. 2004/1031.  There are no amendments to regulation 37.</p></authorialNote>) is amended as follows.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <intro>
+              <p>In paragraph (2)(a)—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p><mod>after <quotedText startQuote="“" endQuote="”">carried out</quotedText>, omit <quotedText startQuote="“" endQuote="”">in</quotedText>; and</mod></p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p><mod>in paragraph (ii), after <quotedText startQuote="“" endQuote="”">of a pharmacist</quotedText> insert <quotedText startQuote="“" endQuote="”">or, in Great Britain, in accordance with paragraph (3) or (4)</quotedText>.</mod></p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <content>
+              <p><mod>After paragraph (2) insert—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="uksi"><paragraph class="prov2"><num>(3)</num><intro><p>Something is done in accordance with this paragraph if it is done in Great Britain in a hospital aseptic facility in the course of the provision of a relevant pharmacy service, and—</p></intro><level class="para1"><num>(a)</num><content><p>it is done as part of a clinical process; and</p></content></level><level class="para1"><num>(b)</num><content><p>it is done by or under the supervision of a registered pharmacy technician.</p></content></level></paragraph><paragraph class="prov2"><num>(4)</num><intro><p>Something is done in accordance with this paragraph if it is done in Great Britian and—</p></intro><level class="para1"><num>(a)</num><intro><p>it is done (not relying on paragraph (3))—</p></intro><level class="para2"><num>(i)</num><content><p>by a registered pharmacy technician who has the authorisation of a pharmacist to do it, or</p></content></level><level class="para2"><num>(ii)</num><content><p>under the supervision of a registered pharmacy technician who has the authorisation of a pharmacist to supervise the doing of it; and</p></content></level></level><level class="para1"><num>(b)</num><content><p>it is done with due regard to patient safety.</p></content></level></paragraph><paragraph class="prov2"><num>(5)</num><content><p><mod>For the purposes of paragraph (3), a pharmacy service is a <quotedText startQuote="“" endQuote="”">relevant pharmacy service</quotedText> if conditions A and B in section 67F of the Medicines Act 1968 (sections 67A to 67D: <quotedText startQuote="“" endQuote="”">relevant pharmacy service</quotedText>) are met in respect of it.</mod></p></content></paragraph><paragraph class="prov2"><num>(6)</num><intro><p>An authorisation given to a registered pharmacy technician for the purposes of paragraph (4)(a)(i) or (ii)—</p></intro><level class="para1"><num>(a)</num><content><p>may be general or specific,</p></content></level><level class="para1"><num>(b)</num><content><p>may be given orally or in writing,</p></content></level><level class="para1"><num>(c)</num><content><p>may be given subject to conditions or restrictions, and</p></content></level><level class="para1"><num>(d)</num><content><p>may be varied or withdrawn by the pharmacist by whom it is given.</p></content></level></paragraph><paragraph class="prov2"><num>(7)</num><content><p>An authorisation given for the purposes of paragraph (4)(a)(i) must state, in relation to anything it authorises a registered pharmacy technician to do, that it authorises the registered pharmacy technician to do it only in a hospital or health centre specified in the authorisation.</p></content></paragraph><paragraph class="prov2"><num>(8)</num><content><p>An authorisation given for the purposes of paragraph (4)(a)(ii) must state, in relation to anything it authorises the registered pharmacy technician to supervise, that it authorises the registered pharmacy technician to supervise it only if it is done in a hospital or health centre specified in the authorisation.</p></content></paragraph><paragraph class="prov2"><num>(9)</num><content><p>In giving an authorisation for the purposes of paragraph (4)(a)(i) or (ii), a pharmacist must have due regard to patient safety.</p></content></paragraph><paragraph class="prov2"><num>(10)</num><intro><p>A failure to comply with paragraph (9)—</p></intro><level class="para1"><num>(a)</num><content><p>does not affect the validity of the authorisation, but</p></content></level><level class="para1"><num>(b)</num><content><p>may constitute misconduct for the purposes of section 80 of the Medicines Act 1968 (power for relevant disciplinary committee to disqualify and direct removal from register) or article 51(1)(a) of the Pharmacy Order 2010 (impairment of fitness to practise) and the relevant disciplinary committee may deal with any such failure accordingly.</p></content></level></paragraph></quotedStructure><inline name="AppendText">.</inline></mod></p>
+            </content>
+          </paragraph>
+        </article>
+      </part>
+    </body>
+  </bill>
+</akomaNtoso>

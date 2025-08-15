@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="uksi">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Secretary of State makes the following Regulations in exercise of the powers conferred by sections 13(1) and (2), 14(1), 15(3) and (4), 17(1), 22(1) and 25(1) of the Haulage Permits and Trailer Registration Act 2018().</p>
+        <p>In accordance with section 23(1) of that Act, the Secretary of State has consulted such persons as the Secretary of State thought fit before making these Regulations.</p>
+      </formula>
+    </preamble>
+    <body>
+      <article eId="sec_1" class="prov1">
+        <heading>Citation, commencement, extent and application</heading>
+        <num>1.</num>
+			   
+																																							
+				
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>These Regulations may be cited as the Trailer Registration (Amendment) Regulations 2021 and come into force on 1st November 2021.</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(2)</num>
+          <content>
+            <p>These Regulations extend and apply to the United Kingdom.</p>
+          </content>
+        </paragraph>
+      </article>
+      <article eId="sec_2" class="prov1">
+        <heading>Amendment of the Trailer Registration Regulations 2018</heading>
+        <num>2.</num>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>The Trailer Registration Regulations 2018(<authorialNote marker="2"><p>()S.I. 2018/1203.</p></authorialNote>) are amended as follows.</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(2)</num>
+          <intro>
+            <p>In regulation 4(2)(d) (applications for registration)—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p><mod>in sub-paragraph (v), omit <quotedText startQuote="“" endQuote="”">and</quotedText>;</mod></p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p><mod>in sub-paragraph (vi), for <quotedText startQuote="“" endQuote="”">trailer.</quotedText> substitute <quotedText startQuote="“" endQuote="”">trailer; and</quotedText>;</mod></p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(c)</num>
+            <content>
+              <p><mod>after sub-paragraph (vi), insert <quotedText startQuote="“" endQuote="”">(vii) the trailer type or a description of the trailer’s physical construction, characteristics or intended use.</quotedText>.</mod></p>
+            </content>
+          </level>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(3)</num>
+          <content>
+            <p><mod>After regulation 4(7), insert—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="uksi"><paragraph class="prov2"><num>(8)</num><content><p>In paragraph (1), “trailer” does not include a trailer that is a mechanically propelled vehicle.</p></content></paragraph></quotedStructure><inline name="AppendText">.</inline></mod></p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(4)</num>
+          <content>
+            <p><mod>In regulation 9(3) (renewal of registration documents), for <quotedText startQuote="“" endQuote="”">one calendar year</quotedText> substitute <quotedText startQuote="“" endQuote="”">six months</quotedText>.</mod></p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(5)</num>
+          <content>
+            <p><mod>For regulation 13(4)(c)(i) (location of trailer inspections), substitute—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="uksi"><level class="para1"><num>(i)</num><content><p>Great Britain, at a place that appears suitable to the Secretary of State for the purpose; or</p></content></level></quotedStructure><inline name="AppendText">.</inline></mod></p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(6)</num>
+          <content>
+            <p><mod>In regulation 14(4) (requests for further inspections), for <quotedText startQuote="“" endQuote="”">paragraph (3) and</quotedText> to the end, substitute <quotedText startQuote="“" endQuote="”">paragraph (3).</quotedText>.</mod></p>
+          </content>
+        </paragraph>
+      </article>
+    </body>
+  </bill>
+</akomaNtoso>
