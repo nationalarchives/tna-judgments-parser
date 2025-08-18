@@ -67,7 +67,11 @@ public partial class LegislationParser
         QuotedTextEnricher quotedTextEnricher = new($"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
         quotedTextEnricher.EnrichDivisions(body);
 
-        var styles = DOCX.CSS.Extract(Document.Docx.MainDocumentPart, "#bill");
+            FootnoteEnricher footnoteEnricher = new FootnoteEnricher();
+            footnoteEnricher.EnrichBlocks(preamble);
+            footnoteEnricher.EnrichDivisions(body);
+
+            var styles = DOCX.CSS.Extract(Document.Docx.MainDocumentPart, "#bill");
 
         return new Lawmaker.Document
         {
