@@ -27,17 +27,16 @@ namespace UK.Gov.Legislation.Lawmaker
         // always leaves i in the right place; shouldn't return null, unless unhandled block type
         private IDivision ParseNextBodyDivision()
         {
+            if (Match(LdappTableBlock.Parse) is LdappTableBlock tableBlock)
+            {
+                return new WDummyDivision(tableBlock);
+            }
             HContainer hContainer = ParseLine();
             if (hContainer is not null)
             {
                 return hContainer;
             }
             IBlock block = Current();
-            if (block is WTable table)
-            {
-                i += 1;
-                return new WDummyDivision(table);
-            }
             if (block is NationalArchives.TableOfContents toc)
             {
                 i += 1;
