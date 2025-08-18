@@ -78,6 +78,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hContainer != null)
                 return hContainer;
 
+            hContainer = ParseAndMemoize(line, "Signatures", ParseSignatures);
+            if (hContainer != null)
+                return hContainer;
+
             hContainer = ParseAndMemoize(line, "UnnumberedParagraph", ParseUnnumberedParagraph);
             if (hContainer != null)
                 return hContainer;
@@ -234,8 +238,14 @@ namespace UK.Gov.Legislation.Lawmaker
 
             IDivision next = ParseNextBodyDivision();
 
-            if (next is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable table)
-                return [table];
+            if (next is WDummyDivision dummy && dummy.Contents.Count() == 1)
+            {
+
+                if (dummy.Contents.First() is WTable table)
+                    return [table];
+                if (dummy.Contents.First() is LdappTableBlock tableBlock)
+                    return [tableBlock];
+            }
             // UnknownLevels are treated as extra paragraphs of the previous division
             if (next is not UnnumberedLeaf && next is not UnknownLevel)
                 return null;
@@ -354,9 +364,9 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /*
-         * Attempts to identify the current line as one of a small number of provisions 
+         * Attempts to identify the current line as one of a small number of provisions
          * which can exist as the very first provision in the body of a document.
-         * Otherwise, returns null. 
+         * Otherwise, returns null.
          */
         private HContainer PeekBodyStartProvision()
         {
