@@ -58,7 +58,8 @@ Each document type follows this pattern:
 ```
 
 ### Schemas
-- `subschema.xsd` - XSD schema for Explanatory Memorandums
+Located in [schemas/](./schemas/):
+- `em-subschema.xsd` - XSD schema for Explanatory Memorandums
 - `ia-subschema.xsd` - XSD schema for Impact Assessments
 
 The appropriate schema is automatically selected based on the document type during validation.
@@ -68,7 +69,7 @@ Adding New Document Types
 
 1. Create a new folder under `src/leg/{type}/`
 2. Implement the required classes: `Helper.cs`, `Parser.cs`, `Metadata.cs`, `Header.cs`
-3. Create an XSD schema: `{type}-subschema.xsd`
+3. Create an XSD schema: `schemas/{type}-subschema.xsd`
 4. Add the schema as an embedded resource in `judgments.csproj`
 5. Update `Validator.cs` to handle the new document type
 6. Add any required CSS classes to `akn2html.xsl`

@@ -16,7 +16,7 @@ public class Validator {
         var assembly = Assembly.GetExecutingAssembly();
 
         // Load EM schemas
-        using (Stream stream1 = assembly.GetManifestResourceStream("leg.subschema.xsd")) {
+        using (Stream stream1 = assembly.GetManifestResourceStream("leg.em-subschema.xsd")) {
             using XmlReader reader1 = XmlReader.Create(stream1);
             EmSchemas.Add(Builder.ns, reader1);
         }
