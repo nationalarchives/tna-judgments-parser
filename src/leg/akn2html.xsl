@@ -60,6 +60,7 @@ h2 { font-size: inherit; font-weight: normal }
 section &gt; .level &gt; h2 { margin-left: 0.5in }
 table { border-collapse: collapse }
 th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
 td { vertical-align: top }
 span.fn { vertical-align: super; font-size: small }
 .footnote &gt; p:first-child &gt; .marker:first-child { vertical-align: super; font-size: small }
@@ -72,6 +73,19 @@ span.fn { vertical-align: super; font-size: small }
 .subheading1 { margin-left: 0.25in; margin-top: 0.5em; margin-bottom: 0.25em }
 .subheading2 { margin-left: 0.5in; margin-top: 0.25em; margin-bottom: 0.25em }
 
+/* Impact Assessment documents use Arial font for everything */
+article[data-doc-type="ImpactAssessment"] { font-family: Arial, sans-serif }
+article[data-doc-type="ImpactAssessment"] *,
+article[data-doc-type="ImpactAssessment"] p,
+article[data-doc-type="ImpactAssessment"] td,
+article[data-doc-type="ImpactAssessment"] th,
+article[data-doc-type="ImpactAssessment"] div,
+article[data-doc-type="ImpactAssessment"] span { font-family: Arial, sans-serif !important }
+
+/* Impact Assessment table borders should be solid, not dotted */
+article[data-doc-type="ImpactAssessment"] th,
+article[data-doc-type="ImpactAssessment"] td { border: thin solid }
+
 /* IA paragraph styles */
 p.ia-table-label { font-weight: bold; font-size: 10pt; margin: 2pt 8pt; color: #000000 }
 p.ia-table-text { font-size: 11pt; margin: 2pt 8pt; color: #000000 }
@@ -79,7 +93,7 @@ p.ia-table-notes { font-size: 9pt; margin: 3pt 8pt; color: #000000 }
 p.ia-head-label { font-weight: bold; font-size: 10pt; margin-top: 5pt; color: #000000 }
 p.ia-head-title { font-weight: bold; font-size: 14pt; color: #000000 }
 p.ia-head-dept { font-size: 11pt; margin-bottom: 6pt; color: #000000 }
-p.ia-title { font-size: 10pt; margin-left: 8pt; color: #000000 }
+p.ia-title { font-size: 10pt; background-color: #000000; color: #ffffff; font-weight: bold; margin: 0; padding: 8pt }
 p.ia-number { font-size: 10pt; margin-left: 8pt; color: #000000 }
 p.ia-stage { font-size: 11pt; color: #000000 }
 p.ia-soi { font-size: 11pt; color: #000000 }
@@ -98,11 +112,7 @@ td.ia-costs-low, td.ia-costs-high, td.ia-costs-best { text-align: right; font-si
 td.ia-benefits-low, td.ia-benefits-high, td.ia-benefits-best { text-align: right; font-size: 11pt }
 td.ia-costs-best, td.ia-benefits-best { font-weight: bold }
 
-/* IA specific fonts */
-.ia-table-label, .ia-table-text, .ia-table-notes, 
-.ia-head-label, .ia-head-title, .ia-head-dept,
-.ia-title, .ia-number, .ia-stage, .ia-soi, .ia-tom,
-.ia-sign-off { font-family: Arial, sans-serif }
+
 </style>
 <!--	
 td { position: relative; min-width: 2em; padding-left: 1em; padding-right: 1em; vertical-align: top }
@@ -117,7 +127,7 @@ td > p:last-child { margin-bottom: 0 }
 </xsl:template>
 
 <xsl:template match="doc">
-	<article id="doc">
+	<article id="doc" data-doc-type="{@name}">
 		<xsl:apply-templates />
 		<xsl:call-template name="footnotes" />
 	</article>
