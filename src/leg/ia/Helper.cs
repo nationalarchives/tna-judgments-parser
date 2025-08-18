@@ -30,26 +30,7 @@ class Helper {
     private static IXmlDocument Parse(WordprocessingDocument docx, bool simplify) {
         IDocument doc = ImpactAssessments.Parser.Parse(docx);
         
-        // Style analysis can be enabled for debugging by setting an environment variable
         var logger = Logging.Factory.CreateLogger<Helper>();
-        bool debugStyles = Environment.GetEnvironmentVariable("IA_DEBUG_STYLES") == "true";
-        if (debugStyles) {
-            var divided = doc as DividedDocument;
-            if (divided != null) {
-                Console.WriteLine("=== IA Document Style Analysis ===");
-                var uniqueStyles = new HashSet<string>();
-                foreach (var division in divided.Body.Take(10)) {
-                    if (division is ILeaf leaf) {
-                        foreach (var block in leaf.Contents.Take(3)) {
-                            if (block is ILine line && line.Style != null) {
-                                uniqueStyles.Add(line.Style);
-                            }
-                        }
-                    }
-                }
-                Console.WriteLine($"Unique styles found: {string.Join(", ", uniqueStyles.OrderBy(s => s))}");
-            }
-        }
         
         XmlDocument xml = Builder.Build(doc);
         docx.Dispose();
@@ -57,7 +38,7 @@ class Helper {
             Simplifier.Simplify(xml);
         
         // Apply IA-specific style mappings and log what we find
-        ApplyIAStyleMappings(xml, debugStyles);
+        ApplyIAStyleMappings(xml);
         
         // Re-enable validation but don't fail parsing
         try {
@@ -76,13 +57,11 @@ class Helper {
         return new XmlDocument_ { Document = xml };
     }
 
-    private static void ApplyIAStyleMappings(XmlDocument xml, bool debugMode = false) {
+    private static void ApplyIAStyleMappings(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
         var logger = Logging.Factory.CreateLogger<Helper>();
-        
-        // Since Word styles are not being preserved in the pipeline, 
-        // we'll use content-based detection to apply IA-specific CSS classes
+    
         
         var paragraphs = xml.SelectNodes("//akn:p", nsmgr);
         int classified = 0;
@@ -92,25 +71,31 @@ class Helper {
             string cssClass = null;
             
             // Detect IA-specific content patterns and assign appropriate classes
-            if (content.StartsWith("Title:") || content.Contains("<b>Title:</b>")) {
+            // Remove HTML tags for cleaner pattern matching
+            string cleanContent = content.Replace("<b>", "").Replace("</b>", "");
+            
+            if (cleanContent.StartsWith("Title:")) {
                 cssClass = "ia-head-label";
             }
-            else if (content.StartsWith("IA No:") || content.Contains("<b>IA No:</b>")) {
+            else if (cleanContent.StartsWith("IA No:")) {
                 cssClass = "ia-number";
             }
-            else if (content.StartsWith("Stage:") || content.Contains("<b>Stage:</b>")) {
+            else if (cleanContent.StartsWith("Stage:")) {
                 cssClass = "ia-stage";
             }
-            else if (content.StartsWith("Date:") || content.Contains("<b>Date</b>:")) {
+            else if (cleanContent.StartsWith("Date:")) {
                 cssClass = "ia-head-label";
             }
-            else if (content.StartsWith("Other departments") || content.Contains("<b>Other departments")) {
+            else if (cleanContent.StartsWith("Lead department or agency:")) {
                 cssClass = "ia-head-label";
             }
-            else if (content.StartsWith("Impact Assessment") || content == "Impact Assessment, The Home Office") {
+            else if (cleanContent.StartsWith("Other departments or agencies")) {
+                cssClass = "ia-head-label";
+            }
+            else if (cleanContent.StartsWith("Impact Assessment")) {
                 cssClass = "ia-title";
             }
-            else if (content.StartsWith("RPC Reference") || content.Contains("RPC Reference")) {
+            else if (cleanContent.Contains("RPC Reference")) {
                 cssClass = "ia-head-label";
             }
             else if (IsInHeaderTable(p)) {
@@ -122,13 +107,11 @@ class Helper {
                 classAttr.Value = cssClass;
                 p.Attributes.Append(classAttr);
                 classified++;
-                if (debugMode) {
-                    Console.WriteLine($"Applied IA class '{cssClass}' to: {content.Substring(0, Math.Min(50, content.Length))}...");
-                }
+
             }
         }
         
-        if (debugMode || classified > 0) {
+        if (classified > 0) {
             logger.LogInformation("Applied IA CSS classes to {Count} paragraphs", classified);
         }
     }
