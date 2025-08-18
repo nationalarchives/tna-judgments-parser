@@ -24,7 +24,7 @@ internal class Section : IBranch {
 
 internal class Subheading : IBranch {
 
-    public string Name => null;
+    public string Name => "level";
 
     public IFormattedText Number => null;
 

@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Xml;
 using System.Linq;
 
@@ -164,8 +165,62 @@ class Builder : AkN.Builder {
         }
     }
 
+
+
     protected override string MakeDivisionId(IDivision div) {
         return null;
+    }
+
+    protected override void AddDivision(XmlElement parent, IDivision div) {
+        if (div is UK.Gov.Legislation.Judgments.Parse.CrossHeading crossHeading) {
+            AddCrossHeading(parent, crossHeading);
+        } else if (div is Model.Subheading subheading) {
+            AddSubheading(parent, subheading);
+        } else {
+            base.AddDivision(parent, div);
+        }
+    }
+
+    private void AddCrossHeading(XmlElement parent, UK.Gov.Legislation.Judgments.Parse.CrossHeading crossHeading) {
+        XmlElement level = doc.CreateElement("level", ns);
+        level.SetAttribute("class", "crossheading");
+        parent.AppendChild(level);
+        
+        if (crossHeading.Heading is not null) {
+            XmlElement heading = doc.CreateElement("heading", ns);
+            level.AppendChild(heading);
+            foreach (var inline in crossHeading.Heading.Contents)
+                AddInline(heading, inline);
+        }
+        
+        AddDivisions(level, crossHeading.Children);
+    }
+
+    private void AddSubheading(XmlElement parent, Model.Subheading subheading) {
+        XmlElement level = doc.CreateElement("level", ns);
+        // Determine subheading level based on context or style
+        string subheadingClass = DetermineSubheadingClass(subheading);
+        level.SetAttribute("class", subheadingClass);
+        parent.AppendChild(level);
+        
+        if (subheading.Heading is not null) {
+            XmlElement heading = doc.CreateElement("heading", ns);
+            level.AppendChild(heading);
+            foreach (var inline in subheading.Heading.Contents)
+                AddInline(heading, inline);
+        }
+        
+        AddDivisions(level, subheading.Children);
+    }
+
+    private string DetermineSubheadingClass(Model.Subheading subheading) {
+        // Check the heading's style to determine if it's level 1 or level 2
+        if (subheading.Heading?.Style == "IALevel1Subheading")
+            return "subheading1";
+        else if (subheading.Heading?.Style == "IALevel2Subheading")
+            return "subheading2";
+        else
+            return "subheading1"; // default
     }
 
     /* annexes */
