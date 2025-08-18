@@ -15,6 +15,10 @@ class Metadata : DocumentMetadata {
 
     internal static Metadata Make(List<IBlock> header, WordprocessingDocument doc) {
         string name = HeaderSplitter.GetDocumentType(header);
+        // If header parsing fails to identify IA, default to ImpactAssessment since we're in the IA parser
+        if (string.IsNullOrEmpty(name)) {
+            name = "ImpactAssessment";
+        }
         string number = HeaderSplitter.GetDocumentNumber(header);
         string uri = number is null ? null : RegulationNumber.MakeURI(number) + "/ia";
         // Tuple<string, int> altNum = RegulationNumber.ExtractAltNumber(number);

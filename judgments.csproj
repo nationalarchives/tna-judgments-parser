@@ -13,6 +13,7 @@
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <!-- https://learn.microsoft.com/en-us/dotnet/core/compatibility/sdk/8.0/source-link -->
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +29,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src/leg/subschema.xsd">
       <LogicalName>leg.subschema.xsd</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src/leg/ia-subschema.xsd">
+      <LogicalName>leg.ia-subschema.xsd</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 

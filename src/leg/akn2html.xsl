@@ -66,6 +66,43 @@ span.fn { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
 .blockContainer &gt; p:first-child &gt; .num:first-child { position: absolute; margin-left: -0.25in }
 .attachment { margin-top: 2em }
+
+/* Impact Assessment specific styles */
+.crossheading { font-weight: bold; margin-top: 1em; margin-bottom: 0.5em; text-align: left }
+.subheading1 { margin-left: 0.25in; margin-top: 0.5em; margin-bottom: 0.25em }
+.subheading2 { margin-left: 0.5in; margin-top: 0.25em; margin-bottom: 0.25em }
+
+/* IA paragraph styles */
+p.ia-table-label { font-weight: bold; font-size: 10pt; margin: 2pt 8pt; color: #000000 }
+p.ia-table-text { font-size: 11pt; margin: 2pt 8pt; color: #000000 }
+p.ia-table-notes { font-size: 9pt; margin: 3pt 8pt; color: #000000 }
+p.ia-head-label { font-weight: bold; font-size: 10pt; margin-top: 5pt; color: #000000 }
+p.ia-head-title { font-weight: bold; font-size: 14pt; color: #000000 }
+p.ia-head-dept { font-size: 11pt; margin-bottom: 6pt; color: #000000 }
+p.ia-title { font-size: 10pt; margin-left: 8pt; color: #000000 }
+p.ia-number { font-size: 10pt; margin-left: 8pt; color: #000000 }
+p.ia-stage { font-size: 11pt; color: #000000 }
+p.ia-soi { font-size: 11pt; color: #000000 }
+p.ia-tom { font-size: 11pt; color: #000000 }
+p.ia-sign-off { font-weight: bold; font-style: italic; margin: 6pt 32pt; color: #000000 }
+
+/* IA table styles */
+table.ia-heading { border: 1px solid #008080; background-color: #008080; color: white }
+table.ia-box { border: 1px solid black }
+table.ia-costs, table.ia-benefits { border: 1px solid black; margin: 6pt 0 }
+table.ia-policy-options { border: 1px solid black; margin: 6pt 0 }
+
+td.ia-label { font-weight: bold; font-size: 10pt; padding: 2pt 0; color: #000000 }
+td.ia-data { font-size: 11pt; padding: 2pt 0; color: #000000 }
+td.ia-costs-low, td.ia-costs-high, td.ia-costs-best { text-align: right; font-size: 11pt }
+td.ia-benefits-low, td.ia-benefits-high, td.ia-benefits-best { text-align: right; font-size: 11pt }
+td.ia-costs-best, td.ia-benefits-best { font-weight: bold }
+
+/* IA specific fonts */
+.ia-table-label, .ia-table-text, .ia-table-notes, 
+.ia-head-label, .ia-head-title, .ia-head-dept,
+.ia-title, .ia-number, .ia-stage, .ia-soi, .ia-tom,
+.ia-sign-off { font-family: Arial, sans-serif }
 </style>
 <!--	
 td { position: relative; min-width: 2em; padding-left: 1em; padding-right: 1em; vertical-align: top }
