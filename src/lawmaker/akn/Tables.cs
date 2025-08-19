@@ -66,11 +66,13 @@ namespace UK.Gov.Legislation.Lawmaker
                     // first caption is inserted as heading
                     // var first = captions.First();
                     XmlElement heading = CreateAndAppend("heading", tblock);
+                    heading.SetAttribute("class", AknNamespace, "left");
                     heading.InnerText = captions.First().TextContent;
                     foreach (WLine caption in captions.Skip(1))
                     {
                         XmlElement subheading = CreateAndAppend("subheading", tblock);
                         subheading.InnerText = caption.TextContent;
+                        subheading.SetAttribute("class", AknNamespace, "left");
                     };
                     // others are inserted as subheading
                 }
