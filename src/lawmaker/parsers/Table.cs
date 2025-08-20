@@ -78,10 +78,60 @@ record LdappTableBlock(
     {
         if (parser.Advance() is WTable table)
         {
-            return table;
+            return EnrichTable(table);
         }
         return null;
     }
+
+    private static WTable EnrichTable(WTable table)
+    {
+        IEnumerator<WRow> rows = table.TypedRows.GetEnumerator();
+        List<WRow> enriched = new List<WRow>();
+        while (rows.MoveNext())
+        {
+            WRow before = rows.Current;
+            WRow after = EnrichRow(before);
+            enriched.Add(after);
+            if (!object.ReferenceEquals(before, after))
+            {
+                while (rows.MoveNext())
+                    enriched.Add(rows.Current);
+                return new WTable(table.Main, table.Properties, table.Grid, enriched);
+            }
+        }
+        return table;
+    }
+
+    private static WRow EnrichRow(WRow row)
+    {
+        IEnumerator<WCell> cells = row.TypedCells.GetEnumerator();
+        List<WCell> enriched = new List<WCell>();
+        while (cells.MoveNext())
+        {
+            WCell before = cells.Current;
+            WCell after = EnrichCell(before);
+            enriched.Add(after);
+            if (!object.ReferenceEquals(before, after))
+            {
+                while (cells.MoveNext())
+                    enriched.Add(cells.Current);
+                return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, enriched);
+            }
+        }
+        return row;
+    }
+
+    private static WCell EnrichCell(WCell cell)
+    {
+        TableCellParser parser = new TableCellParser(cell);
+
+        if (BlockList.Parse(parser) is BlockList blockList)
+        {
+            return cell;
+        }
+        return cell;
+    }
+
     private List<IBlock> ToList()
     {
         List<IBlock> list = [];
