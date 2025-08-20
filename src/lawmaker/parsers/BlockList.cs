@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.CaseLaw.Parse;
 
 class BlockList : IBlock
 {
-    public IBlock? Intro { get; internal init; }
+    public WLine? Intro { get; internal init; }
 
     public IList<IBlock>? Children { get; internal init; }
 
@@ -26,16 +27,31 @@ class BlockList : IBlock
         if (block is not WLine line)
             return null;
 
-        IBlock? intro = null;
-        if (line is not WOldNumberedParagraph) // TODO: Handle tabbed nums here
-            intro = parser.Advance();
+        WLine? intro = null;
+        if (line is not WOldNumberedParagraph && !BlockListItem.IsNumberedWithTab(line))
+            intro = parser.Advance() as WLine;
 
+        WLine leader = intro;
         List<IBlock> children = [];
 
         while (!parser.IsAtEnd())
         {
+            IBlock currentBlock = parser.Current();
+            if (currentBlock is not WLine currentLine) break;
+
+            if (leader != null)
+            {
+                float leaderIndent = OptimizedParser.GetEffectiveIndent(leader);
+                float currentIndent = OptimizedParser.GetEffectiveIndent(currentLine);
+                if (currentIndent <= leaderIndent - 0.2f) break;
+            }
+
             if (BlockListItem.Parse(parser) is BlockListItem blockListItem)
+            {
+                if (children.Count == 0) leader = blockListItem.Contents.First() as WLine;
                 children.Add(blockListItem);
+
+            }
             else
                 break;
         }
@@ -46,11 +62,11 @@ class BlockList : IBlock
     }
 }
 
-internal class BlockListItem : IBlock
+    internal class BlockListItem : IBlock
 {
     public IFormattedText? Number { get; internal set; }
 
-    public IList<IBlock> Children { get; internal init; }
+    public IList<IBlock> Contents { get; internal init; }
 
     internal static BlockListItem? Parse(IParser parser)
     {
@@ -61,26 +77,62 @@ internal class BlockListItem : IBlock
 
     private static BlockListItem? ParseBlockListItem(IParser parser)
     {
+        IFormattedText? number = null;
+        List<IBlock> contents = [];
+
+        // Handle first line
         IBlock block = parser.Advance();
         if (block is not WLine line)
             return null;
 
-        IFormattedText? number = null;
-        IList<IBlock> children = [];
         if (line is WOldNumberedParagraph np)
         {
             number = np.Number;
-            children = [WLine.RemoveNumber(np)];
+            line = WLine.RemoveNumber(np);
         }
-        else if (line.Contents.Count() >= 3 && line.Contents.First() is IFormattedText ft && line.Contents.Skip(1).First() is WTab)
+        else if (IsNumberedWithTab(line))
         {
-            number = ft;
-            children = [new WLine(line, line.Contents.Skip(2))];
+            number = line.Contents.First() as IFormattedText;
+            line = new WLine(line, line.Contents.Skip(2));
         }
-        if (children.Count == 0)
+        contents.Add(line);
+
+        // Handle subsequent lines
+        float indent = OptimizedParser.GetEffectiveIndent(line);
+
+        while (!parser.IsAtEnd())
+        {
+            int save = parser.Save();
+            IBlock nextBlock = parser.Current();
+            if (nextBlock is not WLine nextLine)
+                break;
+
+            float currentIndent = OptimizedParser.GetEffectiveIndent(nextLine);
+            if (currentIndent <= indent + 0.2f) // TODO: handle extra paragraphs
+            {
+                parser.Restore(save);
+                break;
+            }
+
+            if (BlockList.Parse(parser) is BlockList blockList)
+                contents.Add(blockList);
+        }
+
+        if (contents.Count == 0)
             return null;
 
-        return new BlockListItem { Number = number, Children = children };
+        return new BlockListItem { Number = number, Contents = contents };
+    }
+
+    internal static bool IsNumberedWithTab(WLine line)
+    {
+        IEnumerable<IInline> contents = line.Contents;
+        return contents.Count() >= 3 && contents.First() is IFormattedText && contents.Skip(1).First() is WTab;
+    }
+
+    internal float GetEffectiveIndent()
+    {
+        return OptimizedParser.GetEffectiveIndent(Contents.First() as WLine);
     }
 
 }

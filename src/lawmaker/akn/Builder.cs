@@ -282,7 +282,7 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement e = CreateAndAppend("item", parent);
             if (item.Number is not null)
                 AddAndWrapText(e, "num", item.Number);
-            AddBlocks(e, item.Children);
+            AddBlocks(e, item.Contents);
         }
 
     }
