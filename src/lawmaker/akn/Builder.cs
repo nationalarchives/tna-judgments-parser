@@ -1,9 +1,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
+using DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -212,6 +214,14 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     AddDivision(parent, wrapper.Division);
                 }
+                else if (block is BlockList blockList)
+                {
+                    AddBlockList(parent, blockList);
+                }
+                else if (block is BlockListItem item)
+                {
+                    AddBlockListItem(parent, item);
+                }
                 else
                 {
                     throw new Exception(block.GetType().ToString());
@@ -220,7 +230,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         protected override XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model)
-        
+
         {
             // remove leading and trailing whitespace from name.
             return base.AddAndWrapText(parent, name.Trim(), model);
@@ -351,6 +361,24 @@ namespace UK.Gov.Legislation.Lawmaker
             blocks(authorialNote, content);
         }
 
+        protected void AddBlockList(XmlElement parent, BlockList blockList)
+        {
+            XmlElement bl = CreateAndAppend("blockList", parent);
+            if (blockList.Intro is not null)
+            {
+                XmlElement intro = CreateAndAppend("listIntroduction", bl);
+                AddBlocks(intro, [blockList.Intro]);
+            }
+            AddBlocks(bl, blockList.Children);
+        }
+
+        protected void AddBlockListItem(XmlElement parent, BlockListItem item)
+        {
+            XmlElement e = CreateAndAppend("item", parent);
+            if (item.Number is not null)
+                AddAndWrapText(e, "num", item.Number);
+            AddBlocks(e, item.Children);
+        }
 
     }
 
