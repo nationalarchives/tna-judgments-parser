@@ -65,8 +65,8 @@ class HardNumbers {
 
     public static readonly string[] NumberFormats = new string[] {
         @"\d+\.",              @"\(?\d+\)",
-        @"[A-Z]\.",            @"\(?[A-Z]+\)",
-        @"[a-z]\.",            @"\(?[a-z]+\)",
+        @"[A-Z]\.",            @"\(?[A-Z]{1,3}\)",
+        @"[a-z]\.",            @"\(?[a-z]{1,3}\)",
         @"[ivx]+\.",           @"\(?[ivx]+\)",
         // compound
         @"[1-9]\d*\.\d+\.?",        @"\(?[1-9]\d*\.\d+\)",
@@ -75,6 +75,7 @@ class HardNumbers {
         // legislation
         @"[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\.",      // section
         @"\(?[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\)",   // subsection
+        @"\(?[ivx]+[a-z]\)",                     // e.g., (iiia)
 
     }.Select(s => $@"^({QuotedStructureStart}{s})(\s|$)")
     .Append($@"^({QuotedStructureStart}[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\.)—") // em dash, perhaps it could be added to previous line?
