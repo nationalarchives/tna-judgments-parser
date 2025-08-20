@@ -26,7 +26,7 @@ class TableCellParser : IParser
     // Get the current block the parser is at
     public IBlock Current() => Contents[i];
 
-    public bool IsAtEnd() => i > Contents.Count;
+    public bool IsAtEnd() => i >= Contents.Count;
 
 
     // Get the block that is `num` positions away.

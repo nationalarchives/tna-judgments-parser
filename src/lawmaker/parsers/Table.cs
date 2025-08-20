@@ -92,14 +92,8 @@ record LdappTableBlock(
             WRow before = rows.Current;
             WRow after = EnrichRow(before);
             enriched.Add(after);
-            if (!object.ReferenceEquals(before, after))
-            {
-                while (rows.MoveNext())
-                    enriched.Add(rows.Current);
-                return new WTable(table.Main, table.Properties, table.Grid, enriched);
-            }
         }
-        return table;
+        return new WTable(table.Main, table.Properties, table.Grid, enriched);
     }
 
     private static WRow EnrichRow(WRow row)
@@ -111,25 +105,27 @@ record LdappTableBlock(
             WCell before = cells.Current;
             WCell after = EnrichCell(before);
             enriched.Add(after);
-            if (!object.ReferenceEquals(before, after))
-            {
-                while (cells.MoveNext())
-                    enriched.Add(cells.Current);
-                return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, enriched);
-            }
         }
-        return row;
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, enriched);
     }
 
     private static WCell EnrichCell(WCell cell)
     {
         TableCellParser parser = new TableCellParser(cell);
+        List<IBlock> enriched = new List<IBlock>();
 
-        if (BlockList.Parse(parser) is BlockList blockList)
+        while (!parser.IsAtEnd())
         {
-            return cell;
+            if (BlockList.Parse(parser) is BlockList blockList)
+                enriched.Add(blockList);
+            else
+                enriched.Add(parser.Current());
+            
+            if (!parser.IsAtEnd())
+                parser.Advance();
         }
-        return cell;
+
+        return new WCell(cell.Row, cell.Props, enriched);
     }
 
     private List<IBlock> ToList()
