@@ -4,7 +4,7 @@ using UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
-
+    /*
     internal class BlockList : IBlock
     {
         public IBlock Intro { get; internal init; }
@@ -13,7 +13,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public string Name { get; internal init; } = "blockList";
 
-    }
+    }*/
 
     internal interface IBlockListItem : IBlock
     {
