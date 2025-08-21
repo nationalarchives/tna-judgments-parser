@@ -2,8 +2,10 @@
 #nullable enable
 namespace UK.Gov.Legislation.Lawmaker;
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
@@ -31,29 +33,36 @@ class BlockList : IBlock
         if (line is not WOldNumberedParagraph && !BlockListItem.IsNumberedWithTab(line))
             intro = parser.Advance() as WLine;
 
-        WLine leader = intro;
+        WLine? leader = intro;
         List<IBlock> children = [];
 
         while (!parser.IsAtEnd())
         {
-            IBlock currentBlock = parser.Current();
-            if (currentBlock is not WLine currentLine) break;
+            // Skip over empty lines to ensure they do not influence parsing. 
+            parser.AdvanceWhile(block => block.IsEmptyLine());
 
+            IBlock currentBlock = parser.Current();
+            if (currentBlock is not WLine currentLine) 
+                break;
+
+            // Stop parsing BlockListItem children upon reaching a line which is 
+            // indented further to the left than the previous sibling.
             if (leader != null)
             {
                 float leaderIndent = OptimizedParser.GetEffectiveIndent(leader);
                 float currentIndent = OptimizedParser.GetEffectiveIndent(currentLine);
-                if (currentIndent <= leaderIndent - 0.2f) break;
+                if (currentIndent <= leaderIndent - 0.2f) 
+                    break;
             }
 
             if (BlockListItem.Parse(parser) is BlockListItem blockListItem)
             {
-                if (children.Count == 0) leader = blockListItem.Contents.First() as WLine;
+                // Update leader to point to the start of the previous sibling
+                leader = blockListItem.Contents.First() as WLine;
                 children.Add(blockListItem);
-
+                continue;
             }
-            else
-                break;
+            break;
         }
 
         if (children.Count == 0)
@@ -66,7 +75,7 @@ class BlockList : IBlock
 {
     public IFormattedText? Number { get; internal set; }
 
-    public IList<IBlock> Contents { get; internal init; }
+    public required IList<IBlock> Contents { get; internal init; }
 
     internal static BlockListItem? Parse(IParser parser)
     {
@@ -78,7 +87,7 @@ class BlockList : IBlock
     private static BlockListItem? ParseBlockListItem(IParser parser)
     {
         IFormattedText? number = null;
-        List<IBlock> contents = [];
+        IList<IBlock> contents = [];
 
         // Handle first line
         IBlock block = parser.Advance();
@@ -117,22 +126,47 @@ class BlockList : IBlock
             if (BlockList.Parse(parser) is BlockList blockList)
                 contents.Add(blockList);
         }
+        contents = TidyBlockListContents(contents);
 
         if (contents.Count == 0)
             return null;
-
         return new BlockListItem { Number = number, Contents = contents };
+    }
+
+    /* If this BlockListItem contains a nested BlockList as a child element, 
+     * and this nested BlockList has no listIntroduction,
+     * move the first WLine into the listIntroduction of the nested BlockList:
+     * 
+     *  <item>                  <item>
+     *       <num/>                  <num/>
+     *       *LINE*                  <blockList>     
+     *       <blockList>                 <listIntroduction> 
+     *           <item/>     --->            *LINE*
+     *           <item/>                 </listIntroduction>
+     *       </blockList>                <item/>
+     *  </item>                          <item/>
+     *                               </blockList>
+     *                           </item>
+     */
+    internal static IList<IBlock> TidyBlockListContents(IList<IBlock> contents)
+    {
+        if (contents.Count() < 2)
+            return contents;
+        if (contents.First() is not WLine firstLine)
+            return contents;
+        if (contents.Skip(1).First() is not BlockList firstBlockList)
+            return contents;
+        if (firstBlockList.Intro is not null)
+            return contents;
+
+        BlockList tidiedBlockList = new BlockList { Intro = firstLine, Children = firstBlockList.Children };
+        return contents.Skip(2).Prepend(tidiedBlockList).ToList();
     }
 
     internal static bool IsNumberedWithTab(WLine line)
     {
         IEnumerable<IInline> contents = line.Contents;
         return contents.Count() >= 3 && contents.First() is IFormattedText && contents.Skip(1).First() is WTab;
-    }
-
-    internal float GetEffectiveIndent()
-    {
-        return OptimizedParser.GetEffectiveIndent(Contents.First() as WLine);
     }
 
 }

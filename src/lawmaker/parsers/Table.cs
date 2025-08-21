@@ -111,7 +111,7 @@ record LdappTableBlock(
 
     private static WCell EnrichCell(WCell cell)
     {
-        TableCellParser parser = new TableCellParser(cell);
+        IParser parser = new TableCellParser(cell);
         List<IBlock> enriched = new List<IBlock>();
 
         while (!parser.IsAtEnd())

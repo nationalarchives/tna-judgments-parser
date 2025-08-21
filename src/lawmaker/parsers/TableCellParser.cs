@@ -35,14 +35,6 @@ class TableCellParser : IParser
     // for checking within the bounds of the Document Body.
     public IBlock Peek(int num = 1) => Contents[i + num];
 
-    // Move the parser forward and return the block the parser was on when `Advance()` was called.
-    public IBlock Advance()
-    {
-        IBlock current = Current();
-        i++;
-        return current;
-    }
-
     // Advance the parser forward by `num` and returns to blocks passed.
     public IEnumerable<IBlock> Advance(int num)
     {
