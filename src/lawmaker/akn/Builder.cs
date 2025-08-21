@@ -272,7 +272,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (blockList.Intro is not null)
             {
                 XmlElement intro = CreateAndAppend("listIntroduction", bl);
-                AddBlocks(intro, [blockList.Intro]);
+                AddInlines(intro, blockList.Intro.Contents);
             }
             AddBlocks(bl, blockList.Children);
         }
