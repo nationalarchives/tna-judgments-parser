@@ -28,10 +28,18 @@ class BlockList : IBlock
         IBlock block = parser.Current();
         if (block is not WLine line)
             return null;
+        // We expect that BlockLists are always left-aligned.
+        if (line.GetEffectiveAlignment() == AlignmentValues.Center)
+            return null;
+        if (line.GetEffectiveAlignment() == AlignmentValues.Right)
+            return null;
 
         WLine? intro = null;
         if (line is not WOldNumberedParagraph && !BlockListItem.IsNumberedWithTab(line))
-            intro = parser.Advance() as WLine;
+        {
+            parser.Advance();
+            if (!block.IsEmptyLine()) intro = line;
+        }
 
         WLine? leader = intro;
         List<IBlock> children = [];
@@ -40,24 +48,30 @@ class BlockList : IBlock
         {
             // Skip over empty lines to ensure they do not influence parsing. 
             parser.AdvanceWhile(block => block.IsEmptyLine());
+            if (parser.IsAtEnd()) 
+                break;
 
             IBlock currentBlock = parser.Current();
             if (currentBlock is not WLine currentLine) 
                 break;
 
-            // Stop parsing BlockListItem children upon reaching a line which is 
-            // indented further to the left than the previous sibling.
+            // Stop parsing BlockListItem children upon reaching a line with insufficient indentation.
             if (leader != null)
             {
                 float leaderIndent = OptimizedParser.GetEffectiveIndent(leader);
                 float currentIndent = OptimizedParser.GetEffectiveIndent(currentLine);
-                if (currentIndent <= leaderIndent - 0.2f) 
+                float threshold = 0.1f;
+                // Previous sibling case - current line must have same or greater indent
+                if (children.Count > 0 && !(currentIndent >= leaderIndent - threshold))
+                    break;
+                // listIntroduction case - current line have greater indent
+                if (children.Count == 0 && !(currentIndent > leaderIndent + threshold))
                     break;
             }
 
             if (BlockListItem.Parse(parser) is BlockListItem blockListItem)
             {
-                // Update leader to point to the start of the previous sibling
+                // Update leader to point to this BlockListItem child before advancing to the next.
                 leader = blockListItem.Contents.First() as WLine;
                 children.Add(blockListItem);
                 continue;
@@ -116,8 +130,9 @@ class BlockList : IBlock
             if (nextBlock is not WLine nextLine)
                 break;
 
+            float threshold = 0.1f;
             float currentIndent = OptimizedParser.GetEffectiveIndent(nextLine);
-            if (currentIndent <= indent + 0.2f) // TODO: handle extra paragraphs
+            if (currentIndent <= indent + threshold) // TODO: handle extra paragraphs
             {
                 parser.Restore(save);
                 break;
