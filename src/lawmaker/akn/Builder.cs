@@ -375,8 +375,12 @@ namespace UK.Gov.Legislation.Lawmaker
         protected void AddBlockListItem(XmlElement parent, BlockListItem item)
         {
             XmlElement e = CreateAndAppend("item", parent);
-            if (item.Number is not null)
-                AddAndWrapText(e, "num", item.Number);
+            // Handle Word's weird bullet character
+            if (item.Number is not null && item.Number is WText wText)
+            {
+                string newNum = new string(wText.Text.Select(c => ((uint)c == 61623) ? '\u2022' : c).ToArray());
+                AddAndWrapText(e, "num", new WText(newNum, wText.properties));
+            }
             AddBlocks(e, item.Contents);
         }
 
