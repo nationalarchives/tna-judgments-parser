@@ -9,7 +9,6 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-using UK.Gov.NationalArchives.CaseLaw.Parse;
 
 // This class currently breaks from the convention of putting all the parsing in partial class LegislationParser.
 // I think it's ultimately a mistake to have such a big class spread over so many different files and I believe
@@ -78,53 +77,32 @@ record LdappTableBlock(
     {
         if (parser.Advance() is WTable table)
         {
-            return EnrichTable(table);
+            return WTable.Enrich(table, ParseTableCell);
         }
         return null;
     }
 
-    private static WTable EnrichTable(WTable table)
-    {
-        IEnumerator<WRow> rows = table.TypedRows.GetEnumerator();
-        List<WRow> enriched = new List<WRow>();
-        while (rows.MoveNext())
-        {
-            WRow before = rows.Current;
-            WRow after = EnrichRow(before);
-            enriched.Add(after);
-        }
-        return new WTable(table.Main, table.Properties, table.Grid, enriched);
-    }
-
-    private static WRow EnrichRow(WRow row)
-    {
-        IEnumerator<WCell> cells = row.TypedCells.GetEnumerator();
-        List<WCell> enriched = new List<WCell>();
-        while (cells.MoveNext())
-        {
-            WCell before = cells.Current;
-            WCell after = EnrichCell(before);
-            enriched.Add(after);
-        }
-        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, enriched);
-    }
-
-    private static WCell EnrichCell(WCell cell)
+    // Creates BlockLists from structured content inside table cells (if any).
+    private static WCell ParseTableCell(WCell cell)
     {
         IParser parser = new TableCellParser(cell);
         List<IBlock> enriched = new List<IBlock>();
 
         while (!parser.IsAtEnd())
         {
+            // Strip all empty lines from the cell, with a caveat:
+            // Leave a single empty line if the cell consists entirely of empty lines.
+            if (parser.Current().IsEmptyLine() && enriched.Count() > 0)
+            {
+                parser.Advance();
+                continue;
+            }
+
             if (BlockList.Parse(parser) is BlockList blockList)
                 enriched.Add(blockList);
             else
-                enriched.Add(parser.Current());
-            
-            if (!parser.IsAtEnd())
-                parser.Advance();
+                enriched.Add(parser.Advance());
         }
-
         return new WCell(cell.Row, cell.Props, enriched);
     }
 
