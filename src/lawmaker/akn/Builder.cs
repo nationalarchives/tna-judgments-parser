@@ -1,9 +1,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
+using DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -228,6 +230,14 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     AddDivision(parent, wrapper.Division);
                 }
+                else if (block is BlockList blockList)
+                {
+                    AddBlockList(parent, blockList);
+                }
+                else if (block is BlockListItem item)
+                {
+                    AddBlockListItem(parent, item);
+                }
                 else
                 {
                     throw new Exception(block.GetType().ToString());
@@ -288,6 +298,28 @@ namespace UK.Gov.Legislation.Lawmaker
             blocks(authorialNote, content);
         }
 
+        protected void AddBlockList(XmlElement parent, BlockList blockList)
+        {
+            XmlElement bl = CreateAndAppend("blockList", parent);
+            if (blockList.Intro is not null)
+            {
+                XmlElement intro = CreateAndAppend("listIntroduction", bl);
+                AddInlines(intro, blockList.Intro.Contents);
+            }
+            AddBlocks(bl, blockList.Children);
+        }
+
+        protected void AddBlockListItem(XmlElement parent, BlockListItem item)
+        {
+            XmlElement e = CreateAndAppend("item", parent);
+            // Handle Word's weird bullet character
+            if (item.Number is not null && item.Number is WText wText)
+            {
+                string newNum = new string(wText.Text.Select(c => ((uint)c == 61623) ? '\u2022' : c).ToArray());
+                AddAndWrapText(e, "num", new WText(newNum, wText.properties));
+            }
+            AddBlocks(e, item.Contents);
+        }
 
     }
 

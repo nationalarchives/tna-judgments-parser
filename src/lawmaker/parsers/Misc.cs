@@ -15,8 +15,8 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class LegislationParser
     {
 
-        private int Save() => i;
-        private void Restore(int save) => i = save;
+        internal int Save() => i;
+        internal void Restore(int save) => i = save;
         // Get the current block the parser is at
         internal IBlock Current() => Document.Body[i].Block;
         // Get the block that is `num` positions away.

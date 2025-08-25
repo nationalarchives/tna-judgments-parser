@@ -9,7 +9,6 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-using UK.Gov.NationalArchives.CaseLaw.Parse;
 
 // This class currently breaks from the convention of putting all the parsing in partial class LegislationParser.
 // I think it's ultimately a mistake to have such a big class spread over so many different files and I believe
@@ -78,10 +77,35 @@ record LdappTableBlock(
     {
         if (parser.Advance() is WTable table)
         {
-            return table;
+            return WTable.Enrich(table, ParseTableCell);
         }
         return null;
     }
+
+    // Creates BlockLists from structured content inside table cells (if any).
+    private static WCell ParseTableCell(WCell cell)
+    {
+        IParser parser = new TableCellParser(cell);
+        List<IBlock> enriched = new List<IBlock>();
+
+        while (!parser.IsAtEnd())
+        {
+            // Strip all empty lines from the cell, with a caveat:
+            // Leave a single empty line if the cell consists entirely of empty lines.
+            if (parser.Current().IsEmptyLine() && enriched.Count() > 0)
+            {
+                parser.Advance();
+                continue;
+            }
+
+            if (BlockList.Parse(parser) is BlockList blockList)
+                enriched.Add(blockList);
+            else
+                enriched.Add(parser.Advance());
+        }
+        return new WCell(cell.Row, cell.Props, enriched);
+    }
+
     private List<IBlock> ToList()
     {
         List<IBlock> list = [];

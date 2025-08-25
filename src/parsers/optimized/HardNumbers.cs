@@ -37,12 +37,21 @@ class HardNumbers {
     }
 
     private BlockWithBreak Extract1(BlockWithBreak bb) {
-        if (bb.Block is not WLine line)
-            return bb;
-        WOldNumberedParagraph removed = ExtractHardNumber(line);
-        if (removed is null)
-            return bb;
+        IBlock removed = ExtractBlock(bb.Block);
         return new BlockWithBreak { Block = removed, LineBreakBefore = bb.LineBreakBefore };
+    }
+
+    private IBlock ExtractBlock(IBlock block)
+    {
+        if (block is WLine line)
+        {
+            WOldNumberedParagraph np = ExtractHardNumber(line);
+            if (np is not null && np.Contents.Count() > 0)
+                return np;
+        }
+        if (block is WTable table)
+            return WTable.Enrich(table, ExtractTableCell);
+        return block;
     }
 
     private WOldNumberedParagraph ExtractHardNumber(WLine line) {
@@ -57,6 +66,19 @@ class HardNumbers {
                 return removed;
         }
         return null;
+    }
+
+    private WCell ExtractTableCell(WCell cell)
+    {
+        IEnumerator<IBlock> contents = cell.Contents.GetEnumerator();
+        List<IBlock> extracted = new List<IBlock>();
+        while (contents.MoveNext())
+        {
+            IBlock before = contents.Current;
+            IBlock after = ExtractBlock(before);
+            extracted.Add(after);
+        }
+        return new WCell(cell.Row, cell.Props, extracted);
     }
 
     public static readonly string PlainNumberFormat = @"^[“""]?\d+$";
