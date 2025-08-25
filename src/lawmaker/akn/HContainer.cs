@@ -40,6 +40,9 @@ namespace UK.Gov.Legislation.Lawmaker
                     level = CreateAndAppend("hcontainer", parent);
                     level.SetAttribute("name", name);
                     break;
+                case "blockContainer":
+                    level = CreateAndAppend("blockContainer", parent);
+                    break;
                 default:
                     level = CreateAndAppend(name, parent);
                     break;
@@ -70,6 +73,14 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hc is Schedule schedule)
             {
                 AddReferenceNote(number, schedule.ReferenceNote);
+            }
+            else if (hc is ExplanatoryNote explanatoryNote)
+            {
+                AddSubheading(level, explanatoryNote.Subheading);
+            }
+            else if (hc is CommencementHistory commencementHistory)
+            {
+                AddSubheading(level, commencementHistory.Subheading);
             }
             if (hc is IBranch branch)
             {
@@ -104,6 +115,13 @@ namespace UK.Gov.Legislation.Lawmaker
             if (heading is null)
                 return;
             Block(parent, heading, "heading");
+        }
+        
+        private void AddSubheading(XmlElement parent, ILine subheading)
+        {
+            if (subheading is null)
+                return;
+            Block(parent, subheading, "subheading");
         }
 
         private new void AddIntro(XmlElement level, IBranch branch)
