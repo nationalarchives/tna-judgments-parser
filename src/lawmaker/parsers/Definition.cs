@@ -10,7 +10,7 @@ using UK.Gov.NationalArchives.Enrichment;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
         private static string defPattern;

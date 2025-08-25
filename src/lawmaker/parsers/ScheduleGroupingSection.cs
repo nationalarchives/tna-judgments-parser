@@ -6,7 +6,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
         private HContainer ParseScheduleGroupingSection(WLine line)
