@@ -729,7 +729,7 @@ abstract class Builder {
     protected virtual void AddFootnote(XmlElement parent, IFootnote fn) {
         XmlElement authorialNote = doc.CreateElement("authorialNote", ns);
         parent.AppendChild(authorialNote);
-        authorialNote.SetAttribute("class", ns, "footnote");
+        authorialNote.SetAttribute("class", "footnote");
         authorialNote.SetAttribute("marker", fn.Marker);
         blocks(authorialNote, fn.Content);
     }
