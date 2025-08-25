@@ -6,6 +6,7 @@ using System.Xml;
 
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Lawmaker;
 using UK.Gov.NationalArchives.CaseLaw.Model;
 using CSS2 = UK.Gov.Legislation.Judgments.CSS;
 
@@ -170,6 +171,10 @@ abstract class Builder {
         }
         if (div.Heading is not null)
             Block(level, div.Heading, "heading");
+        if ((div is ExplanatoryNote eDiv) && eDiv.Subheading is not null)
+            Block(level, eDiv.Subheading, "subheading");
+        else if ((div is CommencementHistory cDiv) && cDiv.Subheading is not null)
+            Block(level, cDiv.Subheading, "subheading");
         if (div is IBranch branch) {
             AddIntro(level, branch);
             AddDivisions(level, branch.Children);
