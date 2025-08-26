@@ -25,6 +25,12 @@ public class TestIA {
             .Select(name => regex.Match(name))
             .Where(match => match.Success)
             .Select(match => int.Parse(match.Groups[1].Value))
+            .Where(i => {
+                // Check if both DOCX and XML resources exist
+                var docxResource = $"test.leg.ia.test{i}.docx";
+                var xmlResource = $"test.leg.ia.test{i}.xml";
+                return resourceNames.Contains(docxResource) && resourceNames.Contains(xmlResource);
+            })
             .OrderBy(i => i)
             .Select(i => new object[] { i });
     }
