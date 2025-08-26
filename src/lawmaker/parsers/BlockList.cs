@@ -16,6 +16,29 @@ class BlockList : IBlock
 
     public IList<IBlock>? Children { get; internal init; }
 
+    public static IEnumerable<IBlock> ParseBlocks(IEnumerable<IBlock> blocks)
+    {
+        IParser parser = new BlockParser(blocks);
+        List<IBlock> enrichedBlocks = new List<IBlock>();
+
+        while (!parser.IsAtEnd())
+        {
+            // Strip all empty lines from the cell, with a caveat:
+            // Leave a single empty line if the cell consists entirely of empty lines.
+            if (parser.Current().IsEmptyLine() && enrichedBlocks.Count() > 0)
+            {
+                parser.Advance();
+                continue;
+            }
+
+            if (BlockList.Parse(parser) is BlockList blockList)
+                enrichedBlocks.Add(blockList);
+            else
+                enrichedBlocks.Add(parser.Advance());
+        }
+        return enrichedBlocks;
+    }
+
     internal static BlockList? Parse(IParser parser)
     {
         if (parser.Match(ParseBlockList) is BlockList blockList)
