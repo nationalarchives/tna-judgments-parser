@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.CommandLine.IO;
+using System.Linq;
 using DocumentFormat.OpenXml.Office.ContentType;
 using Microsoft.Extensions.Logging;
 
@@ -20,16 +21,6 @@ namespace UK.Gov.Legislation.Lawmaker
             ParseExplanatoryNote();
             if (i < Document.Body.Count)
                 ParseCommencementHistory();
-            while (i < Document.Body.Count)
-            {
-                // IDivision div = ParseNextConclusionDivision();
-                // if (div is not null)
-                //     conclusion.Add(div);
-
-                IBlock block = Document.Body[i].Block;
-
-
-            }
         }
 
         private void ParseExplanatoryNote()
@@ -60,10 +51,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 else
                     break;
-
-                // IDivision div = ParseNextBodyDivision();
-                // if (div is not null)
-                //     body.Add(div);
             }
 
             conclusions.Add(new ExplanatoryNoteLeaf { Heading = heading, Subheading = subheading, Contents = contents });
@@ -91,21 +78,14 @@ namespace UK.Gov.Legislation.Lawmaker
                 block = Document.Body[i].Block;
 
                 if (Match(LdappTableBlock.Parse) is LdappTableBlock tableBlock)
-                {
                     contents.Add(tableBlock);
-                    i += 1;
-                }
                 else
-                {
                     contents.Add(block);
-                    i += 1;
-                }
+                i += 1;
             }
 
             conclusions.Add(new CommencementHistoryLeaf { Heading = heading, Subheading = subheading, Contents = contents });
-
         }
-
     }
 
     internal interface ExplanatoryNote
@@ -118,7 +98,6 @@ namespace UK.Gov.Legislation.Lawmaker
         //         return true;
         //     return false;
         // }
-
     }
 
     internal class ExplanatoryNoteLeaf : Leaf, ExplanatoryNote
@@ -128,14 +107,11 @@ namespace UK.Gov.Legislation.Lawmaker
         public override string Name { get; internal init; } = "blockContainer";
 
         public override string Class => "explanatoryNote";
-
-
     }
     
     internal interface CommencementHistory
     {
         public ILine Subheading { get; }
-
     }
 
     internal class CommencementHistoryLeaf : Leaf, CommencementHistory
@@ -145,7 +121,5 @@ namespace UK.Gov.Legislation.Lawmaker
         public override string Name { get; internal init; } = "blockContainer";
 
         public override string Class => "commencementHistory";
-
-
     }
 }
