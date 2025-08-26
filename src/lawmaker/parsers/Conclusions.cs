@@ -1,9 +1,4 @@
-
 using System.Collections.Generic;
-using System.CommandLine.IO;
-using System.Linq;
-using DocumentFormat.OpenXml.Office.ContentType;
-using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -14,7 +9,7 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class LegislationParser
     {
 
-        private readonly List<IDivision> conclusions = [];
+        private readonly List<IBlockContainer> conclusions = [];
 
         private void ParseConclusions()
         {
@@ -38,7 +33,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 subheading = line2;
                 i += 1;
             }
-            List<IBlock> contents = [];
+            List<IBlock> blocks = [];
             IBlock block;
             while (i < Document.Body.Count)
             {
@@ -46,14 +41,14 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 if (!(block as WLine).NormalizedContent.StartsWith("NOTE AS TO EARLIER COMMENCEMENT", System.StringComparison.CurrentCultureIgnoreCase))
                 {
-                    contents.Add(block as WLine);
+                    blocks.Add(block as WLine);
                     i += 1;
                 }
                 else
                     break;
             }
 
-            conclusions.Add(new ExplanatoryNoteLeaf { Heading = heading, Subheading = subheading, Contents = contents });
+            conclusions.Add(new ExplanatoryNote { Heading = heading, Subheading = subheading, Blocks = blocks });
         }
 
         private void ParseCommencementHistory()
@@ -71,55 +66,38 @@ namespace UK.Gov.Legislation.Lawmaker
                 subheading = line2;
                 i += 1;
             }
-            List<IBlock> contents = [];
+            List<IBlock> blocks = [];
             IBlock block;
             while (i < Document.Body.Count)
             {
                 block = Document.Body[i].Block;
 
                 if (Match(LdappTableBlock.Parse) is LdappTableBlock tableBlock)
-                    contents.Add(tableBlock);
+                    blocks.Add(tableBlock);
                 else
-                    contents.Add(block);
+                    blocks.Add(block);
                 i += 1;
             }
 
-            conclusions.Add(new CommencementHistoryLeaf { Heading = heading, Subheading = subheading, Contents = contents });
+            conclusions.Add(new CommencementHistory { Heading = heading, Subheading = subheading, Blocks = blocks });
         }
     }
 
-    internal interface ExplanatoryNote
+    internal class ExplanatoryNote : BlockContainer
     {
-        public ILine Subheading { get; }
-
-        // public static bool IsValidChild(IDivision child)
-        // {
-        //     if (child is Prov1)
-        //         return true;
-        //     return false;
-        // }
-    }
-
-    internal class ExplanatoryNoteLeaf : Leaf, ExplanatoryNote
-    {
-        public ILine Subheading { get; internal set; }
 
         public override string Name { get; internal init; } = "blockContainer";
 
-        public override string Class => "explanatoryNote";
-    }
-    
-    internal interface CommencementHistory
-    {
-        public ILine Subheading { get; }
+        public override string Class { get; internal init; } = "explanatoryNote";
+        
     }
 
-    internal class CommencementHistoryLeaf : Leaf, CommencementHistory
+    internal class CommencementHistory : BlockContainer
     {
-        public ILine Subheading { get; internal set; }
 
         public override string Name { get; internal init; } = "blockContainer";
 
-        public override string Class => "commencementHistory";
+        public override string Class { get; internal init; } = "commencementHistory";
+        
     }
 }
