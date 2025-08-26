@@ -220,14 +220,10 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         protected override XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model)
+        
         {
-            // Do some stuff here
-            /*
-             * 
-             * 
-             * 
-             */
-            return base.AddAndWrapText(parent, name, model);
+            // remove leading and trailing whitespace from name.
+            return base.AddAndWrapText(parent, name.Trim(), model);
         }
 
         override protected void p(XmlElement parent, ILine line) {
@@ -261,7 +257,13 @@ namespace UK.Gov.Legislation.Lawmaker
             IInline first = line.Contents.First();
             if (first is WText text)
             {
-                string fixedText = text.Text.Replace("", ""); // TODO: Put correct regex here
+                // regex selects any leading whitespace and removes it
+                string fixedText = Regex.Replace(text.Text, @"^\s*", "");
+                if (line.Contents.Count() <= 1)
+                {
+                    // if there is only one WLine also removes trailing whitespace
+                    fixedText = Regex.Replace(fixedText, @"\s*$", "");
+                }
                 WText fixedInline = new WText(fixedText, text.properties);
                 fixedInlines.Add(fixedInline);
             }
@@ -278,7 +280,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 IInline last = line.Contents.Last();
                 if (last is WText text2)
                 {
-                    string fixedText = text2.Text.Replace("", ""); // TODO: Put correct regex here
+                    // regex selects any trailing whitespace and removes it
+                    string fixedText = Regex.Replace(text2.Text, @"\s*$", "");
                     WText fixedInline = new WText(fixedText, text2.properties);
                     fixedInlines.Add(fixedInline);
                 }
