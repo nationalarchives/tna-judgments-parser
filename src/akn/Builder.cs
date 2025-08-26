@@ -489,7 +489,7 @@ abstract class Builder {
                 throw new Exception(model.GetType().ToString());
     }
 
-    protected XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model) {
+    protected virtual XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model) {
         XmlElement e = CreateAndAppend(name, parent);
         TextAndFormatting(e, model);
         return e;
