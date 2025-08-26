@@ -171,10 +171,6 @@ abstract class Builder {
         }
         if (div.Heading is not null)
             Block(level, div.Heading, "heading");
-        if ((div is ExplanatoryNote eDiv) && eDiv.Subheading is not null)
-            Block(level, eDiv.Subheading, "subheading");
-        else if ((div is CommencementHistory cDiv) && cDiv.Subheading is not null)
-            Block(level, cDiv.Subheading, "subheading");
         if (div is IBranch branch) {
             AddIntro(level, branch);
             AddDivisions(level, branch.Children);

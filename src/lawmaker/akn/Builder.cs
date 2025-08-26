@@ -1,11 +1,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
-using DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -168,7 +166,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return pElement;
         }
 
-        private void AddConclusions(XmlElement main, IList<IDivision> conclusionElements)
+        private void AddConclusions(XmlElement main, IList<IBlockContainer> conclusionElements)
         {
             if (conclusionElements.Count <= 0)
             {
@@ -177,9 +175,9 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             XmlElement conc = CreateAndAppend("conclusions", main);
             conc.SetAttribute("eId", "backCover");
-            foreach (IDivision division in conclusionElements)
+            foreach (BlockContainer blockContainer in conclusionElements)
             {
-                AddDivision(conc, division);
+                AddBlockContainer(conc, blockContainer);
             }
         }
 

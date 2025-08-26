@@ -20,12 +20,11 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 IDivision div = ParseNextBodyDivision();
                 // We have encountered the conclusion so exit the while loop early
-                if (div is UnknownLevel unknownLvl)
-                    if ((unknownLvl.Contents[0] as WUnknownLine).NormalizedContent.Equals("EXPLANATORY NOTE"))
-                    {
-                        i -= 1;
-                        break;
-                    }
+                if (div is UnknownLevel unknownLvl && (unknownLvl.Contents[0] as WUnknownLine).NormalizedContent.Equals("EXPLANATORY NOTE"))
+                {
+                    i -= 1;
+                    break;
+                }
     
                 if (div is not null)
                     body.Add(div);
