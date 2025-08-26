@@ -103,7 +103,8 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (heading is null)
                 return;
-            Block(parent, heading, "heading");
+            XmlElement headingElement = CreateAndAppend("heading", parent);
+            AddBlocks(headingElement, [heading]);
         }
 
         private new void AddIntro(XmlElement level, IBranch branch)
