@@ -9,14 +9,14 @@ using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
 
-class TableCellParser : IParser
+class BlockParser : IParser
 {
     private int i = 0;
     private readonly List<IBlock> Contents;
 
-    public TableCellParser(WCell cell)
+    public BlockParser(IEnumerable<IBlock> contents)
     {
-        Contents = cell.Contents.ToList();
+        Contents = contents.ToList();
     }
 
     public int Save() => i;
