@@ -1,8 +1,5 @@
 
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Xml;
 
 using DocumentFormat.OpenXml.Packaging;
@@ -29,30 +26,13 @@ class Helper {
 
     private static IXmlDocument Parse(WordprocessingDocument docx, bool simplify) {
         IDocument doc = ImpactAssessments.Parser.Parse(docx);
-        
-        var logger = Logging.Factory.CreateLogger<Helper>();
-        
         XmlDocument xml = Builder.Build(doc);
         docx.Dispose();
         if (simplify)
             Simplifier.Simplify(xml);
         
-        // Apply IA-specific style mappings and log what we find
+        // Apply IA-specific style mappings
         ApplyIAStyleMappings(xml);
-        
-        // Re-enable validation but don't fail parsing
-        try {
-            var validator = new Validator();
-            var errors = validator.Validate(xml);
-            if (errors.Count > 0) {
-                logger.LogWarning("IA validation found {Count} schema errors", errors.Count);
-                foreach (var error in errors) {
-                    logger.LogWarning("Schema error: {Message}", error.Message);
-                }
-            }
-        } catch (System.Exception ex) {
-            logger.LogError("Schema validation failed: {Message}", ex.Message);
-        }
         
         return new XmlDocument_ { Document = xml };
     }
