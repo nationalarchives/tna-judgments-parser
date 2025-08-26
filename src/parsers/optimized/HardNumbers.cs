@@ -36,22 +36,14 @@ class HardNumbers {
         SecondPass();
     }
 
-    private BlockWithBreak Extract1(BlockWithBreak bb) {
-        IBlock removed = ExtractBlock(bb.Block);
-        return new BlockWithBreak { Block = removed, LineBreakBefore = bb.LineBreakBefore };
-    }
-
-    private IBlock ExtractBlock(IBlock block)
+    private BlockWithBreak Extract1(BlockWithBreak bb)
     {
-        if (block is WLine line)
-        {
-            WOldNumberedParagraph np = ExtractHardNumber(line);
-            if (np is not null && np.Contents.Count() > 0)
-                return np;
-        }
-        if (block is WTable table)
-            return WTable.Enrich(table, ExtractTableCell);
-        return block;
+        if (bb.Block is not WLine line)
+            return bb;
+        WOldNumberedParagraph removed = ExtractHardNumber(line);
+        if (removed is null)
+            return bb;
+        return new BlockWithBreak { Block = removed, LineBreakBefore = bb.LineBreakBefore };
     }
 
     private WOldNumberedParagraph ExtractHardNumber(WLine line) {
@@ -68,17 +60,11 @@ class HardNumbers {
         return null;
     }
 
-    private WCell ExtractTableCell(WCell cell)
+    public static WCell ExtractTableCell(WCell cell)
     {
-        IEnumerator<IBlock> contents = cell.Contents.GetEnumerator();
-        List<IBlock> extracted = new List<IBlock>();
-        while (contents.MoveNext())
-        {
-            IBlock before = contents.Current;
-            IBlock after = ExtractBlock(before);
-            extracted.Add(after);
-        }
-        return new WCell(cell.Row, cell.Props, extracted);
+        List<BlockWithBreak> contents = cell.Contents.Select(b => new BlockWithBreak { Block = b, LineBreakBefore = false }).ToList();
+        List<BlockWithBreak> extracted = Extract(contents);
+        return new WCell(cell.Row, cell.Props, extracted.Select(bb => bb.Block));
     }
 
     public static readonly string PlainNumberFormat = @"^[“""]?\d+$";

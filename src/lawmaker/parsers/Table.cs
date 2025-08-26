@@ -11,6 +11,7 @@ using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using DocumentFormat.OpenXml.Spreadsheet;
 using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
+using UK.Gov.NationalArchives.CaseLaw.Parse;
 
 // This class currently breaks from the convention of putting all the parsing in partial class LegislationParser.
 // I think it's ultimately a mistake to have such a big class spread over so many different files and I believe
@@ -79,7 +80,10 @@ record LdappTableBlock(
     {
         if (parser.Advance() is WTable table)
         {
-            return WTable.Enrich(table, ParseTableCell);
+            // Identify lines with leading numbers in each table cell.
+            WTable extracted = WTable.Enrich(table, HardNumbers.ExtractTableCell);
+            // Parse any structured content in each table cell.
+            return WTable.Enrich(extracted, ParseTableCell);
         }
         return null;
     }

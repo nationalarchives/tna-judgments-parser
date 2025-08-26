@@ -182,13 +182,14 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             foreach (IBlock block in blocks)
             {
-                if (block is IOldNumberedParagraph np)
+                if (block is WOldNumberedParagraph np)
                 {
-                    XmlElement container = doc.CreateElement("blockContainer", ns);
-                    parent.AppendChild(container);
-                    if (np.Number is not null)
-                        AddAndWrapText(container, "num", np.Number);
-                    this.p(container, np);
+                    // In Lawmaker, by default, all numbered paragraphs should be marked up
+                    // as regular p elements
+                    List<IInline> inlines = [np.Number];
+                    if (np.Contents.Count() > 0)
+                        inlines.AddRange([new WText(" ", null), .. np.Contents]);
+                    this.p(parent, new WLine(np, inlines));
                 }
                 else if (block is ILine line)
                 {
