@@ -1,21 +1,24 @@
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Models;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
 
-namespace UK.Gov.Legislation.ImpactAssessments {
+namespace UK.Gov.Legislation.Common {
 
-class HeaderSplitter {
+class BaseHeaderSplitter {
 
-    internal static List<IBlock> Split(IEnumerable<BlockWithBreak> blocks) {
-        return Split(blocks.Select(bb => bb.Block));
+    protected readonly LegislativeDocumentConfig Config;
+
+    internal static List<IBlock> Split(IEnumerable<BlockWithBreak> blocks, LegislativeDocumentConfig config) {
+        return Split(blocks.Select(bb => bb.Block), config);
     }
-    internal static List<IBlock> Split(IEnumerable<IBlock> blocks) {
-        var enricher = new HeaderSplitter(blocks);
+    
+    internal static List<IBlock> Split(IEnumerable<IBlock> blocks, LegislativeDocumentConfig config) {
+        var enricher = new BaseHeaderSplitter(blocks, config);
         enricher.Enrich();
         return enricher.Enriched;
     }
@@ -37,8 +40,9 @@ class HeaderSplitter {
 
     private readonly List<IBlock> Enriched = new List<IBlock>(3);
 
-    private HeaderSplitter(IEnumerable<IBlock> blocks) {
+    protected BaseHeaderSplitter(IEnumerable<IBlock> blocks, LegislativeDocumentConfig config) {
         Blocks = blocks is List<IBlock> list ? list : new List<IBlock>(blocks);
+        Config = config;
     }
 
     private void Enrich() {
@@ -75,16 +79,17 @@ class HeaderSplitter {
         }
     }
 
-    readonly string[] Titles = { "Impact Assessment" };
-
-    internal static string GetDocumentType(List<IBlock> header) {
-        Model.DocType2 docType = Util.Descendants<Model.DocType2>(header).FirstOrDefault();
+    internal static string GetDocumentType(List<IBlock> header, LegislativeDocumentConfig config) {
+        DocType2 docType = Util.Descendants<DocType2>(header).FirstOrDefault();
         if (docType is null)
             return null;
         string name = IInline.ToString(docType.Contents);
         name = Regex.Replace(name, @"\s+", " ").Trim();
-        if ("Impact Assessment".Equals(name, System.StringComparison.InvariantCultureIgnoreCase))
-            return "ImpactAssessment";
+        
+        foreach (var mapping in config.DocumentTypeMapping) {
+            if (mapping.Key.Equals(name, System.StringComparison.InvariantCultureIgnoreCase))
+                return mapping.Value;
+        }
         return null;
     }
 
@@ -97,12 +102,12 @@ class HeaderSplitter {
             state = State.Fail;
             return;
         }
-        bool isTitle = Titles.Any(title => title.Equals(line.NormalizedContent, System.StringComparison.InvariantCultureIgnoreCase));
+        bool isTitle = Config.DocumentTitles.Any(title => title.Equals(line.NormalizedContent, System.StringComparison.InvariantCultureIgnoreCase));
         if (!isTitle) {
             state = State.Fail;
             return;
         }
-        Model.DocType2 docType = new Model.DocType2 { Contents = line.Contents };
+        DocType2 docType = new DocType2 { Contents = line.Contents };
         WLine newLine = WLine.Make(line, new List<IInline>(1) { docType });
         Enriched.Add(newLine);
         state = State.AfterDocType;
@@ -126,14 +131,14 @@ class HeaderSplitter {
             state = State.Fail;
             return;
         }
-        Model.DocNumber2 docNumber = new Model.DocNumber2 { Contents = line.Contents };
+        DocNumber2 docNumber = new DocNumber2 { Contents = line.Contents };
         WLine newLine = WLine.Make(line, new List<IInline>(1) { docNumber });
         Enriched.Add(newLine);
         state = State.AfterDocNumber;
     }
 
     internal static string GetDocumentNumber(List<IBlock> header) {
-        Model.DocNumber2 docNumber = Util.Descendants<Model.DocNumber2>(header).FirstOrDefault();
+        DocNumber2 docNumber = Util.Descendants<DocNumber2>(header).FirstOrDefault();
         if (docNumber is null)
             return null;
         string text = IInline.ToString(docNumber.Contents);
@@ -185,9 +190,9 @@ class HeaderSplitter {
         IBlock next1 = Blocks[I + 1];
         if (next1 is not WLine line1)
             return;
-        bool isTitle = Titles.Any(title => title.Equals(line1.NormalizedContent, System.StringComparison.InvariantCultureIgnoreCase));
+        bool isTitle = Config.DocumentTitles.Any(title => title.Equals(line1.NormalizedContent, System.StringComparison.InvariantCultureIgnoreCase));
         if (isTitle) {
-            Model.DocType2 docType2 = new Model.DocType2 { Contents = line1.Contents };
+            DocType2 docType2 = new DocType2 { Contents = line1.Contents };
             WLine newLine1 = WLine.Make(line1, new List<IInline>(1) { docType2 });
             temp.Add(newLine1);
             if (I + 2 == Blocks.Count)
@@ -208,7 +213,7 @@ class HeaderSplitter {
             return;
         if (!RegulationNumber.Is(line2.NormalizedContent))
             return;
-        Model.DocNumber2 docNumber2 = new Model.DocNumber2 { Contents = line2.Contents };
+        DocNumber2 docNumber2 = new DocNumber2 { Contents = line2.Contents };
         WLine newLine2 = WLine.Make(line2, new List<IInline>(1) { docNumber2 });
         temp.Add(newLine2);
 

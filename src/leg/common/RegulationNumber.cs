@@ -1,9 +1,8 @@
-
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace UK.Gov.Legislation.ImpactAssessments {
+namespace UK.Gov.Legislation.Common {
 
 class RegulationNumber {
 

@@ -7,34 +7,32 @@ using Microsoft.Extensions.Logging;
 
 using UK.Gov.NationalArchives.AkomaNtoso;
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Common;
+using UK.Gov.Legislation.Models;
 
 namespace UK.Gov.Legislation.ImpactAssessments {
 
-class Helper {
+class Helper : BaseHelper {
 
-    public static IXmlDocument Parse(Stream docx, bool simplify = true) {
-        WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify);
+    private static readonly Helper Instance = new Helper();
+
+    private Helper() : base(LegislativeDocumentConfig.ForImpactAssessments()) { }
+
+    public static new IXmlDocument Parse(Stream docx, bool simplify = true) {
+        return ((BaseHelper)Instance).Parse(docx, simplify);
     }
 
-
-
-    public static IXmlDocument Parse(byte[] docx, bool simplify = true) {
-        WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify);
+    public static new IXmlDocument Parse(byte[] docx, bool simplify = true) {
+        return ((BaseHelper)Instance).Parse(docx, simplify);
     }
 
-    private static IXmlDocument Parse(WordprocessingDocument docx, bool simplify) {
-        IDocument doc = ImpactAssessments.Parser.Parse(docx);
-        XmlDocument xml = Builder.Build(doc);
-        docx.Dispose();
-        if (simplify)
-            Simplifier.Simplify(xml);
-        
+    protected override IDocument ParseDocument(WordprocessingDocument docx) {
+        return ImpactAssessments.Parser.Parse(docx);
+    }
+
+    protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
         // Apply IA-specific style mappings
         ApplyIAStyleMappings(xml);
-        
-        return new XmlDocument_ { Document = xml };
     }
 
     private static void ApplyIAStyleMappings(XmlDocument xml) {

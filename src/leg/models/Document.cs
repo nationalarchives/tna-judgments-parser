@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using  UK.Gov.Legislation.Judgments;
 
-namespace UK.Gov.Legislation {
+namespace UK.Gov.Legislation.Models {
 
 interface IDocument {
 
