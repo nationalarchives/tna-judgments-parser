@@ -42,35 +42,72 @@ Use the `--hint` parameter to specify the document type:
 Architecture
 ------------
 
-### Shared Components
-- `Builder.cs` - Converts parsed documents to AKN XML format
-- `Validator.cs` - Validates output against appropriate XSD schemas
-- `akn2html.xsl` - Transforms AKN XML to HTML for display
-
-### Document-Specific Structure
-Each document type follows this pattern:
+### Directory Structure
 ```
-{type}/
-├── Helper.cs      # Public API for parsing
-├── Parser.cs      # Document-specific parsing logic  
-├── Metadata.cs    # Metadata extraction and URI generation
-└── Header.cs      # Header parsing and document identification
+src/leg/
+├── common/              # Shared base classes and configuration
+│   ├── BaseHelper.cs           # Base class for document helpers
+│   ├── BaseLegislativeDocumentParser.cs  # Base parser with common logic
+│   ├── BaseHeaderSplitter.cs   # Base header parsing logic
+│   ├── BaseMetadata.cs         # Base metadata extraction
+│   ├── LegislativeDocumentConfig.cs  # Document-specific configuration
+│   └── RegulationNumber.cs     # URI and number extraction logic
+├── models/              # Data models and interfaces
+│   ├── Document.cs             # Document interfaces (IDocument, IDividedDocument, etc.)
+│   ├── Structure.cs            # Structural models (Section, Subheading, etc.)
+│   └── Inline.cs               # Inline content models (DocType, DocNumber, etc.)
+├── em/                  # Explanatory Memorandum specific
+│   ├── Helper.cs               # Public API for EM parsing
+│   └── Parser.cs               # EM-specific parser implementation
+├── ia/                  # Impact Assessment specific  
+│   ├── Helper.cs               # Public API for IA parsing (includes CSS processing)
+│   └── Parser.cs               # IA-specific parser implementation
+├── schemas/             # XSD validation schemas
+│   ├── em-subschema.xsd        # Schema for Explanatory Memorandums
+│   └── ia-subschema.xsd        # Schema for Impact Assessments
+├── Builder.cs           # Converts parsed documents to AKN XML format
+├── Validator.cs         # Validates output against appropriate XSD schemas
+├── akn2html.xsl         # Transforms AKN XML to HTML for display
+└── XmlDocument.cs       # Output document interface
 ```
 
-### Schemas
-Located in [schemas/](./schemas/):
-- `em-subschema.xsd` - XSD schema for Explanatory Memorandums
-- `ia-subschema.xsd` - XSD schema for Impact Assessments
+### How It Works
 
-The appropriate schema is automatically selected based on the document type during validation.
+1. **Configuration-Driven**: Each document type has a `LegislativeDocumentConfig` that specifies:
+   - Document titles to recognize
+   - Word style names for sections and headings  
+   - URI suffix (`/em` or `/ia`)
+   - Default document type name
+
+2. **Base Class Architecture**: Common parsing logic is in base classes:
+   - `BaseHelper` - Entry point and document processing pipeline
+   - `BaseLegislativeDocumentParser` - Core parsing logic for sections, headings, etc.
+   - `BaseHeaderSplitter` - Document header analysis and splitting
+   - `BaseMetadata` - Metadata extraction and URI generation
+
+3. **Document-Specific Customization**: Each document type can:
+   - Override parsing methods for special handling
+   - Apply document-specific post-processing (e.g., IA CSS classes)
+   - Use different configurations while sharing the same base logic
+
+### Validation
+The appropriate XSD schema is automatically selected in `Validator.cs` based on the document's `name` attribute:
+- `ImpactAssessment` → `ia-subschema.xsd`
+- `ExplanatoryMemorandum` or `PolicyNote` → `em-subschema.xsd`
 
 Adding New Document Types
 -------------------------
 
-1. Create a new folder under `src/leg/{type}/`
-2. Implement the required classes: `Helper.cs`, `Parser.cs`, `Metadata.cs`, `Header.cs`
-3. Create an XSD schema: `schemas/{type}-subschema.xsd`
-4. Add the schema as an embedded resource in `judgments.csproj`
-5. Update `Validator.cs` to handle the new document type
-6. Add any required CSS classes to `akn2html.xsl`
-7. Update this README with the new document type
+1. **Create configuration**: Add a factory method to `LegislativeDocumentConfig` with document-specific settings
+2. **Create document-specific classes**:
+   ```
+   src/leg/{type}/
+   ├── Helper.cs    # Inherit from BaseHelper, override ParseDocument()
+   └── Parser.cs    # Inherit from BaseLegislativeDocumentParser, pass config to base
+   ```
+3. **Create XSD schema**: Add `schemas/{type}-subschema.xsd`
+4. **Update validation**: Modify `Validator.cs` to handle the new document type
+5. **Add styling**: Add any required CSS classes to `akn2html.xsl`
+6. **Update CLI**: Add new hint option to `Program.cs`
+
+The base classes handle all the complex parsing logic automatically - you only need to provide configuration and any document-specific customisations.

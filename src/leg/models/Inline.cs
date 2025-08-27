@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UK.Gov.Legislation.Judgments;
 
-namespace UK.Gov.Legislation.Model {
+namespace UK.Gov.Legislation.Models {
 
 interface IDocType { }
 
