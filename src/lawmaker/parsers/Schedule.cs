@@ -29,7 +29,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
             WLine referenceNoteLine = null;
             WLine headingLine = line2;
-            if (IsRightAligned(line2))
+            if (IsRightAligned(line2)
+                // Reference notes in SP Bills/Acts follow these conditions
+                || DocNames.IsPrimarySP(docName) && ((IsCenterAligned(line2) && line2.IsAllItalicized()) || line2.NormalizedContent.StartsWith("introduced by ", System.StringComparison.CurrentCultureIgnoreCase)))
             {
                 // Handle reference note
                 if (Document.Body[i + 2].Block is not WLine line3)
