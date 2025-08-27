@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.DOCX;
 using UK.Gov.Legislation.Judgments.Parse;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
@@ -391,14 +392,18 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             XmlElement e = CreateAndAppend("item", parent);
             // Handle Word's weird bullet character
-            if (item.Number is not null && item.Number is WText wText)
+            if (item.Number is not null)
             {
-                string newNum = new string(wText.Text.Select(c => ((uint)c == 61623) ? '\u2022' : c).ToArray());
-                AddAndWrapText(e, "num", new WText(newNum, wText.properties));
+                string newNum = new string(item.Number.Text.Select(c => ((uint)c == 61623) ? '\u2022' : c).ToArray());
+                if (item.Number is WText wText)
+                    AddAndWrapText(e, "num", new WText(newNum, wText.properties));
+                else if (item.Number is WNumText WNumText)
+                    AddAndWrapText(e, "num", new WNumText(WNumText, newNum));
+                else
+                    AddAndWrapText(e, "num", new WText(newNum, null));
             }
             AddBlocks(e, item.Contents);
         }
-
     }
 
 }
