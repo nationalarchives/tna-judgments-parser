@@ -57,7 +57,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
 
             int finalChildStart = i;
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 if (BreakFromProv1())
                     break;

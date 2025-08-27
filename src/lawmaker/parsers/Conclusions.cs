@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private readonly List<BlockContainer> conclusions = [];
 
         private void ParseConclusions()
-        {                    
+        {
             ExplanatoryNote? explanatoryNote = ParseExplanatoryNote();
             if (explanatoryNote is not null)
                 conclusions.Add(explanatoryNote);
@@ -26,14 +26,14 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private ExplanatoryNote? ParseExplanatoryNote()
         {
-            if (i >= Document.Body.Count)
+            if (i >= Body.Count)
                 return null;
 
             // Handle heading and subheading
             if (!ExplanatoryNote.IsHeading(langService, Current()))
                 return null;
             WLine heading = (Current() as WLine)!;
-            
+
             int save = i;
             i += 1;
 
@@ -43,9 +43,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 subheading = Current() as WLine;
                 i += 1;
             }
-            
+
             List<IBlock> content = [];
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 IBlock? currentBlock = Current();
                 if (currentBlock is null)
@@ -86,7 +86,7 @@ namespace UK.Gov.Legislation.Lawmaker
             i += 1;
 
             List<IBlock> content = [];
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 IBlock? currentBlock = Current();
                 if (currentBlock is null)
@@ -115,7 +115,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private CommencementHistory? ParseCommencementHistory()
         {
-            if (i >= Document.Body.Count)
+            if (i >= Body.Count)
                 return null;
 
             // Handle heading and subheading
@@ -135,9 +135,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IBlock> blocks = [];
             IBlock block;
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
-                block = Document.Body[i].Block;
+                block = Body[i];
 
                 if (block is WLine line && IsCenterAligned(line))
                     break;

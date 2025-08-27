@@ -12,11 +12,11 @@ using UK.Gov.Legislation.Judgments.Parse;
 class BlockParser : IParser
 {
     private int i = 0;
-    private readonly List<IBlock> Contents;
+    private readonly List<IBlock> Body;
 
     public BlockParser(IEnumerable<IBlock> contents)
     {
-        Contents = contents.ToList();
+        Body = contents.ToList();
     }
 
     public int Save() => i;
@@ -24,9 +24,9 @@ class BlockParser : IParser
     public void Restore(int save) => i = save;
 
     // Get the current block the parser is at
-    public IBlock Current() => Contents[i];
+    public IBlock Current() => Body[i];
 
-    public bool IsAtEnd() => i >= Contents.Count;
+    public bool IsAtEnd() => i >= Body.Count;
 
 
     // Get the block that is `num` positions away.
@@ -36,16 +36,16 @@ class BlockParser : IParser
     public IBlock? Peek(int num = 1)
     {
         int peekIndex = i + num;
-        if (peekIndex < 0 || peekIndex >= Contents.Count)
+        if (peekIndex < 0 || peekIndex >= Body.Count)
             return null;
-        return Contents[peekIndex];
+        return Body[peekIndex];
     }
 
     // Advance the parser forward by `num` and returns to blocks passed.
     public IEnumerable<IBlock> Advance(int num)
     {
         if (num <= 0) return [];
-        var slice = Contents[i..(i + num)];
+        var slice = Body[i..(i + num)];
         i += slice.Count;
         return slice;
     }
@@ -53,7 +53,7 @@ class BlockParser : IParser
     // Move the parser forward while `condition` is true and return everything advanced over
     public List<IBlock> AdvanceWhile(Predicate<IBlock> condition)
     {
-        IEnumerable<IBlock> list = Contents[i..]
+        IEnumerable<IBlock> list = Body[i..]
             .TakeWhile(block => condition(block) && !IsAtEnd());
         Advance(list.Count());
         return list.ToList();

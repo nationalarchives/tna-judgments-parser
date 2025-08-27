@@ -52,7 +52,7 @@ interface IParser
     }
 
     // Continues matching blocks with the supplied `strategy` until, for a particular block:
-    // a) the `predicate` evaluates to false
+    // a) the `predicate` evaluates to false or
     // b) the `strategy` fails to match
     // Returns a list of concurrent blocks which were successfully matched.
     // The resulting position of the parser is at the end of the final matched block.

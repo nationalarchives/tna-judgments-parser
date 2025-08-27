@@ -40,12 +40,12 @@ namespace UK.Gov.Legislation.Lawmaker
         private void ParsePrimaryHeader()
         {
             bool foundPreface = false;
-            while (i < Document.Body.Count - 10)
+            while (i < Body.Count - 10)
             {
                 List<IBlock> blocks = [];
-                blocks.Add(Document.Body[i].Block);
-                blocks.Add(Document.Body[i + 1].Block);
-                blocks.Add(Document.Body[i + 2].Block);
+                blocks.Add(Body[i]);
+                blocks.Add(Body[i + 1]);
+                blocks.Add(Body[i + 2]);
 
                 if (!foundPreface && blocks.All(b => b is WLine))
                 {
@@ -106,13 +106,15 @@ namespace UK.Gov.Legislation.Lawmaker
 
         /*
          * Parses the header of Statutory Instrument (whether draft or enacted).
+         Ordering of the header:
+         Header = CoverPage?, Preface, Preamble
          */
         private void ParseSecondaryHeader()
         {
             bool foundContents = false;
             bool isWelshSecondary = DocNames.IsWelshSecondary(frames.CurrentDocName);
 
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 if (isWelshSecondary)
                 {
@@ -127,7 +129,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (!foundContents)
                     foundContents = SkipTableOfContents();
 
-                IBlock block = Document.Body[i].Block;
+                IBlock block = Body[i];
 
                 // If we encounter a provision heading (outside of the ToC),
                 // then the body must have started.
@@ -143,7 +145,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 if (IsLeftAligned(line) && IsFlushLeft(line) && !line.IsAllItalicized())
                     preamble.Add(block);
-                /* TODO: Handle the preface of Statutory Instruments (in an upcoming ticket) 
+                /* TODO: Handle the preface of Statutory Instruments (in an upcoming ticket)
                 else if (!foundContents)
                     preface.Add(block);
                 */
@@ -162,7 +164,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private bool SkipTableOfContents()
         {
             // Identify 'CONTENTS' heading
-            IBlock block = Document.Body[i].Block;
+            IBlock block = Body[i];
             if (!(block is WLine line))
                 return false;
             if (!IsCenterAligned(line))
@@ -171,10 +173,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
 
             // Skip contents
-            while (i < Document.Body.Count - 1)
+            while (i < Body.Count - 1)
             {
                 i += 1;
-                block = Document.Body[i].Block;
+                block = Body[i];
                 if (!(block is WLine contentsLine))
                     break;
 

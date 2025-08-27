@@ -199,7 +199,7 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> container = [];
             HandleMod(first, container);
 
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 int save = i;
                 IList<IBlock> extraParagraph = GetExtraParagraph(line, nextExpected);

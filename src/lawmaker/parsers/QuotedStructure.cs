@@ -1,4 +1,4 @@
-
+// #nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +8,23 @@ using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Enrichment;
 
-namespace UK.Gov.Legislation.Lawmaker
-{
+namespace UK.Gov.Legislation.Lawmaker;
 
+// public record QuotedStructure(
+//     IInline PrecedingText,
+//     IInline? QuotedText, // marked up as quoted text later
+//     IEnumerable<IBlock> Contents,
+//     IInline AppendText,
+// )
+// {
+
+//     public static IEnumerable<IBlock> GroupQuotedStructures(IEnumerable<IBlock> body)
+//     {
+//         return body;
+//     }
+// }
+
+// )
     public partial class LegislationParser
     {
 
@@ -307,7 +321,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private List<IQuotedStructure> HandleQuotedStructuresAfter(WLine line)
         {
             List<IQuotedStructure> quotedStructures = [];
-            if (i == Document.Body.Count)
+            if (i == Body.Count)
                 return [];
             int save = i;
 
@@ -329,7 +343,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 frames.Pop();
             }
             // Handle regular quoted structures
-            while (i < Document.Body.Count && IsStartOfQuotedStructure(Current()))
+            while (i < Body.Count && IsStartOfQuotedStructure(Current()))
             {
                 save = i;
                 IBlock? current = Current();
@@ -349,7 +363,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private BlockQuotedStructure? ParseQuotedStructure()
         {
-            if (i == Document.Body.Count)
+            if (i == this.Body.Count)
                 return null;
             BlockQuotedStructure? qs = Current() switch
             {
@@ -391,7 +405,7 @@ namespace UK.Gov.Legislation.Lawmaker
             quoteDepth += 1;
 
             HContainer? previous = null;
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 int save = i;
 
@@ -609,5 +623,3 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
     #endregion
-
-}

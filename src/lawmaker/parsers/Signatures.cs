@@ -21,7 +21,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IDivision> children = [];
 
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 if (BreakFromProv1())
                     break;
@@ -51,7 +51,7 @@ namespace UK.Gov.Legislation.Lawmaker
             // In SIs, this right-positioning is achieved with Tab Stops, as opposed to Alignment.
             List<IBlock> contents = [];
 
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 if (BreakFromProv1())
                     break;
@@ -69,7 +69,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 // The line needs to have Signature style formatting at the parargraph or text level
                 if (!(StartsWithSig(currentLine.Style) || (styleName is not null && StartsWithSig(styleName))))
                     break;
-                // If the current line has styling Sig_Signatory or Sig_Signee 
+                // If the current line has styling Sig_Signatory or Sig_Signee
                 // and any content has styling that isn't Sig_Signatory or Sig_Signee, it must be a new signature block
                 if (contents.Count > 0 && ContainsNonSigneeOrSignatory(contents)
                     && styleName is not null && StartsWithSig(styleName) && (EndsWith(styleName, "Signatory") || EndsWith(styleName, "Signee")))
@@ -105,6 +105,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         /// <summary>
         /// Returns true if an item in the provided list has styling that isn't null, Sig_signatory or Sig_signee
+        /// Adds the given line to the list of contents.
+        /// If the line resembles a Signature Name, it will be identified as such.
         /// </summary>
         private static bool ContainsNonSigneeOrSignatory(List<IBlock> contents)
         {
@@ -125,7 +127,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /// <summary>
-        /// Adds the given line to the list of contents. 
+        /// Adds the given line to the list of contents.
         /// Depending on the style, it will add a new WSignatureBlock or WLine
         /// </summary>
         private static void AddLineToContents(List<IBlock> contents, WLine line)
@@ -178,7 +180,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             return str.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
         }
-        
+
         /// <summary>
         /// Checks if the given string ends with the provided value, case insentitive
         /// </summary>

@@ -18,12 +18,12 @@ namespace UK.Gov.Legislation.Lawmaker
         internal int Save() => i;
         internal void Restore(int save) => i = save;
         // Get the current block the parser is at
-        internal IBlock? Current() => IsAtEnd() ? null : Document.Body[i].Block;
+        internal IBlock? Current() => IsAtEnd() ? null : Body[i];
         // Get the block that is `num` positions away.
         // `Peek(0)` will show the current block without advancing (same as `Current()`).
         // At the moment num can be negative to look behind. There are currently no safeguards
         // for checking within the bounds of the Document Body.
-        internal IBlock Peek(int num = 1) => Document.Body[i+num].Block;
+        internal IBlock Peek(int num = 1) => Body[i+num];
 
         // Move the parser forward and return the block the parser was on when `Advance()` was called.
         internal IBlock? Advance() {
@@ -37,8 +37,8 @@ namespace UK.Gov.Legislation.Lawmaker
         internal IEnumerable<IBlock> Advance(int num)
         {
             if (num <= 0) return [];
-            var slice = Document.Body[i..(i + num)]
-                .Select(block => block.Block);
+            var slice = Body[i..(i + num)]
+                .Select(block => block);
             i += slice.Count();
             return slice;
         }
@@ -46,8 +46,8 @@ namespace UK.Gov.Legislation.Lawmaker
         // Move the parser forward while `condition` is true and return everything advanced over
         internal List<IBlock> AdvanceWhile(Predicate<IBlock> condition)
         {
-            IEnumerable<IBlock> list = Document.Body[i..]
-                .Select(block => block.Block)
+            IEnumerable<IBlock> list = Body[i..]
+                .Select(block => block)
                 .TakeWhile(block => condition(block) && !IsAtEnd());
             Advance(list.Count());
             return list.ToList();
@@ -67,8 +67,8 @@ namespace UK.Gov.Legislation.Lawmaker
             return block;
         }
 
-        internal bool IsAtEnd() => i >= Document.Body.Count;
-        private IBlock? Previous() => i > 0 ? Document.Body[i-1].Block : null;
+        internal bool IsAtEnd() => i >= Body.Count;
+        private IBlock? Previous() => i > 0 ? Body[i-1] : null;
 
         private static bool IsLeftAligned(WLine line)
         {
@@ -121,7 +121,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private bool CurrentLineIsIndentedLessThan(WLine parent)
         {
-            if (Document.Body[i].Block is not WLine line)
+            if (Body[i] is not WLine line)
                 return false;
             return LineIsIndentedLessThan(line, parent);
         }

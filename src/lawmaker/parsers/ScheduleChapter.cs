@@ -24,7 +24,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (IsEndOfQuotedStructure(line.NormalizedContent))
                 return new ScheduleChapterLeaf { Number = number };
 
-            if (Document.Body[i + 1].Block is not WLine line2)
+            if (Body[i + 1] is not WLine line2)
                 return null;
             if (!IsCenterAligned(line2))
                 return null;
@@ -37,7 +37,7 @@ namespace UK.Gov.Legislation.Lawmaker
             i += 2;
 
             List<IDivision> children = [];
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 HContainer peek = PeekGroupingProvision();
                 if (peek != null && !ScheduleChapter.IsValidChild(peek))
@@ -69,7 +69,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (!IsCenterAligned(line))
                 return false;
-            if (i > Document.Body.Count - 3)
+            if (i > Body.Count - 3)
                 return false;
             string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
             if (!langService.IsMatch(numText, ScheduleChapter.NumberPatterns))

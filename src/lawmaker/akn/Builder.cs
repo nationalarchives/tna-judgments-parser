@@ -255,7 +255,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         protected override XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model)
-        
+
         {
             // remove leading and trailing whitespace from name.
             return base.AddAndWrapText(parent, name.Trim(), model);
@@ -417,7 +417,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 /* Handle nested BlockListItem children.
                  * In which case we must wrap them in a BlockList element:
-                 * 
+                 *
                  * <item>                           <item>
                  *     <num>(1)</num>                   <num>(1)</num>
                  *     <p>Text1</p>                     <blockList>
@@ -429,7 +429,7 @@ namespace UK.Gov.Legislation.Lawmaker
                  * </item>                                  ...
                  *                                      </blockList>
                  *                                  </item>
-                 */ 
+                 */
                 XmlElement blockListElement = CreateAndAppend("blockList", itemElement);
                 // Handle listIntroduction
                 XmlElement listIntroductionElement = CreateAndAppend("listIntroduction", blockListElement);
@@ -448,7 +448,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         protected void AddSigBlock(XmlElement parent, ISignatureBlock sig)
-        {   
+        {
             XmlElement block = CreateAndAppend("block", parent);
             block.SetAttribute("name", sig.Name);
 
@@ -459,7 +459,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 // e.g. "17th June 2025" and "9 October 2021"
                 // Any other format will result in the date attribute being set to "9999-01-01"
                 string text = (sig.Content.First() as WText).Text;
-                
+
                 // Remove ordinal suffix from date if there is one
                 Match match = Regex.Match(text, @"(\d+)(st|nd|rd|th)");
                 if (match.Success)
