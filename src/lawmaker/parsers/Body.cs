@@ -20,7 +20,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 IDivision div = ParseNextBodyDivision();
                 // We have encountered the conclusion so exit the while loop early
-                if (div is UnknownLevel unknownLvl && (unknownLvl.Contents[0] as WUnknownLine).NormalizedContent.Equals("EXPLANATORY NOTE"))
+                if (div is UnknownLevel unknownLvl && IsStartOfExplanatoryNote(unknownLvl.Contents[0] as WUnknownLine))
                 {
                     i -= 1;
                     break;
