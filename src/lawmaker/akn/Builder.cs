@@ -238,6 +238,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     AddBlockListItem(parent, item);
                 }
+                else if (block is BlockContainer blockContainer)
+                {
+                    AddBlockContainer(parent, blockContainer);
+                }
                 else
                 {
                     throw new Exception(block.GetType().ToString());

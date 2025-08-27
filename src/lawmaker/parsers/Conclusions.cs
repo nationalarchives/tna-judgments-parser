@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using DocumentFormat.OpenXml.Spreadsheet;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -33,7 +32,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 subheading = line2;
                 i += 1;
             }
-            List<IBlock> blocks = [];
+
+            List<IBlock> explanatoryNotesBlocks = []; // The explanatory note blockContainer's blocks (children)
+            List<IBlock> blocksSegment = []; // Used to keep track of current blockLists segment
+            HeadingTblock currentHeadingTblock = null;
             IBlock block;
             while (i < Document.Body.Count)
             {
@@ -41,7 +43,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 if (!(block as WLine).IsAllBold())
                 {
-                    blocks.Add(block as WLine);
+                    blocksSegment.Add(block as WLine);
                     i += 1;
                 }
                 else
@@ -49,19 +51,45 @@ namespace UK.Gov.Legislation.Lawmaker
                     // Heading tblock encountered
                     if (!IsStartOfCommencementHistoryTable(block as WLine))
                     {
-                        blocks.Add(block as WLine); // TODO: Add logic to handle heading blocks
+                        if (blocksSegment.Count > 0)
+                        {
+                            // There is a heading so add blocksSegment as a child to the heading and add heading as a child to explanatoryNote
+                            if (currentHeadingTblock is not null)
+                            {
+                                currentHeadingTblock.Blocks = (List<IBlock>)BlockList.ParseBlocks(blocksSegment);
+                                explanatoryNotesBlocks.Add(currentHeadingTblock);
+                            }
+                            // No heading so add blocksSegment as a direct child to the explanatoryNote
+                            else
+                                explanatoryNotesBlocks.AddRange((List<IBlock>)BlockList.ParseBlocks(blocksSegment));
+                            blocksSegment.Clear();
+                        }
+
+                        currentHeadingTblock = new HeadingTblock { Heading = block as WLine };
                         i += 1;
                     }
                     // End of explanatory note
                     else
-                    {
                         break;
-                    }
                 }
             }
+<<<<<<< HEAD
             blocks = (List<IBlock>) BlockList.ParseFrom(blocks);
+||||||| parent of dbf8a346 (LNI-315: Handle explanatory note's children (tblock headings and blockLists))
+            blocks = (List<IBlock>) BlockList.ParseBlocks(blocks);
+=======
+            if (currentHeadingTblock is not null)
+            {
+                if (blocksSegment.Count > 0)
+                    currentHeadingTblock.Blocks = (List<IBlock>)BlockList.ParseBlocks(blocksSegment);
+                explanatoryNotesBlocks.Add(currentHeadingTblock);
+            }
+            else
+                if (blocksSegment.Count > 0)
+                    explanatoryNotesBlocks.AddRange((List<IBlock>)BlockList.ParseBlocks(blocksSegment));
+>>>>>>> dbf8a346 (LNI-315: Handle explanatory note's children (tblock headings and blockLists))
 
-            conclusions.Add(new ExplanatoryNote { Heading = heading, Subheading = subheading, Blocks = blocks });
+            conclusions.Add(new ExplanatoryNote { Heading = heading, Subheading = subheading, Blocks = explanatoryNotesBlocks });
         }
 
         private void ParseCommencementHistory()
@@ -121,6 +149,6 @@ namespace UK.Gov.Legislation.Lawmaker
         public override string Name { get; internal init; } = "blockContainer";
 
         public override string Class { get; internal init; } = "commencementHistory";
-        
+
     }
 }

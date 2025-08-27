@@ -16,14 +16,22 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public abstract string Name { get; internal init; }
 
-        public abstract string Class { get; internal init;}
+        public abstract string Class { get; internal init; }
 
         public virtual ILine Heading { get; internal set; }
-        
+
         public virtual ILine Subheading { get; internal set; }
-        
+
         public virtual IEnumerable<IBlock> Blocks { get; internal set; }
 
     }
 
+    internal class HeadingTblock : BlockContainer, IBlock
+    {
+        
+        public override string Name { get; internal init; } = "tblock";
+
+        public override string Class { get; internal init; } = "group1";
+        
+    }
 }
