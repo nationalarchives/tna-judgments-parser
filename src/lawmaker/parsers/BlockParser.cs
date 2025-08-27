@@ -33,7 +33,12 @@ class BlockParser : IParser
     // `Peek(0)` will show the current block without advancing (same as `Current()`).
     // At the moment num can be negative to look behind. There are currently no safeguards
     // for checking within the bounds of the Document Body.
-    public IBlock Peek(int num = 1) => Contents[i + num];
+    public IBlock? Peek(int num = 1)
+    {
+        if (!(i + num < Contents.Count))
+            return null;
+        return Contents[i + num];
+    }
 
     // Advance the parser forward by `num` and returns to blocks passed.
     public IEnumerable<IBlock> Advance(int num)

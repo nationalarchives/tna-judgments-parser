@@ -5,7 +5,6 @@ namespace UK.Gov.Legislation.Lawmaker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
@@ -31,7 +30,7 @@ class BlockList : IBlock
                 continue;
             }
 
-            if (BlockList.Parse(parser) is BlockList blockList)
+            if (BlockList.ParseOuter(parser) is BlockList blockList)
                 enrichedBlocks.Add(blockList);
             else
                 enrichedBlocks.Add(parser.Advance());
@@ -39,7 +38,22 @@ class BlockList : IBlock
         return enrichedBlocks;
     }
 
-    internal static BlockList? Parse(IParser parser)
+    internal static BlockList? ParseOuter(IParser parser)
+    {
+        int save = parser.Save();
+        if (parser.Match(ParseBlockList) is BlockList blockList)
+        {
+            if (blockList.Intro is null && blockList.Children?.First() is BlockListItem bli && bli.Number is null)
+            {
+                parser.Restore(save);
+                return null;
+            }
+            return blockList;
+        }
+        return null;
+    }
+
+    internal static BlockList? ParseInner(IParser parser)
     {
         if (parser.Match(ParseBlockList) is BlockList blockList)
             return blockList;
@@ -57,11 +71,23 @@ class BlockList : IBlock
         if (line.GetEffectiveAlignment() == AlignmentValues.Right)
             return null;
 
+        // A BlockList can have a listIntroduction, which is a single unnumbered line.
         WLine? intro = null;
-        if (line is not WOldNumberedParagraph && !BlockListItem.IsNumberedWithTab(line))
+        if (!BlockListItem.HasNum(line))
         {
-            parser.Advance();
-            if (!block.IsEmptyLine()) intro = line;
+            IBlock? nextBlock = parser.Peek();
+            if (nextBlock is not WLine nextLine)
+                return null;
+
+            float currentIndent = OptimizedParser.GetEffectiveIndent(line);
+            float nextIndent = OptimizedParser.GetEffectiveIndent(nextLine);
+
+            float threshold = 0.1f;
+            if (nextIndent > currentIndent + threshold)
+            {
+                parser.Advance();
+                if (!block.IsEmptyLine()) intro = line;
+            }
         }
 
         IBlock? leader = intro;
@@ -78,6 +104,9 @@ class BlockList : IBlock
             if (currentBlock is not WLine currentLine) 
                 break;
 
+            //if (children.Count == 0 && leader is null && !BlockListItem.HasNum(currentLine))
+                //return null;
+
             // Stop parsing BlockListItem children upon reaching a line with insufficient indentation.
             if (leader != null)
             {
@@ -89,11 +118,11 @@ class BlockList : IBlock
 
                 float currentIndent = OptimizedParser.GetEffectiveIndent(currentLine);
                 float threshold = 0.1f;
-                // Previous sibling case - current line must have same or greater indent
-                if (children.Count > 0 && !(currentIndent >= leaderIndent - threshold))
-                    break;
-                // listIntroduction case - current line have greater indent
+                // First BlockListItem child must have greater indent than previous line.
                 if (children.Count == 0 && !(currentIndent > leaderIndent + threshold))
+                    break;
+                // Subsequent BlockListItem siblings must same or greater indent than previous siblings.
+                if (children.Count > 0 && !(currentIndent >= leaderIndent - threshold))
                     break;
             }
 
@@ -109,6 +138,8 @@ class BlockList : IBlock
 
         if (children.Count == 0)
             return null;
+        //BROKENif (intro is null && children.First() is BlockListItem bli && bli.Number is null)
+            //return null;
         return new BlockList { Intro = intro, Children = children };
     }
 }
@@ -145,14 +176,14 @@ internal class BlockListItem : IBlock
             number = np.Number;
             line = WLine.RemoveNumber(np);
         }
-        else if (IsNumberedWithTab(line))
+        else if (HasNum(line))
         {
             number = line.Contents.First() as IFormattedText;
             line = new WLine(line, line.Contents.Skip(2));
         }
         contents.Add(line);
 
-        // Handle subsequent lines
+        // Handle subsequent lines i.e. nested BlockLists
 
         while (!parser.IsAtEnd())
         {
@@ -169,7 +200,7 @@ internal class BlockListItem : IBlock
                 break;
             }
 
-            if (BlockList.Parse(parser) is BlockList blockList)
+            if (BlockList.ParseInner(parser) is BlockList blockList)
                 contents.Add(blockList);
         }
         contents = TidyBlockListContents(contents);
@@ -209,8 +240,10 @@ internal class BlockListItem : IBlock
         return contents.Skip(2).Prepend(tidiedBlockList).ToList();
     }
 
-    internal static bool IsNumberedWithTab(WLine line)
+    internal static bool HasNum(WLine line)
     {
+        if (line is WOldNumberedParagraph)
+            return true;
         IEnumerable<IInline> contents = line.Contents;
         return contents.Count() >= 3 && contents.First() is IFormattedText && contents.Skip(1).First() is WTab;
     }
