@@ -232,6 +232,7 @@
         <xs:element ref="i" />
         <xs:element ref="u" />
         <xs:element ref="a" />
+        <xs:element ref="ref" />
         <xs:element ref="marker" />
         <xs:element ref="authorialNote" />
     </xs:choice>
@@ -345,7 +346,18 @@
     <xs:complexType mixed="true" />
 </xs:element>
 
-<xs:element name="a" />
+<xs:element name="a">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+        </xs:choice>
+        <xs:attribute name="href" type="xs:anyURI" />
+        <xs:attribute name="class" type="xs:string" />
+        <xs:attribute name="title" type="xs:string" />
+    </xs:complexType>
+</xs:element>
 
 <xs:element name="marker">
     <xs:complexType>
@@ -371,6 +383,31 @@
 
 <xs:element name="br">
     <xs:complexType />
+</xs:element>
+
+<xs:element name="ref">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+        </xs:choice>
+        <xs:attribute name="href" type="xs:anyURI" />
+        <xs:attribute name="class">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="legislation" />
+                    <xs:enumeration value="statutory-instrument" />
+                    <xs:enumeration value="regulation" />
+                    <xs:enumeration value="act" />
+                    <xs:enumeration value="legal-document" />
+                    <xs:enumeration value="government-document" />
+                    <xs:enumeration value="consultation" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="title" type="xs:string" />
+    </xs:complexType>
 </xs:element>
 
 </xs:schema>
