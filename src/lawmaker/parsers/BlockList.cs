@@ -64,7 +64,7 @@ class BlockList : IBlock
             if (!block.IsEmptyLine()) intro = line;
         }
 
-        WLine? leader = intro;
+        IBlock? leader = intro;
         List<IBlock> children = [];
 
         while (!parser.IsAtEnd())
@@ -81,7 +81,12 @@ class BlockList : IBlock
             // Stop parsing BlockListItem children upon reaching a line with insufficient indentation.
             if (leader != null)
             {
-                float leaderIndent = OptimizedParser.GetEffectiveIndent(leader);
+                float leaderIndent;
+                if (leader is BlockListItem item)
+                    leaderIndent = item.Indent;
+                else
+                    leaderIndent = OptimizedParser.GetEffectiveIndent(leader as WLine);
+
                 float currentIndent = OptimizedParser.GetEffectiveIndent(currentLine);
                 float threshold = 0.1f;
                 // Previous sibling case - current line must have same or greater indent
@@ -95,7 +100,7 @@ class BlockList : IBlock
             if (BlockListItem.Parse(parser) is BlockListItem blockListItem)
             {
                 // Update leader to point to this BlockListItem child before advancing to the next.
-                leader = blockListItem.Contents.First() as WLine;
+                leader = blockListItem;
                 children.Add(blockListItem);
                 continue;
             }
@@ -108,11 +113,13 @@ class BlockList : IBlock
     }
 }
 
-    internal class BlockListItem : IBlock
+internal class BlockListItem : IBlock
 {
-    public IFormattedText? Number { get; internal set; }
+    public IFormattedText? Number { get; internal init; }
 
     public required IList<IBlock> Contents { get; internal init; }
+
+    public float Indent { get; internal init; }
 
     internal static BlockListItem? Parse(IParser parser)
     {
@@ -131,6 +138,8 @@ class BlockList : IBlock
         if (block is not WLine line)
             return null;
 
+        float indent = OptimizedParser.GetEffectiveIndent(line);
+
         if (line is WOldNumberedParagraph np)
         {
             number = np.Number;
@@ -144,7 +153,6 @@ class BlockList : IBlock
         contents.Add(line);
 
         // Handle subsequent lines
-        float indent = OptimizedParser.GetEffectiveIndent(line);
 
         while (!parser.IsAtEnd())
         {
@@ -168,7 +176,7 @@ class BlockList : IBlock
 
         if (contents.Count == 0)
             return null;
-        return new BlockListItem { Number = number, Contents = contents };
+        return new BlockListItem { Number = number, Contents = contents, Indent = indent };
     }
 
     /* If this BlockListItem contains a nested BlockList as a child element, 
