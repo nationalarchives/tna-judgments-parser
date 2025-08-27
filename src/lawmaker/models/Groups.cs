@@ -206,7 +206,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidChild(IDivision child)
         {
-            // Upon entering the Schedules container, all following elements should be within
+            // Upon entering the Schedules container, all following elements should be within unless it's the start of the conclusions
+            if (child is UnknownLevel unknownLvl && (unknownLvl.Contents[0] as Judgments.Parse.WUnknownLine).NormalizedContent.ToUpper().Equals("EXPLANATORY NOTE"))
+                return false;
             return true;
         }
 

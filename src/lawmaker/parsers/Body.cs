@@ -19,6 +19,13 @@ namespace UK.Gov.Legislation.Lawmaker
             while (i < Document.Body.Count)
             {
                 IDivision div = ParseNextBodyDivision();
+                // We have encountered the conclusion so exit the while loop early
+                if (div is UnknownLevel unknownLvl && IsStartOfExplanatoryNote(unknownLvl.Contents[0] as WUnknownLine))
+                {
+                    i -= 1;
+                    break;
+                }
+    
                 if (div is not null)
                     body.Add(div);
             }

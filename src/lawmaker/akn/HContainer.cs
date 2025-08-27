@@ -15,12 +15,11 @@ namespace UK.Gov.Legislation.Lawmaker
         protected override void AddDivision(XmlElement parent, IDivision div)
         {
             if (div is HContainer hc)
-            {
                 AddHContainer(parent, hc);
-            } else
-            {
+            else if (div is BlockContainer bc)
+                AddBlockContainer(parent, bc);
+            else
                 base.AddDivision(parent, div);
-            }
         }
 
         protected void AddHContainer(XmlElement parent, HContainer hc)

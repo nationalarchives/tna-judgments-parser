@@ -1,11 +1,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
-using DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -42,6 +40,7 @@ namespace UK.Gov.Legislation.Lawmaker
             AddPreface(main, bill.Preface);
             AddPreamble(main, bill.Preamble);
             AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
+            AddConclusions(main, bill.Conclusions);
 
             return doc;
         }
@@ -167,6 +166,21 @@ namespace UK.Gov.Legislation.Lawmaker
             return pElement;
         }
 
+        private void AddConclusions(XmlElement main, IList<IBlockContainer> conclusionElements)
+        {
+            if (conclusionElements.Count <= 0)
+            {
+                logger.LogWarning("The parsed Conclusions elements were empty!");
+                return;
+            }
+            XmlElement conc = CreateAndAppend("conclusions", main);
+            conc.SetAttribute("eId", "backCover");
+            foreach (BlockContainer blockContainer in conclusionElements)
+            {
+                AddBlockContainer(conc, blockContainer);
+            }
+        }
+
         private void AddBody(XmlElement main, IList<IDivision> divisions, IList<Schedule> schedules)
         {
             XmlElement body = CreateAndAppend("body", main);
@@ -282,7 +296,6 @@ namespace UK.Gov.Legislation.Lawmaker
             IEnumerable<IBlock> content = FootnoteEnricher.EnrichInside(fn.Content);
             blocks(authorialNote, content);
         }
-
 
         protected void AddBlockList(XmlElement parent, BlockList blockList)
         {
