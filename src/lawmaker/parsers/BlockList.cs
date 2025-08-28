@@ -30,7 +30,7 @@ class BlockList : IBlock
                 continue;
             }
 
-            if (BlockList.ParseOuter(parser) is BlockList blockList)
+            if (parser.Match(BlockList.Parse) is BlockList blockList)
                 enrichedBlocks.Add(blockList);
             else
                 enrichedBlocks.Add(parser.Advance());
@@ -38,31 +38,11 @@ class BlockList : IBlock
         return enrichedBlocks;
     }
 
-    internal static BlockList? ParseOuter(IParser parser)
-    {
-        int save = parser.Save();
-        if (parser.Match(ParseBlockList) is BlockList blockList)
-        {
-            if (blockList.Intro is null && blockList.Children?.First() is BlockListItem bli && bli.Number is null)
-            {
-                parser.Restore(save);
-                return null;
-            }
-            return blockList;
-        }
-        return null;
-    }
-
-    internal static BlockList? ParseInner(IParser parser)
-    {
-        if (parser.Match(ParseBlockList) is BlockList blockList)
-            return blockList;
-        return null;
-    }
-
-    private static BlockList? ParseBlockList(IParser parser)
+    public static BlockList? Parse(IParser parser)
     {
         IBlock block = parser.Current();
+        if (block.IsEmptyLine())
+            return null;
         if (block is not WLine line)
             return null;
         // We expect that BlockLists are always left-aligned.
@@ -75,24 +55,20 @@ class BlockList : IBlock
         WLine? intro = null;
         if (!BlockListItem.HasNum(line))
         {
-            IBlock? nextBlock = parser.Peek();
-            if (nextBlock is not WLine nextLine)
-                return null;
-
-            float currentIndent = OptimizedParser.GetEffectiveIndent(line);
-            float nextIndent = OptimizedParser.GetEffectiveIndent(nextLine);
-
-            float threshold = 0.1f;
-            if (nextIndent > currentIndent + threshold)
-            {
-                parser.Advance();
-                if (!block.IsEmptyLine()) intro = line;
-            }
+            intro = line;
+            parser.Advance();
         }
 
-        IBlock? leader = intro;
-        List<IBlock> children = [];
+        // TODO: Remove leader variable?
+        WLine? leader = null;
+        float leaderIndent = 0f;
+        if (parser.Peek(-1) is WLine prevLine)
+        {
+            leader = prevLine;
+            leaderIndent = OptimizedParser.GetEffectiveIndent(leader);
+        }
 
+        List<IBlock> children = [];
         while (!parser.IsAtEnd())
         {
             // Skip over empty lines to ensure they do not influence parsing. 
@@ -104,32 +80,15 @@ class BlockList : IBlock
             if (currentBlock is not WLine currentLine) 
                 break;
 
-            //if (children.Count == 0 && leader is null && !BlockListItem.HasNum(currentLine))
-                //return null;
+            // Child must have greater indent than leader.
+            float childIndent = OptimizedParser.GetEffectiveIndent(currentLine);
+            float threshold = 0.1f;
+            if (!(childIndent - leaderIndent > threshold))
+                break;
 
-            // Stop parsing BlockListItem children upon reaching a line with insufficient indentation.
-            if (leader != null)
-            {
-                float leaderIndent;
-                if (leader is BlockListItem item)
-                    leaderIndent = item.Indent;
-                else
-                    leaderIndent = OptimizedParser.GetEffectiveIndent(leader as WLine);
-
-                float currentIndent = OptimizedParser.GetEffectiveIndent(currentLine);
-                float threshold = 0.1f;
-                // First BlockListItem child must have greater indent than previous line.
-                if (children.Count == 0 && !(currentIndent > leaderIndent + threshold))
-                    break;
-                // Subsequent BlockListItem siblings must same or greater indent than previous siblings.
-                if (children.Count > 0 && !(currentIndent >= leaderIndent - threshold))
-                    break;
-            }
-
+            // Attempt to parse BlockListItem
             if (BlockListItem.Parse(parser) is BlockListItem blockListItem)
             {
-                // Update leader to point to this BlockListItem child before advancing to the next.
-                leader = blockListItem;
                 children.Add(blockListItem);
                 continue;
             }
@@ -138,8 +97,6 @@ class BlockList : IBlock
 
         if (children.Count == 0)
             return null;
-        //BROKENif (intro is null && children.First() is BlockListItem bli && bli.Number is null)
-            //return null;
         return new BlockList { Intro = intro, Children = children };
     }
 }
@@ -183,7 +140,8 @@ internal class BlockListItem : IBlock
         }
         contents.Add(line);
 
-        // Handle subsequent lines i.e. nested BlockLists
+        // Handle subsequent lines belonging to this BlockListItem
+        // i.e. nested BlockListItems
 
         while (!parser.IsAtEnd())
         {
@@ -194,50 +152,19 @@ internal class BlockListItem : IBlock
 
             float threshold = 0.1f;
             float currentIndent = OptimizedParser.GetEffectiveIndent(nextLine);
-            if (currentIndent <= indent + threshold) // TODO: handle extra paragraphs
+            if (!(currentIndent - indent > threshold)) // TODO: handle extra paragraphs
             {
                 parser.Restore(save);
                 break;
             }
 
-            if (BlockList.ParseInner(parser) is BlockList blockList)
-                contents.Add(blockList);
+            if (BlockListItem.Parse(parser) is BlockListItem blockListItem)
+                contents.Add(blockListItem);
         }
-        contents = TidyBlockListContents(contents);
 
         if (contents.Count == 0)
             return null;
         return new BlockListItem { Number = number, Contents = contents, Indent = indent };
-    }
-
-    /* If this BlockListItem contains a nested BlockList as a child element, 
-     * and this nested BlockList has no listIntroduction,
-     * move the first WLine into the listIntroduction of the nested BlockList:
-     * 
-     *  <item>                  <item>
-     *       <num/>                  <num/>
-     *       *LINE*                  <blockList>     
-     *       <blockList>                 <listIntroduction> 
-     *           <item/>     --->            *LINE*
-     *           <item/>                 </listIntroduction>
-     *       </blockList>                <item/>
-     *  </item>                          <item/>
-     *                               </blockList>
-     *                           </item>
-     */
-    internal static IList<IBlock> TidyBlockListContents(IList<IBlock> contents)
-    {
-        if (contents.Count() < 2)
-            return contents;
-        if (contents.First() is not WLine firstLine)
-            return contents;
-        if (contents.Skip(1).First() is not BlockList firstBlockList)
-            return contents;
-        if (firstBlockList.Intro is not null)
-            return contents;
-
-        BlockList tidiedBlockList = new BlockList { Intro = firstLine, Children = firstBlockList.Children };
-        return contents.Skip(2).Prepend(tidiedBlockList).ToList();
     }
 
     internal static bool HasNum(WLine line)

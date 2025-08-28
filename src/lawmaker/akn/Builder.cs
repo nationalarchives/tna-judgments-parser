@@ -311,19 +311,36 @@ namespace UK.Gov.Legislation.Lawmaker
 
         protected void AddBlockListItem(XmlElement parent, BlockListItem item)
         {
-            XmlElement e = CreateAndAppend("item", parent);
-            // Handle Word's weird bullet character
+            XmlElement itemElement = CreateAndAppend("item", parent);
+            // Add num
             if (item.Number is not null)
             {
+                // Handle Word's weird bullet character
                 string newNum = new string(item.Number.Text.Select(c => ((uint)c == 61623) ? '\u2022' : c).ToArray());
                 if (item.Number is WText wText)
-                    AddAndWrapText(e, "num", new WText(newNum, wText.properties));
+                    AddAndWrapText(itemElement, "num", new WText(newNum, wText.properties));
                 else if (item.Number is WNumText WNumText)
-                    AddAndWrapText(e, "num", new WNumText(WNumText, newNum));
+                    AddAndWrapText(itemElement, "num", new WNumText(WNumText, newNum));
                 else
-                    AddAndWrapText(e, "num", new WText(newNum, null));
+                    AddAndWrapText(itemElement, "num", new WText(newNum, null));
             }
-            AddBlocks(e, item.Contents);
+            // Handle nested BlockListItem children
+            // In which case we must wrap them in a BlockList element
+            if (item.Contents.Any(c => c is BlockListItem))
+            {
+                XmlElement blockListElement = CreateAndAppend("blockList", itemElement);
+
+                XmlElement listIntroductionElement = CreateAndAppend("listIntroduction", blockListElement);
+                AddInlines(listIntroductionElement, (item.Contents.First() as WLine).Contents); // TODO: Gross
+
+                AddBlocks(blockListElement, item.Contents.Skip(1));
+            }
+            else
+            {
+                AddBlocks(itemElement, item.Contents);
+            }
+
+
         }
     }
 

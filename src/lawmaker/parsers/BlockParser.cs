@@ -35,9 +35,10 @@ class BlockParser : IParser
     // for checking within the bounds of the Document Body.
     public IBlock? Peek(int num = 1)
     {
-        if (!(i + num < Contents.Count))
+        int peekIndex = i + num;
+        if (peekIndex < 0 || peekIndex >= Contents.Count)
             return null;
-        return Contents[i + num];
+        return Contents[peekIndex];
     }
 
     // Advance the parser forward by `num` and returns to blocks passed.
