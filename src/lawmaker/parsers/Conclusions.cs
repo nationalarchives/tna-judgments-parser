@@ -59,7 +59,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     }
                 }
             }
-            blocks = (List<IBlock>) BlockList.ParseBlocks(blocks);
+            blocks = (List<IBlock>) BlockList.ParseFrom(blocks);
 
             conclusions.Add(new ExplanatoryNote { Heading = heading, Subheading = subheading, Blocks = blocks });
         }

@@ -91,7 +91,7 @@ record LdappTableBlock(
     // Creates BlockLists from structured content inside table cells (if any).
     private static WCell ParseTableCell(WCell cell)
     {
-        IEnumerable<IBlock> enriched = BlockList.ParseBlocks(cell.Contents);
+        IEnumerable<IBlock> enriched = BlockList.ParseFrom(cell.Contents);
         return new WCell(cell.Row, cell.Props, enriched);
     }
 
