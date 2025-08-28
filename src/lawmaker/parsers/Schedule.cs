@@ -1,8 +1,11 @@
 
+#nullable enable
+
 using System.Collections.Generic;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using System.Text.RegularExpressions;
+using System;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -10,57 +13,61 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class LegislationParser
     {
 
-        private HContainer ParseSchedule(WLine line)
+        private HContainer? ParseSchedule(WLine line)
         {
+            var save = i;
+
             if (!PeekSchedule(line))
                 return null;
 
-            bool isSecondaryDoc = frames.IsSecondaryDocName();
-            string numberString = Regex.Replace(
-                isSecondaryDoc ? IgnoreRightTabbedText(line) : line.NormalizedContent,
-                @"SCHEDULE",
-                "Schedule",
-                RegexOptions.IgnoreCase
-            );
-            IFormattedText number = new WText(numberString, null);
+            // Handle number
+            WLine numberLine = line;
+            string numberText = GetNumber(numberLine, false);
+            IFormattedText number = new WText(numberText, null);
 
             if (Document.Body[i + 1].Block is not WLine line2)
                 return null;
 
-            WLine referenceNoteLine = null;
-            WLine headingLine = line2;
-            if (IsRightAligned(line2)
-                // Reference notes in SP Bills/Acts follow these conditions
-                || DocNames.IsPrimarySP(docName) && ((IsCenterAligned(line2) && line2.IsAllItalicized()) || line2.NormalizedContent.StartsWith("introduced by ", System.StringComparison.CurrentCultureIgnoreCase)))
+            // Num can be followed by a reference note & heading, or just a heading.
+            WLine headingLine;
+            WLine? referenceNoteLine;
+            if (IsReferenceNote(line2))
             {
-                // Handle reference note
                 if (Document.Body[i + 2].Block is not WLine line3)
                     return null;
                 referenceNoteLine = line2;
                 headingLine = line3;
+                i += 3;
             }
+            else
+            {
+                referenceNoteLine = null;
+                headingLine = line2;
+                i += 2;
+            }
+
+            // SI documents occasionally have schedule reference notes on the same line as the schedule number
+            // (separated by one or more tab characters) as opposed to having their own distinct line.
+            string referenceNoteText;
+            if (referenceNoteLine is null && frames.IsSecondaryDocName())
+                referenceNoteText = GetRightTabbedText(numberLine);
+            else
+                referenceNoteText = referenceNoteLine?.NormalizedContent ?? "";
+            IFormattedText referenceNote = new WText(referenceNoteText, null);
+
             if (!IsCenterAligned(headingLine))
+            {
+                i = save;
                 return null;
-            ILine heading = headingLine;
+            }
 
-            IFormattedText referenceNote = new WText(
-                referenceNoteLine is null ? "" : referenceNoteLine.NormalizedContent,
-                null
-            );
-            // Seconday docs could have the refenceNote tabbed to the right of the num
-            // Leave referenceNoteLine null so 'i' won't increment extra since in this case the referenceNote is sharing a line with the num
-            if (referenceNote.Text.Equals("") && isSecondaryDoc)
-                referenceNote = new WText(GetRightTabbedText(line), null);
-
-            var save = i;
-            i += (referenceNoteLine is null) ? 2 : 3;
             var save1 = i;
 
             HContainer schedule;
             IDivision next = ParseNextBodyDivision();
             if (next is UnnumberedLeaf content)
             {
-                schedule = new ScheduleLeaf { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = content.Contents };
+                schedule = new ScheduleLeaf { Number = number, Heading = headingLine, ReferenceNote = referenceNote, Contents = content.Contents };
             }
             else
             {
@@ -71,7 +78,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save;
                     return null;
                 }
-                schedule = new ScheduleBranch { Number = number, Heading = heading, ReferenceNote = referenceNote, Children = children };
+                schedule = new ScheduleBranch { Number = number, Heading = headingLine, ReferenceNote = referenceNote, Children = children };
             }
 
             if (frames.IsScheduleContext() || quoteDepth > 0)
@@ -89,8 +96,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
-            // In secondary docs sometimes the referenceNote is on the same line as the num so IgnoreRightTabbedText() should get rid of that
-            string numText = IgnoreQuotedStructureStart(frames.IsSecondaryDocName() ? IgnoreRightTabbedText(line) : line.NormalizedContent, quoteDepth);
+            string numText = GetNumber(line, true);
             if (!Schedule.IsValidNumber(numText))
                 return false;
             return true;
@@ -121,6 +127,31 @@ namespace UK.Gov.Legislation.Lawmaker
             frames.Pop();
             return children;
         }
+
+        private string GetNumber(WLine line, bool ignoreQuotedStructureStart)
+        {
+            string number = frames.IsSecondaryDocName() ? IgnoreRightTabbedText(line) : line.NormalizedContent;
+            if (ignoreQuotedStructureStart)
+                number = IgnoreQuotedStructureStart(number, quoteDepth);
+            return Regex.Replace(number, @"SCHEDULE", "Schedule", RegexOptions.IgnoreCase);
+        }
+
+        private bool IsReferenceNote(WLine line)
+        {
+            if (DocNames.IsPrimarySP(docName))
+            {
+                // Reference notes in SP Bills/Acts are formatted differently
+                if (IsCenterAligned(line) && line.IsAllItalicized())
+                    return true;
+                StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
+                if (line.NormalizedContent.StartsWith("(introduced by", ignoreCase))
+                    return true;
+            }
+            else
+                return IsRightAligned(line);
+            return false;
+        }
+
 
     }
 
