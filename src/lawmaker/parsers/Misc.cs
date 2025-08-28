@@ -91,7 +91,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (ContentHasTabbedText(line))
                 return new WLine(line, [line.Contents.Last()]).NormalizedContent;
-            return null;
+            return "";
         }
 
         private static string IgnoreRightTabbedText(WLine line)
