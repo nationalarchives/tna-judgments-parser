@@ -23,7 +23,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         internal IList<Schedule> Schedules { get; init; }
         
-        internal IList<IBlockContainer> Conclusions { get; init; }
+        internal IList<BlockContainer> Conclusions { get; init; }
 
     }
 }

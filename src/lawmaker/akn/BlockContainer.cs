@@ -24,7 +24,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             AddSubheading(blockContainerElement, bc.Subheading);
 
-            AddBlocks(blockContainerElement, bc.Blocks);
+            AddBlocks(blockContainerElement, bc.Content);
         }
         
         private void AddSubheading(XmlElement parent, ILine subheading)
