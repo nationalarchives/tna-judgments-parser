@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="ssi">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Secretary of State makes these Regulations in exercise of the powers conferred by section 255(9)(a) and (12) of the Levelling-up and Regeneration Act 2023<authorialNote marker="1" class="footnote"><p>2023 c. 55 (“the LURA”).</p></authorialNote>.</p>
+      </formula>
+    </preamble>
+    <body>
+      <article eId="sec_1" class="prov1">
+        <heading>Citation and interpretation</heading>
+        <num>1.</num>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p> These Regulations may be cited as the Levelling-up and Regeneration Act 2023 (Commencement No. 5 and Transitional Provision) Regulations 2024.</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <intro>
+            <p>In these Regulations—</p>
+          </intro>
+          <hcontainer name="definition" class="definition">
+            <content>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">the Act</def> means the Levelling-up and Regeneration Act 2023;</p>
+            </content>
+          </hcontainer>
+          <hcontainer name="definition" class="definition">
+            <content>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">the 2006 Act</def> means the Childcare Act 2006<authorialNote marker="2" class="footnote"><p>2006 c. 21 (“the 2006 Act”).</p></authorialNote>;</p>
+            </content>
+          </hcontainer>
+          <hcontainer name="definition" class="definition">
+            <content>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">the commencement date</def> means 1st November 2024.</p>
+            </content>
+          </hcontainer>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(2)</num>
+          <intro>
+            <p>In these Regulations the following terms have the meaning given by section 98 (interpretation of Part 3) of the 2006 Act—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p>“the Chief Inspector”<authorialNote marker="3" class="footnote"><p>The definition of Chief Inspector was amended by paragraph 117 of Schedule 14 to the Education and Inspections Act 2006 (c. 40).</p></authorialNote>;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p>“childcare”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(c)</num>
+            <content>
+              <p>“childminder agency”<authorialNote marker="4" class="footnote"><p>The definition of childminder agency was inserted by paragraph 62(2)(a) of Schedule 4 to the Children and Families Act 2014 (c. 6) (“the 2014 Act”).</p></authorialNote>;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(d)</num>
+            <content>
+              <p>“domestic premises”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(e)</num>
+            <content>
+              <p>“early years childminder”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(f)</num>
+            <content>
+              <p>“early years childminder agency<authorialNote marker="5" class="footnote"><p>The definition of early years childminder agency was inserted by paragraph 62(2)(b) of Schedule 4 to the 2014 Act.</p></authorialNote>”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(g)</num>
+            <content>
+              <p>“early years childminding”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(h)</num>
+            <content>
+              <p>“early years provider”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(i)</num>
+            <content>
+              <p>“early years provision”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(j)</num>
+            <content>
+              <p>“later years childminder”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(k)</num>
+            <content>
+              <p>“later years childminder agency<authorialNote marker="6" class="footnote"><p>The definition of later years childminder agency was inserted by paragraph 62(2)(c) of Schedule 4 to the 2014 Act.</p></authorialNote>”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(l)</num>
+            <content>
+              <p>“later years childminding”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(m)</num>
+            <content>
+              <p>“later years provider”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(n)</num>
+            <content>
+              <p>“later years provision”.</p>
+            </content>
+          </level>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(3)</num>
+          <intro>
+            <p>In these Regulations, the following terms are to be construed in accordance with section 32<authorialNote marker="7" class="footnote"><p>Section 32 was amended by paragraph 2 of Schedule 4 to the 2014 Act.</p></authorialNote> (maintenance of the two childcare registers) of the 2006 Act—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p>“the early years register”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p>“Part A of the general childcare register”;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(c)</num>
+            <content>
+              <p>“Part B of the general childcare register”.</p>
+            </content>
+          </level>
+        </paragraph>
+      </article>
+      <article eId="sec_2" class="prov1">
+        <heading>Provisions coming into force on the commencement date</heading>
+        <num>2.</num>
+        <intro>
+          <p> The following provisions of the Act come into force on the commencement date—</p>
+        </intro>
+        <level class="para1">
+          <num>(a)</num>
+          <content>
+            <p>section 237 (childcare: use of non-domestic premises) and Schedule 23 (use of non-domestic premises for childcare: registration); and</p>
+          </content>
+        </level>
+        <level class="para1">
+          <num>(b)</num>
+          <content>
+            <p>section 238 (childcare: number of providers).</p>
+          </content>
+        </level>
+      </article>
+      <article eId="sec_3" class="prov1">
+        <heading>Schedules – transitional provision</heading>
+        <num>3.</num>
+        <intro>
+          <p> The following Schedules to these Regulations have effect—</p>
+        </intro>
+        <level class="para1">
+          <num>(a)</num>
+          <content>
+            <p>Schedule 1 (transitional provision: persons who may only provide childcare on non-domestic premises other than childminders without domestic premises);</p>
+          </content>
+        </level>
+        <level class="para1">
+          <num>(b)</num>
+          <content>
+            <p>Schedule 2 (transitional provision: persons providing childcare on domestic premises other than childminders); and</p>
+          </content>
+        </level>
+        <level class="para1">
+          <num>(c)</num>
+          <content>
+            <p>Schedule 3 (transitional provision: childminders with domestic premises).</p>
+          </content>
+        </level>
+      </article>
+      <article eId="sec_4" class="prov1">
+        <heading>Saving provision in relation to the Childcare (Childminder Agencies) (Registration, Inspection and Supply and Disclosure of Information) Regulations 2014</heading>
+        <num>4.</num>
+        <content>
+          <p> No provision made in the Schedules to these Regulations has any effect for the purpose of computing a year of registration for the purposes of the Childcare (Childminder Agencies) (Registration, Inspection and Supply and Disclosure of Information) Regulations 2014<authorialNote marker="8" class="footnote"><p>S.I. 2014/1920; “year of registration” is defined in regulation 2 of that instrument.</p></authorialNote>.</p>
+        </content>
+      </article>
+      <hcontainer name="signatures">
+        <hcontainer name="signatureBlock">
+          <content>
+            <p>Signed on behalf of the Secretary of State</p>
+            <p>Stephen Morgan</p>
+            <p>Parliamentary Under Secretary of State</p>
+            <p>9th October 2024</p>
+            <p>Department for Education</p>
+          </content>
+        </hcontainer>
+      </hcontainer>
+      <level>
+        <content>
+          <p class="unknownImport">SCHEDULE</p>
+        </content>
+      </level>
+      <hcontainer name="schedules" class="schs">
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 1<authorialNote class="referenceNote"><p>Regulation 3(c)</p></authorialNote></num>
+          <heading>Transitional Provision: childminders with domestic premises</heading>
+          <paragraph class="schProv1">
+            <num>5.</num>
+            <subparagraph class="schProv2">
+              <num>(1)</num>
+              <intro>
+                <p> A person comes within this sub-paragraph where—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <intro>
+                  <p>before the commencement date that person has given notice for registration as a childminder—</p>
+                </intro>
+                <level class="para2">
+                  <num>(i)</num>
+                  <content>
+                    <p>to the Chief Inspector under section 65(1) of the 2006 Act for registration in Part B of the general childcare register; or</p>
+                  </content>
+                </level>
+                <level class="para2">
+                  <num>(ii)</num>
+                  <content>
+                    <p>to an early years childminder agency or to a later years childminder agency under section 65A(1) of the 2006 Act for registration with that early years childminder agency or later years childminder agency; and</p>
+                  </content>
+                </level>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <intro>
+                  <p>immediately before the commencement date—</p>
+                </intro>
+                <level class="para2">
+                  <num>(i)</num>
+                  <content>
+                    <p>the Chief Inspector has not discharged their duty under section 65(1) of the 2006 Act; or, as the case may be,</p>
+                  </content>
+                </level>
+                <level class="para2">
+                  <num>(ii)</num>
+                  <content>
+                    <p>the early years or the later years childminder agency in question has not discharged its duty under section 65A(2) of the 2006 Act,</p>
+                  </content>
+                </level>
+                <wrapUp>
+                  <p>in relation to the notice referred to in sub-paragraph (a).</p>
+                </wrapUp>
+              </level>
+            </subparagraph>
+            <subparagraph class="schProv2">
+              <num>(2)</num>
+              <intro>
+                <p>A person who comes within sub-paragraph (1) is deemed on and after the commencement date to have given the notice referred to in sub-paragraph (1)(a)(i) or (ii) for registration as a childminder with domestic premises—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>in the case of a person who has given a notice to be registered as described in sub-paragraph (1)(a)(i), in Part B of the general childcare register under section 65(1) of the 2006 Act; or</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>in the case of a person who has given a notice to be registered as described in sub-paragraph (1)(a)(ii), with the early years childminder agency or the later years childminder agency in question under section 65A(1) of the 2006 Act.</p>
+                </content>
+              </level>
+            </subparagraph>
+          </paragraph>
+        </hcontainer>
+      </hcontainer>
+    </body>
+    <conclusions eId="backCover">
+      <blockContainer class="explanatoryNote">
+        <heading>EXPLANATORY NOTE</heading>
+        <subheading>(This note is not part of the Regulations)</subheading>
+        <tblock class="group1">
+          <heading>First heading</heading>
+          <p>These Regulations are the fifth commencement regulations bringing into force provision in the Levelling-up And Regeneration Act 2023 (c. 55) (“the Act”).</p>
+          <blockList>
+            <listIntroduction>The provisions of the Act specified in regulation 2 come into force on 1st November 2024. Those provisions are—</listIntroduction>
+            <item>
+              <num>(a)</num>
+              <p>section 237 (childcare: use of non-domestic premises), and Schedule 23 (use of non-domestic premises for childcare registration) as introduced by that section; and</p>
+            </item>
+            <item>
+              <num>(b)</num>
+              <p>section 238 (childcare: number of providers).</p>
+            </item>
+          </blockList>
+          <p>The provision brought into force by these Regulations amends Part 3 of the Childcare Act 2006 (c. 21) (“the 2006 Act”) (regulation of provision of childcare in England).</p>
+        </tblock>
+        <tblock class="group1">
+          <heading>Heading here</heading>
+          <blockList>
+            <listIntroduction>Section 237(1) of the Act amends the definitions of “early years childminding” and “later years childminding” in sections 96(4) and (8) of the Childcare Act 2006 respectively (those provisions coming within Part 3 of the 2006 Act), by removing the requirement that at least half of the provision must be provided on domestic premises. Subsection (2) introduces Schedule 23 (use of non-domestic premises for childcare registration) which makes further amendments to Part 3 of the 2006 Act relating to the registration of persons providing childminding wholly on non-domestic premises.</listIntroduction>
+            <item>
+              <num>(a)</num>
+              <p>Testing</p>
+            </item>
+            <item>
+              <num>(b)</num>
+              <p>Nice one</p>
+            </item>
+          </blockList>
+          <p>Section 238 amends sections 96(5) and (9) of the 2006 Act, substituting the word “three” with “four”. The effect of this change is to increase the number of other childminders or assistants that childminders may work with from two to three (four people in total). It also increases, from four to five, the minimum number of people that must work together to provide “childcare on domestic premises” (provision that would be childminding, at least some or all of which is on domestic premises, but for the operation of sections 96(5) and (9) of the Childcare Act 2006).</p>
+          <p>The Schedules to these Regulations make transitional provision in relation to the provision these Regulations bring into force.</p>
+        </tblock>
+      </blockContainer>
+      <blockContainer class="commencementHistory">
+        <heading>NOTE AS TO EARLIER COMMENCEMENT REGULATIONS</heading>
+        <subheading>(This note is not part of the Regulations)</subheading>
+        <p>The following provisions of the Levelling-up and Regeneration Act 2023 have been brought into force by commencement Regulations made before the date of these Regulations.</p>
+        <tblock class="table">
+          <foreign>
+            <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="allBorders tableleft width100">
+              <tbody class="left">
+                <tr>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Provision</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Date of Commencement</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. No.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Section 78</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">31.01.2024</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. 2024/92</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 19—</p>
+                    <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                      <item>
+                        <num>(a)</num>
+                        <p>paragraph 1 (partially);</p>
+                      </item>
+                      <item>
+                        <num>(b)</num>
+                        <p>paragraph 1 (partially);</p>
+                      </item>
+                      <item>
+                        <num>(c)</num>
+                        <p>paragraphs 2 and 3 (partially)</p>
+                      </item>
+                    </blockList>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" />
+                  </td>
+                  <td>
+                    <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                      <item>
+                        <p>S.I. 2024/92</p>
+                      </item>
+                      <item>
+                        <p>S.I. 2024/389</p>
+                      </item>
+                      <item>
+                        <p>S.I. 2024/389</p>
+                      </item>
+                    </blockList>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Schedule 22</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">31.03.2024</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. 2024/389</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </foreign>
+        </tblock>
+      </blockContainer>
+    </conclusions>
+  </bill>
+</akomaNtoso>

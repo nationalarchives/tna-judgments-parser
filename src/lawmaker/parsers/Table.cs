@@ -9,6 +9,8 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using DocumentFormat.OpenXml.Spreadsheet;
+using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
 
 // This class currently breaks from the convention of putting all the parsing in partial class LegislationParser.
@@ -78,10 +80,21 @@ record LdappTableBlock(
     {
         if (parser.Advance() is WTable table)
         {
-            return table;
+            // Identify lines with leading numbers in each table cell.
+            WTable extracted = WTable.Enrich(table, HardNumbers.ExtractTableCell);
+            // Parse any structured content in each table cell.
+            return WTable.Enrich(extracted, ParseTableCell);
         }
         return null;
     }
+
+    // Creates BlockLists from structured content inside table cells (if any).
+    private static WCell ParseTableCell(WCell cell)
+    {
+        IEnumerable<IBlock> enriched = BlockList.ParseBlocks(cell.Contents);
+        return new WCell(cell.Row, cell.Props, enriched);
+    }
+
     private List<IBlock> ToList()
     {
         List<IBlock> list = [];
@@ -90,7 +103,6 @@ record LdappTableBlock(
         list.Add(Table);
         return list;
     }
-
 
 }
 

@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.DOCX;
 using UK.Gov.Legislation.Judgments.Parse;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
@@ -40,6 +41,7 @@ namespace UK.Gov.Legislation.Lawmaker
             AddPreface(main, bill.Preface);
             AddPreamble(main, bill.Preamble);
             AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
+            AddConclusions(main, bill.Conclusions);
 
             return doc;
         }
@@ -165,6 +167,21 @@ namespace UK.Gov.Legislation.Lawmaker
             return pElement;
         }
 
+        private void AddConclusions(XmlElement main, IList<BlockContainer> conclusionElements)
+        {
+            if (conclusionElements.Count <= 0)
+            {
+                logger.LogWarning("The parsed Conclusions elements were empty!");
+                return;
+            }
+            XmlElement conc = CreateAndAppend("conclusions", main);
+            conc.SetAttribute("eId", "backCover");
+            foreach (BlockContainer blockContainer in conclusionElements)
+            {
+                AddBlockContainer(conc, blockContainer);
+            }
+        }
+
         private void AddBody(XmlElement main, IList<IDivision> divisions, IList<Schedule> schedules)
         {
             XmlElement body = CreateAndAppend("body", main);
@@ -180,13 +197,14 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             foreach (IBlock block in blocks)
             {
-                if (block is IOldNumberedParagraph np)
+                if (block is WOldNumberedParagraph np)
                 {
-                    XmlElement container = doc.CreateElement("blockContainer", ns);
-                    parent.AppendChild(container);
-                    if (np.Number is not null)
-                        AddAndWrapText(container, "num", np.Number);
-                    this.p(container, np);
+                    // In Lawmaker, by default, all numbered paragraphs should be marked up
+                    // as regular p elements
+                    List<IInline> inlines = [np.Number];
+                    if (np.Contents.Count() > 0)
+                        inlines.AddRange([new WText(" ", null), .. np.Contents]);
+                    this.p(parent, new WLine(np, inlines));
                 }
                 else if (block is ILine line)
                 {
@@ -211,6 +229,18 @@ namespace UK.Gov.Legislation.Lawmaker
                 else if (block is IDivWrapper wrapper)
                 {
                     AddDivision(parent, wrapper.Division);
+                }
+                else if (block is BlockList blockList)
+                {
+                    AddBlockList(parent, blockList);
+                }
+                else if (block is BlockListItem item)
+                {
+                    AddBlockListItem(parent, item);
+                }
+                else if (block is BlockContainer blockContainer)
+                {
+                    AddBlockContainer(parent, blockContainer);
                 }
                 else
                 {
@@ -272,7 +302,33 @@ namespace UK.Gov.Legislation.Lawmaker
             blocks(authorialNote, content);
         }
 
+        protected void AddBlockList(XmlElement parent, BlockList blockList)
+        {
+            XmlElement bl = CreateAndAppend("blockList", parent);
+            if (blockList.Intro is not null)
+            {
+                XmlElement intro = CreateAndAppend("listIntroduction", bl);
+                AddInlines(intro, blockList.Intro.Contents);
+            }
+            AddBlocks(bl, blockList.Children);
+        }
 
+        protected void AddBlockListItem(XmlElement parent, BlockListItem item)
+        {
+            XmlElement e = CreateAndAppend("item", parent);
+            // Handle Word's weird bullet character
+            if (item.Number is not null)
+            {
+                string newNum = new string(item.Number.Text.Select(c => ((uint)c == 61623) ? '\u2022' : c).ToArray());
+                if (item.Number is WText wText)
+                    AddAndWrapText(e, "num", new WText(newNum, wText.properties));
+                else if (item.Number is WNumText WNumText)
+                    AddAndWrapText(e, "num", new WNumText(WNumText, newNum));
+                else
+                    AddAndWrapText(e, "num", new WText(newNum, null));
+            }
+            AddBlocks(e, item.Contents);
+        }
     }
 
 }
