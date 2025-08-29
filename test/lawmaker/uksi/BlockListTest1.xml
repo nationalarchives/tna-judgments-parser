@@ -691,6 +691,34 @@
                           </blockList>
                         </td>
                       </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>14.</num>
+                              <blockList>
+                                <listIntroduction>Test case where nested items have same indent but different num alignments—</listIntroduction>
+                                <item>
+                                  <num>(ab)</num>
+                                  <blockList>
+                                    <listIntroduction>£250,001 - £500,000,</listIntroduction>
+                                    <item>
+                                      <num>(viii)</num>
+                                      <blockList>
+                                        <listIntroduction>Right aligned num</listIntroduction>
+                                        <item>
+                                          <num>(aa)</num>
+                                          <p>Left aligned num</p>
+                                        </item>
+                                      </blockList>
+                                    </item>
+                                  </blockList>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </foreign>
@@ -708,11 +736,11 @@
         <blockList>
           <listIntroduction>The provisions of the Act specified in regulation 2 come into force on 1st November 2024. Those provisions are—</listIntroduction>
           <item>
-            <num>(ab)</num>
+            <num>(ac)</num>
             <p>section 237 (childcare: use of non-domestic premises), and Schedule 23 (use of non-domestic premises for childcare registration) as introduced by that section; and</p>
           </item>
           <item>
-            <num>(ac)</num>
+            <num>(ad)</num>
             <p>section 238 (childcare: number of providers).</p>
           </item>
         </blockList>
