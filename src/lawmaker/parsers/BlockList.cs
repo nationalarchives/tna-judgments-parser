@@ -229,10 +229,12 @@ internal class BlockListItem : IBlock
             if (nextBlock is not WLine nextLine)
                 break;
 
-            // Nested BlockListItems must be indented further than their parent. 
+            // Nested BlockListItems must be indented further than their parent,
+            // or have a greater numbering level. 
             float threshold = 0.1f;
             float currentIndent = OptimizedParser.GetEffectiveIndent(nextLine);
-            if (!(currentIndent - leaderIndent > threshold))
+            bool isRightOfLeader = currentIndent - leaderIndent > threshold;
+            if (!isRightOfLeader && !nextLine.HasGreaterNumberingLevelThan(firstLine))
                 break;
 
             if (parser.Match(BlockListItem.Parse) is BlockListItem blockListItem)
