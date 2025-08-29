@@ -1,3 +1,5 @@
+#nullable enable
+
 using System.Collections.Generic;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -12,24 +14,28 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private void ParseConclusions()
         {
+            if (i >= Document.Body.Count)
+                return;
             ParseExplanatoryNote();
-            if (i < Document.Body.Count)
-                ParseCommencementHistory();
+            ParseCommencementHistory();
         }
 
         private void ParseExplanatoryNote()
         {
-            WLine heading = null;
-            WLine subheading = null;
-            if (IsStartOfExplanatoryNote(Document.Body[i].Block as WLine))
+            if (i >= Document.Body.Count)
+                return;
+
+            // Handle heading and subheading
+            WLine? heading = null;
+            if (ExplanatoryNote.IsHeading(Current()))
             {
-                heading = Document.Body[i].Block as WLine;
-                i += 1;
+                heading = Current() as WLine;
+                i++;
             }
-            WLine line2 = Document.Body[i].Block as WLine;
-            if (line2.NormalizedContent.StartsWith('(') && line2.NormalizedContent.EndsWith(')'))
+            WLine? subheading = null;
+            if (ExplanatoryNote.IsSubheading(Current()))
             {
-                subheading = line2;
+                subheading = Current() as WLine;
                 i += 1;
             }
             
@@ -49,7 +55,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 else
                 {
                     // Heading tblock encountered
-                    if (!IsStartOfCommencementHistoryTable(block as WLine))
+                    if (!CommencementHistory.IsHeading(block))
                     {
                         if (blocksSegment.Count > 0)
                         {
@@ -88,19 +94,23 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private void ParseCommencementHistory()
         {
-            WLine heading = null;
-            WLine subheading = null;
-            if (IsStartOfCommencementHistoryTable(Document.Body[i].Block as WLine))
+            if (i >= Document.Body.Count)
+                return;
+
+            // Handle heading and subheading
+            WLine? heading = null;
+            if (CommencementHistory.IsHeading(Current()))
             {
-                heading = Document.Body[i].Block as WLine;
+                heading = Current() as WLine;
                 i += 1;
             }
-            WLine line2 = Document.Body[i].Block as WLine;
-            if (line2.NormalizedContent.StartsWith('(') && line2.NormalizedContent.EndsWith(')'))
+            WLine? subheading = null;
+            if (CommencementHistory.IsSubheading(Current()))
             {
-                subheading = line2;
+                subheading = Current() as WLine;
                 i += 1;
             }
+
             List<IBlock> blocks = [];
             IBlock block;
             while (i < Document.Body.Count)
@@ -117,15 +127,6 @@ namespace UK.Gov.Legislation.Lawmaker
             conclusions.Add(new CommencementHistory { Heading = heading, Subheading = subheading, Blocks = blocks });
         }
 
-        private static bool IsStartOfExplanatoryNote(WLine line)
-        {
-            return line.NormalizedContent.ToUpper().Equals("EXPLANATORY NOTE");
-        }
-
-        private static bool IsStartOfCommencementHistoryTable(WLine line)
-        {
-            return line.NormalizedContent.StartsWith("NOTE AS TO EARLIER COMMENCEMENT", System.StringComparison.CurrentCultureIgnoreCase);
-        }
     }
 
     internal class ExplanatoryNote : BlockContainer
@@ -135,6 +136,21 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class { get; internal init; } = "explanatoryNote";
 
+        public static bool IsHeading(IBlock block)
+        {
+            if (block is not WLine line)
+                return false;
+            return line.NormalizedContent.ToUpper().Equals("EXPLANATORY NOTE");
+        }
+
+        public static bool IsSubheading(IBlock block)
+        {
+            if (block is not WLine line)
+                return false;
+            string text = line.NormalizedContent;
+            return text.StartsWith('(') && text.EndsWith(')');
+        }
+
     }
 
     internal class CommencementHistory : BlockContainer
@@ -143,6 +159,21 @@ namespace UK.Gov.Legislation.Lawmaker
         public override string Name { get; internal init; } = "blockContainer";
 
         public override string Class { get; internal init; } = "commencementHistory";
-        
+
+        public static bool IsHeading(IBlock block)
+        {
+            if (block is not WLine line)
+                return false;
+            return line.NormalizedContent.ToUpper().StartsWith("NOTE AS TO EARLIER COMMENCEMENT");
+        }
+
+        public static bool IsSubheading(IBlock block)
+        {
+            if (block is not WLine line)
+                return false;
+            string text = line.NormalizedContent;
+            return text.StartsWith('(') && text.EndsWith(')');
+        }
+
     }
 }
