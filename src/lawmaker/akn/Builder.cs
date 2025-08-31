@@ -167,7 +167,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return pElement;
         }
 
-        private void AddConclusions(XmlElement main, IList<IBlockContainer> conclusionElements)
+        private void AddConclusions(XmlElement main, IList<BlockContainer> conclusionElements)
         {
             if (conclusionElements.Count <= 0)
             {
@@ -237,6 +237,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 else if (block is BlockListItem item)
                 {
                     AddBlockListItem(parent, item);
+                }
+                else if (block is BlockContainer blockContainer)
+                {
+                    AddBlockContainer(parent, blockContainer);
                 }
                 else
                 {

@@ -16,8 +16,6 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (div is HContainer hc)
                 AddHContainer(parent, hc);
-            else if (div is BlockContainer bc)
-                AddBlockContainer(parent, bc);
             else
                 base.AddDivision(parent, div);
         }

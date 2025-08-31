@@ -90,18 +90,15 @@ namespace UK.Gov.Legislation.Lawmaker
         private static string GetRightTabbedText(WLine line)
         {
             if (ContentHasTabbedText(line))
-            {
                 return new WLine(line, [line.Contents.Last()]).NormalizedContent;
-            }
-            return null;
+            return "";
         }
 
         private static string IgnoreRightTabbedText(WLine line)
         {
-            if (ContentHasTabbedText(line))
-            {
+            // If count is 2 or less than there wouldn't be right-aligned tabbed text that needs to be ignored
+            if (line.Contents.Count() > 2 && ContentHasTabbedText(line))
                 return new WLine(line, line.Contents.SkipLast(1)).NormalizedContent;
-            }
             return line.NormalizedContent;
         }
 
