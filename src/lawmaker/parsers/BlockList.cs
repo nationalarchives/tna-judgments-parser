@@ -5,50 +5,81 @@ namespace UK.Gov.Legislation.Lawmaker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
 
+/*
+ * There are certain locations in Lawmaker documents where we do not expect provisions 
+ * (i.e. parts, sections, sub-paragraphs) but rather, a simpler markup in which all 
+ * 'structured' content is to be parsed using the BlockList model.
+ * Such locations include:
+ *  - In the Explanatory Notes of Statutory Instruments
+ *  - Inside table cells
+ *  
+ *  BlockList markup is as follows, where the listIntroduction is optional:
+ *  
+ *  <blockList>
+ *      <listIntroduction>Text</listIntroduction>
+ *      <item>
+ *          <num>(1)</num>
+ *          <p>Text</p>
+ *      </item>
+ *      ...
+ *  </blockList>
+ */
 class BlockList : IBlock
 {
     public WLine? Intro { get; internal init; }
 
     public IList<IBlock>? Children { get; internal init; }
 
-    public static IEnumerable<IBlock> ParseBlocks(IEnumerable<IBlock> blocks)
+    /// <summary>
+    /// Identifies and parses any and all <c>BlockList</c> elements present in <paramref name="blocks"/>.
+    /// </summary>
+    /// <param name="blocks">The collection of <c>IBlock</c> in which to parse.</param>
+    /// <returns>The transformed collection.</returns>
+    public static IEnumerable<IBlock> ParseFrom(IEnumerable<IBlock> blocks)
     {
+        if (blocks.Count() == 0)
+            return blocks;
+
         IParser parser = new BlockParser(blocks);
         List<IBlock> enrichedBlocks = new List<IBlock>();
 
         while (!parser.IsAtEnd())
         {
-            // Strip all empty lines from the cell, with a caveat:
-            // Leave a single empty line if the cell consists entirely of empty lines.
-            if (parser.Current().IsEmptyLine() && enrichedBlocks.Count() > 0)
+            // Remove empty lines from the collection to ensure they
+            // don't throw off the parsing of BlockLists.
+            if (parser.Current().IsEmptyLine())
             {
                 parser.Advance();
                 continue;
             }
 
-            if (BlockList.Parse(parser) is BlockList blockList)
+            if (parser.Match(BlockList.Parse) is BlockList blockList)
                 enrichedBlocks.Add(blockList);
             else
                 enrichedBlocks.Add(parser.Advance());
         }
+        // If there are no enriched blocks at this point, they must all have been empty lines.
+        // We wish to leave at least 1 block in the collection, so we re-add an empty line
+        if (enrichedBlocks.Count == 0)
+            enrichedBlocks.Add(blocks.First());
+
         return enrichedBlocks;
     }
 
-    internal static BlockList? Parse(IParser parser)
-    {
-        if (parser.Match(ParseBlockList) is BlockList blockList)
-            return blockList;
-        return null;
-    }
-
-    private static BlockList? ParseBlockList(IParser parser)
+    /// <summary>
+    /// Attempts to parse a <c>BlockList</c> from the current line of the <paramref name="parser"/>.
+    /// </summary>
+    /// <param name="parser">The parser.</param>
+    /// <returns>The parsed <c>BlockList</c>, if successful. Otherwise <c>null</c>.</returns>
+    public static BlockList? Parse(IParser parser)
     {
         IBlock block = parser.Current();
+        if (block.IsEmptyLine())
+            return null;
         if (block is not WLine line)
             return null;
         // We expect that BlockLists are always left-aligned.
@@ -57,16 +88,25 @@ class BlockList : IBlock
         if (line.GetEffectiveAlignment() == AlignmentValues.Right)
             return null;
 
+        // A BlockList can begin with a listIntroduction, which is a single unnumbered line.
         WLine? intro = null;
-        if (line is not WOldNumberedParagraph && !BlockListItem.IsNumberedWithTab(line))
+        if (!BlockListItem.IsNumbered(line))
         {
+            intro = line;
             parser.Advance();
-            if (!block.IsEmptyLine()) intro = line;
         }
 
-        IBlock? leader = intro;
-        List<IBlock> children = [];
+        // Identify the 'leader' - the line immediately preceding the first BlockList item.
+        // We expect all BlockList items to be indented further than the leader.
+        WLine? leader = null;
+        float leaderIndent = 0f;
+        if (parser.Peek(-1) is WLine prevLine)
+        {
+            leader = prevLine;
+            leaderIndent = OptimizedParser.GetEffectiveIndent(leader);
+        }
 
+        List<IBlock> children = [];
         while (!parser.IsAtEnd())
         {
             // Skip over empty lines to ensure they do not influence parsing. 
@@ -78,33 +118,17 @@ class BlockList : IBlock
             if (currentBlock is not WLine currentLine) 
                 break;
 
-            // Stop parsing BlockListItem children upon reaching a line with insufficient indentation.
-            if (leader != null)
-            {
-                float leaderIndent;
-                if (leader is BlockListItem item)
-                    leaderIndent = item.Indent;
-                else
-                    leaderIndent = OptimizedParser.GetEffectiveIndent(leader as WLine);
+            // BlockListItem child must have greater indent than leader.
+            float threshold = 0.1f;
+            float childIndent = OptimizedParser.GetEffectiveIndent(currentLine);
+            if (leader is not null && !(childIndent - leaderIndent > threshold))
+                break;
 
-                float currentIndent = OptimizedParser.GetEffectiveIndent(currentLine);
-                float threshold = 0.1f;
-                // Previous sibling case - current line must have same or greater indent
-                if (children.Count > 0 && !(currentIndent >= leaderIndent - threshold))
-                    break;
-                // listIntroduction case - current line have greater indent
-                if (children.Count == 0 && !(currentIndent > leaderIndent + threshold))
-                    break;
-            }
-
-            if (BlockListItem.Parse(parser) is BlockListItem blockListItem)
-            {
-                // Update leader to point to this BlockListItem child before advancing to the next.
-                leader = blockListItem;
+            // Attempt to parse BlockListItem child.
+            if (parser.Match(BlockListItem.Parse) is BlockListItem blockListItem)
                 children.Add(blockListItem);
-                continue;
-            }
-            break;
+            else
+                break;
         }
 
         if (children.Count == 0)
@@ -113,104 +137,126 @@ class BlockList : IBlock
     }
 }
 
+/*
+ * A BlockListItem typically has a num, though not always.
+ * They must have at least one <p> element. This serves as the 'intro'.
+ * They sometimes contain nested BlockListItems, which serve as 'children'.
+ * 
+ * <item>
+ *     <num>(1)</num>
+ *     <p>Text</p>
+ *     <item>
+ *         <num>
+ *         <p>Text</p>
+ *     </item>
+ *     ...
+ * </item>
+ * 
+ * Note that in Lawmaker, nested BlockListItems are actually wrapped in BlockLists,
+ * which is at odds with the above. We perform this wrapping in the Builder, as it 
+ * is much easier to do in post.
+ * 
+ * A BlockListItem's <num> can take one of many forms, which is why we 
+ * rely upon indentation for tracking nesting, rather than numbering scheme:
+ * 
+ * 1, 2, 3
+ * 1., 2., 3.
+ * (1), (2), (3)
+ * (a), (b), (c)
+ * (A), (B), (C)
+ * (i), (ii), (iii)
+ * (aa), (bb), (cc)
+ * Bullet points
+ * Em-dashes
+ * No number at all 
+ */
 internal class BlockListItem : IBlock
 {
     public IFormattedText? Number { get; internal init; }
 
-    public required IList<IBlock> Contents { get; internal init; }
+    public required IEnumerable<IBlock> Intro { get; internal init; }
 
-    public float Indent { get; internal init; }
+    public required IEnumerable<BlockListItem> Children { get; internal init; }
 
-    internal static BlockListItem? Parse(IParser parser)
+    /// <summary>
+    /// Attempts to parse a <c>BlockListItem</c> from the current line of the <paramref name="parser"/>.
+    /// </summary>
+    /// <param name="parser">The parser.</param>
+    /// <returns>The parsed <c>BlockListItem</c>, if successful. Otherwise <c>null</c>.</returns>
+    public static BlockListItem? Parse(IParser parser)
     {
-        if (parser.Match(ParseBlockListItem) is BlockListItem blockListItem)
-            return blockListItem;
-        return null;
-    }
+        IFormattedText? number;
+        IList<IBlock> intro = [];
 
-    private static BlockListItem? ParseBlockListItem(IParser parser)
-    {
-        IFormattedText? number = null;
-        IList<IBlock> contents = [];
-
-        // Handle first line
-        IBlock block = parser.Advance();
-        if (block is not WLine line)
+        IBlock firstBlock = parser.Advance();
+        if (firstBlock is not WLine firstLine)
             return null;
 
-        float indent = OptimizedParser.GetEffectiveIndent(line);
-
-        if (line is WOldNumberedParagraph np)
+        // Extract the number and intro from the first line
+        IBlock introLine;
+        if (firstLine is WOldNumberedParagraph np)
         {
             number = np.Number;
-            line = WLine.RemoveNumber(np);
+            introLine = WLine.RemoveNumber(np);
         }
-        else if (IsNumberedWithTab(line))
+        else if (IsNumbered(firstLine))
         {
-            number = line.Contents.First() as IFormattedText;
-            line = new WLine(line, line.Contents.Skip(2));
+            // Special cases such as bullets and em-dashes
+            number = firstLine.Contents.First() as IFormattedText;
+            introLine = new WLine(firstLine, firstLine.Contents.Skip(2));
         }
-        contents.Add(line);
+        else
+        {
+            // Unnumbered case 
+            number = null;
+            introLine = firstLine;
+        }
 
-        // Handle subsequent lines
+        if (introLine.IsEmptyLine())
+            return null;
+        intro.Add(introLine);
+
+        // Handle subsequent lines belonging to this BlockListItem.
+        // Currently, this is limited to nested BlockListItems.
+        // Eventually, we should handle additional blocks belonging to the intro
+        // such as extra paragraphs, quoted structures, tables, and images.
+        IList<BlockListItem> children = [];
+        float leaderIndent = OptimizedParser.GetEffectiveIndent(firstLine);
 
         while (!parser.IsAtEnd())
         {
-            int save = parser.Save();
             IBlock nextBlock = parser.Current();
             if (nextBlock is not WLine nextLine)
                 break;
 
+            // Nested BlockListItems must be indented further than their parent,
+            // or have a greater numbering level. 
             float threshold = 0.1f;
             float currentIndent = OptimizedParser.GetEffectiveIndent(nextLine);
-            if (currentIndent <= indent + threshold) // TODO: handle extra paragraphs
-            {
-                parser.Restore(save);
+            bool isRightOfLeader = currentIndent - leaderIndent > threshold;
+            if (!isRightOfLeader && !nextLine.HasGreaterNumberingLevelThan(firstLine))
                 break;
-            }
 
-            if (BlockList.Parse(parser) is BlockList blockList)
-                contents.Add(blockList);
+            if (parser.Match(BlockListItem.Parse) is BlockListItem blockListItem)
+                children.Add(blockListItem);
         }
-        contents = TidyBlockListContents(contents);
 
-        if (contents.Count == 0)
+        if (intro.Count == 0)
             return null;
-        return new BlockListItem { Number = number, Contents = contents, Indent = indent };
+        return new BlockListItem { Number = number, Intro = intro, Children = children };
     }
 
-    /* If this BlockListItem contains a nested BlockList as a child element, 
-     * and this nested BlockList has no listIntroduction,
-     * move the first WLine into the listIntroduction of the nested BlockList:
-     * 
-     *  <item>                  <item>
-     *       <num/>                  <num/>
-     *       *LINE*                  <blockList>     
-     *       <blockList>                 <listIntroduction> 
-     *           <item/>     --->            *LINE*
-     *           <item/>                 </listIntroduction>
-     *       </blockList>                <item/>
-     *  </item>                          <item/>
-     *                               </blockList>
-     *                           </item>
-     */
-    internal static IList<IBlock> TidyBlockListContents(IList<IBlock> contents)
+    /// <summary>
+    /// Determines whether <paramref name="line"/> is numbered per the <c>BlockListItem</c> numbering format.
+    /// </summary>
+    /// <param name="line">The line to check.</param>
+    /// <returns><c>True</c> if <paramref name="line"/> is numbered.</returns>
+    internal static bool IsNumbered(WLine line)
     {
-        if (contents.Count() < 2)
-            return contents;
-        if (contents.First() is not WLine firstLine)
-            return contents;
-        if (contents.Skip(1).First() is not BlockList firstBlockList)
-            return contents;
-        if (firstBlockList.Intro is not null)
-            return contents;
-
-        BlockList tidiedBlockList = new BlockList { Intro = firstLine, Children = firstBlockList.Children };
-        return contents.Skip(2).Prepend(tidiedBlockList).ToList();
-    }
-
-    internal static bool IsNumberedWithTab(WLine line)
-    {
+        if (line is WOldNumberedParagraph)
+            return true;
+        // This is a hack to recognise lines starting with arbitrary characters such as bullets
+        // and em-dashes as 'numbered' without altering the definition of WOldNumberedParagraph.
         IEnumerable<IInline> contents = line.Contents;
         return contents.Count() >= 3 && contents.First() is IFormattedText && contents.Skip(1).First() is WTab;
     }

@@ -315,20 +315,52 @@ namespace UK.Gov.Legislation.Lawmaker
 
         protected void AddBlockListItem(XmlElement parent, BlockListItem item)
         {
-            XmlElement e = CreateAndAppend("item", parent);
-            // Handle Word's weird bullet character
+            XmlElement itemElement = CreateAndAppend("item", parent);
             if (item.Number is not null)
             {
+                // Handle Word's weird bullet character.
                 string newNum = new string(item.Number.Text.Select(c => ((uint)c == 61623) ? '\u2022' : c).ToArray());
                 if (item.Number is WText wText)
-                    AddAndWrapText(e, "num", new WText(newNum, wText.properties));
+                    AddAndWrapText(itemElement, "num", new WText(newNum, wText.properties));
                 else if (item.Number is WNumText WNumText)
-                    AddAndWrapText(e, "num", new WNumText(WNumText, newNum));
+                    AddAndWrapText(itemElement, "num", new WNumText(WNumText, newNum));
                 else
-                    AddAndWrapText(e, "num", new WText(newNum, null));
+                    AddAndWrapText(itemElement, "num", new WText(newNum, null));
             }
-            AddBlocks(e, item.Contents);
+            if (item.Children.Count() > 0)
+            {
+                /* Handle nested BlockListItem children.
+                 * In which case we must wrap them in a BlockList element:
+                 * 
+                 * <item>                           <item>
+                 *     <num>(1)</num>                   <num>(1)</num>
+                 *     <p>Text1</p>                     <blockList>
+                 *     <item>                               <listIntroduction>Text1</listIntroduction>
+                 *         <num>(a)</num>      --->         <item>
+                 *         <p>Text2</p>                         <num>(a)</num>
+                 *     </item>                                  <p>Text2</p>
+                 *     ...                                  </item>
+                 * </item>                                  ...
+                 *                                      </blockList>
+                 *                                  </item>
+                 */ 
+                XmlElement blockListElement = CreateAndAppend("blockList", itemElement);
+                // Handle listIntroduction
+                XmlElement listIntroductionElement = CreateAndAppend("listIntroduction", blockListElement);
+                foreach (IBlock block in item.Intro)
+                {
+                    if (block is WLine line)
+                        AddInlines(listIntroductionElement, line.Contents);
+                    else
+                        AddBlocks(listIntroductionElement, [block]);
+                }
+                // Handle nested blockList children
+                AddBlocks(blockListElement, item.Children);
+            }
+            else
+                AddBlocks(itemElement, item.Intro);
         }
+
     }
 
 }

@@ -63,7 +63,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save;
                 return;
             }
-            IEnumerable<IBlock> structuredContent = BlockList.ParseBlocks(content);
+            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(content);
             conclusions.Add(new ExplanatoryNote { Heading = heading, Subheading = subheading, Content = structuredContent });
         }
 
@@ -98,7 +98,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save;
                 return null;
             }
-            IEnumerable<IBlock> structuredContent = BlockList.ParseBlocks(content);
+            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(content);
             return new HeadingTblock { Heading = heading, Content = structuredContent };
         }
 

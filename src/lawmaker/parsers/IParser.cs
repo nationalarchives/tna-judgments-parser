@@ -19,7 +19,7 @@ interface IParser
 
     bool IsAtEnd();
 
-    IBlock Peek(int num = 1);
+    IBlock? Peek(int num = 1);
 
     // Move the parser forward and return the block the parser was on when `Advance()` was called.
     public IBlock Advance()
