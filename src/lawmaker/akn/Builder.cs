@@ -12,17 +12,17 @@ using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    partial class Builder(Bill bill) : AkN.Builder
+    partial class Builder(Document bill) : AkN.Builder
     {
 
         override protected string UKNS => "https://www.legislation.gov.uk/namespaces/UK-AKN";
 
-        public static XmlDocument Build(Bill bill)
+        public static XmlDocument Build(Document bill)
         {
             return new Builder(bill).Build();
         }
 
-        private readonly Bill bill = bill;
+        private readonly Document bill = bill;
 
         private XmlDocument Build()
         {
@@ -31,7 +31,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
 
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
-            main.SetAttribute("name", this.bill.Type);
+            main.SetAttribute("name", this.bill.Type.ToString().ToLower());
 
             string title = Metadata.Extract(bill).Title;
             MetadataBuilder.Add(main, title);
@@ -39,7 +39,7 @@ namespace UK.Gov.Legislation.Lawmaker
             AddCoverPage(main, bill.CoverPage);
             AddPreface(main, bill.Preface);
             AddPreamble(main, bill.Preamble);
-            AddBody(main, bill.Body, bill.Schedules);
+            AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
 
             return doc;
         }
@@ -122,12 +122,21 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement formula = CreateAndAppend("formula", e);
             formula.SetAttribute("name", "enactingText");
 
-            XmlElement element =  doc.CreateElement("p", ns);
-            element.InnerText = preamble.OfType<WLine>()
-            .Select(line => line.NormalizedContent)
-            .Aggregate((string acc, string element) => acc + " " + element);
-            element = TransformPreambleText(element);
-            formula.AppendChild(element);
+            if (Frames.IsSecondaryDocName(this.bill.Type))
+            {
+                AddBlocks(formula, preamble);
+                return;
+            }
+
+            foreach (IBlock block in preamble)
+            {
+                XmlElement element = doc.CreateElement("p", ns);
+                if (!(block is WLine line))
+                    continue;
+                element.InnerText = line.NormalizedContent;
+                element = TransformPreambleText(element);
+                formula.AppendChild(element);
+            }
         }
 
         private XmlElement TransformPreambleText(XmlElement pElement)
@@ -191,6 +200,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     AddTable(parent, table);
                 }
+                else if (block is LdappTableBlock tableBlock)
+                {
+                    AddTableBlock(parent, tableBlock);
+                }
                 else if (block is IQuotedStructure qs)
                 {
                     AddQuotedStructure(parent, qs);
@@ -236,9 +249,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 e.SetAttribute("indent", UKNS, "indent0");
 
                 // These contexts modify parsing behaviour, but should NOT be reflected in the context attribute
-                if (new[] { Context.REGS, Context.RULES, Context.ORDER }.Contains(qs2.Context))
-                    qs2.Context = Context.BODY;
-                e.SetAttribute("context", UKNS, qs2.Context.ToString().ToLower());
+                if (new[] { Context.REGULATIONS, Context.RULES, Context.ARTICLES }.Contains(qs2.Context))
+                    qs2.Context = Context.SECTIONS;
+                e.SetAttribute("context", UKNS, Contexts.ToBodyOrSch(qs2.Context));
                 e.SetAttribute("docName", UKNS, qs2.DocName.ToString().ToLower());
 
                 if (qs2.HasInvalidCode)
@@ -248,6 +261,17 @@ namespace UK.Gov.Legislation.Lawmaker
             AddDivisions(e, qs.Contents);
             quoteDepth -= 1;
         }
+
+        protected override void AddFootnote(XmlElement parent, IFootnote fn)
+        {
+            XmlElement authorialNote = doc.CreateElement("authorialNote", ns);
+            parent.AppendChild(authorialNote);
+            authorialNote.SetAttribute("class", ns, "footnote");
+            authorialNote.SetAttribute("marker", fn.Marker);
+            IEnumerable<IBlock> content = FootnoteEnricher.EnrichInside(fn.Content);
+            blocks(authorialNote, content);
+        }
+
 
     }
 

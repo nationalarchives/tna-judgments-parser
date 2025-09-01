@@ -167,6 +167,13 @@ interface IFootnote : IInline {
 
 }
 
+interface ISignatureName : IBlock
+{
+
+    IEnumerable<IInline> Content { get; }
+
+}
+
 interface IImageRef : IInline {
 
     string Src { get; set; }
