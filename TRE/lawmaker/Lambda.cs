@@ -12,6 +12,7 @@ using Amazon.S3;
 using Amazon.S3.Model;
 
 using Api = UK.Gov.Legislation.Lawmaker.Api;
+using UK.Gov.Legislation.Lawmaker;
 
 namespace UK.Gov.NationalArchives.CaseLaw.TRE.Lawmaker {
 
@@ -58,19 +59,25 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Lawmaker {
                 errors.Add("error reading .docx file");
                 return ClearAndSaveLogAndReturnErrors(inputs, errors);
             }
-            Api.DocType? docType;
+            DocName docName;
             try {
-                docType = InputHelper.GetDocType(inputs, logger);
+                DocName? tmp = DocNames.GetDocName(inputs.DocumentType);
+                if (tmp == null) throw new Exception();
+                docName = (DocName)tmp;
             } catch (Exception e) {
                 logger.LogError(e, "error reading document type: {}", e.Message);
                 errors.Add("error reading document type");
                 return ClearAndSaveLogAndReturnErrors(inputs, errors);
             }
 
+            string subType = inputs.SubType;
+            string procedure = inputs.Procedure;
+
             Api.Response response;
             try {
-                Api.Request request = new Api.Request { Content = docx, DocType = docType };
-                response = Legislation.Lawmaker.Helper.LambdaParse(request);
+                Api.Request request = new Api.Request { Content = docx, DocName = docName };
+                logger.LogInformation("Got content with doctype: {}. Creating response...", request.DocName);
+                response = Legislation.Lawmaker.Helper.LambdaParse(request, new LegislationClassifier(docName, subType, procedure));
             } catch (Exception e) {
                 logger.LogError(e, "parse error: {}", e.Message);
                 errors.Add("error parsing document");
