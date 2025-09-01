@@ -238,6 +238,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     AddBlockListItem(parent, item);
                 }
+                else if (block is ISignatureBlock sigBlock)
+                {
+                    AddSigBlock(parent, sigBlock);
+                }
                 else if (block is BlockContainer blockContainer)
                 {
                     AddBlockContainer(parent, blockContainer);
@@ -359,6 +363,14 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
                 AddBlocks(itemElement, item.Intro);
+        }
+
+        protected void AddSigBlock(XmlElement parent, ISignatureBlock sig)
+        {   
+            XmlElement block = doc.CreateElement("block", ns);
+            parent.AppendChild(block);
+            block.SetAttribute("name", sig.Name);
+            AddInlines(block, sig.Content);
         }
 
     }

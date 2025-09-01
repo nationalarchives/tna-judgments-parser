@@ -477,8 +477,6 @@ abstract class Builder {
                 AddInlineContainer(parent, page, "page");
             else if (model is ILineBreak)
                 AddLineBreak(parent);
-            else if (model is ISignatureName signatureName)
-                AddSignatureName(parent, signatureName);
             else if (model is ITab)
                 AddTab(parent);
         else if (model is IBookmark) { ; }
@@ -739,14 +737,6 @@ abstract class Builder {
         authorialNote.SetAttribute("class", "footnote");
         authorialNote.SetAttribute("marker", fn.Marker);
         blocks(authorialNote, fn.Content);
-    }
-
-    private void AddSignatureName(XmlElement parent, ISignatureName sn)
-    {
-        XmlElement block = doc.CreateElement("block", ns);
-        parent.AppendChild(block);
-        block.SetAttribute("name", ns, "signature");
-        AddInlines(block, sn.Content);
     }
 
     private void AddImageRef(XmlElement parent, IImageRef model) {
