@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="nisr">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Department of Agriculture, Environment and Rural Affairs, in exercise of the powers conferred by Article 32(1), (2)(a) and (c) and (6) of the Waste and Contaminated Land (Northern Ireland) Order 1997<authorialNote marker="1" class="footnote"><p>S.I. 1997/2778 (N.I. 19)</p></authorialNote>, makes the following Regulations.</p>
+        <p>In accordance with Article 32(3) of that Order, the Department has published a notice indicating the effect of these Regulations and has taken into consideration the representations made to it in accordance with the notice.</p>
+      </formula>
+    </preamble>
+    <body>
+      <article eId="sec_1" class="prov1">
+        <heading>Citation and commencement</heading>
+        <num>1.</num>
+        <content>
+          <p> These Regulations may be cited as the Environmental Protection (Single-use Vapes) (Amendment) Regulations (Northern Ireland) 2025 and come into operation in 29th July 2025.</p>
+        </content>
+      </article>
+      <article eId="sec_2" class="prov1">
+        <heading>Amendment of the Environmental Protection (Single-use Vapes) Regulations (Northern Ireland) 2024</heading>
+        <num>2.</num>
+        <content>
+          <p> The Environmental Protection (Single-use Vapes) Regulations (Northern Ireland) 2024<authorialNote marker="2" class="footnote"><p>S.R. 2024 No. 212</p></authorialNote> are amended in accordance with regulations 3 to 5.</p>
+        </content>
+      </article>
+      <hcontainer name="signatures">
+        <hcontainer name="signatureBlock">
+          <content>
+            <p>Shane Doris</p>
+            <p>A senior officer of the</p>
+            <p>Department of Agriculture, Environment and Rural Affairs</p>
+          </content>
+        </hcontainer>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>

@@ -1,9 +1,6 @@
 
 using System;
 using System.Text.Json.Serialization;
-using Microsoft.Extensions.Logging;
-
-using Api = UK.Gov.Legislation.Lawmaker.Api;
 
 namespace UK.Gov.NationalArchives.CaseLaw.TRE.Lawmaker
 {
@@ -37,28 +34,10 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Lawmaker
         [JsonPropertyName("document-type")]
         public string DocumentType { get; set; }
 
+        [JsonPropertyName("document-subtype")]
+        public string SubType { get; set; }
+
+        [JsonPropertyName("document-procedure")]
+        public string Procedure { get; set; }
     }
-
-    public partial class InputHelper
-    {
-
-        public static Api.DocType? GetDocType(ParserInputs inputs, ILogger logger)
-        {
-            if (inputs is null)
-                return null;
-            if (string.IsNullOrWhiteSpace(inputs.DocumentType))
-            {
-                logger.LogInformation("document type is null");
-                return null;
-            }
-            Api.DocType docType;
-            if (Enum.TryParse<Api.DocType>(inputs.DocumentType, out docType))
-                return docType;
-            else
-                logger.LogCritical("unrecognized document type: {}", inputs.DocumentType);
-            throw new Exception("unrecognized document type: " + inputs.DocumentType);
-        }
-
-    }
-
 }
