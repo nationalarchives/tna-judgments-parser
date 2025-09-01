@@ -63,11 +63,19 @@ class HardNumbers {
 
     public static readonly string QuotedStructureStart = @"(?:(?:{.*?}\s*)?[“""])?";
 
+    /*
+    * In Lawmaker: Para1, Para2 & Para3 all exhibit the same behaviour whereby 
+    * continuing to insert them in the first child position results in numbers prepended 
+    * with an increasing number of 'z/Z' characters. For example -
+    * Inserting a Para1 before existing Para1 (a) results in (za), then (zza), and so on.
+    * Hence the Z* and z* in some patterns below.
+    */
+
     public static readonly string[] NumberFormats = new string[] {
         @"\d+\.",              @"\(?\d+\)",
-        @"[A-Z]\.",            @"\(?[A-Z]{1,3}\)",
-        @"[a-z]\.",            @"\(?[a-z]{1,3}\)",
-        @"[ivx]+\.",           @"\(?[ivx]+\)",
+        @"[A-Z]\.",            @"\(?Z*[A-Z]{1,3}\)",
+        @"[a-z]\.",            @"\(?z*[a-z]{1,3}\)",
+        @"[ivx]+\.",           @"\(?z*[ivx]+[a-z]{0,3}\)",
         // compound
         @"[1-9]\d*\.\d+\.?",        @"\(?[1-9]\d*\.\d+\)",
         @"[1-9]\d*\.\d+\.\d+\.?",   @"\(?[1-9]\d*\.\d+\.\d+\)",
