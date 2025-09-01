@@ -57,7 +57,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static bool IsValidNumber(string num)
         {
-            string pattern = @"^\([ivxl]+\)$";
+            string pattern = @"^\(z*[ivxl]+[a-z]{0,3}\)$";
             return Regex.IsMatch(num, pattern);
         }
 
