@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
         private HContainer ParseSchedule(WLine line)
@@ -15,8 +15,9 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!PeekSchedule(line))
                 return null;
 
+            bool isSecondaryDoc = frames.IsSecondaryDocName();
             string numberString = Regex.Replace(
-                line.NormalizedContent,
+                isSecondaryDoc ? IgnoreRightTabbedText(line) : line.NormalizedContent,
                 @"SCHEDULE",
                 "Schedule",
                 RegexOptions.IgnoreCase
@@ -44,6 +45,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 referenceNoteLine is null ? "" : referenceNoteLine.NormalizedContent,
                 null
             );
+            // Seconday docs could have the refenceNote tabbed to the right of the num
+            // Leave referenceNoteLine null so 'i' won't increment extra since in this case the referenceNote is sharing a line with the num
+            if (referenceNote.Text.Equals("") && isSecondaryDoc)
+                referenceNote = new WText(GetRightTabbedText(line), null);
 
             var save = i;
             i += (referenceNoteLine is null) ? 2 : 3;
@@ -82,7 +87,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
-            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
+            // In secondary docs sometimes the referenceNote is on the same line as the num so IgnoreRightTabbedText() should get rid of that
+            string numText = IgnoreQuotedStructureStart(frames.IsSecondaryDocName() ? IgnoreRightTabbedText(line) : line.NormalizedContent, quoteDepth);
             if (!Schedule.IsValidNumber(numText))
                 return false;
             return true;

@@ -8,7 +8,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
         private readonly Dictionary<(string, int, int, DocName, Context), (object Result, int NextPosition)> memo = [];
@@ -75,6 +75,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 return hContainer;
 
             hContainer = ParseAndMemoize(line, "Definition", ParseDefinition);
+            if (hContainer != null)
+                return hContainer;
+
+            hContainer = ParseAndMemoize(line, "Signatures", ParseSignatures);
             if (hContainer != null)
                 return hContainer;
 
@@ -171,7 +175,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         /*
          * Returns a list of blocks starting with the current paragraph, plus any
-         * additional blocks (i.e extra paragraphs, quoted structures, and/or tables) 
+         * additional blocks (i.e extra paragraphs, quoted structures, and/or tables)
         */
         private List<IBlock> HandleParagraphs(WLine line)
         {
@@ -234,9 +238,15 @@ namespace UK.Gov.Legislation.Lawmaker
 
             IDivision next = ParseNextBodyDivision();
 
-            if (next is WDummyDivision dummy && dummy.Contents.Count() == 1 && dummy.Contents.First() is WTable table)
-                return [table];
-            // UnknownLevels are treated as extra paragraphs of the previous division 
+            if (next is WDummyDivision dummy && dummy.Contents.Count() == 1)
+            {
+
+                if (dummy.Contents.First() is WTable table)
+                    return [table];
+                if (dummy.Contents.First() is LdappTableBlock tableBlock)
+                    return [tableBlock];
+            }
+            // UnknownLevels are treated as extra paragraphs of the previous division
             if (next is not UnnumberedLeaf && next is not UnknownLevel)
                 return null;
             Leaf leaf = next as Leaf;
@@ -268,7 +278,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (children.Count == 0)
                 return wrapUp;
             if (children.Last() is not UnnumberedLeaf leaf)
-                // Closing Words must be the final child 
+                // Closing Words must be the final child
                 return wrapUp;
             if (children.Count == 1)
             {
@@ -297,8 +307,8 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!frames.IsScheduleContext() && PeekProv1(line))
                 return true;
             // Disabled for now, as numbered list items appear identical to SchProv1 elements
-            // and were causing an unnecessary and problematic break  
-            /*          
+            // and were causing an unnecessary and problematic break
+            /*
             if (PeekSchProv1(line))
                 return true;
             */
@@ -350,6 +360,30 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (PeekCrossHeading(line))
                     return new CrossHeadingLeaf { };
             }
+            return null;
+        }
+
+        /*
+         * Attempts to identify the current line as one of a small number of provisions
+         * which can exist as the very first provision in the body of a document.
+         * Otherwise, returns null.
+         */
+        private HContainer PeekBodyStartProvision()
+        {
+            if (Current() is not WLine line)
+                return null;
+
+            if (PeekGroupOfPartsHeading(line))
+                return new GroupOfPartsLeaf { };
+            if (PeekPartHeading(line))
+                return new PartLeaf { };
+            if (PeekProv1(line))
+                return new Prov1Leaf { TagName = GetProv1Name() };
+            if (PeekSchedules(line))
+                return new Schedules { };
+            if (PeekSchedule(line))
+                return new ScheduleLeaf { };
+
             return null;
         }
 
