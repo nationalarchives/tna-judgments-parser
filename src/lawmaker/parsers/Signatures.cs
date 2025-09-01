@@ -49,8 +49,8 @@ namespace UK.Gov.Legislation.Lawmaker
             // A signature must contain a single concurrent set of right-positioned paragraphs.
             // It may optionally begin and/or end with left-positioned paragraphs.
             // In SIs, this right-positioning is achieved with Tab Stops, as opposed to Alignment.
-            bool foundRightLinesStart = false;
-            bool foundRightLinesEnd = false;
+            // bool foundRightLinesStart = false;
+            // bool foundRightLinesEnd = false;
 
             List<IBlock> contents = [];
 
@@ -67,27 +67,27 @@ namespace UK.Gov.Legislation.Lawmaker
                 int save = i;
 
                 // Ensure we encounter a single contiguous block of right-positioned text.
-                if (ContentHasTabbedText(currentLine))
-                {
-                    if (!foundRightLinesStart)
-                        foundRightLinesStart = true;
-                    else if (foundRightLinesEnd)
-                    {
-                        i = save;
-                        break;
-                    }
-                }
-                else if (foundRightLinesStart && !foundRightLinesEnd)
-                    foundRightLinesEnd = true;
+                // if (ContentHasTabbedText(currentLine))
+                // {
+                //     if (!foundRightLinesStart)
+                //         foundRightLinesStart = true;
+                //     else if (foundRightLinesEnd)
+                //     {
+                //         i = save;
+                //         break;
+                //     }
+                // }
+                // else if (foundRightLinesStart && !foundRightLinesEnd)
+                //     foundRightLinesEnd = true;
 
 
                 // Add each line of the signature to the contents.
                 // A single line will often have both left and right-positioned text,
                 // in which case we must split the line in two.
                 List<IInline> inlines = [];
-                if (currentLine.Contents.Any(inline => inline is WTab))
-                {
-                    bool isAfterTab = false;
+                // if (currentLine.Contents.Any(inline => inline is WTab))
+                // {
+                    // bool isAfterTab = false;
                     foreach (IInline inline in currentLine.Contents)
                     {
                         if (!(inline is WTab))
@@ -96,19 +96,19 @@ namespace UK.Gov.Legislation.Lawmaker
                             continue;
                         }
                         // Encountered a tab
-                        isAfterTab = true;
-                        AddLineToContents(contents, new WLine(currentLine, inlines), isAfterTab);
+                        // isAfterTab = true;
+                        AddLineToContents(contents, new WLine(currentLine, inlines));
                         inlines.Clear();
                     }
-                    AddLineToContents(contents, new WLine(currentLine, inlines), isAfterTab);
-                }
-                else
-                    contents.Add(currentLine);
+                    AddLineToContents(contents, new WLine(currentLine, inlines));
+                // }
+                // else
+                //     AddLineToContents(contents, new WLine(currentLine, inlines), false);
 
                 i += 1;
             }
 
-            if (contents.Count == 0 || !foundRightLinesStart)
+            if (contents.Count == 0)
                 return null;
             else
                 return new SignatureBlock { Contents = contents };
@@ -116,14 +116,36 @@ namespace UK.Gov.Legislation.Lawmaker
 
         /// <summary>
         /// Adds the given line to the list of contents. 
-        /// If the line resembles a Signature Name, it will be identified as such. 
+        /// Depending on the style, it will add a new WSignatureBlock or WLine
         /// </summary>
-        private static void AddLineToContents(List<IBlock> contents, WLine line, bool isAfterTab)
+        private static void AddLineToContents(List<IBlock> contents, WLine line)
         {
             if (line.Contents.Count() == 0)
                 return;
-            if (isAfterTab && line.IsAllItalicized())
-                contents.Add(new WSignatureName() { Content = line.Contents });
+            if (line.Contents.First() is not WText lineText)
+                return;
+            string styleName = lineText.Style;
+            string name = null;
+            // Using StartsWith and EndsWith because sometimes the casing can be different and there might be underscores in between
+            // So this handles styles like "Sig_Signee" and sigsignee
+            if (styleName.StartsWith("Sig", System.StringComparison.InvariantCultureIgnoreCase))
+            {
+                if (styleName.EndsWith("Signee", System.StringComparison.InvariantCultureIgnoreCase)
+                    || (styleName.EndsWith("Block", System.StringComparison.InvariantCultureIgnoreCase) && line.IsAllItalicized()))
+                    name = "signature";
+                else if (styleName.EndsWith("Title", System.StringComparison.InvariantCultureIgnoreCase))
+                    name = "role";
+                else if (styleName.EndsWith("Add", System.StringComparison.InvariantCultureIgnoreCase))
+                    name = "location";
+                else if (styleName.EndsWith("Date", System.StringComparison.InvariantCultureIgnoreCase))
+                    name = "date";
+            }
+            else if (styleName.StartsWith("Leg", System.StringComparison.InvariantCultureIgnoreCase)
+                && styleName.EndsWith("Seal", System.StringComparison.InvariantCultureIgnoreCase))
+                name = "seal";
+            
+            if (name is not null)
+                contents.Add(new WSignatureBlock() { Name = name, Content = line.Contents });
             else
                 contents.Add(line);
         }
