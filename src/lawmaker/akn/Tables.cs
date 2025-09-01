@@ -1,9 +1,12 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.Parse;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation.Lawmaker
@@ -14,7 +17,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static ILogger logger = Logging.Factory.CreateLogger<UK.Gov.Legislation.Lawmaker.Builder>();
 
-        private static readonly string HtmlNamespace = "http://www.w3.org/1999/xhtml";
+        public static readonly string HtmlNamespace = "http://www.w3.org/1999/xhtml";
 
         protected XmlElement CreateHtml(string name)
         {
@@ -27,20 +30,66 @@ namespace UK.Gov.Legislation.Lawmaker
             return e;
         }
 
+        override protected void Block(XmlElement parent, IBlock block)
+        {
+            if (block is LdappTableBlock tableBlock)
+                AddTableBlock(parent, tableBlock);
+            else
+            {
+                base.Block(parent, block);
+            }
+        }
+
 
         // in future we can combine this with base function so logic isn't duplicated
         override protected void AddTable(XmlElement parent, ITable model)
         {
             XmlElement tblock = CreateAndAppend("tblock", parent);
-            tblock.SetAttribute("class", AknNamespace, "table");
             XmlElement foreign = CreateAndAppend("foreign", tblock);
-            XmlElement table = CreateAndAppend("table", foreign);
+            XmlElement table = BuildTable(model);
+            foreign.AppendChild(table);
+            CreateAndAppend("table", foreign);
+
+            tblock.SetAttribute("class", AknNamespace, "table");
+        }
+
+        private void AddTableBlock(XmlElement parent, LdappTableBlock tableBlock)
+        {
+            XmlElement tblock = CreateAndAppend("tblock", parent);
+            if (!String.IsNullOrEmpty(tableBlock.TableNumber?.Number?.TextContent))
+            {
+                XmlElement num = CreateAndAppend("num", tblock);
+                num.InnerText = tableBlock.TableNumber.Number.TextContent;
+                var captions = tableBlock.TableNumber.Captions;
+                if (captions != null && captions.Count > 0)
+                {
+                    // first caption is inserted as heading
+                    // var first = captions.First();
+                    XmlElement heading = CreateAndAppend("heading", tblock);
+                    heading.SetAttribute("class", AknNamespace, "left");
+                    heading.InnerText = captions.First().TextContent;
+                    foreach (WLine caption in captions.Skip(1))
+                    {
+                        XmlElement subheading = CreateAndAppend("subheading", tblock);
+                        subheading.InnerText = caption.TextContent;
+                        subheading.SetAttribute("class", AknNamespace, "left");
+                    };
+                    // others are inserted as subheading
+                }
+            }
+            XmlElement foreign = CreateAndAppend("foreign", tblock);
+            XmlElement table = BuildTable(tableBlock.Table);
+            foreign.AppendChild(table);
+            tblock.SetAttribute("class", AknNamespace, "table");
+        }
+
+        private XmlElement BuildTable(ITable model)
+        {
+            XmlElement table = CreateElement("table");
             table.SetAttribute("xmlns", HtmlNamespace);
             table.SetAttribute("xmlns:akn", AknNamespace);
             table.SetAttribute("class", HtmlNamespace, "allBorders tableleft width100");
             table.SetAttribute("cols", model.ColumnWidthsIns.Count.ToString());
-
-
 
             IEnumerable<IEnumerable<IRow>> rowsGroupedByHeaders = GroupRowsByHeaders(model.Rows);
 
@@ -49,7 +98,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 AddRows(model, table, rows.TakeWhile(row => row.IsImplicitHeader));
                 AddRows(model, table, rows.SkipWhile(row => row.IsImplicitHeader));
             }
-
+            return table;
         }
         protected void AddRows(ITable model, XmlElement table, IEnumerable<IRow> rows)
         {
