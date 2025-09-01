@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UK.Gov.Legislation.Judgments;
@@ -7,10 +8,9 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    public partial class BillParser
+    public partial class LegislationParser
     {
 
-        // matches only a heading above numbered section
         private HContainer ParseProv1(WLine line)
         {
             if (!PeekProv1(line))
@@ -142,21 +142,21 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private WOldNumberedParagraph FixFirstProv2(WLine line)
         {
-            WOldNumberedParagraph rest = null;
             if (line.Contents.FirstOrDefault() is WText t && Prov2.IsFirstProv2Start(t.Text))
             {
+                string text = t.Text.TrimStart(); // Sometimes there's a leading space
                 WText num = new("(1)", t.properties);
-                WText remainder = new(t.Text[5..], t.properties);
+                WText remainder = new(text.Substring(Math.Min(5, text.Length)), t.properties);
                 return new(num, line.Contents.Skip(1).Prepend(remainder), line);
             }
             else if (line.Contents.FirstOrDefault() is WText t1 && line.Contents.Skip(1).FirstOrDefault() is WText t2)
             {
-                string combined = t1.Text + t2.Text;
+                string combined = t1.Text.TrimStart() + t2.Text;
                 if (!Prov2.IsFirstProv2Start(combined))
                     return null;
 
                 WText num = new("(1)", t1.Text.Length > 2 ? t1.properties : t2.properties);
-                WText remainder = new(combined[5..], t2.properties);
+                WText remainder = new(combined.Substring(Math.Min(5, combined.Length)), t2.properties);
                 return new(num, line.Contents.Skip(2).Prepend(remainder), line);
             }
             return null;
@@ -171,9 +171,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 return Prov1Name.article;
             return frames.CurrentContext switch
             {
+                Context.REGULATIONS => Prov1Name.regulation,
                 Context.RULES => Prov1Name.rule,
-                Context.ORDER => Prov1Name.article,
-                _ => Prov1Name.regulation
+                Context.ARTICLES => Prov1Name.article,
+                _ => Prov1Name.article
             };
 
         }

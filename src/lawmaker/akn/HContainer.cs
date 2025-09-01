@@ -17,8 +17,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (div is HContainer hc)
             {
                 AddHContainer(parent, hc);
-            }
-            else
+            } else
             {
                 base.AddDivision(parent, div);
             }
@@ -33,12 +32,11 @@ namespace UK.Gov.Legislation.Lawmaker
                 case "groupOfParts":
                 case "crossheading":
                 case "schedules":
+                case "schedule":
                 case "definition":
                 case "regulation":
-                    level = CreateAndAppend("hcontainer", parent);
-                    level.SetAttribute("name", name);
-                    break;
-                case "schedule":
+                case "signatureBlock":
+                case "signatures":
                     level = CreateAndAppend("hcontainer", parent);
                     level.SetAttribute("name", name);
                     break;
