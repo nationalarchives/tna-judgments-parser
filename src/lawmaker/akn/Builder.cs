@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -449,7 +450,34 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement block = doc.CreateElement("block", ns);
             parent.AppendChild(block);
             block.SetAttribute("name", sig.Name);
-            AddInlines(block, sig.Content);
+
+            string dateString = null;
+            if (sig.Name.Equals("date"))
+            {
+                string text = (sig.Content.First() as WText).Text;
+                
+                // Remove ordinal suffix from date if there is one
+                Match match = Regex.Match(text, @"(\d+)(st|nd|rd|th)");
+                if (match.Success)
+                    // Extract the numeric day and remove the suffix from the original string
+                    text = text.Replace(match.Value, match.Groups[1].Value);
+
+                bool parsedDate = DateTime.TryParseExact(text, "d MMMM yyyy", CultureInfo.GetCultureInfo("en-GB"), DateTimeStyles.None, out DateTime dateTime); //TODO: Accept more date formats?
+                if (parsedDate)
+                    dateString = dateTime.ToString("yyyy-MM-dd");
+                // Date was not parsed so just set it to today's date
+                else
+                    dateString = DateTime.Today.ToString("yyyy-MM-dd");
+            }
+            if (dateString is not null)
+            {
+                XmlElement date = doc.CreateElement("date", ns);
+                block.AppendChild(date);
+                date.SetAttribute("date", dateString);
+                AddInlines(date, sig.Content);
+            }
+            else
+                AddInlines(block, sig.Content);
         }
 
     }
