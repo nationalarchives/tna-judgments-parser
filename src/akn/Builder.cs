@@ -353,7 +353,7 @@ abstract class Builder {
 
     private string ContainingParagraphStyle;
 
-    protected XmlElement Block(XmlElement parent, ILine line, string name) {
+    protected virtual XmlElement Block(XmlElement parent, ILine line, string name) {
         XmlElement block = doc.CreateElement(name, ns);
         parent.AppendChild(block);
         if (line.Style is not null)
@@ -367,6 +367,7 @@ abstract class Builder {
         ContainingParagraphStyle = null;
         return block;
     }
+
     private void AddNamedBlock(XmlElement parent, ILine line, string name) {
         XmlElement block = CreateAndAppend("block", parent);
         block.SetAttribute("name", name);
