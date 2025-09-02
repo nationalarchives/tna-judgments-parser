@@ -162,6 +162,13 @@ namespace UK.Gov.Legislation.Lawmaker
         static bool ReplaceLastOf(IList<IBlock> blocks, Func<WLine, WLine> replace)
         {
             IBlock last = blocks.LastOrDefault();
+
+            // Drill down into the contents of mods and quoted structures.
+            if (last is Mod mod)
+                return ReplaceLastOf(mod.Contents, replace);
+            if (last is BlockQuotedStructure qs)
+                return Replace(qs.Contents, replace);
+
             if (last is not WLine line)
                 return false;
             // tables?
