@@ -241,40 +241,61 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
             {
-                base.p(parent, StripLeadingAndTrailingWhitespace(line));
+                base.p(parent, TrimLine(line));
 
             }
         }
 
-        private ILine StripLeadingAndTrailingWhitespace(ILine line)
+        /// <summary>
+        /// A wrapper for the <c>Block</c> method which strips leading and trailing white space from <paramref name="line"/>,
+        /// before inserting it as an XML element with tagname <paramref name="name"/> as a child of <paramref name="parent"/>.
+        /// </summary>
+        /// <param name="parent">The parent element</param>
+        /// <param name="line">The line to be added as a child element</param>
+        /// <param name="name">The tag name of the inserted child element</param>
+        /// <returns>The resulting child XML element</returns>
+        protected override XmlElement Block(XmlElement parent, ILine line, string name)
+        {
+            ILine stripped = TrimLine(line);
+            return base.Block(parent, stripped, name);
+        }
+
+        /// <summary>
+        /// Trims any whitespace from the beginning or end of a line.
+        /// </summary>
+        /// <param name="line">The line to trim</param>
+        /// <returns>The trimmed line</returns>
+        private ILine TrimLine(ILine line)
         {
             if (line is not WLine wLine)
                 return line;
+            if (line.Contents.Count() == 0)
+                return line;
 
-            List<IInline> fixedInlines = [];
+            List<IInline> trimmedInlines = [];
 
-            // Fix start of first inline
+            // Trim start of first inline
             IInline first = line.Contents.First();
             if (first is WText text)
             {
                 // regex selects any leading whitespace and removes it
                 string fixedText = Regex.Replace(text.Text, @"^\s*", "");
-                if (line.Contents.Count() <= 1)
+                if (line.Contents.Count() == 1)
                 {
                     // if there is only one WLine also removes trailing whitespace
                     fixedText = Regex.Replace(fixedText, @"\s*$", "");
                 }
                 WText fixedInline = new WText(fixedText, text.properties);
-                fixedInlines.Add(fixedInline);
+                trimmedInlines.Add(fixedInline);
             }
             else
-                fixedInlines.Add(first);
+                trimmedInlines.Add(first);
 
             // Add middle inlines
             if (line.Contents.Count() >= 3)
-                fixedInlines.AddRange(line.Contents.Skip(1).SkipLast(1));
+                trimmedInlines.AddRange(line.Contents.Skip(1).SkipLast(1));
 
-            // Fix end of last inline
+            // Trim end of last inline
             if (line.Contents.Count() >= 2)
             {
                 IInline last = line.Contents.Last();
@@ -283,12 +304,12 @@ namespace UK.Gov.Legislation.Lawmaker
                     // regex selects any trailing whitespace and removes it
                     string fixedText = Regex.Replace(text2.Text, @"\s*$", "");
                     WText fixedInline = new WText(fixedText, text2.properties);
-                    fixedInlines.Add(fixedInline);
+                    trimmedInlines.Add(fixedInline);
                 }
                 else
-                    fixedInlines.Add(last);
+                    trimmedInlines.Add(last);
             }
-            return new WLine(line as WLine, fixedInlines);
+            return new WLine(line as WLine, trimmedInlines);
         }
 
         private int quoteDepth = 0;
