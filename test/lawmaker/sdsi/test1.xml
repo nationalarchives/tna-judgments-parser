@@ -95,11 +95,11 @@
       <hcontainer name="signatures">
         <hcontainer name="signatureBlock">
           <content>
-            <p>Name</p>
-            <p>Authorised to sign by the Scottish Ministers</p>
-            <p>St Andrew’s House,</p>
-            <p>Edinburgh</p>
-            <p>Date</p>
+            <block name="signature">Name</block>
+            <block name="role">Authorised to sign by the Scottish Ministers</block>
+            <block name="location">St Andrew’s House,</block>
+            <block name="location">Edinburgh</block>
+            <block name="date"><date date="2024-10-01">1st October 2024</date></block>
           </content>
         </hcontainer>
       </hcontainer>
