@@ -206,13 +206,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private bool IsEndOfQuotedStructure(IDivision division)
         {
-            //scuffed
-            // DistanceState state = new();
-            // QuoteDistance = 0;
-
-            LastLine lastLine = new();
-            string lastParagraphText = LastLine.GetLastParagraphText(division);
-            return IsEndOfQuotedStructure(lastParagraphText);
+            QuoteDistance = 0;
+            var lastLine = LastLine.GetLastLine(division)?.Contents;
+            return IsEndOfQuotedStructure(IInline.ToString(lastLine));
         }
 
         private bool IsEndOfQuotedStructure(IList<IBlock> contents, ILine heading = null, IFormattedText number = null, bool headingPrecedesNumber = false)
@@ -238,6 +234,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (block is ILine line)
                     inlines.AddRange(line.Contents);
             }
+            QuoteDistance = 0;
             var lastLine = LastLine.GetLastLine(contents)?.Contents;
             return IsEndOfQuotedStructure(IInline.ToString(lastLine));
         }
