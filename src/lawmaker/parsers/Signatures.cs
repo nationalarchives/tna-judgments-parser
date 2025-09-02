@@ -128,7 +128,7 @@ namespace UK.Gov.Legislation.Lawmaker
             string name = null;
             // Using StartsWith and EndsWith because sometimes the casing can be different and there might be underscores in between
             // So this handles styles like "Sig_Signee" and sigsignee
-            if (styleName.StartsWith("Sig", System.StringComparison.InvariantCultureIgnoreCase))
+            if (styleName is not null && styleName.StartsWith("Sig", System.StringComparison.InvariantCultureIgnoreCase))
             {
                 if (styleName.EndsWith("Signee", System.StringComparison.InvariantCultureIgnoreCase)
                     || (styleName.EndsWith("Block", System.StringComparison.InvariantCultureIgnoreCase) && line.IsAllItalicized()))
@@ -140,7 +140,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 else if (styleName.EndsWith("Date", System.StringComparison.InvariantCultureIgnoreCase))
                     name = "date";
             }
-            else if (styleName.StartsWith("Leg", System.StringComparison.InvariantCultureIgnoreCase)
+            else if (styleName is not null && styleName.StartsWith("Leg", System.StringComparison.InvariantCultureIgnoreCase)
                 && styleName.EndsWith("Seal", System.StringComparison.InvariantCultureIgnoreCase))
                 name = "seal";
             

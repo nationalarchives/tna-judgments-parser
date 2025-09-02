@@ -217,20 +217,20 @@
       <hcontainer name="signatures">
         <hcontainer name="signatureBlock">
           <content>
-            <p>IVAN McKEE</p>
-            <p>Authorised to sign by the Scottish Ministers</p>
-            <p>St Andrew’s House,</p>
-            <p>Edinburgh</p>
-            <p>1st October 2024</p>
-            <p>We consent</p>
+            <block name="signature">IVAN McKEE</block>
+            <block name="role">Authorised to sign by the Scottish Ministers</block>
+            <block name="location">St Andrew’s House,</block>
+            <block name="location">Edinburgh</block>
+            <block name="date"><date date="2024-10-01">1st October 2024</date></block>
           </content>
         </hcontainer>
         <hcontainer name="signatureBlock">
           <content>
-            <p>JEFF SMITH</p>
-            <p>ANNA TURLEY</p>
-            <p>Two of the Lords Commissioners of His Majesty’s Treasury</p>
-            <p>1st October 2024</p>
+            <p>We consent</p>
+            <block name="signature">JEFF SMITH</block>
+            <block name="signature">ANNA TURLEY</block>
+            <block name="role">Two of the Lords Commissioners of His Majesty’s Treasury</block>
+            <block name="date"><date date="2024-10-01">1st October 2024</date></block>
           </content>
         </hcontainer>
       </hcontainer>
