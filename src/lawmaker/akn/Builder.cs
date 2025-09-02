@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.DOCX;
 using UK.Gov.Legislation.Judgments.Parse;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
@@ -40,6 +41,7 @@ namespace UK.Gov.Legislation.Lawmaker
             AddPreface(main, bill.Preface);
             AddPreamble(main, bill.Preamble);
             AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
+            AddConclusions(main, bill.Conclusions);
 
             return doc;
         }
@@ -165,6 +167,21 @@ namespace UK.Gov.Legislation.Lawmaker
             return pElement;
         }
 
+        private void AddConclusions(XmlElement main, IList<BlockContainer> conclusionElements)
+        {
+            if (conclusionElements.Count <= 0)
+            {
+                logger.LogWarning("The parsed Conclusions elements were empty!");
+                return;
+            }
+            XmlElement conc = CreateAndAppend("conclusions", main);
+            conc.SetAttribute("eId", "backCover");
+            foreach (BlockContainer blockContainer in conclusionElements)
+            {
+                AddBlockContainer(conc, blockContainer);
+            }
+        }
+
         private void AddBody(XmlElement main, IList<IDivision> divisions, IList<Schedule> schedules)
         {
             XmlElement body = CreateAndAppend("body", main);
@@ -180,13 +197,14 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             foreach (IBlock block in blocks)
             {
-                if (block is IOldNumberedParagraph np)
+                if (block is WOldNumberedParagraph np)
                 {
-                    XmlElement container = doc.CreateElement("blockContainer", ns);
-                    parent.AppendChild(container);
-                    if (np.Number is not null)
-                        AddAndWrapText(container, "num", np.Number);
-                    this.p(container, np);
+                    // In Lawmaker, by default, all numbered paragraphs should be marked up
+                    // as regular p elements
+                    List<IInline> inlines = [np.Number];
+                    if (np.Contents.Count() > 0)
+                        inlines.AddRange([new WText(" ", null), .. np.Contents]);
+                    this.p(parent, new WLine(np, inlines));
                 }
                 else if (block is ILine line)
                 {
@@ -211,6 +229,18 @@ namespace UK.Gov.Legislation.Lawmaker
                 else if (block is IDivWrapper wrapper)
                 {
                     AddDivision(parent, wrapper.Division);
+                }
+                else if (block is BlockList blockList)
+                {
+                    AddBlockList(parent, blockList);
+                }
+                else if (block is BlockListItem item)
+                {
+                    AddBlockListItem(parent, item);
+                }
+                else if (block is BlockContainer blockContainer)
+                {
+                    AddBlockContainer(parent, blockContainer);
                 }
                 else
                 {
@@ -240,10 +270,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 parent.AppendChild(p);
             }
             else
-            {
                 base.p(parent, TrimLine(line));
-
-            }
         }
 
         /// <summary>
@@ -274,13 +301,18 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IInline> trimmedInlines = [];
 
+            // Remove starting and ending inlines which are entirely white space
+            IEnumerable<IInline> newContents = line.Contents
+                .SkipWhile(IInline.IsEmpty).Reverse()
+                .SkipWhile(IInline.IsEmpty).Reverse();
+
             // Trim start of first inline
-            IInline first = line.Contents.First();
+            IInline first = newContents.First();
             if (first is WText text)
             {
                 // regex selects any leading whitespace and removes it
                 string fixedText = Regex.Replace(text.Text, @"^\s*", "");
-                if (line.Contents.Count() == 1)
+                if (newContents.Count() == 1)
                 {
                     // if there is only one WLine also removes trailing whitespace
                     fixedText = Regex.Replace(fixedText, @"\s*$", "");
@@ -292,13 +324,13 @@ namespace UK.Gov.Legislation.Lawmaker
                 trimmedInlines.Add(first);
 
             // Add middle inlines
-            if (line.Contents.Count() >= 3)
-                trimmedInlines.AddRange(line.Contents.Skip(1).SkipLast(1));
+            if (newContents.Count() >= 3)
+                trimmedInlines.AddRange(newContents.Skip(1).SkipLast(1));
 
             // Trim end of last inline
-            if (line.Contents.Count() >= 2)
+            if (newContents.Count() >= 2)
             {
-                IInline last = line.Contents.Last();
+                IInline last = newContents.Last();
                 if (last is WText text2)
                 {
                     // regex selects any trailing whitespace and removes it
@@ -351,6 +383,64 @@ namespace UK.Gov.Legislation.Lawmaker
             blocks(authorialNote, content);
         }
 
+        protected void AddBlockList(XmlElement parent, BlockList blockList)
+        {
+            XmlElement bl = CreateAndAppend("blockList", parent);
+            if (blockList.Intro is not null)
+            {
+                XmlElement intro = CreateAndAppend("listIntroduction", bl);
+                AddInlines(intro, blockList.Intro.Contents);
+            }
+            AddBlocks(bl, blockList.Children);
+        }
+
+        protected void AddBlockListItem(XmlElement parent, BlockListItem item)
+        {
+            XmlElement itemElement = CreateAndAppend("item", parent);
+            if (item.Number is not null)
+            {
+                // Handle Word's weird bullet character.
+                string newNum = new string(item.Number.Text.Select(c => ((uint)c == 61623) ? '\u2022' : c).ToArray());
+                if (item.Number is WText wText)
+                    AddAndWrapText(itemElement, "num", new WText(newNum, wText.properties));
+                else if (item.Number is WNumText WNumText)
+                    AddAndWrapText(itemElement, "num", new WNumText(WNumText, newNum));
+                else
+                    AddAndWrapText(itemElement, "num", new WText(newNum, null));
+            }
+            if (item.Children.Count() > 0)
+            {
+                /* Handle nested BlockListItem children.
+                 * In which case we must wrap them in a BlockList element:
+                 * 
+                 * <item>                           <item>
+                 *     <num>(1)</num>                   <num>(1)</num>
+                 *     <p>Text1</p>                     <blockList>
+                 *     <item>                               <listIntroduction>Text1</listIntroduction>
+                 *         <num>(a)</num>      --->         <item>
+                 *         <p>Text2</p>                         <num>(a)</num>
+                 *     </item>                                  <p>Text2</p>
+                 *     ...                                  </item>
+                 * </item>                                  ...
+                 *                                      </blockList>
+                 *                                  </item>
+                 */ 
+                XmlElement blockListElement = CreateAndAppend("blockList", itemElement);
+                // Handle listIntroduction
+                XmlElement listIntroductionElement = CreateAndAppend("listIntroduction", blockListElement);
+                foreach (IBlock block in item.Intro)
+                {
+                    if (block is WLine line)
+                        AddInlines(listIntroductionElement, line.Contents);
+                    else
+                        AddBlocks(listIntroductionElement, [block]);
+                }
+                // Handle nested blockList children
+                AddBlocks(blockListElement, item.Children);
+            }
+            else
+                AddBlocks(itemElement, item.Intro);
+        }
 
     }
 

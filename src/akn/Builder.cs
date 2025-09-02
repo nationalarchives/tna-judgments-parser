@@ -6,6 +6,7 @@ using System.Xml;
 
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Lawmaker;
 using UK.Gov.NationalArchives.CaseLaw.Model;
 using CSS2 = UK.Gov.Legislation.Judgments.CSS;
 

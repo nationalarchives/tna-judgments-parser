@@ -56,6 +56,19 @@ class WTable : ITable {
 
     public string Style { get; init; }
 
+    internal static WTable Enrich(WTable table, Func<WCell, WCell> operation)
+    {
+        IEnumerator<WRow> rows = table.TypedRows.GetEnumerator();
+        List<WRow> enriched = new List<WRow>();
+        while (rows.MoveNext())
+        {
+            WRow before = rows.Current;
+            WRow after = WRow.Enrich(before, operation);
+            enriched.Add(after);
+        }
+        return new WTable(table.Main, table.Properties, table.Grid, enriched);
+    }
+
 }
 
 class WRow : IRow {
@@ -134,6 +147,19 @@ class WRow : IRow {
         if (child is SdtCell std2)
             return ParseStdCell(row, std2);
         throw new Exception();
+    }
+
+    internal static WRow Enrich(WRow row, Func<WCell, WCell> operation)
+    {
+        IEnumerator<WCell> cells = row.TypedCells.GetEnumerator();
+        List<WCell> enriched = new List<WCell>();
+        while (cells.MoveNext())
+        {
+            WCell before = cells.Current;
+            WCell after = WCell.Enrich(before, operation);
+            enriched.Add(after);
+        }
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, enriched);
     }
 
 }
@@ -288,6 +314,25 @@ class WCell : ICell {
         if (cell.VMerge == VerticalMerge.Continuation && e is Paragraph p && string.IsNullOrWhiteSpace(e.InnerText))
             return [];
         return Blocks.ParseBlock(cell.Main, e);
+    }
+
+    /*
+    internal static WCell Enrich(WCell cell, Func<IBlock, IBlock> operation)
+    {
+        IEnumerator<IBlock> contents = cell.Contents.GetEnumerator();
+        List<IBlock> enriched = new List<IBlock>();
+        while (contents.MoveNext())
+        {
+            IBlock before = contents.Current;
+            IBlock after = operation(before);
+            enriched.Add(after);
+        }
+        return new WCell(cell.Row, cell.Props, enriched);
+    }*/
+
+    internal static WCell Enrich(WCell cell, Func<WCell, WCell> operation)
+    {
+        return operation(cell);
     }
 
 }

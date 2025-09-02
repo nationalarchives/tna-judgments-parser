@@ -226,6 +226,41 @@ class WLine : ILine {
         }
     }
 
+    /// <summary>
+    /// The value of the <c>NumberingLevelReference</c> of this <c>WLine</c>, if present, 
+    /// as defined in the <c>Style</c>. Otherwise defaults to <c>-1</c>.
+    /// </summary>
+    public int NumberingLevel
+    {
+        get
+        {
+            Style? style = DOCX.Styles.GetStyle(main, Style);
+            StyleParagraphProperties? pPr = style?.ChildElements
+                .Where(c => c is StyleParagraphProperties)
+                .Select(c => c as StyleParagraphProperties)
+                .FirstOrDefault();
+            NumberingProperties? numPr = pPr?.ChildElements
+                .Where(c => c is NumberingProperties)
+                .Select(c => c as NumberingProperties)
+                .FirstOrDefault();
+            NumberingLevelReference? iLvl = numPr?.ChildElements
+                .Where(c => c is NumberingLevelReference)
+                .Select(c => c as NumberingLevelReference)
+                .FirstOrDefault();
+            return iLvl?.Val ?? -1;
+        }
+    }
+
+    /// <summary>
+    /// Determines whether this <c>WLine</c> has a greater numbering level than <paramref name="other"/>.
+    /// </summary>
+    /// <param name="other">The line with which to compare.</param>
+    /// <returns><c>True</c> if this <c>WLine</c> has a greater numbering level than <paramref name="other"/>.</returns>
+    public bool HasGreaterNumberingLevelThan(WLine other)
+    {
+        return this.NumberingLevel > other.NumberingLevel;
+    }
+
     public float? BorderTopWidthPt {
         get => DOCX.Tables.ExtractBorderWidthPt(properties?.ParagraphBorders?.TopBorder);
     }
