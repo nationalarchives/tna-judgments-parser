@@ -26,6 +26,14 @@ internal class WNumText : IFormattedText {
         Text = info.Number;
     }
 
+    public WNumText(WNumText prototype, string text)
+    {
+        this.props = prototype.props;
+        this.props2 = prototype.props2;
+        this.style = prototype.style;
+        Text = text;
+    }
+
     public string Style => null;
 
     private T Get3<T>(Func<NumberingSymbolRunProperties,T> getter1, Func<StyleRunProperties,T> getter2) {
