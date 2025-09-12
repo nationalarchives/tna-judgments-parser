@@ -100,29 +100,40 @@ article[data-doc-type="ImpactAssessment"] td {
 }
 
 /* IA paragraph styles */
-p.ia-table-label { font-weight: bold; font-size: 10pt; margin: 2pt 4pt; color: #000000 }
-p.ia-table-text { font-size: 11pt; margin: 2pt 4pt; color: #000000; line-height: 1.2 }
-p.ia-table-notes { font-size: 9pt; margin: 3pt 4pt; color: #000000 }
-p.ia-head-label { font-weight: bold; font-size: 10pt; margin: 2pt 4pt; color: #000000 }
-p.ia-head-title { font-weight: bold; font-size: 14pt; color: #000000; margin: 2pt 4pt }
-p.ia-head-dept { font-size: 11pt; margin: 2pt 4pt; color: #000000 }
-p.ia-title { font-size: 10pt; background-color: #000000; color: #ffffff; font-weight: bold; margin: 0; padding: 8pt; text-align: center }
-p.ia-number { font-size: 10pt; margin: 2pt 4pt; color: #000000 }
-p.ia-stage { font-size: 11pt; color: #000000; margin: 2pt 4pt }
-p.ia-soi { font-size: 11pt; color: #000000; margin: 2pt 4pt }
-p.ia-tom { font-size: 11pt; color: #000000; margin: 2pt 4pt }
-p.ia-sign-off { font-weight: bold; font-style: italic; margin: 6pt 32pt; color: #000000 }
+p.ia-table-label { font-size: 10pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
+p.ia-table-text { font-size: 11pt; margin: 2pt 4pt; color: #000000; line-height: 1.2; font-family: Arial, sans-serif !important }
+p.ia-table-notes { font-size: 9pt; margin: 3pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
+p.ia-head-label { font-size: 12pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
+p.ia-head-title { font-size: 14pt; color: #000000; margin: 2pt 4pt; font-family: Arial, sans-serif !important }
+p.ia-head-dept { font-size: 11pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
+p.ia-title { font-size: 16pt; background-color: #000000; color: #ffffff; margin: 0; padding: 8pt; text-align: center; font-family: Arial, sans-serif !important }
+p.ia-number { font-size: 10pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
+p.ia-stage { font-size: 11pt; color: #000000; margin: 2pt 4pt; font-family: Arial, sans-serif !important }
+p.ia-soi { font-size: 11pt; color: #000000; margin: 2pt 4pt; font-family: Arial, sans-serif !important }
+p.ia-tom { font-size: 11pt; color: #000000; margin: 2pt 4pt; font-family: Arial, sans-serif !important }
+p.ia-sign-off { font-style: italic; margin: 6pt 32pt; color: #000000; font-family: Arial, sans-serif !important }
 
 /* Ensure proper spacing for table paragraphs in IA documents */
 article[data-doc-type="ImpactAssessment"] td p {
     margin: 2pt 4pt;
     line-height: 1.2;
+    font-family: Arial, sans-serif !important;
 }
 
 /* Remove excess margins for empty paragraphs in tables */
 article[data-doc-type="ImpactAssessment"] td p:empty {
     margin: 0;
     height: 4pt;
+}
+
+/* Hide empty table rows completely - target rows 7 and beyond in the nested table */
+article[data-doc-type="ImpactAssessment"] .level:first-child table td table tr:nth-child(n+7) {
+    display: none !important;
+}
+
+/* Also hide any table cells that contain only empty paragraphs */
+article[data-doc-type="ImpactAssessment"] td:empty {
+    display: none !important;
 }
 
 /* IA table styles */
@@ -139,6 +150,20 @@ article[data-doc-type="ImpactAssessment"] table.ia-table td {
     vertical-align: top;
 }
 
+/* Gray background for RPC Opinion cell in first table */
+article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table tr:nth-child(2) td:nth-child(2) {
+    background-color: #d9d9d9;
+}
+
+/* Gray background for cost table headers */
+article[data-doc-type="ImpactAssessment"] .level:nth-child(2) table.ia-table tr:first-child td {
+    background-color: #d9d9d9;
+}
+
+article[data-doc-type="ImpactAssessment"] .level:nth-child(2) table.ia-table tr:nth-child(2) td {
+    background-color: #d9d9d9;
+}
+
 /* First table (header) should have no outer border */
 article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table { 
     border: none; 
@@ -152,6 +177,18 @@ article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table td {
 article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table td table { 
     border: 1px solid black;
     margin: 0;
+}
+
+/* Remove border from the cell that contains the nested table */
+article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table td:has(table) {
+    border: none;
+    padding: 0;
+}
+
+/* More compatible approach - target the second cell in first row */
+article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table tr:first-child td:nth-child(2) {
+    border: none;
+    padding: 0;
 }
 
 td.ia-label { font-weight: bold; font-size: 10pt; padding: 2pt 0; color: #000000 }
