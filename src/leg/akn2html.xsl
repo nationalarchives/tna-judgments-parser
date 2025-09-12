@@ -84,27 +84,75 @@ article[data-doc-type="ImpactAssessment"] span { font-family: Arial, sans-serif 
 
 /* Impact Assessment table borders should be solid, not dotted */
 article[data-doc-type="ImpactAssessment"] th,
-article[data-doc-type="ImpactAssessment"] td { border: thin solid }
+article[data-doc-type="ImpactAssessment"] td { border: 1px solid black }
+
+/* General table spacing for IA documents */
+article[data-doc-type="ImpactAssessment"] table { 
+    border-collapse: collapse; 
+    margin: 6pt 0;
+}
+
+/* Override default dotted borders for IA tables */
+article[data-doc-type="ImpactAssessment"] th,
+article[data-doc-type="ImpactAssessment"] td { 
+    border: 1px solid black;
+    padding: 4pt 6pt;
+}
 
 /* IA paragraph styles */
-p.ia-table-label { font-weight: bold; font-size: 10pt; margin: 2pt 8pt; color: #000000 }
-p.ia-table-text { font-size: 11pt; margin: 2pt 8pt; color: #000000 }
-p.ia-table-notes { font-size: 9pt; margin: 3pt 8pt; color: #000000 }
-p.ia-head-label { font-weight: bold; font-size: 10pt; margin-top: 5pt; color: #000000 }
-p.ia-head-title { font-weight: bold; font-size: 14pt; color: #000000 }
-p.ia-head-dept { font-size: 11pt; margin-bottom: 6pt; color: #000000 }
-p.ia-title { font-size: 10pt; background-color: #000000; color: #ffffff; font-weight: bold; margin: 0; padding: 8pt }
-p.ia-number { font-size: 10pt; margin-left: 8pt; color: #000000 }
-p.ia-stage { font-size: 11pt; color: #000000 }
-p.ia-soi { font-size: 11pt; color: #000000 }
-p.ia-tom { font-size: 11pt; color: #000000 }
+p.ia-table-label { font-weight: bold; font-size: 10pt; margin: 2pt 4pt; color: #000000 }
+p.ia-table-text { font-size: 11pt; margin: 2pt 4pt; color: #000000; line-height: 1.2 }
+p.ia-table-notes { font-size: 9pt; margin: 3pt 4pt; color: #000000 }
+p.ia-head-label { font-weight: bold; font-size: 10pt; margin: 2pt 4pt; color: #000000 }
+p.ia-head-title { font-weight: bold; font-size: 14pt; color: #000000; margin: 2pt 4pt }
+p.ia-head-dept { font-size: 11pt; margin: 2pt 4pt; color: #000000 }
+p.ia-title { font-size: 10pt; background-color: #000000; color: #ffffff; font-weight: bold; margin: 0; padding: 8pt; text-align: center }
+p.ia-number { font-size: 10pt; margin: 2pt 4pt; color: #000000 }
+p.ia-stage { font-size: 11pt; color: #000000; margin: 2pt 4pt }
+p.ia-soi { font-size: 11pt; color: #000000; margin: 2pt 4pt }
+p.ia-tom { font-size: 11pt; color: #000000; margin: 2pt 4pt }
 p.ia-sign-off { font-weight: bold; font-style: italic; margin: 6pt 32pt; color: #000000 }
+
+/* Ensure proper spacing for table paragraphs in IA documents */
+article[data-doc-type="ImpactAssessment"] td p {
+    margin: 2pt 4pt;
+    line-height: 1.2;
+}
+
+/* Remove excess margins for empty paragraphs in tables */
+article[data-doc-type="ImpactAssessment"] td p:empty {
+    margin: 0;
+    height: 4pt;
+}
 
 /* IA table styles */
 table.ia-heading { border: 1px solid #008080; background-color: #008080; color: white }
 table.ia-box { border: 1px solid black }
 table.ia-costs, table.ia-benefits { border: 1px solid black; margin: 6pt 0 }
 table.ia-policy-options { border: 1px solid black; margin: 6pt 0 }
+table.ia-table { border: 1px solid black; margin: 6pt 0; width: 100% }
+
+/* Impact Assessment table cell styles */
+article[data-doc-type="ImpactAssessment"] table.ia-table td { 
+    border: 1px solid black; 
+    padding: 4pt 6pt; 
+    vertical-align: top;
+}
+
+/* First table (header) should have no outer border */
+article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table { 
+    border: none; 
+}
+
+article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table td { 
+    border: 1px solid black;
+}
+
+/* Nested tables in header should have full borders */
+article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table td table { 
+    border: 1px solid black;
+    margin: 0;
+}
 
 td.ia-label { font-weight: bold; font-size: 10pt; padding: 2pt 0; color: #000000 }
 td.ia-data { font-size: 11pt; padding: 2pt 0; color: #000000 }
@@ -252,6 +300,16 @@ td > p:last-child { margin-bottom: 0 }
 <xsl:template match="table">
 	<table>
 		<xsl:copy-of select="@class | @style" />
+		<!-- Add Impact Assessment table class based on context -->
+		<xsl:if test="ancestor::doc[@name='ImpactAssessment']">
+			<xsl:attribute name="class">
+				<xsl:text>ia-table</xsl:text>
+				<xsl:if test="@class">
+					<xsl:text> </xsl:text>
+					<xsl:value-of select="@class" />
+				</xsl:if>
+			</xsl:attribute>
+		</xsl:if>
 		<xsl:if test="exists(@uk:widths)">
 			<colgroup>
 				<xsl:for-each select="tokenize(@uk:widths, ' ')">
