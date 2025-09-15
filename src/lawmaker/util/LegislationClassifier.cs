@@ -107,7 +107,12 @@ public static class DocNames
 
     public static bool IsSecondaryDocName(DocName docName)
     {
-        return DocNames.GetLegislationType(docName) == LegislationType.SECONDARY;
+        return GetLegislationType(docName) == LegislationType.SECONDARY;
+    }
+
+    public static bool IsPrimarySP(DocName docName)
+    {
+        return ToEnacted(docName).Equals(DocName.ASP);
     }
 }
 

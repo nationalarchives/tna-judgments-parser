@@ -19,7 +19,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static IEnumerable<object[]> TestFilePaths()
         {
-            foreach (string filePath in Directory.GetFiles(relativeTestPath, "*.docx", SearchOption.AllDirectories))
+            foreach (string filePath in Directory.GetFiles(relativeTestPath, "*.xml", SearchOption.AllDirectories))
             {
                 string subdirectory = null;
                 string filename = null;

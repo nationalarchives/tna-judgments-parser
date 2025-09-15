@@ -54,6 +54,7 @@ public partial class LegislationParser
     {
         ParseAndEnrichHeader();
         ParseBody();
+        ParseConclusions();
 
         if (i != Document.Body.Count)
             Logger.LogWarning("parsing did not complete: {}", i);
@@ -81,7 +82,8 @@ public partial class LegislationParser
             Preface = preface,
             Preamble = preamble,
             Body = body,
-            Schedules = []
+            Schedules = [],
+            Conclusions = conclusions
         };
     }
 
