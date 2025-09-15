@@ -69,9 +69,6 @@ span.fn { vertical-align: super; font-size: small }
 .attachment { margin-top: 2em }
 
 /* Impact Assessment specific styles */
-.crossheading { font-weight: bold; margin-top: 1em; margin-bottom: 0.5em; text-align: left }
-.subheading1 { margin-left: 0.25in; margin-top: 0.5em; margin-bottom: 0.25em }
-.subheading2 { margin-left: 0.5in; margin-top: 0.25em; margin-bottom: 0.25em }
 
 /* Impact Assessment documents use Arial font for everything */
 article[data-doc-type="ImpactAssessment"] { font-family: Arial, sans-serif }
@@ -99,19 +96,12 @@ article[data-doc-type="ImpactAssessment"] td {
     padding: 4pt 6pt;
 }
 
-/* IA paragraph styles */
-p.ia-table-label { font-size: 10pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
+/* IA paragraph styles - only used classes */
 p.ia-table-text { font-size: 11pt; margin: 2pt 4pt; color: #000000; line-height: 1.2; font-family: Arial, sans-serif !important }
-p.ia-table-notes { font-size: 9pt; margin: 3pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
 p.ia-head-label { font-size: 12pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
-p.ia-head-title { font-size: 14pt; color: #000000; margin: 2pt 4pt; font-family: Arial, sans-serif !important }
-p.ia-head-dept { font-size: 11pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
 p.ia-title { font-size: 16pt; background-color: #000000; color: #ffffff; margin: 0; padding: 8pt; text-align: center; font-family: Arial, sans-serif !important }
 p.ia-number { font-size: 10pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
 p.ia-stage { font-size: 11pt; color: #000000; margin: 2pt 4pt; font-family: Arial, sans-serif !important }
-p.ia-soi { font-size: 11pt; color: #000000; margin: 2pt 4pt; font-family: Arial, sans-serif !important }
-p.ia-tom { font-size: 11pt; color: #000000; margin: 2pt 4pt; font-family: Arial, sans-serif !important }
-p.ia-sign-off { font-style: italic; margin: 6pt 32pt; color: #000000; font-family: Arial, sans-serif !important }
 
 /* Ensure proper spacing for table paragraphs in IA documents */
 article[data-doc-type="ImpactAssessment"] td p {
@@ -136,11 +126,7 @@ article[data-doc-type="ImpactAssessment"] td:empty {
     display: none !important;
 }
 
-/* IA table styles */
-table.ia-heading { border: 1px solid #008080; background-color: #008080; color: white }
-table.ia-box { border: 1px solid black }
-table.ia-costs, table.ia-benefits { border: 1px solid black; margin: 6pt 0 }
-table.ia-policy-options { border: 1px solid black; margin: 6pt 0 }
+/* IA table styles - only used classes */
 table.ia-table { border: 1px solid black; margin: 6pt 0; width: 100% }
 
 /* Impact Assessment table cell styles */
@@ -191,11 +177,6 @@ article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table tr:f
     padding: 0;
 }
 
-td.ia-label { font-weight: bold; font-size: 10pt; padding: 2pt 0; color: #000000 }
-td.ia-data { font-size: 11pt; padding: 2pt 0; color: #000000 }
-td.ia-costs-low, td.ia-costs-high, td.ia-costs-best { text-align: right; font-size: 11pt }
-td.ia-benefits-low, td.ia-benefits-high, td.ia-benefits-best { text-align: right; font-size: 11pt }
-td.ia-costs-best, td.ia-benefits-best { font-weight: bold }
 
 
 </style>
@@ -430,7 +411,9 @@ td > p:last-child { margin-bottom: 0 }
 
 <xsl:template match="authorialNote/p[1]">
 	<xsl:element name="{ local-name() }">
-		<xsl:apply-templates select="@*" />
+		<xsl:if test="@class">
+			<xsl:attribute name="class" select="@class" />
+		</xsl:if>
 		<span class="marker">
 			<xsl:value-of select="../@marker" />
 		</span>
