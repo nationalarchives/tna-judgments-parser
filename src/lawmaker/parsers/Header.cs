@@ -1,3 +1,5 @@
+#nullable enable
+
 
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (frames.IsSecondaryDocName())
             {
                 ParseSecondaryHeader();
+                EnrichSecondaryPreface();
             }
             else
             {
@@ -128,10 +131,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 if (IsLeftAligned(line) && IsFlushLeft(line) && !line.IsAllItalicized())
                     preamble.Add(block);
-                /* TODO: Handle the preface of Statutory Instruments (in an upcoming ticket) 
                 else if (!foundContents)
                     preface.Add(block);
-                */
 
                 i += 1;
             }
@@ -178,6 +179,57 @@ namespace UK.Gov.Legislation.Lawmaker
             return true;
         }
 
+
+
+        private void EnrichSecondaryPreface()
+        {
+            IParser prefaceParser = new BlockParser(preface);
+            List<IBlock> enrichedBlocks = new List<IBlock>();
+
+            while (!prefaceParser.IsAtEnd())
+            {
+                // Remove empty lines
+                if (prefaceParser.Current().IsEmptyLine())
+                {
+                    prefaceParser.Advance();
+                    continue;
+                }
+
+                if (prefaceParser.Match(BlockList.Parse) is BlockList blockList)
+                    enrichedBlocks.Add(blockList);
+                else
+                    enrichedBlocks.Add(prefaceParser.Advance());
+            }
+
+
+        }
+
+
+        class DocNumber : IBlock
+        {
+            private static string pattern = @"(\d{4})?\s+No\.(?:\s+(\d+))?";
+
+            public static DocNumber? Parse(IParser parser)
+            {
+                IBlock block = parser.Current();
+                if (block is not WLine line)
+                    return null;
+                if (!IsCenterAligned(line))
+                    return null;
+                if (!Regex.IsMatch(line.NormalizedContent, pattern, RegexOptions.IgnoreCase))
+                    return null;
+
+                if (children.Count == 0)
+                    return null;
+                return new BlockList { Intro = intro, Children = children };
+            }
+
+        }
+
     }
+
+
+
+}
 
 }
