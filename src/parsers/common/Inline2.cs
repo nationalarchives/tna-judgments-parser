@@ -141,6 +141,12 @@ class Inline2 {
                 i += 1;
                 continue;
             }
+            if (e is BidirectionalOverride bdo) {  // Bidirectional text override element
+                var children = ParseRuns(Main, e.ChildElements);
+                parsed.AddRange(children);
+                i += 1;
+                continue;
+            }
             if (e is OMML.Paragraph oMathPara) { // [2022] EWHC 2363 (Pat)
                 var children = ParseRuns(Main, e.ChildElements);
                 parsed.AddRange(children);
@@ -162,7 +168,7 @@ class Inline2 {
                 i += 1;
                 continue;
             }
-            throw new Exception();
+            throw new Exception($"Unhandled element: {e.GetType().Name} with LocalName: {e.LocalName} and NamespaceUri: {e.NamespaceUri}");
         }
         return parsed;
     }
