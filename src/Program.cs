@@ -17,6 +17,7 @@ using EM = UK.Gov.Legislation.ExplanatoryMemoranda;
 using UK.Gov.Legislation.Lawmaker;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("backlog")]
 
 class Program {
 

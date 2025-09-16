@@ -7,6 +7,8 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
+using UK.Gov.NationalArchives;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 internal class Blocks {
@@ -36,8 +38,15 @@ internal class Blocks {
         return new WOldNumberedParagraph(number.Value, main, paragraph);
     }
 
-    internal static IEnumerable<IBlock> ParseStdBlock(MainDocumentPart main, SdtBlock sdt) {
-        return Blocks.ParseBlocks(main, sdt.SdtContentBlock.ChildElements);
+    internal static IEnumerable<IBlock> ParseStdBlock(MainDocumentPart main, SdtBlock sdt)
+    {
+        List<IBlock> contents = [.. ParseBlocks(main, sdt.SdtContentBlock.ChildElements)];
+        SdtContentDocPartObject docPart = sdt.SdtProperties.Elements<SdtContentDocPartObject>().FirstOrDefault();
+        if (docPart?.DocPartGallery?.Val == "Table of Contents" && contents.All(block => block is WLine))
+        {
+            return [ new TableOfContents { Contents = contents.Cast<WLine>() } ];
+        }
+        return contents;
     }
 
     internal static IDivision ParseStructuredDocumentTag2(MainDocumentPart main, SdtBlock sdt) {
