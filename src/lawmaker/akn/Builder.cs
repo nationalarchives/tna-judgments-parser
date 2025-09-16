@@ -254,18 +254,99 @@ namespace UK.Gov.Legislation.Lawmaker
             }
         }
 
+        protected override XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model)
+        
+        {
+            // remove leading and trailing whitespace from name.
+            return base.AddAndWrapText(parent, name.Trim(), model);
+        }
+
         override protected void p(XmlElement parent, ILine line) {
-        if (line is IUnknownLine) {
-            // Putting this here for now, this should eventually be moved to a method IUnknownLine.Add(parent)
-            // but for now we need access to the AddInline method
-            XmlElement p = parent.OwnerDocument.CreateElement("p", parent.NamespaceURI);
-            p.SetAttribute("class", parent.NamespaceURI, "unknownImport");
-            foreach(IInline inline in line.Contents) {
-                AddInline(p, inline);
+            if (line is IUnknownLine)
+            {
+                // Putting this here for now, this should eventually be moved to a method IUnknownLine.Add(parent)
+                // but for now we need access to the AddInline method
+                XmlElement p = parent.OwnerDocument.CreateElement("p", parent.NamespaceURI);
+                p.SetAttribute("class", parent.NamespaceURI, "unknownImport");
+                foreach (IInline inline in line.Contents)
+                {
+                    AddInline(p, inline);
+                }
+                parent.AppendChild(p);
             }
-            parent.AppendChild(p);
-        } else
-            base.p(parent, line);
+            else
+                base.p(parent, TrimLine(line));
+        }
+
+        /// <summary>
+        /// A wrapper for the <c>Block</c> method which strips leading and trailing white space from <paramref name="line"/>,
+        /// before inserting it as an XML element with tagname <paramref name="name"/> as a child of <paramref name="parent"/>.
+        /// </summary>
+        /// <param name="parent">The parent element</param>
+        /// <param name="line">The line to be added as a child element</param>
+        /// <param name="name">The tag name of the inserted child element</param>
+        /// <returns>The resulting child XML element</returns>
+        protected override XmlElement Block(XmlElement parent, ILine line, string name)
+        {
+            ILine stripped = TrimLine(line);
+            return base.Block(parent, stripped, name);
+        }
+
+        /// <summary>
+        /// Trims any whitespace from the beginning or end of a line.
+        /// </summary>
+        /// <param name="line">The line to trim</param>
+        /// <returns>The trimmed line</returns>
+        private ILine TrimLine(ILine line)
+        {
+            if (line is not WLine wLine)
+                return line;
+            if (line.Contents.Count() == 0)
+                return line;
+
+            List<IInline> trimmedInlines = [];
+
+            // Remove starting and ending inlines which are entirely white space
+            IEnumerable<IInline> newContents = line.Contents
+                .SkipWhile(IInline.IsEmpty).Reverse()
+                .SkipWhile(IInline.IsEmpty).Reverse();
+
+            // Trim start of first inline
+            IInline first = newContents.First();
+            if (first is WText text)
+            {
+                // regex selects any leading whitespace and removes it
+                string fixedText = Regex.Replace(text.Text, @"^\s*", "");
+                if (newContents.Count() == 1)
+                {
+                    // if there is only one WLine also removes trailing whitespace
+                    fixedText = Regex.Replace(fixedText, @"\s*$", "");
+                }
+                WText fixedInline = new WText(fixedText, text.properties);
+                trimmedInlines.Add(fixedInline);
+            }
+            else
+                trimmedInlines.Add(first);
+
+            // Add middle inlines
+            if (newContents.Count() >= 3)
+                trimmedInlines.AddRange(newContents.Skip(1).SkipLast(1));
+
+            // Trim end of last inline
+            if (newContents.Count() >= 2)
+            {
+                IInline last = newContents.Last();
+                if (last is WText text2)
+                {
+                    // regex selects any trailing whitespace and removes it
+                    string fixedText = Regex.Replace(text2.Text, @"\s*$", "");
+                    WText fixedInline = new WText(fixedText, text2.properties);
+                    trimmedInlines.Add(fixedInline);
+                }
+                else
+                    trimmedInlines.Add(last);
+            }
+            return new WLine(line as WLine, trimmedInlines);
         }
 
         private int quoteDepth = 0;
