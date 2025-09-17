@@ -15,16 +15,27 @@ namespace UK.Gov.Legislation.Lawmaker
 
         internal static WLine GetLastLine(IDivision division)
         {
-            if (division is Leaf leaf)
-                return GetLastLine(leaf);
-            if (division is Branch branch)
-                return GetLastLine(branch);
-            return null;
+            return division switch
+            {
+            // should be using some kind of polymorphism
+            Leaf leaf => GetLastLine(leaf),
+            Branch branch => GetLastLine(branch),
+            ILineable lineable => lineable.GetLastLine(),
+            WDummyDivision dummy => dummy
+                .Contents
+                .OfType<ILineable>()
+                .LastOrDefault()
+                .GetLastLine(),
+            _ => null,
+            };
         }
 
         static WLine GetLastLine(Leaf leaf)
         {
+            if (leaf.Contents is null)
+                return leaf.Heading as WLine;
             return GetLastLine(leaf.Contents);
+
         }
 
         static WLine GetLastLine(Branch branch)
@@ -33,6 +44,16 @@ namespace UK.Gov.Legislation.Lawmaker
                 return GetLastLine(branch.WrapUp);
             return GetLastLine(branch.Children.Last());
         }
+
+        static WLine GetLastLine(WTable table) => table
+            .Rows?
+            .LastOrDefault()?
+            .Cells?
+            .LastOrDefault()?
+            .Contents?
+            .OfType<WLine>()?
+            .LastOrDefault()
+            ;
 
         // All inheritors of IBlock:
         // Mod, ILine, ITableOfContents2, IQuotedStructure, ISignatureName, IDivWrapper, ITable, LdappTableBlock

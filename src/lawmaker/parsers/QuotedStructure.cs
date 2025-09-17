@@ -208,7 +208,8 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             QuoteDistance = 0;
             var lastLine = LastLine.GetLastLine(division)?.Contents;
-            return IsEndOfQuotedStructure(IInline.ToString(lastLine));
+            if (lastLine == null) return false;
+            return IsEndOfQuotedStructure(IInline.ToString(lastLine), QuoteDistance);
         }
 
         private bool IsEndOfQuotedStructure(IList<IBlock> contents, ILine heading = null, IFormattedText number = null, bool headingPrecedesNumber = false)
@@ -236,10 +237,15 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             QuoteDistance = 0;
             var lastLine = LastLine.GetLastLine(contents)?.Contents;
-            return IsEndOfQuotedStructure(IInline.ToString(lastLine));
+            return IsEndOfQuotedStructure(IInline.ToString(lastLine), QuoteDistance);
         }
 
         private bool IsEndOfQuotedStructure(string text)
+        {
+            return IsEndOfQuotedStructure(text, 0);
+        }
+
+        private bool IsEndOfQuotedStructure(string text, int quoteDistance)
         {
             // a quoteDepth of 0 means we don't need to check for the end of a quoted structure because we never need to break out
             if (quoteDepth <= 0) return false;
@@ -251,8 +257,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             bool isStartQuoteAtStart = Regex.IsMatch(text, QuotedStructureStartPattern());
             (int left, int right) = CountStartAndEndQuotes(text);
-            //
-            if (right > left && (right - left) <= QuoteDistance)
+            if (right > left && (right - left) <= quoteDistance)
                 return false;
 
             bool isSingleLine = (isStartQuoteAtStart && isEndQuoteAtEnd);
