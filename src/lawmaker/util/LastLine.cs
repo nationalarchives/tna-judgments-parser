@@ -19,12 +19,17 @@ namespace UK.Gov.Legislation.Lawmaker
                 return GetLastLine(leaf);
             if (division is Branch branch)
                 return GetLastLine(branch);
+            //if (division is WDummyDivision table)
+                //return GetLastLine(table);
             return null;
         }
 
         static WLine GetLastLine(Leaf leaf)
         {
+            if (leaf.Contents is null)
+                return leaf.Heading as WLine;
             return GetLastLine(leaf.Contents);
+
         }
 
         static WLine GetLastLine(Branch branch)
