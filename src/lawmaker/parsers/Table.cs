@@ -20,7 +20,7 @@ using static UK.Gov.Legislation.Lawmaker.LanguageService;
 record LdappTableBlock(
     LdappTableNumber? TableNumber,
     WTable Table
-) : IBlock/*, IBuildable */
+) : IBlock, ILineable/*, IBuildable */
 {
 
     // TODO: move this out - doesn't belong here, just testing out using Xml.Linq support
@@ -35,6 +35,16 @@ record LdappTableBlock(
     // public string Name => "tblock";
 
     public IEnumerable<IBlock> Contents => ToList();
+    public IEnumerable<WLine> Lines => TableNumber is null
+        ? ToLines()
+        : TableNumber.Lines.Concat(ToLines());
+
+    private IEnumerable<WLine> ToLines() => Table
+        .Rows
+        .SelectMany(row => row.Cells)
+        .SelectMany(cell => cell.Contents)
+        .OfType<ILineable>() // this may falsely filter some things,
+        .SelectMany(lineable => lineable.Lines);
 
     // public XElement Build()
     // {
@@ -114,13 +124,15 @@ record LdappTableBlock(
 partial record LdappTableNumber(
     WLine Number,
     List<WLine>? Captions
-) {
+) : ILineable {
 
     private static readonly Dictionary<Lang, string> TableNumberPatterns = new()
     {
         [Lang.ENG] = @"^Table\s+\w+$",
         [Lang.CYM] = @"^Tabl\s+\w+$"
     };
+
+    public IEnumerable<WLine> Lines => Captions is null ? [Number] : Captions.Prepend(Number);
 
     internal static LdappTableNumber? Parse(LegislationParser parser)
     {
