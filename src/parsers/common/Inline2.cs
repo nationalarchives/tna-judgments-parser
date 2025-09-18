@@ -168,7 +168,7 @@ class Inline2 {
                 i += 1;
                 continue;
             }
-            throw new Exception($"Unhandled element: {e.GetType().Name} with LocalName: {e.LocalName} and NamespaceUri: {e.NamespaceUri}");
+            throw new Exception();
         }
         return parsed;
     }
