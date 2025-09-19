@@ -16,9 +16,6 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!PeekSchedules(line))
                 return null;
 
-            IFormattedText headingText = new WText("Schedules", null);
-            ILine heading = WLine.Make(line, new List<IInline>(1) { headingText });
-
             var save1 = i;
             i += 1;
 
@@ -28,7 +25,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save1;
                 return null;
             }
-            return new Schedules { Number = null, Heading = heading, Children = children };
+            return new Schedules { Number = null, Heading = line, Children = children };
         }
 
         private bool PeekSchedules(WLine line)
@@ -40,7 +37,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i > Document.Body.Count - 3)
                 return false;
             string heading = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
-            if (!Schedules.IsValidHeading(heading))
+            if (!langService.IsMatch(heading, Schedules.HeadingPatterns))
                 return false;
 
             // Schedules container must be followed by Schedule

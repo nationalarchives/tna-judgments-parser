@@ -97,7 +97,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i > Document.Body.Count - 3)
                 return false;
             string numText = GetNumber(line, true);
-            if (!Schedule.IsValidNumber(numText))
+            if (!langService.IsMatch(numText, Schedule.NumberPatterns))
                 return false;
             return true;
         }

@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -26,7 +27,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return;
 
             // Handle heading and subheading
-            if (!ExplanatoryNote.IsHeading(Current()))
+            if (!ExplanatoryNote.IsHeading(langService, Current()))
                 return;
             WLine heading = (Current() as WLine)!;
 
@@ -47,7 +48,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 // If we hit the the start of the Commencement History table,
                 // then the Explanatory Note must have ended.
-                if (CommencementHistory.IsHeading(currentBlock))
+                if (CommencementHistory.IsHeading(langService, currentBlock))
                     break;
 
                 if (ParseHeadingTblock() is HeadingTblock headingTblock)
@@ -83,7 +84,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 // If we hit the the start of the Commencement History table,
                 // then the Explanatory Note must have ended.
-                if (CommencementHistory.IsHeading(currentBlock))
+                if (CommencementHistory.IsHeading(langService, currentBlock))
                     break;
 
                 // If we hit another Tblock heading, this Tblock must end.
@@ -108,7 +109,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return;
 
             // Handle heading and subheading
-            if (!CommencementHistory.IsHeading(Current()))
+            if (!CommencementHistory.IsHeading(langService, Current()))
                 return;
             WLine heading = (Current() as WLine)!;
 
@@ -147,11 +148,17 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class { get; internal init; } = "explanatoryNote";
 
-        public static bool IsHeading(IBlock block)
+        private static readonly Dictionary<Lang, string> HeadingPatterns = new()
+        {
+            [Lang.ENG] = @"^EXPLANATORY +NOTE$",
+            [Lang.CYM] = @"^NODYN +ESBONIADOL"
+        };
+
+        public static bool IsHeading(LanguageService langService, IBlock block)
         {
             if (block is not WLine line)
                 return false;
-            return line.NormalizedContent.ToUpper().Equals("EXPLANATORY NOTE");
+            return langService.IsMatch(line.NormalizedContent, HeadingPatterns);
         }
 
         public static bool IsSubheading(IBlock block)
@@ -179,11 +186,17 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class { get; internal init; } = "commencementHistory";
 
-        public static bool IsHeading(IBlock block)
+        private static readonly Dictionary<Lang, string> HeadingPatterns = new()
+        {
+            [Lang.ENG] = @"^NOTE +AS +TO +EARLIER +COMMENCEMENT.*$",
+            [Lang.CYM] = @"^NODYN +AM +Y +(RHEOLIADAU|GORCHMYNION|GORCHYMYN) +CYCHWYN +(CYNHARACH|BLAENOROL)$"
+        };
+
+        public static bool IsHeading(LanguageService langService, IBlock block)
         {
             if (block is not WLine line)
                 return false;
-            return line.NormalizedContent.ToUpper().StartsWith("NOTE AS TO EARLIER COMMENCEMENT");
+            return langService.IsMatch(line.NormalizedContent, HeadingPatterns);
         }
 
         public static bool IsSubheading(IBlock block)
