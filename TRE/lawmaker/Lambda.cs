@@ -72,12 +72,15 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Lawmaker {
 
             string subType = inputs.SubType;
             string procedure = inputs.Procedure;
+            string[] languages = inputs.Languages;
 
             Api.Response response;
             try {
                 Api.Request request = new Api.Request { Content = docx, DocName = docName };
                 logger.LogInformation("Got content with doctype: {}. Creating response...", request.DocName);
-                response = Legislation.Lawmaker.Helper.LambdaParse(request, new LegislationClassifier(docName, subType, procedure));
+                LegislationClassifier classifier = new LegislationClassifier(docName, subType, procedure);
+                LanguageService languageService = new LanguageService(languages);
+                response = Helper.LambdaParse(request, classifier, languageService);
             } catch (Exception e) {
                 logger.LogError(e, "parse error: {}", e.Message);
                 errors.Add("error parsing document");
