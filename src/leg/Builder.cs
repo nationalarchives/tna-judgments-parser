@@ -95,9 +95,9 @@ class Builder : AkN.Builder {
 
         XmlElement manifestation = CreateAndAppend("FRBRManifestation", identification);
         XmlElement maniThis = CreateAndAppend("FRBRthis", manifestation);
-        maniThis.SetAttribute("value", data.ExpressionUri + "/data.xml");
+        maniThis.SetAttribute("value", data.ExpressionUri + "/data.akn");
         XmlElement maniURI = CreateAndAppend("FRBRuri", manifestation);
-        maniURI.SetAttribute("value",  data.ExpressionUri + "/data.xml");
+        maniURI.SetAttribute("value",  data.ExpressionUri + "/data.akn");
         XmlElement maniDate = CreateAndAppend("FRBRdate", manifestation);
         maniDate.SetAttribute("date", FormatDateAndTime(DateTime.UtcNow));
         maniDate.SetAttribute("name", "transform");
