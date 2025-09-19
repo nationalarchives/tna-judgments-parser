@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -152,7 +153,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (!IsCenterAligned(line))
                 return false;
-            if (!line.NormalizedContent.ToUpper().Equals("CONTENTS"))
+            if (!langService.IsMatch(line.NormalizedContent, ContentsHeadingPatterns))
                 return false;
 
             // Skip contents
@@ -177,6 +178,12 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             return true;
         }
+
+        private static readonly Dictionary<Lang, string> ContentsHeadingPatterns = new()
+        {
+            [Lang.ENG] = @"^CONTENTS$",
+            [Lang.CYM] = @"^CYNNWYS$"
+        };
 
     }
 
