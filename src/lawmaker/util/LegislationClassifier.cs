@@ -24,8 +24,9 @@ public enum DocName
     SDSI,
     NIPUBB,
     NIDSI,
-    NIDSR
-
+    NIDSR,
+    WSI,
+    WDSI
 }
 
 public static class DocNames
@@ -74,6 +75,9 @@ public static class DocNames
 
             DocName.SSI => DocName.SSI,
             DocName.SDSI => DocName.SSI,
+
+            DocName.WSI => DocName.WSI,
+            DocName.WDSI => DocName.WSI,
         };
     }
 
@@ -102,6 +106,8 @@ public static class DocNames
             DocName.UKDSI =>           LegislationType.SECONDARY,
             DocName.SSI =>             LegislationType.SECONDARY,
             DocName.SDSI =>            LegislationType.SECONDARY,
+            DocName.WSI =>             LegislationType.SECONDARY,
+            DocName.WDSI =>            LegislationType.SECONDARY,
         };
     }
 
