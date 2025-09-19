@@ -14,30 +14,30 @@ class Citation : FirstMatch2 {
         Limit = 10;
     }
 
-    protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) {
+        protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line) { 
         if (!line.Any())
             return line;
-        if (line.Last() is WText last) {
-            Match match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKUT \d+ *\((AAC|IAC|LC|TCC)\)) *$");
-            if (!match.Success)
-                match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ *\((GRC|TC)\)) *$");
-            if (!match.Success)
-                match = Regex.Match(last.Text, @"(\[?\d{4}\]? UKAIT \d+) *$");
-            if (match.Success) {
-                List<IInline> enriched = Helper.SplitOnGroup(last, match.Groups[1], (text, props) => new WNeutralCitation(text, props));
-                return Enumerable.Concat(line.SkipLast(1), enriched);
-            }
-            if (last.Text == "." && line.SkipLast(1).Last() is WText penult) {  // [2023] UKFTT 00004 (GRC)
-                Match match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKUT \d+ *\((AAC|IAC|LC|TCC)\)) *$");
-                if (!match2.Success)
-                    match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ *\((TC|GRC)\)) *$");
-                if (!match2.Success)
-                    match2 = Regex.Match(penult.Text, @"(\[?\d{4}\]? UKAIT \d+) *$");
-                if (match2.Success) {
-                    List<IInline> enriched = Helper.SplitOnGroup(penult, match2.Groups[1], (text, props) => new WNeutralCitation(text, props));
-                    return Enumerable.Concat(line.SkipLast(2), enriched).Append(last);
+            if (line.Last() is WText last) {
+                Match match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKUT \d+ *\((AAC|IAC|LC|TCC)\)) *$");
+                if (!match.Success)
+                    match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ *\((GRC|TC)\)) *$");
+                if (!match.Success)
+                    match = Regex.Match(last.Text, @"(\[?\d{4}\]? UKAIT \d+) *$");
+                if (match.Success) {
+                    List<IInline> enriched = Helper.SplitOnGroup(last, match.Groups[1], (text, props) => new WNeutralCitation(text, props));
+                    return Enumerable.Concat(line.SkipLast(1), enriched);
                 }
-            }
+                if (last.Text == "." && line.SkipLast(1).Count() > 0 && line.SkipLast(1).Last() is WText penult) {  // [2023] UKFTT 00004 (GRC)
+                    Match match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKUT \d+ *\((AAC|IAC|LC|TCC)\)) *$");
+                    if (!match2.Success)
+                        match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ *\((TC|GRC)\)) *$");
+                    if (!match2.Success)
+                        match2 = Regex.Match(penult.Text, @"(\[?\d{4}\]? UKAIT \d+) *$");
+                    if (match2.Success) {
+                        List<IInline> enriched = Helper.SplitOnGroup(penult, match2.Groups[1], (text, props) => new WNeutralCitation(text, props));
+                        return Enumerable.Concat(line.SkipLast(2), enriched).Append(last);
+                    }
+                }
         }
         if (line.First() is WText first) {
             Match match = Regex.Match(first.Text, @"^Neutral [Cc]itation [Nn]umber: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
