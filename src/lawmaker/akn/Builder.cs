@@ -449,8 +449,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         protected void AddSigBlock(XmlElement parent, ISignatureBlock sig)
         {   
-            XmlElement block = doc.CreateElement("block", ns);
-            parent.AppendChild(block);
+            XmlElement block = CreateAndAppend("block", parent);
             block.SetAttribute("name", sig.Name);
 
             string dateString = null;
@@ -473,8 +472,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             if (dateString is not null)
             {
-                XmlElement date = doc.CreateElement("date", ns);
-                block.AppendChild(date);
+                XmlElement date = CreateAndAppend("date", block);
                 date.SetAttribute("date", dateString);
                 AddInlines(date, sig.Content);
             }

@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UK.Gov.Legislation.Judgments;
@@ -63,7 +64,20 @@ namespace UK.Gov.Legislation.Lawmaker
                 // Signature lines are not numbered
                 if (currentLine is WOldNumberedParagraph np)
                     break;
-
+                    
+                if (!currentLine.Contents.Any())
+                    break;
+                if (currentLine.Contents.OfType<WText>().First() is not WText lineText)
+                    break;
+                string styleName = lineText.Style;
+                if (contents.Count > 0 && ContainsNonSigneeOrSignatory(contents)
+                    && styleName is not null
+                    && styleName.StartsWith("Sig", StringComparison.InvariantCultureIgnoreCase)
+                    && styleName.EndsWith("Signatory", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    // Reached start of new signature block
+                    break;
+                }
                 int save = i;
 
                 // Ensure we encounter a single contiguous block of right-positioned text.
@@ -114,39 +128,53 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new SignatureBlock { Contents = contents };
         }
 
+        private static bool ContainsNonSigneeOrSignatory(List<IBlock> contents)
+        {
+            for (int i = 0; i < contents.Count; i++)
+            {
+                WSignatureBlock sigBlock = contents[i] as WSignatureBlock;
+                WText sigContent =  sigBlock?.Content.First() as WText;
+                // Only signature styles Sig_signatory and Sig_signee contain "sign"
+                if (sigContent is not null && !sigContent.Style.Contains("sign", StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Adds the given line to the list of contents. 
         /// Depending on the style, it will add a new WSignatureBlock or WLine
         /// </summary>
         private static void AddLineToContents(List<IBlock> contents, WLine line)
         {
-            if (line.Contents.Count() == 0)
+            if (!line.Contents.Any())
                 return;
             if (line.Contents.First() is not WText lineText)
                 return;
             string styleName = lineText.Style;
             string name = null;
             // Using StartsWith and EndsWith because sometimes the casing can be different and there might be underscores in between
-            // So this handles styles like "Sig_Signee" and sigsignee
-            if (styleName is not null && styleName.StartsWith("Sig", System.StringComparison.InvariantCultureIgnoreCase))
+            // So this handles styles like "Sig_Signee" and "sigsignee"
+            if (styleName is not null && styleName.StartsWith("Sig", StringComparison.InvariantCultureIgnoreCase))
             {
-                if (styleName.EndsWith("Signee", System.StringComparison.InvariantCultureIgnoreCase)
-                    || (styleName.EndsWith("Block", System.StringComparison.InvariantCultureIgnoreCase) && line.IsAllItalicized()))
-                    name = "signature";
-                else if (styleName.EndsWith("Title", System.StringComparison.InvariantCultureIgnoreCase))
-                    name = "role";
-                else if (styleName.EndsWith("Add", System.StringComparison.InvariantCultureIgnoreCase))
-                    name = "location";
-                else if (styleName.EndsWith("Date", System.StringComparison.InvariantCultureIgnoreCase))
-                    name = "date";
+                if (styleName.EndsWith("Signee", StringComparison.InvariantCultureIgnoreCase)
+                    || (styleName.EndsWith("Block", StringComparison.InvariantCultureIgnoreCase) && line.IsAllItalicized()))
+                    name = "signature";     // Sig_signee
+                else if (styleName.EndsWith("Title", StringComparison.InvariantCultureIgnoreCase))
+                    name = "role";          // Sig_title
+                else if (styleName.EndsWith("Add", StringComparison.InvariantCultureIgnoreCase))
+                    name = "location";      // Sig_add
+                else if (styleName.EndsWith("Date", StringComparison.InvariantCultureIgnoreCase))
+                    name = "date";          // Sig_date
             }
-            else if (styleName is not null && styleName.StartsWith("Leg", System.StringComparison.InvariantCultureIgnoreCase)
-                && styleName.EndsWith("Seal", System.StringComparison.InvariantCultureIgnoreCase))
-                name = "seal";
+            else if (styleName is not null && styleName.StartsWith("Leg", StringComparison.InvariantCultureIgnoreCase)
+                && styleName.EndsWith("Seal", StringComparison.InvariantCultureIgnoreCase))
+                name = "seal";              // LegSeal
             
             if (name is not null)
                 contents.Add(new WSignatureBlock() { Name = name, Content = line.Contents });
             else
+                // Style not recognised so it will be added a //p
                 contents.Add(line);
         }
 
