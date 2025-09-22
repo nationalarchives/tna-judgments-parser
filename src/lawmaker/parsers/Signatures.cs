@@ -69,8 +69,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 // The line needs to have Signature style formatting at the parargraph or text level
                 if (!(StartsWithSig(currentLine.Style) || (styleName is not null && StartsWithSig(styleName))))
                     break;
+                // If the current line has styling Sig_Signatory or Sig_Signee 
+                // and any content has styling that isn't Sig_Signatory or Sig_Signee, it must be a new signature block
                 if (contents.Count > 0 && ContainsNonSigneeOrSignatory(contents)
-                    && styleName is not null && StartsWithSig(styleName) && EndsWith(styleName, "Signatory"))
+                    && styleName is not null && StartsWithSig(styleName) && (EndsWith(styleName, "Signatory") || EndsWith(styleName, "Signee")))
                 {
                     // Reached start of new signature block
                     break;
@@ -101,14 +103,22 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new SignatureBlock { Contents = contents };
         }
 
+        /// <summary>
+        /// Returns true if an item in the provided list has styling that isn't null, Sig_signatory or Sig_signee
+        /// </summary>
         private static bool ContainsNonSigneeOrSignatory(List<IBlock> contents)
         {
             for (int i = 0; i < contents.Count; i++)
             {
+                // Content could either be a WSignatureBlock or WLine
                 WSignatureBlock sigBlock = contents[i] as WSignatureBlock;
-                WText sigContent = sigBlock?.Content.First() as WText;
+                WLine sigLine = contents[i] as WLine;
+                if (sigBlock?.Content.First() is not WText sigContent)
+                    sigContent = sigLine.Contents.First() as WText;
+
+                string sigStyle = sigContent?.Style;
                 // Only signature styles Sig_signatory and Sig_signee contain "sign"
-                if (sigContent is not null && !sigContent.Style.Contains("sign", StringComparison.InvariantCultureIgnoreCase))
+                if (sigStyle is not null && !sigStyle.Contains("sign", StringComparison.InvariantCultureIgnoreCase))
                     return true;
             }
             return false;
@@ -147,7 +157,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (name is not null)
                 contents.Add(new WSignatureBlock() { Name = name, Content = line.Contents });
             else
-                // Style not recognised so it will be added a //p
+                // Style not recognised so it will be added as //p
                 contents.Add(line);
         }
 
@@ -176,7 +186,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
     }
 
-    internal interface Signatures
+    internal interface ISignatures
     {
 
         public static bool IsValidChild(IDivision child)
@@ -188,7 +198,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
 
-    internal class SignaturesBranch : Branch, Signatures
+    internal class SignaturesBranch : Branch, ISignatures
     {
         public override string Name { get; internal init; } = "signatures";
 
