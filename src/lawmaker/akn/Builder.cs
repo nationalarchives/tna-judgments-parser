@@ -455,6 +455,9 @@ namespace UK.Gov.Legislation.Lawmaker
             string dateString = null;
             if (sig.Name.Equals("date"))
             {
+                // Only dates of the format "d MMMM yyyy" with or without an ordinal suffix will parse successfully
+                // e.g. "17th June 2025" and "9 October 2021"
+                // Any other format will result in the date attribute being set to "9999-01-01"
                 string text = (sig.Content.First() as WText).Text;
                 
                 // Remove ordinal suffix from date if there is one
@@ -463,12 +466,12 @@ namespace UK.Gov.Legislation.Lawmaker
                     // Extract the numeric day and remove the suffix from the original string
                     text = text.Replace(match.Value, match.Groups[1].Value);
 
-                bool parsedDate = DateTime.TryParseExact(text, "d MMMM yyyy", CultureInfo.GetCultureInfo("en-GB"), DateTimeStyles.None, out DateTime dateTime); //TODO: Accept more date formats?
+                bool parsedDate = DateTime.TryParseExact(text, "d MMMM yyyy", CultureInfo.GetCultureInfo("en-GB"), DateTimeStyles.None, out DateTime dateTime);
                 if (parsedDate)
                     dateString = dateTime.ToString("yyyy-MM-dd");
-                // Date was not parsed so just set it to today's date
+                // Date was not parsed so set to dummy value
                 else
-                    dateString = DateTime.Today.ToString("yyyy-MM-dd");
+                    dateString = "9999-01-01";
             }
             if (dateString is not null)
             {
