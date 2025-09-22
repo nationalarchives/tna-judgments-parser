@@ -16,7 +16,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!frames.IsSecondaryDocName())
                 return null;
             // Signatures shouldn't have any nums
-            if (line is WOldNumberedParagraph np)
+            if (line is WOldNumberedParagraph)
                 return null;
 
             List<IDivision> children = [];
@@ -47,12 +47,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseSignature(WLine line)
         {
-            // A signature must contain a single concurrent set of right-positioned paragraphs.
-            // It may optionally begin and/or end with left-positioned paragraphs.
+            // A signature must have Signature styling at the paragraph or text level
             // In SIs, this right-positioning is achieved with Tab Stops, as opposed to Alignment.
-            // bool foundRightLinesStart = false;
-            // bool foundRightLinesEnd = false;
-
             List<IBlock> contents = [];
 
             while (i < Document.Body.Count)
@@ -62,62 +58,39 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (Current() is not WLine currentLine)
                     break;
                 // Signature lines are not numbered
-                if (currentLine is WOldNumberedParagraph np)
+                if (currentLine is WOldNumberedParagraph)
                     break;
-                    
                 if (!currentLine.Contents.Any())
                     break;
+                // The line needs to have at least one content of the type WText
                 if (currentLine.Contents.OfType<WText>().First() is not WText lineText)
                     break;
                 string styleName = lineText.Style;
+                // The line needs to have Signature style formatting at the parargraph or text level
+                if (!(StartsWithSig(currentLine.Style) || (styleName is not null && StartsWithSig(styleName))))
+                    break;
                 if (contents.Count > 0 && ContainsNonSigneeOrSignatory(contents)
-                    && styleName is not null
-                    && styleName.StartsWith("Sig", StringComparison.InvariantCultureIgnoreCase)
-                    && styleName.EndsWith("Signatory", StringComparison.InvariantCultureIgnoreCase))
+                    && styleName is not null && StartsWithSig(styleName) && EndsWith(styleName, "Signatory"))
                 {
                     // Reached start of new signature block
                     break;
                 }
-                int save = i;
-
-                // Ensure we encounter a single contiguous block of right-positioned text.
-                // if (ContentHasTabbedText(currentLine))
-                // {
-                //     if (!foundRightLinesStart)
-                //         foundRightLinesStart = true;
-                //     else if (foundRightLinesEnd)
-                //     {
-                //         i = save;
-                //         break;
-                //     }
-                // }
-                // else if (foundRightLinesStart && !foundRightLinesEnd)
-                //     foundRightLinesEnd = true;
-
 
                 // Add each line of the signature to the contents.
                 // A single line will often have both left and right-positioned text,
                 // in which case we must split the line in two.
                 List<IInline> inlines = [];
-                // if (currentLine.Contents.Any(inline => inline is WTab))
-                // {
-                    // bool isAfterTab = false;
-                    foreach (IInline inline in currentLine.Contents)
+                foreach (IInline inline in currentLine.Contents)
+                {
+                    if (inline is not WTab)
                     {
-                        if (!(inline is WTab))
-                        {
-                            inlines.Add(inline);
-                            continue;
-                        }
-                        // Encountered a tab
-                        // isAfterTab = true;
-                        AddLineToContents(contents, new WLine(currentLine, inlines));
-                        inlines.Clear();
+                        inlines.Add(inline);
+                        continue;
                     }
                     AddLineToContents(contents, new WLine(currentLine, inlines));
-                // }
-                // else
-                //     AddLineToContents(contents, new WLine(currentLine, inlines), false);
+                    inlines.Clear();
+                }
+                AddLineToContents(contents, new WLine(currentLine, inlines));
 
                 i += 1;
             }
@@ -133,7 +106,7 @@ namespace UK.Gov.Legislation.Lawmaker
             for (int i = 0; i < contents.Count; i++)
             {
                 WSignatureBlock sigBlock = contents[i] as WSignatureBlock;
-                WText sigContent =  sigBlock?.Content.First() as WText;
+                WText sigContent = sigBlock?.Content.First() as WText;
                 // Only signature styles Sig_signatory and Sig_signee contain "sign"
                 if (sigContent is not null && !sigContent.Style.Contains("sign", StringComparison.InvariantCultureIgnoreCase))
                     return true;
@@ -155,22 +128,22 @@ namespace UK.Gov.Legislation.Lawmaker
             string name = null;
             // Using StartsWith and EndsWith because sometimes the casing can be different and there might be underscores in between
             // So this handles styles like "Sig_Signee" and "sigsignee"
-            if (styleName is not null && styleName.StartsWith("Sig", StringComparison.InvariantCultureIgnoreCase))
+            if (styleName is not null && StartsWithSig(styleName))
             {
-                if (styleName.EndsWith("Signee", StringComparison.InvariantCultureIgnoreCase)
-                    || (styleName.EndsWith("Block", StringComparison.InvariantCultureIgnoreCase) && line.IsAllItalicized()))
+                if (EndsWith(styleName, "Signee")
+                    || (EndsWith(styleName, "Block") && line.IsAllItalicized()))
                     name = "signature";     // Sig_signee
-                else if (styleName.EndsWith("Title", StringComparison.InvariantCultureIgnoreCase))
+                else if (EndsWith(styleName, "Title"))
                     name = "role";          // Sig_title
-                else if (styleName.EndsWith("Add", StringComparison.InvariantCultureIgnoreCase))
+                else if (EndsWith(styleName, "Add"))
                     name = "location";      // Sig_add
-                else if (styleName.EndsWith("Date", StringComparison.InvariantCultureIgnoreCase))
+                else if (EndsWith(styleName, "Date"))
                     name = "date";          // Sig_date
             }
-            else if (styleName is not null && styleName.StartsWith("Leg", StringComparison.InvariantCultureIgnoreCase)
-                && styleName.EndsWith("Seal", StringComparison.InvariantCultureIgnoreCase))
+            else if (styleName is not null && StartsWith(styleName, "Leg")
+                && EndsWith(styleName, "Seal"))
                 name = "seal";              // LegSeal
-            
+
             if (name is not null)
                 contents.Add(new WSignatureBlock() { Name = name, Content = line.Contents });
             else
@@ -178,6 +151,29 @@ namespace UK.Gov.Legislation.Lawmaker
                 contents.Add(line);
         }
 
+        /// <summary>
+        /// Checks if the given string begins with "Sig", case insentitive
+        /// </summary>
+        private static bool StartsWithSig(String str)
+        {
+            return str.StartsWith("Sig", StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        /// <summary>
+        /// Checks if the given string starts with the provided value, case insentitive
+        /// </summary>
+        private static bool StartsWith(String str, String value)
+        {
+            return str.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+        }
+        
+        /// <summary>
+        /// Checks if the given string ends with the provided value, case insentitive
+        /// </summary>
+        private static bool EndsWith(String str, String value)
+        {
+            return str.EndsWith(value, StringComparison.InvariantCultureIgnoreCase);
+        }
     }
 
     internal interface Signatures
