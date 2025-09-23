@@ -134,14 +134,16 @@ namespace UK.Gov.Legislation.Lawmaker
                 return;
             if (line.Contents.First() is not WText lineText)
                 return;
-            string styleName = lineText.Style;
+            string paraStyleName = line.Style; // paragraph level formatting
+            string styleName = lineText.Style; // text/character level formatting
             string name = null;
             // Using StartsWith and EndsWith because sometimes the casing can be different and there might be underscores in between
             // So this handles styles like "Sig_Signee" and "sigsignee"
-            if (styleName is not null && StartsWithSig(styleName))
+            if (paraStyleName is not null && StartsWithSig(paraStyleName) && EndsWith(paraStyleName, "Block") && line.IsAllItalicized())
+                name = "signature";     // Sig_signee
+            else if (styleName is not null && StartsWithSig(styleName))
             {
-                if (EndsWith(styleName, "Signee")
-                    || (EndsWith(styleName, "Block") && line.IsAllItalicized()))
+                if (EndsWith(styleName, "Signee"))
                     name = "signature";     // Sig_signee
                 else if (EndsWith(styleName, "Title"))
                     name = "role";          // Sig_title
