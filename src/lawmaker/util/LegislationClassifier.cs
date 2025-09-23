@@ -116,9 +116,14 @@ public static class DocNames
         return GetLegislationType(docName) == LegislationType.SECONDARY;
     }
 
-    public static bool IsPrimarySP(DocName docName)
+    public static bool IsScottishPrimary(DocName docName)
     {
         return ToEnacted(docName).Equals(DocName.ASP);
+    }
+
+    public static bool IsWelshSecondary(DocName docName)
+    {
+        return ToEnacted(docName).Equals(DocName.WSI);
     }
 }
 

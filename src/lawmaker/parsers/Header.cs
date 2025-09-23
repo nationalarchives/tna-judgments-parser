@@ -1,4 +1,6 @@
 
+#nullable enable
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -108,8 +110,20 @@ namespace UK.Gov.Legislation.Lawmaker
         private void ParseSecondaryHeader()
         {
             bool foundContents = false;
+            bool isWelshSecondary = DocNames.IsWelshSecondary(frames.CurrentDocName);
+
             while (i < Document.Body.Count)
             {
+                if (isWelshSecondary)
+                {
+                    BlockContainer? blockContainer = ParseWelshBlockContainer();
+                    if (blockContainer is not null)
+                    {
+                        coverPage.Add(blockContainer);
+                        continue;
+                    }
+                }
+
                 if (!foundContents)
                     foundContents = SkipTableOfContents();
 
@@ -178,6 +192,20 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             return true;
         }
+
+        private BlockContainer? ParseWelshBlockContainer()
+        {
+            ExplanatoryNote? explanatoryNote = ParseExplanatoryNote();
+            if (explanatoryNote is not null)
+                return explanatoryNote;
+
+            CommencementHistory? commencementHistory = ParseCommencementHistory();
+            if (commencementHistory is not null)
+                return commencementHistory;
+
+            return null;
+        }
+
 
         private static readonly Dictionary<Lang, string> ContentsHeadingPatterns = new()
         {
