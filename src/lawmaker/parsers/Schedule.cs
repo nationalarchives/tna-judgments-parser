@@ -138,7 +138,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private bool IsReferenceNote(WLine line)
         {
-            if (DocNames.IsPrimarySP(docName))
+            if (DocNames.IsScottishPrimary(docName))
             {
                 // Reference notes in SP Bills/Acts are formatted differently
                 if (IsCenterAligned(line) && line.IsAllItalicized())

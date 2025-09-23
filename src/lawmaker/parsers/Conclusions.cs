@@ -14,21 +14,24 @@ namespace UK.Gov.Legislation.Lawmaker
         private readonly List<BlockContainer> conclusions = [];
 
         private void ParseConclusions()
-        {
-            if (i >= Document.Body.Count)
-                return;
-            ParseExplanatoryNote();
-            ParseCommencementHistory();
+        {                    
+            ExplanatoryNote? explanatoryNote = ParseExplanatoryNote();
+            if (explanatoryNote is not null)
+                conclusions.Add(explanatoryNote);
+
+            CommencementHistory? commencementHistory = ParseCommencementHistory();
+            if (commencementHistory is not null)
+                conclusions.Add(commencementHistory);
         }
 
-        private void ParseExplanatoryNote()
+        private ExplanatoryNote? ParseExplanatoryNote()
         {
             if (i >= Document.Body.Count)
-                return;
+                return null;
 
             // Handle heading and subheading
             if (!ExplanatoryNote.IsHeading(langService, Current()))
-                return;
+                return null;
             WLine heading = (Current() as WLine)!;
             
             int save = i;
@@ -51,6 +54,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (CommencementHistory.IsHeading(langService, currentBlock))
                     break;
 
+                if (currentBlock is WLine line && IsCenterAligned(line))
+                    break;
+
                 if (ParseHeadingTblock() is HeadingTblock headingTblock)
                     content.Add(headingTblock);
                 else
@@ -62,10 +68,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (content.Count == 0)
             {
                 i = save;
-                return;
+                return null;
             }
             IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(content);
-            conclusions.Add(new ExplanatoryNote { Heading = heading, Subheading = subheading, Content = structuredContent });
+            return new ExplanatoryNote { Heading = heading, Subheading = subheading, Content = structuredContent };
         }
 
         private HeadingTblock? ParseHeadingTblock()
@@ -103,14 +109,14 @@ namespace UK.Gov.Legislation.Lawmaker
             return new HeadingTblock { Heading = heading, Content = structuredContent };
         }
 
-        private void ParseCommencementHistory()
+        private CommencementHistory? ParseCommencementHistory()
         {
             if (i >= Document.Body.Count)
-                return;
+                return null;
 
             // Handle heading and subheading
             if (!CommencementHistory.IsHeading(langService, Current()))
-                return;
+                return null;
             WLine heading = (Current() as WLine)!;
 
             int save = i;
@@ -136,7 +142,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 i += 1;
             }
 
-            conclusions.Add(new CommencementHistory { Heading = heading, Subheading = subheading, Content = blocks });
+            return new CommencementHistory { Heading = heading, Subheading = subheading, Content = blocks };
         }
 
     }
