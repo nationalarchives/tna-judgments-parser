@@ -54,6 +54,10 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
+                // If we hit the conclusions, the schedules have finished
+                if (ExplanatoryNote.IsHeading(langService, Current()))
+                    break;
+
                 HContainer peek = PeekGroupingProvision();
                 if (peek != null && !Schedules.IsValidChild(peek))
                     break;
