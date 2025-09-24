@@ -43,7 +43,8 @@ namespace UK.Gov.Legislation.Lawmaker
             // Schedules container must be followed by Schedule
             if (Document.Body[i + 1].Block is not WLine line2)
                 return false;
-            if (!IsCenterAligned(line2))
+            DocName docname = frames.CurrentDocName;
+            if (!DocNames.IsWelshSecondary(docname) && !IsCenterAligned(line))
                 return false;
             return true;
         }

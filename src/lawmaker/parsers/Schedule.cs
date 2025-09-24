@@ -92,7 +92,9 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph np)
                 return false;
-            if (!IsCenterAligned(line))
+
+            DocName docname = frames.CurrentDocName;
+            if (!DocNames.IsWelshSecondary(docname) && !IsCenterAligned(line))
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;

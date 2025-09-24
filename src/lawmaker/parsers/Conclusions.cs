@@ -135,6 +135,9 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 block = Document.Body[i].Block;
 
+                if (block is WLine line && IsCenterAligned(line))
+                    break;
+
                 if (Match(LdappTableBlock.Parse) is LdappTableBlock tableBlock)
                     blocks.Add(tableBlock);
                 else
