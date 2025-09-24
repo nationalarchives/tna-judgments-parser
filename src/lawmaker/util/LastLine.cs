@@ -152,17 +152,40 @@ namespace UK.Gov.Legislation.Lawmaker
             IDivision last = divisions.LastOrDefault();
             if (last is null)
                 return false;
-            return ReplaceLastLine1(last, replace);
+            return ReplaceLastLine(last, replace);
         }
 
-        static bool ReplaceLastLine1(IDivision division, Func<WLine, WLine> replace)
+        static bool ReplaceLastLine(IDivision division, Func<WLine, WLine> replace)
         {
             if (division is Leaf leaf)
                 return ReplaceLastLineInLeaf(leaf, replace);
             if (division is Branch branch)
                 return ReplaceLastLineInBranch(branch, replace);
+            if (division is WDummyDivision dummy)
+                return ReplaceLastLine(dummy, replace);
             return false;
         }
+
+        #nullable enable
+        static bool ReplaceLastLine(WDummyDivision dummy, Func<WLine, WLine> replace)
+        {
+            return dummy.Contents.LastOrDefault() switch
+            {
+                WTable table => ReplaceLastLine(table, replace),
+                _ => false
+            };
+        }
+
+        static bool ReplaceLastLine(WTable table, Func<WLine, WLine> replace)
+        {
+            ICell? lastCell = table.Rows?.LastOrDefault()?.Cells.LastOrDefault();
+            if (lastCell is null) return false;
+            List<IBlock>? cellContents = lastCell.Contents.ToList();
+            var result = ReplaceLastOf(cellContents, replace);
+            if (result) lastCell.Contents = cellContents;
+            return result;
+        }
+        #nullable disable
 
         static bool ReplaceLastLineInLeaf(Leaf leaf, Func<WLine, WLine> replace)
         {
