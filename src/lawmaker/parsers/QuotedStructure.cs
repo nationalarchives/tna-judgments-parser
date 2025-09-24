@@ -181,13 +181,23 @@ namespace UK.Gov.Legislation.Lawmaker
             return (start, end);
         }
 
+        private bool IsStartOfQuotedStructure(IBlock block)
+        {
+            return block switch
+            {
+            WLine line => IsStartOfQuotedStructure(line),
+            // possible BUG: there may be circumstances where the first line
+            // is not necessarily the correct location to check, may be a
+            // false positive.
+            ILineable lineable => IsStartOfQuotedStructure(lineable.Lines.FirstOrDefault()),
+            _ => false
+            };
+        }
         /*
          * Determines if a given block begins with a quoted structure.
          */
-        private bool IsStartOfQuotedStructure(IBlock block)
+        private bool IsStartOfQuotedStructure(WLine line)
         {
-            if (block is not WLine line)
-                return false;
             string text = Regex.Replace(line.NormalizedContent, @"\s+", string.Empty);
             if (!Regex.IsMatch(text, QuotedStructureStartPattern()))
                 return false;
@@ -199,6 +209,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 return true;
             // Handle single-paragraph quoted structures
             // Number of left and right quotes must match.
+            // NOTE: I think there's a false positive:
+            // “first quotes” some text “second quotes”
+            // just another sign we need to re-work quoted structures
             else if (left == right && Regex.IsMatch(line.NormalizedContent, QuotedStructureEndPattern()))
                 return true;
             return false;
@@ -324,13 +337,39 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (i == Document.Body.Count)
                 return null;
-            IBlock block = Document.Body[i].Block;
-            if (block is not WLine line)
-                return null;
-            return ParseAndMemoize(line, "QuotedStructure", ParseQuotedStructure);
+            return Current() switch
+            {
+                WLine line => ParseAndMemoize(line, "QuotedStructure", ParseQuotedStructure),
+                LdappTableBlock table => ParseQuotedStructure(table),
+                WTable table => ParseQuotedStructure(table),
+                _ => null
+            };
         }
 
-        private BlockQuotedStructure ParseQuotedStructure(WLine line)
+        // only runs when `IsStartOfQuotedStructure` is true, this is bad code but quoted structures need re-working anyway
+        private BlockQuotedStructure ParseQuotedStructure(LdappTableBlock table)
+        {
+            i++;
+            return new BlockQuotedStructure
+            {
+                Contents = [new WDummyDivision(table)],
+                DocName = frames.CurrentDocName,
+                Context = frames.CurrentContext
+            };
+        }
+
+        private BlockQuotedStructure ParseQuotedStructure(WTable table)
+        {
+            i++;
+            return new BlockQuotedStructure
+            {
+                Contents = [new WDummyDivision(table)],
+                DocName = frames.CurrentDocName,
+                Context = frames.CurrentContext
+            };
+        }
+
+        private BlockQuotedStructure ParseQuotedStructure(WLine line) // why
         {
             List<IDivision> contents = [];
             quoteDepth += 1;
@@ -353,6 +392,8 @@ namespace UK.Gov.Legislation.Lawmaker
             return new BlockQuotedStructure { Contents = contents, DocName = frames.CurrentDocName, Context = frames.CurrentContext };
         }
 
+        #region Quote extraction
+        #nullable enable
         // extract start and end quote marks and appended text
 
         internal static void ExtractAllQuotesAndAppendTexts(IList<IDivision> body)
@@ -377,67 +418,97 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (qs.StartQuote != null)
                 return;
-            if (qs.Contents.FirstOrDefault() is not HContainer hContainer)
-                return;
+            qs.StartQuote = qs.Contents.FirstOrDefault() switch
+            {
+            HContainer hContainer => ExtractStartQuote(hContainer),
+            WDummyDivision dummy => ExtractStartQuote(dummy),
+            _ => null
+            };
+            return;
+        }
 
+        private static string? ExtractStartQuote(WDummyDivision dummy)
+        {
+            if (dummy.Contents.Count() > 1) return null;
+            return dummy.Contents.FirstOrDefault() switch
+            {
+            // ILineable lineable => ExtractStartQuote(lineable.Lines.FirstOrDefault()),
+            WTable table => ExtractStartQuote(table?.Rows?.FirstOrDefault()?.Cells?.FirstOrDefault()?.Contents?.FirstOrDefault() as WLine),
+            _ => null,
+            };
+
+        }
+
+        private static string? ExtractStartQuote(HContainer hContainer)
+        {
             // First text item can be in the num, heading, intro, OR content.
-
+            if (hContainer is null) return null;
             if (hContainer.HeadingPrecedesNumber && hContainer.Heading is WLine heading)
             {
                 WLine enriched = EnrichFromBeginning.Enrich(heading, QuotedStructureStartPattern(), ExtractStartQuoteConstructor);
-                WBookmark bookmark = enriched.Contents.First(i => i is WBookmark) as WBookmark;
-                qs.StartQuote = bookmark.Name;
+                WBookmark? bookmark = enriched.Contents.First(i => i is WBookmark) as WBookmark;
                 heading.Contents = enriched.Contents.Where(i => i is not WBookmark);
+                return bookmark?.Name;
             }
             else if (hContainer.Number is not null)
             {
                 Match match = Regex.Match(hContainer.Number.Text, QuotedStructureStartPattern());
                 if (!match.Success)
-                    return;
+                    return null;
                 int patternEndIndex = match.Index + match.Length;
-                RunProperties runProperties = hContainer.Number is WText wText ? wText.properties : null;
+                RunProperties? runProperties = hContainer.Number is WText wText ? wText.properties : null;
                 hContainer.Number = new WText(hContainer.Number.Text[patternEndIndex..], runProperties);
-                qs.StartQuote = match.Groups["startQuote"].Value;
+                return match.Groups["startQuote"].Value;
             }
             else
             {
-                IList<IBlock> container;
-                if (hContainer is Leaf leaf)
-                    container = leaf.Contents;
-                else if (hContainer is Branch branch)
-                    container = branch.Intro;
-                else
-                    return;
+                IList<IBlock>? container = hContainer switch
+                {
+                    Leaf leaf => leaf.Contents,
+                    Branch branch => branch.Intro,
+                    _ => null
+                };
 
                 // This currently ONLY removes the start quote when the first block is a WLine
                 if (container is null || container.Count == 0 || container.First() is null)
-                    return;
+                    return null;
                 if (container.First() is not WLine line)
-                    return;
+                    return null;
 
-                WLine enriched = EnrichFromBeginning.Enrich(line, QuotedStructureStartPattern(), ExtractStartQuoteConstructor);
-                WBookmark bookmark = enriched.Contents.First(i => i is WBookmark) as WBookmark;
-                qs.StartQuote = bookmark.Name;
-                line.Contents = enriched.Contents.Where(i => i is not WBookmark);
-                container.RemoveAt(0);
-                container.Insert(0, line);
+                string? startQuote = ExtractStartQuote(line);
+                if (startQuote is not null)
+                {
+                    container.RemoveAt(0);
+                    container.Insert(0, line);
+                }
+                return startQuote;
             }
+        }
+
+        private static string? ExtractStartQuote(WLine? line)
+        {
+            if (line is null) return null;
+            WLine enriched = EnrichFromBeginning.Enrich(line, QuotedStructureStartPattern(), ExtractStartQuoteConstructor);
+            WBookmark? bookmark = enriched.Contents.First(i => i is WBookmark) as WBookmark;
+            line.Contents = enriched.Contents.Where(i => i is not WBookmark);
+            return bookmark?.Name;
         }
 
         // Removes any braced quoted structure info, and wraps the start quote in a WBookmark so it
         // can later be extracted and added to the startQuote attribute of the quoted structure.
-        static IInline ExtractStartQuoteConstructor(IEnumerable<IInline> inlines)
+        static IInline? ExtractStartQuoteConstructor(IEnumerable<IInline> inlines)
         {
             if (inlines == null || !inlines.Any())
                 return null;
             string text = "";
             foreach (IInline inline in inlines)
                 text += IInline.GetText(inline);
-            string startQuote = text.Split("}").LastOrDefault();
+            string? startQuote = text.Split("}").LastOrDefault();
             // Todo: should probably use something other than WBookmark
             return new WBookmark { Name = startQuote };
         }
 
+        #nullable disable
         /// <summary>
         /// This function removes the end quote and appended text from a line and returns a new line.
         /// It retains the extracted bits for insertion into the QuotedStructure model.
@@ -486,22 +557,6 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
     }
+    #endregion
 
-    class DistanceState
-    {
-        public int Distance
-        {
-            get;
-            private set;
-        }
-        public DistanceState()
-        {
-            this.Distance = 0;
-        }
-        public void IncrementQuotedStructure(IBlock block)
-        {
-            if (block is BlockQuotedStructure)
-                Distance++;
-        }
-    }
 }
