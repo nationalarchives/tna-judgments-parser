@@ -15,7 +15,7 @@ namespace UK.Gov.Legislation.Lawmaker
         public static readonly Dictionary<Lang, string> NumberPatterns = new()
         {
             [Lang.ENG] = @"^\s*SCHEDULE\s*([A-Z]*\d+[A-Z]*)?$",
-            [Lang.CYM] = @"^\s*ATODLEN\s*([A-Z]*\d+[A-Z]*)?$"
+            [Lang.CYM] = @"^\s*(YR +)?ATODLEN\s*([A-Z]*\d+[A-Z]*)?$"
         };
 
         public static bool IsValidChild(IDivision child)

@@ -89,32 +89,29 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static string GetRightTabbedText(WLine line)
         {
-            if (ContentHasTabbedText(line))
-                return new WLine(line, [line.Contents.Last()]).NormalizedContent;
-            return "";
+            if (!line.Contents.OfType<WTab>().Any())
+                return line.NormalizedContent;
+
+            IEnumerable<IInline> inlines = line.Contents.Reverse().TakeWhile(i => i is not WTab).Reverse();
+            return new WLine(line, inlines).NormalizedContent;
         }
 
         private static string IgnoreRightTabbedText(WLine line)
         {
-            // If count is 2 or less than there wouldn't be right-aligned tabbed text that needs to be ignored
-            if (line.Contents.Count() > 2 && ContentHasTabbedText(line))
-                return new WLine(line, line.Contents.SkipLast(1)).NormalizedContent;
-            return line.NormalizedContent;
+            if (!line.Contents.OfType<WTab>().Any())
+                return line.NormalizedContent;
+
+            IEnumerable<IInline> inlines = line.Contents.Reverse().SkipWhile(i => i is not WTab).Reverse();
+            return new WLine(line, inlines).NormalizedContent;
         }
 
         private static bool ContentHasTabbedText(WLine line)
         {
-            if (line.Contents.Count() >= 2 && line.Contents.Last() is WText && line.Contents.SkipLast(1).Last() is WTab)
-                return true;
-            return false;
-
-            // Style style = Judgments.DOCX.Styles.GetStyle(line.main, line.properties.ParagraphStyleId);
-            // Tabs tabs = style.StyleParagraphProperties.Tabs;
-            // return tabs.ChildElements.Where(tab =>
-            // {
-            //     TabStop tabStop = tab as TabStop;
-            //     return tabStop.Val == "right" && tabStop.Position > 5000;
-            // }).Any();
+            if (!line.Contents.OfType<WTab>().Any())
+                return false;
+            if (!line.Contents.Reverse().TakeWhile(i => i is not WTab).Any())
+                return false;
+            return true;
         }
 
         private static bool IsFlushLeft(WLine line) => OptimizedParser.IsFlushLeft(line);

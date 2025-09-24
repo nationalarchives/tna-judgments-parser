@@ -1,4 +1,4 @@
-
+﻿
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
@@ -10,12 +10,11 @@ namespace UK.Gov.Legislation.Lawmaker
 
     internal interface GroupOfParts
     {
-
-        public static bool IsValidNumber(string num)
+        public static readonly Dictionary<Lang, string> NumberPatterns = new()
         {
-            string pattern = @"^the (\w+) group of parts";
-            return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
-        }
+            [Lang.ENG] = @"^THE +(\w+) +GROUP +OF +PARTS$",
+            [Lang.CYM] = @"^GRŴP +O +RANNAU$"
+        };
 
         public static bool IsValidChild(IDivision child)
         {
