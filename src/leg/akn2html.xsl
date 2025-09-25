@@ -106,7 +106,7 @@ article[data-doc-type="ImpactAssessment"] td {
 p.ia-table-text { font-size: 11pt; margin: 2pt 4pt; color: #000000; line-height: 1.2; font-family: Arial, sans-serif !important }
 p.ia-head-label { font-size: 12pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
 p.ia-title { font-size: 16pt; background-color: #000000; color: #ffffff; margin: 0; padding: 8pt; text-align: center; font-family: Arial, sans-serif !important }
-p.ia-number { font-size: 10pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
+p.ia-header-text { font-size: 10pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
 p.ia-stage { font-size: 11pt; color: #000000; margin: 2pt 4pt; font-family: Arial, sans-serif !important }
 
 /* Ensure proper spacing for table paragraphs in IA documents */

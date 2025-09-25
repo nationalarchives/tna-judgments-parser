@@ -44,6 +44,8 @@ class Helper : BaseHelper {
         var paragraphs = xml.SelectNodes("//akn:p", nsmgr);
         int classified = 0;
         
+        XmlNode previousParagraph = null;
+        
         foreach (XmlNode p in paragraphs) {
             string content = p.InnerText?.Trim() ?? "";
             string cssClass = null;
@@ -56,7 +58,7 @@ class Helper : BaseHelper {
                 cssClass = "ia-head-label";
             }
             else if (cleanContent.StartsWith("IA No:")) {
-                cssClass = "ia-number";
+                cssClass = "ia-header-text";
             }
             else if (cleanContent.StartsWith("Stage:")) {
                 cssClass = "ia-stage";
@@ -65,10 +67,10 @@ class Helper : BaseHelper {
                 cssClass = "ia-head-label";
             }
             else if (cleanContent.StartsWith("Lead department or agency:")) {
-                cssClass = "ia-head-label";
+                cssClass = "ia-header-text";
             }
             else if (cleanContent.StartsWith("Other departments or agencies")) {
-                cssClass = "ia-head-label";
+                cssClass = "ia-header-text";
             }
             else if (cleanContent.StartsWith("Impact Assessment")) {
                 cssClass = "ia-title";
@@ -77,7 +79,18 @@ class Helper : BaseHelper {
                 cssClass = "ia-head-label";
             }
             else if (IsInHeaderTable(p)) {
-                cssClass = "ia-table-text";
+                // Check if this follows a header-text question and is a short answer
+                if (previousParagraph != null && IsInHeaderTable(previousParagraph)) {
+                    string prevContent = previousParagraph.InnerText?.Trim().Replace("<b>", "").Replace("</b>", "") ?? "";
+                    if ((prevContent.StartsWith("Lead department") || prevContent.StartsWith("Other departments")) && 
+                        cleanContent.Length < 100 && !cleanContent.Contains(":")) {
+                        cssClass = "ia-header-text";
+                    } else {
+                        cssClass = "ia-table-text";
+                    }
+                } else {
+                    cssClass = "ia-table-text";
+                }
             }
             
             if (cssClass != null) {
@@ -87,6 +100,8 @@ class Helper : BaseHelper {
                 classified++;
 
             }
+            
+            previousParagraph = p;
         }
         
         if (classified > 0) {
