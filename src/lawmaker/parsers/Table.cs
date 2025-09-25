@@ -34,17 +34,9 @@ record LdappTableBlock(
     // public IFormattedText? Number => null;
     // public string Name => "tblock";
 
-    public IEnumerable<IBlock> Contents => ToList();
     public IEnumerable<WLine> Lines => TableNumber is null
-        ? ToLines()
-        : TableNumber.Lines.Concat(ToLines());
-
-    private IEnumerable<WLine> ToLines() => Table
-        .Rows
-        .SelectMany(row => row.Cells)
-        .SelectMany(cell => cell.Contents)
-        .OfType<ILineable>() // this may falsely filter some things,
-        .SelectMany(lineable => lineable.Lines);
+        ? Table.Lines
+        : TableNumber.Lines.Concat(Table.Lines);
 
     // public XElement Build()
     // {
@@ -70,19 +62,10 @@ record LdappTableBlock(
     internal static LdappTableBlock? Parse(LegislationParser parser)
     {
         // We can have a table on it's own *or* a table with a table num
+        LdappTableNumber? number = parser.Match(LdappTableNumber.Parse);
+        if (parser.Match(ParseTable) is WTable table)
         {
-            if (parser.Match(ParseTable) is WTable table)
-            {
-                return new LdappTableBlock(null, table);
-            }
-        }
-
-        if (parser.Match(LdappTableNumber.Parse) is LdappTableNumber number)
-        {
-            if (parser.Match(ParseTable) is WTable table)
-            {
-                return new LdappTableBlock(number, table);
-            }
+            return new LdappTableBlock(number, table);
         }
         return null;
     }
@@ -104,15 +87,6 @@ record LdappTableBlock(
     {
         IEnumerable<IBlock> enriched = BlockList.ParseFrom(cell.Contents);
         return new WCell(cell.Row, cell.Props, enriched);
-    }
-
-    private List<IBlock> ToList()
-    {
-        List<IBlock> list = [];
-        if (TableNumber?.Number is not null) list.Add(TableNumber.Number);
-        if (TableNumber?.Captions is not null) list.AddRange(TableNumber.Captions);
-        list.Add(Table);
-        return list;
     }
 
 }
@@ -153,10 +127,7 @@ class LdappTableCaptions
         // Everything between the table num and the table itself is considered a caption
         List<WLine> captions = parser
             .AdvanceWhile(block => block is not WTable)
-            .Where(block => block is WLine)
-            .Select(block => block as WLine)
-            .Where(block => block is not null)
-            .Select(block => block!)
+            .OfType<WLine>()
             .ToList();
 
         return captions switch
