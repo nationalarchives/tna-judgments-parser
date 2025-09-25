@@ -1,18 +1,20 @@
-
+﻿
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
+
+using Lang = UK.Gov.Legislation.Lawmaker.LanguageService.Lang;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
 
     internal interface GroupOfParts
     {
-
-        public static bool IsValidNumber(string num)
+        public static readonly Dictionary<Lang, string> NumberPatterns = new()
         {
-            string pattern = @"^the (\w+) group of parts";
-            return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
-        }
+            [Lang.ENG] = @"^THE +(\w+) +GROUP +OF +PARTS$",
+            [Lang.CYM] = @"^GRŴP +O +RANNAU$"
+        };
 
         public static bool IsValidChild(IDivision child)
         {
@@ -43,11 +45,11 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface Part
     {
 
-        public static bool IsValidNumber(string num)
+        public static readonly Dictionary<Lang, string> NumberPatterns = new()
         {
-            string pattern = @"^PART [A-Z]*\d+[A-Z]*$";
-            return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
-        }
+            [Lang.ENG] = @"^PART [A-Z]*\d+[A-Z]*$",
+            [Lang.CYM] = @"^RHAN [A-Z]*\d+[A-Z]*$"
+        };
 
         public static bool IsValidChild(IDivision child)
         {
@@ -86,11 +88,11 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface Chapter
     {
 
-        public static bool IsValidNumber(string num)
+        public static readonly Dictionary<Lang, string> NumberPatterns = new()
         {
-            string pattern = @"^CHAPTER [A-Z]*\d+[A-Z]*$";
-            return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
-        }
+            [Lang.ENG] = @"^CHAPTER [A-Z]*\d+[A-Z]*$",
+            [Lang.CYM] = @"^PENNOD [A-Z]*\d+[A-Z]*$"
+        };
 
         public static bool IsValidChild(IDivision child)
         {
@@ -198,17 +200,17 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override bool HeadingPrecedesNumber => true;
 
-        public static bool IsValidHeading(string heading)
+        public static readonly Dictionary<Lang, string> HeadingPatterns = new()
         {
-            string pattern = @"^SCHEDULES$";
-            return Regex.IsMatch(heading, pattern, RegexOptions.IgnoreCase);
-        }
+            [Lang.ENG] = @"^SCHEDULES$",
+            [Lang.CYM] = @"^YR ATODLENNI$"
+        };
 
         public static bool IsValidChild(IDivision child)
         {
-            // Upon entering the Schedules container, all following elements should be within unless it's the start of the conclusions
-            if (child is UnknownLevel unknownLvl && (unknownLvl.Contents[0] as Judgments.Parse.WUnknownLine).NormalizedContent.ToUpper().Equals("EXPLANATORY NOTE"))
-                return false;
+            // The Schedules element is the final element of the body.
+            // All possible children are treated as valid, lest they end
+            // up outside/after the Schedules element.
             return true;
         }
 
@@ -217,11 +219,11 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface SchedulePart
     {
 
-        public static bool IsValidNumber(string num)
+        public static readonly Dictionary<Lang, string> NumberPatterns = new()
         {
-            string pattern = @"^PART [A-Z]*\d+[A-Z]*$";
-            return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
-        }
+            [Lang.ENG] = @"^PART [A-Z]*\d+[A-Z]*$",
+            [Lang.CYM] = @"^RHAN [A-Z]*\d+[A-Z]*$"
+        };
 
         public static bool IsValidChild(IDivision child)
         {
@@ -259,11 +261,12 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface ScheduleChapter
     {
 
-        public static bool IsValidNumber(string num)
+        public static readonly Dictionary<Lang, string> NumberPatterns = new()
         {
-            string pattern = @"^CHAPTER [A-Z]*\d+[A-Z]*$";
-            return Regex.IsMatch(num, pattern, RegexOptions.IgnoreCase);
-        }
+            [Lang.ENG] = @"^CHAPTER [A-Z]*\d+[A-Z]*$",
+            [Lang.CYM] = @"^PENNOD [A-Z]*\d+[A-Z]*$"
+        };
+
         public static bool IsValidChild(IDivision child)
         {
             if (child is ScheduleGroupingSection)
