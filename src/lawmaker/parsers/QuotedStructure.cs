@@ -94,6 +94,8 @@ namespace UK.Gov.Legislation.Lawmaker
             return endQuotePattern;
         }
 
+        #region Quoted structure frames
+        #nullable enable
         /*
          * Extracts the 'frame' info from the braces at the start of the quoted structure (if present),
          * and adds the frame to the stack. i.e. Given the quoted structure: {UKPGA-SCH}�quoted content�
@@ -104,13 +106,20 @@ namespace UK.Gov.Legislation.Lawmaker
          */
         private bool AddQuotedStructureFrame(IBlock block)
         {
-            if (block is not WLine line)
+            if (block is ILineable lineable)
+            {
+                return AddQuotedStructureFrame(lineable.Lines.FirstOrDefault()?.NormalizedContent);
+            } else
             {
                 frames.PushDefault();
                 return true;
             }
+        }
+        private bool AddQuotedStructureFrame(string? line)
+        {
+            if (line is null) return false;
+            string text = Regex.Replace(line, @"\s+", string.Empty);
             string pattern = $"{quotedStructureInfoPattern}{StartQuotePattern()}";
-            string text = Regex.Replace(line.NormalizedContent, @"\s+", string.Empty);
             MatchCollection matches = Regex.Matches(text, pattern);
             if (matches.Count == 0)
             {
@@ -153,7 +162,10 @@ namespace UK.Gov.Legislation.Lawmaker
             frames.Push(docName, (Context) context);
             return true;
         }
+        #nullable disable
+        #endregion
 
+        #region Quoted structure detection
         private static (int, int) CountStartAndEndQuotes(string text)
         {
             int start = Regex.Matches(text, StartQuotePattern()).Count;
@@ -277,7 +289,7 @@ namespace UK.Gov.Legislation.Lawmaker
             bool isEndOfMultiLine = (!isStartQuoteAtStart && isEndQuoteAtEnd && right > left);
             return isSingleLine || isEndOfMultiLine;
         }
-
+        #endregion
 
         /*
          * Strips the quoted structure start pattern (if present) from the beginning of the given string.
