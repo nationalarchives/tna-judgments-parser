@@ -89,6 +89,12 @@ article[data-doc-type="ImpactAssessment"] table {
     margin: 6pt 0;
 }
 
+/* Reset left margin for non-numbered paragraph sections in IA documents */
+article[data-doc-type="ImpactAssessment"] .paragraph:not(.num) { 
+    margin-left: 0 !important; /* Remove paragraph indent for table containers */
+}
+
+
 /* Override default dotted borders for IA tables */
 article[data-doc-type="ImpactAssessment"] th,
 article[data-doc-type="ImpactAssessment"] td { 
