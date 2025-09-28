@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.NationalArchives.CaseLaw.Model;
 
 namespace UK.Gov.NationalArchives.Judgments.Api {
 
@@ -53,6 +54,18 @@ internal class MetaWrapper : IOutsideMetadata {
     public bool NameTrumps => Meta.Name is not null;
 
     public IEnumerable<IExternalAttachment> Attachments => Meta.Attachments?.Select(a => new ExternalAttachmentWrapper(a) );
+
+    /* */
+
+    public string SourceFormat => Meta.Extensions?.SourceFormat;
+
+    public List<string> CaseNumbers => Meta.Extensions?.CaseNumbers;
+
+    public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties => Meta.Extensions?.Parties;
+
+    public List<ICategory> Categories=> Meta.Extensions?.Categories;
+
+    public string NCN => Meta.Extensions?.NCN;
 
 }
 
