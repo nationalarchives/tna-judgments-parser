@@ -1,6 +1,8 @@
 
 using System.Collections.Generic;
 
+using UK.Gov.NationalArchives.CaseLaw.Model;
+
 namespace UK.Gov.Legislation.Judgments {
 
 interface IExternalAttachment {
@@ -32,6 +34,19 @@ interface IOutsideMetadata {
     bool NameTrumps { get; }
 
     IEnumerable<IExternalAttachment> Attachments { get; }
+
+    /* */
+
+    string SourceFormat { get; }
+
+    List<string> CaseNumbers { get; }
+
+    List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties { get; }
+
+    List<ICategory> Categories { get; }
+
+    string NCN { get; }
+
 
 }
 

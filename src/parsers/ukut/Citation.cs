@@ -27,7 +27,7 @@ class Citation : FirstMatch2 {
                 List<IInline> enriched = Helper.SplitOnGroup(last, match.Groups[1], (text, props) => new WNeutralCitation(text, props));
                 return Enumerable.Concat(line.SkipLast(1), enriched);
             }
-            if (last.Text == "." && line.SkipLast(1).Last() is WText penult) {  // [2023] UKFTT 00004 (GRC)
+            if (last.Text == "." && line.SkipLast(1).Any() && line.SkipLast(1).Last() is WText penult) {  // [2023] UKFTT 00004 (GRC)
                 Match match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKUT \d+ *\((AAC|IAC|LC|TCC)\)) *$");
                 if (!match2.Success)
                     match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ *\((TC|GRC)\)) *$");
