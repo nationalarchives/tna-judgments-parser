@@ -109,7 +109,7 @@ class WMetadata : IMetadata {
     public string ManifestationThis { get => ExpressionThis + "/data.xml"; }
     public string ManifestationUri { get => ManifestationThis; }
 
-    public IEnumerable<string> CaseNos() {
+    virtual public IEnumerable<string> CaseNos() {
         IEnumerable<ICaseNo> caseNos = Util.Descendants<ICaseNo>(judgment.Header);
         if (judgment.CoverPage is not null)
             caseNos = judgment.CoverPage.OfType<ILine>().SelectMany(line => line.Contents).OfType<ICaseNo>().Concat(caseNos);
