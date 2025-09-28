@@ -5,6 +5,7 @@ using System.Linq;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.Enrichment;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT
 {
@@ -22,6 +23,12 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT
             while (!foundStart && i < blocks.Count())
             {
                 IBlock block = blocks.ElementAt(i);
+                if (BeforePlusJudgeName(block)) {
+                    WLine x = EnrichBeforePlusJudgeName(block);
+                    enriched.Add(x);
+                    enriched.AddRange(blocks.Skip(i + 1));
+                    return enriched;
+                }
                 if (IsDecidedBy(block))
                     foundStart = true;
                 enriched.Add(block);
@@ -58,7 +65,51 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT
 
         private static bool IsJudgeName(WLine line)
         {
-            return line.NormalizedContent.StartsWith("TRIBUNAL JUDGE", StringComparison.InvariantCultureIgnoreCase);
+            var normal = line.NormalizedContent;
+            if (normal.StartsWith("Tribunal Judge", StringComparison.InvariantCultureIgnoreCase))
+                return true;
+            if (normal.StartsWith("Upper Tribunal Judge", StringComparison.InvariantCultureIgnoreCase))
+                return true;
+            return false;
+        }
+
+        private static bool BeforePlusJudgeName(IBlock block) {
+            if (block is not WLine line)
+                return false;
+            if (line.Contents.Count() == 1) {
+                if (line.NormalizedContent.StartsWith("Before: Tribunal Judge", StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+                if (line.NormalizedContent.StartsWith("Before: Upper Tribunal Judge", StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+                return false;
+            }
+            if (line.Contents.Count() == 3) {
+                if (line.Contents.First() is not WText wText1 || !wText1.Text.Trim().Equals("Before:", StringComparison.InvariantCultureIgnoreCase))
+                    return false;
+                if (line.Contents.ElementAt(1) is not WTab)
+                    return false;
+                if (line.Contents.ElementAt(2) is not WText wText3)
+                    return false;
+                if (wText3.Text.TrimStart().StartsWith("Tribunal Judge", StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+                if (wText3.Text.TrimStart().StartsWith("Upper Tribunal Judge", StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+                return false;
+            }
+            return false;
+        }
+
+        private WLine EnrichBeforePlusJudgeName(IBlock block) {
+            WLine old = block as WLine;
+            if (old.Contents.Count() == 1) {
+                return EnrichFromEnd.Enrich(old, @"Before:\s+(.+)", (a, b) => new WJudge(a, b));
+            }
+            if (old.Contents.Count() == 3) {
+                WText third = old.Contents.ElementAt(2) as WText;
+                WJudge judge = new(third.Text, third.properties);
+                return WLine.Make(old, old.Contents.Take(2).Append(judge));
+            }
+            return old;
         }
 
         protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line)
