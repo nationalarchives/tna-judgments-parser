@@ -61,7 +61,9 @@ namespace UK.Gov.Legislation.Lawmaker
             }
 
             var docx = ReadDocx(subdirectory, filename);
-            var actual = Helper.Parse(docx, new LegislationClassifier(docName, null, null)).Xml;
+            LegislationClassifier classifier = new LegislationClassifier(docName, null, null);
+            LanguageService languageService = new LanguageService(["eng", "cym"]);
+            var actual = Helper.Parse(docx, classifier, languageService).Xml;
             XmlDocument actualDoc = new();
             actualDoc.LoadXml(actual);
 

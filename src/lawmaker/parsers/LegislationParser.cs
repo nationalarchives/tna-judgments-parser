@@ -24,25 +24,26 @@ public partial class LegislationParser
         = WTable
         - WTableOfContents
     */
-    public static Document Parse(byte[] docx, LegislationClassifier classifier)
+    public static Document Parse(byte[] docx, LegislationClassifier classifier, LanguageService languageService)
     {
         WordprocessingDocument doc = AkN.Parser.Read(docx);
         CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
-        return new LegislationParser(simple, classifier).Parse();
+        return new LegislationParser(simple, classifier, languageService).Parse();
     }
 
-        private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier)
-        {
-            Document = doc;
-            docName = classifier.DocName;
-            frames = new Frames(classifier.DocName, classifier.GetContext());
-
-
-        }
+    private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier, LanguageService languageService)
+    {
+        Document = doc;
+        docName = classifier.DocName;
+        frames = new Frames(classifier.DocName, classifier.GetContext());
+        langService = languageService;
+    }
 
     private readonly ILogger Logger = Logging.Factory.CreateLogger<LegislationParser>();
-    private Frames frames;
     private readonly CaseLaw.WordDocument Document;
+    public LanguageService langService;
+    private Frames frames;
+
     private int i = 0;
 
     int parseDepth = 0;

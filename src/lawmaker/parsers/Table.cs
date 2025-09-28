@@ -12,6 +12,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 using DocumentFormat.OpenXml.Spreadsheet;
 using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
+using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
 // This class currently breaks from the convention of putting all the parsing in partial class LegislationParser.
 // I think it's ultimately a mistake to have such a big class spread over so many different files and I believe
@@ -115,18 +116,19 @@ partial record LdappTableNumber(
     List<WLine>? Captions
 ) {
 
-    const string TABLE_NUMBER_PATTERN = @"^Table\s+\w+$";
+    private static readonly Dictionary<Lang, string> TableNumberPatterns = new()
+    {
+        [Lang.ENG] = @"^Table\s+\w+$",
+        [Lang.CYM] = @"^Tabl\s+\w+$"
+    };
 
     internal static LdappTableNumber? Parse(LegislationParser parser)
     {
         IBlock block = parser.Advance();
         if (block is not WLine line) return null;
-        if (!TableNumberPattern().IsMatch(line.NormalizedContent)) return null;
+        if (!parser.langService.IsMatch(line.NormalizedContent, TableNumberPatterns)) return null;
         return new LdappTableNumber(line, parser.Match(LdappTableCaptions.Parse));
     }
-
-    [GeneratedRegex(TABLE_NUMBER_PATTERN, RegexOptions.IgnoreCase, "en-AU")]
-    private static partial Regex TableNumberPattern();
 }
 
 class LdappTableCaptions

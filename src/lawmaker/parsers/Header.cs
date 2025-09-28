@@ -1,9 +1,12 @@
 
+#nullable enable
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -107,8 +110,20 @@ namespace UK.Gov.Legislation.Lawmaker
         private void ParseSecondaryHeader()
         {
             bool foundContents = false;
+            bool isWelshSecondary = DocNames.IsWelshSecondary(frames.CurrentDocName);
+
             while (i < Document.Body.Count)
             {
+                if (isWelshSecondary)
+                {
+                    BlockContainer? blockContainer = ParseWelshBlockContainer();
+                    if (blockContainer is not null)
+                    {
+                        coverPage.Add(blockContainer);
+                        continue;
+                    }
+                }
+
                 if (!foundContents)
                     foundContents = SkipTableOfContents();
 
@@ -152,7 +167,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (!IsCenterAligned(line))
                 return false;
-            if (!line.NormalizedContent.ToUpper().Equals("CONTENTS"))
+            if (!langService.IsMatch(line.NormalizedContent, ContentsHeadingPatterns))
                 return false;
 
             // Skip contents
@@ -177,6 +192,26 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             return true;
         }
+
+        private BlockContainer? ParseWelshBlockContainer()
+        {
+            ExplanatoryNote? explanatoryNote = ParseExplanatoryNote();
+            if (explanatoryNote is not null)
+                return explanatoryNote;
+
+            CommencementHistory? commencementHistory = ParseCommencementHistory();
+            if (commencementHistory is not null)
+                return commencementHistory;
+
+            return null;
+        }
+
+
+        private static readonly Dictionary<Lang, string> ContentsHeadingPatterns = new()
+        {
+            [Lang.ENG] = @"^CONTENTS$",
+            [Lang.CYM] = @"^CYNNWYS$"
+        };
 
     }
 

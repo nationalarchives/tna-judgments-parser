@@ -92,12 +92,14 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph np)
                 return false;
-            if (!IsCenterAligned(line))
+
+            DocName docname = frames.CurrentDocName;
+            if (!DocNames.IsWelshSecondary(docname) && !IsCenterAligned(line))
                 return false;
             if (i > Document.Body.Count - 3)
                 return false;
             string numText = GetNumber(line, true);
-            if (!Schedule.IsValidNumber(numText))
+            if (!langService.IsMatch(numText, Schedule.NumberPatterns))
                 return false;
             return true;
         }
@@ -138,7 +140,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private bool IsReferenceNote(WLine line)
         {
-            if (DocNames.IsPrimarySP(docName))
+            if (DocNames.IsScottishPrimary(docName))
             {
                 // Reference notes in SP Bills/Acts are formatted differently
                 if (IsCenterAligned(line) && line.IsAllItalicized())

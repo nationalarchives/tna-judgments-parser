@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -13,21 +14,24 @@ namespace UK.Gov.Legislation.Lawmaker
         private readonly List<BlockContainer> conclusions = [];
 
         private void ParseConclusions()
-        {
-            if (i >= Document.Body.Count)
-                return;
-            ParseExplanatoryNote();
-            ParseCommencementHistory();
+        {                    
+            ExplanatoryNote? explanatoryNote = ParseExplanatoryNote();
+            if (explanatoryNote is not null)
+                conclusions.Add(explanatoryNote);
+
+            CommencementHistory? commencementHistory = ParseCommencementHistory();
+            if (commencementHistory is not null)
+                conclusions.Add(commencementHistory);
         }
 
-        private void ParseExplanatoryNote()
+        private ExplanatoryNote? ParseExplanatoryNote()
         {
             if (i >= Document.Body.Count)
-                return;
+                return null;
 
             // Handle heading and subheading
-            if (!ExplanatoryNote.IsHeading(Current()))
-                return;
+            if (!ExplanatoryNote.IsHeading(langService, Current()))
+                return null;
             WLine heading = (Current() as WLine)!;
             
             int save = i;
@@ -47,7 +51,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 // If we hit the the start of the Commencement History table,
                 // then the Explanatory Note must have ended.
-                if (CommencementHistory.IsHeading(currentBlock))
+                if (CommencementHistory.IsHeading(langService, currentBlock))
+                    break;
+
+                if (currentBlock is WLine line && IsCenterAligned(line))
                     break;
 
                 if (ParseHeadingTblock() is HeadingTblock headingTblock)
@@ -61,10 +68,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (content.Count == 0)
             {
                 i = save;
-                return;
+                return null;
             }
             IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(content);
-            conclusions.Add(new ExplanatoryNote { Heading = heading, Subheading = subheading, Content = structuredContent });
+            return new ExplanatoryNote { Heading = heading, Subheading = subheading, Content = structuredContent };
         }
 
         private HeadingTblock? ParseHeadingTblock()
@@ -83,7 +90,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 // If we hit the the start of the Commencement History table,
                 // then the Explanatory Note must have ended.
-                if (CommencementHistory.IsHeading(currentBlock))
+                if (CommencementHistory.IsHeading(langService, currentBlock))
                     break;
 
                 // If we hit another Tblock heading, this Tblock must end.
@@ -102,14 +109,14 @@ namespace UK.Gov.Legislation.Lawmaker
             return new HeadingTblock { Heading = heading, Content = structuredContent };
         }
 
-        private void ParseCommencementHistory()
+        private CommencementHistory? ParseCommencementHistory()
         {
             if (i >= Document.Body.Count)
-                return;
+                return null;
 
             // Handle heading and subheading
-            if (!CommencementHistory.IsHeading(Current()))
-                return;
+            if (!CommencementHistory.IsHeading(langService, Current()))
+                return null;
             WLine heading = (Current() as WLine)!;
 
             int save = i;
@@ -128,6 +135,9 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 block = Document.Body[i].Block;
 
+                if (block is WLine line && IsCenterAligned(line))
+                    break;
+
                 if (Match(LdappTableBlock.Parse) is LdappTableBlock tableBlock)
                     blocks.Add(tableBlock);
                 else
@@ -135,7 +145,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 i += 1;
             }
 
-            conclusions.Add(new CommencementHistory { Heading = heading, Subheading = subheading, Content = blocks });
+            return new CommencementHistory { Heading = heading, Subheading = subheading, Content = blocks };
         }
 
     }
@@ -147,11 +157,17 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class { get; internal init; } = "explanatoryNote";
 
-        public static bool IsHeading(IBlock block)
+        private static readonly Dictionary<Lang, string> HeadingPatterns = new()
+        {
+            [Lang.ENG] = @"^EXPLANATORY +NOTE$",
+            [Lang.CYM] = @"^NODYN +ESBONIADOL"
+        };
+
+        public static bool IsHeading(LanguageService langService, IBlock block)
         {
             if (block is not WLine line)
                 return false;
-            return line.NormalizedContent.ToUpper().Equals("EXPLANATORY NOTE");
+            return langService.IsMatch(line.NormalizedContent, HeadingPatterns);
         }
 
         public static bool IsSubheading(IBlock block)
@@ -179,11 +195,17 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class { get; internal init; } = "commencementHistory";
 
-        public static bool IsHeading(IBlock block)
+        private static readonly Dictionary<Lang, string> HeadingPatterns = new()
+        {
+            [Lang.ENG] = @"^NOTE +AS +TO +EARLIER +COMMENCEMENT.*$",
+            [Lang.CYM] = @"^NODYN +AM +Y +(RHEOLIADAU|GORCHMYNION|GORCHYMYN) +CYCHWYN +(CYNHARACH|BLAENOROL)$"
+        };
+
+        public static bool IsHeading(LanguageService langService, IBlock block)
         {
             if (block is not WLine line)
                 return false;
-            return line.NormalizedContent.ToUpper().StartsWith("NOTE AS TO EARLIER COMMENCEMENT");
+            return langService.IsMatch(line.NormalizedContent, HeadingPatterns);
         }
 
         public static bool IsSubheading(IBlock block)
