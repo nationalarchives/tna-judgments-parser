@@ -18,7 +18,7 @@ namespace UK.Gov.Legislation.Lawmaker
         internal int Save() => i;
         internal void Restore(int save) => i = save;
         // Get the current block the parser is at
-        internal IBlock Current() => Document.Body[i].Block;
+        internal IBlock? Current() => IsAtEnd() ? null : Document.Body[i].Block;
         // Get the block that is `num` positions away.
         // `Peek(0)` will show the current block without advancing (same as `Current()`).
         // At the moment num can be negative to look behind. There are currently no safeguards
@@ -26,8 +26,9 @@ namespace UK.Gov.Legislation.Lawmaker
         internal IBlock Peek(int num = 1) => Document.Body[i+num].Block;
 
         // Move the parser forward and return the block the parser was on when `Advance()` was called.
-        internal IBlock Advance() {
-            IBlock current = Current();
+        internal IBlock? Advance() {
+            if (IsAtEnd()) return null;
+            IBlock? current = Current();
             i++;
             return current;
         }
@@ -66,7 +67,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return block;
         }
 
-        internal bool IsAtEnd() => i > Document.Body.Count;
+        internal bool IsAtEnd() => i >= Document.Body.Count;
         private IBlock? Previous() => i > 0 ? Document.Body[i-1].Block : null;
 
         private static bool IsLeftAligned(WLine line)
