@@ -289,7 +289,6 @@ namespace UK.Gov.Legislation.Lawmaker
             bool isEndOfMultiLine = (!isStartQuoteAtStart && isEndQuoteAtEnd && right > left);
             return isSingleLine || isEndOfMultiLine;
         }
-        #endregion
 
         /*
          * Strips the quoted structure start pattern (if present) from the beginning of the given string.
@@ -301,6 +300,9 @@ namespace UK.Gov.Legislation.Lawmaker
             return Regex.Replace(text, QuotedStructureStartPattern(), "");
         }
 
+        #endregion
+        #region Quoted structure parsing
+        #nullable enable
         /*
          * Determines if a given line is followed by any quoted structures, and if so,
          * parses each quoted structure and returns them in a list.
@@ -319,10 +321,12 @@ namespace UK.Gov.Legislation.Lawmaker
             if (left > right && !isAtStartOfLine)
             {
                 bool isValidFrame = AddQuotedStructureFrame(line);
-                BlockQuotedStructure qs = ParseQuotedStructure();
-                qs.HasInvalidCode = !isValidFrame;
+                BlockQuotedStructure? qs = ParseQuotedStructure();
                 if (qs != null)
+                {
+                    qs.HasInvalidCode = !isValidFrame;
                     quotedStructures.Add(qs);
+                }
                 else
                     i = save;
                 frames.Pop();
@@ -331,34 +335,37 @@ namespace UK.Gov.Legislation.Lawmaker
             while (i < Document.Body.Count && IsStartOfQuotedStructure(Current()))
             {
                 save = i;
-                bool isValidFrame = AddQuotedStructureFrame(Current());
-                BlockQuotedStructure qs = ParseQuotedStructure();
-                qs.HasInvalidCode = !isValidFrame;
+                IBlock? current = Current();
+                bool isValidFrame = current is not null && AddQuotedStructureFrame(current);
+                BlockQuotedStructure? qs = ParseQuotedStructure();
                 if (qs == null)
                 {
                     i = save;
                     break;
                 }
+                qs.HasInvalidCode = !isValidFrame;
                 quotedStructures.Add(qs);
                 frames.Pop();
             }
             return quotedStructures;
         }
 
-        private BlockQuotedStructure ParseQuotedStructure()
+        private BlockQuotedStructure? ParseQuotedStructure()
         {
             if (i == Document.Body.Count)
                 return null;
-            return Current() switch
+            BlockQuotedStructure? qs = Current() switch
             {
                 WLine line => ParseAndMemoize(line, "QuotedStructure", ParseQuotedStructure),
                 LdappTableBlock table => ParseQuotedStructure(table),
                 WTable table => ParseQuotedStructure(table),
                 _ => null
             };
+            return qs;
         }
 
-        // only runs when `IsStartOfQuotedStructure` is true, this is bad code but quoted structures need re-working anyway
+        // only runs when `IsStartOfQuotedStructure` is true,
+        // this is bad code but quoted structures need re-working anyway
         private BlockQuotedStructure ParseQuotedStructure(LdappTableBlock table)
         {
             i++;
@@ -381,20 +388,54 @@ namespace UK.Gov.Legislation.Lawmaker
             };
         }
 
-        private BlockQuotedStructure ParseQuotedStructure(WLine line) // why
+        private BlockQuotedStructure? ParseQuotedStructure(WLine line)
         {
             List<IDivision> contents = [];
             quoteDepth += 1;
+
+            HContainer? previous = null;
             while (i < Document.Body.Count)
             {
                 int save = i;
-                var child = ParseLine();
+
+                HContainer? child = null;
+                // If Para2 was last parsed, then
+                // Para2 should be prioritized over Para1 for the next line
+                if (previous is Para2)
+                {
+                    child = ParseLine(l => ParseAndMemoize(l, "Para2", ParsePara2));
+                } else
+                {
+                    child = ParseLine();
+                }
+
+                // additional heuristics to determine para1/para2
+
+                // important we don't break beyond the current quoted structure
+                var next = IsEndOfQuotedStructure(child)
+                    ? null
+                    : PeekNextBodyDivision();
+                // ParseLine would probably have parsed this as Para1
+                // even if it's a Para2 so re-parse it to Para2 if needed
+                if (child is Para1
+                    && Para2.IsValidNumber(
+                        IgnoreQuotedStructureStart(
+                            child.Number.Text,
+                            quoteDepth))
+                    && next is not Para1)
+                {
+                    // ParseLine has increased i so reset it before re-parsing
+                    i = save;
+                    child = ParsePara2(line);
+                }
                 if (child is null)
                 {
                     i = save;
+                    previous = child;
                     break;
                 }
                 contents.Add(child);
+                previous = child;
                 if (IsEndOfQuotedStructure(child))
                     break;
             }
@@ -404,6 +445,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return new BlockQuotedStructure { Contents = contents, DocName = frames.CurrentDocName, Context = frames.CurrentContext };
         }
 
+        #endregion
         #region Quote extraction
         #nullable enable
         // extract start and end quote marks and appended text

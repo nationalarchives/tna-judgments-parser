@@ -110,7 +110,7 @@ partial record LdappTableNumber(
 
     internal static LdappTableNumber? Parse(LegislationParser parser)
     {
-        IBlock block = parser.Advance();
+        IBlock? block = parser.Advance();
         if (block is not WLine line) return null;
         if (!parser.langService.IsMatch(line.NormalizedContent, TableNumberPatterns)) return null;
         return new LdappTableNumber(line, parser.Match(LdappTableCaptions.Parse));
