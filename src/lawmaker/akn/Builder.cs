@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -238,6 +239,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     AddBlockListItem(parent, item);
                 }
+                else if (block is ISignatureBlock sigBlock)
+                {
+                    AddSigBlock(parent, sigBlock);
+                }
                 else if (block is BlockContainer blockContainer)
                 {
                     AddBlockContainer(parent, blockContainer);
@@ -440,6 +445,42 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
                 AddBlocks(itemElement, item.Intro);
+        }
+
+        protected void AddSigBlock(XmlElement parent, ISignatureBlock sig)
+        {   
+            XmlElement block = CreateAndAppend("block", parent);
+            block.SetAttribute("name", sig.Name);
+
+            string dateString = null;
+            if (sig.Name.Equals("date"))
+            {
+                // Only dates of the format "d MMMM yyyy" with or without an ordinal suffix will parse successfully
+                // e.g. "17th June 2025" and "9 October 2021"
+                // Any other format will result in the date attribute being set to "9999-01-01"
+                string text = (sig.Content.First() as WText).Text;
+                
+                // Remove ordinal suffix from date if there is one
+                Match match = Regex.Match(text, @"(\d+)(st|nd|rd|th)");
+                if (match.Success)
+                    // Extract the numeric day and remove the suffix from the original string
+                    text = text.Replace(match.Value, match.Groups[1].Value);
+
+                bool parsedDate = DateTime.TryParseExact(text, "d MMMM yyyy", CultureInfo.GetCultureInfo("en-GB"), DateTimeStyles.None, out DateTime dateTime);
+                if (parsedDate)
+                    dateString = dateTime.ToString("yyyy-MM-dd");
+                // Date was not parsed so set to dummy value
+                else
+                    dateString = "9999-01-01";
+            }
+            if (dateString is not null)
+            {
+                XmlElement date = CreateAndAppend("date", block);
+                date.SetAttribute("date", dateString);
+                AddInlines(date, sig.Content);
+            }
+            else
+                AddInlines(block, sig.Content);
         }
 
     }

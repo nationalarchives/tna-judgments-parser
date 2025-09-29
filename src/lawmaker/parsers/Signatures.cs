@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UK.Gov.Legislation.Judgments;
@@ -15,7 +16,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!frames.IsSecondaryDocName())
                 return null;
             // Signatures shouldn't have any nums
-            if (line is WOldNumberedParagraph np)
+            if (line is WOldNumberedParagraph)
                 return null;
 
             List<IDivision> children = [];
@@ -46,12 +47,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseSignature(WLine line)
         {
-            // A signature must contain a single concurrent set of right-positioned paragraphs.
-            // It may optionally begin and/or end with left-positioned paragraphs.
+            // A signature must have Signature styling at the paragraph or text level
             // In SIs, this right-positioning is achieved with Tab Stops, as opposed to Alignment.
-            bool foundRightLinesStart = false;
-            bool foundRightLinesEnd = false;
-
             List<IBlock> contents = [];
 
             while (i < Document.Body.Count)
@@ -61,76 +58,137 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (Current() is not WLine currentLine)
                     break;
                 // Signature lines are not numbered
-                if (currentLine is WOldNumberedParagraph np)
+                if (currentLine is WOldNumberedParagraph)
                     break;
-
-                int save = i;
-
-                // Ensure we encounter a single contiguous block of right-positioned text.
-                if (ContentHasTabbedText(currentLine))
+                if (!currentLine.Contents.Any())
+                    break;
+                // The line needs to have at least one content of the type WText
+                if (currentLine.Contents.OfType<WText>().First() is not WText lineText)
+                    break;
+                string styleName = lineText.Style;
+                // The line needs to have Signature style formatting at the parargraph or text level
+                if (!(StartsWithSig(currentLine.Style) || (styleName is not null && StartsWithSig(styleName))))
+                    break;
+                // If the current line has styling Sig_Signatory or Sig_Signee 
+                // and any content has styling that isn't Sig_Signatory or Sig_Signee, it must be a new signature block
+                if (contents.Count > 0 && ContainsNonSigneeOrSignatory(contents)
+                    && styleName is not null && StartsWithSig(styleName) && (EndsWith(styleName, "Signatory") || EndsWith(styleName, "Signee")))
                 {
-                    if (!foundRightLinesStart)
-                        foundRightLinesStart = true;
-                    else if (foundRightLinesEnd)
-                    {
-                        i = save;
-                        break;
-                    }
+                    // Reached start of new signature block
+                    break;
                 }
-                else if (foundRightLinesStart && !foundRightLinesEnd)
-                    foundRightLinesEnd = true;
-
 
                 // Add each line of the signature to the contents.
                 // A single line will often have both left and right-positioned text,
                 // in which case we must split the line in two.
                 List<IInline> inlines = [];
-                if (currentLine.Contents.Any(inline => inline is WTab))
+                foreach (IInline inline in currentLine.Contents)
                 {
-                    bool isAfterTab = false;
-                    foreach (IInline inline in currentLine.Contents)
+                    if (inline is not WTab)
                     {
-                        if (!(inline is WTab))
-                        {
-                            inlines.Add(inline);
-                            continue;
-                        }
-                        // Encountered a tab
-                        isAfterTab = true;
-                        AddLineToContents(contents, new WLine(currentLine, inlines), isAfterTab);
-                        inlines.Clear();
+                        inlines.Add(inline);
+                        continue;
                     }
-                    AddLineToContents(contents, new WLine(currentLine, inlines), isAfterTab);
+                    AddLineToContents(contents, new WLine(currentLine, inlines));
+                    inlines.Clear();
                 }
-                else
-                    contents.Add(currentLine);
+                AddLineToContents(contents, new WLine(currentLine, inlines));
 
                 i += 1;
             }
 
-            if (contents.Count == 0 || !foundRightLinesStart)
+            if (contents.Count == 0)
                 return null;
             else
                 return new SignatureBlock { Contents = contents };
         }
 
         /// <summary>
-        /// Adds the given line to the list of contents. 
-        /// If the line resembles a Signature Name, it will be identified as such. 
+        /// Returns true if an item in the provided list has styling that isn't null, Sig_signatory or Sig_signee
         /// </summary>
-        private static void AddLineToContents(List<IBlock> contents, WLine line, bool isAfterTab)
+        private static bool ContainsNonSigneeOrSignatory(List<IBlock> contents)
         {
-            if (line.Contents.Count() == 0)
+            for (int i = 0; i < contents.Count; i++)
+            {
+                // Content could either be a WSignatureBlock or WLine
+                WSignatureBlock sigBlock = contents[i] as WSignatureBlock;
+                WLine sigLine = contents[i] as WLine;
+                if (sigBlock?.Content.First() is not WText sigContent)
+                    sigContent = sigLine.Contents.First() as WText;
+
+                string sigStyle = sigContent?.Style;
+                // Only signature styles Sig_signatory and Sig_signee contain "sign"
+                if (sigStyle is not null && !sigStyle.Contains("sign", StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Adds the given line to the list of contents. 
+        /// Depending on the style, it will add a new WSignatureBlock or WLine
+        /// </summary>
+        private static void AddLineToContents(List<IBlock> contents, WLine line)
+        {
+            if (!line.Contents.Any())
                 return;
-            if (isAfterTab && line.IsAllItalicized())
-                contents.Add(new WSignatureName() { Content = line.Contents });
+            if (line.Contents.First() is not WText lineText)
+                return;
+            string paraStyleName = line.Style; // paragraph level formatting
+            string styleName = lineText.Style; // text/character level formatting
+            string name = null;
+            // Using StartsWith and EndsWith because sometimes the casing can be different and there might be underscores in between
+            // So this handles styles like "Sig_Signee" and "sigsignee"
+            if (paraStyleName is not null && StartsWithSig(paraStyleName) && EndsWith(paraStyleName, "Block") && line.IsAllItalicized())
+                name = "signature";     // Sig_signee
+            else if (styleName is not null && StartsWithSig(styleName))
+            {
+                if (EndsWith(styleName, "Signee"))
+                    name = "signature";     // Sig_signee
+                else if (EndsWith(styleName, "Title"))
+                    name = "role";          // Sig_title
+                else if (EndsWith(styleName, "Add"))
+                    name = "location";      // Sig_add
+                else if (EndsWith(styleName, "Date"))
+                    name = "date";          // Sig_date
+            }
+            else if (styleName is not null && StartsWith(styleName, "Leg")
+                && EndsWith(styleName, "Seal"))
+                name = "seal";              // LegSeal
+
+            if (name is not null)
+                contents.Add(new WSignatureBlock() { Name = name, Content = line.Contents });
             else
+                // Style not recognised so it will be added as //p
                 contents.Add(line);
         }
 
+        /// <summary>
+        /// Checks if the given string begins with "Sig", case insentitive
+        /// </summary>
+        private static bool StartsWithSig(String str)
+        {
+            return str.StartsWith("Sig", StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        /// <summary>
+        /// Checks if the given string starts with the provided value, case insentitive
+        /// </summary>
+        private static bool StartsWith(String str, String value)
+        {
+            return str.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+        }
+        
+        /// <summary>
+        /// Checks if the given string ends with the provided value, case insentitive
+        /// </summary>
+        private static bool EndsWith(String str, String value)
+        {
+            return str.EndsWith(value, StringComparison.InvariantCultureIgnoreCase);
+        }
     }
 
-    internal interface Signatures
+    internal interface ISignatures
     {
 
         public static bool IsValidChild(IDivision child)
@@ -142,7 +200,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
 
-    internal class SignaturesBranch : Branch, Signatures
+    internal class SignaturesBranch : Branch, ISignatures
     {
         public override string Name { get; internal init; } = "signatures";
 
