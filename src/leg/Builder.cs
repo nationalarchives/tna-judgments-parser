@@ -104,7 +104,7 @@ class Builder : AkN.Builder {
         XmlElement maniAuthor = CreateAndAppend("FRBRauthor", manifestation);
         maniAuthor.SetAttribute("href", "#tna");
         XmlElement maniFormat = CreateAndAppend("FRBRformat", manifestation);
-        maniFormat.SetAttribute("value", "application/xml");
+        maniFormat.SetAttribute("value", "application/akn+xml");
 
         if (data is AnnexMetadata)
             return;
