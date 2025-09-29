@@ -134,7 +134,7 @@ internal class Fields2 {
 
             return listItems[selectedIndex].GetAttribute("val", wordNamespace).Value;
         } catch (Exception ex) {
-            Logger.LogWarning($"Error extracting dropdown value: {ex.Message}");
+            Logger.LogWarning(ex, "Error extracting dropdown value");
             return null;
         }
     }
