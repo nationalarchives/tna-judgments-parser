@@ -141,7 +141,7 @@ class Inline2 {
                 i += 1;
                 continue;
             }
-            if (e is BidirectionalOverride bdo) {  // Bidirectional text override element
+            if (e is BidirectionalOverride) {  // Bidirectional text override element
                 var children = ParseRuns(Main, e.ChildElements);
                 parsed.AddRange(children);
                 i += 1;
