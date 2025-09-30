@@ -141,6 +141,12 @@ class Inline2 {
                 i += 1;
                 continue;
             }
+            if (e is BidirectionalOverride) {  // Bidirectional text override element
+                var children = ParseRuns(Main, e.ChildElements);
+                parsed.AddRange(children);
+                i += 1;
+                continue;
+            }
             if (e is OMML.Paragraph oMathPara) { // [2022] EWHC 2363 (Pat)
                 var children = ParseRuns(Main, e.ChildElements);
                 parsed.AddRange(children);

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,6 +11,7 @@ using Amazon.S3.Model;
 using Moq;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System.Xml.Linq;
 
 namespace Backlog.Test
 {
@@ -22,6 +25,11 @@ namespace Backlog.Test
         private string bulkNumbersPath;
         private Mock<IAmazonS3> mockS3Client;
         private const string TEST_BUCKET = "test-bucket";
+        private static readonly UK.Gov.NationalArchives.CaseLaw.Tests MetadataScrubber = new();
+        private static readonly string ExpectedParserVersion = typeof(UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata)
+            .Assembly
+            .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
+            .InformationalVersion;
 
         private void ConfigureTestEnvironment(string testCaseName)
         {
@@ -151,15 +159,44 @@ namespace Backlog.Test
                 var expectedXml = await File.ReadAllTextAsync(
                     Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "..", "..", "backlog", "expected-output", 
                                expectedXmlFileName));
-                
-                // Remove timestamps that will differ
-                actualXml = NormalizeTimestamps(actualXml);
-                expectedXml = NormalizeTimestamps(expectedXml);
-                
+
+                AssertParserVersion(actualXml);
+
+                actualXml = RemoveNonDeterministicMetadata(actualXml);
+                expectedXml = RemoveNonDeterministicMetadata(expectedXml);
+
                 Assert.That(actualXml, Is.EqualTo(expectedXml), "Generated XML does not match expected output");
             }
         }
 
+        /// <summary>
+        /// Checks that the generated XML advertises the current parser version.
+        /// </summary>
+        private static void AssertParserVersion(string actualXml)
+        {
+            var parserVersion = ExtractParserVersion(actualXml);
+            Assert.That(parserVersion, Is.EqualTo(ExpectedParserVersion), "Parser version in generated XML should match the expected version");
+        }
+
+        /// <summary>
+        /// Pulls the first &lt;uk:parser&gt; value out of the supplied XML, preserving whitespace.
+        /// </summary>
+        private static string ExtractParserVersion(string xml)
+        {
+            var document = XDocument.Parse(xml, LoadOptions.PreserveWhitespace);
+            XNamespace uk = "https://caselaw.nationalarchives.gov.uk/akn";
+            return document.Descendants(uk + "parser").FirstOrDefault()?.Value;
+        }
+
+        /// <summary>
+        /// Runs the shared scrubber to align volatile metadata (parser, timestamps, etc.).
+        /// </summary>
+        private static string RemoveNonDeterministicMetadata(string xml)
+        {
+            return MetadataScrubber.RemoveSomeMetadata(xml);
+        }
+
+        [Obsolete("RemoveNonDeterministicMetadata handles timestamp scrubbing.")]
         private string NormalizeTimestamps(string xml)
         {
             return System.Text.RegularExpressions.Regex.Replace(xml, 
