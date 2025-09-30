@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" targetNamespace="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:uk="https://legislation.gov.uk/akn" targetNamespace="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" elementFormDefault="qualified">
 
 <xs:element name="akomaNtoso">
     <xs:complexType>
@@ -241,34 +241,38 @@
 <xs:element name="heading" type="inline-container" />
 
 <xs:element name="p">
-    <xs:complexType>
-        <xs:complexContent>
-            <xs:extension base="inline-container">
-                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element ref="br" />
-                </xs:choice>
-                <xs:attribute name="class" >
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:enumeration value="center" />
-                            <xs:enumeration value="right" />
-                            <xs:enumeration value="ia-table-label" />
-                            <xs:enumeration value="ia-table-text" />
-                            <xs:enumeration value="ia-table-notes" />
-                            <xs:enumeration value="ia-head-label" />
-                            <xs:enumeration value="ia-head-title" />
-                            <xs:enumeration value="ia-head-dept" />
-                            <xs:enumeration value="ia-title" />
-                            <xs:enumeration value="ia-number" />
-                            <xs:enumeration value="ia-stage" />
-                            <xs:enumeration value="ia-soi" />
-                            <xs:enumeration value="ia-tom" />
-                            <xs:enumeration value="ia-sign-off" />
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:attribute>
-            </xs:extension>
-        </xs:complexContent>
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+            <xs:element ref="a" />
+            <xs:element ref="ref" />
+            <xs:element ref="marker" />
+            <xs:element ref="authorialNote" />
+            <xs:element ref="br" />
+        </xs:choice>
+        <xs:attribute name="class" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="center" />
+                    <xs:enumeration value="right" />
+                    <xs:enumeration value="ia-table-label" />
+                    <xs:enumeration value="ia-table-text" />
+                    <xs:enumeration value="ia-table-notes" />
+                    <xs:enumeration value="ia-head-label" />
+                    <xs:enumeration value="ia-head-title" />
+                    <xs:enumeration value="ia-head-dept" />
+                    <xs:enumeration value="ia-header-text" />
+                    <xs:enumeration value="ia-title" />
+                    <xs:enumeration value="ia-number" />
+                    <xs:enumeration value="ia-stage" />
+                    <xs:enumeration value="ia-soi" />
+                    <xs:enumeration value="ia-tom" />
+                    <xs:enumeration value="ia-sign-off" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
     </xs:complexType>
 </xs:element>
 
@@ -288,6 +292,7 @@
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
+        <xs:anyAttribute namespace="https://legislation.gov.uk/akn" processContents="lax" />
     </xs:complexType>
 </xs:element>
 
@@ -317,6 +322,8 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:attribute>
+                <xs:attribute name="colspan" type="xs:positiveInteger" />
+                <xs:attribute name="rowspan" type="xs:positiveInteger" />
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
