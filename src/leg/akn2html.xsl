@@ -68,120 +68,31 @@ span.fn { vertical-align: super; font-size: small }
 .blockContainer &gt; p:first-child &gt; .num:first-child { position: absolute; margin-left: -0.25in }
 .attachment { margin-top: 2em }
 
-/* Impact Assessment specific styles */
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] { font-family: Arial, sans-serif }
+article[data-doc-type='ImpactAssessment'] * { font-family: Arial, sans-serif !important }
+article[data-doc-type='ImpactAssessment'] table { margin: 6pt 0 }
+article[data-doc-type='ImpactAssessment'] th, article[data-doc-type='ImpactAssessment'] td { border: 1px solid black; padding: 4pt 6pt }
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) { margin-left: 0 !important }
+article[data-doc-type='ImpactAssessment'] td p { margin: 2pt 4pt; line-height: 1.2 }
+article[data-doc-type='ImpactAssessment'] td p:empty { margin: 0; height: 4pt }
+article[data-doc-type='ImpactAssessment'] td:empty { display: none !important }
 
-/* Impact Assessment documents use Arial font for everything */
-article[data-doc-type="ImpactAssessment"] { font-family: Arial, sans-serif }
-article[data-doc-type="ImpactAssessment"] *,
-article[data-doc-type="ImpactAssessment"] p,
-article[data-doc-type="ImpactAssessment"] td,
-article[data-doc-type="ImpactAssessment"] th,
-article[data-doc-type="ImpactAssessment"] div,
-article[data-doc-type="ImpactAssessment"] span { font-family: Arial, sans-serif !important }
+/* IA paragraph classes */
+p.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+p.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+p.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+p.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+p.ia-stage { font-size: 11pt; margin: 2pt 4pt }
 
-/* Impact Assessment table borders should be solid, not dotted */
-article[data-doc-type="ImpactAssessment"] th,
-article[data-doc-type="ImpactAssessment"] td { border: 1px solid black }
-
-/* General table spacing for IA documents */
-article[data-doc-type="ImpactAssessment"] table { 
-    border-collapse: collapse; 
-    margin: 6pt 0;
-}
-
-/* Reset left margin for non-numbered paragraph sections in IA documents */
-article[data-doc-type="ImpactAssessment"] .paragraph:not(.num) { 
-    margin-left: 0 !important; /* Remove paragraph indent for table containers */
-}
-
-
-/* Override default dotted borders for IA tables */
-article[data-doc-type="ImpactAssessment"] th,
-article[data-doc-type="ImpactAssessment"] td { 
-    border: 1px solid black;
-    padding: 4pt 6pt;
-}
-
-/* IA paragraph styles - only used classes */
-p.ia-table-text { font-size: 11pt; margin: 2pt 4pt; color: #000000; line-height: 1.2; font-family: Arial, sans-serif !important }
-p.ia-head-label { font-size: 12pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
-p.ia-title { font-size: 16pt; background-color: #000000; color: #ffffff; margin: 0; padding: 8pt; text-align: center; font-family: Arial, sans-serif !important }
-p.ia-header-text { font-size: 10pt; margin: 2pt 4pt; color: #000000; font-family: Arial, sans-serif !important }
-p.ia-stage { font-size: 11pt; color: #000000; margin: 2pt 4pt; font-family: Arial, sans-serif !important }
-
-/* Ensure proper spacing for table paragraphs in IA documents */
-article[data-doc-type="ImpactAssessment"] td p {
-    margin: 2pt 4pt;
-    line-height: 1.2;
-    font-family: Arial, sans-serif !important;
-}
-
-/* Remove excess margins for empty paragraphs in tables */
-article[data-doc-type="ImpactAssessment"] td p:empty {
-    margin: 0;
-    height: 4pt;
-}
-
-/* Hide empty table rows completely - target rows 7 and beyond in the nested table */
-article[data-doc-type="ImpactAssessment"] .level:first-child table td table tr:nth-child(n+7) {
-    display: none !important;
-}
-
-/* Also hide any table cells that contain only empty paragraphs */
-article[data-doc-type="ImpactAssessment"] td:empty {
-    display: none !important;
-}
-
-/* IA table styles - only used classes */
-table.ia-table { border: 1px solid black; margin: 6pt 0; width: 100% }
-
-/* Impact Assessment table cell styles */
-article[data-doc-type="ImpactAssessment"] table.ia-table td { 
-    border: 1px solid black; 
-    padding: 4pt 6pt; 
-    vertical-align: top;
-}
-
-/* Gray background for RPC Opinion cell in first table */
-article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table tr:nth-child(2) td:nth-child(2) {
-    background-color: #d9d9d9;
-}
-
-/* Gray background for cost table headers */
-article[data-doc-type="ImpactAssessment"] .level:nth-child(2) table.ia-table tr:first-child td {
-    background-color: #d9d9d9;
-}
-
-article[data-doc-type="ImpactAssessment"] .level:nth-child(2) table.ia-table tr:nth-child(2) td {
-    background-color: #d9d9d9;
-}
-
-/* First table (header) should have no outer border */
-article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table { 
-    border: none; 
-}
-
-article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table td { 
-    border: 1px solid black;
-}
-
-/* Nested tables in header should have full borders */
-article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table td table { 
-    border: 1px solid black;
-    margin: 0;
-}
-
-/* Remove border from the cell that contains the nested table */
-article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table td:has(table) {
-    border: none;
-    padding: 0;
-}
-
-/* More compatible approach - target the second cell in first row */
-article[data-doc-type="ImpactAssessment"] .level:first-child table.ia-table tr:first-child td:nth-child(2) {
-    border: none;
-    padding: 0;
-}
+/* IA table styling */
+table.ia-table { border: 1px solid black; width: 100% }
+article[data-doc-type='ImpactAssessment'] .level:first-child table.ia-table { border: none }
+article[data-doc-type='ImpactAssessment'] .level:first-child table.ia-table td table { border: 1px solid black; margin: 0 }
+article[data-doc-type='ImpactAssessment'] .level:first-child table.ia-table tr:first-child td:nth-child(2) { border: none; padding: 0 }
+article[data-doc-type='ImpactAssessment'] .level:nth-child(2) table.ia-table tr:first-child td, article[data-doc-type='ImpactAssessment'] .level:nth-child(2) table.ia-table tr:nth-child(2) td { background: #d9d9d9 }
+article[data-doc-type='ImpactAssessment'] .level:first-child table.ia-table tr:nth-child(2) td:nth-child(2) { background: #d9d9d9 }
+article[data-doc-type='ImpactAssessment'] .level:first-child table td table tr:nth-child(n+7) { display: none !important }
 
 
 
