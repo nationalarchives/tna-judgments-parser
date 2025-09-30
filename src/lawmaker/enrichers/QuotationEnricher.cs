@@ -111,7 +111,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /// <summary>
-        /// Combines all non-matched parts into one string to check if it contains "leave out", "substitute", "omit" or "insert".
+        /// Combines all non-matched parts into one string to check if it contains "insert", "leave out", "omit" or "substitute".
         /// If at least one of the words are present then the match should be treated as quotedText
         /// </summary>
         static bool IsQuotedText(string text, MatchCollection matches)
@@ -129,7 +129,7 @@ namespace UK.Gov.Legislation.Lawmaker
             // Add any remaining text after the last match
             if (lastIndex < text.Length)
                 nonMatchedParts += text[lastIndex..];
-            List<string> words = ["leave out", "substitute", "omit", "insert"];
+            List<string> words = ["insert", "leave out", "omit", "substitute"];
 
             return words.Any(word => nonMatchedParts.Contains(word, System.StringComparison.InvariantCultureIgnoreCase));
         }
