@@ -69,30 +69,87 @@ span.fn { vertical-align: super; font-size: small }
 .attachment { margin-top: 2em }
 
 /* Impact Assessment styles */
-article[data-doc-type='ImpactAssessment'] { font-family: Arial, sans-serif }
-article[data-doc-type='ImpactAssessment'] * { font-family: Arial, sans-serif !important }
-article[data-doc-type='ImpactAssessment'] table { margin: 6pt 0 }
-article[data-doc-type='ImpactAssessment'] th, article[data-doc-type='ImpactAssessment'] td { border: 1px solid black; padding: 4pt 6pt }
-article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) { margin-left: 0 !important }
-article[data-doc-type='ImpactAssessment'] td p { margin: 2pt 4pt; line-height: 1.2 }
-article[data-doc-type='ImpactAssessment'] td p:empty { margin: 0; height: 4pt }
-article[data-doc-type='ImpactAssessment'] td:empty { display: none !important }
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
 
 /* IA paragraph classes */
-p.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
-p.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
-p.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
-p.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
-p.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
 
 /* IA table styling */
-table.ia-table { border: 1px solid black; width: 100% }
-article[data-doc-type='ImpactAssessment'] .level:first-child table.ia-table { border: none }
-article[data-doc-type='ImpactAssessment'] .level:first-child table.ia-table td table { border: 1px solid black; margin: 0 }
-article[data-doc-type='ImpactAssessment'] .level:first-child table.ia-table tr:first-child td:nth-child(2) { border: none; padding: 0 }
-article[data-doc-type='ImpactAssessment'] .level:nth-child(2) table.ia-table tr:first-child td, article[data-doc-type='ImpactAssessment'] .level:nth-child(2) table.ia-table tr:nth-child(2) td { background: #d9d9d9 }
-article[data-doc-type='ImpactAssessment'] .level:first-child table.ia-table tr:nth-child(2) td:nth-child(2) { background: #d9d9d9 }
-article[data-doc-type='ImpactAssessment'] .level:first-child table td table tr:nth-child(n+7) { display: none !important }
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for first level tables */
+article[data-doc-type='ImpactAssessment'] .level:first-child .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .level:first-child .ia-table td table {
+	border: 1px solid black;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .level:first-child .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .level:first-child .ia-table tr:nth-child(2) td:nth-child(2) {
+	background: #d9d9d9;
+}
+
+/* Special styling for second level tables */
+article[data-doc-type='ImpactAssessment'] .level:nth-child(2) .ia-table tr:first-child td,
+article[data-doc-type='ImpactAssessment'] .level:nth-child(2) .ia-table tr:nth-child(2) td {
+	background: #d9d9d9;
+}
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .level:first-child table td table tr:nth-child(n+7) {
+	display: none !important;
+}
 
 
 
