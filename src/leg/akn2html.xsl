@@ -11,7 +11,7 @@
 <xsl:output method="html" version="5" encoding="utf-8" indent="yes" include-content-type="no" />
 
 <xsl:strip-space elements="*" />
-<xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docketNumber judge lawyer location neutralCitation party role time" />
+<xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docketNumber judge lawyer location neutralCitation party role time b i u" />
 
 <xsl:param name="image-base" as="xs:string" select="'/'" />
 
