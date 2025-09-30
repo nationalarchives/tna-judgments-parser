@@ -23,9 +23,9 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> enrichedBlocks = [];
             for (int i = 0; i < raw.Contents.Count; i++)
             {
-                 // When a paragraph already belongs to a mod (due to a quoted structure), quoted text 
-                 // elements (if any) must be added to the existing mod, rather than causing additional 
-                 // mod elements to be created.
+                // When a paragraph already belongs to a mod (due to a quoted structure), quoted text 
+                // elements (if any) must be added to the existing mod, rather than causing additional 
+                // mod elements to be created.
                 if (raw.Contents[i] is WLine line)
                 {
                     WLine enrichedLine = Enrich(line);
@@ -56,8 +56,11 @@ namespace UK.Gov.Legislation.Lawmaker
 
             WLine enriched = Enrich(raw);
             if (!ReferenceEquals(enriched, raw))
-                return new Mod() { Contents = [enriched] };
-            return raw;
+                if (enriched.Contents.Any(content => content is QuotedText))
+                    return new Mod() { Contents = [enriched] };
+                else
+                    return enriched;
+                return raw;
         }
 
         /*
@@ -74,24 +77,61 @@ namespace UK.Gov.Legislation.Lawmaker
 
             int charIndex = 0;
             List<IInline> enrichedInlines = raw.Contents.SkipLast(1).ToList();
+
             foreach (Match match in matches)
             {
                 if (match.Index > charIndex)
                     enrichedInlines.Add(new WText(text[charIndex..match.Index], current.properties));
                 charIndex = match.Index + match.Length;
-                enrichedInlines.Add(constructQuotedText(match, current.properties));
+                if (IsQuotedText(text, matches))
+                    enrichedInlines.Add(ConstructQuotedText(match, current.properties));
+                // If not quotedText then parse as a defined term, //def
+                else
+                    enrichedInlines.Add(ConstructDef(match, current.properties));
             }
             if (charIndex != text.Length)
                 enrichedInlines.Add(new WText(text[charIndex..], current.properties));
             return WLine.Make(raw, enrichedInlines);
         }
 
-        IInline constructQuotedText(Match match, RunProperties props)
+        static IInline ConstructQuotedText(Match match, RunProperties props)
         {
             string startQuote = match.Groups["startQuote"].Value;
             string contents = match.Groups["contents"].Value;
             string endQuote = match.Groups["endQuote"].Value;
             return new QuotedText() { Contents = [new WText(contents, props)], StartQuote = startQuote, EndQuote = endQuote };
+        }
+        
+        static IInline ConstructDef(Match match, RunProperties props)
+        {
+            string startQuote = match.Groups["startQuote"].Value;
+            string contents = match.Groups["contents"].Value;
+            string endQuote = match.Groups["endQuote"].Value;
+            return new Def() { Contents = [new WText(contents, props)], StartQuote = startQuote, EndQuote = endQuote };
+        }
+
+        /// <summary>
+        /// Combines all non-matched parts into one string to check if it contains "leave out", "substitute", "omit" or "insert"
+        /// If it doesn't then return false
+        /// </summary>
+        static bool IsQuotedText(string text, MatchCollection matches)
+        {
+            string nonMatchedParts = "";
+            int lastIndex = 0;
+            foreach (Match match in matches)
+            {
+                // Add the text before the current match
+                if (match.Index > lastIndex)
+                    nonMatchedParts += text[lastIndex..match.Index];
+                // Update lastIndex to the end of the current match
+                lastIndex = match.Index + match.Length;
+            }
+            // Add any remaining text after the last match
+            if (lastIndex < text.Length)
+                nonMatchedParts += text[lastIndex..];
+            List<string> words = ["leave out", "substitute", "omit", "insert"];
+
+            return words.Any(word => nonMatchedParts.Contains(word, System.StringComparison.InvariantCultureIgnoreCase));
         }
 
     }
