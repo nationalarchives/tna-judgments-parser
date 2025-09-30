@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2023/45/data.xml" />
-          <FRBRdate date="2025-01-26T21:55:28" name="transform" />
+          <FRBRdate date="2025-08-20T17:13:12" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -47,7 +47,7 @@
         <uk:year>2023</uk:year>
         <uk:number>45</uk:number>
         <uk:cite>[2023] UKFTT 45 (TC)</uk:cite>
-        <uk:parser>0.26.19</uk:parser>
+        <uk:parser>0.28.0</uk:parser>
         <uk:hash>7653fcf040c1d7f55f82082fef299fc6cf7090d63a7ff2a351feee4d4990cb13</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -623,14 +623,16 @@
             <p class="Taxbodytext1" style="margin-left:0in;text-indent:0.39in">The material provisions insofar as relevant in section 84 VATA read:-</p>
             <block name="embeddedStructure">
               <embeddedStructure>
-                <level>
-                  <content>
-                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />“(3A) Subject to subsections (3B) and (3C), where the appeal is against an assessment which is a recovery assessment for the purposes of this subsection, or against the amount of such an assessment, it shall not be entertained unless the amount notified by the assessment has been paid or deposited with HMRC.</p>
-                  </content>
-                </level>
                 <paragraph>
+                  <num>“(3A)</num>
+                  <content>
+                    <p class="Taxbodytext1" style="margin-left:0.39in">Subject to subsections (3B) and (3C), where the appeal is against an assessment which is a recovery assessment for the purposes of this subsection, or against the amount of such an assessment, it shall not be entertained unless the amount notified by the assessment has been paid or deposited with HMRC.</p>
+                  </content>
+                </paragraph>
+                <paragraph>
+                  <num>(3B)</num>
                   <intro>
-                    <p class="Taxbodytext1" style="margin-left:0.39in;text-indent:-0.39in"><marker name="tab" />(3B)  In a case where the amount determined to be payable as VAT or the amount notified by the recovery assessment has not been paid or deposited, an appeal shall be entertained if –</p>
+                    <p class="Taxbodytext1" style="margin-left:0.39in">In a case where the amount determined to be payable as VAT or the amount notified by the recovery assessment has not been paid or deposited, an appeal shall be entertained if –</p>
                   </intro>
                   <subparagraph>
                     <num style="margin-left:0.69in">(a)</num>
