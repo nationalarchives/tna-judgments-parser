@@ -136,15 +136,6 @@ article[data-doc-type='ImpactAssessment'] .level:first-child .ia-table tr:first-
 	padding: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .level:first-child .ia-table tr:nth-child(2) td:nth-child(2) {
-	background: #d9d9d9;
-}
-
-/* Special styling for second level tables */
-article[data-doc-type='ImpactAssessment'] .level:nth-child(2) .ia-table tr:first-child td,
-article[data-doc-type='ImpactAssessment'] .level:nth-child(2) .ia-table tr:nth-child(2) td {
-	background: #d9d9d9;
-}
 
 /* Hide extra rows in nested tables */
 article[data-doc-type='ImpactAssessment'] .level:first-child table td table tr:nth-child(n+7) {
