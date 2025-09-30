@@ -9,11 +9,11 @@ using DocumentFormat.OpenXml.Wordprocessing;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    class QuotedTextEnricher : LineEnricher
+    class QuotationEnricher : LineEnricher
     {
         private string Pattern;
 
-        public QuotedTextEnricher(string startPattern, string endPattern)
+        public QuotationEnricher(string startPattern, string endPattern)
         {
             Pattern = @$"{startPattern}(?'contents'.+?)(?:{endPattern}|$)";
         }
@@ -64,7 +64,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /*
-         * Identifies and extracts any QuotedText instances from the plaintext of a given line. 
+         * Identifies and extracts any QuotedText and Def instances from the plaintext of a given line. 
          */
         internal WLine Enrich(WLine raw)
         {
@@ -111,8 +111,8 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /// <summary>
-        /// Combines all non-matched parts into one string to check if it contains "leave out", "substitute", "omit" or "insert"
-        /// If it doesn't then return false
+        /// Combines all non-matched parts into one string to check if it contains "leave out", "substitute", "omit" or "insert".
+        /// If at least one of the words are present then the match should be treated as quotedText
         /// </summary>
         static bool IsQuotedText(string text, MatchCollection matches)
         {
