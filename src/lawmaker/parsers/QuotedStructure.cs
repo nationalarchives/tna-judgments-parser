@@ -262,6 +262,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             QuoteDistance = 0;
             var lastLine = LastLine.GetLastLine(contents)?.Contents;
+            if (lastLine == null) return false;
             return IsEndOfQuotedStructure(IInline.ToString(lastLine), QuoteDistance);
         }
 
