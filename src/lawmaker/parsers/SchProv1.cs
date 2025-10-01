@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (!PeekSchProv1(line))
                 return null;
-
+            
             int save = i;
             WOldNumberedParagraph np = line as WOldNumberedParagraph;
             HContainer next = Parse(line, np);
@@ -56,6 +55,8 @@ namespace UK.Gov.Legislation.Lawmaker
                     return new SchProv1Leaf { Number = num, Contents = intro };
             }
 
+            provisionRecords.Push(typeof(SchProv1), GetSchProv1Num(line));
+
             int finalChildStart = i;
             while (i < Document.Body.Count)
             {
@@ -77,6 +78,8 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
 
+            provisionRecords.Pop();
+
             if (children.Count == 0)
                 return new SchProv1Leaf { Number = num, Contents = intro };
 
@@ -88,12 +91,17 @@ namespace UK.Gov.Legislation.Lawmaker
             bool quoted = quoteDepth > 0;
             if (!IsFlushLeft(line) && !quoted)
                 return false;
-            if (line is not WOldNumberedParagraph np)
-                return false;
-            string numText = IgnoreQuotedStructureStart(np.Number.Text, quoteDepth);
+            string? numText = GetSchProv1Num(line);
             if (!SchProv1.IsValidNumber(numText))
                 return false;
             return true;
+        }
+
+        private string GetSchProv1Num(WLine line)
+        {
+            if (line is not WOldNumberedParagraph np)
+                return null;
+            return IgnoreQuotedStructureStart(np.Number.Text, quoteDepth);
         }
 
         private bool FixFirstSchProv2(List<IBlock> intro, List<IDivision> children, WLine heading = null)

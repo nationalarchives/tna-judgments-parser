@@ -37,10 +37,12 @@ public partial class LegislationParser
         docName = classifier.DocName;
         frames = new Frames(classifier.DocName, classifier.GetContext());
         langService = languageService;
+        provisionRecords = new ProvisionRecords();
     }
 
     private readonly ILogger Logger = Logging.Factory.CreateLogger<LegislationParser>();
     private readonly CaseLaw.WordDocument Document;
+    private ProvisionRecords provisionRecords;
     public LanguageService langService;
     private Frames frames;
 
