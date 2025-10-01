@@ -320,9 +320,8 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 string parentNum = provisionRecords.CurrentNumber;
                 string childNum = GetSchProv1Num(line);
-
-            }
                 return true;
+            }
 
             // Sections cannot occur in a Schedule context, so no need to check for them
             if (!frames.IsScheduleContext() && PeekProv1(line))
