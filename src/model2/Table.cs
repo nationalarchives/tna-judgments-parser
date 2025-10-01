@@ -5,10 +5,11 @@ using System.Linq;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using UK.Gov.Legislation.Lawmaker;
 
-namespace UK.Gov.Legislation.Judgments.Parse {
+namespace UK.Gov.Legislation.Judgments.Parse;
 
-class WTable : ITable {
+class WTable : ITable, ILineable {
 
     internal MainDocumentPart Main { get; private init; }
 
@@ -17,6 +18,13 @@ class WTable : ITable {
 
     public List<WRow> TypedRows { get; private init; }
     public IEnumerable<IRow> Rows { get => TypedRows; }
+
+    public IEnumerable<WLine> Lines => Rows
+        .SelectMany(row => row.Cells)
+        .SelectMany(cell => cell.Contents)
+        .OfType<ILineable>() // this may falsely filter some things,
+        .SelectMany(lineable => lineable.Lines);
+
 
     public List<float> ColumnWidthsIns {
         get => DOCX.Tables.GetColumnWidthsIns(Grid);
@@ -174,7 +182,7 @@ class WCell : ICell {
 
     internal TableCellProperties Props { get; init; }
 
-    public IEnumerable<IBlock> Contents { get; private init; }
+    public IEnumerable<IBlock> Contents { get; set; }
 
     internal WCell(WRow row, TableCell cell) {
         Main = row.Main;
@@ -334,7 +342,5 @@ class WCell : ICell {
     {
         return operation(cell);
     }
-
-}
 
 }

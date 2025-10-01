@@ -9,41 +9,72 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    class LastLine
+    class LastLine()
     {
-
-        /* get */
+        // private static readonly ILogger Logger = Logging.Factory.CreateLogger<LastLine>();
 
         internal static WLine GetLastLine(IDivision division)
         {
-            if (division is Leaf leaf)
-                return GetLastLineInLeaf(leaf);
-            if (division is Branch branch)
-                return GetLastLineInBranch(branch);
-            return null;
+            return division switch
+            {
+            // should be using some kind of polymorphism
+            Leaf leaf => GetLastLine(leaf),
+            Branch branch => GetLastLine(branch),
+            ILineable lineable => lineable.GetLastLine(),
+            WDummyDivision dummy => dummy
+                .Contents
+                .OfType<ILineable>()
+                .LastOrDefault()
+                .GetLastLine(),
+            _ => null,
+            };
         }
 
-        static WLine GetLastLineInLeaf(Leaf leaf)
+        static WLine GetLastLine(Leaf leaf)
         {
-            return GetLastLineIn(leaf.Contents);
+            if (leaf.Contents is null)
+                return leaf.Heading as WLine;
+            return GetLastLine(leaf.Contents);
+
         }
 
-        static WLine GetLastLineInBranch(Branch branch)
+        static WLine GetLastLine(Branch branch)
         {
             if (branch.WrapUp?.Count > 0)
-                return GetLastLineIn(branch.WrapUp);
+                return GetLastLine(branch.WrapUp);
             return GetLastLine(branch.Children.Last());
         }
 
-        static WLine GetLastLineIn(IList<IBlock> blocks)
-        {
-            IBlock last = blocks.LastOrDefault();
-            if (last is not WLine line)
-                return null;
-            return line;
-        }
+        static WLine GetLastLine(WTable table) => table
+            .Rows?
+            .LastOrDefault()?
+            .Cells?
+            .LastOrDefault()?
+            .Contents?
+            .OfType<WLine>()?
+            .LastOrDefault()
+            ;
 
-        /* 
+        // All inheritors of IBlock:
+        // Mod, ILine, ITableOfContents2, IQuotedStructure, ISignatureName, IDivWrapper, ITable, LdappTableBlock
+        // We should probably figure out a better way than this using some kind of polymorphism... otherwise we have to update this switch for every new block
+        internal static WLine GetLastLine(IEnumerable<IBlock> blocks) => blocks?.LastOrDefault() switch
+        {
+            WLine line => line,
+            Mod mod => GetLastLineInMod(mod),
+            BlockQuotedStructure qs => GetLastLineInQuotedStructure(qs),
+            LdappTableBlock tableBlock => GetLastLine(tableBlock.Table.Rows.LastOrDefault().Cells.LastOrDefault().Contents),
+            _ => null
+        };
+        // static WLine GetLastLineIn(IEnumerable<IBlock> blocks)
+        // {
+        //     IBlock last = blocks.LastOrDefault();
+        //     if (last is not WLine line)
+        //         return null;
+        //     return line;
+        // }
+
+        /*
          * Obtains the entire text content of the last paragraph of the given division,
          * including any Numbers or Headings.
          */
@@ -56,9 +87,20 @@ namespace UK.Gov.Legislation.Lawmaker
             return null;
         }
 
+        static WLine GetLastLineInMod(Mod mod)
+        {
+            return GetLastLine(mod.Contents);
+        }
+
+        static WLine GetLastLineInQuotedStructure(BlockQuotedStructure qs)
+        {
+            LegislationParser.QuoteDistance++;
+            return GetLastLine(qs.Contents.Last());
+        }
+
         /*
          * Obtains the combined text content of a Leaf.
-         * Includes the Number, Heading, and Contents. 
+         * Includes the Number, Heading, and Contents.
          */
         static string GetLastParagraphTextInLeaf(Leaf leaf)
         {
@@ -110,17 +152,40 @@ namespace UK.Gov.Legislation.Lawmaker
             IDivision last = divisions.LastOrDefault();
             if (last is null)
                 return false;
-            return ReplaceLastLine1(last, replace);
+            return ReplaceLastLine(last, replace);
         }
 
-        static bool ReplaceLastLine1(IDivision division, Func<WLine, WLine> replace)
+        static bool ReplaceLastLine(IDivision division, Func<WLine, WLine> replace)
         {
             if (division is Leaf leaf)
                 return ReplaceLastLineInLeaf(leaf, replace);
             if (division is Branch branch)
                 return ReplaceLastLineInBranch(branch, replace);
+            if (division is WDummyDivision dummy)
+                return ReplaceLastLine(dummy, replace);
             return false;
         }
+
+        #nullable enable
+        static bool ReplaceLastLine(WDummyDivision dummy, Func<WLine, WLine> replace)
+        {
+            return dummy.Contents.LastOrDefault() switch
+            {
+                WTable table => ReplaceLastLine(table, replace),
+                _ => false
+            };
+        }
+
+        static bool ReplaceLastLine(WTable table, Func<WLine, WLine> replace)
+        {
+            ICell? lastCell = table.Rows?.LastOrDefault()?.Cells.LastOrDefault();
+            if (lastCell is null) return false;
+            List<IBlock>? cellContents = lastCell.Contents.ToList();
+            var result = ReplaceLastOf(cellContents, replace);
+            if (result) lastCell.Contents = cellContents;
+            return result;
+        }
+        #nullable disable
 
         static bool ReplaceLastLineInLeaf(Leaf leaf, Func<WLine, WLine> replace)
         {
@@ -141,6 +206,13 @@ namespace UK.Gov.Legislation.Lawmaker
         static bool ReplaceLastOf(IList<IBlock> blocks, Func<WLine, WLine> replace)
         {
             IBlock last = blocks.LastOrDefault();
+
+            // Drill down into the contents of mods and quoted structures.
+            if (last is Mod mod)
+                return ReplaceLastOf(mod.Contents, replace);
+            if (last is BlockQuotedStructure qs)
+                return Replace(qs.Contents, replace);
+
             if (last is not WLine line)
                 return false;
             // tables?

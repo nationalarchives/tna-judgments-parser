@@ -48,7 +48,6 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement foreign = CreateAndAppend("foreign", tblock);
             XmlElement table = BuildTable(model);
             foreign.AppendChild(table);
-            CreateAndAppend("table", foreign);
 
             tblock.SetAttribute("class", AknNamespace, "table");
         }
