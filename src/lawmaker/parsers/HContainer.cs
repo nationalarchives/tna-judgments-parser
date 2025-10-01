@@ -312,18 +312,23 @@ namespace UK.Gov.Legislation.Lawmaker
             if (Current() is not WLine line)
                 return false;
 
-            // Sections cannot occur in a Schedule context, so no need to check for them
-            if (!frames.IsScheduleContext() && PeekProv1(line))
-                return true;
-            // Disabled for now, as numbered list items appear identical to SchProv1 elements
-            // and were causing an unnecessary and problematic break
-            /*
-            if (PeekSchProv1(line))
-                return true;
-            */
             // If centre-aligned, it must be a grouping provision
             if (IsCenterAligned(line))
                 return true;
+
+            if (PeekSchProv1(line) && provisionRecords.Current is SchProv1)
+            {
+                string parentNum = provisionRecords.CurrentNumber;
+                string childNum = GetSchProv1Num(line);
+
+            }
+                return true;
+
+            // Sections cannot occur in a Schedule context, so no need to check for them
+            if (!frames.IsScheduleContext() && PeekProv1(line))
+                return true;
+
+
             return false;
         }
 
