@@ -6,14 +6,17 @@ using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using UK.Gov.Legislation.Lawmaker;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
-class WLine : ILine {
+class WLine : ILine, ILineable {
 
     internal readonly MainDocumentPart main;
     internal readonly ParagraphProperties properties;
     private List<IInline> contents;
+
+    public IEnumerable<WLine> Lines => [this];
 
     internal IEnumerable<WBookmark> Bookmarks { get; private set; }
     internal void PrependBookmarksFromPrecedingSkippedLines(IEnumerable<WBookmark> skipped) {

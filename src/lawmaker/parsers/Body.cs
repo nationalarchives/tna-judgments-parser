@@ -32,18 +32,19 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         // always leaves i in the right place; shouldn't return null, unless unhandled block type
-        private IDivision ParseNextBodyDivision()
+        private IDivision ParseNextBodyDivision(System.Func<WLine, HContainer> nextExpected = null)
         {
             if (Match(LdappTableBlock.Parse) is LdappTableBlock tableBlock)
             {
                 return new WDummyDivision(tableBlock);
             }
-            HContainer hContainer = ParseLine();
+            HContainer hContainer = ParseLine(nextExpected);
             if (hContainer is not null)
             {
                 return hContainer;
             }
             IBlock block = Current();
+            if (block is null) return null;
             if (block is NationalArchives.TableOfContents toc)
             {
                 i += 1;
@@ -54,6 +55,12 @@ namespace UK.Gov.Legislation.Lawmaker
             return null;
         }
 
+        private IDivision PeekNextBodyDivision(System.Func<WLine, HContainer> nextExpected = null)
+        {
+            int save = i;
+            IDivision division = ParseNextBodyDivision();
+            i = save;
+            return division;
+        }
     }
-
 }
