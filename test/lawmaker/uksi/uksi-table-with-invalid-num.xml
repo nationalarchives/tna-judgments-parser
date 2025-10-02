@@ -70,6 +70,16 @@
       </references>
     </meta>
     <coverPage />
+	<preface>
+      <block name="banner">STATUTORY INSTRUMENTS</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+      <container name="subjects">
+		<container name="subject">
+			<block name="subject"><concept refersTo="" class="title">INFRASTRUCTURE PLANNING</concept></block>
+		</container>
+	  </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+    </preface>
     <body>
       <article eId="sec_1" class="prov1">
         <heading>Citation and commencement</heading>

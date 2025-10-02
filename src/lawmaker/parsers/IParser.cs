@@ -74,5 +74,6 @@ public interface IParser<T>
     // b) the `strategy` fails to match
     // Returns a list of concurrent blocks which were successfully matched.
     // The resulting position of the parser is at the end of the final matched block.
-    public List<R> MatchWhile<R>(Predicate<T> condition, params ParseStrategy<R>[] strategies);
+    public List<R>? MatchWhile<R>(params ParseStrategy<R>[] strategies) => MatchWhile(_ => true, strategies);
+    public List<R>? MatchWhile<R>(Predicate<T> condition, params ParseStrategy<R>[] strategies);
 }

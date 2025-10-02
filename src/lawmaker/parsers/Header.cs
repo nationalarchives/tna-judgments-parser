@@ -6,10 +6,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
-namespace UK.Gov.Legislation.Lawmaker
-{
+namespace UK.Gov.Legislation.Lawmaker;
 
     public partial class LegislationParser
     {
@@ -114,44 +112,63 @@ namespace UK.Gov.Legislation.Lawmaker
             bool foundContents = false;
             bool isWelshSecondary = DocNames.IsWelshSecondary(frames.CurrentDocName);
 
-            while (i < Body.Count)
+            // coverPage and preface share many elements.
+            // We always expect a preface so we assume the last banner
+            // before the start of the body indicates the preface
+            // note: the preface can also start with a ProceduralRubric
+            // or a CorrectionRubric
+            IBlock? lastBannerInBody = Body
+                .TakeWhile(block => PeekBodyStartProvision(block as WLine) is null)
+                .OfType<WLine>()
+                .Where(Preface.Banner.IsBanner)
+                .LastOrDefault();
+            IBlock? lastBannerPassed = null;
+            // If we encounter a provision heading (outside of the ToC),
+            // then the body must have started.
+            while (i < Body.Count && PeekBodyStartProvision() is null)
             {
-                if (isWelshSecondary)
+                IBlock block = Body[i];
+                if (Preface.Banner.IsBanner(block as WLine))
                 {
-                    BlockContainer? blockContainer = ParseWelshBlockContainer();
-                    if (blockContainer is not null)
-                    {
-                        coverPage.Add(blockContainer);
-                        continue;
-                    }
+                    lastBannerPassed = block;
+                }
+                if (isWelshSecondary && ParseWelshBlockContainer() is BlockContainer blockContainer
+                    && lastBannerPassed != lastBannerInBody) // intentional referential equality
+                {
+                    coverPage.Add(blockContainer);
+                    continue;
                 }
 
                 if (!foundContents)
-                    foundContents = SkipTableOfContents();
+                    foundContents = Match(TableOfContents.Parse) is not null;
 
-                IBlock block = Body[i];
 
-                // If we encounter a provision heading (outside of the ToC),
-                // then the body must have started.
-                HContainer peek = PeekBodyStartProvision();
-                if (peek != null)
-                    return;
 
-                if (!(block is WLine line))
+                if (Current() is not WLine line)
                 {
                     i += 1;
                     continue;
                 }
 
                 if (IsLeftAligned(line) && IsFlushLeft(line) && !line.IsAllItalicized())
-                    preamble.Add(block);
-                /* TODO: Handle the preface of Statutory Instruments (in an upcoming ticket)
-                else if (!foundContents)
-                    preface.Add(block);
-                */
+                {
+                    preamble.Add(line);
+                    i += 1;
+                } else if (!foundContents && (Preface.SIPreface.Parse(this) is IBlock prefaceBlock))
+                {
+                    // SIPreface.Parse appropriately increments i
+                    preface.Add(prefaceBlock);
+                } else
+                {
+                    i += 1;
+                }
 
-                i += 1;
             }
+            if (PeekBodyStartProvision() != null)
+            {
+                return;
+            }
+            // we haven't found the body or we've misparsed the body as the heading
             coverPage.Clear();
             preface.Clear();
             preamble.Clear();
@@ -161,39 +178,6 @@ namespace UK.Gov.Legislation.Lawmaker
         /*
          * Identifies and skips over the Table of Contents.
          */
-        private bool SkipTableOfContents()
-        {
-            // Identify 'CONTENTS' heading
-            IBlock block = Body[i];
-            if (!(block is WLine line))
-                return false;
-            if (!IsCenterAligned(line))
-                return false;
-            if (!LanguageService.IsMatch(line.NormalizedContent, ContentsHeadingPatterns))
-                return false;
-
-            // Skip contents
-            while (i < Body.Count - 1)
-            {
-                i += 1;
-                block = Body[i];
-                if (!(block is WLine contentsLine))
-                    break;
-
-                // ToC Grouping provisions are center aligned
-                if (IsCenterAligned(contentsLine))
-                    continue;
-                // ToC Prov1 elements are numbered
-                if (contentsLine is WOldNumberedParagraph)
-                    continue;
-                // ToC Schedules (and associated grouping provisions) have hanging indents
-                if (contentsLine.FirstLineIndentWithNumber < 0)
-                    continue;
-
-                break;
-            }
-            return true;
-        }
 
         private BlockContainer? ParseWelshBlockContainer()
         {
@@ -207,14 +191,4 @@ namespace UK.Gov.Legislation.Lawmaker
 
             return null;
         }
-
-
-        private static readonly LanguagePatterns ContentsHeadingPatterns = new()
-        {
-            [Lang.ENG] = [@"^CONTENTS$"],
-            [Lang.CYM] = [@"^CYNNWYS$"]
-        };
-
     }
-
-}

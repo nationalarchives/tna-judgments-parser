@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
+using System.Xml.Linq;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.DOCX;
@@ -58,6 +59,16 @@ namespace UK.Gov.Legislation.Lawmaker
             if (prefaceElements.Count <= 0)
             {
                 logger.LogWarning("The parsed Preface elements were empty!");
+                return;
+            }
+            if (prefaceElements.All(e => e is IBuildable<XNode>))
+            {
+                foreach (XmlNode node in prefaceElements
+                    .OfType<IBuildable<XNode>>()
+                    .Select(e => e.Build().ToXmlNode(bill.OwnerDocument)))
+                {
+                    bill.AppendChild(node);
+                }
                 return;
             }
             XmlElement preface = CreateAndAppend("preface", bill);

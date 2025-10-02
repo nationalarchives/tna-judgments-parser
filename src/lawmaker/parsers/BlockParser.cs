@@ -124,7 +124,7 @@ public class BlockParser : IParser<IBlock>
     }
     private bool IsInRange(int i) => i >= 0 && i < Body.Count;
 
-    public List<R> MatchWhile<R>(Predicate<R> condition, params IParser<IBlock>.ParseStrategy<R>[] strategies)
+    public List<R>? MatchWhile<R>(Predicate<R> condition, params IParser<IBlock>.ParseStrategy<R>[] strategies)
     {
         List<R> matches = [];
         while (Current() is R r
@@ -134,6 +134,6 @@ public class BlockParser : IParser<IBlock>
         {
             matches.Add(match);
         }
-        return matches;
+        return matches.Count != 0 ? matches : null;
     }
 }

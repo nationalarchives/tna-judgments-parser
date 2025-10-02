@@ -70,6 +70,16 @@
       </references>
     </meta>
     <coverPage />
+    <preface>
+      <block name="banner">Scottish Statutory Instruments</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+	  <container name="subjects">
+		<container name="subject">
+			<block name="subject"><concept refersTo="" class="title">Court of Session</concept></block>
+		</container>
+	  </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+    </preface>
     <preamble eId="preamble">
       <formula name="enactingText">
         <p>The Scottish Ministers make the following Order in exercise of the powers conferred by section 107(1) and (2) of the Courts Reform (Scotland) Act 2014<authorialNote marker="1" class="footnote"><p>2014 asp 18.</p></authorialNote> and all other powers enabling them to do so.</p>

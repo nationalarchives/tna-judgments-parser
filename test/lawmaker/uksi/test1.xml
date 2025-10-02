@@ -70,6 +70,16 @@
       </references>
     </meta>
     <coverPage />
+	<preface>
+      <block name="banner">STATUTORY INSTRUMENTS</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+	  <container name="subjects">
+		<container name="subject">
+			<block name="subject"><concept refersTo="" class="title">INFRASTRUCTURE PLANNING</concept></block>
+		</container>
+	  </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+    </preface>
     <preamble eId="preamble">
       <formula name="enactingText">
         <p>An application has been made to the Secretary of State under section 37 of the Planning Act 2008 (the “2008 Act”)<authorialNote marker="1" class="footnote"><p>2008 c. 29. Parts 1 to 7 were amended by Chapter 6 of Part 6 of, and Schedule 13 to, the Localism Act 2011 (c. 20).</p></authorialNote>for an order granting development consent in accordance with the Infrastructure Planning (Applications: Prescribed Forms and Procedure) Regulations 2009<authorialNote marker="2" class="footnote"><p>S.I. 2009/2264.</p></authorialNote>.</p>

@@ -21,7 +21,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return !alignment.HasValue || alignment == AlignmentValues.Left || alignment == AlignmentValues.Justify;
         }
 
-        private static bool IsCenterAligned(WLine line)
+        internal static bool IsCenterAligned(WLine line)
         {
             var alignment = line.GetEffectiveAlignment();
             return alignment == AlignmentValues.Center;

@@ -507,16 +507,22 @@ namespace UK.Gov.Legislation.Lawmaker
             return null;
         }
 
+        #nullable enable
         /*
          * Attempts to identify the current line as one of a small number of provisions
          * which can exist as the very first provision in the body of a document.
          * Otherwise, returns null.
          */
-        private HContainer PeekBodyStartProvision()
+        private HContainer? PeekBodyStartProvision()
         {
             if (Current() is not WLine line)
                 return null;
+            return PeekBodyStartProvision(line);
+        }
+        private HContainer? PeekBodyStartProvision(WLine? line)
+        {
 
+            if (line is null) return null;
             if (PeekGroupOfPartsHeading(line))
                 return new GroupOfPartsLeaf { };
             if (PeekPartHeading(line))

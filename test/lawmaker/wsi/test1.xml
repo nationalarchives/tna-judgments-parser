@@ -149,7 +149,17 @@
         </tblock>
       </blockContainer>
     </coverPage>
-    <preamble eId="preamble">
+    <preface>
+      <block name="banner">OFFERYNNAU STATUDOL CYMRU</block>
+      <block name="number">2025 Rhif (Cy. )</block>
+	  <container name="subjects">
+		<container name="subject">
+			<block name="subject"><concept refersTo="" class="title">DIOGELU’R AMGYLCHEDD, CYMRU</concept></block>
+		</container>
+	  </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+    </preface>
+	<preamble eId="preamble">
       <formula name="enactingText">
         <p>Mae Gweinidogion Cymru yn gwneud y Rheoliadau a ganlyn drwy arfer y pwerau a roddir gan adrannau 140(1)(c) a (d), a 3(c) o Ddeddf Diogelu’r Amgylchedd 1990<authorialNote marker="1" class="footnote"><p>1990 p. 43. Diwygiwyd adran 140(3)(c) gan O.S. 1999/1108. Yn rhinwedd erthygl 2 o Orchymyn Cynulliad Cenedlaethol Cymru (Trosglwyddo Swyddogaethau) 1999 (O.S. 1999/672) ac Atodlen 1 iddo, ac adran 162 o Ddeddf Llywodraeth Cymru 2006 (p. 32) a pharagraff 30 o Atodlen 11 iddi, yn ddarostyngedig i eithriadau penodol nad ydynt yn berthnasol i’r Rheoliadau hyn, mae swyddogaethau’r Ysgrifennydd Gwladol o dan adran 140 yn arferadwy gan Weinidogion Cymru o ran Cymru.</p></authorialNote> (“Deddf 1990”).</p>
       </formula>
