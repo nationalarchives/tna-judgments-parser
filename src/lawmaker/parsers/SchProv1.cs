@@ -90,7 +90,9 @@ namespace UK.Gov.Legislation.Lawmaker
             bool quoted = quoteDepth > 0;
             if (!IsFlushLeft(line) && !quoted)
                 return false;
-            if (!SchProv1.IsValidNumber(GetNumString(line)))
+            if (line is not WOldNumberedParagraph np)
+                return false;
+            if (!SchProv1.IsValidNumber(GetNumString(np.Number)))
                 return false;
             return true;
         }

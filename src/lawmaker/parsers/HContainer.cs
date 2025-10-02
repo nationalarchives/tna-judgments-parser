@@ -359,10 +359,38 @@ namespace UK.Gov.Legislation.Lawmaker
             lo = lo.Replace(".", " ");
             hi = hi.Replace(".", " ");
 
+            // Check direct increments
+            // For example: 1 -> 2, 1A -> 1B, 1Z1D -> 1Z1E
             if (GetNumIncrementOf(lo) == hi)
                 return true;
+
+            // Check direct decrements
+            // For example: A1 -> 1, AZ1 -> A1
             if (GetNumDecrementOf(hi) == lo)
                 return true;
+
+            // Check for the addition of any number of 'Z' followed by an 'A'
+            // For example: 1 -> 1A, 2B -> 2BA, 3 -> 3ZA, 7 -> 7ZZA
+            if (hi.Length > lo.Length)
+            {
+                string diff = Regex.Replace(hi, @$"^{lo}", "");
+                if (Regex.IsMatch(diff, @"Z*A"))
+                    return true;
+            }
+
+            if (hi.Length < lo.Length)
+            {
+                // Check for when a character is dropped, then the number incremented
+                // i.e. (1B -> 2, 1CA -> 1D)
+                string loTrimmed = string.Concat(lo.SkipLast(1));
+                if (GetNumIncrementOf(loTrimmed) == hi)
+                    return true;
+                // Check for when every char after the final Z is dropped, then the number incremented
+                // i.e. (1Z1 -> 2, 3Z10 -> 4)
+                loTrimmed = Regex.Replace(lo, @"Z\d+$", "");
+                if (GetNumIncrementOf(loTrimmed) == hi)
+                    return true;
+            }
             return false;
         }
 

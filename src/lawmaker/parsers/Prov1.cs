@@ -55,7 +55,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (line is not WOldNumberedParagraph np)
                 return false;
-            if (!Prov1.IsValidNumber(GetNumString(line)))
+            if (!Prov1.IsValidNumber(GetNumString(np.Number)))
                 return false;
             return true;
         }
