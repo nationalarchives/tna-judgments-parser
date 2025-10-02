@@ -26,7 +26,7 @@ namespace UK.Gov.Legislation.Lawmaker
             i += 1;
 
             IFormattedText num = np.Number;
-            List<IBlock> intro = HandleParagraphs(np);
+            List<IBlock> intro = HandleParagraphs(np, l => ParseAndMemoize(l, "Para2", ParsePara2));
 
             if (IsEndOfQuotedStructure(intro))
                 return new Para2Leaf { Number = num, Contents = intro };
@@ -41,7 +41,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
 
                 int save = i;
-                IDivision next = ParseNextBodyDivision();
+                IDivision next = ParseNextBodyDivision(l => ParseAndMemoize(l, "Para2", ParsePara2));
                 if (!Para2.IsValidChild(next))
                 {
                     i = save;
