@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DocumentFormat.OpenXml.Vml;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -54,8 +55,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (line is not WOldNumberedParagraph np)
                 return false;
-            string numText = IgnoreQuotedStructureStart(np.Number.Text, quoteDepth);
-            if (!Prov1.IsValidNumber(numText))
+            if (!Prov1.IsValidNumber(GetNumString(line)))
                 return false;
             return true;
         }
@@ -71,6 +71,8 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> wrapUp = [];
 
             Prov1Name tagName = GetProv1Name();
+
+            provisionRecords.Push(typeof(Prov1), num);
 
             WOldNumberedParagraph firstProv2Line = FixFirstProv2(np);
             bool hasProv2Child = (firstProv2Line != null);
@@ -111,6 +113,8 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
             }
             wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
+
+            provisionRecords.Pop();
 
             if (children.Count == 0)
                 return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro };

@@ -35,9 +35,10 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];
 
+            provisionRecords.Push(typeof(SchProv1), num);
+
             WOldNumberedParagraph firstProv2Line = FixFirstProv2(np);
             bool hasProv2Child = (firstProv2Line != null);
-
             if (hasProv2Child)
             {
                 i -= 1;
@@ -54,8 +55,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (IsEndOfQuotedStructure(intro))
                     return new SchProv1Leaf { Number = num, Contents = intro };
             }
-
-            provisionRecords.Push(typeof(SchProv1), GetSchProv1Num(line));
 
             int finalChildStart = i;
             while (i < Document.Body.Count)
@@ -91,17 +90,9 @@ namespace UK.Gov.Legislation.Lawmaker
             bool quoted = quoteDepth > 0;
             if (!IsFlushLeft(line) && !quoted)
                 return false;
-            string? numText = GetSchProv1Num(line);
-            if (!SchProv1.IsValidNumber(numText))
+            if (!SchProv1.IsValidNumber(GetNumString(line)))
                 return false;
             return true;
-        }
-
-        private string GetSchProv1Num(WLine line)
-        {
-            if (line is not WOldNumberedParagraph np)
-                return null;
-            return IgnoreQuotedStructureStart(np.Number.Text, quoteDepth);
         }
 
         private bool FixFirstSchProv2(List<IBlock> intro, List<IDivision> children, WLine heading = null)

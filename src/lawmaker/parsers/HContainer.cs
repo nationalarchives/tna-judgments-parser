@@ -1,9 +1,13 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.VariantTypes;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.Imaging;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -316,20 +320,106 @@ namespace UK.Gov.Legislation.Lawmaker
             if (IsCenterAligned(line))
                 return true;
 
-            if (PeekSchProv1(line) && provisionRecords.Current is SchProv1)
-            {
-                string parentNum = provisionRecords.CurrentNumber;
-                string childNum = GetSchProv1Num(line);
+            // If we reach Prov1 heading, break
+            if (provisionRecords.IsInProv1 && PeekProv1(line))
                 return true;
+
+            if (provisionRecords.IsInProv1 && PeekBareProv1(line))
+            {
+                string parentNum = GetNumString(provisionRecords.CurrentNumber);
+                string childNum = GetNumString(line);
+                return IsSubsequentNum(parentNum, childNum);
             }
 
-            // Sections cannot occur in a Schedule context, so no need to check for them
-            if (!frames.IsScheduleContext() && PeekProv1(line))
-                return true;
-
+            if (provisionRecords.IsInSchProv1 && PeekSchProv1(line))
+            {
+                string parentNum = GetNumString(provisionRecords.CurrentNumber);
+                string childNum = GetNumString(line);
+                return IsSubsequentNum(parentNum, childNum);
+            }
 
             return false;
         }
+
+        private string GetNumString(WLine line)
+        {
+            if (line is not WOldNumberedParagraph np)
+                return null;
+            return GetNumString(np.Number);
+        }
+
+        private string GetNumString(IFormattedText number)
+        {
+            return IgnoreQuotedStructureStart(number.Text, quoteDepth);
+        }
+
+        
+        private bool IsSubsequentNum(string lo, string hi)
+        {
+            lo = lo.Replace(".", " ");
+            hi = hi.Replace(".", " ");
+
+            if (GetNumIncrementOf(lo) == hi)
+                return true;
+            if (GetNumDecrementOf(hi) == lo)
+                return true;
+            return false;
+        }
+
+        /// <summary>Increments an alphanumeric number string.</summary>
+        /// <param name="numString">The alphanumeric number to increment (as a string).</param>
+        /// <returns>The incremented number (as a string).</returns>
+        private static string GetNumIncrementOf(string numString)
+        {
+            // If the num is entirely numeric, simply increment it
+            // For example: 1 -> 2
+            bool isInt = int.TryParse(numString, out int numInt);
+            if (isInt)
+                return (numInt + 1).ToString();
+
+            // If the num ends with a numeric portion, increment that portion
+            // For example: A9 -> A10, 1Z1 -> 1Z2
+            string finalDigitsString = Regex.Match(numString, @"\d+$").Value;
+            if (finalDigitsString.Length > 0)
+            {
+                int.TryParse(finalDigitsString, out int finalDigitsInt);
+                return Regex.Replace(numString, @"\d+$", (finalDigitsInt + 1).ToString());
+            }
+
+            // If the num ends with an alphabetic portion, increment that portion
+            // For example: 1A -> 1B, 1Z1D -> 1Z1E
+            char finalChar = numString.Last();
+            // Special case: the increment of 'Z' is 'Z1'
+            if (finalChar == 'Z')
+                return numString + '1';
+            // Special case: the increment of 'N' is 'P' (skips 'O')
+            if (finalChar == 'N')
+                return new string(numString.SkipLast(1).Append('P').ToArray());
+            // Typical case
+            char charIncrement = (char)(finalChar + 1);
+            return new string(numString.SkipLast(1).Append(charIncrement).ToArray());
+        }
+
+        /// <summary>Decrements an alphanumeric number string.</summary>
+        /// <remarks>
+        /// Note that this is special logic used only when a child element is prepended to a list of existing children 
+        /// (i.e. inserting a new child before the first existing child numbered '1').
+        /// </remarks>
+        /// <param name="numString">The alphanumeric number to decrement (as a string).</param>
+        /// <returns>The decremented number (as a string).</returns>
+        private static string GetNumDecrementOf(string numString)
+        {
+            bool isInt = int.TryParse(numString, out int numInt);
+            // For purely numeric nums, 'A' is prepended to decrement 
+            // For example: A1 -> 1
+            if (isInt)
+                return 'A' + numString;
+
+            // Otherwise, a 'Z' is placed in the second last position to decrement
+            // For example: AZ1 -> A1, A1Z0 -> A10, 1ZA -> 1A
+            return numString.Substring(0, numString.Length - 1) + "Z" + numString.Substring(numString.Length - 1);
+        }
+
 
         /*
          * Prevents the ParseAndMemoize method from recursing too deep.

@@ -2,9 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using DocumentFormat.OpenXml.InkML;
-using DocumentFormat.OpenXml.Wordprocessing;
-using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -15,15 +13,18 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public Type? Current => provisionRecords.Count > 0 ? provisionRecords.Peek().Type : null;
 
-        public string? CurrentNumber => provisionRecords.Count > 0 ? provisionRecords.Peek().Number : null;
+        public bool IsInProv1 => Current == typeof(Prov1);
 
+        public bool IsInSchProv1 => Current == typeof(SchProv1);
+
+        public IFormattedText? CurrentNumber => provisionRecords.Count > 0 ? provisionRecords.Peek().Number : null;
 
         public ProvisionRecords()
         {
             provisionRecords = new Stack<ProvisionRecord>();
         }
 
-        public void Push(Type type, string number)
+        public void Push(Type type, IFormattedText number)
         {
             provisionRecords.Push(new ProvisionRecord(type, number));
         }
@@ -36,7 +37,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return true;
         }
 
-        private record ProvisionRecord(Type Type, string Number);
+        private record ProvisionRecord(Type Type, IFormattedText Number);
 
     }
 
