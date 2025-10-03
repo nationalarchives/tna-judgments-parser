@@ -24,8 +24,9 @@ public enum DocName
     SDSI,
     NIPUBB,
     NIDSI,
-    NIDSR
-
+    NIDSR,
+    WSI,
+    WDSI
 }
 
 public static class DocNames
@@ -74,6 +75,9 @@ public static class DocNames
 
             DocName.SSI => DocName.SSI,
             DocName.SDSI => DocName.SSI,
+
+            DocName.WSI => DocName.WSI,
+            DocName.WDSI => DocName.WSI,
         };
     }
 
@@ -102,12 +106,24 @@ public static class DocNames
             DocName.UKDSI =>           LegislationType.SECONDARY,
             DocName.SSI =>             LegislationType.SECONDARY,
             DocName.SDSI =>            LegislationType.SECONDARY,
+            DocName.WSI =>             LegislationType.SECONDARY,
+            DocName.WDSI =>            LegislationType.SECONDARY,
         };
     }
 
     public static bool IsSecondaryDocName(DocName docName)
     {
-        return DocNames.GetLegislationType(docName) == LegislationType.SECONDARY;
+        return GetLegislationType(docName) == LegislationType.SECONDARY;
+    }
+
+    public static bool IsScottishPrimary(DocName docName)
+    {
+        return ToEnacted(docName).Equals(DocName.ASP);
+    }
+
+    public static bool IsWelshSecondary(DocName docName)
+    {
+        return ToEnacted(docName).Equals(DocName.WSI);
     }
 }
 

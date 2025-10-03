@@ -14,7 +14,7 @@ RUN dotnet publish TRE/TRE.csproj -c Release -o /src --no-restore
 
 FROM base AS final
 
-RUN dnf upgrade
+RUN dnf upgrade -y
 RUN dnf clean all --enablerepo=\*
 
 WORKDIR /var/task

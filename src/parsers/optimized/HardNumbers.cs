@@ -36,7 +36,8 @@ class HardNumbers {
         SecondPass();
     }
 
-    private BlockWithBreak Extract1(BlockWithBreak bb) {
+    private BlockWithBreak Extract1(BlockWithBreak bb)
+    {
         if (bb.Block is not WLine line)
             return bb;
         WOldNumberedParagraph removed = ExtractHardNumber(line);
@@ -57,6 +58,13 @@ class HardNumbers {
                 return removed;
         }
         return null;
+    }
+
+    public static WCell ExtractTableCell(WCell cell)
+    {
+        List<BlockWithBreak> contents = cell.Contents.Select(b => new BlockWithBreak { Block = b, LineBreakBefore = false }).ToList();
+        List<BlockWithBreak> extracted = Extract(contents);
+        return new WCell(cell.Row, cell.Props, extracted.Select(bb => bb.Block));
     }
 
     public static readonly string PlainNumberFormat = @"^[“""]?\d+$";

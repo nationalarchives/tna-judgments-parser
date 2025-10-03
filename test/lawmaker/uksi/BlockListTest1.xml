@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="uksi">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Secretary of State makes these Regulations in exercise of the powers conferred by sections 1(1) and (3), 2(1) and (2), 3(1) and (2), 4(1)(a) and (2), 5 and 25(1) of the Haulage Permits and Trailer Registration Act 2018<authorialNote marker="1" class="footnote"><p>2018 c. 19. Section 1(5) defines “regulations” as “regulations made by the Secretary of State”.</p></authorialNote> and section 31 of the European Union (Future Relationship) Act 2020<authorialNote marker="2" class="footnote"><p>2020 c. 29. See section 37 for a definition of “relevant national authority”.</p></authorialNote>.</p>
+        <p>In relation to the provision made under the Haulage Permits and Trailer Registration Act 2018, in accordance with section 23(1) of that Act, the Secretary of State has consulted such persons as the Secretary of State thinks fit.</p>
+        <p>A draft of these Regulations has been laid before, and approved by a resolution of, each House of Parliament in accordance with paragraphs 6(3) and 34(1) to (3) of Schedule 5 to the European Union (Future Relationship) Act 2020.</p>
+      </formula>
+    </preamble>
+    <body>
+      <part eId="pt_1" class="group2">
+        <num>Part 1</num>
+        <heading>Preliminary provisions</heading>
+        <article eId="sec_1" class="prov1">
+          <heading>Duration of permit</heading>
+          <num>1.</num>
+          <content>
+            <p>A permit has effect for the duration specified in the right-hand column of the table in relation to that type of permit.</p>
+            <tblock class="table">
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Type of permit</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Duration</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">ECMT annual permit</p>
+                      </td>
+                      <td>
+                        <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                          <listIntroduction>The period:</listIntroduction>
+                          <item>
+                            <num>—</num>
+                            <blockList>
+                              <listIntroduction>beginning with:</listIntroduction>
+                              <item>
+                                <num>•</num>
+                                <p>the day the permit is granted, or</p>
+                              </item>
+                              <item>
+                                <num>•</num>
+                                <p>the day requested in the application (if any), if that day is within the period of 60 days beginning with the day the permit is granted, and</p>
+                              </item>
+                            </blockList>
+                          </item>
+                          <item>
+                            <num>—</num>
+                            <p>ending with 31st December of the year in which the period begins.</p>
+                          </item>
+                        </blockList>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">ECMT international removal permit</p>
+                      </td>
+                      <td>
+                        <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                          <listIntroduction>The period of one year beginning with:</listIntroduction>
+                          <item>
+                            <num>—</num>
+                            <p>the day the permit is granted, or</p>
+                          </item>
+                          <item>
+                            <num>—</num>
+                            <p>the day requested in the application (if any), if that day is within the period of 60 days beginning with the day the permit is granted.</p>
+                          </item>
+                        </blockList>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">ECMT short-term permit</p>
+                      </td>
+                      <td>
+                        <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                          <listIntroduction>The period of 30 days beginning with </listIntroduction>
+                          <item>
+                            <num>—</num>
+                            <p>the day the permit is granted, or</p>
+                          </item>
+                          <item>
+                            <num>—</num>
+                            <p>the day requested in the application (if any), if that day is within the period of 60 days beginning with the day the permit is granted.</p>
+                          </item>
+                        </blockList>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">multiple-use permit; single-use permit</p>
+                      </td>
+                      <td>
+                        <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                          <listIntroduction>The period:</listIntroduction>
+                          <item>
+                            <num>—</num>
+                            <blockList>
+                              <listIntroduction>beginning with:</listIntroduction>
+                              <item>
+                                <num>•</num>
+                                <p>the day the permit is granted, or</p>
+                              </item>
+                              <item>
+                                <num>•</num>
+                                <p>the day requested in the application (if any), if that day is within the period of 60 days beginning with the day the permit is granted, and</p>
+                              </item>
+                            </blockList>
+                          </item>
+                          <item>
+                            <num>—</num>
+                            <blockList>
+                              <listIntroduction>ending with:</listIntroduction>
+                              <item>
+                                <num>•</num>
+                                <p>for a permit relating to Azerbaijan or Belarus, 31st January of the year following the year in which the period begins, or</p>
+                              </item>
+                              <item>
+                                <num>•</num>
+                                <p>for a permit relating to any other listed country, 31st December of the year in which the period begins.</p>
+                              </item>
+                            </blockList>
+                          </item>
+                        </blockList>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+          </content>
+        </article>
+        <article eId="sec_2" class="prov1">
+          <heading>Refusal of permit</heading>
+          <num>2.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>If the Secretary of State decides not to grant a permit, the Secretary of State must notify the operator who applied for it, within the period of 28 days beginning with the day after the day the decision is made, of the reasons for the decision.</p>
+              <tblock class="table">
+                <foreign>
+                  <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
+                    <tbody class="left">
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Type of permit</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Application fee</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">ECMT annual permit</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£10</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">ECMT short-term permit</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£10</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">multiple-use permit</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£5</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">single-use permit</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£2</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </foreign>
+              </tblock>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>The operator is not entitled to the return of the application fee.</p>
+              <tblock class="table">
+                <foreign>
+                  <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
+                    <tbody class="left">
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Type of permit</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Grant fee</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <listIntroduction>ECMT annual permit</listIntroduction>
+                            <item>
+                              <num>—</num>
+                              <p>with a duration of at least nine months</p>
+                            </item>
+                            <item>
+                              <num>—</num>
+                              <p>with a duration of at least six months, but less than nine months</p>
+                            </item>
+                            <item>
+                              <num>—</num>
+                              <p>with a duration of more than three months, but less than six months</p>
+                            </item>
+                            <item>
+                              <num>—</num>
+                              <p>with a duration of three months or less</p>
+                            </item>
+                          </blockList>
+                        </td>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>—</num>
+                              <p>£123</p>
+                            </item>
+                            <item>
+                              <num>—</num>
+                              <p>£93</p>
+                            </item>
+                            <item>
+                              <num>—</num>
+                              <p>£62</p>
+                            </item>
+                            <item>
+                              <num>—</num>
+                              <p>£31</p>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">ECMT international removal permit</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£18</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">ECMT short-term permit</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£10</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">multiple-use permit</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£45</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">single-use permit</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£6</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </foreign>
+              </tblock>
+            </content>
+          </paragraph>
+        </article>
+      </part>
+      <hcontainer name="schedules" class="schs">
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule<authorialNote class="referenceNote"><p>Article 2(1), 3(2)</p></authorialNote></num>
+          <heading>TABLE OF FEES</heading>
+          <level>
+            <content>
+              <tblock class="table">
+                <foreign>
+                  <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="1" class="allBorders tableleft width100">
+                    <tbody class="left">
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Column 1</p>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(Matters)</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">PART I – FEES IN THE CENTRAL OFFICE OF THE COURT</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>A.</num>
+                              <p>SIGNETING</p>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>1.</num>
+                              <p>Extract of admission as a solicitor.</p>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>2.</num>
+                              <p>Extract of protestation.</p>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>3.</num>
+                              <blockList>
+                                <listIntroduction>Documentation evidencing divorce, nullity or dissolution of marriage or civil partnership including—</listIntroduction>
+                                <item>
+                                  <num>(a)</num>
+                                  <p>extract from Consistorial Register of Decrees of decree pronounced on or after 23 September 1975 if not issued in terms of item B3 or B4 of this Table,</p>
+                                </item>
+                                <item>
+                                  <num>(b)</num>
+                                  <p>certificate of divorce in decree pronounced prior to 23 September 1975,</p>
+                                </item>
+                                <item>
+                                  <num>(c)</num>
+                                  <p>certified copy interlocutor in decree pronounced prior to 23 September 1975.</p>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>4.</num>
+                              <blockList>
+                                <listIntroduction>Examining inventory – 0.333% of the value of the estate as disclosed—</listIntroduction>
+                                <item>
+                                  <num>(a)</num>
+                                  <p>minimum fee payable,</p>
+                                </item>
+                                <item>
+                                  <num>(b)</num>
+                                  <p>maximum fee payable.</p>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>5.</num>
+                              <blockList>
+                                <listIntroduction>Auditing each account, based on estate value—</listIntroduction>
+                                <item>
+                                  <num>(c)</num>
+                                  <p>£0 - £30,000,</p>
+                                </item>
+                                <item>
+                                  <num>(d)</num>
+                                  <p>£30,001 - £50,000,</p>
+                                </item>
+                                <item>
+                                  <num>(e)</num>
+                                  <p>£50,001 - £250,000,</p>
+                                </item>
+                                <item>
+                                  <num>(f)</num>
+                                  <p>£250,001 - £500,000,</p>
+                                </item>
+                                <item>
+                                  <num>(g)</num>
+                                  <p>£500,001 and above.</p>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>6.</num>
+                              <blockList>
+                                <listIntroduction>Producing or delivering up consignation, based on consignation value—</listIntroduction>
+                                <item>
+                                  <num>(h)</num>
+                                  <p>consignation value £0 - £50 and less than 7 years since lodged,</p>
+                                </item>
+                                <item>
+                                  <num>(i)</num>
+                                  <p>consignation value over £50 and less than 7 years since lodged,</p>
+                                </item>
+                                <item>
+                                  <num>(j)</num>
+                                  <p>consignation value £0 - £70 and over 7 years since lodged,</p>
+                                </item>
+                                <item>
+                                  <num>(k)</num>
+                                  <p>consignation value over £70 and over 7 years since lodged.</p>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>7.</num>
+                              <blockList>
+                                <listIntroduction>Examining Administrator’s inventory – 0.333% of the value of the estate as disclosed:</listIntroduction>
+                                <item>
+                                  <num>(l)</num>
+                                  <p>minimum fee payable,</p>
+                                </item>
+                                <item>
+                                  <num>(m)</num>
+                                  <p>maximum fee payable,</p>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>8.</num>
+                              <blockList>
+                                <listIntroduction>Auditing each 6 monthly account, based on estate value—</listIntroduction>
+                                <item>
+                                  <num>(n)</num>
+                                  <p>£0 - £30,000,</p>
+                                </item>
+                                <item>
+                                  <num>(o)</num>
+                                  <p>£30,001 - £75,000,</p>
+                                </item>
+                                <item>
+                                  <num>(p)</num>
+                                  <p>£75,001 - £100,000,</p>
+                                </item>
+                                <item>
+                                  <num>(q)</num>
+                                  <p>£101,001 - £150,000,</p>
+                                </item>
+                                <item>
+                                  <num>(r)</num>
+                                  <p>£150,001 – £250,000,</p>
+                                </item>
+                                <item>
+                                  <num>(s)</num>
+                                  <p>£250,001 and above</p>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>9.</num>
+                              <blockList>
+                                <listIntroduction>Taxing accounts of expenses incurred in judicial proceedings (including proceedings in the High Court of Justiciary) remitted to the Auditor of the Court of Session for taxation—</listIntroduction>
+                                <item>
+                                  <num>(t)</num>
+                                  <p>on lodging account for taxation,</p>
+                                </item>
+                                <item>
+                                  <num>(u)</num>
+                                  <blockList>
+                                    <listIntroduction>taxing accounts for expenses etc.—</listIntroduction>
+                                    <item>
+                                      <num>(i)</num>
+                                      <p>up to £400,</p>
+                                    </item>
+                                    <item>
+                                      <num>(ii)</num>
+                                      <p>for every additional £100 or part thereof.</p>
+                                    </item>
+                                  </blockList>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>10.</num>
+                              <blockList>
+                                <listIntroduction>Fee for cancellation of diet of taxation—</listIntroduction>
+                                <item>
+                                  <num>(v)</num>
+                                  <p>where written notice of cancellation received from receiving party after 4.00 pm on the fourth working day before the day of the diet of taxation,</p>
+                                </item>
+                                <item>
+                                  <num>(w)</num>
+                                  <p>where written notice of cancellation received from receiving party after 4.00 pm on the second working day before the day of the diet of taxation.</p>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>11.</num>
+                              <blockList>
+                                <listIntroduction>Recording, engrossing, extracting, printing or copying of all documents (exclusive of search fee)—</listIntroduction>
+                                <item>
+                                  <num>(x)</num>
+                                  <blockList>
+                                    <listIntroduction>by photocopying or otherwise producing a printed or typed copy—</listIntroduction>
+                                    <item>
+                                      <num>(i)</num>
+                                      <p>up to 10 pages,</p>
+                                    </item>
+                                    <item>
+                                      <num>(ii)</num>
+                                      <p>each page or part thereof in excess of 10 pages,</p>
+                                    </item>
+                                  </blockList>
+                                </item>
+                                <item>
+                                  <num>(y)</num>
+                                  <p>for a copy of each document in electronic form.</p>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>12.</num>
+                              <blockList>
+                                <listIntroduction>Captions—</listIntroduction>
+                                <item>
+                                  <num>(z)</num>
+                                  <p>marking caption when ordered,</p>
+                                </item>
+                                <item>
+                                  <num>(aa)</num>
+                                  <p>warrant for caption when issued.</p>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>13.</num>
+                              <blockList>
+                                <listIntroduction>Special case—</listIntroduction>
+                                <item>
+                                  <p>for each party,</p>
+                                </item>
+                                <item>
+                                  <p>maximum fee payable (per case).</p>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                            <item>
+                              <num>14.</num>
+                              <blockList>
+                                <listIntroduction>Test case where nested items have same indent but different num alignments—</listIntroduction>
+                                <item>
+                                  <num>(ab)</num>
+                                  <blockList>
+                                    <listIntroduction>£250,001 - £500,000,</listIntroduction>
+                                    <item>
+                                      <num>(viii)</num>
+                                      <blockList>
+                                        <listIntroduction>Right aligned num</listIntroduction>
+                                        <item>
+                                          <num>(aa)</num>
+                                          <p>Left aligned num</p>
+                                        </item>
+                                      </blockList>
+                                    </item>
+                                  </blockList>
+                                </item>
+                              </blockList>
+                            </item>
+                          </blockList>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </foreign>
+              </tblock>
+            </content>
+          </level>
+        </hcontainer>
+      </hcontainer>
+    </body>
+    <conclusions eId="backCover">
+      <blockContainer class="explanatoryNote">
+        <heading>EXPLANATORY NOTE</heading>
+        <subheading>(This note is not part of the Regulations)</subheading>
+        <p>These Regulations are the fifth commencement regulations bringing into force provision in the Levelling-up And Regeneration Act 2023 (c. 55) (“the Act”).</p>
+        <blockList>
+          <listIntroduction>The provisions of the Act specified in regulation 2 come into force on 1st November 2024. Those provisions are—</listIntroduction>
+          <item>
+            <num>(ac)</num>
+            <p>section 237 (childcare: use of non-domestic premises), and Schedule 23 (use of non-domestic premises for childcare registration) as introduced by that section; and</p>
+          </item>
+          <item>
+            <num>(ad)</num>
+            <p>section 238 (childcare: number of providers).</p>
+          </item>
+        </blockList>
+        <p>The provision brought into force by these Regulations amends Part 3 of the Childcare Act 2006 (c. 21) (“the 2006 Act”) (regulation of provision of childcare in England).</p>
+        <p>Section 237(1) of the Act amends the definitions of “early years childminding” and “later years childminding” in sections 96(4) and (8) of the Childcare Act 2006 respectively (those provisions coming within Part 3 of the 2006 Act), by removing the requirement that at least half of the provision must be provided on domestic premises. Subsection (2) introduces Schedule 23 (use of non-domestic premises for childcare registration) which makes further amendments to Part 3 of the 2006 Act relating to the registration of persons providing childminding wholly on non-domestic premises.</p>
+        <p>Section 238 amends sections 96(5) and (9) of the 2006 Act, substituting the word “three” with “four”. The effect of this change is to increase the number of other childminders or assistants that childminders may work with from two to three (four people in total). It also increases, from four to five, the minimum number of people that must work together to provide “childcare on domestic premises” (provision that would be childminding, at least some or all of which is on domestic premises, but for the operation of sections 96(5) and (9) of the Childcare Act 2006).</p>
+        <p>The Schedules to these Regulations make transitional provision in relation to the provision these Regulations bring into force.</p>
+      </blockContainer>
+      <blockContainer class="commencementHistory">
+        <heading>NOTE AS TO EARLIER COMMENCEMENT REGULATIONS</heading>
+        <subheading>(This note is not part of the Regulations)</subheading>
+        <p>The following provisions of the Levelling-up and Regeneration Act 2023 have been brought into force by commencement Regulations made before the date of these Regulations.</p>
+        <tblock class="table">
+          <foreign>
+            <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="allBorders tableleft width100">
+              <tbody class="left">
+                <tr>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Provision</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Date of Commencement</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. No.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Section 78</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">31.01.2024</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. 2024/92</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                      <listIntroduction>In Schedule 19—</listIntroduction>
+                      <item>
+                        <num>(a)</num>
+                        <p>paragraph 1 (partially);</p>
+                      </item>
+                      <item>
+                        <num>(b)</num>
+                        <p>paragraph 1 (partially);</p>
+                      </item>
+                      <item>
+                        <num>(c)</num>
+                        <p>paragraphs 2 and 3 (partially)</p>
+                      </item>
+                    </blockList>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">31.01.2024</p>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">30.04.2024</p>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">31.03.2024</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. 2024/92</p>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. 2024/389</p>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. 2024/389</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Schedule 22</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">31.03.2024</p>
+                  </td>
+                  <td>
+                    <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. 2024/389</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </foreign>
+        </tblock>
+      </blockContainer>
+    </conclusions>
+  </bill>
+</akomaNtoso>

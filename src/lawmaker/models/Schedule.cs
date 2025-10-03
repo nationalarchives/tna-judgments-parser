@@ -1,8 +1,8 @@
 
 using System.Collections.Generic;
 using UK.Gov.Legislation.Judgments;
-using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments.Parse;
+using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -12,11 +12,11 @@ namespace UK.Gov.Legislation.Lawmaker
 
         IFormattedText ReferenceNote { get; }
 
-        public static bool IsValidNumber(string number)
+        public static readonly Dictionary<Lang, string> NumberPatterns = new()
         {
-            string pattern = @"^\s*SCHEDULE\s*([A-Z]*\d+[A-Z]*)?$";
-            return Regex.IsMatch(number, pattern, RegexOptions.IgnoreCase);
-        }
+            [Lang.ENG] = @"^\s*SCHEDULE\s*([A-Z]*\d+[A-Z]*)?$",
+            [Lang.CYM] = @"^\s*(YR +)?ATODLEN\s*([A-Z]*\d+[A-Z]*)?$"
+        };
 
         public static bool IsValidChild(IDivision child)
         {

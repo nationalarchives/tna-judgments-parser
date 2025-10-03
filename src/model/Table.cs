@@ -50,7 +50,7 @@ enum VerticalAlignment { Top, Middle, Bottom }
 
 interface ICell : IBordered {
 
-    IEnumerable<IBlock> Contents { get; }
+    IEnumerable<IBlock> Contents { get; set; }
 
     int? ColSpan { get; }
 
