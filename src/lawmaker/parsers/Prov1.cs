@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using DocumentFormat.OpenXml.Vml;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -14,11 +15,22 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseProv1(WLine line)
         {
-            if (!PeekProv1(line))
-                return null;
-
             int save = i;
-            i += 1;
+            ILine heading = null;
+
+            // A Prov1 element may or may not have a heading
+            // If it does, we cache and skip over the heading for now
+            if (PeekProv1(line))
+            {
+                heading = line;
+                i += 1;
+            }
+            // A heading-less Prov1 must numbered in sequence
+            else if (!PeekBareProv1(line) || !IsNextProv1InSequence(line))
+            {
+                return null;
+            }
+
             WOldNumberedParagraph np = Current() as WOldNumberedParagraph;
             HContainer next = ParseBareProv1(np, line);
             if (next is null)
@@ -27,7 +39,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
 
-            next.Heading = line;
+            if (heading is not null)
+                next.Heading = heading;
             return next;
         }
 
@@ -181,6 +194,24 @@ namespace UK.Gov.Legislation.Lawmaker
                 _ => Prov1Name.article
             };
 
+        }
+
+        /// <summary>
+        /// Returns <c>true</c> if <paramref name="line"/> is numbered sequentially after the previous Prov1 element.
+        /// </summary>
+        /// <remarks>
+        /// We enforce that Prov1 elements without headings must be numbered sequentially in order to prevent
+        /// numbered list items and other similarly formatted provisions from being mischaracterised.
+        /// </remarks>
+        private bool IsNextProv1InSequence(WLine line)
+        {
+            // If there is no existing sequence (i.e. no first num) just return true.
+            if (provisionRecords.CurrentNumber is null)
+                return true;
+
+            string firstNum = GetNumString(provisionRecords.CurrentNumber);
+            string secondNum = GetNumString(line);
+            return IsSubsequentNum(firstNum, secondNum);
         }
 
     }

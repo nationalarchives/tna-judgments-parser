@@ -305,33 +305,32 @@ namespace UK.Gov.Legislation.Lawmaker
             return [..leaf.Contents];
         }
 
-        /*
-         * Prevents the ParseAndMemoize method from recursing too deep.
-         * If we are inside a Prov1/SchProv1 or any of their descendants, and we
-         * encounter another (non-quoted) Prov1/SchProv1 or a grouping provision,
-         * then we know the current Prov1/SchProv1 must have ended, and must break.
-         */
+        /// <summary>
+        /// Peeks at the next line and breaks from the current Prov1/SchProv1 element if  
+        /// the line represents the beginning of a following sibling or grouping provision
+        /// (which indicates that the current Prov1/SchProv1 element has come to an end).
+        /// </summary>
+        /// <remarks>
+        /// This ensures that sequences of Prov1/SchProv1 elements are parsed iteratively rather than
+        /// recursively, cutting down on the maximum recursion depth and lowering the risk of stack overflow.
+        /// </remarks>
+        /// <returns>Whether to break from the current Prov1/SchProv1 element.</returns>
         private bool BreakFromProv1()
         {
             if (Current() is not WLine line)
                 return false;
 
-            // If centre-aligned, it must be a grouping provision
+            // If centre-aligned, it must be the start of a new grouping provision
             if (IsCenterAligned(line))
                 return true;
 
-            // If we reach Prov1 heading, break
+            // If we reach the heading of another Prov1, this Prov1 must be over
             if (provisionRecords.IsInProv1 && PeekProv1(line))
                 return true;
 
-            if (provisionRecords.IsInProv1 && PeekBareProv1(line))
-            {
-                string parentNum = GetNumString(provisionRecords.CurrentNumber);
-                string childNum = GetNumString(line);
-                return IsSubsequentNum(parentNum, childNum);
-            }
-
-            if (provisionRecords.IsInSchProv1 && PeekSchProv1(line))
+            // If we encounter what appears to be a headingless Prov1/SchProv1
+            // whose number is the next number in the sequence, this Prov1 must be over
+            if (isSubsequentProv1(line) || isSubsequentSchProv1(line))
             {
                 string parentNum = GetNumString(provisionRecords.CurrentNumber);
                 string childNum = GetNumString(line);
@@ -340,6 +339,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
             return false;
         }
+
+        private bool isSubsequentProv1(WLine line) => provisionRecords.IsInProv1 && PeekBareProv1(line);
+
+        private bool isSubsequentSchProv1(WLine line) => provisionRecords.IsInSchProv1 && PeekSchProv1(line);
 
         private string GetNumString(WLine line)
         {
@@ -353,11 +356,15 @@ namespace UK.Gov.Legislation.Lawmaker
             return IgnoreQuotedStructureStart(number.Text, quoteDepth);
         }
 
-        
-        private bool IsSubsequentNum(string lo, string hi)
+        /// <summary>
+        /// Returns <c>true</c> if <paramref name="lo"/> and <paramref name="hi"/> are numbered sequentially.
+        /// </summary>
+        /// <param name="lo">The first number</param>
+        /// <param name="hi">The second number</param>
+        private static bool IsSubsequentNum(string lo, string hi)
         {
-            lo = lo.Replace(".", " ");
-            hi = hi.Replace(".", " ");
+            lo = lo.Replace(".", " ").Trim();
+            hi = hi.Replace(".", " ").Trim();
 
             // Check direct increments
             // For example: 1 -> 2, 1A -> 1B, 1Z1D -> 1Z1E
@@ -390,6 +397,12 @@ namespace UK.Gov.Legislation.Lawmaker
                 loTrimmed = Regex.Replace(lo, @"Z\d+$", "");
                 if (GetNumIncrementOf(loTrimmed) == hi)
                     return true;
+                // Check for when every char after the final Z is dropped, and an 'A' or '1' is added
+                // 5ZC -> 5A, AZ3 -> A1
+                string diff = Regex.Replace(hi, @$"^{loTrimmed}", "");
+                if (hi.StartsWith(loTrimmed) && (diff == "A" || diff == "1"))
+                    return true;
+
             }
             return false;
         }
@@ -430,8 +443,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         /// <summary>Decrements an alphanumeric number string.</summary>
         /// <remarks>
-        /// Note that this is special logic used only when a child element is prepended to a list of existing children 
-        /// (i.e. inserting a new child before the first existing child numbered '1').
+        /// Note that this is special logic used only when a child element is inserted before an existing element 
+        /// with a number ending in a '1' or 'A'. For example, A1 comes before 1, and 3ZA comes before 3A.
         /// </remarks>
         /// <param name="numString">The alphanumeric number to decrement (as a string).</param>
         /// <returns>The decremented number (as a string).</returns>
@@ -444,7 +457,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return 'A' + numString;
 
             // Otherwise, a 'Z' is placed in the second last position to decrement
-            // For example: AZ1 -> A1, A1Z0 -> A10, 1ZA -> 1A
+            // For example: AZ1 -> A1, 1ZA -> 1A
             return numString.Substring(0, numString.Length - 1) + "Z" + numString.Substring(numString.Length - 1);
         }
 
