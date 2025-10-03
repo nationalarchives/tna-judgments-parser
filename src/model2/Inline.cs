@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Xml;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -218,7 +218,11 @@ internal class WText : IFormattedText {
         return formatting;
     }
 
-}
+        public override string ToString()
+        {
+            return "WText: " + this.text;
+        }
+    }
 
 class WTab : ITab {
 
@@ -377,6 +381,12 @@ internal class WRole : IRole {
 
 }
 
+internal class WSignatureName : ISignatureName {
+
+    public IEnumerable<IInline> Content { get; init; }
+
+}
+
 internal class WDocTitle : WText, IDocTitle {
 
     public WDocTitle(string text, RunProperties rProps) : base(text, rProps) { }
@@ -482,6 +492,10 @@ internal class WRef : WHyperlink1, IRef {
 
 }
 
+// This doesn't fit in with the rest of the design with Refs and is also
+// Lawmaker-specific. There is some additional work to be done to
+// make this less of a band-aid
+public class WInvalidRef : IInvalidRef { }
 internal abstract class InlineContainer : IInlineContainer {
 
     public IEnumerable<IInline> Contents { get; internal init; }

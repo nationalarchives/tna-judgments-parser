@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using System.Xml;
+using UK.Gov.Legislation.Judgments.Parse;
 using Imaging = UK.Gov.NationalArchives.Imaging;
 
 namespace UK.Gov.Legislation.Judgments {
@@ -51,11 +52,14 @@ interface IInline {
             return string.Join("", time.Contents.Select(GetText));
         if (i is IParty2 party)
             return string.Join("", party.Contents.Select(GetText));
+        if (i is IInvalidRef) {
+            return "";
+        }
         return "";
     }
 
-    static string ToString(IEnumerable<IInline> inlines) {
-        return string.Join("", inlines.Select(GetText));
+    static string ToString(IEnumerable<IInline> inlines, string separator = "") {
+        return string.Join(separator, inlines.Select(GetText));
     }
 
 }
@@ -85,7 +89,7 @@ interface IFontInfo {
 interface IFormattedText : ITextOrWhitespace {
 
     string Style { get; }
-    
+
     bool? Italic { get; }
 
     bool? Bold { get; }
@@ -160,6 +164,13 @@ interface IFootnote : IInline {
     string Marker { get; }
 
     IEnumerable<IBlock> Content { get; }
+
+}
+
+interface ISignatureName : IBlock
+{
+
+    IEnumerable<IInline> Content { get; }
 
 }
 
@@ -381,6 +392,15 @@ interface IRef : IHyperlink1 {
 
 }
 
+interface IInvalidRef : IInline {
+    public void Add(XmlElement parent) {
+        XmlElement invalidRef = parent.OwnerDocument.CreateElement("ref", parent.NamespaceURI);
+        invalidRef.SetAttribute("class", parent.NamespaceURI, "invalid");
+        invalidRef.SetAttribute("href", "#");
+        parent.AppendChild(invalidRef);
+    }
+
+}
 
 interface IPageReference : IInlineContainer { }
 

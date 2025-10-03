@@ -14,6 +14,7 @@ using UK.Gov.Legislation;
 using UK.Gov.Legislation.Judgments;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using EM = UK.Gov.Legislation.ExplanatoryMemoranda;
+using UK.Gov.Legislation.Lawmaker;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("backlog")]
@@ -30,24 +31,58 @@ class Program {
             new Option<FileInfo>("--log", description: "the log file") { ArgumentHelpName = "file" },
             new Option<bool>("--test", description: "whether to test the result"),
             new Option<FileInfo>("--attachment", description: "an associated file to include") { ArgumentHelpName = "file" },
-            new Option<string>("--hint", description: "the type of document: 'em'")
+            new Option<string>("--hint", description: "the type of document: 'em' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"),
+            new Option<string>("--subtype", description: "the subtype of document e.g. 'order'"),
+            new Option<string>("--procedure", description: "only applicable --hint is a secondary type - the subtype of document e.g. 'order'"),
         };
-        command.Handler = CommandHandler.Create<FileInfo, FileInfo, FileInfo, FileInfo, bool, FileInfo, string>(Transform);
+        command.Handler = CommandHandler.Create<
+            FileInfo,
+            FileInfo,
+            FileInfo,
+            FileInfo,
+            bool,
+            FileInfo,
+            string,
+            string,
+            string
+        >(Transform);
     }
 
     static int Main(string[] args) {
         return command.InvokeAsync(args).Result;
     }
 
-    static void Transform(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment, string hint) {
+    static void Transform(
+        FileInfo input,
+        FileInfo output,
+        FileInfo outputZip,
+        FileInfo log,
+        bool test,
+        FileInfo attachment,
+        string hint,
+        string subType,
+        string procedure
+    ) {
+        ILogger logger = null;
         if (log is not null) {
-            Logging.SetFile(log, LogLevel.Debug);
-            ILogger logger = Logging.Factory.CreateLogger<Program>();
+            Logging.SetConsoleAndFile(log, LogLevel.Debug);
+            logger = Logging.Factory.CreateLogger<Program>();
             logger.LogInformation("parsing " + input.FullName);
         }
         if ("em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
             TransformEM(input, output, outputZip, log, test, attachment);
             return;
+        }
+        DocName? docName = DocNames.GetDocName(hint);
+        if (docName != null) {
+            var xml = UK.Gov.Legislation.Lawmaker.Helper.LocalParse(input.FullName, new LegislationClassifier((DocName)docName, subType, procedure)).Xml;
+            if (output is not null)
+                File.WriteAllText(output.FullName, xml);
+            else
+                Console.WriteLine(xml);
+            return;
+        } else {
+            logger?.LogCritical("unrecognized document type: {}", hint);
         }
         byte[] docx = File.ReadAllBytes(input.FullName);
         Api.Request request;

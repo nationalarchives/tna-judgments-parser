@@ -5,7 +5,7 @@ using System.Linq;
 using System.Xml;
 
 using Microsoft.Extensions.Logging;
-
+using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Model;
 using CSS2 = UK.Gov.Legislation.Judgments.CSS;
 
@@ -16,6 +16,7 @@ abstract class Builder {
     private static ILogger logger = Logging.Factory.CreateLogger<Builder>();
 
     public static readonly string ns = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
+    public static readonly string AknNamespace = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
 
     protected abstract string UKNS { get; }
 
@@ -25,7 +26,7 @@ abstract class Builder {
         doc = new XmlDocument();
     }
 
-    private XmlElement CreateElement(string name) {
+    protected XmlElement CreateElement(string name) {
         return doc.CreateElement(name, ns);
     }
     protected XmlElement CreateAndAppend(string name, XmlNode parent) {
@@ -173,7 +174,7 @@ abstract class Builder {
             AddIntro(level, branch);
             AddDivisions(level, branch.Children);
             AddWrapUp(level, branch);
-        } else if (div is ILeaf leaf) {
+        } else if (div is ILeaf leaf && leaf.Contents?.Count() > 0) {
             XmlElement content = doc.CreateElement("content", ns);
             level.AppendChild(content);
             blocks(content, leaf.Contents);
@@ -182,13 +183,13 @@ abstract class Builder {
         }
     }
 
-    private void AddIntro(XmlElement level, IBranch branch) {
+    protected void AddIntro(XmlElement level, IBranch branch) {
         if (branch.Intro is null || !branch.Intro.Any())
             return;
         XmlElement intro = CreateAndAppend("intro", level);
         blocks(intro, branch.Intro);
     }
-    private void AddWrapUp(XmlElement level, IBranch branch) {
+    protected void AddWrapUp(XmlElement level, IBranch branch) {
         if (branch.WrapUp is null || !branch.WrapUp.Any())
             return;
         XmlElement wrapUp = CreateAndAppend("wrapUp", level);
@@ -225,33 +226,37 @@ abstract class Builder {
 
     protected void blocks(XmlElement parent, IEnumerable<IBlock> blocks) {
         foreach (IBlock block in blocks) {
-            if (block is IOldNumberedParagraph np) {
-                XmlElement container = doc.CreateElement("blockContainer", ns);
-                parent.AppendChild(container);
-                if (np.Number is not null)
-                    AddAndWrapText(container, "num", np.Number);
-                this.p(container, np);
-            } else if (block is IRestriction restrict) {
-                AddNamedBlock(parent, restrict, "restriction");
-            } else if (block is ILine line) {
-                this.p(parent, line);
-            } else if (block is ITable table) {
-                AddTable(parent, table);
-            } else if (block is ITableOfContents2 toc) {
-                AddTableOfContents(parent, toc);
-            } else if (block is IQuotedStructure qs) {
-                AddQuotedStructure(parent, qs);
-            } else if (block is IDivWrapper wrapper) {
-                AddDivision(parent, wrapper.Division);
-            } else {
-                throw new Exception(block.GetType().ToString());
-            }
+            Block(parent, block);
+        }
+    }
+
+    protected virtual void Block(XmlElement parent, IBlock block) {
+        if (block is IOldNumberedParagraph np) {
+            XmlElement container = doc.CreateElement("blockContainer", ns);
+            parent.AppendChild(container);
+            if (np.Number is not null)
+                AddAndWrapText(container, "num", np.Number);
+            this.p(container, np);
+        } else if (block is IRestriction restrict) {
+            AddNamedBlock(parent, restrict, "restriction");
+        } else if (block is ILine line) {
+            this.p(parent, line);
+        } else if (block is ITable table) {
+            AddTable(parent, table);
+        } else if (block is ITableOfContents2 toc) {
+            AddTableOfContents(parent, toc);
+        } else if (block is IQuotedStructure qs) {
+            AddQuotedStructure(parent, qs);
+        } else if (block is IDivWrapper wrapper) {
+            AddDivision(parent, wrapper.Division);
+        } else {
+            throw new Exception(block.GetType().ToString());
         }
     }
 
     /* quoted structures */
 
-    private void AddQuotedStructure(XmlElement blockContext, IQuotedStructure qs) {
+    protected virtual void AddQuotedStructure(XmlElement blockContext, IQuotedStructure qs) {
         XmlElement block = CreateAndAppend("block", blockContext);
         block.SetAttribute("name", "embeddedStructure");
         XmlElement embeddedStructure = CreateAndAppend("embeddedStructure", block);
@@ -260,17 +265,17 @@ abstract class Builder {
 
     /* tables */
 
-    private int getColspan(XmlElement td) {
+    protected static int getColspan(XmlElement td) {
         string attr = td.GetAttribute("colspan");
         return string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
     }
-    private void incrementRowspan(XmlElement td) {
+    protected static void incrementRowspan(XmlElement td) {
         string attr = td.GetAttribute("rowspan");
         int rowspan = string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
         rowspan += 1;
         td.SetAttribute("rowspan", rowspan.ToString());
     }
-    private static void DecrementRowspans(List<XmlElement> row) {
+    protected static void DecrementRowspans(List<XmlElement> row) {
         foreach (XmlElement td in row) {
             string attr = td.GetAttribute("rowspan");
             int rowspan = string.IsNullOrEmpty(attr) ? 1 : int.Parse(attr);
@@ -282,7 +287,7 @@ abstract class Builder {
         }
     }
 
-    private void AddTable(XmlElement parent, ITable model) {
+    protected virtual void AddTable(XmlElement parent, ITable model) {
         XmlElement table = doc.CreateElement("table", ns);
         if (model.Style is not null)
             table.SetAttribute("class", model.Style);
@@ -348,7 +353,7 @@ abstract class Builder {
 
     private string ContainingParagraphStyle;
 
-    private XmlElement Block(XmlElement parent, ILine line, string name) {
+    protected XmlElement Block(XmlElement parent, ILine line, string name) {
         XmlElement block = doc.CreateElement(name, ns);
         parent.AppendChild(block);
         if (line.Style is not null)
@@ -375,7 +380,7 @@ abstract class Builder {
             AddInline(block, inline);
         ContainingParagraphStyle = null;
     }
-    protected void p(XmlElement parent, ILine line) {
+    virtual protected void p(XmlElement parent, ILine line) {
         if (line is IRestriction restriction)
             AddNamedBlock(parent, line, "restriction");
         else
@@ -409,76 +414,82 @@ abstract class Builder {
     }
 
     protected virtual void AddInline(XmlElement parent, IInline model) {
-        if (model is IDocType1 docType1) {
-            AddAndWrapText(parent, "docType", docType1);
-        } else if (model is IDocType2 docType) {
-            XmlElement courtType = CreateAndAppend("docType", parent);
-            foreach (IInline inline in docType.Contents)
-                AddInline(courtType, inline);
-        } else if (model is INeutralCitation cite)
-            AddAndWrapText(parent, "neutralCitation", cite);
-        else if (model is INeutralCitation2 cite2) {
-            XmlElement ncn2 = CreateAndAppend("neutralCitation", parent);
-            foreach (IInline inline in cite2.Contents)
-                AddInline(ncn2, inline);
-        } else if (model is ICourtType1 courtType1)
-            AddCourtType1(parent, courtType1);
-        else if (model is ICourtType2 courtType2)
-            AddCourtType2(parent, courtType2);
-        else if (model is ICaseNo caseNo)
-            AddAndWrapText(parent, "docketNumber", caseNo);
-        else if (model is IParty1 party)
-            AddParty(parent, party);
-        else if (model is IParty2 party2)
-            AddParty2(parent, party2);
-        else if (model is IRole role)
-            AddRole(parent, role);
-        else if (model is IDocTitle docTitle)
-            AddDocTitle(parent, docTitle);
-        else if (model is IDocTitle2 docTitle2)
-            AddDocTitle(parent, docTitle2);
-        else if (model is IJudge judge)
-            AddJudge(parent, judge);
-        else if (model is ILawyer lawyer)
-            AddLawyer(parent, lawyer);
-        else if (model is IDocJurisdiction juris)
-            AddDocJurisdiction(parent, juris);
-        else if (model is ILocation loc)
-            AddLocation(parent, loc);
-        else if (model is IHyperlink1 link)
-            AddHperlink(parent, link);
-        else if (model is IHyperlink2 link2)
-            AddHperlink(parent, link2);
-        else if (model is IInternalLink iLink)
-            AddInternalLink(parent, iLink);
-        else if (model is IFormattedText fText)
-            AddOrWrapText(parent, fText);
-        else if (model is IDocDate docDate)
-            AddDocDate(parent, docDate);
-        else if (model is IDate date)
-            AddDate(parent, date);
-        else if (model is IDateTime time)
-            AddTime(parent, time);
-        else if (model is IFootnote footnote)
-            AddFootnote(parent, footnote);
-        else if (model is IImageRef imageRef)
-            AddImageRef(parent, imageRef);
-        else if (model is IExternalImage eImg)
-            AddExternalImage(parent, eImg);
-        else if (model is IMath math)
-            AddMath(parent, math);
-        else if (model is IPageReference page)
-            AddInlineContainer(parent, page, "page");
-        else if (model is ILineBreak)
-            AddLineBreak(parent);
-        else if (model is ITab)
-            AddTab(parent);
+            if (model is IDocType1 docType1) {
+                AddAndWrapText(parent, "docType", docType1);
+            } else if (model is IDocType2 docType) {
+                XmlElement courtType = CreateAndAppend("docType", parent);
+                foreach (IInline inline in docType.Contents)
+                    AddInline(courtType, inline);
+            } else if (model is INeutralCitation cite)
+                AddAndWrapText(parent, "neutralCitation", cite);
+            else if (model is INeutralCitation2 cite2) {
+                XmlElement ncn2 = CreateAndAppend("neutralCitation", parent);
+                foreach (IInline inline in cite2.Contents)
+                    AddInline(ncn2, inline);
+            } else if (model is ICourtType1 courtType1)
+                AddCourtType1(parent, courtType1);
+            else if (model is ICourtType2 courtType2)
+                AddCourtType2(parent, courtType2);
+            else if (model is ICaseNo caseNo)
+                AddAndWrapText(parent, "docketNumber", caseNo);
+            else if (model is IParty1 party)
+                AddParty(parent, party);
+            else if (model is IParty2 party2)
+                AddParty2(parent, party2);
+            else if (model is IRole role)
+                AddRole(parent, role);
+            else if (model is IDocTitle docTitle)
+                AddDocTitle(parent, docTitle);
+            else if (model is IDocTitle2 docTitle2)
+                AddDocTitle(parent, docTitle2);
+            else if (model is IJudge judge)
+                AddJudge(parent, judge);
+            else if (model is ILawyer lawyer)
+                AddLawyer(parent, lawyer);
+            else if (model is IDocJurisdiction juris)
+                AddDocJurisdiction(parent, juris);
+            else if (model is ILocation loc)
+                AddLocation(parent, loc);
+            else if (model is IHyperlink1 link)
+                AddHperlink(parent, link);
+            else if (model is IHyperlink2 link2)
+                AddHperlink(parent, link2);
+            else if (model is IInternalLink iLink)
+                AddInternalLink(parent, iLink);
+            else if (model is IFormattedText fText)
+                AddOrWrapText(parent, fText);
+            else if (model is IDocDate docDate)
+                AddDocDate(parent, docDate);
+            else if (model is IDate date)
+                AddDate(parent, date);
+            else if (model is IDateTime time)
+                AddTime(parent, time);
+            else if (model is IFootnote footnote)
+                AddFootnote(parent, footnote);
+            else if (model is IImageRef imageRef)
+                AddImageRef(parent, imageRef);
+            else if (model is IExternalImage eImg)
+                AddExternalImage(parent, eImg);
+            else if (model is IMath math)
+                AddMath(parent, math);
+            else if (model is IPageReference page)
+                AddInlineContainer(parent, page, "page");
+            else if (model is ILineBreak)
+                AddLineBreak(parent);
+            else if (model is ISignatureName signatureName)
+                AddSignatureName(parent, signatureName);
+            else if (model is ITab)
+                AddTab(parent);
         else if (model is IBookmark) { ; }
-        else
-            throw new Exception(model.GetType().ToString());
+        else if (model is IInvalidRef reference) {
+                reference.Add(parent);
+            }
+
+            else
+                throw new Exception(model.GetType().ToString());
     }
 
-    private XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model) {
+    protected XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model) {
         XmlElement e = CreateAndAppend(name, parent);
         TextAndFormatting(e, model);
         return e;
@@ -700,7 +711,7 @@ abstract class Builder {
         foreach (IFormattedText span in text)
             AddOrWrapText(parent, span);
     }
-    private void AddOrWrapText(XmlElement parent, IFormattedText fText) {
+    protected void AddOrWrapText(XmlElement parent, IFormattedText fText) {
         if (fText.Style is not null) {
             AddAndWrapText(parent, "span", fText);
             return;
@@ -721,12 +732,20 @@ abstract class Builder {
         TextWithoutFormatting(parent, fText);
     }
 
-    private void AddFootnote(XmlElement parent, IFootnote fn) {
+    protected virtual void AddFootnote(XmlElement parent, IFootnote fn) {
         XmlElement authorialNote = doc.CreateElement("authorialNote", ns);
         parent.AppendChild(authorialNote);
         authorialNote.SetAttribute("class", "footnote");
         authorialNote.SetAttribute("marker", fn.Marker);
         blocks(authorialNote, fn.Content);
+    }
+
+    private void AddSignatureName(XmlElement parent, ISignatureName sn)
+    {
+        XmlElement block = doc.CreateElement("block", ns);
+        parent.AppendChild(block);
+        block.SetAttribute("name", ns, "signature");
+        AddInlines(block, sn.Content);
     }
 
     private void AddImageRef(XmlElement parent, IImageRef model) {

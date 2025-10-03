@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/1481/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2023/1481/data.xml" />
-          <FRBRdate date="2024-08-13T18:31:15" name="transform" />
+          <FRBRdate date="2025-08-20T17:13:41" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -70,7 +70,7 @@
         <uk:year>2023</uk:year>
         <uk:number>1481</uk:number>
         <uk:cite>[2023] EWHC 1481 (Comm)</uk:cite>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>0.28.0</uk:parser>
         <uk:hash>d828cb59472c0506412c9c3fc197144d3f387e773c3b71738f83c42e6e49b8b8</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -4849,11 +4849,12 @@
                     <p style="text-align:justify;margin-left:1in;margin-right:0.5in;text-indent:0.5in">Subject to paragraph 7A below, COVID-19 was “manifested” within QBE1 and RSA1, within a radius of 25 miles of the premises, wherever a person displayed symptoms of, or was diagnosed with, COVID-19 and was/were within a 25 mile radius of the premises.</p>
                   </content>
                 </paragraph>
-                <level>
+                <paragraph>
+                  <num>7A.</num>
                   <content>
-                    <p style="text-align:justify;margin-left:1in;margin-right:0.5in">7A. There was no “occurrence” or “manifestation” of COVID-19, and COVID-19 was not “sustained”, within a given radius of the premises for the purposes of Argenta1, Hiscox4 (hybrid), MSAmlin1-2 (disease clauses), QBE1-3 and RSA1 and 3 merely by reason of the fact that a person travelled through that geographical area and had no contact with anyone living in the area.”</p>
+                    <p style="text-align:justify;margin-left:1in;margin-right:0.5in;text-indent:0.5in">There was no “occurrence” or “manifestation” of COVID-19, and COVID-19 was not “sustained”, within a given radius of the premises for the purposes of Argenta1, Hiscox4 (hybrid), MSAmlin1-2 (disease clauses), QBE1-3 and RSA1 and 3 merely by reason of the fact that a person travelled through that geographical area and had no contact with anyone living in the area.”</p>
                   </content>
-                </level>
+                </paragraph>
               </embeddedStructure>
             </block>
           </content>
@@ -5361,9 +5362,12 @@
             </content>
           </subparagraph>
         </paragraph>
-        <level eId="lvl_58">
-          <heading style="text-align:justify;margin-left:0.5in;text-indent:-0.5in">12A.    Subject to the above, on the proper construction of the Disease Extension within the policy as whole, </heading>
-          <paragraph>
+        <paragraph eId="lvl_58">
+          <num>12A.</num>
+          <intro>
+            <p style="text-align:justify;margin-left:0.5in">Subject to the above, on the proper construction of the Disease Extension within the policy as whole, </p>
+          </intro>
+          <subparagraph>
             <num style="margin-left:0.75in;text-indent:-0.25in">(a)</num>
             <intro>
               <p style="text-align:justify;margin-left:0.75in;text-indent:0.12in">Is the First Claimant, whose policy was for the period of 12 months from 31 January 2020, entitled to recover its claimed losses </p>
@@ -5390,8 +5394,8 @@
                 <p style="text-align:justify;margin-left:0.75in">And </p>
               </content>
             </subparagraph>
-          </paragraph>
-          <paragraph>
+          </subparagraph>
+          <subparagraph>
             <num style="margin-left:0.75in;text-indent:-0.25in">(b)</num>
             <intro>
               <p style="text-align:justify;margin-left:0.75in;text-indent:0.12in">As regards the Second and Third Claimants, whose policies expired on 6 August 2020, </p>
@@ -5413,13 +5417,13 @@
                 <p style="text-align:justify;margin-left:1in;text-indent:0.25in">is there no cover for losses resulting from occurrences of a Notifiable Disease and/or restrictions imposed or continuing after the end of the policy period, as the Defendants submit? </p>
               </content>
             </subparagraph>
-          </paragraph>
-          <paragraph>
+          </subparagraph>
+          <subparagraph>
             <content>
               <p style="text-align:justify;margin-left:0.5in"><span style="font-weight:bold">Not applicable.</span><authorialNote class="footnote" marker="5"><p class="FootnoteText"> Mr Gruder said (Day 7/page 98), following earlier discussion, that the parties had agreed that issue 3 could be left to a later date.</p></authorialNote></p>
             </content>
-          </paragraph>
-        </level>
+          </subparagraph>
+        </paragraph>
         <level eId="lvl_59">
           <content>
             <p><span style="font-style:italic;font-weight:bold">Mayfair </span></p>
