@@ -255,7 +255,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         protected override XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model)
-
+        
         {
             // remove leading and trailing whitespace from name.
             return base.AddAndWrapText(parent, name.Trim(), model);
@@ -275,10 +275,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 parent.AppendChild(p);
             }
             else
-            {
                 base.p(parent, TrimLine(line));
-
-            }
         }
 
         /// <summary>
@@ -309,13 +306,18 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IInline> trimmedInlines = [];
 
+            // Remove starting and ending inlines which are entirely white space
+            IEnumerable<IInline> newContents = line.Contents
+                .SkipWhile(IInline.IsEmpty).Reverse()
+                .SkipWhile(IInline.IsEmpty).Reverse();
+
             // Trim start of first inline
-            IInline first = line.Contents.First();
+            IInline first = newContents.First();
             if (first is WText text)
             {
                 // regex selects any leading whitespace and removes it
                 string fixedText = Regex.Replace(text.Text, @"^\s*", "");
-                if (line.Contents.Count() == 1)
+                if (newContents.Count() == 1)
                 {
                     // if there is only one WLine also removes trailing whitespace
                     fixedText = Regex.Replace(fixedText, @"\s*$", "");
@@ -327,13 +329,13 @@ namespace UK.Gov.Legislation.Lawmaker
                 trimmedInlines.Add(first);
 
             // Add middle inlines
-            if (line.Contents.Count() >= 3)
-                trimmedInlines.AddRange(line.Contents.Skip(1).SkipLast(1));
+            if (newContents.Count() >= 3)
+                trimmedInlines.AddRange(newContents.Skip(1).SkipLast(1));
 
             // Trim end of last inline
-            if (line.Contents.Count() >= 2)
+            if (newContents.Count() >= 2)
             {
-                IInline last = line.Contents.Last();
+                IInline last = newContents.Last();
                 if (last is WText text2)
                 {
                     // regex selects any trailing whitespace and removes it

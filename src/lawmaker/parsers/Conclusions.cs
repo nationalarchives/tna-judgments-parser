@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private readonly List<BlockContainer> conclusions = [];
 
         private void ParseConclusions()
-        {
+        {                    
             ExplanatoryNote? explanatoryNote = ParseExplanatoryNote();
             if (explanatoryNote is not null)
                 conclusions.Add(explanatoryNote);
@@ -33,7 +33,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!ExplanatoryNote.IsHeading(langService, Current()))
                 return null;
             WLine heading = (Current() as WLine)!;
-
+            
             int save = i;
             i += 1;
 
@@ -43,7 +43,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 subheading = Current() as WLine;
                 i += 1;
             }
-
+            
             List<IBlock> content = [];
             while (i < Document.Body.Count)
             {
@@ -105,7 +105,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save;
                 return null;
             }
-            IEnumerable<IBlock> structuredContent = BlockList.ParseBlocks(content);
+            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(content);
             return new HeadingTblock { Heading = heading, Content = structuredContent };
         }
 
