@@ -62,6 +62,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
 
             var save1 = i;
+            frames.PushScheduleContext();
 
             HContainer schedule;
             IDivision next = ParseNextBodyDivision();
@@ -80,6 +81,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 schedule = new ScheduleBranch { Number = number, Heading = headingLine, ReferenceNote = referenceNote, Children = children };
             }
+
+            frames.Pop();
 
             if (frames.IsScheduleContext() || quoteDepth > 0)
                 return schedule;
@@ -106,7 +109,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
         internal List<IDivision> ParseScheduleChildren()
         {
-            frames.PushScheduleContext();
             List<IDivision> children = [];
             while (i < Document.Body.Count)
             {
@@ -126,7 +128,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (IsEndOfQuotedStructure(next))
                     break;
             }
-            frames.Pop();
             return children;
         }
 
