@@ -102,7 +102,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i > Body.Count - 3)
                 return false;
             string numText = GetNumber(line, true);
-            if (!langService.IsMatch(numText, Schedule.NumberPatterns))
+            if (!LanguageService.IsMatch(numText, Schedule.NumberPatterns))
                 return false;
             return true;
         }

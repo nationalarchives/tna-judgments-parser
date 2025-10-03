@@ -73,7 +73,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i > Body.Count - 3)
                 return false;
             string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
-            if (!langService.IsMatch(numText, GroupOfParts.NumberPatterns))
+            if (!LanguageService.IsMatch(numText, GroupOfParts.NumberPatterns))
                 return false;
             return true;
         }

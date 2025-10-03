@@ -169,7 +169,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (!IsCenterAligned(line))
                 return false;
-            if (!langService.IsMatch(line.NormalizedContent, ContentsHeadingPatterns))
+            if (!LanguageService.IsMatch(line.NormalizedContent, ContentsHeadingPatterns))
                 return false;
 
             // Skip contents

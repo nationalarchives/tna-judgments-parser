@@ -30,7 +30,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
 
             // Handle heading and subheading
-            if (!ExplanatoryNote.IsHeading(langService, Current()))
+            if (!ExplanatoryNote.IsHeading(LanguageService, Current()))
                 return null;
             WLine heading = (Current() as WLine)!;
 
@@ -53,7 +53,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 // If we hit the the start of the Commencement History table,
                 // then the Explanatory Note must have ended.
-                if (CommencementHistory.IsHeading(langService, currentBlock))
+                if (CommencementHistory.IsHeading(LanguageService, currentBlock))
                     break;
 
                 if (currentBlock is WLine line && IsCenterAligned(line))
@@ -72,7 +72,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save;
                 return null;
             }
-            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(content);
+            BlockParser parser = new(content) { LanguageService = LanguageService };
+            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(parser);
             return new ExplanatoryNote { Heading = heading, Subheading = subheading, Content = structuredContent };
         }
 
@@ -94,7 +95,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 // If we hit the the start of the Commencement History table,
                 // then the Explanatory Note must have ended.
-                if (CommencementHistory.IsHeading(langService, currentBlock))
+                if (CommencementHistory.IsHeading(LanguageService, currentBlock))
                     break;
 
                 // If we hit another Tblock heading, this Tblock must end.
@@ -109,7 +110,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save;
                 return null;
             }
-            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(content);
+            BlockParser parser = new(content) { LanguageService = LanguageService };
+            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(parser);
             return new HeadingTblock { Heading = heading, Content = structuredContent };
         }
 
@@ -119,7 +121,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
 
             // Handle heading and subheading
-            if (!CommencementHistory.IsHeading(langService, Current()))
+            if (!CommencementHistory.IsHeading(LanguageService, Current()))
                 return null;
             WLine heading = (Current() as WLine)!;
 

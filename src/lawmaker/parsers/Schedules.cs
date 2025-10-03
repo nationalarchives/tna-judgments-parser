@@ -37,7 +37,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (i > Body.Count - 3)
                 return false;
             string heading = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
-            if (!langService.IsMatch(heading, Schedules.HeadingPatterns))
+            if (!LanguageService.IsMatch(heading, Schedules.HeadingPatterns))
                 return false;
 
             // Schedules container must be followed by Schedule
@@ -56,7 +56,7 @@ namespace UK.Gov.Legislation.Lawmaker
             while (i < Body.Count)
             {
                 // If we hit the conclusions, the schedules have finished
-                if (ExplanatoryNote.IsHeading(langService, Current()))
+                if (ExplanatoryNote.IsHeading(LanguageService, Current()))
                     break;
 
                 HContainer peek = PeekGroupingProvision();

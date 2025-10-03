@@ -18,7 +18,7 @@ namespace UK.Gov.Legislation.Lawmaker;
             {
                 IDivision div = ParseNextBodyDivision();
                 // We have encountered the conclusion so exit the while loop early
-                if (div is UnknownLevel unknownLvl && ExplanatoryNote.IsHeading(langService, unknownLvl.Contents[0]))
+                if (div is UnknownLevel unknownLvl && ExplanatoryNote.IsHeading(LanguageService, unknownLvl.Contents[0]))
                 {
                     i -= 1;
                     break;

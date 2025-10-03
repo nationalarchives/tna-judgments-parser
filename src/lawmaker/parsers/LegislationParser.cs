@@ -32,29 +32,34 @@ public partial class LegislationParser
     {
         WordprocessingDocument doc = AkN.Parser.Read(docx);
         CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
-        return new LegislationParser(simple, classifier, languageService).Parse();
+        return new LegislationParser(simple, classifier, languageService) { LanguageService = languageService }.Parse();
     }
 
-    private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier, LanguageService languageService)
+    private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier, LanguageService languageService) : this(
+            doc.Body.Select(b => b.Block).ToList(),
+            DOCX.CSS.Extract(doc.Docx.MainDocumentPart, "#bill"),
+            classifier,
+            languageService
+        )
+    { }
+
+    private LegislationParser(IEnumerable<IBlock> contents, DocumentStyle? style, LegislationClassifier classifier, LanguageService languageService) : base(contents)
     {
         // We can safely discard the `BlockWithBreak` added boolean here, we don't need it
-        Body = doc.Body.Select(b => b.Block).ToList();
-        Styles = DOCX.CSS.Extract(doc.Docx.MainDocumentPart, "#bill");
+        Styles = style;
         docName = classifier.DocName;
         frames = new Frames(classifier.DocName, classifier.GetContext());
-        langService = languageService;
         provisionRecords = new ProvisionRecords();
+        LanguageService = languageService;
     }
 
     private readonly ILogger Logger = Logging.Factory.CreateLogger<LegislationParser>();
     private ProvisionRecords provisionRecords;
-    public LanguageService langService;
     private readonly Frames frames;
     // private readonly CaseLaw.WordDocument Document;
-    private List<IBlock> Body { get; init; }
     private Dictionary<string, Dictionary<string, string>>? Styles { get;  init; }
 
-    private int i = 0;
+    // private int i = 0;
 
     int parseDepth = 0;
     int parseDepthMax = 0;
@@ -76,7 +81,7 @@ public partial class LegislationParser
         // Handle start and end quotes after parsing is complete, because it alters the
         // contents of parsed results which does not work well with memoization
         ExtractAllQuotesAndAppendTexts(body);
-        QuotationEnricher quotationEnricher = new(langService, $"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
+        QuotationEnricher quotationEnricher = new(LanguageService, $"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
         quotationEnricher.EnrichDivisions(body);
 
         FootnoteEnricher footnoteEnricher = new FootnoteEnricher();
