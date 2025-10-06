@@ -35,7 +35,7 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];
 
-            provisionRecords.Push(typeof(SchProv1), num);
+            provisionRecords.Push(typeof(SchProv1), num, quoteDepth);
 
             WOldNumberedParagraph firstProv2Line = FixFirstProv2(np);
             bool hasProv2Child = (firstProv2Line != null);

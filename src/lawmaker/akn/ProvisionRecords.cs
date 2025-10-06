@@ -11,33 +11,42 @@ namespace UK.Gov.Legislation.Lawmaker
     {
         private Stack<ProvisionRecord> provisionRecords;
 
-        public Type? Current => provisionRecords.Count > 0 ? provisionRecords.Peek().Type : null;
+        public bool IsInProv1(int quoteDepth) => CurrentType(quoteDepth) == typeof(Prov1);
 
-        public bool IsInProv1 => Current == typeof(Prov1);
+        public bool IsInSchProv1(int quoteDepth) => CurrentType(quoteDepth) == typeof(SchProv1);
 
-        public bool IsInSchProv1 => Current == typeof(SchProv1);
+        public Type? CurrentType(int quoteDepth) => Peek(quoteDepth)?.Type;
 
-        public IFormattedText? CurrentNumber => provisionRecords.Count > 0 ? provisionRecords.Peek().Number : null;
+        public IFormattedText? CurrentNumber(int quoteDepth) => Peek(quoteDepth)?.Number;
 
         public ProvisionRecords()
         {
             provisionRecords = new Stack<ProvisionRecord>();
         }
 
-        public void Push(Type type, IFormattedText number)
+        public void Push(Type type, IFormattedText number, int quoteDepth)
         {
-            provisionRecords.Push(new ProvisionRecord(type, number));
+            provisionRecords.Push(new ProvisionRecord(type, number, quoteDepth));
         }
 
-        public bool Pop()
+        public ProvisionRecord? Pop()
         {
             if (provisionRecords.Count == 0)
-                return false;
-            provisionRecords.Pop();
-            return true;
+                return null;
+            return provisionRecords.Pop();
         }
 
-        private record ProvisionRecord(Type Type, IFormattedText Number);
+        public ProvisionRecord? Peek(int quoteDepth)
+        {
+            if (provisionRecords.Count == 0)
+                return null;
+            ProvisionRecord provision = provisionRecords.Peek();
+            if (provision.QuoteDepth != quoteDepth)
+                return null;
+            return provision;
+        }
+
+        public record ProvisionRecord(Type Type, IFormattedText Number, int QuoteDepth);
 
     }
 

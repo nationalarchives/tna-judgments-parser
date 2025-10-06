@@ -325,14 +325,14 @@ namespace UK.Gov.Legislation.Lawmaker
                 return true;
 
             // If we reach the heading of another Prov1, this Prov1 must be over
-            if (provisionRecords.IsInProv1 && PeekProv1(line))
+            if (provisionRecords.IsInProv1(quoteDepth) && PeekProv1(line))
                 return true;
 
             // If we encounter what appears to be a headingless Prov1/SchProv1
             // whose number is the next number in the sequence, this Prov1 must be over
             if (isSubsequentProv1(line) || isSubsequentSchProv1(line))
             {
-                string parentNum = GetNumString(provisionRecords.CurrentNumber);
+                string parentNum = GetNumString(provisionRecords.CurrentNumber(quoteDepth));
                 string childNum = GetNumString(line);
                 return IsSubsequentNum(parentNum, childNum);
             }
@@ -340,9 +340,9 @@ namespace UK.Gov.Legislation.Lawmaker
             return false;
         }
 
-        private bool isSubsequentProv1(WLine line) => provisionRecords.IsInProv1 && PeekBareProv1(line);
+        private bool isSubsequentProv1(WLine line) => provisionRecords.IsInProv1(quoteDepth) && PeekBareProv1(line);
 
-        private bool isSubsequentSchProv1(WLine line) => provisionRecords.IsInSchProv1 && PeekSchProv1(line);
+        private bool isSubsequentSchProv1(WLine line) => provisionRecords.IsInSchProv1(quoteDepth) && PeekSchProv1(line);
 
         private string GetNumString(WLine line)
         {
@@ -381,7 +381,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (hi.Length > lo.Length)
             {
                 string diff = Regex.Replace(hi, @$"^{lo}", "");
-                if (Regex.IsMatch(diff, @"Z*A"))
+                if (Regex.IsMatch(diff, @"^Z*A$"))
                     return true;
             }
 

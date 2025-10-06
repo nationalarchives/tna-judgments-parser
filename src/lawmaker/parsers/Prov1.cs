@@ -85,7 +85,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             Prov1Name tagName = GetProv1Name();
 
-            provisionRecords.Push(typeof(Prov1), num);
+            provisionRecords.Push(typeof(Prov1), num, quoteDepth);
 
             WOldNumberedParagraph firstProv2Line = FixFirstProv2(np);
             bool hasProv2Child = (firstProv2Line != null);
@@ -206,10 +206,11 @@ namespace UK.Gov.Legislation.Lawmaker
         private bool IsNextProv1InSequence(WLine line)
         {
             // If there is no existing sequence (i.e. no first num) just return true.
-            if (provisionRecords.CurrentNumber is null)
+            IFormattedText currentNumber = provisionRecords.CurrentNumber(quoteDepth);
+            if (currentNumber is null)
                 return true;
 
-            string firstNum = GetNumString(provisionRecords.CurrentNumber);
+            string firstNum = GetNumString(currentNumber);
             string secondNum = GetNumString(line);
             return IsSubsequentNum(firstNum, secondNum);
         }
