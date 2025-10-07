@@ -141,8 +141,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (Match(LdappTableBlock.Parse) is LdappTableBlock tableBlock)
                     blocks.Add(tableBlock);
                 else
+                {
                     blocks.Add(block);
-                i += 1;
+                    i += 1;
+                }
             }
 
             return new CommencementHistory { Heading = heading, Subheading = subheading, Content = blocks };
