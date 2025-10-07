@@ -142,7 +142,8 @@ class MetadataBuilder {
         XmlElement author = CreateAndAppend("FRBRauthor", manifestation);
         author.SetAttribute("href", "#tna");
         XmlElement format = CreateAndAppend("FRBRformat", manifestation);
-        format.SetAttribute("value", "application/xml");
+        string formatValue = metadata.ManifestationURI.EndsWith("/data.akn") ? "application/akn+xml" : "application/xml";
+        format.SetAttribute("value", formatValue);
     }
 
     private static void References(XmlElement meta, IAknMetadata metadata) {

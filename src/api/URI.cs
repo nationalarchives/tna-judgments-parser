@@ -16,6 +16,8 @@ public class URI {
             uri = uri.Substring(3);
         if (uri.EndsWith("/data.xml"))
             uri = uri.Substring(0, uri.Length - 9);
+        if (uri.EndsWith("/data.akn"))
+            uri = uri.Substring(0, uri.Length - 9);
         if (string.IsNullOrWhiteSpace(uri))
             return null;
         return uri;

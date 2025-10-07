@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="nidsr">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Department of Agriculture, Environment and Rural Affairs, in exercise of the powers conferred by section 48 of, and paragraph 7 of Schedule 6 to the Agriculture Act 2020<authorialNote marker="1" class="footnote"><p>2020 c. 21</p></authorialNote>, makes the following Regulations:</p>
+      </formula>
+    </preamble>
+    <body>
+      <article eId="sec_1" class="prov1">
+        <heading>Citation and commencement</heading>
+        <num>1.</num>
+        <content>
+          <p> These Regulations may be cited as The Farming with Nature Regulations (Northern Ireland) 2025 and shall come into operation on the day after the day on which it is affirmed by resolution of the Assembly.</p>
+        </content>
+      </article>
+      <article eId="sec_2" class="prov1">
+        <heading>Interpretation</heading>
+        <num>2.</num>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <intro>
+            <p>In these Regulations—</p>
+          </intro>
+          <hcontainer name="definition" class="definition">
+            <content>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">the Rural Development Regulation</def> means Regulation (EU) No. 1305/2013 of the European Parliament and of the Council on support for rural development by the European Agricultural Fund for Rural Development<authorialNote marker="2" class="footnote"><p>EUR 1305/2013</p></authorialNote>.</p>
+            </content>
+          </hcontainer>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(2)</num>
+          <content>
+            <p>The Interpretation Act (Northern Ireland) 1954<authorialNote marker="3" class="footnote"><p>1954 c. 33</p></authorialNote> shall apply to these Regulations as it applies to an Act of the Assembly.</p>
+          </content>
+        </paragraph>
+      </article>
+      <article eId="sec_3" class="prov1">
+        <heading>Amendment of the Rural Development Regulation </heading>
+        <num>3.</num>
+        <content>
+          <p> The Rural Development Regulation is amended in accordance with regulations 4 and 5.</p>
+        </content>
+      </article>
+      <hcontainer name="signatures">
+        <hcontainer name="signatureBlock">
+          <content>
+            <p>Sealed with the Official Seal of the Department of Agriculture, Environment and Rural Affairs on XXXX 2025.</p>
+            <p>Senior Officer</p>
+            <p>A senior officer of the Department of Agriculture, Environment and Rural Affairs</p>
+          </content>
+        </hcontainer>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>

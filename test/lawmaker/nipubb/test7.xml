@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="nipubb">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="Climate Change (No. 2) Bill" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage>
+      <p><shortTitle>Climate Change (No. 2) Bill</shortTitle></p>
+      <p>[AS INTRODUCED]</p>
+      <p>CONTENTS</p>
+      <p>The First Group of Parts</p>
+      <p>The First Group Of Parts Heading</p>
+      <p>Part 1</p>
+      <p>Emissions Targets</p>
+      <p>The emissions targets</p>
+      <blockContainer>
+        <num>1.</num>
+        <p>The emissions target for 2050</p>
+      </blockContainer>
+      <blockContainer>
+        <num>2.</num>
+        <p>The emissions target for 2040</p>
+      </blockContainer>
+      <blockContainer>
+        <num>3.</num>
+        <p>The emissions target for 2030</p>
+      </blockContainer>
+      <p>Power to amend targets</p>
+      <blockContainer>
+        <num>4.</num>
+        <p>Power to amend emission targets</p>
+      </blockContainer>
+      <p>Meaning of key concepts</p>
+      <blockContainer>
+        <num>5.</num>
+        <p>Meaning of “baseline”</p>
+      </blockContainer>
+      <blockContainer>
+        <num>6.</num>
+        <p>Meaning of “net Northern Ireland emissions account” for a year</p>
+      </blockContainer>
+      <p>Meaning of underlying concepts</p>
+      <blockContainer>
+        <num>7.</num>
+        <p>Meaning of “net Northern Ireland emissions”</p>
+      </blockContainer>
+      <blockContainer>
+        <num>8.</num>
+        <p>Meaning of “Northern Ireland emissions”: international aviation and shipping</p>
+      </blockContainer>
+      <blockContainer>
+        <num>9.</num>
+        <p>Crediting and debiting of carbon units</p>
+      </blockContainer>
+      <blockContainer>
+        <num>10.</num>
+        <p>Carbon units: accounting scheme</p>
+      </blockContainer>
+      <p>PART 2</p>
+      <p>Carbon Budgets</p>
+      <blockContainer>
+        <num>11.</num>
+        <p>Carbon budgets</p>
+      </blockContainer>
+      <blockContainer>
+        <num>12.</num>
+        <p>Emissions not to exceed carbon budget</p>
+      </blockContainer>
+      <blockContainer>
+        <num>13.</num>
+        <p>Setting of carbon budgets: principles</p>
+      </blockContainer>
+      <blockContainer>
+        <num>14.</num>
+        <p>Setting of carbon budgets: timing</p>
+      </blockContainer>
+      <blockContainer>
+        <num>15.</num>
+        <p>Carrying amounts from one budgetary period to another</p>
+      </blockContainer>
+      <p>The Second Group of Parts</p>
+      <p>Containing Part 3</p>
+      <p>Part 3</p>
+      <p>Reports and Statements against Targets and Budgets etc</p>
+      <p>Carbon budgets</p>
+      <blockContainer>
+        <num>16.</num>
+        <p>Proposals and policies for meeting carbon budget</p>
+      </blockContainer>
+      <blockContainer>
+        <num>17.</num>
+        <p>Interim progress reporting for budgetary period</p>
+      </blockContainer>
+      <blockContainer>
+        <num>18.</num>
+        <p>Final statement for budgetary period</p>
+      </blockContainer>
+      <blockContainer>
+        <num>19.</num>
+        <p>Proposals and policies where carbon budget not met</p>
+      </blockContainer>
+      <p>Emissions targets</p>
+      <blockContainer>
+        <num>20.</num>
+        <p>Statements on compliance with emissions targets</p>
+      </blockContainer>
+      <p>Other reports</p>
+      <blockContainer>
+        <num>21.</num>
+        <p>Climate change reporting by public bodies</p>
+      </blockContainer>
+      <p>PART 4</p>
+      <p>Reports by Committee on Climate Change</p>
+      <blockContainer>
+        <num>22.</num>
+        <p>Progress report during first budgetary period</p>
+      </blockContainer>
+      <blockContainer>
+        <num>23.</num>
+        <p>Progress reports after statement about each budgetary period</p>
+      </blockContainer>
+      <blockContainer>
+        <num>24.</num>
+        <p>Progress report after statement about emissions target for 2030</p>
+      </blockContainer>
+      <blockContainer>
+        <num>25.</num>
+        <p>Progress report after statement about emissions target for 2040</p>
+      </blockContainer>
+      <blockContainer>
+        <num>26.</num>
+        <p>Response to progress reports</p>
+      </blockContainer>
+      <blockContainer>
+        <num>27.</num>
+        <p>Adaptation programme reports</p>
+      </blockContainer>
+      <blockContainer>
+        <num>28.</num>
+        <p>Response to adaptation programme reports</p>
+      </blockContainer>
+      <p>PART 5</p>
+      <p>Supplementary</p>
+      <p>Duties in relation to emissions</p>
+      <blockContainer>
+        <num>29.</num>
+        <p>Duties to ensure that targets etc are met</p>
+      </blockContainer>
+      <p>Regulation-making powers: general</p>
+      <blockContainer>
+        <num>30.</num>
+        <p>Regulations: general</p>
+      </blockContainer>
+      <p>Regulation-making powers: restrictions and considerations</p>
+      <blockContainer>
+        <num>31.</num>
+        <p>Regulations that amend or add an emissions target or amend a carbon budget</p>
+      </blockContainer>
+      <blockContainer>
+        <num>32.</num>
+        <p>Regulations that specify a different baseline year or change a budgetary period</p>
+      </blockContainer>
+      <p>Regulation-making powers: advice</p>
+      <blockContainer>
+        <num>33.</num>
+        <p>Requirement to obtain advice about proposals to make regulations</p>
+      </blockContainer>
+      <blockContainer>
+        <num>34.</num>
+        <p>Advice about proposed regulations relating to targets</p>
+      </blockContainer>
+      <blockContainer>
+        <num>35.</num>
+        <p>Advice about proposed regulations relating to budgets</p>
+      </blockContainer>
+      <p>Definitions</p>
+      <blockContainer>
+        <num>36.</num>
+        <p>Meaning of “carbon unit”</p>
+      </blockContainer>
+      <blockContainer>
+        <num>37.</num>
+        <p>Meaning of “greenhouse gas”</p>
+      </blockContainer>
+      <blockContainer>
+        <num>38.</num>
+        <p>Meaning and measurement of emissions</p>
+      </blockContainer>
+      <blockContainer>
+        <num>39.</num>
+        <p>Other definitions</p>
+      </blockContainer>
+      <p>General</p>
+      <blockContainer>
+        <num>40.</num>
+        <p>Commencement</p>
+      </blockContainer>
+      <blockContainer>
+        <num>41.</num>
+        <p>Short title</p>
+      </blockContainer>
+    </coverPage>
+    <preface eId="preface">
+      <longTitle>
+        <p class="A">A</p>
+        <p class="Bill">bill</p>
+        <p class="To">to</p>
+        <p>Set targets for the years 2050, 2040 and 2030 for the reduction of greenhouse gas emissions; to provide for a system of carbon budgeting; to provide for reporting and statements against those targets and budgets; to confer power to impose climate change reporting duties on public bodies; to provide for reports and advice from the Committee on Climate Change; and for connected purposes.</p>
+      </longTitle>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p><inline name="dropCap">B</inline><inline name="smallCaps">e it enacted</inline> by being passed by the Northern Ireland Assembly and assented to by Her Majesty as follows:</p>
+      </formula>
+    </preamble>
+    <body>
+      <hcontainer name="groupOfParts" class="group1">
+        <num>The First Group of Parts</num>
+        <heading>The First Group of Parts Heading</heading>
+        <part eId="pt_1" class="group2">
+          <num>Part 1</num>
+          <heading>Emissions Targets</heading>
+          <hcontainer name="crossheading" class="group7">
+            <heading>The emissions targets</heading>
+            <section eId="sec_1" class="prov1">
+              <heading>The emissions target for 2050</heading>
+              <num>1.</num>
+              <content>
+                <p>The Northern Ireland departments must ensure that the net Northern Ireland emissions account for the year 2050 is at least 82% lower than the baseline.</p>
+                <p class="unknownImport">• List item 1</p>
+                <p class="unknownImport">• List item 2</p>
+                <p class="unknownImport">• List item 3</p>
+              </content>
+            </section>
+            <section eId="sec_2" class="prov1">
+              <heading>The emissions target for 2040</heading>
+              <num>2.</num>
+              <content>
+                <p>The Northern Ireland departments must ensure that the net Northern Ireland emissions account for the year 2040 is at least 69% lower than the baseline.</p>
+              </content>
+            </section>
+            <section eId="sec_3" class="prov1">
+              <heading>The emissions target for 2030</heading>
+              <num>3.</num>
+              <content>
+                <p>The Northern Ireland departments must ensure that the net Northern Ireland emissions account for the year 2030 is at least 48% lower than the baseline.</p>
+              </content>
+            </section>
+          </hcontainer>
+          <hcontainer name="crossheading" class="group7">
+            <heading>Power to amend targets</heading>
+            <section eId="sec_4" class="prov1">
+              <heading>Power to amend emission targets</heading>
+              <num>4.</num>
+              <subsection class="prov2">
+                <num>(1)</num>
+                <intro>
+                  <p>The Department may by regulations amend section 1, 2 or 3 so as to⁠—</p>
+                </intro>
+                <level class="para1">
+                  <num>(a)</num>
+                  <content>
+                    <p>specify a different year for a particular emissions target;</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(b)</num>
+                  <content>
+                    <p>specify a different percentage for a particular year.</p>
+                  </content>
+                </level>
+              </subsection>
+              <subsection class="prov2">
+                <num>(2)</num>
+                <content>
+                  <p>The Department may by regulations amend this Part so as to impose a duty on the Northern Ireland departments to ensure that the net Northern Ireland emissions account for a specified year is at least a specified percentage lower than the baseline.</p>
+                </content>
+              </subsection>
+              <subsection class="prov2">
+                <num>(3)</num>
+                <content>
+                  <p>See section Error: Reference source not found for restrictions on the powers conferred by subsections (1) and (2).</p>
+                </content>
+              </subsection>
+            </section>
+          </hcontainer>
+          <hcontainer name="crossheading" class="group7">
+            <heading>Meaning of key concepts</heading>
+            <section eId="sec_5" class="prov1">
+              <heading>Meaning of “baseline”</heading>
+              <num>5.</num>
+              <subsection class="prov2">
+                <num>(1)</num>
+                <content>
+                  <p>The baseline is the aggregate amount of net Northern Ireland emissions of each greenhouse gas mentioned in the following table in the year specified in relation to that gas⁠—</p>
+                  <tblock class="table">
+                    <foreign>
+                      <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
+                        <thead class="bold centre">
+                          <tr>
+                            <th>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Greenhouse gas</p>
+                            </th>
+                            <th>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Year</p>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="left">
+                          <tr>
+                            <td>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Carbon dioxide</p>
+                            </td>
+                            <td>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">1990</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2">
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Methane</p>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">1990</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Nitrous oxide</p>
+                            </td>
+                            <td>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">1990</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Hydroflourocarbons</p>
+                            </td>
+                            <td>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">1995</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Perflourocarbons</p>
+                            </td>
+                            <td rowspan="2">
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">1995</p>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">1995</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Sulphur hexaflouride</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Nitrogen triflouride</p>
+                            </td>
+                            <td>
+                              <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">1995</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </foreign>
+                  </tblock>
+                </content>
+              </subsection>
+              <subsection class="prov2">
+                <num>(2)</num>
+                <content>
+                  <p>The Department may by regulations amend the table in subsection (1) so as to specify a different year in relation to a greenhouse gas.</p>
+                </content>
+              </subsection>
+              <subsection class="prov2">
+                <num>(3)</num>
+                <content>
+                  <p>See section Error: Reference source not found for restrictions on the power conferred by subsection Error: Reference source not found.</p>
+                </content>
+              </subsection>
+            </section>
+            <section eId="sec_6" class="prov1">
+              <heading>Meaning of “net Northern Ireland emissions account” for a year</heading>
+              <num>6.</num>
+              <intro>
+                <p>The net Northern Ireland emissions account for a year is determined as follows⁠—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>take the aggregate amount of net Northern Ireland emissions of each greenhouse gas for that year (which is to be determined in accordance with sections 7 and 8),</p>
+                  <p class="unknownImport">• This is a list in the middle of nowwhere and looks weird</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>deduct the amount of carbon units that are to be credited to the net Northern Ireland emissions account for that year (in accordance with regulations under section Error: Reference source not found), and</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>add the amount of carbon units that are to be debited from the net Northern Ireland emissions account for that year (also in accordance with regulations under section Error: Reference source not found).</p>
+                </content>
+              </level>
+            </section>
+          </hcontainer>
+          <hcontainer name="crossheading" class="group7">
+            <heading>Meaning of underlying concepts</heading>
+            <section eId="sec_7" class="prov1">
+              <heading>Meaning of “net Northern Ireland emissions”</heading>
+              <num>7.</num>
+              <subsection class="prov2">
+                <num>(1)</num>
+                <intro>
+                  <p>The amount of net Northern Ireland emissions of a greenhouse gas for a period is⁠—</p>
+                </intro>
+                <level class="para1">
+                  <num>(a)</num>
+                  <content>
+                    <p>the amount of Northern Ireland emissions of the gas for the period (see subsection (2)),</p>
+                    <p>minus</p>
+                    <p class="unknownImport">• This is a list that is the child of a subsections</p>
+                    <p class="unknownImport">• List item 2</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(b)</num>
+                  <content>
+                    <p>the amount of Northern Ireland removals of the gas for the period (see subsection (3)).</p>
+                  </content>
+                </level>
+              </subsection>
+              <subsection class="prov2">
+                <num>(2)</num>
+                <intro>
+                  <p>The Northern Ireland emissions of a gas for a period are—</p>
+                </intro>
+                <level class="para1">
+                  <num>(a)</num>
+                  <content>
+                    <p>emissions of the gas from sources in Northern Ireland in the period, and</p>
+                    <p class="unknownImport">This is some right aligned text that should completely throw off the parser</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(b)</num>
+                  <content>
+                    <p>emissions of the gas from international aviation or international shipping that count as Northern Ireland emissions for the period (as determined by regulations under section 8).</p>
+                  </content>
+                </level>
+              </subsection>
+              <subsection class="prov2">
+                <num>(3)</num>
+                <intro>
+                  <p>The Northern Ireland removals of a gas for a period are removals of the gas from the atmosphere in the period due to—</p>
+                </intro>
+                <level class="para1">
+                  <num>(a)</num>
+                  <content>
+                    <p>land use in Northern Ireland;</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(b)</num>
+                  <content>
+                    <p>land-use change in Northern Ireland; and</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(c)</num>
+                  <content>
+                    <p>forestry activities in Northern Ireland.</p>
+                  </content>
+                </level>
+              </subsection>
+              <subsection class="prov2">
+                <num>(4)</num>
+                <content>
+                  <p>The Department may by regulations amend subsection (3) so as to amend the definition of Northern Ireland removals.</p>
+                </content>
+              </subsection>
+              <subsection class="prov2">
+                <num>(5)</num>
+                <content>
+                  <p>The amounts of Northern Ireland emissions and Northern Ireland removals of a gas for a period must be determined consistently with international carbon reporting practice (see section Error: Reference source not found).</p>
+                </content>
+              </subsection>
+            </section>
+            <section eId="sec_8" class="prov1">
+              <heading>Meaning of “Northern Ireland emissions”: international aviation and shipping</heading>
+              <num>8.</num>
+              <subsection class="prov2">
+                <num>(1)</num>
+                <content>
+                  <p>The Department may by regulations make provision for emissions of a greenhouse gas from international aviation or international shipping to count as Northern Ireland emissions of the gas.</p>
+                </content>
+              </subsection>
+              <subsection class="prov2">
+                <num>(2)</num>
+                <intro>
+                  <p>The regulations may—</p>
+                </intro>
+                <level class="para1">
+                  <num>(a)</num>
+                  <content>
+                    <p>specify activities which are to be regarded as international aviation or international shipping;</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(b)</num>
+                  <content>
+                    <p>specify the circumstances in which, and the extent to which, emissions of a greenhouse gas from international aviation or international shipping are to count as Northern Ireland emissions of that gas;</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(c)</num>
+                  <content>
+                    <p>specify the period (whether past or future) for which emissions of a greenhouse gas from international aviation or international shipping are to count as Northern Ireland emissions of that gas;</p>
+                  </content>
+                </level>
+                <level class="para1">
+                  <num>(d)</num>
+                  <content>
+                    <p>make provision about how emissions of a greenhouse gas from international aviation or international shipping are to be taken into account in determining Northern Ireland emissions of that gas for the year specified in section 5(1) in relation to it.</p>
+                  </content>
+                </level>
+              </subsection>
+            </section>
+          </hcontainer>
+        </part>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>

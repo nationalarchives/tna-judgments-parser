@@ -40,7 +40,7 @@ internal class Ref {
 
         if (i == withinField.Count)
             return IgnoreFollowing(main, bookmarkName, rSwitch, pSwitch, wSwitch, (Run) withinField.First());
-        
+
         OpenXmlElement next = withinField[i];
         if (next is InsertedRun && !next.ChildElements.Any()) { // EWCA/Civ/2008/643.rtf
             i += 1;
@@ -48,7 +48,7 @@ internal class Ref {
         }
         if (!Fields.IsFieldSeparater(next))
             throw new Exception();
-        
+
         try {
             return IgnoreFollowing(main, bookmarkName, rSwitch, pSwitch, wSwitch, (Run) withinField.First());
         } catch (Exception) {
@@ -60,9 +60,15 @@ internal class Ref {
     }
 
     internal static List<IInline> Construct(MainDocumentPart main, Run run, string fieldCode) {
+        // with the current regex pattern, the regex will never match a Lawmaker reference and
+        // we assume the reference is invalid if it's empty.
+        // If/When Lawmaker diverges this part of the codebase (specifically references and
+        // the functionality of PreParser.cs) Then we can possibly expand this part for Lawmaker
         Match match = Regex.Match(fieldCode, pattern);
-        if (!match.Success)
-            throw new Exception();
+        if (!match.Success) {
+            logger.LogWarning("Malformed field code {} will be ignored!", fieldCode);
+            return [new WInvalidRef()];
+        }
         string bookmarkName = match.Groups[1].Value;
         CaptureCollection swtchs = match.Groups[2].Captures;
         bool rSwitch = swtchs.Where(v => v.Value == @" \r" || v.Value == @" r").Any();  // EWCA/Civ/2009/1119 has no \ character

@@ -109,7 +109,8 @@ class Metadata {
         XmlElement maniAuthor = append(doc, manifestation, "FRBRauthor");
         maniAuthor.SetAttribute("href", "#tna");
         XmlElement maniFormat = append(doc, manifestation, "FRBRformat");
-        maniFormat.SetAttribute("value", "application/xml");
+        string formatValue = metadata.ManifestationThis.EndsWith("/data.akn") ? "application/akn+xml" : "application/xml";
+        maniFormat.SetAttribute("value", formatValue);
 
         if (includeReferences) {
 

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="uksi">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <body>
+      <part eId="pt_1" class="group2">
+        <num>Part 1</num>
+        <heading>PRELIMINARY</heading>
+        <article eId="sec_1" class="prov1">
+          <heading>Citation and commencement</heading>
+          <num>1.</num>
+          <content>
+            <p> This Order may be cited as the Boston Alternative Energy Facility Order 2023 and comes into force on 27th July 2023.</p>
+          </content>
+        </article>
+      </part>
+      <level>
+        <content>
+          <p class="unknownImport">PART 2</p>
+        </content>
+      </level>
+      <article eId="sec_2" class="prov1">
+        <heading>LICENSED ACTIVITIES</heading>
+        <num>2.</num>
+        <intro>
+          <p> Subject to the licence conditions in Part 3 of this licence, this licence authorises the undertaker (and any agent, contractor or subcontractor acting on its behalf) to carry out any licensable marine activities under section 66(1) (licensable marine activities) of the 2009 Act which—</p>
+        </intro>
+        <level class="para1">
+          <num>(a)</num>
+          <content>
+            <p>form part of, or are related to, the authorised development; and</p>
+          </content>
+        </level>
+        <level class="para1">
+          <num>(b)</num>
+          <content>
+            <p>are not exempt from requiring a marine licence by virtue of any provision made under section 74 (exemption specified by order) of the 2009 Act.</p>
+            <tblock class="table">
+              <num>Table 1</num>
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
+                  <thead class="bold centre">
+                    <tr>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Dimension</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Parameter</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Length</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">570m ±5%</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Width</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">110m ±5%</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Depth</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">-3.5m OD ±5%</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Area to be dredged</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">62,700 m2±10%</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Volume of material to be removed</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">225,000m3±10%</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+          </content>
+        </level>
+        <paragraph class="prov2">
+          <num>(2)</num>
+          <content>
+            <p>The undertaker (and any agent, contractor or subcontractor acting on its behalf) may engage in the licensed activities in the area bounded by the coordinates set out in Table 2 in this paragraph and more particularly shown on the works plans, to the extent that they fall below MHWS at the time the licensed activities are carried out.</p>
+            <tblock class="table">
+              <num>Table 2</num>
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="allBorders tableleft width100">
+                  <thead class="bold centre">
+                    <tr>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Point Reference</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Easting</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Northing</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">P01</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">534289.711000</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">342260.128000</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">P02</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">534168.677241</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">342181.781948</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">P03</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">534186.659851</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">342242.491799</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">P04</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">533845.617735</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">342661.592680</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">P05</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">533947.150000</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">342716.200000</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(3)</num>
+          <content>
+            <p>The undertaker (and any agent, contractor or subcontractor acting on its behalf) may engage in works associated with the provision of ecological mitigation in the area bounded by the coordinates set out in Table 3 in this paragraph and more particularly shown on the works plans, to the extent that they fall below MHWS at the time the works are carried out.</p>
+            <tblock class="table">
+              <num>Table 3</num>
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="allBorders tableleft width100">
+                  <thead class="bold centre">
+                    <tr>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Point Reference</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Easting</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Northing</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">MP01</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">534347.890096</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">342095.811837</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">MP02</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">534341.169854</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">342093.522370</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">MP03</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">534338.522725</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">342044.386572</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">MP04</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">534531.722964</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">341792.122480</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+          </content>
+        </paragraph>
+      </article>
+    </body>
+  </bill>
+</akomaNtoso>

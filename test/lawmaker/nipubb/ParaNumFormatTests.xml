@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="nipubb">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage>
+      <p>Paragraph Number Format Tests</p>
+      <p>[AS INTRODUCED]</p>
+      <p>CONTENTS</p>
+      <blockContainer>
+        <num>1.</num>
+        <p>Z rule tests</p>
+      </blockContainer>
+      <blockContainer>
+        <num>2.</num>
+        <p>Non-roman suffix tests</p>
+      </blockContainer>
+    </coverPage>
+    <preface eId="preface">
+      <longTitle>
+        <p class="A">A</p>
+        <p class="Bill">bill</p>
+        <p class="To">to</p>
+        <p>Restate and amend the law relating to adoption; to make further amendments of the law relating to children; and for connected purposes.</p>
+      </longTitle>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p><inline name="dropCap">B</inline><inline name="smallCaps">e it enacted</inline> by being passed by the Northern Ireland Assembly and assented to by Her Majesty as follows:</p>
+      </formula>
+    </preamble>
+    <body>
+      <section eId="sec_1" class="prov1">
+        <heading>Z rule tests</heading>
+        <num>1.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <intro>
+            <p>Para1, Para2 &amp; Para3 all exhibit the same behaviour whereby continuing to insert them in the first child position results in their numbers being prepended with an increasing number of 'z/Z' characters</p>
+          </intro>
+          <level class="para1">
+            <num>(zzzza)</num>
+            <content>
+              <p>the value to the child of a stable and harmonious family unit;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(zzza)</num>
+            <content>
+              <p>the child’s particular needs;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(zza)</num>
+            <content>
+              <p>the likely effect on the child;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(za)</num>
+            <content>
+              <p>the child’s age, sex, and background;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p>any harm which the child has suffered or is at risk of suffering;</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <intro>
+              <p>the child’s ascertainable wishes and feelings regarding the decision;</p>
+            </intro>
+            <level class="para2">
+              <num>(zzzzi)</num>
+              <content>
+                <p>the likelihood of any such relationship continuing;</p>
+              </content>
+            </level>
+            <level class="para2">
+              <num>(zzzi)</num>
+              <content>
+                <p>the ability and willingness of any of the child’s relatives…</p>
+              </content>
+            </level>
+            <level class="para2">
+              <num>(zzi)</num>
+              <content>
+                <p>or of any such person…</p>
+              </content>
+            </level>
+            <level class="para2">
+              <num>(zi)</num>
+              <content>
+                <p>to provide the child with an environment in which they can develop…</p>
+              </content>
+            </level>
+            <level class="para2">
+              <num>(i)</num>
+              <content>
+                <p>and otherwise to meet the child’s needs.</p>
+              </content>
+            </level>
+            <level class="para2">
+              <num>(ii)</num>
+              <content>
+                <p>the wishes and feelings of any of the child’s relatives.</p>
+              </content>
+            </level>
+            <level class="para3">
+              <num>(ZZZA)</num>
+              <content>
+                <p>children who may be adopted, their parents and guardians;</p>
+              </content>
+            </level>
+            <level class="para3">
+              <num>(ZZA)</num>
+              <content>
+                <p>persons wishing to adopt a child; and</p>
+              </content>
+            </level>
+            <level class="para3">
+              <num>(ZA)</num>
+              <content>
+                <p>adopted persons, their parents, and any former guardians;</p>
+              </content>
+            </level>
+            <level class="para3">
+              <num>(A)</num>
+              <content>
+                <p>and for that purpose must provide the requisite facilities;</p>
+              </content>
+            </level>
+            <level class="para3">
+              <num>(B)</num>
+              <content>
+                <p>for the adoption of children.</p>
+              </content>
+            </level>
+          </level>
+        </subsection>
+      </section>
+      <section eId="sec_2" class="prov1">
+        <heading>Non-roman suffix tests</heading>
+        <num>2.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <intro>
+            <p>Para2 elements have roman numbering, however inserting a child between two existing Para2 elements when auto-renumber is turned off in Lawmaker results in non-roman suffixes</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <intro>
+              <p>Paragraph</p>
+            </intro>
+            <level class="para2">
+              <num>(i)</num>
+              <content>
+                <p>First sub-paragraph</p>
+              </content>
+            </level>
+            <level class="para2">
+              <num>(ia)</num>
+              <content>
+                <p>Second sub-paragraph</p>
+              </content>
+            </level>
+            <level class="para2">
+              <num>(iaa)</num>
+              <content>
+                <p>Third sub-paragraph</p>
+              </content>
+            </level>
+            <level class="para2">
+              <num>(iab)</num>
+              <content>
+                <p>Fourth sub-paragraph</p>
+              </content>
+            </level>
+            <level class="para2">
+              <num>(ib)</num>
+              <content>
+                <p>Fifth sub-paragraph</p>
+              </content>
+            </level>
+            <level class="para2">
+              <num>(ii)</num>
+              <content>
+                <p>Fifth sub-paragraph</p>
+              </content>
+            </level>
+          </level>
+        </subsection>
+      </section>
+    </body>
+  </bill>
+</akomaNtoso>

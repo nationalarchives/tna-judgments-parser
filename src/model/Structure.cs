@@ -60,5 +60,4 @@ interface IDivWrapper : IBlock {
     IDivision Division { get; }
 
 }
-
 }

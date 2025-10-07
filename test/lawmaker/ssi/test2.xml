@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="ssi">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Scottish Ministers make the following Order in exercise of the powers conferred by section 107(1) and (2) of the Courts Reform (Scotland) Act 2014<authorialNote marker="1" class="footnote"><p>2014 asp 18.</p></authorialNote> and all other powers enabling them to do so.</p>
+      </formula>
+    </preamble>
+    <body>
+      <article eId="sec_1" class="prov1">
+        <heading>Citation and commencement</heading>
+        <num>1.</num>
+        <content>
+          <p> This Order may be cited as the Court of Session etc. Fees Order 2024 and comes into force on 1 November 2024.</p>
+        </content>
+      </article>
+      <article eId="sec_2" class="prov1">
+        <heading>Interpretation</heading>
+        <num>2.</num>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <intro>
+            <p>In this Order—</p>
+          </intro>
+          <hcontainer name="definition" class="definition">
+            <content>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">Office of Court</def> has the same meaning as in rule 3.1 of the Rules of Court,</p>
+            </content>
+          </hcontainer>
+          <hcontainer name="definition" class="definition">
+            <content>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">partner</def> means a person to whom a person is married, or with whom the person is in a civil partnership,</p>
+            </content>
+          </hcontainer>
+          <hcontainer name="definition" class="definition">
+            <content>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">Rules of Court</def> means the Rules of the Court of Session 1994<authorialNote marker="2" class="footnote"><p>The Rules of the Court of Session 1994 are in schedule 2 of the Act of Sederunt (Rules of the Court of Session 1994) 1994 (S.I. 1994/1443, as last prospectively amended by S.S.I. 2024/196).</p></authorialNote>,</p>
+            </content>
+          </hcontainer>
+          <hcontainer name="definition" class="definition">
+            <content>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">Table of Fees</def> means the Table of Fees in the schedule of this Order.</p>
+            </content>
+          </hcontainer>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <intro>
+            <p><mod>For the purposes of any reference in this Order to a <quotedText startQuote="“" endQuote="”">party</quotedText>—</mod></p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p>except in relation to a special case, a set of persons with the same interest, for whom one and the same first paper is or has been lodged, is to be treated as a single party, and</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p>in relation to a special case, each person or set of persons who appear as one of the separate parties to the case is to be treated as a party.</p>
+            </content>
+          </level>
+        </paragraph>
+      </article>
+      <article eId="sec_3" class="prov1">
+        <heading>Fees payable in the Court of Session etc.</heading>
+        <num>3.</num>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This Order makes provision for the fees payable in the Office of Court, the office of the Accountant of Court and the office of the Auditor of the Court of Session.</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>Subject to paragraph (4) and articles 4 to 8, the fees payable in respect of the matters specified in column 1 of the Table of Fees are the fees specified in relation to those matters in column 2 of that Table.</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(2)</num>
+          <intro>
+            <p>The fees payable under this Order are to be paid—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p>in relation to the Office of Court, to the Principal Clerk of Session or any officer acting for the Principal Clerk of Session,</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p>in relation to the office of the Accountant of Court, to the Accountant of Court or any officer acting for the Accountant of Court, and</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(c)</num>
+            <content>
+              <p>in relation to the office of the Auditor of the Court of Session, to the Auditor of the Court of Session, or any officer acting for the Auditor of the Court of Session.</p>
+            </content>
+          </level>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(3)</num>
+          <content>
+            <p>The fees provided for by this Order are not payable by the Crown in the enforcement of the criminal law or in the exercise of powers or the performance of duties arising out of or relating to that enforcement.</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(4)</num>
+          <intro>
+            <p>No act is required of any officer or person specified in paragraph (3) in connection with a matter specified in relation to any fee prior to—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p>the payment of that fee, or</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p>an arrangement being entered into for payment of that fee.</p>
+            </content>
+          </level>
+        </paragraph>
+      </article>
+      <hcontainer name="signatures">
+        <hcontainer name="signatureBlock">
+          <content>
+            <p>SIOBHIAN BROWN</p>
+            <p>Authorised to sign by the Scottish Ministers</p>
+            <p>St Andrew’s House,</p>
+            <p>Edinburgh</p>
+            <p>5th September 2024</p>
+          </content>
+        </hcontainer>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>

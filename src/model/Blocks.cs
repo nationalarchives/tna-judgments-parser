@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace UK.Gov.Legislation.Judgments {
 
@@ -79,6 +80,7 @@ interface ILine : IBlock, IBordered {
 
 }
 
+interface IUnknownLine : ILine { }
 interface IRestriction : ILine { }
 
 interface IOldNumberedParagraph : ILine {
