@@ -33,7 +33,7 @@ class Program {
             new Option<FileInfo>("--attachment", description: "an associated file to include") { ArgumentHelpName = "file" },
             new Option<string>("--hint", description: "the type of document: 'em' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"),
             new Option<string>("--subtype", description: "the subtype of the document e.g. 'order'. Only applicable if --hint is a secondary type"),
-            new Option<string>("--procedure", description: "the proceedure of the document - the subtype of document e.g. 'order'"),
+            new Option<string>("--procedure", description: "the procedure of the document e.g. 'made', 'draftaffirm'. Only applicable if --hint is a secondary type"),
             new Option<string[]>("--language", description: "the language(s) of the document - the default is English") { AllowMultipleArgumentsPerToken = true},
         };
         command.Handler = CommandHandler.Create<
