@@ -29,6 +29,7 @@ class Program {
             new Option<FileInfo>("--output", description: "the .xml file") { ArgumentHelpName = "file" },
             new Option<FileInfo>("--output-zip", description: "the .zip file") { ArgumentHelpName = "file" },
             new Option<FileInfo>("--log", description: "the log file") { ArgumentHelpName = "file" },
+            new Option<bool>("--console-log", description: "enable logging to console"),
             new Option<bool>("--test", description: "whether to test the result"),
             new Option<FileInfo>("--attachment", description: "an associated file to include") { ArgumentHelpName = "file" },
             new Option<string>("--hint", description: "the type of document: 'em', 'ia' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"),
@@ -40,6 +41,7 @@ class Program {
             FileInfo,
             FileInfo,
             FileInfo,
+            bool,
             bool,
             FileInfo,
             string,
@@ -57,6 +59,7 @@ class Program {
         FileInfo output,
         FileInfo outputZip,
         FileInfo log,
+        bool consoleLog,
         bool test,
         FileInfo attachment,
         string hint,
@@ -68,15 +71,19 @@ class Program {
             Logging.SetConsoleAndFile(log, LogLevel.Debug);
             logger = Logging.Factory.CreateLogger<Program>();
             logger.LogInformation("parsing " + input.FullName);
+        } else if (consoleLog) {
+            Logging.SetConsole(LogLevel.Debug);
+            logger = Logging.Factory.CreateLogger<Program>();
+            logger.LogInformation("parsing " + input.FullName);
         }
 
         if ("em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformEM(input, output, outputZip, log, test, attachment);
+            TransformEM(input, output, outputZip, log, consoleLog, test, attachment);
             return;
         }
 
         if ("ia".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformIA(input, output, outputZip, log, test, attachment);
+            TransformIA(input, output, outputZip, log, consoleLog, test, attachment);
             return;
         }
 
@@ -116,9 +123,17 @@ class Program {
             Print(response.Meta);
     }
 
-    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
+    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool consoleLog, bool test, FileInfo attachment) {
         if (attachment is not null)
             throw new Exception();
+            
+        // Set up logging for EM parsing
+        if (log is not null) {
+            Logging.SetConsoleAndFile(log, LogLevel.Debug);
+        } else if (consoleLog) {
+            Logging.SetConsole(LogLevel.Debug);
+        }
+        
         byte[] docx = File.ReadAllBytes(input.FullName);
         var parsed = EM.Helper.Parse(docx);
         if (outputZip is not null)
@@ -129,9 +144,17 @@ class Program {
             Console.WriteLine(parsed.Serialize());
     }
 
-    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
+    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool consoleLog, bool test, FileInfo attachment) {
         if (attachment is not null)
             throw new Exception();
+            
+        // Set up logging for IA parsing
+        if (log is not null) {
+            Logging.SetConsoleAndFile(log, LogLevel.Debug);
+        } else if (consoleLog) {
+            Logging.SetConsole(LogLevel.Debug);
+        }
+        
         byte[] docx = File.ReadAllBytes(input.FullName);
         var parsed = IA.Helper.Parse(docx);
         if (outputZip is not null)
