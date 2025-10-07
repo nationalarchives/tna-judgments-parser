@@ -26,10 +26,10 @@ public class TestIA {
             .Where(match => match.Success)
             .Select(match => int.Parse(match.Groups[1].Value))
             .Where(i => {
-                // Check if both DOCX and XML resources exist
+                // Check if both DOCX and AKN resources exist
                 var docxResource = $"test.leg.ia.test{i}.docx";
-                var xmlResource = $"test.leg.ia.test{i}.xml";
-                return resourceNames.Contains(docxResource) && resourceNames.Contains(xmlResource);
+                var aknResource = $"test.leg.ia.test{i}.akn";
+                return resourceNames.Contains(docxResource) && resourceNames.Contains(aknResource);
             })
             .OrderBy(i => i)
             .Select(i => new object[] { i });
@@ -48,7 +48,7 @@ public class TestIA {
     public void Test(int i) {
         var docx = CaseLaw.Tests.ReadDocx($"test.leg.ia.test{i}.docx");
         var actual = Helper.Parse(docx).Serialize();
-        var expected = CaseLaw.Tests.ReadXml($"test.leg.ia.test{i}.xml");
+        var expected = CaseLaw.Tests.ReadXml($"test.leg.ia.test{i}.akn");
         actual = RemoveSomeMetadata(actual);
         expected = RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
