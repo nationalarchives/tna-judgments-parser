@@ -17,26 +17,48 @@ partial class BaseLegislativeDocumentParser : CaseLaw.OptimizedParser {
 
     protected readonly LegislativeDocumentConfig Config;
     private static ILogger logger = Logging.Factory.CreateLogger<BaseLegislativeDocumentParser>();
+    
+    // Parsing diagnostics
+    private int parseDepth = 0;
+    private int parseDepthMax = 0;
+    private int totalBlocks = 0;
 
     protected BaseLegislativeDocumentParser(WordprocessingDocument doc, CaseLaw.WordDocument preParsed, LegislativeDocumentConfig config) 
         : base(doc, preParsed, null, null) {
         Config = config;
+        totalBlocks = preParsed.Body.Count;
     }
 
     protected virtual IDocument Parse() {
+        logger.LogInformation("Starting parse of document with {} total blocks", totalBlocks);
 
         List<IBlock> header = Header();
         header.InsertRange(0, PreParsed.Header);
+        logger.LogDebug("Parsed header with {} blocks, starting body at block {}", header.Count, i);
 
         List<IDivision> body = Body2();
         IEnumerable<IAnnex> annexes = Annexes();
-        if (i != PreParsed.Body.Count)
-            logger.LogCritical("parsing did not complete: {}", i);
+        
+        // Enhanced completion tracking
+        int blocksProcessed = i;
+        int blocksRemaining = totalBlocks - blocksProcessed;
+        
+        if (blocksRemaining > 0) {
+            logger.LogWarning("Parsing did not complete: {} of {} blocks processed, {} blocks remaining", 
+                blocksProcessed, totalBlocks, blocksRemaining);
+        } else {
+            logger.LogInformation("Parsing completed successfully: all {} blocks processed", totalBlocks);
+        }
+        
+        logger.LogInformation("Maximum parse depth reached: {}", parseDepthMax);
 
         IEnumerable<IImage> images = WImage.Get(doc);
         BaseMetadata metadata = BaseMetadata.Make(header, doc, Config);
-        logger.LogInformation("the type is {}", metadata.Name);
-        logger.LogInformation("the uri is {}", metadata.ShortUriComponent);
+        logger.LogInformation("Document type: {}", metadata.Name);
+        logger.LogInformation("Document URI: {}", metadata.ShortUriComponent);
+        logger.LogInformation("Parsed {} divisions in body, {} annexes, {} images", 
+            body.Count, annexes.Count(), images.Count());
+            
         return new DividedDocument {
             Header = header,
             Body = body,
@@ -68,16 +90,33 @@ partial class BaseLegislativeDocumentParser : CaseLaw.OptimizedParser {
     }
 
     private IDivision ParseDivsion() {
-        int save = i;
-        IDivision div = ParseCrossHeading();
-        if (div is not null)
-            return div;
-        i = save;
-        div = ParseSection();
-        if (div is not null)
-            return div;
-        i = save;
-        return ParseParagraph();
+        EnterParseDepth();
+        try {
+            int save = i;
+            IDivision div = ParseCrossHeading();
+            if (div is not null)
+                return div;
+            i = save;
+            div = ParseSection();
+            if (div is not null)
+                return div;
+            i = save;
+            return ParseParagraph();
+        }
+        finally {
+            ExitParseDepth();
+        }
+    }
+
+    private void EnterParseDepth() {
+        parseDepth++;
+        if (parseDepth > parseDepthMax) {
+            parseDepthMax = parseDepth;
+        }
+    }
+
+    private void ExitParseDepth() {
+        parseDepth--;
     }
 
     /* cross-headings */
@@ -137,24 +176,39 @@ partial class BaseLegislativeDocumentParser : CaseLaw.OptimizedParser {
     }
 
     private Section ParseSection() {
-        logger.LogTrace("parsing element {}", i);
-        IBlock block = PreParsed.Body.ElementAt(i).Block;
-        if (!IsSectionHeading(block))
-            return null;
-        WLine line = block as WLine;
-        i += 1;
+        EnterParseDepth();
+        try {
+            logger.LogTrace("Parsing section at block {} (depth {})", i, parseDepth);
+            IBlock block = PreParsed.Body.ElementAt(i).Block;
+            if (!IsSectionHeading(block)) {
+                logger.LogTrace("Block {} is not a section heading: {}", i, block.GetType().Name);
+                return null;
+            }
+            WLine line = block as WLine;
+            i += 1;
 
-        IFormattedText num;
-        ILine heading;
-        if (line is WOldNumberedParagraph np) {
-            num = np.Number;
-            heading = WLine.RemoveNumber(np);
-        } else {
-            num = null;
-            heading = line;
+            IFormattedText num;
+            ILine heading;
+            if (line is WOldNumberedParagraph np) {
+                num = np.Number;
+                heading = WLine.RemoveNumber(np);
+                logger.LogTrace("Found numbered section: {}", num.Text);
+            } else {
+                num = null;
+                heading = line;
+                logger.LogTrace("Found unnumbered section");
+            }
+            List<IDivision> children = ParseSectionChildren();
+            logger.LogTrace("Section parsed with {} children", children.Count);
+            return new Section { Number = num, Heading = heading, Children = children };
         }
-        List<IDivision> children = ParseSectionChildren();
-        return new Section { Number = num, Heading = heading, Children = children };
+        catch (System.Exception ex) {
+            logger.LogError(ex, "Error parsing section at block {}", i);
+            throw;
+        }
+        finally {
+            ExitParseDepth();
+        }
     }
 
     private List<IDivision> ParseSectionChildren() {
