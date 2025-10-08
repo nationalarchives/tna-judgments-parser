@@ -5,6 +5,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -26,6 +27,12 @@ namespace UK.Gov.Legislation.Lawmaker
         public string EndQuote { get; internal set; }
 
         IEnumerable<IInline> IInlineContainer.Contents => Contents;
+
+
+        public static readonly LanguagePatterns AmendingPrefixes = new()
+        {
+            [Lang.ENG] = ["insert", "substitute", "omit", "leave out"],
+        };
 
     }
 

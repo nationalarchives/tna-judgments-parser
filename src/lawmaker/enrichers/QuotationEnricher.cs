@@ -9,74 +9,97 @@ using DocumentFormat.OpenXml.Wordprocessing;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
+    /// <summary>
+    /// Identifies strings of text which are flanked by quotation marks, 
+    /// and encapsulates them in either <c>QuotedText</c> or <c>Def</c> elements.
+    /// </summary>
+    /// <remarks>
+    /// <c>QuotedText</c> elements are created when a quoted string is 'amending'. Which is to say, 
+    /// preceded by a phrase such as 'substitute', 'insert', 'leave out', or 'omit'. 
+    /// Otherwise, a quoted string is assumed to be a definition, and a <c>Def</c> element is created.
+    /// </remarks>
     class QuotationEnricher : LineEnricher
     {
         private string Pattern;
+        private LanguageService LangService;
 
-        public QuotationEnricher(string startPattern, string endPattern)
+        public QuotationEnricher(LanguageService langService, string startPattern, string endPattern)
         {
+            LangService = langService;
             Pattern = @$"{startPattern}(?'contents'.+?)(?:{endPattern}|$)";
         }
 
-        internal override Mod EnrichMod(Mod raw)
+        /// <summary> Enriches the given <paramref name="mod"/>.</summary>
+        /// <param name="mod">The mod to enrich.</param>
+        /// <returns>The enriched mod.</returns>
+        internal override Mod EnrichMod(Mod mod)
         {
             List<IBlock> enrichedBlocks = [];
-            for (int i = 0; i < raw.Contents.Count; i++)
+            for (int i = 0; i < mod.Contents.Count; i++)
             {
                 // When a paragraph already belongs to a mod (due to a quoted structure), quoted text 
                 // elements (if any) must be added to the existing mod, rather than causing additional 
                 // mod elements to be created.
-                if (raw.Contents[i] is WLine line)
+                if (mod.Contents[i] is WLine line)
                 {
                     WLine enrichedLine = Enrich(line);
                     enrichedBlocks.Add(enrichedLine);
                 }
                 // Must enrich the divisions inside quoted structures
-                else if (raw.Contents[i] is BlockQuotedStructure qs)
+                else if (mod.Contents[i] is BlockQuotedStructure qs)
                 {
                     EnrichDivisions(qs.Contents);
                     enrichedBlocks.Add(qs);
                 }
                 else
                 {
-                    enrichedBlocks.Add(raw.Contents[i]);
+                    enrichedBlocks.Add(mod.Contents[i]);
                 }
             }
             return new Mod() { Contents = enrichedBlocks };
         }
 
-        /*
-         * A wrapper for the 'Enrich' method that wraps the given line in a 
-         * Mod element if it contains any QuotedText elements. 
-         */
-        internal override IBlock EnrichLine(WLine raw)
+        /// <summary>
+        /// A wrapper for the <c>QuotationEnricher.Enrich</c> method which wraps the enriched <paramref name="line"/> 
+        /// in a <c>Mod</c> element if it has any <c>QuotedText</c> children.
+        /// </summary>
+        /// <remarks>
+        /// Like <c>QuotedStructure</c> elements, <c>QuotedText</c> elements are used to amend other pieces of legislation. 
+        /// Lines contanining either of these elements must be wrapped in a <c>Mod</c> element to acknowledge that
+        /// they are 'modifications'.
+        /// </remarks>
+        /// <param name="line">The line to enrich.</param>
+        /// <returns>The enriched <c>IBlock</c>. Either a <c>WLine</c> or a <c>Mod</c> element.</returns>
+        internal override IBlock EnrichLine(WLine line)
         {
-            if (raw.NormalizedContent.StartsWith('\u201C'))
-                return raw;
+            if (line.NormalizedContent.StartsWith('\u201C'))
+                return line;
 
-            WLine enriched = Enrich(raw);
-            if (!ReferenceEquals(enriched, raw))
+            WLine enriched = Enrich(line);
+            if (!ReferenceEquals(enriched, line))
                 if (enriched.Contents.Any(content => content is QuotedText))
                     return new Mod() { Contents = [enriched] };
                 else
                     return enriched;
-                return raw;
+                return line;
         }
 
-        /*
-         * Identifies and extracts any QuotedText and Def instances from the plaintext of a given line. 
-         */
-        internal WLine Enrich(WLine raw)
+        /// <summary> Enriches the given <paramref name="line"/>.</summary>
+        /// <param name="line">The line to enrich.</param>
+        /// <returns>The enriched line.</returns>
+        internal WLine Enrich(WLine line)
         {
-            if (raw.Contents.Count() == 0 || raw.Contents.Last() is not WText current)
-                return raw;
+            // TODO: This only enriches the FINAL WText inline element.
+            // We need this to enrich all inline children of the line.
+            if (!line.Contents.Any() || line.Contents.Last() is not WText current)
+                return line;
             string text = current.Text;
             MatchCollection matches = Regex.Matches(text, Pattern);
             if (matches.Count == 0)
-                return raw;
+                return line;
 
             int charIndex = 0;
-            List<IInline> enrichedInlines = raw.Contents.SkipLast(1).ToList();
+            List<IInline> enrichedInlines = line.Contents.SkipLast(1).ToList();
 
             foreach (Match match in matches)
             {
@@ -85,13 +108,13 @@ namespace UK.Gov.Legislation.Lawmaker
                 charIndex = match.Index + match.Length;
                 if (IsQuotedText(text, matches))
                     enrichedInlines.Add(ConstructQuotedText(match, current.properties));
-                // If not quotedText then parse as a defined term, //def
+                // If not QuotedText then parse as a defined term (Def)
                 else
                     enrichedInlines.Add(ConstructDef(match, current.properties));
             }
             if (charIndex != text.Length)
                 enrichedInlines.Add(new WText(text[charIndex..], current.properties));
-            return WLine.Make(raw, enrichedInlines);
+            return WLine.Make(line, enrichedInlines);
         }
 
         static IInline ConstructQuotedText(Match match, RunProperties props)
@@ -111,10 +134,10 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /// <summary>
-        /// Combines all non-matched parts into one string to check if it contains "insert", "leave out", "omit" or "substitute".
-        /// If at least one of the words are present then the match should be treated as quotedText
+        /// Combines all non-matched parts into one string to check if it contains 'insert', 'leave out', 'omit' or 'substitute'.
+        /// If at least one of the phrases are present, then the match should be treated as <c>QuotedText</c>
         /// </summary>
-        static bool IsQuotedText(string text, MatchCollection matches)
+        bool IsQuotedText(string text, MatchCollection matches)
         {
             string nonMatchedParts = "";
             int lastIndex = 0;
@@ -129,9 +152,8 @@ namespace UK.Gov.Legislation.Lawmaker
             // Add any remaining text after the last match
             if (lastIndex < text.Length)
                 nonMatchedParts += text[lastIndex..];
-            List<string> words = ["insert", "leave out", "omit", "substitute"];
 
-            return words.Any(word => nonMatchedParts.Contains(word, System.StringComparison.InvariantCultureIgnoreCase));
+            return LangService.IsMatch(nonMatchedParts, QuotedText.AmendingPrefixes);
         }
 
     }
