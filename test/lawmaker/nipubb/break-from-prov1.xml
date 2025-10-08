@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="nipubb">
+    <meta>
+      <identification source="#author">
+        <FRBRWork>
+          <FRBRthis value="#varWork" />
+          <FRBRuri value="#varWorkUri" />
+          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRsubtype value="#varDocSubType" />
+          <FRBRnumber value="#varProjectId" />
+          <FRBRname value="#varBillTitle" />
+          <FRBRprescriptive value="true" />
+          <FRBRauthoritative value="false" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="#varExpression" />
+          <FRBRuri value="#varExpressionUri" />
+          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
+          <FRBRdate date="9999-01-01" name="draft" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRversionNumber value="" />
+          <FRBRauthoritative value="false" />
+          <FRBRmasterExpression href="" showAs="" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="#varManifestation" />
+          <FRBRuri value="#varManifestationUri" />
+          <FRBRdate date="9999-01-01" name="akn_xml" />
+          <FRBRauthor href="#varAuthor" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#author">
+        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
+        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
+        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
+        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
+        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
+        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
+        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
+        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
+        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
+        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+      </references>
+    </meta>
+    <coverPage />
+    <body>
+      <section eId="sec_AZZ1" class="prov1">
+        <heading>Heading-less section subsequent numbering test</heading>
+        <num>AZZ1.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_AZ1" class="prov1">
+        <num>AZ1.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_AZ1A" class="prov1">
+        <num>AZ1A.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_AZ2" class="prov1">
+        <num>AZ2.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_A1" class="prov1">
+        <num>A1.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_1" class="prov1">
+        <num>1.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_2" class="prov1">
+        <num>2.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_2ZZA" class="prov1">
+        <num>2ZZA.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_2ZA" class="prov1">
+        <num>2ZA.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_2A" class="prov1">
+        <num>2A.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_2B" class="prov1">
+        <num>2B.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3" class="prov1">
+        <num>3.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3A" class="prov1">
+        <num>3A.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3B" class="prov1">
+        <num>3B.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3C" class="prov1">
+        <num>3C.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3D" class="prov1">
+        <num>3D.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3E" class="prov1">
+        <num>3E.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3F" class="prov1">
+        <num>3F.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3G" class="prov1">
+        <num>3G.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3H" class="prov1">
+        <num>3H.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3I" class="prov1">
+        <num>3I.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3J" class="prov1">
+        <num>3J.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3K" class="prov1">
+        <num>3K.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3L" class="prov1">
+        <num>3L.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3M" class="prov1">
+        <num>3M.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3N" class="prov1">
+        <num>3N.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3P" class="prov1">
+        <num>3P.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3Q" class="prov1">
+        <num>3Q.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3R" class="prov1">
+        <num>3R.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3S" class="prov1">
+        <num>3S.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3T" class="prov1">
+        <num>3T.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3U" class="prov1">
+        <num>3U.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3V" class="prov1">
+        <num>3V.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3W" class="prov1">
+        <num>3W.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3X" class="prov1">
+        <num>3X.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3Y" class="prov1">
+        <num>3Y.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3Z" class="prov1">
+        <num>3Z.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3Z1" class="prov1">
+        <num>3Z1.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_3Z2" class="prov1">
+        <num>3Z2.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>This is a subsection</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="sec_4" class="prov1">
+        <num>4.</num>
+        <subsection class="prov2">
+          <num>(1)</num>
+          <content>
+            <p><mod>After Article 14 of the Children Order insert⁠—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nia"><section class="prov1"><num>14A.</num><subsection class="prov2"><num>(1)</num><content><p><mod>A <quotedText startQuote="“" endQuote="”">special guardianship order</quotedText> is an order appointing one or more persons to be a child’s <quotedText startQuote="“" endQuote="”">special guardian</quotedText> (or special guardians).</mod></p></content></subsection><subsection class="prov2"><num>(2)</num><intro><p>A special guardian—</p></intro><level class="para1"><num>(a)</num><content><p>must be aged 18 or over; and</p></content></level><level class="para1"><num>(b)</num><content><p>must not be a parent of the child in question,</p></content></level><wrapUp><p>and paragraphs (3) to (6) are to be read in that light.</p></wrapUp></subsection></section></quotedStructure><inline name="AppendText">.</inline></mod></p>
+          </content>
+        </subsection>
+      </section>
+    </body>
+  </bill>
+</akomaNtoso>
