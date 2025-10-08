@@ -46,7 +46,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             XmlElement tblock = CreateAndAppend("tblock", parent);
             XmlElement foreign = CreateAndAppend("foreign", tblock);
-            XmlElement table = BuildTable(model);
+            XmlElement table = BuildTable(model, parent);
             foreign.AppendChild(table);
 
             tblock.SetAttribute("class", AknNamespace, "table");
@@ -77,12 +77,12 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
             }
             XmlElement foreign = CreateAndAppend("foreign", tblock);
-            XmlElement table = BuildTable(tableBlock.Table);
+            XmlElement table = BuildTable(tableBlock.Table, parent);
             foreign.AppendChild(table);
             tblock.SetAttribute("class", AknNamespace, "table");
         }
 
-        private XmlElement BuildTable(ITable model)
+        private XmlElement BuildTable(ITable model, XmlElement grandparent)
         {
             XmlElement table = CreateElement("table");
             table.SetAttribute("xmlns", HtmlNamespace);
@@ -90,6 +90,9 @@ namespace UK.Gov.Legislation.Lawmaker
             table.SetAttribute("class", HtmlNamespace, "allBorders tableleft width100");
             table.SetAttribute("cols", model.ColumnWidthsIns.Count.ToString());
 
+            if (grandparent.Attributes[0].Value == "commencementHistory")
+                table.SetAttribute("class", HtmlNamespace, "topAndBottom tablecenter width100");
+            
             IEnumerable<IEnumerable<IRow>> rowsGroupedByHeaders = GroupRowsByHeaders(model.Rows);
 
             foreach (IEnumerable<IRow> rows in rowsGroupedByHeaders)
