@@ -207,10 +207,10 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
 
-        private static readonly Dictionary<Lang, string> ContentsHeadingPatterns = new()
+        private static readonly LanguagePatterns ContentsHeadingPatterns = new()
         {
-            [Lang.ENG] = @"^CONTENTS$",
-            [Lang.CYM] = @"^CYNNWYS$"
+            [Lang.ENG] = [@"^CONTENTS$"],
+            [Lang.CYM] = [@"^CYNNWYS$"]
         };
 
     }

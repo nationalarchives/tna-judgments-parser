@@ -100,10 +100,10 @@ partial record LdappTableNumber(
     List<WLine>? Captions
 ) : ILineable {
 
-    private static readonly Dictionary<Lang, string> TableNumberPatterns = new()
+    private static readonly LanguagePatterns TableNumberPatterns = new()
     {
-        [Lang.ENG] = @"^Table\s+\w+$",
-        [Lang.CYM] = @"^Tabl\s+\w+$"
+        [Lang.ENG] = [@"^Table\s+\w+$"],
+        [Lang.CYM] = [@"^Tabl\s+\w+$"]
     };
 
     public IEnumerable<WLine> Lines => Captions is null ? [Number] : Captions.Prepend(Number);
