@@ -66,7 +66,7 @@ public partial class LegislationParser
         // Handle start and end quotes after parsing is complete, because it alters the
         // contents of parsed results which does not work well with memoization
         ExtractAllQuotesAndAppendTexts(body);
-        QuotationEnricher quotationEnricher = new($"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
+        QuotationEnricher quotationEnricher = new(langService, $"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
         quotationEnricher.EnrichDivisions(body);
 
             FootnoteEnricher footnoteEnricher = new FootnoteEnricher();
