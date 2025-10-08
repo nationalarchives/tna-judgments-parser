@@ -47,7 +47,9 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> content = [];
             while (i < Document.Body.Count)
             {
-                IBlock currentBlock = Current();
+                IBlock? currentBlock = Current();
+                if (currentBlock is null)
+                    break;
 
                 // If we hit the the start of the Commencement History table,
                 // then the Explanatory Note must have ended.
@@ -86,7 +88,9 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> content = [];
             while (i < Document.Body.Count)
             {
-                IBlock currentBlock = Current();
+                IBlock? currentBlock = Current();
+                if (currentBlock is null)
+                    break;
 
                 // If we hit the the start of the Commencement History table,
                 // then the Explanatory Note must have ended.
@@ -165,14 +169,14 @@ namespace UK.Gov.Legislation.Lawmaker
             [Lang.CYM] = @"^NODYN +ESBONIADOL"
         };
 
-        public static bool IsHeading(LanguageService langService, IBlock block)
+        public static bool IsHeading(LanguageService langService, IBlock? block)
         {
             if (block is not WLine line)
                 return false;
             return langService.IsMatch(line.NormalizedContent, HeadingPatterns);
         }
 
-        public static bool IsSubheading(IBlock block)
+        public static bool IsSubheading(IBlock? block)
         {
             if (block is not WLine line)
                 return false;
@@ -180,7 +184,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return text.StartsWith('(') && text.EndsWith(')');
         }
 
-        public static bool IsTblockHeading(IBlock block)
+        public static bool IsTblockHeading(IBlock? block)
         {
             if (block is not WLine line)
                 return false;
@@ -203,14 +207,14 @@ namespace UK.Gov.Legislation.Lawmaker
             [Lang.CYM] = @"^NODYN +AM +Y +(RHEOLIADAU|GORCHMYNION|GORCHYMYN) +CYCHWYN +(CYNHARACH|BLAENOROL)$"
         };
 
-        public static bool IsHeading(LanguageService langService, IBlock block)
+        public static bool IsHeading(LanguageService langService, IBlock? block)
         {
             if (block is not WLine line)
                 return false;
             return langService.IsMatch(line.NormalizedContent, HeadingPatterns);
         }
 
-        public static bool IsSubheading(IBlock block)
+        public static bool IsSubheading(IBlock? block)
         {
             if (block is not WLine line)
                 return false;

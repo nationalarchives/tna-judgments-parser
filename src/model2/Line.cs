@@ -237,16 +237,16 @@ class WLine : ILine, ILineable {
     {
         get
         {
-            Style? style = DOCX.Styles.GetStyle(main, Style);
-            StyleParagraphProperties? pPr = style?.ChildElements
+            Style style = DOCX.Styles.GetStyle(main, Style);
+            StyleParagraphProperties pPr = style?.ChildElements
                 .Where(c => c is StyleParagraphProperties)
                 .Select(c => c as StyleParagraphProperties)
                 .FirstOrDefault();
-            NumberingProperties? numPr = pPr?.ChildElements
+            NumberingProperties numPr = pPr?.ChildElements
                 .Where(c => c is NumberingProperties)
                 .Select(c => c as NumberingProperties)
                 .FirstOrDefault();
-            NumberingLevelReference? iLvl = numPr?.ChildElements
+            NumberingLevelReference iLvl = numPr?.ChildElements
                 .Where(c => c is NumberingLevelReference)
                 .Select(c => c as NumberingLevelReference)
                 .FirstOrDefault();
