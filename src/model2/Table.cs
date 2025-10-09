@@ -324,20 +324,6 @@ class WCell : ICell {
         return Blocks.ParseBlock(cell.Main, e);
     }
 
-    /*
-    internal static WCell Enrich(WCell cell, Func<IBlock, IBlock> operation)
-    {
-        IEnumerator<IBlock> contents = cell.Contents.GetEnumerator();
-        List<IBlock> enriched = new List<IBlock>();
-        while (contents.MoveNext())
-        {
-            IBlock before = contents.Current;
-            IBlock after = operation(before);
-            enriched.Add(after);
-        }
-        return new WCell(cell.Row, cell.Props, enriched);
-    }*/
-
     internal static WCell Enrich(WCell cell, Func<WCell, WCell> operation)
     {
         return operation(cell);

@@ -13,9 +13,8 @@ public partial class LegislationParser
 
     // We may need to hold this information in the Frames, but that may be tricky. For now we store them
     // at the root.
-    private readonly string? subType;
-    private readonly string? procedure;
     private readonly DocName docName;
+
     /*
         This class takes a list of "pre-parsed" blocks, and arranges them into a bill structure.
         The pre-parsed list contains blocks of only four types:

@@ -29,9 +29,7 @@ public class LanguageService
     /// <param name="languages">Collection of supported languages</param>
     public LanguageService(IEnumerable<Lang> languages)
     {
-        this.languages = languages.ToList();
-        if (this.languages.Count == 0)
-            this.languages.Add(Lang.ENG);
+        this.languages = languages?.Any() == true ? languages.ToList() : [Lang.ENG];
     }
 
     /// <summary>
@@ -51,10 +49,11 @@ public class LanguageService
     /// <returns>Collection of valid Lang enum values</returns>
     private static IEnumerable<Lang> ParseLanguageStrings(IEnumerable<string> languageStrings)
     {
-        return languageStrings
+        return languageStrings?
             .Select(s => Enum.TryParse<Lang>(s, true, out var lang) ? lang : (Lang?)null)
             .Where(lang => lang.HasValue)
-            .Select(lang => lang.Value);
+            .Select(lang => lang.Value)
+            ?? [];
     }
 
     /// <summary>
