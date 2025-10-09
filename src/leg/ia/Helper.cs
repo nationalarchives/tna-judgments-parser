@@ -1,6 +1,8 @@
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 
 using DocumentFormat.OpenXml.Packaging;
@@ -14,6 +16,19 @@ using UK.Gov.Legislation.Models;
 namespace UK.Gov.Legislation.ImpactAssessments {
 
 class Helper : BaseHelper {
+
+    // Constants
+    private const string AKN_NAMESPACE = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
+    
+    // Semantic element mappings
+    private static readonly Dictionary<string, string> SemanticMappings = new() {
+        { "Title:", "docTitle" },
+        { "IA No:", "docNumber" },
+        { "Stage:", "docStage" },
+        { "Date:", "docDate" },
+        { "Lead department or agency:", "docDepartment" },
+        { "Other departments or agencies", "docDepartment" }
+    };
 
     private static readonly Helper Instance = new Helper();
 
@@ -38,7 +53,7 @@ class Helper : BaseHelper {
 
     private static void ApplyIAStyleMappings(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
-        nsmgr.AddNamespace("akn", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         var logger = Logging.Factory.CreateLogger<Helper>();
     
         var paragraphs = xml.SelectNodes("//akn:p", nsmgr);
@@ -48,66 +63,17 @@ class Helper : BaseHelper {
         XmlNode previousParagraph = null;
         
         foreach (XmlNode p in paragraphs) {
-            string content = p.InnerText?.Trim() ?? "";
-            string cssClass = null;
-            bool transformed = false;
+            string cleanContent = CleanContent(p.InnerText?.Trim() ?? "");
             
-            // Remove HTML tags for cleaner pattern matching
-            string cleanContent = content.Replace("<b>", "").Replace("</b>", "");
-            
-            // Transform IA-specific content patterns into semantic elements
-            if (cleanContent.StartsWith("Title:")) {
-                transformed = TransformToSemanticElement(xml, p, "Title:", "docTitle", "ia-metadata");
+            // Try to transform to semantic element first
+            bool transformed = TryTransformToSemanticElement(xml, p, cleanContent);
+            if (transformed) {
                 semanticElements++;
-            }
-            else if (cleanContent.StartsWith("IA No:")) {
-                transformed = TransformToSemanticElement(xml, p, "IA No:", "docNumber", "ia-metadata");
-                semanticElements++;
-            }
-            else if (cleanContent.StartsWith("Stage:")) {
-                transformed = TransformToSemanticElement(xml, p, "Stage:", "docStage", "ia-metadata");
-                semanticElements++;
-            }
-            else if (cleanContent.StartsWith("Date:")) {
-                transformed = TransformToSemanticElement(xml, p, "Date:", "docDate", "ia-metadata");
-                semanticElements++;
-            }
-            else if (cleanContent.StartsWith("Lead department or agency:")) {
-                transformed = TransformToSemanticElement(xml, p, "Lead department or agency:", "docDepartment", "ia-metadata");
-                semanticElements++;
-            }
-            else if (cleanContent.StartsWith("Other departments or agencies")) {
-                transformed = TransformToSemanticElement(xml, p, "Other departments or agencies", "docDepartment", "ia-metadata");
-                semanticElements++;
-            }
-            
-            // If not transformed to semantic element, apply CSS class as before
-            if (!transformed) {
-                if (cleanContent.StartsWith("Impact Assessment")) {
-                    cssClass = "ia-title";
-                }
-                else if (cleanContent.Contains("RPC Reference")) {
-                    cssClass = "ia-head-label";
-                }
-                else if (IsInHeaderTable(p)) {
-                    // Check if this follows a header-text question and is a short answer
-                    if (previousParagraph != null && IsInHeaderTable(previousParagraph)) {
-                        string prevContent = previousParagraph.InnerText?.Trim().Replace("<b>", "").Replace("</b>", "") ?? "";
-                        if ((prevContent.StartsWith("Lead department") || prevContent.StartsWith("Other departments")) && 
-                            cleanContent.Length < 100 && !cleanContent.Contains(":")) {
-                            cssClass = "ia-header-text";
-                        } else {
-                            cssClass = "ia-table-text";
-                        }
-                    } else {
-                        cssClass = "ia-table-text";
-                    }
-                }
-                
+            } else {
+                // Apply CSS class if not transformed
+                string cssClass = DetermineCssClass(cleanContent, p, previousParagraph);
                 if (cssClass != null) {
-                    var classAttr = xml.CreateAttribute("class");
-                    classAttr.Value = cssClass;
-                    p.Attributes.Append(classAttr);
+                    ApplyCssClass(p, cssClass);
                     classified++;
                 }
             }
@@ -115,45 +81,83 @@ class Helper : BaseHelper {
             previousParagraph = p;
         }
         
+        LogProcessingResults(logger, classified, semanticElements);
+    }
+    
+    private static string CleanContent(string content) {
+        return content.Replace("<b>", "").Replace("</b>", "");
+    }
+    
+    private static bool TryTransformToSemanticElement(XmlDocument xml, XmlNode paragraph, string cleanContent) {
+        foreach (var mapping in SemanticMappings) {
+            if (cleanContent.StartsWith(mapping.Key)) {
+                return TransformToSemanticElement(xml, paragraph, mapping.Key, mapping.Value);
+            }
+        }
+        return false;
+    }
+    
+    private static string DetermineCssClass(string cleanContent, XmlNode paragraph, XmlNode previousParagraph) {
+        if (cleanContent.StartsWith("Impact Assessment")) {
+            return "ia-title";
+        }
+        
+        if (cleanContent.Contains("RPC Reference")) {
+            return "ia-head-label";
+        }
+        
+        if (IsInHeaderTable(paragraph)) {
+            return DetermineTableCssClass(cleanContent, previousParagraph);
+        }
+        
+        return null;
+    }
+    
+    private static string DetermineTableCssClass(string cleanContent, XmlNode previousParagraph) {
+        if (previousParagraph != null && IsInHeaderTable(previousParagraph)) {
+            string prevContent = CleanContent(previousParagraph.InnerText?.Trim() ?? "");
+            if ((prevContent.StartsWith("Lead department") || prevContent.StartsWith("Other departments")) && 
+                cleanContent.Length < 100 && !cleanContent.Contains(":")) {
+                return "ia-header-text";
+            }
+        }
+        return "ia-table-text";
+    }
+    
+    private static void ApplyCssClass(XmlNode paragraph, string cssClass) {
+        var classAttr = paragraph.OwnerDocument.CreateAttribute("class");
+        classAttr.Value = cssClass;
+        paragraph.Attributes.Append(classAttr);
+    }
+    
+    private static void LogProcessingResults(ILogger logger, int classified, int semanticElements) {
         if (classified > 0 || semanticElements > 0) {
             logger.LogInformation("Applied IA CSS classes to {ClassCount} paragraphs and created {SemanticCount} semantic elements", 
                 classified, semanticElements);
         }
     }
     
-    private static bool TransformToSemanticElement(XmlDocument xml, XmlNode paragraph, string labelText, string semanticElementName, string cssClass) {
+    private static bool TransformToSemanticElement(XmlDocument xml, XmlNode paragraph, string labelText, string semanticElementName) {
         try {
             string content = paragraph.InnerText?.Trim() ?? "";
             
             // Extract the value part after the label
-            string valueText = content.Substring(labelText.Length).Trim();
-            if (valueText.StartsWith(":")) {
-                valueText = valueText.Substring(1).Trim();
-            }
+            string valueText = ExtractValueText(content, labelText);
             
-            // Create the semantic structure: <docTitle>Title</docTitle>: <content>
-            var akn = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
-            
-            // Clear existing content
+            // Clear existing content and rebuild with semantic structure
             paragraph.RemoveAll();
             
-            // Add semantic element for the label
-            var semanticElement = xml.CreateElement(semanticElementName, akn);
-            semanticElement.InnerText = labelText.TrimEnd(':');
-            paragraph.AppendChild(semanticElement);
+            // Create semantic structure: <b><docTitle>Title</docTitle></b>: <content>
+            var boldElement = CreateBoldSemanticElement(xml, labelText, semanticElementName);
+            paragraph.AppendChild(boldElement);
             
             // Add colon and space
             paragraph.AppendChild(xml.CreateTextNode(": "));
             
-            // Add the value content (preserve any formatting)
+            // Add the value content
             if (!string.IsNullOrEmpty(valueText)) {
                 paragraph.AppendChild(xml.CreateTextNode(valueText));
             }
-            
-            // Add CSS class to the paragraph
-            var classAttr = xml.CreateAttribute("class");
-            classAttr.Value = cssClass;
-            paragraph.Attributes.Append(classAttr);
             
             return true;
         }
@@ -161,6 +165,22 @@ class Helper : BaseHelper {
             // If transformation fails, return false to fall back to CSS-only approach
             return false;
         }
+    }
+    
+    private static string ExtractValueText(string content, string labelText) {
+        string valueText = content.Substring(labelText.Length).Trim();
+        if (valueText.StartsWith(":")) {
+            valueText = valueText.Substring(1).Trim();
+        }
+        return valueText;
+    }
+    
+    private static XmlElement CreateBoldSemanticElement(XmlDocument xml, string labelText, string semanticElementName) {
+        var boldElement = xml.CreateElement("b", AKN_NAMESPACE);
+        var semanticElement = xml.CreateElement(semanticElementName, AKN_NAMESPACE);
+        semanticElement.InnerText = labelText.TrimEnd(':');
+        boldElement.AppendChild(semanticElement);
+        return boldElement;
     }
     
     private static bool IsInHeaderTable(XmlNode paragraph) {
