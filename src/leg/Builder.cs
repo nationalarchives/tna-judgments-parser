@@ -160,6 +160,22 @@ class Builder : AkN.Builder {
             XmlElement e = CreateAndAppend("docNumber", parent);
             foreach (Judgments.IInline child in docNum.Contents)
                 base.AddInline(e, child);
+        } else if (model is DocTitle docTitle) {
+            XmlElement e = CreateAndAppend("docTitle", parent);
+            foreach (Judgments.IInline child in docTitle.Contents)
+                base.AddInline(e, child);
+        } else if (model is DocStage docStage) {
+            XmlElement e = CreateAndAppend("docStage", parent);
+            foreach (Judgments.IInline child in docStage.Contents)
+                base.AddInline(e, child);
+        } else if (model is DocDate docDate) {
+            XmlElement e = CreateAndAppend("docDate", parent);
+            foreach (Judgments.IInline child in docDate.Contents)
+                base.AddInline(e, child);
+        } else if (model is DocDepartment docDept) {
+            XmlElement e = CreateAndAppend("docDepartment", parent);
+            foreach (Judgments.IInline child in docDept.Contents)
+                base.AddInline(e, child);
         } else {
             base.AddInline(parent, model);
         }
