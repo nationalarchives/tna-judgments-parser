@@ -90,7 +90,7 @@ namespace UK.Gov.Legislation.Lawmaker
             table.SetAttribute("class", HtmlNamespace, "allBorders tableleft width100");
             table.SetAttribute("cols", model.ColumnWidthsIns.Count.ToString());
 
-            if (grandparent.Attributes[0].Value == "commencementHistory")
+            if (DocNames.IsSecondaryDocName(this.bill.Type) && grandparent.Attributes.Count > 0 && grandparent.Attributes[0].Value == "commencementHistory")
                 table.SetAttribute("class", HtmlNamespace, "topAndBottom tablecenter width100");
             
             IEnumerable<IEnumerable<IRow>> rowsGroupedByHeaders = GroupRowsByHeaders(model.Rows);
