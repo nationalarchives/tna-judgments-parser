@@ -60,16 +60,19 @@ internal class Fields2 {
     }
 
     internal static Func<MainDocumentPart, Run, string, List<IInline>, List<IInline>>[] FieldHandlers = {
-        AutoNum, Date, Hyperlink, IncludePicture, ListNum, Page, Ref, Symbol, Time
+        AutoNum, Date, FormDropdown, Hyperlink, IncludePicture, ListNum, Page, Ref, Symbol, Time
     };
 
     private static ILogger Logger = Logging.Factory.CreateLogger<Fields2>();
 
     internal static List<IInline> Parse(MainDocumentPart main, Run run, string code, List<IInline> contents) {
+        
         if (ShouldSkipAltogether(code))
             return new List<IInline>(0);
         if (ShouldUseContents(code))
             return _UseContents(code, contents);
+        
+        
         if (IsCritical(code)) {
             Logger.LogCritical("unsupported field code {}: static contents are {}", code, IInline.ToString(contents));
             return contents;
@@ -95,6 +98,63 @@ internal class Fields2 {
         if (!code.StartsWith(" DATE ") && !code.StartsWith(" createDATE "))
             return null;
         return UK.Gov.Legislation.Judgments.Parse.Time.ConvertDate(contents);
+    }
+
+    internal static List<IInline> FormDropdown(MainDocumentPart main, Run run, string code, List<IInline> contents) {
+        if (!code.StartsWith(" FORMDROPDOWN"))
+            return null;
+        
+        string selectedValue = ExtractDropdownValue(run);
+        if (!string.IsNullOrEmpty(selectedValue)) {
+            var wText = new WText(selectedValue, run.RunProperties);
+            return new List<IInline> { wText };
+        }
+        
+        return contents;
+    }
+
+    private static string ExtractDropdownValue(Run run) {
+        const string wordNamespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
+        
+        try {
+            var formFieldData = FindFormFieldData(run);
+            if (formFieldData == null) return null;
+
+            var dropdownData = formFieldData.ChildElements.FirstOrDefault(e => e.LocalName == "ddList");
+            if (dropdownData == null) return null;
+
+            var resultElement = dropdownData.ChildElements.FirstOrDefault(e => e.LocalName == "result");
+            if (resultElement == null) return null;
+
+            string selectedIndexText = resultElement.GetAttribute("val", wordNamespace).Value;
+            if (!int.TryParse(selectedIndexText, out int selectedIndex)) return null;
+
+            var listItems = dropdownData.ChildElements.Where(e => e.LocalName == "listEntry").ToList();
+            if (selectedIndex < 0 || selectedIndex >= listItems.Count) return null;
+
+            return listItems[selectedIndex].GetAttribute("val", wordNamespace).Value;
+        } catch (Exception ex) {
+            Logger.LogWarning(ex, "Error extracting dropdown value");
+            return null;
+        }
+    }
+
+    private static FormFieldData FindFormFieldData(Run run) {
+        var paragraph = run.Parent;
+        if (paragraph == null) return null;
+
+        var allRuns = paragraph.Elements<Run>().ToList();
+        int currentIndex = allRuns.IndexOf(run);
+        
+        // Look backwards for the field begin marker
+        for (int i = currentIndex - 1; i >= 0; i--) {
+            var fieldChar = allRuns[i].GetFirstChild<FieldChar>();
+            if (fieldChar?.FieldCharType == FieldCharValues.Begin) {
+                return fieldChar.FormFieldData;
+            }
+        }
+        
+        return null;
     }
 
     internal static List<IInline> Hyperlink(MainDocumentPart main, Run run, string code, List<IInline> contents) {
