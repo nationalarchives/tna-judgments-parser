@@ -42,9 +42,13 @@
 <xs:complexType name="header-paragraph" mixed="true">
     <xs:complexContent>
         <xs:extension base="inline-container">
-            <xs:choice minOccurs="0" maxOccurs="1">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
                 <xs:element ref="docType" />
                 <xs:element ref="docNumber" />
+                <xs:element ref="docTitle" />
+                <xs:element ref="docStage" />
+                <xs:element ref="docDate" />
+                <xs:element ref="docDepartment" />
             </xs:choice>
             <xs:attribute name="class" >
                 <xs:simpleType>
@@ -61,6 +65,15 @@
 <xs:element name="docType" type="inline-container" />
 
 <xs:element name="docNumber" type="inline-container" />
+
+<!-- IA-specific semantic inline elements -->
+<xs:element name="docTitle" type="inline-container" />
+
+<xs:element name="docStage" type="inline-container" />
+
+<xs:element name="docDate" type="inline-container" />
+
+<xs:element name="docDepartment" type="inline-container" />
 
 
 <!-- body -->
@@ -251,6 +264,10 @@
             <xs:element ref="marker" />
             <xs:element ref="authorialNote" />
             <xs:element ref="br" />
+            <xs:element ref="docTitle" />
+            <xs:element ref="docStage" />
+            <xs:element ref="docDate" />
+            <xs:element ref="docDepartment" />
         </xs:choice>
         <xs:attribute name="class" >
             <xs:simpleType>
@@ -270,6 +287,7 @@
                     <xs:enumeration value="ia-soi" />
                     <xs:enumeration value="ia-tom" />
                     <xs:enumeration value="ia-sign-off" />
+                    <xs:enumeration value="ia-metadata" />
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>

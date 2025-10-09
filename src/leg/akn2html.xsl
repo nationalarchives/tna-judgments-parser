@@ -2,16 +2,15 @@
 
 <xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
 	xpath-default-namespace="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
-	xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn"
+	xmlns:uk="https://legislation.gov.uk/akn"
 	xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:math="http://www.w3.org/1998/Math/MathML"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	exclude-result-prefixes="uk html math xs">
+	exclude-result-prefixes="uk html xs">
 
 <xsl:output method="html" version="5" encoding="utf-8" indent="yes" include-content-type="no" />
 
 <xsl:strip-space elements="*" />
-<xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docketNumber judge lawyer location neutralCitation party role time b i u" />
+<xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docStage docDepartment time b i u" />
 
 <xsl:param name="image-base" as="xs:string" select="'/'" />
 
@@ -87,6 +86,14 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 .ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
 .ia-header-text { font-size: 10pt; margin: 2pt 4pt }
 .ia-stage { font-size: 11pt; margin: 2pt 4pt }
+.ia-metadata { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+
+/* IA semantic inline elements */
+.docTitle { font-weight: bold; }
+.docNumber { font-weight: bold; }
+.docStage { font-weight: bold; }
+.docDate { font-weight: bold; }
+.docDepartment { font-weight: bold; }
 
 /* IA table styling */
 .ia-table {
@@ -142,19 +149,25 @@ article[data-doc-type='ImpactAssessment'] .level:first-child table td table tr:n
 	display: none !important;
 }
 
+/* IA semantic containers */
+.hcontainer.summary {
+	border: 1px solid black;
+	padding: 10pt;
+	margin: 10pt 0;
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+.ia-metadata .blockContainer {
+	border-left: 2px solid black;
+	padding-left: 8pt;
+}
 
 
 </style>
-<!--	
-td { position: relative; min-width: 2em; padding-left: 1em; padding-right: 1em; vertical-align: top }
-td > .num { left: -2em }
-table { margin: 0 auto; width: 100%; border-collapse: collapse }
-.header table { table-layout: fixed }
-td > p:first-child { margin-top: 0 }
-td > p:last-child { margin-bottom: 0 }
-.fn { vertical-align: super; font-size: small }
-.footnote > p > .marker { vertical-align: super; font-size: small }
-.tab { display: inline-block; width: 0.25in } -->
 </xsl:template>
 
 <xsl:template match="doc">
@@ -184,10 +197,14 @@ td > p:last-child { margin-bottom: 0 }
 	</div>
 </xsl:template>
 
-<xsl:template match="level | section | paragraph | subparagraph">
+<xsl:template match="level | section | paragraph | subparagraph | hcontainer">
 	<section>
 		<xsl:attribute name="class">
 			<xsl:value-of select="local-name(.)" />
+			<xsl:if test="@name">
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="@name" />
+			</xsl:if>
 			<xsl:if test="num">
 				<xsl:text> num</xsl:text>
 			</xsl:if>
@@ -217,17 +234,7 @@ td > p:last-child { margin-bottom: 0 }
 	</p>
 </xsl:template>
 
-<!-- embedded structures -->
-
-<xsl:template match="block[@name='embeddedStructure']">
-	<xsl:apply-templates />
-</xsl:template>
-
-<xsl:template match="embeddedStructure">
-	<blockquote>
-		<xsl:apply-templates />
-	</blockquote>
-</xsl:template>
+<!-- content blocks -->
 
 <!-- blocks -->
 
@@ -246,7 +253,7 @@ td > p:last-child { margin-bottom: 0 }
 
 <!-- inline -->
 
-<xsl:template match="num | heading | docType | docNumber | date">
+<xsl:template match="num | heading | docType | docNumber | docTitle | docStage | docDate | docDepartment | date">
 	<span class="{ local-name() }">
 		<xsl:apply-templates />
 	</span>
@@ -324,19 +331,7 @@ td > p:last-child { margin-bottom: 0 }
 </xsl:template>
 
 
-<!-- tables of contents -->
-
-<xsl:template match="toc">
-	<div class="toc">
-		<xsl:apply-templates />
-	</div>
-</xsl:template>
-
-<xsl:template match="tocItem">
-	<p class="tocItem">
-		<xsl:apply-templates />
-	</p>
-</xsl:template>
+<!-- content organization -->
 
 
 <!-- markers and attributes -->
@@ -388,13 +383,6 @@ td > p:last-child { margin-bottom: 0 }
 </xsl:template>
 
 
-<!-- math -->
-
-<xsl:template match="math:*">
-	<xsl:copy>
-		<xsl:copy-of select="@*"/>
-		<xsl:apply-templates />
-	</xsl:copy>
-</xsl:template>
+<!-- end of templates -->
 
 </xsl:transform>
