@@ -37,12 +37,21 @@ namespace UK.Gov.Legislation.Lawmaker
             return result;
         }
 
-        private HContainer ParseLine()
+        private HContainer ParseLine(System.Func<WLine, HContainer> nextExpected = null)
         {
             if (Current() is not WLine line)
                 return null;
 
-            HContainer hContainer;
+            HContainer hContainer = null;
+
+            if (nextExpected != null)
+            {
+                hContainer = nextExpected(line);
+            }
+            if (hContainer != null)
+            {
+                return hContainer;
+            }
 
             if (frames.IsScheduleContext())
                 hContainer = ParseScheduleLine(line);
@@ -177,7 +186,7 @@ namespace UK.Gov.Legislation.Lawmaker
          * Returns a list of blocks starting with the current paragraph, plus any
          * additional blocks (i.e extra paragraphs, quoted structures, and/or tables)
         */
-        private List<IBlock> HandleParagraphs(WLine line)
+        private List<IBlock> HandleParagraphs(WLine line, System.Func<WLine, HContainer> nextExpected = null)
         {
             WLine first = (line is WOldNumberedParagraph np) ? WLine.RemoveNumber(np) : line;
             if (IsEndOfQuotedStructure(first.TextContent))
@@ -189,7 +198,7 @@ namespace UK.Gov.Legislation.Lawmaker
             while (i < Document.Body.Count)
             {
                 int save = i;
-                IList<IBlock> extraParagraph = GetExtraParagraph(line);
+                IList<IBlock> extraParagraph = GetExtraParagraph(line, nextExpected);
                 if (extraParagraph == null)
                 {
                     i = save;
@@ -231,12 +240,12 @@ namespace UK.Gov.Legislation.Lawmaker
          * Determines if the next line is an extra paragraph belonging to the current division.
          * If so, it returns the paragraph. If not, it returns null.
         */
-        private IList<IBlock> GetExtraParagraph(WLine leader)
+        private IList<IBlock> GetExtraParagraph(WLine leader, System.Func<WLine, HContainer> nextExpected = null)
         {
             if (BreakFromProv1())
                 return null;
 
-            IDivision next = ParseNextBodyDivision();
+            IDivision next = ParseNextBodyDivision(nextExpected);
 
             if (next is WDummyDivision dummy && dummy.Contents.Count() == 1)
             {

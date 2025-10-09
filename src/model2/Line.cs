@@ -6,14 +6,17 @@ using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using UK.Gov.Legislation.Lawmaker;
 
 namespace UK.Gov.Legislation.Judgments.Parse {
 
-class WLine : ILine {
+class WLine : ILine, ILineable {
 
     internal readonly MainDocumentPart main;
     internal readonly ParagraphProperties properties;
     private List<IInline> contents;
+
+    public IEnumerable<WLine> Lines => [this];
 
     internal IEnumerable<WBookmark> Bookmarks { get; private set; }
     internal void PrependBookmarksFromPrecedingSkippedLines(IEnumerable<WBookmark> skipped) {
@@ -224,6 +227,41 @@ class WLine : ILine {
                 return null;
             return CSS.ConvertSize(inches.Value, "in");
         }
+    }
+
+    /// <summary>
+    /// The value of the <c>NumberingLevelReference</c> of this <c>WLine</c>, if present, 
+    /// as defined in the <c>Style</c>. Otherwise defaults to <c>-1</c>.
+    /// </summary>
+    public int NumberingLevel
+    {
+        get
+        {
+            Style style = DOCX.Styles.GetStyle(main, Style);
+            StyleParagraphProperties pPr = style?.ChildElements
+                .Where(c => c is StyleParagraphProperties)
+                .Select(c => c as StyleParagraphProperties)
+                .FirstOrDefault();
+            NumberingProperties numPr = pPr?.ChildElements
+                .Where(c => c is NumberingProperties)
+                .Select(c => c as NumberingProperties)
+                .FirstOrDefault();
+            NumberingLevelReference iLvl = numPr?.ChildElements
+                .Where(c => c is NumberingLevelReference)
+                .Select(c => c as NumberingLevelReference)
+                .FirstOrDefault();
+            return iLvl?.Val ?? -1;
+        }
+    }
+
+    /// <summary>
+    /// Determines whether this <c>WLine</c> has a greater numbering level than <paramref name="other"/>.
+    /// </summary>
+    /// <param name="other">The line with which to compare.</param>
+    /// <returns><c>True</c> if this <c>WLine</c> has a greater numbering level than <paramref name="other"/>.</returns>
+    public bool HasGreaterNumberingLevelThan(WLine other)
+    {
+        return this.NumberingLevel > other.NumberingLevel;
     }
 
     public float? BorderTopWidthPt {

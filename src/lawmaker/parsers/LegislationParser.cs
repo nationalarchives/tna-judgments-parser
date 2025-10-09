@@ -13,9 +13,8 @@ public partial class LegislationParser
 
     // We may need to hold this information in the Frames, but that may be tricky. For now we store them
     // at the root.
-    private readonly string? subType;
-    private readonly string? procedure;
     private readonly DocName docName;
+
     /*
         This class takes a list of "pre-parsed" blocks, and arranges them into a bill structure.
         The pre-parsed list contains blocks of only four types:
@@ -24,25 +23,26 @@ public partial class LegislationParser
         = WTable
         - WTableOfContents
     */
-    public static Document Parse(byte[] docx, LegislationClassifier classifier)
+    public static Document Parse(byte[] docx, LegislationClassifier classifier, LanguageService languageService)
     {
         WordprocessingDocument doc = AkN.Parser.Read(docx);
         CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
-        return new LegislationParser(simple, classifier).Parse();
+        return new LegislationParser(simple, classifier, languageService).Parse();
     }
 
-        private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier)
-        {
-            Document = doc;
-            docName = classifier.DocName;
-            frames = new Frames(classifier.DocName, classifier.GetContext());
-
-
-        }
+    private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier, LanguageService languageService)
+    {
+        Document = doc;
+        docName = classifier.DocName;
+        frames = new Frames(classifier.DocName, classifier.GetContext());
+        langService = languageService;
+    }
 
     private readonly ILogger Logger = Logging.Factory.CreateLogger<LegislationParser>();
-    private Frames frames;
     private readonly CaseLaw.WordDocument Document;
+    public LanguageService langService;
+    private Frames frames;
+
     private int i = 0;
 
     int parseDepth = 0;
@@ -54,6 +54,7 @@ public partial class LegislationParser
     {
         ParseAndEnrichHeader();
         ParseBody();
+        ParseConclusions();
 
         if (i != Document.Body.Count)
             Logger.LogWarning("parsing did not complete: {}", i);
@@ -81,7 +82,8 @@ public partial class LegislationParser
             Preface = preface,
             Preamble = preamble,
             Body = body,
-            Schedules = []
+            Schedules = [],
+            Conclusions = conclusions
         };
     }
 

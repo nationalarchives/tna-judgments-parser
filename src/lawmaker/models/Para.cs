@@ -9,7 +9,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
     /* para1 */
 
-    internal interface Para1
+    internal partial interface Para1
     {
 
         public static bool IsValidNumber(string num)

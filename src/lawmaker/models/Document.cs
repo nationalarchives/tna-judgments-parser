@@ -22,6 +22,8 @@ namespace UK.Gov.Legislation.Lawmaker
         internal IList<IDivision> Body { get; init; }
 
         internal IList<Schedule> Schedules { get; init; }
+        
+        internal IList<BlockContainer> Conclusions { get; init; }
 
     }
 }

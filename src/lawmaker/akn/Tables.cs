@@ -48,7 +48,6 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement foreign = CreateAndAppend("foreign", tblock);
             XmlElement table = BuildTable(model);
             foreign.AppendChild(table);
-            CreateAndAppend("table", foreign);
 
             tblock.SetAttribute("class", AknNamespace, "table");
         }
@@ -146,7 +145,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     if (styles.Any())
                         td.SetAttribute("style", AkN.CSS.SerializeInline(styles));
                     tr.AppendChild(td);
-                    this.blocks(td, cell.Contents);
+                    AddBlocks(td, cell.Contents);
 
                     // all direct children of a td in Lawmaker gets the AKN as a default namespace
                     foreach (XmlElement element in td.ChildNodes.OfType<XmlElement>())

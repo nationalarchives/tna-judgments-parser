@@ -1,6 +1,6 @@
 
 using System.Collections.Generic;
-
+using System.Linq;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
@@ -163,9 +163,17 @@ internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
         return first;
     }
 
+    public bool IsEmpty()
+    {
+        if (!IInline.IsEmpty(Number))
+            return false;
+        if (!this.Contents.Any())
+            return true;
+        return this.Contents.All(IInline.IsEmpty);
+    }
 }
 
-internal class WTableOfContents : ITableOfContents {
+    internal class WTableOfContents : ITableOfContents {
 
     public string Name => null;
 

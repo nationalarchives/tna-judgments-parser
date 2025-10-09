@@ -39,5 +39,8 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Lawmaker
 
         [JsonPropertyName("document-procedure")]
         public string Procedure { get; set; }
+
+        [JsonPropertyName("document-language")]
+        public string[] Languages { get; set; }
     }
 }

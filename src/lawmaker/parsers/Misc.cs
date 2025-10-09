@@ -15,10 +15,10 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class LegislationParser
     {
 
-        private int Save() => i;
-        private void Restore(int save) => i = save;
+        internal int Save() => i;
+        internal void Restore(int save) => i = save;
         // Get the current block the parser is at
-        internal IBlock Current() => Document.Body[i].Block;
+        internal IBlock? Current() => IsAtEnd() ? null : Document.Body[i].Block;
         // Get the block that is `num` positions away.
         // `Peek(0)` will show the current block without advancing (same as `Current()`).
         // At the moment num can be negative to look behind. There are currently no safeguards
@@ -26,8 +26,9 @@ namespace UK.Gov.Legislation.Lawmaker
         internal IBlock Peek(int num = 1) => Document.Body[i+num].Block;
 
         // Move the parser forward and return the block the parser was on when `Advance()` was called.
-        internal IBlock Advance() {
-            IBlock current = Current();
+        internal IBlock? Advance() {
+            if (IsAtEnd()) return null;
+            IBlock? current = Current();
             i++;
             return current;
         }
@@ -66,7 +67,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return block;
         }
 
-        internal bool IsAtEnd() => i > Document.Body.Count;
+        internal bool IsAtEnd() => i >= Document.Body.Count;
         private IBlock? Previous() => i > 0 ? Document.Body[i-1].Block : null;
 
         private static bool IsLeftAligned(WLine line)
@@ -89,35 +90,29 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static string GetRightTabbedText(WLine line)
         {
-            if (ContentHasTabbedText(line))
-            {
-                return new WLine(line, [line.Contents.Last()]).NormalizedContent;
-            }
-            return null;
+            if (!line.Contents.OfType<WTab>().Any())
+                return line.NormalizedContent;
+
+            IEnumerable<IInline> inlines = line.Contents.Reverse().TakeWhile(i => i is not WTab).Reverse();
+            return new WLine(line, inlines).NormalizedContent;
         }
 
         private static string IgnoreRightTabbedText(WLine line)
         {
-            if (ContentHasTabbedText(line))
-            {
-                return new WLine(line, line.Contents.SkipLast(1)).NormalizedContent;
-            }
-            return line.NormalizedContent;
+            if (!line.Contents.OfType<WTab>().Any())
+                return line.NormalizedContent;
+
+            IEnumerable<IInline> inlines = line.Contents.Reverse().SkipWhile(i => i is not WTab).Reverse();
+            return new WLine(line, inlines).NormalizedContent;
         }
 
         private static bool ContentHasTabbedText(WLine line)
         {
-            if (line.Contents.Count() >= 2 && line.Contents.Last() is WText && line.Contents.SkipLast(1).Last() is WTab)
-                return true;
-            return false;
-
-            // Style style = Judgments.DOCX.Styles.GetStyle(line.main, line.properties.ParagraphStyleId);
-            // Tabs tabs = style.StyleParagraphProperties.Tabs;
-            // return tabs.ChildElements.Where(tab =>
-            // {
-            //     TabStop tabStop = tab as TabStop;
-            //     return tabStop.Val == "right" && tabStop.Position > 5000;
-            // }).Any();
+            if (!line.Contents.OfType<WTab>().Any())
+                return false;
+            if (!line.Contents.Reverse().TakeWhile(i => i is not WTab).Any())
+                return false;
+            return true;
         }
 
         private static bool IsFlushLeft(WLine line) => OptimizedParser.IsFlushLeft(line);
@@ -154,54 +149,6 @@ namespace UK.Gov.Legislation.Lawmaker
             if (line is WOldNumberedParagraph && !LineIsIndentedMoreThan(line, leader))
                 return false;
             */
-            return true;
-        }
-
-        private static bool NextChildIsAcceptable(List<IDivision> children, IDivision next)
-        {
-            if (children.Count == 0)
-                return true;
-            IDivision prev = children.Last();
-
-            if (prev is CrossHeading != next is CrossHeading)
-                return false;
-
-            if (prev is Prov1 != next is Prov1)
-                return false;
-            if (prev is Prov1 && next is Prov1)
-            {
-                string num1 = prev.Number.Text.TrimEnd('.');
-                string num2 = next.Number.Text.TrimEnd('.');
-                if (num1.All(char.IsDigit) && num2.All(char.IsDigit))
-                    return int.Parse(num1) == int.Parse(num2) - 1;
-            }
-
-            if (prev is Prov2 != next is Prov2)
-                return false;
-            if (prev is Prov2 && next is Prov2)
-            {
-                string num1 = prev.Number.Text.TrimStart('(').TrimEnd(')');
-                string num2 = next.Number.Text.TrimStart('(').TrimEnd(')');
-                if (num1.All(char.IsDigit) && num2.All(char.IsDigit))
-                    return int.Parse(num1) == int.Parse(num2) - 1;
-            }
-            // if (prev is Para1 != next is Para1)
-            //     return false;
-            if (prev is Para1 && next is Para1)
-            {
-                string num1 = prev.Number.Text.TrimStart('(').TrimEnd(')');
-                string num2 = next.Number.Text.TrimStart('(').TrimEnd(')');
-                if (num1.Length == 1 && num2.Length == 1)
-                    return num1[0] == (char)(num2[0] - 1);
-            }
-            // if (prev is Para2 !=  next is Para2)
-            //     return false;
-            if (prev is Para2 && next is Para2)
-            {
-                string num1 = prev.Number.Text.TrimStart('(').TrimEnd(')');
-                string num2 = next.Number.Text.TrimStart('(').TrimEnd(')');
-                return Roman.LowerRomanToInt(num1) == Roman.LowerRomanToInt(num2) - 1;
-            }
             return true;
         }
 
