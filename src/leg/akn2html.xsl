@@ -86,14 +86,11 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 .ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
 .ia-header-text { font-size: 10pt; margin: 2pt 4pt }
 .ia-stage { font-size: 11pt; margin: 2pt 4pt }
-.ia-metadata { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
-
 /* IA semantic inline elements */
-.docTitle { font-weight: bold; }
-.docNumber { font-weight: bold; }
-.docStage { font-weight: bold; }
-.docDate { font-weight: bold; }
-.docDepartment { font-weight: bold; }
+.docTitle, .docNumber, .docStage, .docDate, .docDepartment { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
 
 /* IA table styling */
 .ia-table {
@@ -159,11 +156,6 @@ article[data-doc-type='ImpactAssessment'] .level:first-child table td table tr:n
 .blockContainer {
 	margin: 6pt 0;
 	padding: 4pt;
-}
-
-.ia-metadata .blockContainer {
-	border-left: 2px solid black;
-	padding-left: 8pt;
 }
 
 
