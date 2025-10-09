@@ -163,10 +163,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class { get; internal init; } = "explanatoryNote";
 
-        private static readonly Dictionary<Lang, string> HeadingPatterns = new()
+        private static readonly LanguagePatterns HeadingPatterns = new()
         {
-            [Lang.ENG] = @"^EXPLANATORY +NOTE$",
-            [Lang.CYM] = @"^NODYN +ESBONIADOL"
+            [Lang.ENG] = [@"^EXPLANATORY +NOTE$"],
+            [Lang.CYM] = [@"^NODYN +ESBONIADOL"]
         };
 
         public static bool IsHeading(LanguageService langService, IBlock? block)
@@ -201,10 +201,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class { get; internal init; } = "commencementHistory";
 
-        private static readonly Dictionary<Lang, string> HeadingPatterns = new()
+        private static readonly LanguagePatterns HeadingPatterns = new()
         {
-            [Lang.ENG] = @"^NOTE +AS +TO +EARLIER +COMMENCEMENT.*$",
-            [Lang.CYM] = @"^NODYN +AM +Y +(RHEOLIADAU|GORCHMYNION|GORCHYMYN) +CYCHWYN +(CYNHARACH|BLAENOROL)$"
+            [Lang.ENG] = [@"^NOTE +AS +TO +EARLIER +COMMENCEMENT.*$"],
+            [Lang.CYM] = [@"^NODYN +AM +Y +(RHEOLIADAU|GORCHMYNION|GORCHYMYN) +CYCHWYN +(CYNHARACH|BLAENOROL)$"]
         };
 
         public static bool IsHeading(LanguageService langService, IBlock? block)

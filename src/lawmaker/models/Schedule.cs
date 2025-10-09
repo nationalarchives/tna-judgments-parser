@@ -12,10 +12,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
         IFormattedText ReferenceNote { get; }
 
-        public static readonly Dictionary<Lang, string> NumberPatterns = new()
+        public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = @"^\s*SCHEDULE\s*([A-Z]*\d+[A-Z]*)?$",
-            [Lang.CYM] = @"^\s*(YR +)?ATODLEN\s*([A-Z]*\d+[A-Z]*)?$"
+            [Lang.ENG] = [@"^\s*SCHEDULE\s*([A-Z]*\d+[A-Z]*)?$"],
+            [Lang.CYM] = [@"^\s*(YR +)?ATODLEN\s*([A-Z]*\d+[A-Z]*)?$"]
         };
 
         public static bool IsValidChild(IDivision child)

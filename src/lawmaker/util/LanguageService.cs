@@ -2,6 +2,8 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using static UK.Gov.Legislation.Lawmaker.LanguageService;
+
 namespace UK.Gov.Legislation.Lawmaker;
 
 /// <summary> 
@@ -63,14 +65,31 @@ public class LanguageService
     /// <param name="text">Text to check for matches</param>
     /// <param name="patterns">Dictionary of language-specific regex patterns</param>
     /// <returns>True if the provided text matches any active language-specific regex patterns</returns>
-    public bool IsMatch(string text, Dictionary<Lang, string> patterns)
+    public bool IsMatch(string text, LanguagePatterns languagePatterns)
     {
         foreach (Lang language in languages)
         {
-            if (!patterns.TryGetValue(language, out var pattern)) continue;
-            if (Regex.IsMatch(text, pattern, RegexOptions.IgnoreCase)) return true;
+            if (!languagePatterns.Patterns.TryGetValue(language, out var patterns)) 
+                continue;
+            if (patterns.Any(p => Regex.IsMatch(text, p, RegexOptions.IgnoreCase))) 
+                return true;
         }
         return false;
     }
+}
 
+/// <summary> 
+/// A <c>Dictionary</c> which stores a collection of string patterns for each given <c>Lang</c>.
+/// </summary>
+public record LanguagePatterns
+{
+    private readonly Dictionary<Lang, IEnumerable<string>> _patterns = [];
+
+    public IEnumerable<string> this[Lang lang]
+    {
+        get => _patterns[lang];
+        set => _patterns[lang] = value;
+    }
+
+    public IReadOnlyDictionary<Lang, IEnumerable<string>> Patterns => _patterns;
 }
