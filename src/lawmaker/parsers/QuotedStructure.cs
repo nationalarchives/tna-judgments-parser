@@ -24,6 +24,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static int QuoteDistance = 0;
 
+
+
+
         /*
          * A quoted structure must begin with a start quote. Optionally, there may be 'info'
          * before the start quote surrounded in braces i.e. {ukpga-sch} which dictates the
@@ -232,38 +235,17 @@ namespace UK.Gov.Legislation.Lawmaker
         private bool IsEndOfQuotedStructure(IDivision division)
         {
             QuoteDistance = 0;
-            var lastLine = LastLine.GetLastLine(division)?.Contents;
+            string lastLine = LastLine.GetLastLine(division);
             if (lastLine == null) return false;
-            return IsEndOfQuotedStructure(IInline.ToString(lastLine), QuoteDistance);
+            return IsEndOfQuotedStructure(lastLine, QuoteDistance);
         }
 
         private bool IsEndOfQuotedStructure(IList<IBlock> contents, ILine heading = null, IFormattedText number = null, bool headingPrecedesNumber = false)
         {
-            // Squash text content into single string
-            List<IInline> inlines = [];
-            if (headingPrecedesNumber)
-            {
-                if (heading != null)
-                    inlines.AddRange(heading.Contents);
-                if (number != null)
-                    inlines.Add(number);
-            }
-            else
-            {
-                if (number != null)
-                    inlines.Add(number);
-                if (heading != null)
-                    inlines.AddRange(heading.Contents);
-            }
-            foreach (IBlock block in contents)
-            {
-                if (block is ILine line)
-                    inlines.AddRange(line.Contents);
-            }
             QuoteDistance = 0;
-            var lastLine = LastLine.GetLastLine(contents)?.Contents;
+            string lastLine = LastLine.GetLastLine(contents);
             if (lastLine == null) return false;
-            return IsEndOfQuotedStructure(IInline.ToString(lastLine), QuoteDistance);
+            return IsEndOfQuotedStructure(lastLine, QuoteDistance);
         }
 
         private bool IsEndOfQuotedStructure(string text)
@@ -284,6 +266,8 @@ namespace UK.Gov.Legislation.Lawmaker
             bool isStartQuoteAtStart = Regex.IsMatch(text, QuotedStructureStartPattern());
             (int left, int right) = CountStartAndEndQuotes(text);
             if (right > left && (right - left) <= quoteDistance)
+                return false;
+            if (right == left && quoteDistance > 0)
                 return false;
 
             bool isSingleLine = (isStartQuoteAtStart && isEndQuoteAtEnd);
