@@ -255,16 +255,28 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private bool IsEndOfQuotedStructure(string text, int quoteDistance)
         {
-            // a quoteDepth of 0 means we don't need to check for the end of a quoted structure because we never need to break out
-            if (quoteDepth <= 0) return false;
             if (text == null)
                 return false;
+
+            // A quote depth of 0 would mean we're not in a QuotedStructure to begin with,
+            // so we can't be at the end of one.
+            if (quoteDepth <= 0) 
+                return false;
+
+            // The text string can't be the end of a QuotedStructure if it doesn't end with a closing quote.
             bool isEndQuoteAtEnd = Regex.IsMatch(text, QuotedStructureEndPattern());
             if (!isEndQuoteAtEnd)
                 return false;
 
             bool isStartQuoteAtStart = Regex.IsMatch(text, QuotedStructureStartPattern());
             (int left, int right) = CountStartAndEndQuotes(text);
+
+            /* We require special logic for nested quoted structures which end on the same line: 
+             * Must break out of as many nested quoted structures as there are closing quotes.
+             * For example, if we are 4 quoted structures deep and encounter the line:
+             *     (a) example paragraph”””
+             *  Then we must break from 3 of the 4 nested quoted structures.
+             */
             if (right > left && (right - left) <= quoteDistance)
                 return false;
             if (right == left && quoteDistance > 0)
