@@ -49,6 +49,12 @@ class Helper : BaseHelper {
     protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
         // Apply IA-specific style mappings
         ApplyIAStyleMappings(xml);
+        
+        // Phase 2: Header Structure Enhancement
+        TransformHeaderStructure(xml);
+        
+        // Phase 3: Section-Based Organization
+        TransformContentSections(xml);
     }
 
     private static void ApplyIAStyleMappings(XmlDocument xml) {
@@ -193,6 +199,125 @@ class Helper : BaseHelper {
             parent = parent.ParentNode;
         }
         return false;
+    }
+
+    /// <summary>
+    /// Phase 2: Transform header structure for Impact Assessments
+    /// Replace generic level elements with semantic hcontainer elements
+    /// </summary>
+    private static void TransformHeaderStructure(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        var logger = Logging.Factory.CreateLogger<Helper>();
+
+        // Find the first level element (IA header table)
+        var firstLevel = xml.SelectSingleNode("//akn:mainBody/akn:level[1]", nsmgr);
+        if (firstLevel == null) return;
+
+        // Check if this level contains IA header metadata (docTitle, docNumber, etc.)
+        var hasHeaderMetadata = firstLevel.SelectNodes(".//akn:docTitle | .//akn:docNumber | .//akn:docStage | .//akn:docDate | .//akn:docDepartment", nsmgr).Count > 0;
+        
+        if (hasHeaderMetadata) {
+            // Transform to hcontainer with name="summary"
+            var hcontainer = xml.CreateElement("hcontainer", AKN_NAMESPACE);
+            hcontainer.SetAttribute("name", "summary");
+            
+            // Add eId attribute for proper identification
+            hcontainer.SetAttribute("eId", "hcontainer_1");
+            
+            // Copy all child nodes from level to hcontainer
+            while (firstLevel.HasChildNodes) {
+                hcontainer.AppendChild(firstLevel.FirstChild);
+            }
+            
+            // Replace the level element with hcontainer
+            firstLevel.ParentNode.ReplaceChild(hcontainer, firstLevel);
+            
+            logger.LogInformation("Transformed IA header from <level> to <hcontainer name=\"summary\">");
+        }
+    }
+
+    /// <summary>
+    /// Phase 3: Transform major IA content areas into proper section elements
+    /// </summary>
+    private static void TransformContentSections(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        var logger = Logging.Factory.CreateLogger<Helper>();
+
+        // Define major IA sections with their identifying content patterns
+        var sectionMappings = new Dictionary<string, string> {
+            { "Cost of Preferred", "cost-analysis" },
+            { "What are the policy objectives", "policy-objectives" },
+            { "What policy options have been considered", "policy-options" },
+            { "Will the policy be reviewed", "policy-review" },
+            { "FULL ECONOMIC ASSESSMENT", "economic-assessment" },
+            { "BUSINESS ASSESSMENT", "business-assessment" }
+        };
+
+        int sectionCounter = 2; // Start from 2 since header is section 1
+
+        // Find level elements that contain major section content
+        var levels = xml.SelectNodes("//akn:level", nsmgr);
+        
+        foreach (XmlNode level in levels) {
+            foreach (var mapping in sectionMappings) {
+                if (ContainsSectionContent(level, mapping.Key)) {
+                    TransformToSemanticSection(xml, level, mapping.Value, sectionCounter);
+                    logger.LogInformation($"Transformed level to section: {mapping.Value}");
+                    sectionCounter++;
+                    break;
+                }
+            }
+        }
+    }
+
+    private static bool ContainsSectionContent(XmlNode level, string contentPattern) {
+        var textContent = level.InnerText ?? "";
+        return textContent.Contains(contentPattern, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static void TransformToSemanticSection(XmlDocument xml, XmlNode level, string sectionName, int sectionNumber) {
+        // Create new section element
+        var section = xml.CreateElement("section", AKN_NAMESPACE);
+        section.SetAttribute("name", sectionName);
+        section.SetAttribute("eId", $"section_{sectionNumber}");
+
+        // Add heading if we can identify one
+        var headingText = ExtractSectionHeading(level);
+        if (!string.IsNullOrEmpty(headingText)) {
+            var heading = xml.CreateElement("heading", AKN_NAMESPACE);
+            heading.InnerText = headingText;
+            section.AppendChild(heading);
+        }
+
+        // Copy all child nodes from level to section
+        while (level.HasChildNodes) {
+            section.AppendChild(level.FirstChild);
+        }
+
+        // Replace the level element with section
+        level.ParentNode.ReplaceChild(section, level);
+    }
+
+    private static string ExtractSectionHeading(XmlNode level) {
+        // Look for bold text that could serve as a heading
+        var nsmgr = new XmlNamespaceManager(level.OwnerDocument.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        
+        var boldElements = level.SelectNodes(".//akn:b", nsmgr);
+        foreach (XmlNode bold in boldElements) {
+            var text = bold.InnerText?.Trim();
+            if (!string.IsNullOrEmpty(text) && text.Length > 10 && text.Length < 100) {
+                // Clean up common patterns
+                text = text.Replace(":", "").Trim();
+                if (text.EndsWith("?")) return text;
+                if (text.Contains("ASSESSMENT")) return text;
+                if (text.Contains("Cost of")) return text;
+                if (text.Contains("policy")) return text;
+            }
+        }
+        return "";
     }
 
 }

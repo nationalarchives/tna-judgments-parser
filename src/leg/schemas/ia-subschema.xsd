@@ -81,6 +81,7 @@
 <xs:element name="mainBody">
     <xs:complexType>
         <xs:choice maxOccurs="unbounded">
+            <xs:element ref="hcontainer" />
             <xs:element ref="level" />
             <xs:element ref="section" />
             <xs:element ref="paragraph" />
@@ -90,6 +91,31 @@
 
 
 <!-- hcontainers -->
+
+<xs:element name="hcontainer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="heading" minOccurs="0" />
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="intro" minOccurs="0" />
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element ref="hcontainer" />
+                        <xs:element ref="level" />
+                        <xs:element ref="section" />
+                        <xs:element ref="paragraph" />
+                        <xs:element ref="subparagraph" />
+                        <xs:element ref="blockContainer" />
+                    </xs:choice>
+                    <xs:element ref="wrapUp" minOccurs="0" />
+                </xs:sequence>
+                <xs:element ref="content" />
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="eId" type="xs:string" />
+    </xs:complexType>
+</xs:element>
 
 <xs:element name="level">
     <xs:complexType>
@@ -123,13 +149,26 @@
 <xs:element name="section">
     <xs:complexType>
         <xs:sequence>
-            <xs:element ref="num" />
-            <xs:element ref="heading" />
-            <xs:choice maxOccurs="unbounded">
-                <xs:element ref="level" />
-                <xs:element ref="paragraph" />
+            <xs:element ref="num" minOccurs="0" />
+            <xs:element ref="heading" minOccurs="0" />
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="intro" minOccurs="0" />
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element ref="hcontainer" />
+                        <xs:element ref="level" />
+                        <xs:element ref="section" />
+                        <xs:element ref="paragraph" />
+                        <xs:element ref="subparagraph" />
+                        <xs:element ref="blockContainer" />
+                    </xs:choice>
+                    <xs:element ref="wrapUp" minOccurs="0" />
+                </xs:sequence>
+                <xs:element ref="content" />
             </xs:choice>
         </xs:sequence>
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="eId" type="xs:string" />
         <xs:attribute name="class" >
             <xs:simpleType>
                 <xs:restriction base="xs:string">

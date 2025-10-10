@@ -125,32 +125,34 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 	text-align: center;
 }
 
-/* Special styling for first level tables */
-article[data-doc-type='ImpactAssessment'] .level:first-child .ia-table {
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
 	border: none;
 }
 
-article[data-doc-type='ImpactAssessment'] .level:first-child .ia-table td table {
-	border: 1px solid black;
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
 	margin: 0;
 }
 
-article[data-doc-type='ImpactAssessment'] .level:first-child .ia-table tr:first-child td:nth-child(2) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
 	border: none;
 	padding: 0;
 }
 
 
 /* Hide extra rows in nested tables */
-article[data-doc-type='ImpactAssessment'] .level:first-child table td table tr:nth-child(n+7) {
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
 	display: none !important;
 }
 
 /* IA semantic containers */
 .hcontainer.summary {
-	border: 1px solid black;
-	padding: 10pt;
-	margin: 10pt 0;
+	/* Semantic container - styling handled by inner table */
 }
 
 .blockContainer {
@@ -244,6 +246,11 @@ article[data-doc-type='ImpactAssessment'] .level:first-child table td table tr:n
 </xsl:template>
 
 <!-- inline -->
+
+<!-- Hide section headings - they're for semantic structure, not display -->
+<xsl:template match="section/heading">
+	<!-- Hidden for semantic purposes only -->
+</xsl:template>
 
 <xsl:template match="num | heading | docType | docNumber | docTitle | docStage | docDate | docDepartment | date">
 	<span class="{ local-name() }">
