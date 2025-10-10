@@ -36,8 +36,8 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
             main.SetAttribute("name", this.bill.Type.ToString().ToLower());
 
-            string title = Metadata.Extract(bill, logger).Title;
-            MetadataBuilder.Add(main, title);
+            XmlNode meta = Metadata.Extract(bill, logger).Build().ToXmlNode(main.OwnerDocument);
+            main.AppendChild(meta);
 
             AddCoverPage(main, bill.CoverPage);
             AddPreface(main, bill.Preface);

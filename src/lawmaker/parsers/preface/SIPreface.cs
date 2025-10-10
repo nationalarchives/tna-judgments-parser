@@ -1,5 +1,6 @@
 #nullable enable
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -9,7 +10,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.Legislation.Lawmaker.Preface;
 
-internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildable<XNode>
+internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildable<XNode>, IMetadata
 {
 
     public XNode Build() => !Blocks
@@ -22,6 +23,9 @@ internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildab
             where block is IBuildable<XNode>
             select (block as IBuildable<XNode>)!.Build()
         );
+
+    public IEnumerable<Reference> GetMetadata() =>
+        Blocks.OfType<IMetadata>().SelectMany(b => b.GetMetadata());
 
     /*
     A grammar for preface might look something like:
@@ -133,11 +137,21 @@ partial record Number(
     string? Year = null,
     string? SINumber = null,
     string? SISubsidiaryNumbers = null
-    ) : IBlock, IBuildable<XNode>
+    ) : IBlock, IBuildable<XNode>, IMetadata
 {
     public const string STYLE = "Number";
 
     private static readonly ILogger Logger = Logging.Factory.CreateLogger<Number>();
+
+    public IEnumerable<Reference> GetMetadata() =>
+        new List<(ReferenceKey, string?)> {
+            ( ReferenceKey.varSIYear, Year ),
+            ( ReferenceKey.varSINoComp, SINumber ),
+            ( ReferenceKey.varSISubsidiaryNos, SISubsidiaryNumbers ),
+            // varSINo should always be this, but Lawmaker sets it for us:
+            // { ReferenceKey.varSINo, "#varSIYear No. #varSINoComp #varSISubsidiaryNos"}
+        }.Where(it => it.Item2 is not null)
+        .Select(it => new Reference(it.Item1, it.Item2));
 
     public XNode Build() => new XElement(
             XmlExt.AknNamespace + "block",
@@ -166,8 +180,11 @@ partial record Number(
         {
             return null;
         }
-        MatchCollection matches = WellFormedRegex().Matches(line.NormalizedContent);
-        if (matches.Count > 1)
+        // parser.LanguageService.IsMatch
+        MatchCollection? matches = parser.LanguageService.IsMatch(
+            line.NormalizedContent,
+            LanguagePatterns);
+        if (matches?.Count > 1)
         {
             Logger.LogWarning("""
                 Regular expression for SI Preface Number parsing had\
@@ -175,7 +192,7 @@ partial record Number(
                 will be taken
                 """);
         }
-        Match? match = matches.FirstOrDefault();
+        Match? match = matches?.FirstOrDefault();
         if (match == null)
         {
             // Not well-formed number, so just put the line to avoid losing information
@@ -191,8 +208,17 @@ partial record Number(
     // Subsidary numbers may be null
     private bool IsWellFormed() => Year is not null && SINumber is not null;
 
-    [GeneratedRegex(@" *(?<year>\d+)? *No\. *(?<number>\d+ *(?<subsidiary>.+)?)?")]
-    private static partial Regex WellFormedRegex();
+    [GeneratedRegex(@" *(?<year>\d+)? *No\. *(?<number>\d+)? *(?<subsidiary>.+)?")]
+    private static partial Regex EnglishRegex();
+
+    [GeneratedRegex(@" *(?<year>\d+)? *Rhif *(?<number>\d+)? *(?<subsidiary>.+)?")]
+    private static partial Regex WelshRegex();
+
+    private static Dictionary<LanguageService.Lang, IEnumerable<Regex>> LanguagePatterns = new()
+    {
+        { LanguageService.Lang.ENG, [EnglishRegex()] },
+        { LanguageService.Lang.CYM, [WelshRegex()] },
+    };
 }
 
 partial record Subjects(IEnumerable<IBlock> subjects) : IBlock, IBuildable<XNode>
@@ -251,7 +277,7 @@ partial record Subsubject(WLine Line) : IBlock, IBuildable<XNode>
             ? new Subsubject(line)
             : null;
 }
-partial record Title(WLine Line) : IBlock, IBuildable<XNode>
+partial record Title(WLine Line) : IBlock, IBuildable<XNode>, IMetadata
 {
     public const string STYLE = "Title";
 
@@ -264,6 +290,9 @@ partial record Title(WLine Line) : IBlock, IBuildable<XNode>
                 new XAttribute(XmlExt.AknNamespace + "class", "placeholder"),
                 new XAttribute("href", "#varSITitle"))));
 
+    public IEnumerable<Reference> GetMetadata() => [
+        new Reference(ReferenceKey.varSITitle, Line.NormalizedContent)
+    ];
     public static Title? Parse(IParser<IBlock> parser) =>
         parser.Advance() is WLine line
         && line.Style == STYLE

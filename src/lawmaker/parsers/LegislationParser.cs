@@ -93,6 +93,7 @@ public partial class LegislationParser
         {
             Type = docName,
             Styles = Styles,
+            Metadata = new(),
             CoverPage = coverPage,
             Preface = preface,
             Preamble = preamble,
