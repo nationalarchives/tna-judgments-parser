@@ -84,25 +84,23 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private XmlElement BuildTable(ITable model, XmlElement grandparent)
         {
+            bool isInCommencementHistory = DocNames.IsSecondaryDocName(this.bill.Type) && grandparent.Attributes.Count > 0 && grandparent.Attributes[0].Value == "commencementHistory";
             XmlElement table = CreateElement("table");
             table.SetAttribute("xmlns", HtmlNamespace);
             table.SetAttribute("xmlns:akn", AknNamespace);
-            table.SetAttribute("class", HtmlNamespace, "allBorders tableleft width100");
+            table.SetAttribute("class", HtmlNamespace, isInCommencementHistory ? "topAndBottom tablecenter width100" : "allBorders tableleft width100");
             table.SetAttribute("cols", model.ColumnWidthsIns.Count.ToString());
-
-            if (DocNames.IsSecondaryDocName(this.bill.Type) && grandparent.Attributes.Count > 0 && grandparent.Attributes[0].Value == "commencementHistory")
-                table.SetAttribute("class", HtmlNamespace, "topAndBottom tablecenter width100");
             
             IEnumerable<IEnumerable<IRow>> rowsGroupedByHeaders = GroupRowsByHeaders(model.Rows);
 
             foreach (IEnumerable<IRow> rows in rowsGroupedByHeaders)
             {
-                AddRows(model, table, rows.TakeWhile(row => row.IsImplicitHeader));
-                AddRows(model, table, rows.SkipWhile(row => row.IsImplicitHeader));
+                AddRows(model, table, rows.TakeWhile(row => row.IsImplicitHeader), isInCommencementHistory);
+                AddRows(model, table, rows.SkipWhile(row => row.IsImplicitHeader), isInCommencementHistory);
             }
             return table;
         }
-        protected void AddRows(ITable model, XmlElement table, IEnumerable<IRow> rows)
+        protected void AddRows(ITable model, XmlElement table, IEnumerable<IRow> rows, bool isInCommencementHistory)
         {
             if (!rows.Any(_ => true))
             {
@@ -116,7 +114,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
             bool rowIsHeader = rows.First().IsImplicitHeader;
             XmlElement tbody = rowIsHeader ? CreateAndAppend("thead", table) : CreateAndAppend("tbody", table);
-            tbody.SetAttribute("class", HtmlNamespace, rowIsHeader ? "bold centre" : "left");
+            if (rowIsHeader)
+                tbody.SetAttribute("class", HtmlNamespace, isInCommencementHistory ? "italic left" : "bold centre");
+            else
+                tbody.SetAttribute("class", HtmlNamespace, "left");
 
             foreach (IRow row in rows)
             {

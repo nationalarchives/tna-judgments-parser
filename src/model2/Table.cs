@@ -95,15 +95,16 @@ class WRow : IRow {
     } }
 
     public bool IsImplicitHeader { get {
-        IEnumerable<WText> rowText = TypedCells
+        IEnumerable<WLine> rowLines = TypedCells
             .SelectMany(cell => cell.Contents)
-            .OfType<WLine>()
+            .OfType<WLine>();
+        IEnumerable<WText> rowTexts = rowLines
             .SelectMany(line => line.Contents)
             .OfType<WText>();
 
         bool isFirstRow = Table.Rows.First() == this;
-        bool isAllItalic = rowText.All(text => text.Italic ?? false);
-        bool isAllBold = rowText.All(text => text.Bold ?? false);
+        bool isAllItalic = rowTexts.All(text => text.Italic ?? false) || rowLines.All(line => line.IsAllItalicized());
+        bool isAllBold = rowTexts.All(text => text.Bold ?? false);
 
         return IsHeader || (isFirstRow && (isAllItalic || isAllBold));
     }}

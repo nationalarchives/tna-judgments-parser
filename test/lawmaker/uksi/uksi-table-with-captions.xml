@@ -83,25 +83,27 @@
             <subheading class="left">Be inserted as subheadings</subheading>
             <foreign>
               <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="4" class="allBorders tableleft width100">
-                <tbody class="left">
+                <thead class="bold centre">
                   <tr>
-                    <td>
+                    <th>
                       <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(1)</p>
                       <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Receptor</p>
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                       <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(2)</p>
                       <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Easting</p>
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                       <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(3)</p>
                       <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Northing</p>
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                       <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(3)</p>
                       <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Rating Level, LAR,Tr dB</p>
-                    </td>
+                    </th>
                   </tr>
+                </thead>
+                <tbody class="left">
                   <tr>
                     <td>
                       <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R1, Wren Hall</p>
