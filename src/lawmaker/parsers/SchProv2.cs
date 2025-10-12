@@ -22,7 +22,7 @@ namespace UK.Gov.Legislation.Lawmaker
             IFormattedText num = np.Number;
             List<IBlock> intro = HandleParagraphs(np);
 
-            if (IsEndOfQuotedStructure(intro)) // Needs to return true
+            if (IsEndOfQuotedStructure(intro))
                 return new SchProv2Leaf { Number = num, Contents = intro };
 
             List<IBlock> wrapUp = [];
