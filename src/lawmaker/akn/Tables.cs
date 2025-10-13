@@ -82,25 +82,27 @@ namespace UK.Gov.Legislation.Lawmaker
             tblock.SetAttribute("class", AknNamespace, "table");
         }
 
-        private XmlElement BuildTable(ITable model, XmlElement grandparent)
+        private static bool IsCommencementHistory(XmlElement element) => element.GetAttribute("class") == "commencementHistory";
+
+        private XmlElement BuildTable(ITable model, XmlElement parent)
         {
-            bool isInCommencementHistory = DocNames.IsSecondaryDocName(this.bill.Type) && grandparent.Attributes.Count > 0 && grandparent.Attributes[0].Value == "commencementHistory";
             XmlElement table = CreateElement("table");
             table.SetAttribute("xmlns", HtmlNamespace);
             table.SetAttribute("xmlns:akn", AknNamespace);
-            table.SetAttribute("class", HtmlNamespace, isInCommencementHistory ? "topAndBottom tablecenter width100" : "allBorders tableleft width100");
+            string className = IsCommencementHistory(parent) ? "topAndBottom tablecenter width100" : "allBorders tableleft width100";
+            table.SetAttribute("class", HtmlNamespace, className);
             table.SetAttribute("cols", model.ColumnWidthsIns.Count.ToString());
             
             IEnumerable<IEnumerable<IRow>> rowsGroupedByHeaders = GroupRowsByHeaders(model.Rows);
 
             foreach (IEnumerable<IRow> rows in rowsGroupedByHeaders)
             {
-                AddRows(model, table, rows.TakeWhile(row => row.IsImplicitHeader), isInCommencementHistory);
-                AddRows(model, table, rows.SkipWhile(row => row.IsImplicitHeader), isInCommencementHistory);
+                AddRows(parent, table, rows.TakeWhile(row => row.IsImplicitHeader));
+                AddRows(parent, table, rows.SkipWhile(row => row.IsImplicitHeader));
             }
             return table;
         }
-        protected void AddRows(ITable model, XmlElement table, IEnumerable<IRow> rows, bool isInCommencementHistory)
+        protected void AddRows(XmlElement parent, XmlElement table, IEnumerable<IRow> rows)
         {
             if (!rows.Any(_ => true))
             {
@@ -112,10 +114,10 @@ namespace UK.Gov.Legislation.Lawmaker
             List<List<XmlElement>> allCellsWithRepeats = [];
             int iRow = 0;
 
-            bool rowIsHeader = rows.First().IsImplicitHeader;
-            XmlElement tbody = rowIsHeader ? CreateAndAppend("thead", table) : CreateAndAppend("tbody", table);
-            if (rowIsHeader)
-                tbody.SetAttribute("class", HtmlNamespace, isInCommencementHistory ? "italic left" : "bold centre");
+            bool firstRowIsHeader = rows.First().IsImplicitHeader;
+            XmlElement tbody = firstRowIsHeader ? CreateAndAppend("thead", table) : CreateAndAppend("tbody", table);
+            if (firstRowIsHeader)
+                tbody.SetAttribute("class", HtmlNamespace, IsCommencementHistory(parent) ? "italic left" : "bold centre");
             else
                 tbody.SetAttribute("class", HtmlNamespace, "left");
 
@@ -141,7 +143,7 @@ namespace UK.Gov.Legislation.Lawmaker
                         iCell += colspanAbove;
                         continue;
                     }
-                    XmlElement td = CreateElement(rowIsHeader ? "th" : "td");
+                    XmlElement td = CreateElement(firstRowIsHeader ? "th" : "td");
 
                     if (cell.ColSpan is not null)
                         td.SetAttribute("colspan", cell.ColSpan.ToString());

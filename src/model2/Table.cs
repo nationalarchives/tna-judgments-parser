@@ -104,7 +104,7 @@ class WRow : IRow {
 
         bool isFirstRow = Table.Rows.First() == this;
         bool isAllItalic = rowTexts.All(text => text.Italic ?? false) || rowLines.All(line => line.IsAllItalicized());
-        bool isAllBold = rowTexts.All(text => text.Bold ?? false);
+        bool isAllBold = rowTexts.All(text => text.Bold ?? false) || rowLines.All(line => line.IsAllBold());
 
         return IsHeader || (isFirstRow && (isAllItalic || isAllBold));
     }}
