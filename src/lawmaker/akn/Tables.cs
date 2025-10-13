@@ -114,9 +114,9 @@ namespace UK.Gov.Legislation.Lawmaker
             List<List<XmlElement>> allCellsWithRepeats = [];
             int iRow = 0;
 
-            bool firstRowIsHeader = rows.First().IsImplicitHeader;
-            XmlElement tbody = firstRowIsHeader ? CreateAndAppend("thead", table) : CreateAndAppend("tbody", table);
-            if (firstRowIsHeader)
+            bool isCollectionOfHeaderRows = rows.All(row => row.IsImplicitHeader);
+            XmlElement tbody = isCollectionOfHeaderRows ? CreateAndAppend("thead", table) : CreateAndAppend("tbody", table);
+            if (isCollectionOfHeaderRows)
                 tbody.SetAttribute("class", HtmlNamespace, IsCommencementHistory(parent) ? "italic left" : "bold centre");
             else
                 tbody.SetAttribute("class", HtmlNamespace, "left");
@@ -143,7 +143,7 @@ namespace UK.Gov.Legislation.Lawmaker
                         iCell += colspanAbove;
                         continue;
                     }
-                    XmlElement td = CreateElement(firstRowIsHeader ? "th" : "td");
+                    XmlElement td = CreateElement(isCollectionOfHeaderRows ? "th" : "td");
 
                     if (cell.ColSpan is not null)
                         td.SetAttribute("colspan", cell.ColSpan.ToString());
