@@ -67,7 +67,7 @@ public class LegislativeDocumentConfig {
             SectionTitleStyle = "EMSectionTitle",
             Level1SubheadingStyle = "EMLevel1Subheading",
             Level2SubheadingStyle = "EMLevel2Subheading",
-            UriSuffix = "/em",
+            UriSuffix = "/memorandum",
             DefaultDocumentType = "ExplanatoryMemorandum",
             DocumentTypeMapping = new System.Collections.Generic.Dictionary<string, string> {
                 { "Explanatory Memorandum To", "ExplanatoryMemorandum" },
