@@ -34,12 +34,12 @@ class Helper : BaseHelper {
 
     private Helper() : base(LegislativeDocumentConfig.ForImpactAssessments()) { }
 
-    public static new IXmlDocument Parse(Stream docx, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify);
+    public static new IXmlDocument Parse(Stream docx, bool simplify = true, bool generateToc = false) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, generateToc);
     }
 
-    public static new IXmlDocument Parse(byte[] docx, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify);
+    public static new IXmlDocument Parse(byte[] docx, bool simplify = true, bool generateToc = false) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, generateToc);
     }
 
     protected override IDocument ParseDocument(WordprocessingDocument docx) {

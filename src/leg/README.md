@@ -39,6 +39,11 @@ Use the `--hint` parameter to specify the document type:
     dotnet run --input path/to/em.docx --hint em
     dotnet run --input path/to/ia.docx --hint ia
 
+Use the `--toc` flag to generate table of contents:
+
+    dotnet run --input path/to/em.docx --hint em --toc
+    dotnet run --input path/to/ia.docx --hint ia --toc
+
 Architecture
 ------------
 

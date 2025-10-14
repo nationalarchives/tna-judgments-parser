@@ -16,17 +16,20 @@ abstract class BaseHelper {
         Config = config;
     }
 
-    public IXmlDocument Parse(Stream docx, bool simplify = true) {
+    public IXmlDocument Parse(Stream docx, bool simplify = true, bool generateToc = false) {
         WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify);
+        return Parse(word, simplify, generateToc);
     }
 
-    public IXmlDocument Parse(byte[] docx, bool simplify = true) {
+    public IXmlDocument Parse(byte[] docx, bool simplify = true, bool generateToc = false) {
         WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify);
+        return Parse(word, simplify, generateToc);
     }
 
-    private IXmlDocument Parse(WordprocessingDocument docx, bool simplify) {
+    private IXmlDocument Parse(WordprocessingDocument docx, bool simplify, bool generateToc) {
+        // Set TOC generation in config
+        Config.GenerateTableOfContents = generateToc;
+        
         IDocument doc = ParseDocument(docx);
         XmlDocument xml = Builder.Build(doc);
         docx.Dispose();

@@ -34,7 +34,8 @@ class Program {
             new Option<FileInfo>("--attachment", description: "an associated file to include") { ArgumentHelpName = "file" },
             new Option<string>("--hint", description: "the type of document: 'em', 'ia' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"),
             new Option<string>("--subtype", description: "the subtype of document e.g. 'order'"),
-            new Option<string>("--procedure", description: "only applicable --hint is a secondary type - the subtype of document e.g. 'order'")
+            new Option<string>("--procedure", description: "only applicable --hint is a secondary type - the subtype of document e.g. 'order'"),
+            new Option<bool>("--toc", description: "generate table of contents for legislative documents (em/ia)")
         };
         command.Handler = CommandHandler.Create<
             FileInfo,
@@ -46,7 +47,8 @@ class Program {
             FileInfo,
             string,
             string,
-            string
+            string,
+            bool
         >(Transform);
     }
 
@@ -64,7 +66,8 @@ class Program {
         FileInfo attachment,
         string hint,
         string subType,
-        string procedure
+        string procedure,
+        bool toc
     ) {
         ILogger logger = null;
         if (log is not null) {
@@ -78,12 +81,12 @@ class Program {
         }
 
         if ("em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformEM(input, output, outputZip, log, consoleLog, test, attachment);
+            TransformEM(input, output, outputZip, log, consoleLog, test, attachment, toc);
             return;
         }
 
         if ("ia".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformIA(input, output, outputZip, log, consoleLog, test, attachment);
+            TransformIA(input, output, outputZip, log, consoleLog, test, attachment, toc);
             return;
         }
 
@@ -123,7 +126,7 @@ class Program {
             Print(response.Meta);
     }
 
-    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool consoleLog, bool test, FileInfo attachment) {
+    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool consoleLog, bool test, FileInfo attachment, bool generateToc) {
         if (attachment is not null)
             throw new Exception();
             
@@ -135,7 +138,7 @@ class Program {
         }
         
         byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = EM.Helper.Parse(docx);
+        var parsed = EM.Helper.Parse(docx, true, generateToc);
         if (outputZip is not null)
             SaveZip(parsed, outputZip);
         else if (output is not null)
@@ -144,7 +147,7 @@ class Program {
             Console.WriteLine(parsed.Serialize());
     }
 
-    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool consoleLog, bool test, FileInfo attachment) {
+    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool consoleLog, bool test, FileInfo attachment, bool generateToc) {
         if (attachment is not null)
             throw new Exception();
             
@@ -156,7 +159,7 @@ class Program {
         }
         
         byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = IA.Helper.Parse(docx);
+        var parsed = IA.Helper.Parse(docx, true, generateToc);
         if (outputZip is not null)
             SaveZip(parsed, outputZip);
         else if (output is not null)

@@ -42,6 +42,11 @@ public class LegislativeDocumentConfig {
     public System.Collections.Generic.Dictionary<string, string> DocumentTypeMapping { get; set; }
 
     /// <summary>
+    /// Whether to generate table of contents automatically
+    /// </summary>
+    public bool GenerateTableOfContents { get; set; } = false;
+
+    /// <summary>
     /// Creates configuration for Impact Assessments
     /// </summary>
     public static LegislativeDocumentConfig ForImpactAssessments() {
