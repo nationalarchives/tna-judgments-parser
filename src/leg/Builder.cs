@@ -1,10 +1,12 @@
 
 using System;
-using System.Xml;
+using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Models;
+using UK.Gov.Legislation.Common;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation {
@@ -32,6 +34,12 @@ class Builder : AkN.Builder {
         main.SetAttribute("name", document.Meta.Name);
         main.SetAttribute("xmlns:uk", UKNS);
         AddMetadata(main, document.Meta);
+        
+        // Add cover page if present
+        if (document is IDocumentWithCoverPage docWithCover && docWithCover.CoverPage != null && docWithCover.CoverPage.Any()) {
+            AddCoverPage(main, docWithCover.CoverPage);
+        }
+        
         if (document.Header is not null && document.Header.Any()) {
             XmlElement header = doc.CreateElement("preface", ns);
             main.AppendChild(header);
@@ -183,6 +191,109 @@ class Builder : AkN.Builder {
 
     protected override string MakeDivisionId(IDivision div) {
         return null;
+    }
+
+    /// <summary>
+    /// Adds cover page with title and table of contents
+    /// </summary>
+    private void AddCoverPage(XmlElement main, IEnumerable<IBlock> coverPageBlocks) {
+        XmlElement coverPage = doc.CreateElement("coverPage", ns);
+        main.AppendChild(coverPage);
+
+        IBlock titleBlock = null;
+        ITableOfContents2 tocBlock = null;
+
+        // Separate title and TOC blocks
+        foreach (var block in coverPageBlocks) {
+            if (block is ITableOfContents2 toc) {
+                tocBlock = toc;
+            } else {
+                titleBlock = block; // Assume first non-TOC block is title
+            }
+        }
+
+        // Add title block
+        if (titleBlock != null) {
+            XmlElement titleContainer = doc.CreateElement("block", ns);
+            titleContainer.SetAttribute("name", TableOfContentsConstants.TitleBlockName);
+            coverPage.AppendChild(titleContainer);
+
+            if (titleBlock is ILine titleLine) {
+                XmlElement docTitle = doc.CreateElement("docTitle", ns);
+                titleContainer.AppendChild(docTitle);
+                AddInlineContents(docTitle, titleLine.Contents);
+            }
+        }
+
+        // Add TOC
+        if (tocBlock != null) {
+            XmlElement toc = doc.CreateElement("toc", ns);
+            coverPage.AppendChild(toc);
+
+            int level = 1;
+            foreach (var tocLine in tocBlock.Contents) {
+                XmlElement tocItem = doc.CreateElement("tocItem", ns);
+                tocItem.SetAttribute(TableOfContentsConstants.TocItemAttributes.Level, level.ToString());
+                tocItem.SetAttribute(TableOfContentsConstants.TocItemAttributes.Href, string.Format(TableOfContentsConstants.SectionHrefTemplate, level));
+                toc.AppendChild(tocItem);
+
+                // Extract section number and heading
+                string tocText = ExtractTextFromTocLine(tocLine);
+                var parts = tocText.Split('.', 2, StringSplitOptions.RemoveEmptyEntries);
+                
+                if (parts.Length >= 2) {
+                    // Add section number
+                    XmlElement tocNum = doc.CreateElement("inline", ns);
+                    tocNum.SetAttribute("name", TableOfContentsConstants.InlineNames.TocNum);
+                    tocNum.AppendChild(doc.CreateTextNode(parts[0].Trim()));
+                    tocItem.AppendChild(tocNum);
+
+                    // Add section heading
+                    XmlElement tocHeading = doc.CreateElement("inline", ns);
+                    tocHeading.SetAttribute("name", TableOfContentsConstants.InlineNames.TocHeading);
+                    tocHeading.AppendChild(doc.CreateTextNode(parts[1].Trim()));
+                    tocItem.AppendChild(tocHeading);
+                } else {
+                    // Fallback: add entire text as heading
+                    XmlElement tocHeading = doc.CreateElement("inline", ns);
+                    tocHeading.SetAttribute("name", TableOfContentsConstants.InlineNames.TocHeading);
+                    tocHeading.AppendChild(doc.CreateTextNode(tocText));
+                    tocItem.AppendChild(tocHeading);
+                }
+
+                level++;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Adds inline contents to an XML element
+    /// </summary>
+    private void AddInlineContents(XmlElement parent, IEnumerable<IInline> contents) {
+        foreach (var inline in contents) {
+            if (inline is IFormattedText text) {
+                parent.AppendChild(doc.CreateTextNode(text.Text ?? ""));
+            }
+            // Handle other inline types as needed
+        }
+    }
+
+    /// <summary>
+    /// Extracts text from a TOC line
+    /// </summary>
+    private string ExtractTextFromTocLine(ILine line) {
+        if (line?.Contents == null) {
+            return string.Empty;
+        }
+
+        var textParts = new List<string>();
+        foreach (var inline in line.Contents) {
+            if (inline is IFormattedText text) {
+                textParts.Add(text.Text ?? string.Empty);
+            }
+        }
+
+        return string.Join(" ", textParts).Trim();
     }
 
     /* annexes */

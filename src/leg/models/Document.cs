@@ -75,6 +75,32 @@ internal class DocumentMetadata {
 
 }
 
+/// <summary>
+/// Document with cover page support for TOC generation
+/// </summary>
+internal interface IDocumentWithCoverPage : IDocument {
+    IEnumerable<IBlock> CoverPage { get; }
+}
+
+/// <summary>
+/// Divided document with cover page containing TOC
+/// </summary>
+internal class DividedDocumentWithCoverPage : IDividedDocument, IDocumentWithCoverPage {
+
+    public DocumentMetadata Meta { get; internal init; }
+
+    public IEnumerable<IBlock> CoverPage { get; internal init; }
+
+    public IEnumerable<IBlock> Header { get; internal init; }
+
+    public IEnumerable<IDivision> Body { get; internal init; }
+
+    public IEnumerable<IAnnex> Annexes { get; internal init; }
+
+    public IEnumerable<IImage> Images { get; internal set; }
+
+}
+
 internal class AnnexMetadata : DocumentMetadata {
 
     internal AnnexMetadata(DocumentMetadata main, int n) {
