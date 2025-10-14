@@ -316,7 +316,7 @@ partial record Approval(WLine Line) : IBlock, IBuildable<XNode>
 }
 partial record LaidDraft(WLine Line) : IBlock, IBuildable<XNode>
 {
-    public const string STYLE = "Laid Draft";
+    public const string STYLE = "LaidDraft";
     public XNode Build() => new XElement(
         XmlExt.AknNamespace + "block",
         new XAttribute("name", "laidInDraft"),
