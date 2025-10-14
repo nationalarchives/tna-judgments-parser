@@ -44,7 +44,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (Body[i + 1] is not WLine line2)
                 return false;
             DocName docname = frames.CurrentDocName;
-            if (!DocNames.IsWelshSecondary(docname) && !IsCenterAligned(line))
+            if (!docname.IsWelshSecondary() && !IsCenterAligned(line))
                 return false;
             return true;
         }

@@ -97,7 +97,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
 
             DocName docname = frames.CurrentDocName;
-            if (!DocNames.IsWelshSecondary(docname) && !IsCenterAligned(line))
+            if (!docname.IsWelshSecondary() && !IsCenterAligned(line))
                 return false;
             if (i > Body.Count - 3)
                 return false;
@@ -141,7 +141,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private bool IsReferenceNote(WLine line)
         {
-            if (DocNames.IsScottishPrimary(docName))
+            if (docName.IsScottishPrimary())
             {
                 // Reference notes in SP Bills/Acts are formatted differently
                 if (IsCenterAligned(line) && line.IsAllItalicized())

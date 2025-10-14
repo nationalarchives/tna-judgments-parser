@@ -160,7 +160,7 @@ namespace UK.Gov.Legislation.Lawmaker;
                 return false;
             }
             Context? context = Contexts.ToEnum(groups["context"].Value);
-            Context defaultContext = Frames.IsSecondaryDocName(docName) ? Context.REGULATIONS : Context.SECTIONS;
+            Context defaultContext = docName.IsSecondaryDocName() ? Context.REGULATIONS : Context.SECTIONS;
             if (!groups["context"].Success)
             {
                 // Frame info has DocName but no Context - valid scenario.

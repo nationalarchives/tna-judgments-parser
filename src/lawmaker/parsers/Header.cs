@@ -110,7 +110,7 @@ namespace UK.Gov.Legislation.Lawmaker;
         private void ParseSecondaryHeader()
         {
             bool foundContents = false;
-            bool isWelshSecondary = DocNames.IsWelshSecondary(frames.CurrentDocName);
+            bool isWelshSecondary = frames.CurrentDocName.IsWelshSecondary();
 
             // coverPage and preface share many elements.
             // We always expect a preface so we assume the last banner

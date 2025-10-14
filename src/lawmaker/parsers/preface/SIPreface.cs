@@ -214,10 +214,10 @@ partial record Number(
     [GeneratedRegex(@" *(?<year>\d+)? *Rhif *(?<number>\d+)? *(?<subsidiary>.+)?")]
     private static partial Regex WelshRegex();
 
-    private static Dictionary<LanguageService.Lang, IEnumerable<Regex>> LanguagePatterns = new()
+    private static readonly Dictionary<LanguageService.Lang, IEnumerable<Regex>> LanguagePatterns = new()
     {
-        { LanguageService.Lang.ENG, [EnglishRegex()] },
-        { LanguageService.Lang.CYM, [WelshRegex()] },
+        [LanguageService.Lang.ENG] = [ EnglishRegex() ],
+        [LanguageService.Lang.CYM] = [ WelshRegex() ]
     };
 }
 

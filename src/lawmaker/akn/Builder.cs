@@ -136,7 +136,7 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement formula = CreateAndAppend("formula", e);
             formula.SetAttribute("name", "enactingText");
 
-            if (Frames.IsSecondaryDocName(this.bill.Type))
+            if (this.bill.Type.IsSecondaryDocName())
             {
                 AddBlocks(formula, preamble);
                 return;

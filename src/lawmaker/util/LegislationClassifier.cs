@@ -124,17 +124,17 @@ public static class DocNames
 
     public static bool IsSecondaryDocName(this DocName docName)
     {
-        return GetLegislationType(docName) == LegislationType.SECONDARY;
+        return docName.GetLegislationType() == LegislationType.SECONDARY;
     }
 
-    public static bool IsScottishPrimary(DocName docName)
+    public static bool IsScottishPrimary(this DocName docName)
     {
-        return ToEnacted(docName).Equals(DocName.ASP);
+        return docName.ToEnacted().Equals(DocName.ASP);
     }
 
-    public static bool IsWelshSecondary(DocName docName)
+    public static bool IsWelshSecondary(this DocName docName)
     {
-        return ToEnacted(docName).Equals(DocName.WSI);
+        return docName.ToEnacted().Equals(DocName.WSI);
     }
 }
 
@@ -161,7 +161,7 @@ public readonly record struct LegislationClassifier(
             { SubType: "reg" }  => Context.REGULATIONS,
             { SubType: "rules" } => Context.RULES,
             { SubType: "order" } => Context.ARTICLES,
-            _ => DocNames.IsSecondaryDocName(DocName) ? Context.ARTICLES : Context.SECTIONS
+            _ => DocName.IsSecondaryDocName() ? Context.ARTICLES : Context.SECTIONS
         };
     }
 }
