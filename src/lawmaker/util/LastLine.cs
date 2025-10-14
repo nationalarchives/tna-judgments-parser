@@ -72,7 +72,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     if (block is ILine line)
                         inlines.AddRange(line.Contents);
                 }
-                return IInline.ToString(inlines, " ");
+                return IInline.ToString(inlines, "");
             }
             return GetLastLine(branch.Children.Last());
         }
