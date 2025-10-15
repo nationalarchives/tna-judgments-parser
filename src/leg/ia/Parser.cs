@@ -13,7 +13,7 @@ using UK.Gov.Legislation.Common;
 using UK.Gov.Legislation.Models;
 using CaseLaw = UK.Gov.NationalArchives.CaseLaw.Parse;
 
-namespace UK.Gov.Legislation.ExplanatoryMemoranda {
+namespace UK.Gov.Legislation.ImpactAssessments {
 
 partial class Parser : BaseLegislativeDocumentParser {
 
@@ -25,7 +25,7 @@ partial class Parser : BaseLegislativeDocumentParser {
 
     private static ILogger logger = Logging.Factory.CreateLogger<Parser>();
 
-    private Parser(WordprocessingDocument doc, CaseLaw.WordDocument preParsed) : base(doc, preParsed, LegislativeDocumentConfig.ForExplanatoryMemoranda()) { }
+    private Parser(WordprocessingDocument doc, CaseLaw.WordDocument preParsed) : base(doc, preParsed, LegislativeDocumentConfig.ForImpactAssessments()) { }
 
     // All parsing logic is now inherited from BaseLegislativeDocumentParser
     

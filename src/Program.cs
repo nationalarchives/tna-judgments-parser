@@ -1,4 +1,3 @@
-
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -14,6 +13,7 @@ using UK.Gov.Legislation;
 using UK.Gov.Legislation.Judgments;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using EM = UK.Gov.Legislation.ExplanatoryMemoranda;
+using IA = UK.Gov.Legislation.ImpactAssessments;
 using UK.Gov.Legislation.Lawmaker;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
@@ -29,18 +29,20 @@ class Program {
             new Option<FileInfo>("--output", description: "the .xml file") { ArgumentHelpName = "file" },
             new Option<FileInfo>("--output-zip", description: "the .zip file") { ArgumentHelpName = "file" },
             new Option<FileInfo>("--log", description: "the log file") { ArgumentHelpName = "file" },
+            new Option<bool>("--console-log", description: "enable logging to console"),
             new Option<bool>("--test", description: "whether to test the result"),
             new Option<FileInfo>("--attachment", description: "an associated file to include") { ArgumentHelpName = "file" },
-            new Option<string>("--hint", description: "the type of document: 'em' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"),
+            new Option<string>("--hint", description: "the type of document: 'em', 'ia' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"),
             new Option<string>("--subtype", description: "the subtype of the document e.g. 'order'. Only applicable if --hint is a secondary type"),
             new Option<string>("--procedure", description: "the procedure of the document e.g. 'made', 'draftaffirm'. Only applicable if --hint is a secondary type"),
-            new Option<string[]>("--language", description: "the language(s) of the document - the default is English") { AllowMultipleArgumentsPerToken = true},
+            new Option<string[]>("--language", description: "the language(s) of the document - the default is English") { AllowMultipleArgumentsPerToken = true}
         };
         command.Handler = CommandHandler.Create<
             FileInfo,
             FileInfo,
             FileInfo,
             FileInfo,
+            bool,
             bool,
             FileInfo,
             string,
@@ -59,6 +61,7 @@ class Program {
         FileInfo output,
         FileInfo outputZip,
         FileInfo log,
+        bool consoleLog,
         bool test,
         FileInfo attachment,
         string hint,
@@ -71,11 +74,22 @@ class Program {
             Logging.SetConsoleAndFile(log, LogLevel.Debug);
             logger = Logging.Factory.CreateLogger<Program>();
             logger.LogInformation("parsing " + input.FullName);
+        } else if (consoleLog) {
+            Logging.SetConsole(LogLevel.Debug);
+            logger = Logging.Factory.CreateLogger<Program>();
+            logger.LogInformation("parsing " + input.FullName);
         }
+
         if ("em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformEM(input, output, outputZip, log, test, attachment);
+            TransformEM(input, output, outputZip, log, consoleLog, test, attachment);
             return;
         }
+
+        if ("ia".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
+            TransformIA(input, output, outputZip, log, consoleLog, test, attachment);
+            return;
+        }
+
         DocName? docName = DocNames.GetDocName(hint);
         if (docName != null) {
             LegislationClassifier classifier = new LegislationClassifier((DocName)docName, subType, procedure);
@@ -86,8 +100,13 @@ class Program {
             else
                 Console.WriteLine(xml);
             return;
-        } else {
+        }
+
+        if (!string.IsNullOrEmpty(hint)) {
             logger?.LogCritical("unrecognized document type: {}", hint);
+            Console.Error.WriteLine($"Error: Invalid hint '{hint}'. Supported values: 'em', 'ia', or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'.");
+            Environment.Exit(1);
+            return;
         }
         byte[] docx = File.ReadAllBytes(input.FullName);
         Api.Request request;
@@ -109,11 +128,40 @@ class Program {
             Print(response.Meta);
     }
 
-    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
+    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool consoleLog, bool test, FileInfo attachment) {
         if (attachment is not null)
             throw new Exception();
+            
+        // Set up logging for EM parsing
+        if (log is not null) {
+            Logging.SetConsoleAndFile(log, LogLevel.Debug);
+        } else if (consoleLog) {
+            Logging.SetConsole(LogLevel.Debug);
+        }
+        
         byte[] docx = File.ReadAllBytes(input.FullName);
         var parsed = EM.Helper.Parse(docx);
+        if (outputZip is not null)
+            SaveZip(parsed, outputZip);
+        else if (output is not null)
+            File.WriteAllText(output.FullName, parsed.Serialize());
+        else
+            Console.WriteLine(parsed.Serialize());
+    }
+
+    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool consoleLog, bool test, FileInfo attachment) {
+        if (attachment is not null)
+            throw new Exception();
+            
+        // Set up logging for IA parsing
+        if (log is not null) {
+            Logging.SetConsoleAndFile(log, LogLevel.Debug);
+        } else if (consoleLog) {
+            Logging.SetConsole(LogLevel.Debug);
+        }
+        
+        byte[] docx = File.ReadAllBytes(input.FullName);
+        var parsed = IA.Helper.Parse(docx);
         if (outputZip is not null)
             SaveZip(parsed, outputZip);
         else if (output is not null)

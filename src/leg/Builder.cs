@@ -4,6 +4,7 @@ using System.Xml;
 using System.Linq;
 
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Models;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation {
@@ -142,22 +143,38 @@ class Builder : AkN.Builder {
     }
 
     // protected override void AddDivision(XmlElement parent, Judgments.IDivision div) {
-    //     if (div is Model.IParagraph para)
+    //     if (div is IParagraph para)
     //         base.AddDivision(parent, div);
-    //     else if (div is Model.ISubparagraph subpara)
+    //     else if (div is ISubparagraph subpara)
     //         base.AddDivision(parent, div);
     //     else
     //         base.AddDivision(parent, div);
     // }
 
     protected override void AddInline(XmlElement parent, Judgments.IInline model) {
-        if (model is Model.DocType2 docType) {
+        if (model is DocType2 docType) {
             XmlElement e = CreateAndAppend("docType", parent);
             foreach (Judgments.IInline child in docType.Contents)
                 base.AddInline(e, child);
-        } else if (model is Model.DocNumber2 docNum) {
+        } else if (model is DocNumber2 docNum) {
             XmlElement e = CreateAndAppend("docNumber", parent);
             foreach (Judgments.IInline child in docNum.Contents)
+                base.AddInline(e, child);
+        } else if (model is DocTitle docTitle) {
+            XmlElement e = CreateAndAppend("docTitle", parent);
+            foreach (Judgments.IInline child in docTitle.Contents)
+                base.AddInline(e, child);
+        } else if (model is DocStage docStage) {
+            XmlElement e = CreateAndAppend("docStage", parent);
+            foreach (Judgments.IInline child in docStage.Contents)
+                base.AddInline(e, child);
+        } else if (model is DocDate docDate) {
+            XmlElement e = CreateAndAppend("docDate", parent);
+            foreach (Judgments.IInline child in docDate.Contents)
+                base.AddInline(e, child);
+        } else if (model is DocDepartment docDept) {
+            XmlElement e = CreateAndAppend("docDepartment", parent);
+            foreach (Judgments.IInline child in docDept.Contents)
                 base.AddInline(e, child);
         } else {
             base.AddInline(parent, model);
