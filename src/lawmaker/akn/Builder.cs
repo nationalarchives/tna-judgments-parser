@@ -1,11 +1,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.DOCX;
 using UK.Gov.Legislation.Judgments.Parse;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
@@ -33,13 +35,14 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
             main.SetAttribute("name", this.bill.Type.ToString().ToLower());
 
-            string title = Metadata.Extract(bill).Title;
+            string title = Metadata.Extract(bill, logger).Title;
             MetadataBuilder.Add(main, title);
 
             AddCoverPage(main, bill.CoverPage);
             AddPreface(main, bill.Preface);
             AddPreamble(main, bill.Preamble);
             AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
+            AddConclusions(main, bill.Conclusions);
 
             return doc;
         }
@@ -165,6 +168,21 @@ namespace UK.Gov.Legislation.Lawmaker
             return pElement;
         }
 
+        private void AddConclusions(XmlElement main, IList<BlockContainer> conclusionElements)
+        {
+            if (conclusionElements.Count <= 0)
+            {
+                logger.LogWarning("The parsed Conclusions elements were empty!");
+                return;
+            }
+            XmlElement conc = CreateAndAppend("conclusions", main);
+            conc.SetAttribute("eId", "backCover");
+            foreach (BlockContainer blockContainer in conclusionElements)
+            {
+                AddBlockContainer(conc, blockContainer);
+            }
+        }
+
         private void AddBody(XmlElement main, IList<IDivision> divisions, IList<Schedule> schedules)
         {
             XmlElement body = CreateAndAppend("body", main);
@@ -180,13 +198,14 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             foreach (IBlock block in blocks)
             {
-                if (block is IOldNumberedParagraph np)
+                if (block is WOldNumberedParagraph np)
                 {
-                    XmlElement container = doc.CreateElement("blockContainer", ns);
-                    parent.AppendChild(container);
-                    if (np.Number is not null)
-                        AddAndWrapText(container, "num", np.Number);
-                    this.p(container, np);
+                    // In Lawmaker, by default, all numbered paragraphs should be marked up
+                    // as regular p elements
+                    List<IInline> inlines = [np.Number];
+                    if (np.Contents.Count() > 0)
+                        inlines.AddRange([new WText(" ", null), .. np.Contents]);
+                    this.p(parent, new WLine(np, inlines));
                 }
                 else if (block is ILine line)
                 {
@@ -212,6 +231,22 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     AddDivision(parent, wrapper.Division);
                 }
+                else if (block is BlockList blockList)
+                {
+                    AddBlockList(parent, blockList);
+                }
+                else if (block is BlockListItem item)
+                {
+                    AddBlockListItem(parent, item);
+                }
+                else if (block is ISignatureBlock sigBlock)
+                {
+                    AddSigBlock(parent, sigBlock);
+                }
+                else if (block is BlockContainer blockContainer)
+                {
+                    AddBlockContainer(parent, blockContainer);
+                }
                 else
                 {
                     throw new Exception(block.GetType().ToString());
@@ -219,18 +254,99 @@ namespace UK.Gov.Legislation.Lawmaker
             }
         }
 
+        protected override XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model)
+        
+        {
+            // remove leading and trailing whitespace from name.
+            return base.AddAndWrapText(parent, name.Trim(), model);
+        }
+
         override protected void p(XmlElement parent, ILine line) {
-        if (line is IUnknownLine) {
-            // Putting this here for now, this should eventually be moved to a method IUnknownLine.Add(parent)
-            // but for now we need access to the AddInline method
-            XmlElement p = parent.OwnerDocument.CreateElement("p", parent.NamespaceURI);
-            p.SetAttribute("class", parent.NamespaceURI, "unknownImport");
-            foreach(IInline inline in line.Contents) {
-                AddInline(p, inline);
+            if (line is IUnknownLine)
+            {
+                // Putting this here for now, this should eventually be moved to a method IUnknownLine.Add(parent)
+                // but for now we need access to the AddInline method
+                XmlElement p = parent.OwnerDocument.CreateElement("p", parent.NamespaceURI);
+                p.SetAttribute("class", parent.NamespaceURI, "unknownImport");
+                foreach (IInline inline in line.Contents)
+                {
+                    AddInline(p, inline);
+                }
+                parent.AppendChild(p);
             }
-            parent.AppendChild(p);
-        } else
-            base.p(parent, line);
+            else
+                base.p(parent, TrimLine(line));
+        }
+
+        /// <summary>
+        /// A wrapper for the <c>Block</c> method which strips leading and trailing white space from <paramref name="line"/>,
+        /// before inserting it as an XML element with tagname <paramref name="name"/> as a child of <paramref name="parent"/>.
+        /// </summary>
+        /// <param name="parent">The parent element</param>
+        /// <param name="line">The line to be added as a child element</param>
+        /// <param name="name">The tag name of the inserted child element</param>
+        /// <returns>The resulting child XML element</returns>
+        protected override XmlElement Block(XmlElement parent, ILine line, string name)
+        {
+            ILine stripped = TrimLine(line);
+            return base.Block(parent, stripped, name);
+        }
+
+        /// <summary>
+        /// Trims any whitespace from the beginning or end of a line.
+        /// </summary>
+        /// <param name="line">The line to trim</param>
+        /// <returns>The trimmed line</returns>
+        private ILine TrimLine(ILine line)
+        {
+            if (line is not WLine wLine)
+                return line;
+            if (line.Contents.Count() == 0)
+                return line;
+
+            List<IInline> trimmedInlines = [];
+
+            // Remove starting and ending inlines which are entirely white space
+            IEnumerable<IInline> newContents = line.Contents
+                .SkipWhile(IInline.IsEmpty).Reverse()
+                .SkipWhile(IInline.IsEmpty).Reverse();
+
+            // Trim start of first inline
+            IInline first = newContents.First();
+            if (first is WText text)
+            {
+                // regex selects any leading whitespace and removes it
+                string fixedText = Regex.Replace(text.Text, @"^\s*", "");
+                if (newContents.Count() == 1)
+                {
+                    // if there is only one WLine also removes trailing whitespace
+                    fixedText = Regex.Replace(fixedText, @"\s*$", "");
+                }
+                WText fixedInline = new WText(fixedText, text.properties);
+                trimmedInlines.Add(fixedInline);
+            }
+            else
+                trimmedInlines.Add(first);
+
+            // Add middle inlines
+            if (newContents.Count() >= 3)
+                trimmedInlines.AddRange(newContents.Skip(1).SkipLast(1));
+
+            // Trim end of last inline
+            if (newContents.Count() >= 2)
+            {
+                IInline last = newContents.Last();
+                if (last is WText text2)
+                {
+                    // regex selects any trailing whitespace and removes it
+                    string fixedText = Regex.Replace(text2.Text, @"\s*$", "");
+                    WText fixedInline = new WText(fixedText, text2.properties);
+                    trimmedInlines.Add(fixedInline);
+                }
+                else
+                    trimmedInlines.Add(last);
+            }
+            return new WLine(line as WLine, trimmedInlines);
         }
 
         private int quoteDepth = 0;
@@ -272,6 +388,100 @@ namespace UK.Gov.Legislation.Lawmaker
             blocks(authorialNote, content);
         }
 
+        protected void AddBlockList(XmlElement parent, BlockList blockList)
+        {
+            XmlElement bl = CreateAndAppend("blockList", parent);
+            if (blockList.Intro is not null)
+            {
+                XmlElement intro = CreateAndAppend("listIntroduction", bl);
+                AddInlines(intro, blockList.Intro.Contents);
+            }
+            AddBlocks(bl, blockList.Children);
+        }
+
+        protected void AddBlockListItem(XmlElement parent, BlockListItem item)
+        {
+            XmlElement itemElement = CreateAndAppend("item", parent);
+            if (item.Number is not null)
+            {
+                // Handle Word's weird bullet character.
+                string newNum = new string(item.Number.Text.Select(c => ((uint)c == 61623) ? '\u2022' : c).ToArray());
+                if (item.Number is WText wText)
+                    AddAndWrapText(itemElement, "num", new WText(newNum, wText.properties));
+                else if (item.Number is WNumText WNumText)
+                    AddAndWrapText(itemElement, "num", new WNumText(WNumText, newNum));
+                else
+                    AddAndWrapText(itemElement, "num", new WText(newNum, null));
+            }
+            if (item.Children.Count() > 0)
+            {
+                /* Handle nested BlockListItem children.
+                 * In which case we must wrap them in a BlockList element:
+                 * 
+                 * <item>                           <item>
+                 *     <num>(1)</num>                   <num>(1)</num>
+                 *     <p>Text1</p>                     <blockList>
+                 *     <item>                               <listIntroduction>Text1</listIntroduction>
+                 *         <num>(a)</num>      --->         <item>
+                 *         <p>Text2</p>                         <num>(a)</num>
+                 *     </item>                                  <p>Text2</p>
+                 *     ...                                  </item>
+                 * </item>                                  ...
+                 *                                      </blockList>
+                 *                                  </item>
+                 */ 
+                XmlElement blockListElement = CreateAndAppend("blockList", itemElement);
+                // Handle listIntroduction
+                XmlElement listIntroductionElement = CreateAndAppend("listIntroduction", blockListElement);
+                foreach (IBlock block in item.Intro)
+                {
+                    if (block is WLine line)
+                        AddInlines(listIntroductionElement, line.Contents);
+                    else
+                        AddBlocks(listIntroductionElement, [block]);
+                }
+                // Handle nested blockList children
+                AddBlocks(blockListElement, item.Children);
+            }
+            else
+                AddBlocks(itemElement, item.Intro);
+        }
+
+        protected void AddSigBlock(XmlElement parent, ISignatureBlock sig)
+        {   
+            XmlElement block = CreateAndAppend("block", parent);
+            block.SetAttribute("name", sig.Name);
+
+            string dateString = null;
+            if (sig.Name.Equals("date"))
+            {
+                // Only dates of the format "d MMMM yyyy" with or without an ordinal suffix will parse successfully
+                // e.g. "17th June 2025" and "9 October 2021"
+                // Any other format will result in the date attribute being set to "9999-01-01"
+                string text = (sig.Content.First() as WText).Text;
+                
+                // Remove ordinal suffix from date if there is one
+                Match match = Regex.Match(text, @"(\d+)(st|nd|rd|th)");
+                if (match.Success)
+                    // Extract the numeric day and remove the suffix from the original string
+                    text = text.Replace(match.Value, match.Groups[1].Value);
+
+                bool parsedDate = DateTime.TryParseExact(text, "d MMMM yyyy", CultureInfo.GetCultureInfo("en-GB"), DateTimeStyles.None, out DateTime dateTime);
+                if (parsedDate)
+                    dateString = dateTime.ToString("yyyy-MM-dd");
+                // Date was not parsed so set to dummy value
+                else
+                    dateString = "9999-01-01";
+            }
+            if (dateString is not null)
+            {
+                XmlElement date = CreateAndAppend("date", block);
+                date.SetAttribute("date", dateString);
+                AddInlines(date, sig.Content);
+            }
+            else
+                AddInlines(block, sig.Content);
+        }
 
     }
 

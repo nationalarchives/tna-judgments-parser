@@ -10,17 +10,17 @@ namespace UK.Gov.Legislation.Lawmaker
     {
 
         // Invoked via CLI when running locally
-        public static Bundle LocalParse(string path, LegislationClassifier classifier)
+        public static Bundle LocalParse(string path, LegislationClassifier classifier, LanguageService languageService)
         {
             byte[] docx = File.ReadAllBytes(path);
-            return Parse(docx, classifier);
+            return Parse(docx, classifier, languageService);
         }
 
         // Invoked via AWS Lambda function handler
-        public static Response LambdaParse(Request request, LegislationClassifier classifier)
+        public static Response LambdaParse(Request request, LegislationClassifier classifier, LanguageService languageService)
         {
             byte[] docx = request.Content;
-            Bundle bundle = Parse(docx, classifier);
+            Bundle bundle = Parse(docx, classifier, languageService);
             return new Response()
             {
                 Xml = bundle.Xml,
@@ -29,10 +29,10 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
 
-        public static Bundle Parse(byte[] docx, LegislationClassifier classifier)
+        public static Bundle Parse(byte[] docx, LegislationClassifier classifier, LanguageService languageService)
         {
 
-            Document bill = LegislationParser.Parse(docx, classifier);
+            Document bill = LegislationParser.Parse(docx, classifier, languageService);
             XmlDocument doc = Builder.Build(bill);
             Simplifier.Simplify(doc, bill.Styles);
             string xml = NationalArchives.Judgments.Api.Parser.SerializeXml(doc);
