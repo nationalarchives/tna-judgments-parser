@@ -10,21 +10,6 @@ using UK.Gov.NationalArchives.Enrichment;
 
 namespace UK.Gov.Legislation.Lawmaker;
 
-// public record QuotedStructure(
-//     IInline PrecedingText,
-//     IInline? QuotedText, // marked up as quoted text later
-//     IEnumerable<IBlock> Contents,
-//     IInline AppendText,
-// )
-// {
-
-//     public static IEnumerable<IBlock> GroupQuotedStructures(IEnumerable<IBlock> body)
-//     {
-//         return body;
-//     }
-// }
-
-// )
     public partial class LegislationParser
     {
 
@@ -274,7 +259,7 @@ namespace UK.Gov.Legislation.Lawmaker;
 
             // A quote depth of 0 would mean we're not in a QuotedStructure to begin with,
             // so we can't be at the end of one.
-            if (quoteDepth <= 0) 
+            if (quoteDepth <= 0)
                 return false;
 
             // The text string can't be the end of a QuotedStructure if it doesn't end with a closing quote.
@@ -285,7 +270,7 @@ namespace UK.Gov.Legislation.Lawmaker;
             bool isStartQuoteAtStart = Regex.IsMatch(text, QuotedStructureStartPattern());
             (int left, int right) = CountStartAndEndQuotes(text);
 
-            /* We require special logic for nested quoted structures which end on the same line: 
+            /* We require special logic for nested quoted structures which end on the same line:
              * Must break out of as many nested quoted structures as there are closing quotes.
              * For example, if we are 4 quoted structures deep and encounter the line:
              *     (a) example paragraph”””

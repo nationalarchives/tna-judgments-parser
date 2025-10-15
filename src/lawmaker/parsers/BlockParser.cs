@@ -45,12 +45,6 @@ public class BlockParser : IParser<IBlock>
         return Body[peekIndex];
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <typeparam name="R"></typeparam>
-    /// <param name="strategy"></param>
-    /// <returns></returns>
     public R? Peek<R>(IParser<IBlock>.ParseStrategy<R> strategy)
     {
         int save = Save();

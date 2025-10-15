@@ -56,10 +56,8 @@ public partial class LegislationParser
     private readonly ILogger Logger = Logging.Factory.CreateLogger<LegislationParser>();
     private ProvisionRecords provisionRecords;
     private readonly Frames frames;
-    // private readonly CaseLaw.WordDocument Document;
     private Dictionary<string, Dictionary<string, string>>? Styles { get;  init; }
 
-    // private int i = 0;
 
     int parseDepth = 0;
     int parseDepthMax = 0;

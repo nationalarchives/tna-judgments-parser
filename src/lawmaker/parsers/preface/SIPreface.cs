@@ -168,8 +168,6 @@ partial record Number(
 
         );
 
-    //<TLCConcept GUID="_a60101c9-fc99-4ef7-951b-0df6337ce794" eId="varSINo" href="#varOntologies"
-    //  showAs="#varSIYear No. #varSINoComp #varSISubsidiaryNos"/>
     public static Number? Parse(IParser<IBlock> parser)
     {
         if (parser.Advance() is not WLine line)
