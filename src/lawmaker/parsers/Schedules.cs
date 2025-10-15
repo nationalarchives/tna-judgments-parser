@@ -34,17 +34,17 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (!IsCenterAligned(line))
                 return false;
-            if (i > Document.Body.Count - 3)
+            if (i > Body.Count - 3)
                 return false;
             string heading = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
-            if (!langService.IsMatch(heading, Schedules.HeadingPatterns))
+            if (!LanguageService.IsMatch(heading, Schedules.HeadingPatterns))
                 return false;
 
             // Schedules container must be followed by Schedule
-            if (Document.Body[i + 1].Block is not WLine line2)
+            if (Body[i + 1] is not WLine line2)
                 return false;
             DocName docname = frames.CurrentDocName;
-            if (!DocNames.IsWelshSecondary(docname) && !IsCenterAligned(line))
+            if (!docname.IsWelshSecondary() && !IsCenterAligned(line))
                 return false;
             return true;
         }
@@ -53,10 +53,10 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             frames.PushScheduleContext();
             List<IDivision> children = [];
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 // If we hit the conclusions, the schedules have finished
-                if (ExplanatoryNote.IsHeading(langService, Current()))
+                if (ExplanatoryNote.IsHeading(LanguageService, Current()))
                     break;
 
                 HContainer peek = PeekGroupingProvision();

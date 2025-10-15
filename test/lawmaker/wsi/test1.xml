@@ -2,71 +2,10 @@
 <akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
   <bill name="wsi">
     <meta>
-      <identification source="#author">
-        <FRBRWork>
-          <FRBRthis value="#varWork" />
-          <FRBRuri value="#varWorkUri" />
-          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
-          <FRBRdate date="9999-01-01" name="draft" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRcountry value="GB-UKM" />
-          <FRBRsubtype value="#varDocSubType" />
-          <FRBRnumber value="#varProjectId" />
-          <FRBRname value="#varBillTitle" />
-          <FRBRprescriptive value="true" />
-          <FRBRauthoritative value="false" />
-        </FRBRWork>
-        <FRBRExpression>
-          <FRBRthis value="#varExpression" />
-          <FRBRuri value="#varExpressionUri" />
-          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
-          <FRBRdate date="9999-01-01" name="draft" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRversionNumber value="" />
-          <FRBRauthoritative value="false" />
-          <FRBRmasterExpression href="" showAs="" />
-          <FRBRlanguage language="eng" />
-        </FRBRExpression>
-        <FRBRManifestation>
-          <FRBRthis value="#varManifestation" />
-          <FRBRuri value="#varManifestationUri" />
-          <FRBRdate date="9999-01-01" name="akn_xml" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRformat value="application/akn+xml" />
-        </FRBRManifestation>
-      </identification>
       <references source="#author">
-        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
-        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
-        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
-        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
-        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
-        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
-        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
-        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
-        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
-        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+        <TLCConcept eId="varSITitle" href="#varOntologies" showAs="Rheoliadau Diogelu’r Amgylchedd (Fêps Untro) (Cymru) (Diwygio) 2025" />
+        <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2025" />
+		<TLCConcept eId="varSISubsidiaryNos" href="#varOntologies" showAs="(Cy. )" />
       </references>
     </meta>
     <coverPage>
@@ -83,19 +22,21 @@
         <p>Ystyriwyd Cod Ymarfer Gweinidogion Cymru ar gynnal Asesiadau Effaith Rheoleiddiol mewn</p>
         <tblock class="table">
           <foreign>
-            <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="allBorders tableleft width100">
-              <tbody class="left">
+            <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="topAndBottom tablecenter width100">
+              <thead class="italic left">
                 <tr>
-                  <td>
+                  <th>
                     <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Provision</p>
-                  </td>
-                  <td>
+                  </th>
+                  <th>
                     <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Date of Commencement</p>
-                  </td>
-                  <td>
+                  </th>
+                  <th>
                     <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. No.</p>
-                  </td>
+                  </th>
                 </tr>
+              </thead>
+              <tbody class="left">
                 <tr>
                   <td>
                     <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Section 78</p>
@@ -149,7 +90,17 @@
         </tblock>
       </blockContainer>
     </coverPage>
-    <preamble eId="preamble">
+    <preface>
+      <block name="banner">OFFERYNNAU STATUDOL CYMRU</block>
+	  <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+	  <container name="subjects">
+		<container name="subject">
+			<block name="subject"><concept refersTo="" class="title">DIOGELU’R AMGYLCHEDD, CYMRU</concept></block>
+		</container>
+	  </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+    </preface>
+	<preamble eId="preamble">
       <formula name="enactingText">
         <p>Mae Gweinidogion Cymru yn gwneud y Rheoliadau a ganlyn drwy arfer y pwerau a roddir gan adrannau 140(1)(c) a (d), a 3(c) o Ddeddf Diogelu’r Amgylchedd 1990<authorialNote marker="1" class="footnote"><p>1990 p. 43. Diwygiwyd adran 140(3)(c) gan O.S. 1999/1108. Yn rhinwedd erthygl 2 o Orchymyn Cynulliad Cenedlaethol Cymru (Trosglwyddo Swyddogaethau) 1999 (O.S. 1999/672) ac Atodlen 1 iddo, ac adran 162 o Ddeddf Llywodraeth Cymru 2006 (p. 32) a pharagraff 30 o Atodlen 11 iddi, yn ddarostyngedig i eithriadau penodol nad ydynt yn berthnasol i’r Rheoliadau hyn, mae swyddogaethau’r Ysgrifennydd Gwladol o dan adran 140 yn arferadwy gan Weinidogion Cymru o ran Cymru.</p></authorialNote> (“Deddf 1990”).</p>
       </formula>

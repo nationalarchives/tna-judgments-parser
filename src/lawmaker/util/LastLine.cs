@@ -13,97 +13,29 @@ namespace UK.Gov.Legislation.Lawmaker
     {
         // private static readonly ILogger Logger = Logging.Factory.CreateLogger<LastLine>();
 
-        internal static WLine GetLastLine(IDivision division)
+        internal static string GetLastLine(IDivision division)
         {
             return division switch
             {
             // should be using some kind of polymorphism
             Leaf leaf => GetLastLine(leaf),
             Branch branch => GetLastLine(branch),
-            ILineable lineable => lineable.GetLastLine(),
+            ILineable lineable => lineable.GetLastLineAsString(),
             WDummyDivision dummy => dummy
                 .Contents
                 .OfType<ILineable>()
                 .LastOrDefault()
-                .GetLastLine(),
+                .GetLastLineAsString(),
             _ => null,
             };
         }
 
-        static WLine GetLastLine(Leaf leaf)
+        static string GetLastLine(Leaf leaf)
         {
-            if (leaf.Contents is null)
-                return leaf.Heading as WLine;
-            return GetLastLine(leaf.Contents);
+            if (leaf.Contents?.LastOrDefault() is Mod mod) {
+                return GetLastLine(mod);
+            }
 
-        }
-
-        static WLine GetLastLine(Branch branch)
-        {
-            if (branch.WrapUp?.Count > 0)
-                return GetLastLine(branch.WrapUp);
-            return GetLastLine(branch.Children.Last());
-        }
-
-        static WLine GetLastLine(WTable table) => table
-            .Rows?
-            .LastOrDefault()?
-            .Cells?
-            .LastOrDefault()?
-            .Contents?
-            .OfType<WLine>()?
-            .LastOrDefault()
-            ;
-
-        // All inheritors of IBlock:
-        // Mod, ILine, ITableOfContents2, IQuotedStructure, ISignatureName, IDivWrapper, ITable, LdappTableBlock
-        // We should probably figure out a better way than this using some kind of polymorphism... otherwise we have to update this switch for every new block
-        internal static WLine GetLastLine(IEnumerable<IBlock> blocks) => blocks?.LastOrDefault() switch
-        {
-            WLine line => line,
-            Mod mod => GetLastLineInMod(mod),
-            BlockQuotedStructure qs => GetLastLineInQuotedStructure(qs),
-            LdappTableBlock tableBlock => GetLastLine(tableBlock.Table.Rows.LastOrDefault().Cells.LastOrDefault().Contents),
-            _ => null
-        };
-        // static WLine GetLastLineIn(IEnumerable<IBlock> blocks)
-        // {
-        //     IBlock last = blocks.LastOrDefault();
-        //     if (last is not WLine line)
-        //         return null;
-        //     return line;
-        // }
-
-        /*
-         * Obtains the entire text content of the last paragraph of the given division,
-         * including any Numbers or Headings.
-         */
-        internal static string GetLastParagraphText(IDivision division)
-        {
-            if (division is Leaf leaf)
-                return GetLastParagraphTextInLeaf(leaf);
-            if (division is Branch branch)
-                return GetLastParagraphTextInBranch(branch);
-            return null;
-        }
-
-        static WLine GetLastLineInMod(Mod mod)
-        {
-            return GetLastLine(mod.Contents);
-        }
-
-        static WLine GetLastLineInQuotedStructure(BlockQuotedStructure qs)
-        {
-            LegislationParser.QuoteDistance++;
-            return GetLastLine(qs.Contents.Last());
-        }
-
-        /*
-         * Obtains the combined text content of a Leaf.
-         * Includes the Number, Heading, and Contents.
-         */
-        static string GetLastParagraphTextInLeaf(Leaf leaf)
-        {
             List<IInline> inlines = [];
             if (leaf.HeadingPrecedesNumber)
             {
@@ -130,7 +62,7 @@ namespace UK.Gov.Legislation.Lawmaker
             return IInline.ToString(inlines, "");
         }
 
-        static string GetLastParagraphTextInBranch(Branch branch)
+        static string GetLastLine(Branch branch)
         {
             if (branch.WrapUp?.Count > 0)
             {
@@ -140,9 +72,42 @@ namespace UK.Gov.Legislation.Lawmaker
                     if (block is ILine line)
                         inlines.AddRange(line.Contents);
                 }
-                return IInline.ToString(inlines, " ");
+                return IInline.ToString(inlines, "");
             }
-            return GetLastParagraphText(branch.Children.Last());
+            return GetLastLine(branch.Children.Last());
+        }
+
+        static WLine GetLastLine(WTable table) => table
+            .Rows?
+            .LastOrDefault()?
+            .Cells?
+            .LastOrDefault()?
+            .Contents?
+            .OfType<WLine>()?
+            .LastOrDefault()
+            ;
+
+        // All inheritors of IBlock:
+        // Mod, ILine, ITableOfContents2, IQuotedStructure, ISignatureName, IDivWrapper, ITable, LdappTableBlock
+        // We should probably figure out a better way than this using some kind of polymorphism... otherwise we have to update this switch for every new block
+        internal static string GetLastLine(IEnumerable<IBlock> blocks) => blocks?.LastOrDefault() switch
+        {
+            WLine line => line.TextContent,
+            Mod mod => GetLastLine(mod),
+            BlockQuotedStructure qs => GetLastLine(qs),
+            LdappTableBlock tableBlock => GetLastLine(tableBlock.Table.Rows.LastOrDefault().Cells.LastOrDefault().Contents),
+            _ => null
+        };
+
+        static string GetLastLine(Mod mod)
+        {
+            return GetLastLine(mod.Contents);
+        }
+
+        static string GetLastLine(BlockQuotedStructure qs)
+        {
+            LegislationParser.QuoteDistance++;
+            return GetLastLine(qs.Contents.Last());
         }
 
         /* replace */

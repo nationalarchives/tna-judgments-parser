@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
+using System.Xml.Linq;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.DOCX;
@@ -35,8 +36,8 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
             main.SetAttribute("name", this.bill.Type.ToString().ToLower());
 
-            string title = Metadata.Extract(bill, logger).Title;
-            MetadataBuilder.Add(main, title);
+            XmlNode meta = Metadata.Extract(bill, logger).Build().ToXmlNode(main.OwnerDocument);
+            main.AppendChild(meta);
 
             AddCoverPage(main, bill.CoverPage);
             AddPreface(main, bill.Preface);
@@ -58,6 +59,16 @@ namespace UK.Gov.Legislation.Lawmaker
             if (prefaceElements.Count <= 0)
             {
                 logger.LogWarning("The parsed Preface elements were empty!");
+                return;
+            }
+            if (prefaceElements.All(e => e is IBuildable<XNode>))
+            {
+                foreach (XmlNode node in prefaceElements
+                    .OfType<IBuildable<XNode>>()
+                    .Select(e => e.Build().ToXmlNode(bill.OwnerDocument)))
+                {
+                    bill.AppendChild(node);
+                }
                 return;
             }
             XmlElement preface = CreateAndAppend("preface", bill);
@@ -125,7 +136,7 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement formula = CreateAndAppend("formula", e);
             formula.SetAttribute("name", "enactingText");
 
-            if (Frames.IsSecondaryDocName(this.bill.Type))
+            if (this.bill.Type.IsSecondaryDocName())
             {
                 AddBlocks(formula, preamble);
                 return;
@@ -255,7 +266,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         protected override XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model)
-        
+
         {
             // remove leading and trailing whitespace from name.
             return base.AddAndWrapText(parent, name.Trim(), model);
@@ -417,7 +428,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 /* Handle nested BlockListItem children.
                  * In which case we must wrap them in a BlockList element:
-                 * 
+                 *
                  * <item>                           <item>
                  *     <num>(1)</num>                   <num>(1)</num>
                  *     <p>Text1</p>                     <blockList>
@@ -429,7 +440,7 @@ namespace UK.Gov.Legislation.Lawmaker
                  * </item>                                  ...
                  *                                      </blockList>
                  *                                  </item>
-                 */ 
+                 */
                 XmlElement blockListElement = CreateAndAppend("blockList", itemElement);
                 // Handle listIntroduction
                 XmlElement listIntroductionElement = CreateAndAppend("listIntroduction", blockListElement);
@@ -448,7 +459,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         protected void AddSigBlock(XmlElement parent, ISignatureBlock sig)
-        {   
+        {
             XmlElement block = CreateAndAppend("block", parent);
             block.SetAttribute("name", sig.Name);
 
@@ -459,7 +470,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 // e.g. "17th June 2025" and "9 October 2021"
                 // Any other format will result in the date attribute being set to "9999-01-01"
                 string text = (sig.Content.First() as WText).Text;
-                
+
                 // Remove ordinal suffix from date if there is one
                 Match match = Regex.Match(text, @"(\d+)(st|nd|rd|th)");
                 if (match.Success)

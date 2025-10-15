@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace UK.Gov.Legislation.Judgments {
 
-interface IBlock {
+public interface IBlock {
 
     bool IsEmptyLine() {
         if (this is not ILine line)

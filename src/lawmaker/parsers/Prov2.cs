@@ -41,7 +41,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             List<IDivision> children = [];
             int finalChildStart = i;
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 if (BreakFromProv1())
                     break;

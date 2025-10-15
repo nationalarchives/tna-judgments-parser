@@ -1,4 +1,4 @@
-
+// #nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,7 @@ using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Enrichment;
 
-namespace UK.Gov.Legislation.Lawmaker
-{
+namespace UK.Gov.Legislation.Lawmaker;
 
     public partial class LegislationParser
     {
@@ -23,6 +22,9 @@ namespace UK.Gov.Legislation.Lawmaker
         private static string quotedStructureInfoPattern = @"(?'info'{(?'docName'.*?)(?:-(?'context'.*?))?}\s*)?";
 
         public static int QuoteDistance = 0;
+
+
+
 
         /*
          * A quoted structure must begin with a start quote. Optionally, there may be 'info'
@@ -143,7 +145,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             }
             Context? context = Contexts.ToEnum(groups["context"].Value);
-            Context defaultContext = Frames.IsSecondaryDocName(docName) ? Context.REGULATIONS : Context.SECTIONS;
+            Context defaultContext = docName.IsSecondaryDocName() ? Context.REGULATIONS : Context.SECTIONS;
             if (!groups["context"].Success)
             {
                 // Frame info has DocName but no Context - valid scenario.
@@ -232,38 +234,17 @@ namespace UK.Gov.Legislation.Lawmaker
         private bool IsEndOfQuotedStructure(IDivision division)
         {
             QuoteDistance = 0;
-            var lastLine = LastLine.GetLastLine(division)?.Contents;
+            string lastLine = LastLine.GetLastLine(division);
             if (lastLine == null) return false;
-            return IsEndOfQuotedStructure(IInline.ToString(lastLine), QuoteDistance);
+            return IsEndOfQuotedStructure(lastLine, QuoteDistance);
         }
 
         private bool IsEndOfQuotedStructure(IList<IBlock> contents, ILine heading = null, IFormattedText number = null, bool headingPrecedesNumber = false)
         {
-            // Squash text content into single string
-            List<IInline> inlines = [];
-            if (headingPrecedesNumber)
-            {
-                if (heading != null)
-                    inlines.AddRange(heading.Contents);
-                if (number != null)
-                    inlines.Add(number);
-            }
-            else
-            {
-                if (number != null)
-                    inlines.Add(number);
-                if (heading != null)
-                    inlines.AddRange(heading.Contents);
-            }
-            foreach (IBlock block in contents)
-            {
-                if (block is ILine line)
-                    inlines.AddRange(line.Contents);
-            }
             QuoteDistance = 0;
-            var lastLine = LastLine.GetLastLine(contents)?.Contents;
+            string lastLine = LastLine.GetLastLine(contents);
             if (lastLine == null) return false;
-            return IsEndOfQuotedStructure(IInline.ToString(lastLine), QuoteDistance);
+            return IsEndOfQuotedStructure(lastLine, QuoteDistance);
         }
 
         private bool IsEndOfQuotedStructure(string text)
@@ -273,17 +254,31 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private bool IsEndOfQuotedStructure(string text, int quoteDistance)
         {
-            // a quoteDepth of 0 means we don't need to check for the end of a quoted structure because we never need to break out
-            if (quoteDepth <= 0) return false;
             if (text == null)
                 return false;
+
+            // A quote depth of 0 would mean we're not in a QuotedStructure to begin with,
+            // so we can't be at the end of one.
+            if (quoteDepth <= 0)
+                return false;
+
+            // The text string can't be the end of a QuotedStructure if it doesn't end with a closing quote.
             bool isEndQuoteAtEnd = Regex.IsMatch(text, QuotedStructureEndPattern());
             if (!isEndQuoteAtEnd)
                 return false;
 
             bool isStartQuoteAtStart = Regex.IsMatch(text, QuotedStructureStartPattern());
             (int left, int right) = CountStartAndEndQuotes(text);
+
+            /* We require special logic for nested quoted structures which end on the same line:
+             * Must break out of as many nested quoted structures as there are closing quotes.
+             * For example, if we are 4 quoted structures deep and encounter the line:
+             *     (a) example paragraph”””
+             *  Then we must break from 3 of the 4 nested quoted structures.
+             */
             if (right > left && (right - left) <= quoteDistance)
+                return false;
+            if (right == left && quoteDistance > 0)
                 return false;
 
             bool isSingleLine = (isStartQuoteAtStart && isEndQuoteAtEnd);
@@ -311,7 +306,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private List<IQuotedStructure> HandleQuotedStructuresAfter(WLine line)
         {
             List<IQuotedStructure> quotedStructures = [];
-            if (i == Document.Body.Count)
+            if (i == Body.Count)
                 return [];
             int save = i;
 
@@ -333,7 +328,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 frames.Pop();
             }
             // Handle regular quoted structures
-            while (i < Document.Body.Count && IsStartOfQuotedStructure(Current()))
+            while (i < Body.Count && IsStartOfQuotedStructure(Current()))
             {
                 save = i;
                 IBlock? current = Current();
@@ -353,7 +348,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private BlockQuotedStructure? ParseQuotedStructure()
         {
-            if (i == Document.Body.Count)
+            if (i == this.Body.Count)
                 return null;
             BlockQuotedStructure? qs = Current() switch
             {
@@ -395,7 +390,7 @@ namespace UK.Gov.Legislation.Lawmaker
             quoteDepth += 1;
 
             HContainer? previous = null;
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 int save = i;
 
@@ -613,5 +608,3 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
     #endregion
-
-}

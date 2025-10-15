@@ -6,9 +6,7 @@ using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
-namespace UK.Gov.Legislation.Lawmaker
-{
-
+namespace UK.Gov.Legislation.Lawmaker;
     public partial class LegislationParser
     {
 
@@ -16,16 +14,16 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private void ParseBody()
         {
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 IDivision div = ParseNextBodyDivision();
                 // We have encountered the conclusion so exit the while loop early
-                if (div is UnknownLevel unknownLvl && ExplanatoryNote.IsHeading(langService, unknownLvl.Contents[0]))
+                if (div is UnknownLevel unknownLvl && ExplanatoryNote.IsHeading(LanguageService, unknownLvl.Contents[0]))
                 {
                     i -= 1;
                     break;
                 }
-    
+
                 if (div is not null)
                     body.Add(div);
             }
@@ -63,4 +61,3 @@ namespace UK.Gov.Legislation.Lawmaker
             return division;
         }
     }
-}

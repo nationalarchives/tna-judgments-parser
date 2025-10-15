@@ -2,71 +2,8 @@
 <akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
   <bill name="nipubb">
     <meta>
-      <identification source="#author">
-        <FRBRWork>
-          <FRBRthis value="#varWork" />
-          <FRBRuri value="#varWorkUri" />
-          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
-          <FRBRdate date="9999-01-01" name="draft" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRcountry value="GB-UKM" />
-          <FRBRsubtype value="#varDocSubType" />
-          <FRBRnumber value="#varProjectId" />
-          <FRBRname value="#varBillTitle" />
-          <FRBRprescriptive value="true" />
-          <FRBRauthoritative value="false" />
-        </FRBRWork>
-        <FRBRExpression>
-          <FRBRthis value="#varExpression" />
-          <FRBRuri value="#varExpressionUri" />
-          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
-          <FRBRdate date="9999-01-01" name="draft" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRversionNumber value="" />
-          <FRBRauthoritative value="false" />
-          <FRBRmasterExpression href="" showAs="" />
-          <FRBRlanguage language="eng" />
-        </FRBRExpression>
-        <FRBRManifestation>
-          <FRBRthis value="#varManifestation" />
-          <FRBRuri value="#varManifestationUri" />
-          <FRBRdate date="9999-01-01" name="akn_xml" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRformat value="application/akn+xml" />
-        </FRBRManifestation>
-      </identification>
       <references source="#author">
-        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
         <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="Climate Change (No. 2) Bill" />
-        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
-        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
-        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
-        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
-        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
-        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
-        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
-        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
-        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
       </references>
     </meta>
     <coverPage>
@@ -78,192 +15,69 @@
       <p>Part 1</p>
       <p>Emissions Targets</p>
       <p>The emissions targets</p>
-					  
-					 
       <p>1. The emissions target for 2050</p>
-					   
-					  
-					 
       <p>2. The emissions target for 2040</p>
-					   
-					  
-					 
       <p>3. The emissions target for 2030</p>
-					   
       <p>Power to amend targets</p>
-					  
-					 
       <p>4. Power to amend emission targets</p>
-					   
       <p>Meaning of key concepts</p>
-					  
-					 
       <p>5. Meaning of “baseline”</p>
-					   
-					  
-					 
       <p>6. Meaning of “net Northern Ireland emissions account” for a year</p>
-					   
       <p>Meaning of underlying concepts</p>
-					  
-					 
       <p>7. Meaning of “net Northern Ireland emissions”</p>
-					   
-					  
-					 
       <p>8. Meaning of “Northern Ireland emissions”: international aviation and shipping</p>
-					   
-					  
-					 
       <p>9. Crediting and debiting of carbon units</p>
-					   
-					  
-					  
       <p>10. Carbon units: accounting scheme</p>
-					   
       <p>PART 2</p>
       <p>Carbon Budgets</p>
-					  
-					  
       <p>11. Carbon budgets</p>
-					   
-					  
-					  
       <p>12. Emissions not to exceed carbon budget</p>
-					   
-					  
-					  
       <p>13. Setting of carbon budgets: principles</p>
-					   
-					  
-					  
       <p>14. Setting of carbon budgets: timing</p>
-					   
-					  
-					  
       <p>15. Carrying amounts from one budgetary period to another</p>
-					   
       <p>The Second Group of Parts</p>
       <p>Containing Part 3</p>
       <p>Part 3</p>
       <p>Reports and Statements against Targets and Budgets etc</p>
       <p>Carbon budgets</p>
-					  
-					  
       <p>16. Proposals and policies for meeting carbon budget</p>
-					   
-					  
-					  
       <p>17. Interim progress reporting for budgetary period</p>
-					   
-					  
-					  
       <p>18. Final statement for budgetary period</p>
-					   
-					  
-					  
       <p>19. Proposals and policies where carbon budget not met</p>
-					   
       <p>Emissions targets</p>
-					  
-					  
       <p>20. Statements on compliance with emissions targets</p>
-					   
       <p>Other reports</p>
-					  
-					  
       <p>21. Climate change reporting by public bodies</p>
-					   
       <p>PART 4</p>
       <p>Reports by Committee on Climate Change</p>
-					  
-					  
       <p>22. Progress report during first budgetary period</p>
-					   
-					  
-					  
       <p>23. Progress reports after statement about each budgetary period</p>
-					   
-					  
-					  
       <p>24. Progress report after statement about emissions target for 2030</p>
-					   
-					  
-					  
       <p>25. Progress report after statement about emissions target for 2040</p>
-					   
-					  
-					  
       <p>26. Response to progress reports</p>
-					   
-					  
-					  
       <p>27. Adaptation programme reports</p>
-					   
-					  
-					  
       <p>28. Response to adaptation programme reports</p>
-					   
       <p>PART 5</p>
       <p>Supplementary</p>
       <p>Duties in relation to emissions</p>
-					  
-					  
       <p>29. Duties to ensure that targets etc are met</p>
-					   
       <p>Regulation-making powers: general</p>
-					  
-					  
       <p>30. Regulations: general</p>
-					   
       <p>Regulation-making powers: restrictions and considerations</p>
-					  
-					  
       <p>31. Regulations that amend or add an emissions target or amend a carbon budget</p>
-					   
-					  
-					  
       <p>32. Regulations that specify a different baseline year or change a budgetary period</p>
-					   
       <p>Regulation-making powers: advice</p>
-					  
-					  
       <p>33. Requirement to obtain advice about proposals to make regulations</p>
-					   
-					  
-					  
       <p>34. Advice about proposed regulations relating to targets</p>
-					   
-					  
-					  
       <p>35. Advice about proposed regulations relating to budgets</p>
-					   
       <p>Definitions</p>
-					  
-					  
       <p>36. Meaning of “carbon unit”</p>
-					   
-					  
-					  
       <p>37. Meaning of “greenhouse gas”</p>
-					   
-					  
-					  
       <p>38. Meaning and measurement of emissions</p>
-					   
-					  
-					  
       <p>39. Other definitions</p>
-					   
       <p>General</p>
-					  
-					  
       <p>40. Commencement</p>
-					   
-					  
-					  
       <p>41. Short title</p>
-					   
     </coverPage>
     <preface eId="preface">
       <longTitle>
@@ -612,7 +426,7 @@
                   </content>
                 </level>
                 <wrapUp>
-                  <p><mod>Section 36 explains what a <quotedText startQuote="“" endQuote="”">carbon unit</quotedText> is.</mod></p>
+                  <p>Section 36 explains what a <def ukl:startQuote="“" ukl:endQuote="”">carbon unit</def> is.</p>
                 </wrapUp>
               </subsection>
               <subsection class="prov2">
@@ -669,7 +483,7 @@
                 <level class="para1">
                   <num>(a)</num>
                   <content>
-                    <p><mod>appoint a person or body (an <quotedText startQuote="“" endQuote="”">administrator</quotedText>) to administer the scheme, or provide that the Department is to do so;</mod></p>
+                    <p>appoint a person or body (an <def ukl:startQuote="“" ukl:endQuote="”">administrator</def>) to administer the scheme, or provide that the Department is to do so;</p>
                   </content>
                 </level>
                 <level class="para1">
@@ -716,7 +530,7 @@
               <num>(1)</num>
               <content>
                 <p>The Department must by regulations set a maximum total amount for the net Northern Ireland emissions account for each budgetary period.</p>
-                <p><mod>That amount is referred to as the <quotedText startQuote="“" endQuote="”">carbon budget</quotedText> for that period.</mod></p>
+                <p>That amount is referred to as the <def ukl:startQuote="“" ukl:endQuote="”">carbon budget</def> for that period.</p>
               </content>
             </subsection>
             <subsection class="prov2">
@@ -904,7 +718,7 @@
             <subsection class="prov2">
               <num>(6)</num>
               <content>
-                <p><mod>The carbon budget for a period is <quotedText startQuote="“" endQuote="”">unused</quotedText> to the extent that it exceeds the net Northern Ireland emissions account for the period.</mod></p>
+                <p>The carbon budget for a period is <def ukl:startQuote="“" ukl:endQuote="”">unused</def> to the extent that it exceeds the net Northern Ireland emissions account for the period.</p>
               </content>
             </subsection>
             <subsection class="prov2">
@@ -1363,7 +1177,7 @@
               <subsection class="prov2">
                 <num>(2)</num>
                 <intro>
-                  <p><mod>In this section <quotedText startQuote="“" endQuote="”">public body</quotedText> means—</mod></p>
+                  <p>In this section <def ukl:startQuote="“" ukl:endQuote="”">public body</def> means—</p>
                 </intro>
                 <level class="para1">
                   <num>(a)</num>
@@ -2249,7 +2063,7 @@
               <subsection class="prov2">
                 <num>(4)</num>
                 <content>
-                  <p><mod>In subsection (2)(c), <quotedText startQuote="“" endQuote="”">trading schemes</quotedText> has the meaning given by section 44 of the Climate Change Act 2008.</mod></p>
+                  <p>In subsection (2)(c), <def ukl:startQuote="“" ukl:endQuote="”">trading schemes</def> has the meaning given by section 44 of the Climate Change Act 2008.</p>
                 </content>
               </subsection>
             </section>
@@ -2260,7 +2074,7 @@
               <heading>Meaning of “carbon unit”</heading>
               <num>36.</num>
               <intro>
-                <p><mod>In this Act, a <quotedText startQuote="“" endQuote="”">carbon unit</quotedText> is a unit of a kind specified in regulations made by the Department and representing⁠—</mod></p>
+                <p>In this Act, a <def ukl:startQuote="“" ukl:endQuote="”">carbon unit</def> is a unit of a kind specified in regulations made by the Department and representing⁠—</p>
               </intro>
               <level class="para1">
                 <num>(a)</num>
@@ -2287,7 +2101,7 @@
               <subsection class="prov2">
                 <num>(1)</num>
                 <intro>
-                  <p><mod>In this Act, <quotedText startQuote="“" endQuote="”">greenhouse gas</quotedText> means any of the following⁠—</mod></p>
+                  <p>In this Act, <def ukl:startQuote="“" ukl:endQuote="”">greenhouse gas</def> means any of the following⁠—</p>
                 </intro>
                 <level class="para1">
                   <num>(a)</num>
@@ -2345,7 +2159,7 @@
               <subsection class="prov2">
                 <num>(1)</num>
                 <content>
-                  <p><mod>In this Act, <quotedText startQuote="“" endQuote="”">emissions</quotedText>, in relation to a greenhouse gas, means emissions of that gas into the atmosphere that are attributable to human activity.</mod></p>
+                  <p>In this Act, <def ukl:startQuote="“" ukl:endQuote="”">emissions</def>, in relation to a greenhouse gas, means emissions of that gas into the atmosphere that are attributable to human activity.</p>
                 </content>
               </subsection>
               <subsection class="prov2">
@@ -2375,7 +2189,7 @@
               <subsection class="prov2">
                 <num>(3)</num>
                 <content>
-                  <p><mod>A <quotedText startQuote="“" endQuote="”">tonne of carbon dioxide equivalent</quotedText> means one metric tonne of carbon dioxide or an amount of any other greenhouse gas with an equivalent global warming potential, calculated consistently with international carbon reporting practice (see section 39).</mod></p>
+                  <p>A <def ukl:startQuote="“" ukl:endQuote="”">tonne of carbon dioxide equivalent</def> means one metric tonne of carbon dioxide or an amount of any other greenhouse gas with an equivalent global warming potential, calculated consistently with international carbon reporting practice (see section 39).</p>
                 </content>
               </subsection>
             </section>

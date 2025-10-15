@@ -22,7 +22,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IDivision> children = [];
 
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 HContainer peek = PeekGroupingProvision();
                 if (peek != null && !ScheduleGroupingSection.IsValidChild(peek))
@@ -58,7 +58,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (!line.IsPartiallyItalicized())
                 return false;
-            if (i == Document.Body.Count - 1)
+            if (i == Body.Count - 1)
                 return false;
             return true;
         }
