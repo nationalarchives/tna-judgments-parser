@@ -5,5 +5,5 @@ namespace UK.Gov.Legislation.Lawmaker;
 
 interface IMetadata
 {
-    IEnumerable<Reference> GetMetadata();
+    IEnumerable<Reference> Metadata { get; }
 }

@@ -44,7 +44,7 @@ public class Metadata : IBuildable<XNode>
         foreach (Reference reference in bill
             .Preface
             .OfType<IMetadata>()
-            .SelectMany(it => it.GetMetadata())
+            .SelectMany(it => it.Metadata)
             .Where(it => !string.IsNullOrEmpty(it.ShowAs)))
         {
             metadata.References[reference.EId] = reference;

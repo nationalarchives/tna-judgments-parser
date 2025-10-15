@@ -24,8 +24,8 @@ internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildab
             select (block as IBuildable<XNode>)!.Build()
         );
 
-    public IEnumerable<Reference> GetMetadata() =>
-        Blocks.OfType<IMetadata>().SelectMany(b => b.GetMetadata());
+    public IEnumerable<Reference> Metadata =>
+        Blocks.OfType<IMetadata>().SelectMany(b => b.Metadata);
 
     /*
     A grammar for preface might look something like:
@@ -143,7 +143,7 @@ partial record Number(
 
     private static readonly ILogger Logger = Logging.Factory.CreateLogger<Number>();
 
-    public IEnumerable<Reference> GetMetadata() =>
+    public IEnumerable<Reference> Metadata =>
         new List<(ReferenceKey, string?)> {
             ( ReferenceKey.varSIYear, Year ),
             ( ReferenceKey.varSINoComp, SINumber ),
@@ -290,7 +290,7 @@ partial record Title(WLine Line) : IBlock, IBuildable<XNode>, IMetadata
                 new XAttribute(XmlExt.AknNamespace + "class", "placeholder"),
                 new XAttribute("href", "#varSITitle"))));
 
-    public IEnumerable<Reference> GetMetadata() => [
+    public IEnumerable<Reference> Metadata => [
         new Reference(ReferenceKey.varSITitle, Line.NormalizedContent)
     ];
     public static Title? Parse(IParser<IBlock> parser) =>
