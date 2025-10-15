@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
+using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
 namespace UK.Gov.Legislation.Lawmaker;
 
@@ -53,7 +54,6 @@ public class Metadata : IBuildable<XNode>
     }
 
 
-    private readonly static XNamespace akn = XmlExt.AknNamespace;
     public XNode Build() =>
         new XElement(akn + "meta",
             // new XAttribute("xmlns", akn),

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
+using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
 namespace UK.Gov.Legislation.Lawmaker;
 
@@ -105,7 +106,7 @@ public record Reference(
     private readonly ReferenceType type = EId.GetReferenceType();
 
     public XNode Build() =>
-        new XElement(XmlExt.AknNamespace + type.ToString(),
+        new XElement(akn + type.ToString(),
             new XAttribute("eId", EId.ToString()),
             new XAttribute("href", Href),
             new XAttribute("showAs", ShowAs)

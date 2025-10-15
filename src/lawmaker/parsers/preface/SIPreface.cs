@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
 namespace UK.Gov.Legislation.Lawmaker.Preface;
 
@@ -18,10 +19,10 @@ internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildab
         .All(b => b is IBuildable<XNode>)
         ? throw new System.Exception("IBuildable<XNode> not implemented for all children!")
         : new XElement(
-            XmlExt.AknNamespace + "preface",
-            from block in Blocks.Where(block => block is not DateBlock)
-            where block is IBuildable<XNode>
-            select (block as IBuildable<XNode>)!.Build()
+            akn + "preface",
+            Blocks.OfType<IBuildable<XNode>>()
+            .Where(it => it is not DateBlock)
+            .Select(it => it.Build())
         );
 
     public IEnumerable<Reference> Metadata =>
@@ -89,9 +90,9 @@ internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildab
 partial record CorrectionRubric(WLine Line) : IBlock, IBuildable<XNode>
 {
     public XNode Build() => new XElement(
-        XmlExt.AknNamespace + "block",
+        akn + "block",
         new XAttribute("name", "correctionRubric"),
-        new XText(Line.NormalizedContent) // TODO: properly represent inlines
+        new XText(Line.NormalizedContent)
     );
 
     public const string STYLE = "Correction";
@@ -106,7 +107,7 @@ partial record ProceduralRubric(WLine Line) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "Draft";
     public XNode Build() => new XElement(
-        XmlExt.AknNamespace + "block",
+        akn + "block",
         new XAttribute("name", "proceduralRubric"),
         // new XAttribute("eId", "fnt__rubric"),
         new XText(Line.NormalizedContent)
@@ -123,7 +124,7 @@ internal partial record Banner(WLine Line) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "Banner";
     public XNode Build() => new XElement(
-        XmlExt.AknNamespace + "block",
+        akn + "block",
         new XAttribute("name", "banner"),
         new XText(Line.NormalizedContent)
     );
@@ -159,15 +160,15 @@ partial record Number(
         .Select(it => new Reference(it.Item1, it.Item2));
 
     public XNode Build() => new XElement(
-            XmlExt.AknNamespace + "block",
+            akn + "block",
             new XAttribute("name", "number"),
             IsWellFormed()
             ? new XElement(
-                XmlExt.AknNamespace + "docNumber",
+                akn + "docNumber",
                 new XElement(
-                    XmlExt.AknNamespace + "ref",
+                    akn + "ref",
                     // class needs the namespace to prevent removal in the Simplifier
-                    new XAttribute(XmlExt.AknNamespace + "class", "placeholder"),
+                    new XAttribute(akn + "class", "placeholder"),
                     new XAttribute("href", "#varSINo")))
             : new XText(Line.NormalizedContent)
 
@@ -183,7 +184,6 @@ partial record Number(
         {
             return null;
         }
-        // parser.LanguageService.IsMatch
         MatchCollection? matches = parser.LanguageService.IsMatch(
             line.NormalizedContent,
             LanguagePatterns);
@@ -227,7 +227,7 @@ partial record Number(
 partial record Subjects(IEnumerable<IBlock> subjects) : IBlock, IBuildable<XNode>
 {
     public XNode Build() => new XElement(
-        XmlExt.AknNamespace + "container",
+        akn + "container",
         new XAttribute("name", "subjects"),
         from subject in subjects
         where subject is IBuildable<XNode>
@@ -244,13 +244,13 @@ partial record Subject(WLine Line, IEnumerable<Subsubject>? Subsubjects) : IBloc
 {
     public const string STYLE = "subject";
     public XNode Build() => new XElement(
-        XmlExt.AknNamespace + "container",
+        akn + "container",
         new XAttribute("name", "subject"),
         new XElement(
-            XmlExt.AknNamespace + "block",
+            akn + "block",
             new XAttribute("name", "subject"),
-            new XElement(XmlExt.AknNamespace + "concept",
-                new XAttribute(XmlExt.AknNamespace + "class", "title"),
+            new XElement(akn + "concept",
+                new XAttribute(akn + "class", "title"),
                 new XAttribute("refersTo", ""),
                 new XText(Line.NormalizedContent))),
         Subsubjects?.Select(s => s.Build())
@@ -266,10 +266,10 @@ partial record Subsubject(WLine Line) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "Subsub";
     public XNode Build() => new XElement(
-        XmlExt.AknNamespace + "block",
+        akn + "block",
         new XAttribute("name", "subsubject"),
-            new XElement(XmlExt.AknNamespace + "concept",
-                new XAttribute(XmlExt.AknNamespace + "class", "subtitle"),
+            new XElement(akn + "concept",
+                new XAttribute(akn + "class", "subtitle"),
                 new XAttribute("refersTo", ""),
                 new XText(Line.NormalizedContent))
     );
@@ -285,12 +285,12 @@ partial record Title(WLine Line) : IBlock, IBuildable<XNode>, IMetadata
     public const string STYLE = "Title";
 
     public XNode Build() => new XElement(
-        XmlExt.AknNamespace + "block",
+        akn + "block",
         new XAttribute("name", "title"),
         new XElement(
-            XmlExt.AknNamespace + "docTitle",
-            new XElement(XmlExt.AknNamespace + "ref",
-                new XAttribute(XmlExt.AknNamespace + "class", "placeholder"),
+            akn + "docTitle",
+            new XElement(akn + "ref",
+                new XAttribute(akn + "class", "placeholder"),
                 new XAttribute("href", "#varSITitle"))));
 
     public IEnumerable<Reference> Metadata => [
@@ -306,7 +306,7 @@ partial record Approval(WLine Line) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "Approval";
     public XNode Build() => new XElement(
-        XmlExt.AknNamespace + "block",
+        akn + "block",
         new XAttribute("name", "approval"),
         new XText(Line.NormalizedContent)
     );
@@ -321,7 +321,7 @@ partial record LaidDraft(WLine Line) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "LaidDraft";
     public XNode Build() => new XElement(
-        XmlExt.AknNamespace + "block",
+        akn + "block",
         new XAttribute("name", "laidInDraft"),
         new XText(Line.NormalizedContent)
     );
@@ -337,7 +337,7 @@ partial record DateBlock(WLine Line) : IBlock, IBuildable<XNode>
     public static List<string> STYLES = ["Made", "Laid", "Coming"];
 
     public XNode Build() => new XElement(
-        XmlExt.AknNamespace + "block",
+        akn + "block",
         new XText(Line.NormalizedContent)
     );
 
