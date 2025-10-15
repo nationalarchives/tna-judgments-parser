@@ -29,19 +29,24 @@ internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildab
 
     /*
     A grammar for preface might look something like:
-    Preface = CorrectionRubric?
-            , ProceduralRubric?
+    Preface = [CorrectionRubric]
+            , [ProceduralRubric]
             , Banner
             , Number
-            , Subject+
+            , Subjects
             , Title
             , ApprovalRubric
             , LaidInDraftRubric
-            , DateBlock+
+            , DateBlock, { DateBlock }
+            ;
 
-    CorrectionRubric = text w/ style: Correction
-    ProceduralRubric = text w/ style: Draft
-    Banner = text w/ style: Banner
+    Subjects = SubjectBlock, { SubjectBlock } ;
+    SubjectBlock = Subject, { Subsubject } ;
+
+    CorrectionRubric = text w/ style: "Correction"
+    ProceduralRubric = text w/ style: "Draft"
+    Banner = text w/ style: "Banner"
+    etc...
 
     */
     internal static SIPreface? Parse(IParser<IBlock> parser) =>
