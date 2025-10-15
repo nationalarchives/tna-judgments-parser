@@ -2,16 +2,20 @@
 
 This guide outlines best practices for branching, pull requests, versioning, CI/CD, and release workflows.
 
+**Note:** This guide uses the MoSCoW method to indicate priority levels:
+- **MUST**: Required, non-negotiable
+- **SHOULD**: Strongly recommended, expected in most cases
+- **COULD**: Nice to have, use when practical
+- **WON'T**: Out of scope or explicitly not required
+
 ---
 
 ## Branching & Merging
 
 ### Branching Strategy
 
-- Use **feature branches** for all development work.
-- Name branches using the format:
-
-`<ticket-id>-<short-description>`
+- **MUST** use **feature branches** for all development work.
+- **SHOULD** name branches using the format: `<ticket-id>-<short-description>`
 
 **Examples:**
 - `JUD-102-add-metadata-support`
@@ -20,10 +24,10 @@ This guide outlines best practices for branching, pull requests, versioning, CI/
 
 ### Naming Guidelines
 
-- Include a related **ticket ID** (JIRA or GitHub issue) for traceability.
-- Use **lowercase** and **hyphens**; avoid spaces or underscores.
-- Keep names concise (no more than 5–6 words beyond the ticket ID).
-- Avoid creating branches without clear context or linked work items.
+- **SHOULD** include a related **ticket ID** (JIRA or GitHub issue) for traceability.
+- **SHOULD** use **lowercase** and **hyphens**; avoid spaces or underscores.
+- **COULD** keep names concise (no more than 5–6 words beyond the ticket ID).
+- **SHOULD** avoid creating branches without clear context or linked work items.
 
 ---
 
@@ -31,26 +35,26 @@ This guide outlines best practices for branching, pull requests, versioning, CI/
 
 ### Before Opening a PR
 
-- **Sync with `main`**: Rebase or merge to resolve conflicts early.
-- **Run all tests** locally, if possible.
+- **SHOULD** sync with `main`: Rebase or merge to resolve conflicts early.
+- **SHOULD** run all tests locally, if possible.
 
 ### PR Best Practices
 
-- Keep PRs **small and focused** on a single topic.
-- Avoid combining unrelated changes in one PR.
-- Use clear PR descriptions that include:
+- **SHOULD** keep PRs **small and focused** on a single topic.
+- **SHOULD** avoid combining unrelated changes in one PR.
+- **SHOULD** use clear PR descriptions that include:
   - **What** the PR changes
   - **Why** it is needed
   - **How** to test it
-- Link related tickets or discussions.
-- Ensure all commits are signed
+- **SHOULD** link related tickets or discussions.
+- **MUST** ensure all commits are signed
 
 ### Review Process
 
-- PRs must be reviewed by **at least one team member** familiar with the codebase.
-- For changes affecting **shared or team-specific components** (for example, FCL, lawmaker), request a reviewer from the impacted team.
-- Respond to comments and re-request reviews after updates.
-- Merge only after:
+- **MUST** have PRs reviewed by **at least one team member** familiar with the codebase.
+- **SHOULD** request a reviewer from the impacted team for changes affecting **shared or team-specific components** (for example, FCL, lawmaker).
+- **SHOULD** respond to comments and re-request reviews after updates.
+- **MUST** merge only after:
   - All **required reviews** are approved
   - All **CI checks** pass
 
@@ -95,19 +99,19 @@ Core code is written in C#, targeting .NET 8.0.
 
 ## Documentation Expectations
 
-Keep the primary `README.md` updated.
+**SHOULD** keep the primary `README.md` updated.
 
-Include:
+**SHOULD** include:
 
 - CLI options
 - Notable configuration or behaviour changes
 
-Update documentation when:
+**MUST** update documentation when:
 
 - Modifying configuration formats
 - Introducing significant functionality
 
-Document updates in:
+**SHOULD** document updates in:
 
 - PR descriptions
 - The relevant section of the repository
@@ -116,7 +120,7 @@ Document updates in:
 
 ## Commit Message Guidelines
 
-Use **Conventional Commits** format for all commit messages:
+**SHOULD** use **Conventional Commits** format for commit messages:
 
 ```
 <type>(<scope>): <description>
@@ -139,6 +143,8 @@ Use **Conventional Commits** format for all commit messages:
 - `fix(lawmaker): resolve date parsing issue`
 - `docs: update README with CLI examples`
 
+While conventional commits are recommended for clarity and consistency, they are not strictly enforced.
+
 ---
 
 ## Reporting Issues
@@ -147,17 +153,17 @@ Use **Conventional Commits** format for all commit messages:
 
 If you encounter issues after code has been merged to `main`:
 
-- **Compiler warnings or errors**: Open a GitHub issue immediately, tagging the relevant PR or commit
-- **Test failures**: Report via GitHub issue with details on which tests failed and the environment
-- **Runtime issues**: Include steps to reproduce, expected vs. actual behavior, and relevant logs
+- **Compiler warnings or errors**: **MUST** open a GitHub issue immediately, tagging the relevant PR or commit
+- **Test failures**: **MUST** report via GitHub issue with details on which tests failed and the environment
+- **Runtime issues**: **SHOULD** include steps to reproduce, expected vs. actual behavior, and relevant logs
 
 **What to include in bug reports:**
-- Clear description of the problem
-- Steps to reproduce
-- Expected behavior
-- Actual behavior
-- Environment details (.NET version, OS)
-- Relevant error messages or logs
+- **MUST** include: Clear description of the problem
+- **SHOULD** include: Steps to reproduce
+- **SHOULD** include: Expected behavior
+- **SHOULD** include: Actual behavior
+- **COULD** include: Environment details (.NET version, OS)
+- **SHOULD** include: Relevant error messages or logs
 
 ---
 
