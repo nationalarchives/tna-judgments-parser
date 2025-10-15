@@ -114,6 +114,75 @@ Document updates in:
 
 ---
 
+## Commit Message Guidelines
+
+Use **Conventional Commits** format for all commit messages:
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+**Common types:**
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `refactor`: Code refactoring
+- `test`: Adding or updating tests
+- `chore`: Maintenance tasks
+
+**Examples:**
+- `feat(parser): add support for new court type`
+- `fix(lawmaker): resolve date parsing issue`
+- `docs: update README with CLI examples`
+
+---
+
+## Reporting Issues
+
+### Bugs and Problems
+
+If you encounter issues after code has been merged to `main`:
+
+- **Compiler warnings or errors**: Open a GitHub issue immediately, tagging the relevant PR or commit
+- **Test failures**: Report via GitHub issue with details on which tests failed and the environment
+- **Runtime issues**: Include steps to reproduce, expected vs. actual behavior, and relevant logs
+
+**What to include in bug reports:**
+- Clear description of the problem
+- Steps to reproduce
+- Expected behavior
+- Actual behavior
+- Environment details (.NET version, OS)
+- Relevant error messages or logs
+
+---
+
+## Project Structure
+
+The repository contains multiple projects serving different purposes:
+
+- **`src/`**: Core judgment parser (FCL work)
+- **`src/lawmaker/`**: All lawmaker-related functionality
+- **`src/leg/`**: Legislation Associated Document work
+
+When contributing, ensure you're working in the correct project area for your changes.
+
+---
+
+## Communication
+
+For questions, discussions, or support:
+
+- **Slack**: Primary communication channel for the team
+- **GitHub Issues**: For bug reports and feature requests
+- **Pull Request Comments**: For code-specific discussions
+
+---
+
 ## Example Release Workflow
 
 1. Develop changes in a feature branch.  
