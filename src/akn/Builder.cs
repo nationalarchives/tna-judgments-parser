@@ -6,6 +6,7 @@ using System.Xml;
 
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Lawmaker;
 using UK.Gov.NationalArchives.CaseLaw.Model;
 using CSS2 = UK.Gov.Legislation.Judgments.CSS;
 
@@ -353,7 +354,7 @@ abstract class Builder {
 
     private string ContainingParagraphStyle;
 
-    protected XmlElement Block(XmlElement parent, ILine line, string name) {
+    protected virtual XmlElement Block(XmlElement parent, ILine line, string name) {
         XmlElement block = doc.CreateElement(name, ns);
         parent.AppendChild(block);
         if (line.Style is not null)
@@ -367,6 +368,7 @@ abstract class Builder {
         ContainingParagraphStyle = null;
         return block;
     }
+
     private void AddNamedBlock(XmlElement parent, ILine line, string name) {
         XmlElement block = CreateAndAppend("block", parent);
         block.SetAttribute("name", name);
@@ -476,8 +478,6 @@ abstract class Builder {
                 AddInlineContainer(parent, page, "page");
             else if (model is ILineBreak)
                 AddLineBreak(parent);
-            else if (model is ISignatureName signatureName)
-                AddSignatureName(parent, signatureName);
             else if (model is ITab)
                 AddTab(parent);
         else if (model is IBookmark) { ; }
@@ -489,7 +489,7 @@ abstract class Builder {
                 throw new Exception(model.GetType().ToString());
     }
 
-    protected XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model) {
+    protected virtual XmlElement AddAndWrapText(XmlElement parent, string name, IFormattedText model) {
         XmlElement e = CreateAndAppend(name, parent);
         TextAndFormatting(e, model);
         return e;
@@ -738,14 +738,6 @@ abstract class Builder {
         authorialNote.SetAttribute("class", "footnote");
         authorialNote.SetAttribute("marker", fn.Marker);
         blocks(authorialNote, fn.Content);
-    }
-
-    private void AddSignatureName(XmlElement parent, ISignatureName sn)
-    {
-        XmlElement block = doc.CreateElement("block", ns);
-        parent.AppendChild(block);
-        block.SetAttribute("name", ns, "signature");
-        AddInlines(block, sn.Content);
     }
 
     private void AddImageRef(XmlElement parent, IImageRef model) {
