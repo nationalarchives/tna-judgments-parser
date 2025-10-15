@@ -2,74 +2,25 @@
 <akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
   <bill name="ssi">
     <meta>
-      <identification source="#author">
-        <FRBRWork>
-          <FRBRthis value="#varWork" />
-          <FRBRuri value="#varWorkUri" />
-          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
-          <FRBRdate date="9999-01-01" name="draft" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRcountry value="GB-UKM" />
-          <FRBRsubtype value="#varDocSubType" />
-          <FRBRnumber value="#varProjectId" />
-          <FRBRname value="#varBillTitle" />
-          <FRBRprescriptive value="true" />
-          <FRBRauthoritative value="false" />
-        </FRBRWork>
-        <FRBRExpression>
-          <FRBRthis value="#varExpression" />
-          <FRBRuri value="#varExpressionUri" />
-          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
-          <FRBRdate date="9999-01-01" name="draft" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRversionNumber value="" />
-          <FRBRauthoritative value="false" />
-          <FRBRmasterExpression href="" showAs="" />
-          <FRBRlanguage language="eng" />
-        </FRBRExpression>
-        <FRBRManifestation>
-          <FRBRthis value="#varManifestation" />
-          <FRBRuri value="#varManifestationUri" />
-          <FRBRdate date="9999-01-01" name="akn_xml" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRformat value="application/akn+xml" />
-        </FRBRManifestation>
-      </identification>
       <references source="#author">
-        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
-        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
-        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
-        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
-        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
-        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
-        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
-        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
-        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
-        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+        <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The National Health Service Superannuation and Pension Schemes (Miscellaneous Amendment) (Scotland) Regulations 2024" />
+        <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2024" />
       </references>
     </meta>
     <coverPage />
+    <preface>
+      <block name="banner">SCOTTISH STATUTORY INSTRUMENTS</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+      <container name="subjects">
+        <container name="subject">
+          <block name="subject"><concept refersTo="" class="title">NATIONAL HEALTH SERVICE</concept></block>
+          <block name="subsubject"><concept refersTo="" class="subtitle">superannuation</concept></block>
+        </container>
+      </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <block name="approval">Approved by both Houses of Parliament</block>
+      <block name="laidInDraft">Laid before Parliament in draft</block>
+    </preface>
     <preamble eId="preamble">
       <formula name="enactingText">
         <p>The Scottish Ministers make the following Regulations in exercise of the powers conferred by sections 10 and 12 and schedule 3 of the Superannuation Act 1972<authorialNote marker="1" class="footnote"><p>1972 c. 11.  Section 10 was amended by Part II of schedule 7 of the National Health Service (Scotland) Act 1972 (c. 58), schedule 5 of the National Health Service Reorganisation Act 1973 (c. 32), sections 4(2) and 8(5) and (6) of the Pensions (Miscellaneous Provisions) Act 1990 (c. 7) (“the 1990 Act”), paragraph 7 of schedule 8 of the Pensions Schemes Act 1993 (c. 48), paragraph 10 of schedule 8 of the Public Service Pensions Act 2013 (c. 25) and S.I. 2001/3649.  Section 12 was amended by section 10 of the 1990 Act.  The functions of the Secretary of State, in or as regards Scotland, were transferred to the Scottish Ministers by virtue of article 2 and schedule 1 of S.I. 1999/1750.</p></authorialNote>, sections 1(1) and (2)(e) and 3(1), (2) and (3) of, and paragraph 5(b) of schedule 2, and schedule 3 of, the Public Service Pensions Act 2013<authorialNote marker="2" class="footnote"><p>2013 c. 25.</p></authorialNote> and all other powers enabling them to do so.</p>
@@ -167,31 +118,11 @@
           </content>
         </article>
       </part>
-			 
-				 
-											 
-				  
-			  
       <part eId="pt_3" class="group2">
         <num>Part 3</num>
         <heading>Amendment of the National Health Service Superannuation Scheme (Scotland) Regulations 2011</heading>
-					 
-				 
-																																		
-				  
-				
         <article eId="sec_6" class="prov1">
-													 
-					 
-				 
-																																																																																																																																																																																																																																																																																																																																																																																																																																				  
-				  
-				
-										 
-													 
           <num>6.</num>
-								 
-						
           <content>
             <p>The National Health Service Superannuation Scheme (Scotland) Regulations 2011 are amended in accordance with this Part.</p>
           </content>
@@ -325,17 +256,6 @@
                     <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(a) paragraph 1 (partially);</p>
                     <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(b) paragraph 1 (partially);</p>
                     <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(c) paragraphs 2 and 3 (partially)</p>
-				
-		
-	   
-		   
-				
-		
-	   
-		   
-				
-		
-		
                   </td>
                   <td>
                     <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">31.01.2024</p>
@@ -346,14 +266,6 @@
                     <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. 2024/92</p>
                     <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. 2024/389</p>
                     <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">S.I. 2024/389</p>
-		
-	   
-		   
-		
-	   
-		   
-		
-		
                   </td>
                 </tr>
                 <tr>

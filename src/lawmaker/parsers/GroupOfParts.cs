@@ -23,7 +23,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (IsEndOfQuotedStructure(line.NormalizedContent))
                 return new GroupOfPartsLeaf { Number = number };
 
-            if (Document.Body[i+1].Block is not WLine line2)
+            if (Body[i+1] is not WLine line2)
                 return null;
             if (!IsCenterAligned(line2))
                 return null;
@@ -37,7 +37,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IDivision> children = [];
 
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 HContainer peek = PeekGroupingProvision();
                 if (peek != null && !GroupOfParts.IsValidChild(peek))
@@ -70,10 +70,10 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!IsCenterAligned(line))
                 return false;
             // Group of parts **always** has a part num, part heading and something beneath it
-            if (i > Document.Body.Count - 3)
+            if (i > Body.Count - 3)
                 return false;
             string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
-            if (!langService.IsMatch(numText, GroupOfParts.NumberPatterns))
+            if (!LanguageService.IsMatch(numText, GroupOfParts.NumberPatterns))
                 return false;
             return true;
         }

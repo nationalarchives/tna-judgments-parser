@@ -59,7 +59,7 @@ record LdappTableBlock(
     //         new XAttribute("cols", model.ColumnWidthsIns.Count.ToString())
     //     );
     // }
-    internal static LdappTableBlock? Parse(LegislationParser parser)
+    internal static LdappTableBlock? Parse(IParser<IBlock> parser)
     {
         // We can have a table on it's own *or* a table with a table num
         LdappTableNumber? number = parser.Match(LdappTableNumber.Parse);
@@ -70,24 +70,26 @@ record LdappTableBlock(
         return null;
     }
 
-    private static WTable? ParseTable(LegislationParser parser)
+    private static WTable? ParseTable(IParser<IBlock> parser)
     {
         if (parser.Advance() is WTable table)
         {
             // Identify lines with leading numbers in each table cell.
             WTable extracted = WTable.Enrich(table, HardNumbers.ExtractTableCell);
             // Parse any structured content in each table cell.
-            return WTable.Enrich(extracted, ParseTableCell);
+            return WTable.Enrich(extracted, ParseTableCell(parser.LanguageService));
         }
         return null;
     }
 
     // Creates BlockLists from structured content inside table cells (if any).
-    private static WCell ParseTableCell(WCell cell)
+    private static System.Func<WCell, WCell> ParseTableCell(LanguageService languageService) =>
+    (WCell cell) =>
     {
-        IEnumerable<IBlock> enriched = BlockList.ParseFrom(cell.Contents);
+        BlockParser parser = new(cell.Contents) { LanguageService = languageService};
+        IEnumerable<IBlock> enriched = BlockList.ParseFrom(parser);
         return new WCell(cell.Row, cell.Props, enriched);
-    }
+    };
 
 }
 
@@ -108,11 +110,11 @@ partial record LdappTableNumber(
 
     public IEnumerable<WLine> Lines => Captions is null ? [Number] : Captions.Prepend(Number);
 
-    internal static LdappTableNumber? Parse(LegislationParser parser)
+    internal static LdappTableNumber? Parse(IParser<IBlock> parser)
     {
         IBlock? block = parser.Advance();
         if (block is not WLine line) return null;
-        if (!parser.langService.IsMatch(line.NormalizedContent, TableNumberPatterns)) return null;
+        if (!parser.LanguageService.IsMatch(line.NormalizedContent, TableNumberPatterns)) return null;
         return new LdappTableNumber(line, parser.Match(LdappTableCaptions.Parse));
     }
 }
@@ -122,7 +124,7 @@ class LdappTableCaptions
 
     private static readonly ILogger Logger = Logging.Factory.CreateLogger<Builder>();
 
-    internal static List<WLine>? Parse(LegislationParser parser)
+    internal static List<WLine>? Parse(IParser<IBlock> parser)
     {
         // Everything between the table num and the table itself is considered a caption
         List<WLine> captions = parser

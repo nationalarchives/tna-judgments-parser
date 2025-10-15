@@ -51,9 +51,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;  // could ParseBaseProv1(np);
             if (!IsFlushLeft(line) && !quoted)
                 return false;
-            if (i > Document.Body.Count - 2)
+            if (i > Body.Count - 2)
                 return false;
-            if (Document.Body[i + 1].Block is not WLine nextLine)
+            if (Body[i + 1] is not WLine nextLine)
                 return false;
             // The heading and first line should have the same indentation
             if (LineIsIndentedMoreThan(line, nextLine, 0.2f))
@@ -107,7 +107,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
 
             int finalChildStart = i;
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 if (BreakFromProv1())
                     break;

@@ -2,74 +2,22 @@
 <akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
   <bill name="ssi">
     <meta>
-      <identification source="#author">
-        <FRBRWork>
-          <FRBRthis value="#varWork" />
-          <FRBRuri value="#varWorkUri" />
-          <FRBRalias name="ttflConfigHistory" value="#varCHOiid" />
-          <FRBRdate date="9999-01-01" name="draft" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRcountry value="GB-UKM" />
-          <FRBRsubtype value="#varDocSubType" />
-          <FRBRnumber value="#varProjectId" />
-          <FRBRname value="#varBillTitle" />
-          <FRBRprescriptive value="true" />
-          <FRBRauthoritative value="false" />
-        </FRBRWork>
-        <FRBRExpression>
-          <FRBRthis value="#varExpression" />
-          <FRBRuri value="#varExpressionUri" />
-          <FRBRalias name="ttflVersionDescription" value="#varVDOiid" />
-          <FRBRdate date="9999-01-01" name="draft" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRversionNumber value="" />
-          <FRBRauthoritative value="false" />
-          <FRBRmasterExpression href="" showAs="" />
-          <FRBRlanguage language="eng" />
-        </FRBRExpression>
-        <FRBRManifestation>
-          <FRBRthis value="#varManifestation" />
-          <FRBRuri value="#varManifestationUri" />
-          <FRBRdate date="9999-01-01" name="akn_xml" />
-          <FRBRauthor href="#varAuthor" />
-          <FRBRformat value="application/akn+xml" />
-        </FRBRManifestation>
-      </identification>
       <references source="#author">
-        <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill" />
-        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
-        <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127" />
-        <TLCProcess eId="varWork" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varWorkUri" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varCHOiid" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varExpression" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varExpressionUri" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varVDOiid" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varManifestation" href="#varOntologies" showAs="" />
-        <TLCProcess eId="varManifestationUri" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActYear" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActTitle" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varIntroDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varConsidDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X" />
-        <TLCConcept eId="varSessionNo" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varBillYear" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varSession" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varAssentDate" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActNoComp" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varActNo" href="#varOntologies" showAs="" />
-        <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill" />
-        <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP" />
-        <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly" />
-        <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland" />
-        <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN" showAs="https://www.legislation.gov.uk/ontologies/UK-AKN" />
-        <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III" />
+        <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Court of Session etc. Fees Order 2024" />
+        <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2024" />
       </references>
     </meta>
     <coverPage />
+    <preface>
+      <block name="banner">Scottish Statutory Instruments</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+	  <container name="subjects">
+		<container name="subject">
+			<block name="subject"><concept refersTo="" class="title">Court of Session</concept></block>
+		</container>
+	  </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+    </preface>
     <preamble eId="preamble">
       <formula name="enactingText">
         <p>The Scottish Ministers make the following Order in exercise of the powers conferred by section 107(1) and (2) of the Courts Reform (Scotland) Act 2014<authorialNote marker="1" class="footnote"><p>2014 asp 18.</p></authorialNote> and all other powers enabling them to do so.</p>

@@ -199,7 +199,7 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> container = [];
             HandleMod(first, container);
 
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 int save = i;
                 IList<IBlock> extraParagraph = GetExtraParagraph(line, nextExpected);
@@ -306,7 +306,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /// <summary>
-        /// Peeks at the next line and breaks from the current Prov1/SchProv1 element if  
+        /// Peeks at the next line and breaks from the current Prov1/SchProv1 element if
         /// the line represents the beginning of a following sibling or grouping provision
         /// (which indicates that the current Prov1/SchProv1 element has come to an end).
         /// </summary>
@@ -443,7 +443,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         /// <summary>Decrements an alphanumeric number string.</summary>
         /// <remarks>
-        /// Note that this is special logic used only when a child element is inserted before an existing element 
+        /// Note that this is special logic used only when a child element is inserted before an existing element
         /// with a number ending in a '1' or 'A'. For example, A1 comes before 1, and 3ZA comes before 3A.
         /// </remarks>
         /// <param name="numString">The alphanumeric number to decrement (as a string).</param>
@@ -451,7 +451,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private static string GetNumDecrementOf(string numString)
         {
             bool isInt = int.TryParse(numString, out int numInt);
-            // For purely numeric nums, 'A' is prepended to decrement 
+            // For purely numeric nums, 'A' is prepended to decrement
             // For example: A1 -> 1
             if (isInt)
                 return 'A' + numString;
@@ -507,16 +507,22 @@ namespace UK.Gov.Legislation.Lawmaker
             return null;
         }
 
+        #nullable enable
         /*
          * Attempts to identify the current line as one of a small number of provisions
          * which can exist as the very first provision in the body of a document.
          * Otherwise, returns null.
          */
-        private HContainer PeekBodyStartProvision()
+        private HContainer? PeekBodyStartProvision()
         {
             if (Current() is not WLine line)
                 return null;
+            return PeekBodyStartProvision(line);
+        }
+        private HContainer? PeekBodyStartProvision(WLine? line)
+        {
 
+            if (line is null) return null;
             if (PeekGroupOfPartsHeading(line))
                 return new GroupOfPartsLeaf { };
             if (PeekPartHeading(line))
@@ -530,6 +536,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
             return null;
         }
+
+        internal bool IsStartOfBody() => PeekBodyStartProvision() is not null;
 
     }
 }

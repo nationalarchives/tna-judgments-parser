@@ -1,4 +1,4 @@
-
+// #nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,7 @@ using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Enrichment;
 
-namespace UK.Gov.Legislation.Lawmaker
-{
+namespace UK.Gov.Legislation.Lawmaker;
 
     public partial class LegislationParser
     {
@@ -146,7 +145,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             }
             Context? context = Contexts.ToEnum(groups["context"].Value);
-            Context defaultContext = Frames.IsSecondaryDocName(docName) ? Context.REGULATIONS : Context.SECTIONS;
+            Context defaultContext = docName.IsSecondaryDocName() ? Context.REGULATIONS : Context.SECTIONS;
             if (!groups["context"].Success)
             {
                 // Frame info has DocName but no Context - valid scenario.
@@ -260,7 +259,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             // A quote depth of 0 would mean we're not in a QuotedStructure to begin with,
             // so we can't be at the end of one.
-            if (quoteDepth <= 0) 
+            if (quoteDepth <= 0)
                 return false;
 
             // The text string can't be the end of a QuotedStructure if it doesn't end with a closing quote.
@@ -271,7 +270,7 @@ namespace UK.Gov.Legislation.Lawmaker
             bool isStartQuoteAtStart = Regex.IsMatch(text, QuotedStructureStartPattern());
             (int left, int right) = CountStartAndEndQuotes(text);
 
-            /* We require special logic for nested quoted structures which end on the same line: 
+            /* We require special logic for nested quoted structures which end on the same line:
              * Must break out of as many nested quoted structures as there are closing quotes.
              * For example, if we are 4 quoted structures deep and encounter the line:
              *     (a) example paragraph”””
@@ -307,7 +306,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private List<IQuotedStructure> HandleQuotedStructuresAfter(WLine line)
         {
             List<IQuotedStructure> quotedStructures = [];
-            if (i == Document.Body.Count)
+            if (i == Body.Count)
                 return [];
             int save = i;
 
@@ -329,7 +328,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 frames.Pop();
             }
             // Handle regular quoted structures
-            while (i < Document.Body.Count && IsStartOfQuotedStructure(Current()))
+            while (i < Body.Count && IsStartOfQuotedStructure(Current()))
             {
                 save = i;
                 IBlock? current = Current();
@@ -349,7 +348,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private BlockQuotedStructure? ParseQuotedStructure()
         {
-            if (i == Document.Body.Count)
+            if (i == this.Body.Count)
                 return null;
             BlockQuotedStructure? qs = Current() switch
             {
@@ -391,7 +390,7 @@ namespace UK.Gov.Legislation.Lawmaker
             quoteDepth += 1;
 
             HContainer? previous = null;
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 int save = i;
 
@@ -609,5 +608,3 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
     #endregion
-
-}

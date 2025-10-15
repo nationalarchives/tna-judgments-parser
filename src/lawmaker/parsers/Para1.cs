@@ -29,7 +29,7 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> wrapUp = [];
 
             int finalChildStart = i;
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 if (BreakFromProv1())
                     break;

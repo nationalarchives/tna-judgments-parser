@@ -25,7 +25,7 @@ namespace UK.Gov.Legislation.Lawmaker
             string numberText = GetNumber(numberLine, false);
             IFormattedText number = new WText(numberText, null);
 
-            if (Document.Body[i + 1].Block is not WLine line2)
+            if (Body[i + 1] is not WLine line2)
                 return null;
 
             // Num can be followed by a reference note & heading, or just a heading.
@@ -33,7 +33,7 @@ namespace UK.Gov.Legislation.Lawmaker
             WLine? referenceNoteLine;
             if (IsReferenceNote(line2))
             {
-                if (Document.Body[i + 2].Block is not WLine line3)
+                if (Body[i + 2] is not WLine line3)
                     return null;
                 referenceNoteLine = line2;
                 headingLine = line3;
@@ -97,12 +97,12 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
 
             DocName docname = frames.CurrentDocName;
-            if (!DocNames.IsWelshSecondary(docname) && !IsCenterAligned(line))
+            if (!docname.IsWelshSecondary() && !IsCenterAligned(line))
                 return false;
-            if (i > Document.Body.Count - 3)
+            if (i > Body.Count - 3)
                 return false;
             string numText = GetNumber(line, true);
-            if (!langService.IsMatch(numText, Schedule.NumberPatterns))
+            if (!LanguageService.IsMatch(numText, Schedule.NumberPatterns))
                 return false;
             return true;
         }
@@ -110,7 +110,7 @@ namespace UK.Gov.Legislation.Lawmaker
         internal List<IDivision> ParseScheduleChildren()
         {
             List<IDivision> children = [];
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 HContainer peek = PeekGroupingProvision();
                 if (peek != null && !Schedule.IsValidChild(peek))
@@ -141,7 +141,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private bool IsReferenceNote(WLine line)
         {
-            if (DocNames.IsScottishPrimary(docName))
+            if (docName.IsScottishPrimary())
             {
                 // Reference notes in SP Bills/Acts are formatted differently
                 if (IsCenterAligned(line) && line.IsAllItalicized())

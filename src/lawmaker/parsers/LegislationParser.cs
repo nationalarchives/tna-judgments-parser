@@ -1,4 +1,6 @@
 #nullable enable
+using System.Linq;
+using System.Collections.Generic;
 using DocumentFormat.OpenXml.Packaging;
 using Microsoft.Extensions.Logging;
 
@@ -7,7 +9,10 @@ using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using CaseLaw = UK.Gov.NationalArchives.CaseLaw.Parse;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 
+
 namespace UK.Gov.Legislation.Lawmaker;
+
+using DocumentStyle = Dictionary<string, Dictionary<string, string>>;
 public partial class LegislationParser
 {
 
@@ -27,25 +32,32 @@ public partial class LegislationParser
     {
         WordprocessingDocument doc = AkN.Parser.Read(docx);
         CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
-        return new LegislationParser(simple, classifier, languageService).Parse();
+        return new LegislationParser(simple, classifier, languageService) { LanguageService = languageService }.Parse();
     }
 
-    private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier, LanguageService languageService)
+    private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier, LanguageService languageService) : this(
+            doc.Body.Select(b => b.Block).ToList(),
+            DOCX.CSS.Extract(doc.Docx.MainDocumentPart, "#bill"),
+            classifier,
+            languageService
+        )
+    { }
+
+    private LegislationParser(IEnumerable<IBlock> contents, DocumentStyle? style, LegislationClassifier classifier, LanguageService languageService) : base(contents)
     {
-        Document = doc;
+        // We can safely discard the `BlockWithBreak` added boolean here, we don't need it
+        Styles = style;
         docName = classifier.DocName;
         frames = new Frames(classifier.DocName, classifier.GetContext());
-        langService = languageService;
         provisionRecords = new ProvisionRecords();
+        LanguageService = languageService;
     }
 
     private readonly ILogger Logger = Logging.Factory.CreateLogger<LegislationParser>();
-    private readonly CaseLaw.WordDocument Document;
     private ProvisionRecords provisionRecords;
-    public LanguageService langService;
-    private Frames frames;
+    private readonly Frames frames;
+    private Dictionary<string, Dictionary<string, string>>? Styles { get;  init; }
 
-    private int i = 0;
 
     int parseDepth = 0;
     int parseDepthMax = 0;
@@ -58,7 +70,7 @@ public partial class LegislationParser
         ParseBody();
         ParseConclusions();
 
-        if (i != Document.Body.Count)
+        if (i != Body.Count)
             Logger.LogWarning("parsing did not complete: {}", i);
 
         Logger.LogInformation($"Maximum ParseAndMemoize depth reached: {parseAndMemoizeDepthMax}");
@@ -67,19 +79,19 @@ public partial class LegislationParser
         // Handle start and end quotes after parsing is complete, because it alters the
         // contents of parsed results which does not work well with memoization
         ExtractAllQuotesAndAppendTexts(body);
-        QuotationEnricher quotationEnricher = new(langService, $"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
+        QuotationEnricher quotationEnricher = new(LanguageService, $"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
         quotationEnricher.EnrichDivisions(body);
 
-            FootnoteEnricher footnoteEnricher = new FootnoteEnricher();
-            footnoteEnricher.EnrichBlocks(preamble);
-            footnoteEnricher.EnrichDivisions(body);
+        FootnoteEnricher footnoteEnricher = new FootnoteEnricher();
+        footnoteEnricher.EnrichBlocks(preamble);
+        footnoteEnricher.EnrichDivisions(body);
 
-            var styles = DOCX.CSS.Extract(Document.Docx.MainDocumentPart, "#bill");
 
         return new Lawmaker.Document
         {
             Type = docName,
-            Styles = styles,
+            Styles = Styles,
+            Metadata = new(),
             CoverPage = coverPage,
             Preface = preface,
             Preamble = preamble,

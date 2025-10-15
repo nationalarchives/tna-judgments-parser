@@ -1,3 +1,4 @@
+#nullable enable
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
 namespace UK.Gov.Legislation.Lawmaker;
 
-/// <summary> 
+/// <summary>
 /// Service for handling multi-language pattern matching operations.
 /// Initialise with your chosen set of languages to support.
 /// </summary>
@@ -63,22 +64,31 @@ public class LanguageService
     /// which are currently active.
     /// </summary>
     /// <param name="text">Text to check for matches</param>
-    /// <param name="patterns">Dictionary of language-specific regex patterns</param>
+    /// <param name="languagePatterns">Dictionary of language-specific regex patterns</param>
     /// <returns>True if the provided text matches any active language-specific regex patterns</returns>
-    public bool IsMatch(string text, LanguagePatterns languagePatterns)
-    {
-        foreach (Lang language in languages)
-        {
-            if (!languagePatterns.Patterns.TryGetValue(language, out var patterns)) 
-                continue;
-            if (patterns.Any(p => Regex.IsMatch(text, p, RegexOptions.IgnoreCase))) 
-                return true;
-        }
-        return false;
-    }
+    public bool IsMatch(string text, LanguagePatterns languagePatterns) =>
+        IsMatch(
+            text,
+            languagePatterns.Patterns
+                .Select(it =>
+                    (it.Key, it.Value.Select(pattern =>
+                        new Regex(pattern, RegexOptions.IgnoreCase))))
+                .ToDictionary())
+        ?.Count > 0;
+
+    public MatchCollection? IsMatch(
+        string text,
+        IReadOnlyDictionary<Lang, IEnumerable<Regex>> languagePatterns
+    ) => languagePatterns
+        .Where(it => languages.Contains(it.Key))
+        .SelectMany(it => it.Value)
+        .Select(it => it.Matches(text))
+        .Where(it => it.Count > 0)
+        .FirstOrDefault();
+
 }
 
-/// <summary> 
+/// <summary>
 /// A <c>Dictionary</c> which stores a collection of string patterns for each given <c>Lang</c>.
 /// </summary>
 public record LanguagePatterns
