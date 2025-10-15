@@ -167,9 +167,11 @@ interface IFootnote : IInline {
 
 }
 
-interface ISignatureName : IBlock
+interface ISignatureBlock : IBlock
 {
-
+    
+    public string Name { get; internal init; }
+    
     IEnumerable<IInline> Content { get; }
 
 }

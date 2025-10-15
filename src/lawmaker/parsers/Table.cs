@@ -9,7 +9,10 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using DocumentFormat.OpenXml.Spreadsheet;
+using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
+using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
 // This class currently breaks from the convention of putting all the parsing in partial class LegislationParser.
 // I think it's ultimately a mistake to have such a big class spread over so many different files and I believe
@@ -17,7 +20,7 @@ using UK.Gov.NationalArchives.CaseLaw.Parse;
 record LdappTableBlock(
     LdappTableNumber? TableNumber,
     WTable Table
-) : IBlock/*, IBuildable */
+) : IBlock, ILineable/*, IBuildable */
 {
 
     // TODO: move this out - doesn't belong here, just testing out using Xml.Linq support
@@ -31,7 +34,9 @@ record LdappTableBlock(
     // public IFormattedText? Number => null;
     // public string Name => "tblock";
 
-    public IEnumerable<IBlock> Contents => ToList();
+    public IEnumerable<WLine> Lines => TableNumber is null
+        ? Table.Lines
+        : TableNumber.Lines.Concat(Table.Lines);
 
     // public XElement Build()
     // {
@@ -57,19 +62,10 @@ record LdappTableBlock(
     internal static LdappTableBlock? Parse(LegislationParser parser)
     {
         // We can have a table on it's own *or* a table with a table num
+        LdappTableNumber? number = parser.Match(LdappTableNumber.Parse);
+        if (parser.Match(ParseTable) is WTable table)
         {
-            if (parser.Match(ParseTable) is WTable table)
-            {
-                return new LdappTableBlock(null, table);
-            }
-        }
-
-        if (parser.Match(LdappTableNumber.Parse) is LdappTableNumber number)
-        {
-            if (parser.Match(ParseTable) is WTable table)
-            {
-                return new LdappTableBlock(number, table);
-            }
+            return new LdappTableBlock(number, table);
         }
         return null;
     }
@@ -78,19 +74,20 @@ record LdappTableBlock(
     {
         if (parser.Advance() is WTable table)
         {
-            return table;
+            // Identify lines with leading numbers in each table cell.
+            WTable extracted = WTable.Enrich(table, HardNumbers.ExtractTableCell);
+            // Parse any structured content in each table cell.
+            return WTable.Enrich(extracted, ParseTableCell);
         }
         return null;
     }
-    private List<IBlock> ToList()
-    {
-        List<IBlock> list = [];
-        if (TableNumber?.Number is not null) list.Add(TableNumber.Number);
-        if (TableNumber?.Captions is not null) list.AddRange(TableNumber.Captions);
-        list.Add(Table);
-        return list;
-    }
 
+    // Creates BlockLists from structured content inside table cells (if any).
+    private static WCell ParseTableCell(WCell cell)
+    {
+        IEnumerable<IBlock> enriched = BlockList.ParseFrom(cell.Contents);
+        return new WCell(cell.Row, cell.Props, enriched);
+    }
 
 }
 
@@ -101,20 +98,23 @@ record LdappTableBlock(
 partial record LdappTableNumber(
     WLine Number,
     List<WLine>? Captions
-) {
+) : ILineable {
 
-    const string TABLE_NUMBER_PATTERN = @"^Table\s+\w+$";
+    private static readonly Dictionary<Lang, string> TableNumberPatterns = new()
+    {
+        [Lang.ENG] = @"^Table\s+\w+$",
+        [Lang.CYM] = @"^Tabl\s+\w+$"
+    };
+
+    public IEnumerable<WLine> Lines => Captions is null ? [Number] : Captions.Prepend(Number);
 
     internal static LdappTableNumber? Parse(LegislationParser parser)
     {
-        IBlock block = parser.Advance();
+        IBlock? block = parser.Advance();
         if (block is not WLine line) return null;
-        if (!TableNumberPattern().IsMatch(line.NormalizedContent)) return null;
+        if (!parser.langService.IsMatch(line.NormalizedContent, TableNumberPatterns)) return null;
         return new LdappTableNumber(line, parser.Match(LdappTableCaptions.Parse));
     }
-
-    [GeneratedRegex(TABLE_NUMBER_PATTERN, RegexOptions.IgnoreCase, "en-AU")]
-    private static partial Regex TableNumberPattern();
 }
 
 class LdappTableCaptions
@@ -127,10 +127,7 @@ class LdappTableCaptions
         // Everything between the table num and the table itself is considered a caption
         List<WLine> captions = parser
             .AdvanceWhile(block => block is not WTable)
-            .Where(block => block is WLine)
-            .Select(block => block as WLine)
-            .Where(block => block is not null)
-            .Select(block => block!)
+            .OfType<WLine>()
             .ToList();
 
         return captions switch

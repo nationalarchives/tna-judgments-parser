@@ -19,7 +19,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static IEnumerable<object[]> TestFilePaths()
         {
-            foreach (string filePath in Directory.GetFiles(relativeTestPath, "*.docx", SearchOption.AllDirectories))
+            foreach (string filePath in Directory.GetFiles(relativeTestPath, "*.xml", SearchOption.AllDirectories))
             {
                 string subdirectory = null;
                 string filename = null;
@@ -31,7 +31,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 catch (Exception) { }
 
-                if (String.IsNullOrEmpty(subdirectory) || String.IsNullOrEmpty(filename) || filename.StartsWith("~$"))
+                if (String.IsNullOrEmpty(subdirectory) || String.IsNullOrEmpty(filename) || filename.StartsWith("~$") || filename.StartsWith('_'))
                 {
                     logger.LogWarning($"Invalid filepath: {filePath}. Ignoring test.");
                     continue;
@@ -61,7 +61,9 @@ namespace UK.Gov.Legislation.Lawmaker
             }
 
             var docx = ReadDocx(subdirectory, filename);
-            var actual = Helper.Parse(docx, new LegislationClassifier(docName, null, null)).Xml;
+            LegislationClassifier classifier = new LegislationClassifier(docName, null, null);
+            LanguageService languageService = new LanguageService(["eng", "cym"]);
+            var actual = Helper.Parse(docx, classifier, languageService).Xml;
             XmlDocument actualDoc = new();
             actualDoc.LoadXml(actual);
 

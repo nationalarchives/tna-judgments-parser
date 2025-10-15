@@ -381,8 +381,10 @@ internal class WRole : IRole {
 
 }
 
-internal class WSignatureName : ISignatureName {
+internal class WSignatureBlock : ISignatureBlock {
 
+    public string Name { get; init; }
+    
     public IEnumerable<IInline> Content { get; init; }
 
 }

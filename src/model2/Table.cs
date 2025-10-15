@@ -5,10 +5,11 @@ using System.Linq;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using UK.Gov.Legislation.Lawmaker;
 
-namespace UK.Gov.Legislation.Judgments.Parse {
+namespace UK.Gov.Legislation.Judgments.Parse;
 
-class WTable : ITable {
+class WTable : ITable, ILineable {
 
     internal MainDocumentPart Main { get; private init; }
 
@@ -17,6 +18,13 @@ class WTable : ITable {
 
     public List<WRow> TypedRows { get; private init; }
     public IEnumerable<IRow> Rows { get => TypedRows; }
+
+    public IEnumerable<WLine> Lines => Rows
+        .SelectMany(row => row.Cells)
+        .SelectMany(cell => cell.Contents)
+        .OfType<ILineable>() // this may falsely filter some things,
+        .SelectMany(lineable => lineable.Lines);
+
 
     public List<float> ColumnWidthsIns {
         get => DOCX.Tables.GetColumnWidthsIns(Grid);
@@ -55,6 +63,19 @@ class WTable : ITable {
     }
 
     public string Style { get; init; }
+
+    internal static WTable Enrich(WTable table, Func<WCell, WCell> operation)
+    {
+        IEnumerator<WRow> rows = table.TypedRows.GetEnumerator();
+        List<WRow> enriched = new List<WRow>();
+        while (rows.MoveNext())
+        {
+            WRow before = rows.Current;
+            WRow after = WRow.Enrich(before, operation);
+            enriched.Add(after);
+        }
+        return new WTable(table.Main, table.Properties, table.Grid, enriched);
+    }
 
 }
 
@@ -136,6 +157,19 @@ class WRow : IRow {
         throw new Exception();
     }
 
+    internal static WRow Enrich(WRow row, Func<WCell, WCell> operation)
+    {
+        IEnumerator<WCell> cells = row.TypedCells.GetEnumerator();
+        List<WCell> enriched = new List<WCell>();
+        while (cells.MoveNext())
+        {
+            WCell before = cells.Current;
+            WCell after = WCell.Enrich(before, operation);
+            enriched.Add(after);
+        }
+        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, enriched);
+    }
+
 }
 
 class WCell : ICell {
@@ -148,7 +182,7 @@ class WCell : ICell {
 
     internal TableCellProperties Props { get; init; }
 
-    public IEnumerable<IBlock> Contents { get; private init; }
+    public IEnumerable<IBlock> Contents { get; set; }
 
     internal WCell(WRow row, TableCell cell) {
         Main = row.Main;
@@ -290,6 +324,9 @@ class WCell : ICell {
         return Blocks.ParseBlock(cell.Main, e);
     }
 
-}
+    internal static WCell Enrich(WCell cell, Func<WCell, WCell> operation)
+    {
+        return operation(cell);
+    }
 
 }

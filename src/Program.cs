@@ -33,8 +33,9 @@ class Program {
             new Option<bool>("--test", description: "whether to test the result"),
             new Option<FileInfo>("--attachment", description: "an associated file to include") { ArgumentHelpName = "file" },
             new Option<string>("--hint", description: "the type of document: 'em', 'ia' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"),
-            new Option<string>("--subtype", description: "the subtype of document e.g. 'order'"),
-            new Option<string>("--procedure", description: "only applicable --hint is a secondary type - the subtype of document e.g. 'order'")
+            new Option<string>("--subtype", description: "the subtype of the document e.g. 'order'. Only applicable if --hint is a secondary type"),
+            new Option<string>("--procedure", description: "the procedure of the document e.g. 'made', 'draftaffirm'. Only applicable if --hint is a secondary type"),
+            new Option<string[]>("--language", description: "the language(s) of the document - the default is English") { AllowMultipleArgumentsPerToken = true}
         };
         command.Handler = CommandHandler.Create<
             FileInfo,
@@ -46,7 +47,8 @@ class Program {
             FileInfo,
             string,
             string,
-            string
+            string,
+            string[]
         >(Transform);
     }
 
@@ -64,7 +66,8 @@ class Program {
         FileInfo attachment,
         string hint,
         string subType,
-        string procedure
+        string procedure,
+        string[] language
     ) {
         ILogger logger = null;
         if (log is not null) {
@@ -89,7 +92,9 @@ class Program {
 
         DocName? docName = DocNames.GetDocName(hint);
         if (docName != null) {
-            var xml = UK.Gov.Legislation.Lawmaker.Helper.LocalParse(input.FullName, new LegislationClassifier((DocName)docName, subType, procedure)).Xml;
+            LegislationClassifier classifier = new LegislationClassifier((DocName)docName, subType, procedure);
+            LanguageService languageService = new LanguageService(language);
+            var xml = Helper.LocalParse(input.FullName, classifier, languageService).Xml;
             if (output is not null)
                 File.WriteAllText(output.FullName, xml);
             else
