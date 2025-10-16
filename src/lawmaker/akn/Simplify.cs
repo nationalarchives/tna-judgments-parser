@@ -49,7 +49,69 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private new void VisitText(XmlText text)
         {
-            // Do nothing for the moment
+            List<string> allowedParents = ["span", "b", "i", "u", "sup", "sub"];
+            if (!allowedParents.Contains(text.ParentNode.LocalName))
+                return;
+            if (State.GetValueOrDefault("font-weight") == "bold")
+            {
+                var b = text.OwnerDocument.CreateElement("b", Builder.ns);
+                text.ParentNode.ReplaceChild(b, text);
+                b.AppendChild(text);
+                State.Remove("font-weight");
+                VisitText(text);
+                State["font-weight"] = "bold";
+                return;
+            }
+            if (State.GetValueOrDefault("font-style") == "italic")
+            {
+                var i = text.OwnerDocument.CreateElement("i", Builder.ns);
+                text.ParentNode.ReplaceChild(i, text);
+                i.AppendChild(text);
+                State.Remove("font-style");
+                VisitText(text);
+                State["font-style"] = "italic";
+                return;
+            }
+            if (State.GetValueOrDefault("text-decoration") == "underline")
+            {
+                var u = text.OwnerDocument.CreateElement("u", Builder.ns);
+                text.ParentNode.ReplaceChild(u, text);
+                u.AppendChild(text);
+                State.Remove("text-decoration");
+                VisitText(text);
+                State["text-decoration"] = "underline";
+                return;
+            }
+            if (State.GetValueOrDefault("text-decoration-line") == "underline")
+            {
+                var u = text.OwnerDocument.CreateElement("u", Builder.ns);
+                text.ParentNode.ReplaceChild(u, text);
+                u.AppendChild(text);
+                State.Remove("text-decoration-line");
+                VisitText(text);
+                State["text-decoration-line"] = "underline";
+                return;
+            }
+            if (State.GetValueOrDefault("vertical-align") == "super")
+            {
+                var sup = text.OwnerDocument.CreateElement("sup", Builder.ns);
+                text.ParentNode.ReplaceChild(sup, text);
+                sup.AppendChild(text);
+                State.Remove("vertical-align");
+                VisitText(text);
+                State["vertical-align"] = "super";
+                return;
+            }
+            if (State.GetValueOrDefault("vertical-align") == "sub")
+            {
+                var sub = text.OwnerDocument.CreateElement("sub", Builder.ns);
+                text.ParentNode.ReplaceChild(sub, text);
+                sub.AppendChild(text);
+                State.Remove("vertical-align");
+                VisitText(text);
+                State["vertical-align"] = "sub";
+                return;
+            }
         }
 
     }
