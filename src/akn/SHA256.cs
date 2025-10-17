@@ -30,7 +30,7 @@ public class SHA256 {
 
     internal static string Hash(XmlDocument akn) {
         string text = RemoveMetadata(akn);
-        text = Regex.Replace(text, @"\s", "");
+        text = Regex.Replace(text, @"\s", "").Normalize();
         byte[] hash = Crypto.SHA256.HashData(Encoding.UTF8.GetBytes(text));
         return System.BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
     }
