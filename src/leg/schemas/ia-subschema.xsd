@@ -48,7 +48,7 @@
                 <xs:element ref="docTitle" />
                 <xs:element ref="docStage" />
                 <xs:element ref="docDate" />
-                <xs:element ref="docDepartment" />
+                <xs:element ref="docProponent" />
             </xs:choice>
             <xs:attribute name="class" >
                 <xs:simpleType>
@@ -66,14 +66,15 @@
 
 <xs:element name="docNumber" type="inline-container" />
 
-<!-- IA-specific semantic inline elements -->
+<!-- Semantic inline elements - using standard AKN elements only -->
 <xs:element name="docTitle" type="inline-container" />
 
 <xs:element name="docStage" type="inline-container" />
 
 <xs:element name="docDate" type="inline-container" />
 
-<xs:element name="docDepartment" type="inline-container" />
+<!-- Use docProponent for department/agency (standard AKN element) -->
+<xs:element name="docProponent" type="inline-container" />
 
 
 <!-- body -->
@@ -112,7 +113,7 @@
                 <xs:element ref="content" />
             </xs:choice>
         </xs:sequence>
-        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="name" type="xs:string" use="required" />
         <xs:attribute name="eId" type="xs:string" />
     </xs:complexType>
 </xs:element>
@@ -167,7 +168,6 @@
                 <xs:element ref="content" />
             </xs:choice>
         </xs:sequence>
-        <xs:attribute name="name" type="xs:string" />
         <xs:attribute name="eId" type="xs:string" />
         <xs:attribute name="class" >
             <xs:simpleType>
@@ -245,7 +245,7 @@
         <xs:sequence>
             <xs:element ref="embeddedStructure" />
         </xs:sequence>
-        <xs:attribute name="name" >
+        <xs:attribute name="name" use="required">
             <xs:simpleType>
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="embeddedStructure" />
@@ -306,7 +306,7 @@
             <xs:element ref="docTitle" />
             <xs:element ref="docStage" />
             <xs:element ref="docDate" />
-            <xs:element ref="docDepartment" />
+            <xs:element ref="docProponent" />
         </xs:choice>
         <xs:attribute name="class" >
             <xs:simpleType>

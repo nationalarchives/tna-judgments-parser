@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/" />
           <FRBRuri value="http://www.legislation.gov.uk/id/" />
-          <FRBRdate date="2025-10-14" name="generated" />
+          <FRBRdate date="2025-10-20" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk//data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk//data.akn" />
-          <FRBRdate date="2025-10-14T07:37:32Z" name="transform" />
+          <FRBRdate date="2025-10-20T07:49:40Z" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -167,7 +167,7 @@
           </table>
         </content>
       </hcontainer>
-      <section name="policy-objectives" eId="section_2">
+      <hcontainer name="policy-objectives" eId="hcontainer_2">
         <heading>What are the policy objectives of the action or intervention and the intended effects?</heading>
         <content>
           <table uk:widths="7.18in">
@@ -179,8 +179,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section name="policy-options" eId="section_3">
+      </hcontainer>
+      <hcontainer name="policy-options" eId="hcontainer_3">
         <content>
           <table uk:widths="7.18in">
             <tr>
@@ -204,8 +204,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section name="policy-review" eId="section_4">
+      </hcontainer>
+      <hcontainer name="policy-review" eId="hcontainer_4">
         <heading>Will the policy be reviewed?</heading>
         <content>
           <table uk:widths="7.18in">
@@ -262,7 +262,7 @@
             </tr>
           </table>
         </content>
-      </section>
+      </hcontainer>
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></p>
