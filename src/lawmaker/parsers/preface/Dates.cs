@@ -57,7 +57,7 @@ record ValidDate(DateTime Date, string Format) : DocDate
 {
     public override XNode? Build(ReferenceKey? referenceKey) =>
         new XElement(akn + "docDate",
-            new XAttribute("date", Date.ToShortDateString()),
+            new XAttribute("date", Date.ToString("yyyy-MM-dd")),
             referenceKey is not null
             ? new XElement(akn + "ref",
                 new XAttribute(ukl + "dateFormat", Format),
