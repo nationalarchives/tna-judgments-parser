@@ -30,5 +30,6 @@ public static class XmlExt
 public static class XmlNamespaces
 {
     public static readonly XNamespace akn = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
+    public static readonly XNamespace ukl = "https://www.legislation.gov.uk/namespaces/UK-AKN";
     public static readonly XNamespace html = "http://www.w3.org/1999/xhtml";
 }

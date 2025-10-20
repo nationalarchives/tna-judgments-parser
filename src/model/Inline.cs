@@ -37,7 +37,7 @@ interface IInline {
         if (i is IFormattedText t)
             return t.Text;
         if (i is ITab)
-            return " ";
+            return "\t";
         if (i is ILineBreak)
             return "";
         if (i is IInlineContainer container)
@@ -169,9 +169,9 @@ interface IFootnote : IInline {
 
 interface ISignatureBlock : IBlock
 {
-    
+
     public string Name { get; internal init; }
-    
+
     IEnumerable<IInline> Content { get; }
 
 }

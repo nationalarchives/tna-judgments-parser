@@ -169,6 +169,7 @@ public enum ReferenceKey
     varMadeDate,
     varLaidDate,
     varCommenceDate,
+    varOtherDate,
     varSINoComp,
     varSINo,
     varSISubsidiaryNos,
@@ -220,6 +221,7 @@ static class ReferenceKeys
         or ReferenceKey.varMadeDate
         or ReferenceKey.varLaidDate
         or ReferenceKey.varCommenceDate
+        or ReferenceKey.varOtherDate
         or ReferenceKey.varSINoComp
         or ReferenceKey.varSINo
         or ReferenceKey.varSISubsidiaryNos

@@ -5,11 +5,12 @@
       <references source="#author">
         <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Human Medicines (Authorisation by Pharmacists and Supervision by Pharmacy Technicians) Order 2025" />
         <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2025" />
+        <TLCConcept eId="varMadeDate" href="#varOntologies" showAs="2025-01-01T00:00:00.0000000" />
         <TLCConcept eId="varSINoComp" href="#varOntologies" showAs="000" />
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="proceduralRubric">Draft Order in Council laid before Parliament under section 62(9) of the Health Act 1999, for approval by resolution of each House of Parliament.</block>
       <block name="banner">DRAFT STATUTORY INSTRUMENTS</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
@@ -22,6 +23,10 @@
 		</container>
 	  </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="2025-01-01"><ref ukl:dateFormat="yyyy" href="#varMadeDate" class="#placeholder"/></docDate></block>
+        <block name="commenceDate"><span>Coming into force in accordance with article 1(2) to (5)</span></block>
+      </container>
     </preface>		  
     <preamble eId="preamble">
       <formula name="enactingText">

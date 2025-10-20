@@ -11,17 +11,18 @@ using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
 namespace UK.Gov.Legislation.Lawmaker.Preface;
 
+// Note: eIds are set here due to a shortcoming in Lawmaker's eId
+// population logic. Ideally the parser doesn't have to worry about eIds!
 internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildable<XNode>, IMetadata
 {
 
     public XNode Build() => !Blocks
-        .Where(block => block is not DateBlock)
         .All(b => b is IBuildable<XNode>)
         ? throw new System.Exception("IBuildable<XNode> not implemented for all children!")
         : new XElement(
             akn + "preface",
+            new XAttribute("eId", "fnt"),
             Blocks.OfType<IBuildable<XNode>>()
-            .Where(it => it is not DateBlock)
             .Select(it => it.Build())
         );
 
@@ -51,24 +52,20 @@ internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildab
 
     */
     internal static SIPreface? Parse(IParser<IBlock> parser) =>
-        parser.MatchWhile(PrefaceLine)
-        is IEnumerable<IBlock> lines
-        && lines.Any(block => block is DateBlock) // always expect a date block in the preface
+        parser.MatchWhile(
+            block => !TableOfContents.IsTableOfContentsHeading(block, parser.LanguageService),
+            PrefaceLine
+        ) is IEnumerable<IBlock> lines
+        && lines.Any(block => block is Dates) // always expect a date block in the preface
         ? new(lines) // skip over DateBlock for now - handled in later ticket
         : null;
 
 
-    internal static bool HasStyle(WLine line, string style) => line.Style == style ||
-        // why do signatures check the first WText??
-        (line.Contents.OfType<WText>().FirstOrDefault() is WText text
-        && text.Style.Equals(style));
-
-    private static IBlock? PrefaceLine(IParser<IBlock> parser)
-    {
-        // for now, order of the preface elements doesn't matter as we only
-        // rely on the MS Word Style, however it may be more useful to enforce
-        // the order of preface elements
-        if (parser.Match<IBlock>(
+    // for now, order of the preface elements doesn't matter as we only
+    // rely on the MS Word Style, however it may be more useful to enforce
+    // the order of preface elements
+    private static IBlock? PrefaceLine(IParser<IBlock> parser) =>
+        parser.Match<IBlock>(
             CorrectionRubric.Parse,
             ProceduralRubric.Parse,
             Banner.Parse,
@@ -77,14 +74,8 @@ internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildab
             Title.Parse,
             Approval.Parse,
             LaidDraft.Parse,
-            DateBlock.Parse
-        ) is IBlock block)
-        {
-            return block;
-        }
-
-        return null;
-    }
+            Dates.Parse
+        );
 }
 
 partial record CorrectionRubric(WLine Line) : IBlock, IBuildable<XNode>
@@ -109,7 +100,6 @@ partial record ProceduralRubric(WLine Line) : IBlock, IBuildable<XNode>
     public XNode Build() => new XElement(
         akn + "block",
         new XAttribute("name", "proceduralRubric"),
-        // new XAttribute("eId", "fnt__rubric"),
         new XText(Line.NormalizedContent)
     );
 
@@ -224,23 +214,21 @@ partial record Number(
     };
 }
 
-partial record Subjects(IEnumerable<IBlock> subjects) : IBlock, IBuildable<XNode>
+partial record Subjects(IEnumerable<Subject> subjects) : IBlock, IBuildable<XNode>
 {
     public XNode Build() => new XElement(
         akn + "container",
         new XAttribute("name", "subjects"),
-        from subject in subjects
-        where subject is IBuildable<XNode>
-        select (subject as IBuildable<XNode>)!.Build()
+        subjects.Select((subject, i) => subject.Build())
     );
 
     public static Subjects? Parse(IParser<IBlock> parser) =>
-        parser.MatchWhile(Subject.Parse) is IEnumerable<IBlock> subjects
+        parser.MatchWhile(Subject.Parse) is IEnumerable<Subject> subjects
         && subjects.Any()
         ? new(subjects)
         : null;
 }
-partial record Subject(WLine Line, IEnumerable<Subsubject>? Subsubjects) : IBlock, IBuildable<XNode>
+partial record Subject(WLine Line, IEnumerable<Subsubject>? Subsubjects) : IBlock
 {
     public const string STYLE = "subject";
     public XNode Build() => new XElement(
@@ -330,20 +318,5 @@ partial record LaidDraft(WLine Line) : IBlock, IBuildable<XNode>
         parser.Advance() is WLine line
         && line.Style == STYLE
             ? new LaidDraft(line)
-            : null;
-}
-partial record DateBlock(WLine Line) : IBlock, IBuildable<XNode>
-{
-    public static List<string> STYLES = ["Made", "Laid", "Coming"];
-
-    public XNode Build() => new XElement(
-        akn + "block",
-        new XText(Line.NormalizedContent)
-    );
-
-    public static DateBlock? Parse(IParser<IBlock> parser) =>
-        parser.Advance() is WLine line
-        && STYLES.Contains(line.Style)
-            ? new DateBlock(line)
             : null;
 }
