@@ -20,14 +20,14 @@ class Helper : BaseHelper {
     // Constants
     private const string AKN_NAMESPACE = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
     
-    // Semantic element mappings
+    // Semantic element mappings (using only standard AKN elements)
     private static readonly Dictionary<string, string> SemanticMappings = new() {
         { "Title:", "docTitle" },
         { "IA No:", "docNumber" },
         { "Stage:", "docStage" },
         { "Date:", "docDate" },
-        { "Lead department or agency:", "docDepartment" },
-        { "Other departments or agencies", "docDepartment" }
+        { "Lead department or agency:", "docProponent" },
+        { "Other departments or agencies", "docProponent" }
     };
 
     private static readonly Helper Instance = new Helper();
@@ -270,7 +270,7 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Phase 3: Transform major IA content areas into proper section elements
+    /// Phase 3: Transform major IA content areas into proper hcontainer elements with semantic names
     /// </summary>
     private static void TransformContentSections(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
@@ -287,7 +287,7 @@ class Helper : BaseHelper {
             { "BUSINESS ASSESSMENT", "business-assessment" }
         };
 
-        int sectionCounter = 2; // Start from 2 since header is section 1
+        int sectionCounter = 2; // Start from 2 since header is hcontainer_1
 
         // Find level elements that contain major section content
         var levels = xml.SelectNodes("//akn:level", nsmgr);
@@ -296,7 +296,7 @@ class Helper : BaseHelper {
             foreach (var mapping in sectionMappings) {
                 if (ContainsSectionContent(level, mapping.Key)) {
                     TransformToSemanticSection(xml, level, mapping.Value, sectionCounter);
-                    logger.LogInformation($"Transformed level to section: {mapping.Value}");
+                    logger.LogInformation($"Transformed level to hcontainer: {mapping.Value}");
                     sectionCounter++;
                     break;
                 }
@@ -310,26 +310,26 @@ class Helper : BaseHelper {
     }
 
     private static void TransformToSemanticSection(XmlDocument xml, XmlNode level, string sectionName, int sectionNumber) {
-        // Create new section element
-        var section = xml.CreateElement("section", AKN_NAMESPACE);
-        section.SetAttribute("name", sectionName);
-        section.SetAttribute("eId", $"section_{sectionNumber}");
+        // Create new hcontainer element (hcontainer supports name attribute in AKN, section does not)
+        var hcontainer = xml.CreateElement("hcontainer", AKN_NAMESPACE);
+        hcontainer.SetAttribute("name", sectionName);
+        hcontainer.SetAttribute("eId", $"hcontainer_{sectionNumber}");
 
         // Add heading if we can identify one
         var headingText = ExtractSectionHeading(level);
         if (!string.IsNullOrEmpty(headingText)) {
             var heading = xml.CreateElement("heading", AKN_NAMESPACE);
             heading.InnerText = headingText;
-            section.AppendChild(heading);
+            hcontainer.AppendChild(heading);
         }
 
-        // Copy all child nodes from level to section
+        // Copy all child nodes from level to hcontainer
         while (level.HasChildNodes) {
-            section.AppendChild(level.FirstChild);
+            hcontainer.AppendChild(level.FirstChild);
         }
 
-        // Replace the level element with section
-        level.ParentNode.ReplaceChild(section, level);
+        // Replace the level element with hcontainer
+        level.ParentNode.ReplaceChild(hcontainer, level);
     }
 
     private static string ExtractSectionHeading(XmlNode level) {

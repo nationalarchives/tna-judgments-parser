@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/" />
           <FRBRuri value="http://www.legislation.gov.uk/id/" />
-          <FRBRdate date="2025-10-14" name="generated" />
+          <FRBRdate date="2025-10-20" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk//data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk//data.akn" />
-          <FRBRdate date="2025-10-14T07:36:47Z" name="transform" />
+          <FRBRdate date="2025-10-20T08:52:50Z" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -41,8 +41,8 @@
               <td>
                 <p><b>Title:</b> <docTitle>Reforms to increase and extend the Victim Surcharge</docTitle></p>
                 <p><b>IA No:</b> <docNumber>MoJ159</docNumber></p>
-                <p><b>Lead department or agency:</b> <docDepartment>Ministry of Justice</docDepartment></p>
-                <p><b>Other departments or agencies</b> <docDepartment>HM Courts and Tribunals Service</docDepartment></p>
+                <p><b>Lead department or agency:</b> <docProponent>Ministry of Justice</docProponent></p>
+                <p><b>Other departments or agencies</b> <docProponent>HM Courts and Tribunals Service</docProponent></p>
                 <p class="ia-header-text" />
               </td>
               <td>
@@ -180,7 +180,7 @@
           </table>
         </content>
       </level>
-      <section name="policy-objectives" eId="section_2">
+      <hcontainer name="policy-objectives" eId="hcontainer_2">
         <heading>What are the policy objectives and the intended effects?</heading>
         <content>
           <table uk:widths="7.09in">
@@ -192,8 +192,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section name="policy-options" eId="section_3">
+      </hcontainer>
+      <hcontainer name="policy-options" eId="hcontainer_3">
         <content>
           <table uk:widths="7.09in">
             <tr>
@@ -238,8 +238,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section name="policy-review" eId="section_4">
+      </hcontainer>
+      <hcontainer name="policy-review" eId="hcontainer_4">
         <heading>Will the policy be reviewed?</heading>
         <content>
           <table uk:widths="7.09in">
@@ -250,7 +250,7 @@
             </tr>
           </table>
         </content>
-      </section>
+      </hcontainer>
       <level>
         <content>
           <table uk:widths="3.63in 0.68in 0.68in 0.68in 0.24in 0.44in 0.68in">

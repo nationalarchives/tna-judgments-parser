@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/" />
           <FRBRuri value="http://www.legislation.gov.uk/id/" />
-          <FRBRdate date="2025-10-14" name="generated" />
+          <FRBRdate date="2025-10-20" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk//data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk//data.akn" />
-          <FRBRdate date="2025-10-14T07:37:19Z" name="transform" />
+          <FRBRdate date="2025-10-20T08:52:20Z" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -42,7 +42,7 @@
                 <p><b>Title:</b> <docTitle>Impact Assessment for the sixth carbon budget</docTitle></p>
                 <p><b>IA No:</b> <docNumber>BEIS012(F)-21-CG</docNumber></p>
                 <p class="ia-head-label"><b>RPC Reference No: </b>N/A<b>     </b></p>
-                <p><b>Lead department or agency:</b> <docDepartment>Department for Business, Energy and Industrial Strategy</docDepartment></p>
+                <p><b>Lead department or agency:</b> <docProponent>Department for Business, Energy and Industrial Strategy</docProponent></p>
                 <p><b>Other departments or agencies</b> </p>
               </td>
               <td colspan="2">
@@ -169,7 +169,7 @@
           </table>
         </content>
       </hcontainer>
-      <section name="policy-objectives" eId="section_2">
+      <hcontainer name="policy-objectives" eId="hcontainer_2">
         <heading>What are the policy objectives of the action or intervention and the intended effects?</heading>
         <content>
           <table uk:widths="7.18in">
@@ -181,8 +181,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section name="policy-options" eId="section_3">
+      </hcontainer>
+      <hcontainer name="policy-options" eId="hcontainer_3">
         <content>
           <table uk:widths="7.18in">
             <tr>
@@ -209,8 +209,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section name="policy-review" eId="section_4">
+      </hcontainer>
+      <hcontainer name="policy-review" eId="hcontainer_4">
         <heading>Will the policy be reviewed?</heading>
         <content>
           <table uk:widths="7.18in">
@@ -221,7 +221,7 @@
             </tr>
           </table>
         </content>
-      </section>
+      </hcontainer>
       <level>
         <content>
           <table uk:widths="0in 4.22in 0.61in 1.04in 0.69in 0.62in">
