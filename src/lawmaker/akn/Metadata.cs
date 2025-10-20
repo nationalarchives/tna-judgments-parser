@@ -1,8 +1,9 @@
 
+using System.Collections.Generic;
 using System.Xml;
+using System.Xml.Linq;
 
-namespace UK.Gov.Legislation.Lawmaker
-{
+namespace UK.Gov.Legislation.Lawmaker;
 
     class MetadataBuilder
     {
@@ -55,10 +56,10 @@ namespace UK.Gov.Legislation.Lawmaker
                     </FRBRManifestation>
                 </identification>
                 <references source="#author">
-                    <TLCConcept eId="varDocSubType" href="#varOntologies" showAs="Executive Bill"/>
+                    <TLCConcept eId="varDocSubType" href="#varOntologies" showAs=""/>
                     <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="{title}"/>
-                    <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction"/>
-                    <TLCProcess eId="varProjectId" href="#varOntologies" showAs="NI000127"/>
+                    <TLCProcess eId="varStageVersion" href="#varOntologies" showAs=""/>
+                    <TLCProcess eId="varProjectId" href="#varOntologies" showAs=""/>
                     <TLCProcess eId="varWork" href="#varOntologies" showAs=""/>
                     <TLCProcess eId="varWorkUri" href="#varOntologies" showAs=""/>
                     <TLCProcess eId="varCHOiid" href="#varOntologies" showAs=""/>
@@ -73,20 +74,20 @@ namespace UK.Gov.Legislation.Lawmaker
                     <TLCConcept eId="varConsidDate" href="#varOntologies" showAs=""/>
                     <TLCConcept eId="varFurthConsidDate" href="#varOntologies" showAs=""/>
                     <TLCConcept eId="varBillNoComp" href="#varOntologies" showAs=""/>
-                    <TLCConcept eId="varBillNo" href="#varOntologies" showAs="NIA Bill X"/>
+                    <TLCConcept eId="varBillNo" href="#varOntologies" showAs=""/>
                     <TLCConcept eId="varSessionNo" href="#varOntologies" showAs=""/>
                     <TLCConcept eId="varBillYear" href="#varOntologies" showAs=""/>
                     <TLCConcept eId="varSession" href="#varOntologies" showAs=""/>
                     <TLCConcept eId="varAssentDate" href="#varOntologies" showAs=""/>
                     <TLCConcept eId="varActNoComp" href="#varOntologies" showAs=""/>
                     <TLCConcept eId="varActNo" href="#varOntologies" showAs=""/>
-                    <TLCConcept eId="varDocType" href="#varOntologies" showAs="NI Bill"/>
-                    <TLCConcept eId="varSystem" href="#varOntologies" showAs="LDAPP"/>
-                    <TLCConcept eId="varAuthor" href="#varOntologies" showAs="Northern Ireland Assembly"/>
-                    <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs="Northern Ireland"/>
+                    <TLCConcept eId="varDocType" href="#varOntologies" showAs=""/>
+                    <TLCConcept eId="varSystem" href="#varOntologies" showAs=""/>
+                    <TLCConcept eId="varAuthor" href="#varOntologies" showAs=""/>
+                    <TLCConcept eId="varJurisdiction" href="#varOntologies" showAs=""/>
                     <TLCConcept eId="varOntologies" href="https://www.legislation.gov.uk/ontologies/UK-AKN"
-                        showAs="https://www.legislation.gov.uk/ontologies/UK-AKN"/>
-                    <TLCConcept eId="varSovereign" href="#varOntologies" showAs="Charles III"/>
+                        showAs=""/>
+                    <TLCConcept eId="varSovereign" href="#varOntologies" showAs=""/>
                 </references>
             </meta>
             """;
@@ -94,4 +95,136 @@ namespace UK.Gov.Legislation.Lawmaker
 
     }
 
+
+public record Reference(
+    ReferenceKey EId,
+    string ShowAs = "",
+    string Href = "#varOntologies"
+) : IBuildable<XNode>
+{
+    private readonly ReferenceType type = EId.GetReferenceType();
+
+    public XNode Build() =>
+        new XElement(XmlExt.AknNamespace + type.ToString(),
+            new XAttribute("eId", EId.ToString()),
+            new XAttribute("href", Href),
+            new XAttribute("showAs", ShowAs)
+        );
+}
+
+public enum ReferenceType
+{
+    TLCConcept,
+    TLCProcess,
+    TLCPerson,
+}
+
+/// <summary>
+/// The possible element ids for Lawmaker document metadata/references.
+/// </summary>
+/// <remarks>
+/// The order of this enum determines the order which the references are
+/// written to the document.
+/// </remarks>
+public enum ReferenceKey
+{
+    varDocSubType,
+    varBillTitle,
+    varHouse,
+    varStageVersion,
+    varProjectId,
+    varWork,
+    varWorkUri,
+    varCHOiid,
+    varExpression,
+    varExpressionUri,
+    varVDOiid,
+    varManifestation,
+    varManifestationUri,
+    varActYear,
+    varActTitle,
+    varIntroDate,
+    varConsidDate,
+    varFurthConsidDate,
+    varBillNoComp,
+    varBillNo,
+    varSessionNo,
+    varBillYear,
+    varSession,
+    varAssentDate,
+    varActNoComp,
+    varActNo,
+    varDocType,
+    varSystem,
+    varAuthor,
+    varJurisdiction,
+    varOntologies,
+    varSovereign,
+
+    // SI only
+    varSITitle,
+    varProcedureType,
+    varSIYear,
+    varMadeDate,
+    varLaidDate,
+    varCommenceDate,
+    varSINoComp,
+    varSINo,
+    varSISubsidiaryNos,
+    varISBN,
+    varMinistryAgency,
+}
+
+static class ReferenceKeys
+{
+    internal static ReferenceType GetReferenceType(this ReferenceKey key) => key switch
+    {
+
+        ReferenceKey.varStageVersion
+        or ReferenceKey.varProjectId
+        or ReferenceKey.varWork
+        or ReferenceKey.varWorkUri
+        or ReferenceKey.varCHOiid
+        or ReferenceKey.varExpression
+        or ReferenceKey.varExpressionUri
+        or ReferenceKey.varVDOiid
+        or ReferenceKey.varManifestation
+        or ReferenceKey.varManifestationUri
+        or ReferenceKey.varProcedureType
+            => ReferenceType.TLCProcess,
+        ReferenceKey.varDocSubType
+        or ReferenceKey.varBillTitle
+        or ReferenceKey.varHouse
+        or ReferenceKey.varActYear
+        or ReferenceKey.varActTitle
+        or ReferenceKey.varIntroDate
+        or ReferenceKey.varConsidDate
+        or ReferenceKey.varFurthConsidDate
+        or ReferenceKey.varBillNoComp
+        or ReferenceKey.varBillNo
+        or ReferenceKey.varSessionNo
+        or ReferenceKey.varBillYear
+        or ReferenceKey.varSession
+        or ReferenceKey.varAssentDate
+        or ReferenceKey.varActNoComp
+        or ReferenceKey.varActNo
+        or ReferenceKey.varDocType
+        or ReferenceKey.varSystem
+        or ReferenceKey.varAuthor
+        or ReferenceKey.varJurisdiction
+        or ReferenceKey.varOntologies
+        or ReferenceKey.varSovereign
+        or ReferenceKey.varSITitle
+        or ReferenceKey.varSIYear
+        or ReferenceKey.varMadeDate
+        or ReferenceKey.varLaidDate
+        or ReferenceKey.varCommenceDate
+        or ReferenceKey.varSINoComp
+        or ReferenceKey.varSINo
+        or ReferenceKey.varSISubsidiaryNos
+        or ReferenceKey.varISBN
+            => ReferenceType.TLCConcept,
+        ReferenceKey.varMinistryAgency
+            => ReferenceType.TLCPerson,
+    };
 }

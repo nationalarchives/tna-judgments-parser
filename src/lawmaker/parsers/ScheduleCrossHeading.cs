@@ -22,7 +22,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new CrossHeadingLeaf { Heading = line };
 
             List<IDivision> children = [];
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 HContainer peek = PeekGroupingProvision();
                 if (peek != null && !ScheduleCrossHeading.IsValidChild(peek))
@@ -52,7 +52,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph np)
                 return false;
-            if (i == Document.Body.Count - 1)
+            if (i == Body.Count - 1)
                 return false;
             if (frames.IsSecondaryDocName())
             {
