@@ -250,22 +250,21 @@ class Helper : BaseHelper {
         var hasHeaderMetadata = firstLevel.SelectNodes(".//akn:docTitle | .//akn:docNumber | .//akn:docStage | .//akn:docDate | .//akn:docDepartment", nsmgr).Count > 0;
         
         if (hasHeaderMetadata) {
-            // Transform to hcontainer with name="summary"
-            var hcontainer = xml.CreateElement("hcontainer", AKN_NAMESPACE);
-            hcontainer.SetAttribute("name", "summary");
+            // Transform to section element
+            var section = xml.CreateElement("section", AKN_NAMESPACE);
             
             // Add eId attribute for proper identification
-            hcontainer.SetAttribute("eId", "hcontainer_1");
+            section.SetAttribute("eId", "section_1");
             
-            // Copy all child nodes from level to hcontainer
+            // Copy all child nodes from level to section
             while (firstLevel.HasChildNodes) {
-                hcontainer.AppendChild(firstLevel.FirstChild);
+                section.AppendChild(firstLevel.FirstChild);
             }
             
-            // Replace the level element with hcontainer
-            firstLevel.ParentNode.ReplaceChild(hcontainer, firstLevel);
+            // Replace the level element with section
+            firstLevel.ParentNode.ReplaceChild(section, firstLevel);
             
-            logger.LogInformation("Transformed IA header from <level> to <hcontainer name=\"summary\">");
+            logger.LogInformation("Transformed IA header from <level> to <section>");
         }
     }
 
@@ -295,8 +294,8 @@ class Helper : BaseHelper {
         foreach (XmlNode level in levels) {
             foreach (var mapping in sectionMappings) {
                 if (ContainsSectionContent(level, mapping.Key)) {
-                    TransformToSemanticSection(xml, level, mapping.Value, sectionCounter);
-                    logger.LogInformation($"Transformed level to section: {mapping.Value}");
+                    TransformToSemanticSection(xml, level, sectionCounter);
+                    logger.LogInformation($"Transformed level to section with eId: section_{sectionCounter}");
                     sectionCounter++;
                     break;
                 }
@@ -309,10 +308,9 @@ class Helper : BaseHelper {
         return textContent.Contains(contentPattern, StringComparison.OrdinalIgnoreCase);
     }
 
-    private static void TransformToSemanticSection(XmlDocument xml, XmlNode level, string sectionName, int sectionNumber) {
+    private static void TransformToSemanticSection(XmlDocument xml, XmlNode level, int sectionNumber) {
         // Create new section element
         var section = xml.CreateElement("section", AKN_NAMESPACE);
-        section.SetAttribute("name", sectionName);
         section.SetAttribute("eId", $"section_{sectionNumber}");
 
         // Add heading if we can identify one

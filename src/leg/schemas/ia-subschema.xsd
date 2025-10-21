@@ -167,7 +167,6 @@
                 <xs:element ref="content" />
             </xs:choice>
         </xs:sequence>
-        <xs:attribute name="name" type="xs:string" />
         <xs:attribute name="eId" type="xs:string" />
         <xs:attribute name="class" >
             <xs:simpleType>
