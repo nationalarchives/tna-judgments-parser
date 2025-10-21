@@ -73,7 +73,10 @@ record NoDate() : DocDate
 
 record UnkownDate(string Text) : DocDate
 {
-    public override XNode? Build(ReferenceKey? referenceKey) => null;
+    public override XNode? Build(ReferenceKey? referenceKey) =>
+        new XElement(akn + "docDate",
+            new XAttribute("date", "9999-01-01")
+        );
 }
 
 
