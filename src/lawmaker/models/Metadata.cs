@@ -20,7 +20,7 @@ namespace UK.Gov.Legislation.Lawmaker;
 public class Metadata : IBuildable<XNode>
 {
 
-    public Dictionary<ReferenceKey, Reference> References { get; } = [];
+    public Dictionary<ReferenceKey, List<Reference>> References { get; } = [];
 
     public static Metadata Extract(Document bill, ILogger logger) {
         string? title = "";
@@ -40,7 +40,7 @@ public class Metadata : IBuildable<XNode>
             ReferenceKey key = bill.Type.IsEnacted()
                 ? ReferenceKey.varActTitle
                 : ReferenceKey.varBillTitle;
-            metadata.References[key] = new Reference(key, title ?? "");
+            metadata.AddReference(new Reference(key, title ?? ""));
         }
         foreach (Reference reference in bill
             .Preface
@@ -48,19 +48,35 @@ public class Metadata : IBuildable<XNode>
             .SelectMany(it => it.Metadata)
             .Where(it => !string.IsNullOrEmpty(it.ShowAs)))
         {
-            metadata.References[reference.EId] = reference;
+            metadata.AddReference(reference);
         }
         return metadata;
+    }
+
+    private Metadata AddReference(Reference reference)
+    {
+        if (References.TryGetValue(reference.EId, out var val))
+        {
+            val.Add(reference);
+        } else
+        {
+            References.Add(reference.EId, [reference]);
+        }
+        return this;
     }
 
 
     public XNode Build() =>
         new XElement(akn + "meta",
-            // new XAttribute("xmlns", akn),
             new XElement(akn + "references",
                 new XAttribute("source", "#author"),
                 References.Values
-                    .OrderBy(it => it.EId)
+                    .Where(it => it.Count > 0)
+                    .OrderBy(it => it.First().EId)
+                    .Select(it => it
+                        .Select((reference, i) =>
+                            reference with {Num = Convert.ToUInt32(i)}))
+                    .SelectMany(i => i)
                     .Select(r => r.Build())
             )
         );

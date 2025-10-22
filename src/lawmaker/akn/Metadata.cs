@@ -100,14 +100,15 @@ namespace UK.Gov.Legislation.Lawmaker;
 public record Reference(
     ReferenceKey EId,
     string ShowAs = "",
-    string Href = "#varOntologies"
+    string Href = "#varOntologies",
+    uint Num = 0
 ) : IBuildable<XNode>
 {
     private readonly ReferenceType type = EId.GetReferenceType();
 
     public XNode Build() =>
         new XElement(akn + type.ToString(),
-            new XAttribute("eId", EId.ToString()),
+            new XAttribute("eId", $"{EId}{(Num <= 0 ? "" : Num + 1)}"),
             new XAttribute("href", Href),
             new XAttribute("showAs", ShowAs)
         );
