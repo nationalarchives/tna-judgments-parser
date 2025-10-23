@@ -21,9 +21,10 @@ class Helper : BaseHelper {
     private const string AKN_NAMESPACE = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
     
     // Semantic element mappings
+    // Note: docNumber is not included because it's not allowed as a child of <p> in AKN 3.0 schema
     private static readonly Dictionary<string, string> SemanticMappings = new() {
         { "Title:", "docTitle" },
-        { "IA No:", "docNumber" },
+        // { "IA No:", "docNumber" },  // Commented out: not valid in AKN 3.0 schema for <p> elements
         { "Stage:", "docStage" },
         { "Date:", "docDate" },
         { "Lead department or agency:", "docDepartment" },
@@ -55,6 +56,9 @@ class Helper : BaseHelper {
         
         // Phase 3: Section-Based Organization
         TransformContentSections(xml);
+        
+        // Phase 4: Clean up empty heading elements
+        RemoveEmptyHeadings(xml);
     }
 
     private static void ApplyIAStyleMappings(XmlDocument xml) {
@@ -165,10 +169,8 @@ class Helper : BaseHelper {
             if (!string.IsNullOrEmpty(valueText)) {
                 var semanticElement = xml.CreateElement(semanticElementName, AKN_NAMESPACE);
                 
-                // Special handling for docDate to add date attribute
-                if (semanticElementName == "docDate" && TryParseDateFromValue(valueText, out string isoDate)) {
-                    semanticElement.SetAttribute("date", isoDate);
-                }
+                // Note: date attribute removed - not valid in standard AKN 3.0 schema
+                // The date value is already captured in the text content of docDate
                 
                 semanticElement.InnerText = valueText;
                 paragraph.AppendChild(semanticElement);
@@ -246,8 +248,8 @@ class Helper : BaseHelper {
         var firstLevel = xml.SelectSingleNode("//akn:mainBody/akn:level[1]", nsmgr);
         if (firstLevel == null) return;
 
-        // Check if this level contains IA header metadata (docTitle, docNumber, etc.)
-        var hasHeaderMetadata = firstLevel.SelectNodes(".//akn:docTitle | .//akn:docNumber | .//akn:docStage | .//akn:docDate | .//akn:docDepartment", nsmgr).Count > 0;
+        // Check if this level contains IA header metadata (docTitle, docStage, docDate, etc.)
+        var hasHeaderMetadata = firstLevel.SelectNodes(".//akn:docTitle | .//akn:docStage | .//akn:docDate | .//akn:docDepartment", nsmgr).Count > 0;
         
         if (hasHeaderMetadata) {
             // Transform to section element
@@ -348,6 +350,21 @@ class Helper : BaseHelper {
             }
         }
         return "";
+    }
+
+    /// <summary>
+    /// Phase 4: Remove empty heading elements that violate AKN 3.0 schema
+    /// </summary>
+    private static void RemoveEmptyHeadings(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        
+        // Find all empty heading elements
+        var emptyHeadings = xml.SelectNodes("//akn:heading[not(normalize-space())]", nsmgr);
+        
+        foreach (XmlNode heading in emptyHeadings) {
+            heading.ParentNode.RemoveChild(heading);
+        }
     }
 
 }

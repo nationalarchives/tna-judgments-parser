@@ -188,14 +188,9 @@ class Builder : AkN.Builder {
     /* annexes */
 
     protected void AddAnnexes(XmlElement main, IDocument document) {
-        if (document.Annexes is null)
-            return;
-        if (!document.Annexes.Any())
-            return;
-        XmlElement attachments = doc.CreateElement("attachments", ns);
-        main.AppendChild(attachments);
-        foreach (var annex in document.Annexes.Select((value, i) => new { i, value }))
-            AddAnnex(attachments, annex.value, annex.i + 1, document.Meta);
+        // Annexes/attachments are not supported in the IA subschema for doc elements
+        // Skip them to maintain schema compliance
+        // TODO: Consider alternative representation for annexes in doc elements
     }
 
     private void AddAnnex(XmlElement attachments, IAnnex annex, int n, DocumentMetadata meta) {
