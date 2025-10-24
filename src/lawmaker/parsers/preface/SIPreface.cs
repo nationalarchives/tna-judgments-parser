@@ -7,27 +7,25 @@ using System.Xml.Linq;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Lawmaker.Date;
 using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
 namespace UK.Gov.Legislation.Lawmaker.Preface;
 
 // Note: eIds are set here due to a shortcoming in Lawmaker's eId
 // population logic. Ideally the parser doesn't have to worry about eIds!
-internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildable<XNode>, IMetadata
+internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildable<XNode>
 {
 
-    public XNode Build() => !Blocks
+    public XNode Build(Document document) => !Blocks
         .All(b => b is IBuildable<XNode>)
         ? throw new System.Exception("IBuildable<XNode> not implemented for all children!")
         : new XElement(
             akn + "preface",
             new XAttribute("eId", "fnt"),
             Blocks.OfType<IBuildable<XNode>>()
-            .Select(it => it.Build())
+            .Select(it => it.Build(document))
         );
-
-    public IEnumerable<Reference> Metadata =>
-        Blocks.OfType<IMetadata>().SelectMany(b => b.Metadata);
 
     /*
     A grammar for preface might look something like:
@@ -56,7 +54,7 @@ internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildab
             block => !TableOfContents.IsTableOfContentsHeading(block, parser.LanguageService),
             PrefaceLine
         ) is IEnumerable<IBlock> lines
-        && lines.Any(block => block is Dates) // always expect a date block in the preface
+        && lines.Any(block => block is DatesContainer) // always expect a date contianer in the preface
         ? new(lines) // skip over DateBlock for now - handled in later ticket
         : null;
 
@@ -74,13 +72,13 @@ internal partial record SIPreface(IEnumerable<IBlock> Blocks) : IBlock, IBuildab
             Title.Parse,
             Approval.Parse,
             LaidDraft.Parse,
-            Dates.Parse
+            DatesContainer.Parse
         );
 }
 
 partial record CorrectionRubric(WLine Line) : IBlock, IBuildable<XNode>
 {
-    public XNode Build() => new XElement(
+    public XNode Build(Document _) => new XElement(
         akn + "block",
         new XAttribute("name", "correctionRubric"),
         new XText(Line.NormalizedContent)
@@ -97,7 +95,7 @@ partial record CorrectionRubric(WLine Line) : IBlock, IBuildable<XNode>
 partial record ProceduralRubric(WLine Line) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "Draft";
-    public XNode Build() => new XElement(
+    public XNode Build(Document _) => new XElement(
         akn + "block",
         new XAttribute("name", "proceduralRubric"),
         new XText(Line.NormalizedContent)
@@ -113,7 +111,7 @@ partial record ProceduralRubric(WLine Line) : IBlock, IBuildable<XNode>
 internal partial record Banner(WLine Line) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "Banner";
-    public XNode Build() => new XElement(
+    public XNode Build(Document _) => new XElement(
         akn + "block",
         new XAttribute("name", "banner"),
         new XText(Line.NormalizedContent)
@@ -133,23 +131,18 @@ partial record Number(
     string? Year = null,
     string? SINumber = null,
     string? SISubsidiaryNumbers = null
-    ) : IBlock, IBuildable<XNode>, IMetadata
+    ) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "Number";
 
     private static readonly ILogger Logger = Logging.Factory.CreateLogger<Number>();
 
-    public IEnumerable<Reference> Metadata =>
-        new List<(ReferenceKey, string?)> {
-            ( ReferenceKey.varSIYear, Year ),
-            ( ReferenceKey.varSINoComp, SINumber ),
-            ( ReferenceKey.varSISubsidiaryNos, SISubsidiaryNumbers ),
-            // varSINo should always be this, but Lawmaker sets it for us:
-            // { ReferenceKey.varSINo, "#varSIYear No. #varSINoComp #varSISubsidiaryNos"}
-        }.Where(it => it.Item2 is not null)
-        .Select(it => new Reference(it.Item1, it.Item2));
-
-    public XNode Build() => new XElement(
+    public XNode Build(Document document)
+    {
+        document.Metadata.Register(new Reference(ReferenceKey.varSIYear, Year ?? ""));
+        document.Metadata.Register(new Reference(ReferenceKey.varSINoComp, SINumber ?? ""));
+        document.Metadata.Register(new Reference(ReferenceKey.varSISubsidiaryNos, SISubsidiaryNumbers ?? ""));
+        return new XElement(
             akn + "block",
             new XAttribute("name", "number"),
             IsWellFormed()
@@ -159,10 +152,13 @@ partial record Number(
                     akn + "ref",
                     // class needs the namespace to prevent removal in the Simplifier
                     new XAttribute(akn + "class", "placeholder"),
+                    // varSINo is a combination of the other 3 refs
+                    // so hard-coding it here *should* be fine
                     new XAttribute("href", "#varSINo")))
             : new XText(Line.NormalizedContent)
 
         );
+    }
 
     public static Number? Parse(IParser<IBlock> parser)
     {
@@ -216,10 +212,10 @@ partial record Number(
 
 partial record Subjects(IEnumerable<Subject> subjects) : IBlock, IBuildable<XNode>
 {
-    public XNode Build() => new XElement(
+    public XNode Build(Document document) => new XElement(
         akn + "container",
         new XAttribute("name", "subjects"),
-        subjects.Select((subject, i) => subject.Build())
+        subjects.Select((subject, i) => subject.Build(document))
     );
 
     public static Subjects? Parse(IParser<IBlock> parser) =>
@@ -231,7 +227,7 @@ partial record Subjects(IEnumerable<Subject> subjects) : IBlock, IBuildable<XNod
 partial record Subject(WLine Line, IEnumerable<Subsubject>? Subsubjects) : IBlock
 {
     public const string STYLE = "subject";
-    public XNode Build() => new XElement(
+    public XNode Build(Document document) => new XElement(
         akn + "container",
         new XAttribute("name", "subject"),
         new XElement(
@@ -241,7 +237,7 @@ partial record Subject(WLine Line, IEnumerable<Subsubject>? Subsubjects) : IBloc
                 new XAttribute(akn + "class", "title"),
                 new XAttribute("refersTo", ""),
                 new XText(Line.NormalizedContent))),
-        Subsubjects?.Select(s => s.Build())
+        Subsubjects?.Select(s => s.Build(document))
     );
 
     public static Subject? Parse(IParser<IBlock> parser) =>
@@ -253,7 +249,7 @@ partial record Subject(WLine Line, IEnumerable<Subsubject>? Subsubjects) : IBloc
 partial record Subsubject(WLine Line) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "Subsub";
-    public XNode Build() => new XElement(
+    public XNode Build(Document _) => new XElement(
         akn + "block",
         new XAttribute("name", "subsubject"),
             new XElement(akn + "concept",
@@ -268,18 +264,18 @@ partial record Subsubject(WLine Line) : IBlock, IBuildable<XNode>
             ? new Subsubject(line)
             : null;
 }
-partial record Title(WLine Line) : IBlock, IBuildable<XNode>, IMetadata
+partial record Title(WLine Line) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "Title";
 
-    public XNode Build() => new XElement(
+    public XNode Build(Document document) => new XElement(
         akn + "block",
         new XAttribute("name", "title"),
         new XElement(
             akn + "docTitle",
             new XElement(akn + "ref",
                 new XAttribute(akn + "class", "placeholder"),
-                new XAttribute("href", "#varSITitle"))));
+                new XAttribute("href", $"#{document.Metadata.Register(new Reference(ReferenceKey.varSITitle, Line.NormalizedContent)).EId}"))));
 
     public IEnumerable<Reference> Metadata => [
         new Reference(ReferenceKey.varSITitle, Line.NormalizedContent)
@@ -293,7 +289,7 @@ partial record Title(WLine Line) : IBlock, IBuildable<XNode>, IMetadata
 partial record Approval(WLine Line) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "Approval";
-    public XNode Build() => new XElement(
+    public XNode Build(Document _) => new XElement(
         akn + "block",
         new XAttribute("name", "approval"),
         new XText(Line.NormalizedContent)
@@ -308,7 +304,7 @@ partial record Approval(WLine Line) : IBlock, IBuildable<XNode>
 partial record LaidDraft(WLine Line) : IBlock, IBuildable<XNode>
 {
     public const string STYLE = "LaidDraft";
-    public XNode Build() => new XElement(
+    public XNode Build(Document _) => new XElement(
         akn + "block",
         new XAttribute("name", "laidInDraft"),
         new XText(Line.NormalizedContent)

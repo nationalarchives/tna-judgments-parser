@@ -20,9 +20,9 @@ namespace UK.Gov.Legislation.Lawmaker;
 public class Metadata : IBuildable<XNode>
 {
 
-    public Dictionary<ReferenceKey, List<Reference>> References { get; } = [];
+    private Dictionary<(ReferenceKey, uint), Reference> References { get; } = [];
 
-    public static Metadata Extract(Document bill, ILogger logger) {
+    public static void ExtractTitle(Document bill, ILogger logger, Metadata metadata) {
         string? title = "";
         try
         {
@@ -34,50 +34,36 @@ public class Metadata : IBuildable<XNode>
         {
             logger.LogError(e, "error converting EMF bitmap record");
         }
-        Metadata metadata = new();
         if (!bill.Type.IsSecondaryDocName() && (title is null || title != ""))
         {
             ReferenceKey key = bill.Type.IsEnacted()
                 ? ReferenceKey.varActTitle
                 : ReferenceKey.varBillTitle;
-            metadata.AddReference(new Reference(key, title ?? ""));
+            metadata.Register(new Reference(key, title ?? ""));
         }
-        foreach (Reference reference in bill
-            .Preface
-            .OfType<IMetadata>()
-            .SelectMany(it => it.Metadata)
-            .Where(it => !string.IsNullOrEmpty(it.ShowAs)))
-        {
-            metadata.AddReference(reference);
-        }
-        return metadata;
     }
 
-    private Metadata AddReference(Reference reference)
+    public Reference Register(Reference reference)
     {
-        if (References.TryGetValue(reference.EId, out var val))
+        uint i = 0;
+        while (References.ContainsKey((reference.Key, i)))
         {
-            val.Add(reference);
-        } else
-        {
-            References.Add(reference.EId, [reference]);
+            i++;
         }
-        return this;
+        reference.Num = i;
+        References.Add((reference.Key, i), reference);
+        return reference;
     }
 
-
-    public XNode Build() =>
+    public XNode Build(Document document) =>
         new XElement(akn + "meta",
             new XElement(akn + "references",
                 new XAttribute("source", "#author"),
-                References.Values
-                    .Where(it => it.Count > 0)
-                    .OrderBy(it => it.First().EId)
-                    .Select(it => it
-                        .Select((reference, i) =>
-                            reference with {Num = Convert.ToUInt32(i)}))
-                    .SelectMany(i => i)
-                    .Select(r => r.Build())
+                References
+                    .Where(it => !string.IsNullOrEmpty(it.Value.ShowAs))
+                    .OrderBy(it => it.Key.Item1)
+                    .ThenBy(it => it.Key.Item2)
+                    .Select(r => r.Value.Build(document))
             )
         );
 }

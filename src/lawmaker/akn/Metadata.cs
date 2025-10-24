@@ -1,4 +1,4 @@
-
+#nullable enable
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
@@ -97,18 +97,27 @@ namespace UK.Gov.Legislation.Lawmaker;
     }
 
 
+/// <summary>
+///
+/// </summary>
+/// <param name="Key"></param>
+/// <param name="ShowAs"></param>
+/// <param name="Href"></param>
+/// <param name="Num"></param>
 public record Reference(
-    ReferenceKey EId,
+    ReferenceKey Key,
     string ShowAs = "",
-    string Href = "#varOntologies",
-    uint Num = 0
+    string Href = "#varOntologies"
 ) : IBuildable<XNode>
 {
-    private readonly ReferenceType type = EId.GetReferenceType();
+    private readonly ReferenceType type = Key.GetReferenceType();
 
-    public XNode Build() =>
+    public uint Num { get; set; }
+    public string EId { get => $"{Key}{(Num > 0 ? Num + 1 : "")}"; }
+
+    public XNode? Build(Document _) =>
         new XElement(akn + type.ToString(),
-            new XAttribute("eId", $"{EId}{(Num <= 0 ? "" : Num + 1)}"),
+            new XAttribute("eId", EId),
             new XAttribute("href", Href),
             new XAttribute("showAs", ShowAs)
         );
