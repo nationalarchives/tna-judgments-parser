@@ -13,6 +13,7 @@ class Builder : AkN.Builder {
 
     override protected string UKNS => "https://legislation.gov.uk/akn";
 
+
     private static string FormatDateOnly(DateTime? date) {
         return date?.ToString("s")[..10];
     }
@@ -184,6 +185,7 @@ class Builder : AkN.Builder {
     protected override string MakeDivisionId(IDivision div) {
         return null;
     }
+
 
     /* annexes */
 

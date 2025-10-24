@@ -59,6 +59,15 @@ class Helper : BaseHelper {
         
         // Phase 4: Clean up empty heading elements
         RemoveEmptyHeadings(xml);
+        
+        // Phase 5: Replace th with td (th not supported in IA subschema)
+        ReplaceThWithTd(xml);
+        
+        // Phase 6: Remove unsupported elements (img, subFlow/math, TOC, marker/tab)
+        RemoveUnsupportedElements(xml);
+        
+        // Phase 7: Convert blockContainer to p in table cells
+        ConvertBlockContainerInTables(xml);
     }
 
     private static void ApplyIAStyleMappings(XmlDocument xml) {
@@ -364,6 +373,104 @@ class Helper : BaseHelper {
         
         foreach (XmlNode heading in emptyHeadings) {
             heading.ParentNode.RemoveChild(heading);
+        }
+    }
+
+    /// <summary>
+    /// Phase 5: Replace th with td (th not supported in IA subschema)
+    /// </summary>
+    private static void ReplaceThWithTd(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        
+        // Find all th elements
+        var thElements = xml.SelectNodes("//akn:th", nsmgr);
+        
+        foreach (XmlElement th in thElements) {
+            // Create new td element
+            var td = xml.CreateElement("td", AKN_NAMESPACE);
+            
+            // Copy all attributes
+            foreach (XmlAttribute attr in th.Attributes) {
+                td.SetAttribute(attr.Name, attr.Value);
+            }
+            
+            // Copy all child nodes
+            while (th.HasChildNodes) {
+                td.AppendChild(th.FirstChild);
+            }
+            
+            // Replace th with td
+            th.ParentNode.ReplaceChild(td, th);
+        }
+    }
+
+    /// <summary>
+    /// Phase 6: Remove elements not supported in strict AKN 3.0 for doc elements
+    /// </summary>
+    private static void RemoveUnsupportedElements(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        
+        // Remove img elements
+        var imgs = xml.SelectNodes("//akn:img", nsmgr);
+        foreach (XmlElement img in imgs) {
+            img.ParentNode.RemoveChild(img);
+        }
+        
+        // Remove subFlow elements (used for math)
+        var subFlows = xml.SelectNodes("//akn:subFlow", nsmgr);
+        foreach (XmlElement subFlow in subFlows) {
+            subFlow.ParentNode.RemoveChild(subFlow);
+        }
+        
+        // Remove toc elements
+        var tocs = xml.SelectNodes("//akn:toc", nsmgr);
+        foreach (XmlElement toc in tocs) {
+            toc.ParentNode.RemoveChild(toc);
+        }
+        
+        // Remove marker elements (used for tabs)
+        var markers = xml.SelectNodes("//akn:marker", nsmgr);
+        foreach (XmlElement marker in markers) {
+            marker.ParentNode.RemoveChild(marker);
+        }
+    }
+
+    /// <summary>
+    /// Phase 7: Convert blockContainer in table cells to inline p elements
+    /// </summary>
+    private static void ConvertBlockContainerInTables(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        
+        // Find all blockContainer elements within td elements
+        var blockContainers = xml.SelectNodes("//akn:td/akn:blockContainer", nsmgr);
+        
+        foreach (XmlElement container in blockContainers) {
+            var parent = container.ParentNode;
+            
+            // Create a new p element
+            var p = xml.CreateElement("p", AKN_NAMESPACE);
+            
+            // Extract the num element if present
+            var num = container.SelectSingleNode("akn:num", nsmgr);
+            if (num != null) {
+                // Add the number as text
+                p.AppendChild(xml.CreateTextNode(num.InnerText + " "));
+            }
+            
+            // Extract content from the inner p element
+            var innerP = container.SelectSingleNode("akn:p", nsmgr);
+            if (innerP != null) {
+                // Copy all child nodes from inner p
+                while (innerP.HasChildNodes) {
+                    p.AppendChild(innerP.FirstChild);
+                }
+            }
+            
+            // Replace blockContainer with the new p
+            parent.ReplaceChild(p, container);
         }
     }
 

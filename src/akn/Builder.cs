@@ -22,9 +22,6 @@ abstract class Builder {
     protected abstract string UKNS { get; }
 
     protected readonly XmlDocument doc;
-    
-    // Track if we're inside a table to avoid creating invalid blockContainer elements in td
-    private bool insideTable = false;
 
     protected Builder() {
         doc = new XmlDocument();
@@ -236,23 +233,11 @@ abstract class Builder {
 
     protected virtual void Block(XmlElement parent, IBlock block) {
         if (block is IOldNumberedParagraph np) {
-            // When inside a table, blockContainer is not valid in td according to the validator
-            // Also, num element is not allowed in p elements within doc documents (like IAs)
-            // So we put the number as plain text within the paragraph
-            if (insideTable) {
-                XmlElement p = doc.CreateElement("p", ns);
-                parent.AppendChild(p);
-                if (np.Number is not null) {
-                    p.AppendChild(doc.CreateTextNode(np.Number.Text + " "));
-                }
-                AddInlines(p, np.Contents);
-            } else {
-                XmlElement container = doc.CreateElement("blockContainer", ns);
-                parent.AppendChild(container);
-                if (np.Number is not null)
-                    AddAndWrapText(container, "num", np.Number);
-                this.p(container, np);
-            }
+            XmlElement container = doc.CreateElement("blockContainer", ns);
+            parent.AppendChild(container);
+            if (np.Number is not null)
+                AddAndWrapText(container, "num", np.Number);
+            this.p(container, np);
         } else if (block is IRestriction restrict) {
             AddNamedBlock(parent, restrict, "restriction");
         } else if (block is ILine line) {
@@ -260,9 +245,7 @@ abstract class Builder {
         } else if (block is ITable table) {
             AddTable(parent, table);
         } else if (block is ITableOfContents2 toc) {
-            // TOC is not supported in strict AKN 3.0 for doc elements (like Impact Assessments)
-            // Skip it to maintain schema compliance
-            // TODO: Consider alternative representation for TOC in doc elements
+            AddTableOfContents(parent, toc);
         } else if (block is IQuotedStructure qs) {
             AddQuotedStructure(parent, qs);
         } else if (block is IDivWrapper wrapper) {
@@ -322,10 +305,6 @@ abstract class Builder {
         /* The purpose is to find the correct cell above for vertically merged cells. */
         List<List<XmlElement>> allCellsWithRepeats = new List<List<XmlElement>>();
 
-        // Set flag to avoid creating invalid blockContainer in td elements
-        bool wasInsideTable = insideTable;
-        insideTable = true;
-        
         try {
             List<List<ICell>> rows = model.Rows.Select(r => r.Cells.ToList()).ToList(); // enrichers are lazy
             int iRow = 0;
@@ -349,8 +328,7 @@ abstract class Builder {
                         iCell += colspanAbove;
                         continue;
                     }
-                    // AKN 3.0 schema validator only allows td elements, not th
-                    XmlElement td = doc.CreateElement("td", ns);
+                    XmlElement td = doc.CreateElement(rowIsHeader ? "th" : "td", ns);
                     if (cell.ColSpan is not null)
                         td.SetAttribute("colspan", cell.ColSpan.ToString());
                     Dictionary<string, string> styles = cell.GetCSSStyles();
@@ -374,8 +352,6 @@ abstract class Builder {
                 iRow += 1;
             }
         } finally {
-            // Restore the flag
-            insideTable = wasInsideTable;
         }
     }
 
@@ -767,15 +743,17 @@ abstract class Builder {
         blocks(authorialNote, fn.Content);
     }
 
-    private void AddImageRef(XmlElement parent, IImageRef model) {
-        // Images are not supported in strict AKN 3.0 for doc elements (like Impact Assessments)
-        // Skip them to maintain schema compliance
-        // TODO: Consider alternative representation for images in doc elements
+    protected virtual void AddImageRef(XmlElement parent, IImageRef model) {
+        XmlElement img = doc.CreateElement("img", ns);
+        img.SetAttribute("src", model.Src);
+        if (model.Style is not null)
+            img.SetAttribute("style", model.Style);
+        parent.AppendChild(img);
     }
-    private void AddExternalImage(XmlElement parent, IExternalImage model) {
-        // Images are not supported in strict AKN 3.0 for doc elements (like Impact Assessments)
-        // Skip them to maintain schema compliance
-        // TODO: Consider alternative representation for images in doc elements
+    protected virtual void AddExternalImage(XmlElement parent, IExternalImage model) {
+        XmlElement img = doc.CreateElement("img", ns);
+        img.SetAttribute("src", model.URL);
+        parent.AppendChild(img);
     }
 
     private void AddHperlink(XmlElement parent, IHyperlink1 link) {
@@ -814,10 +792,12 @@ abstract class Builder {
             x.SetAttribute("title", model.ScreenTip);
     }
 
-    private void AddMath(XmlElement parent, IMath model) {
-        // Math (subFlow) is not supported in strict AKN 3.0 for doc elements (like Impact Assessments)
-        // Skip it to maintain schema compliance
-        // TODO: Consider alternative representation for math in doc elements
+    protected virtual void AddMath(XmlElement parent, IMath model) {
+        XmlElement subFlow = CreateAndAppend("subFlow", parent);
+        subFlow.SetAttribute("name", "math");
+        XmlElement foreign = CreateAndAppend("foreign", subFlow);
+        XmlNode math = doc.ImportNode(model.MathML, true);
+        foreign.AppendChild(math);
     }
 
     private void AddLineBreak(XmlElement parent) {
@@ -825,10 +805,12 @@ abstract class Builder {
         parent.AppendChild(br);
     }
 
-    private void AddTab(XmlElement parent) {
-        // Tabs (markers) are not allowed inside <a> elements in strict AKN 3.0
-        // Skip them to maintain schema compliance
-        // TODO: Consider alternative representation for tabs
+    protected virtual void AddTab(XmlElement parent) {
+        XmlElement tab = doc.CreateElement("marker", ns);
+        tab.SetAttribute("name", "tab");
+        // tab.SetAttribute("style", "display:inline-block");
+        // tab.AppendChild(doc.CreateTextNode(" "));
+        parent.AppendChild(tab);
     }
 
     protected void AddHash(XmlDocument akn) {

@@ -56,6 +56,23 @@ public class TestEM {
         return sWriter.ToString();
     }
 
+    [Fact(Skip = "Manual regeneration only")]
+    public void RegenerateAllTestFiles() {
+        var projectRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(
+            System.AppDomain.CurrentDomain.BaseDirectory,
+            "..", "..", "..", ".."
+        ));
+        
+        foreach (var testData in Indices) {
+            int i = (int)testData[0];
+            var docx = CaseLaw.Tests.ReadDocx($"test.leg.em.test{i}.docx");
+            var akn = Helper.Parse(docx).Serialize();
+            var outputPath = System.IO.Path.Combine(projectRoot, "test", "leg", "em", $"test{i}.akn");
+            System.IO.File.WriteAllText(outputPath, akn);
+            System.Console.WriteLine($"Regenerated test{i}.akn");
+        }
+    }
+
 }
 
 }
