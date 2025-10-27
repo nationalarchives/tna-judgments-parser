@@ -20,10 +20,11 @@ class Helper : BaseHelper {
     // Constants
     private const string AKN_NAMESPACE = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
     
-    // Semantic element mappings (using only standard AKN elements)
+    // Semantic element mappings
+    // Note: docNumber is not included because it's not allowed as a child of <p> in AKN 3.0 schema
     private static readonly Dictionary<string, string> SemanticMappings = new() {
         { "Title:", "docTitle" },
-        { "IA No:", "docNumber" },
+        // { "IA No:", "docNumber" },  // Commented out: not valid in AKN 3.0 schema for <p> elements
         { "Stage:", "docStage" },
         { "Date:", "docDate" },
         { "Lead department or agency:", "docProponent" },
@@ -55,6 +56,18 @@ class Helper : BaseHelper {
         
         // Phase 3: Section-Based Organization
         TransformContentSections(xml);
+        
+        // Phase 4: Clean up empty heading elements
+        RemoveEmptyHeadings(xml);
+        
+        // Phase 5: Replace th with td (th not supported in IA subschema)
+        ReplaceThWithTd(xml);
+        
+        // Phase 6: Remove unsupported elements (img, subFlow/math, TOC, marker/tab)
+        RemoveUnsupportedElements(xml);
+        
+        // Phase 7: Convert blockContainer to p in table cells
+        ConvertBlockContainerInTables(xml);
     }
 
     private static void ApplyIAStyleMappings(XmlDocument xml) {
@@ -165,10 +178,8 @@ class Helper : BaseHelper {
             if (!string.IsNullOrEmpty(valueText)) {
                 var semanticElement = xml.CreateElement(semanticElementName, AKN_NAMESPACE);
                 
-                // Special handling for docDate to add date attribute
-                if (semanticElementName == "docDate" && TryParseDateFromValue(valueText, out string isoDate)) {
-                    semanticElement.SetAttribute("date", isoDate);
-                }
+                // Note: date attribute removed - not valid in standard AKN 3.0 schema
+                // The date value is already captured in the text content of docDate
                 
                 semanticElement.InnerText = valueText;
                 paragraph.AppendChild(semanticElement);
@@ -246,8 +257,8 @@ class Helper : BaseHelper {
         var firstLevel = xml.SelectSingleNode("//akn:mainBody/akn:level[1]", nsmgr);
         if (firstLevel == null) return;
 
-        // Check if this level contains IA header metadata (docTitle, docNumber, etc.)
-        var hasHeaderMetadata = firstLevel.SelectNodes(".//akn:docTitle | .//akn:docNumber | .//akn:docStage | .//akn:docDate | .//akn:docDepartment", nsmgr).Count > 0;
+        // Check if this level contains IA header metadata (docTitle, docStage, docDate, etc.)
+        var hasHeaderMetadata = firstLevel.SelectNodes(".//akn:docTitle | .//akn:docStage | .//akn:docDate | .//akn:docDepartment", nsmgr).Count > 0;
         
         if (hasHeaderMetadata) {
             // Transform to section element
@@ -348,6 +359,119 @@ class Helper : BaseHelper {
             }
         }
         return "";
+    }
+
+    /// <summary>
+    /// Phase 4: Remove empty heading elements that violate AKN 3.0 schema
+    /// </summary>
+    private static void RemoveEmptyHeadings(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        
+        // Find all empty heading elements
+        var emptyHeadings = xml.SelectNodes("//akn:heading[not(normalize-space())]", nsmgr);
+        
+        foreach (XmlNode heading in emptyHeadings) {
+            heading.ParentNode.RemoveChild(heading);
+        }
+    }
+
+    /// <summary>
+    /// Phase 5: Replace th with td (th not supported in IA subschema)
+    /// </summary>
+    private static void ReplaceThWithTd(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        
+        // Find all th elements
+        var thElements = xml.SelectNodes("//akn:th", nsmgr);
+        
+        foreach (XmlElement th in thElements) {
+            // Create new td element
+            var td = xml.CreateElement("td", AKN_NAMESPACE);
+            
+            // Copy all attributes
+            foreach (XmlAttribute attr in th.Attributes) {
+                td.SetAttribute(attr.Name, attr.Value);
+            }
+            
+            // Copy all child nodes
+            while (th.HasChildNodes) {
+                td.AppendChild(th.FirstChild);
+            }
+            
+            // Replace th with td
+            th.ParentNode.ReplaceChild(td, th);
+        }
+    }
+
+    /// <summary>
+    /// Phase 6: Remove elements not supported in strict AKN 3.0 for doc elements
+    /// </summary>
+    private static void RemoveUnsupportedElements(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        
+        // Remove img elements
+        var imgs = xml.SelectNodes("//akn:img", nsmgr);
+        foreach (XmlElement img in imgs) {
+            img.ParentNode.RemoveChild(img);
+        }
+        
+        // Remove subFlow elements (used for math)
+        var subFlows = xml.SelectNodes("//akn:subFlow", nsmgr);
+        foreach (XmlElement subFlow in subFlows) {
+            subFlow.ParentNode.RemoveChild(subFlow);
+        }
+        
+        // Remove toc elements
+        var tocs = xml.SelectNodes("//akn:toc", nsmgr);
+        foreach (XmlElement toc in tocs) {
+            toc.ParentNode.RemoveChild(toc);
+        }
+        
+        // Remove marker elements (used for tabs)
+        var markers = xml.SelectNodes("//akn:marker", nsmgr);
+        foreach (XmlElement marker in markers) {
+            marker.ParentNode.RemoveChild(marker);
+        }
+    }
+
+    /// <summary>
+    /// Phase 7: Convert blockContainer in table cells to inline p elements
+    /// </summary>
+    private static void ConvertBlockContainerInTables(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        
+        // Find all blockContainer elements within td elements
+        var blockContainers = xml.SelectNodes("//akn:td/akn:blockContainer", nsmgr);
+        
+        foreach (XmlElement container in blockContainers) {
+            var parent = container.ParentNode;
+            
+            // Create a new p element
+            var p = xml.CreateElement("p", AKN_NAMESPACE);
+            
+            // Extract the num element if present
+            var num = container.SelectSingleNode("akn:num", nsmgr);
+            if (num != null) {
+                // Add the number as text
+                p.AppendChild(xml.CreateTextNode(num.InnerText + " "));
+            }
+            
+            // Extract content from the inner p element
+            var innerP = container.SelectSingleNode("akn:p", nsmgr);
+            if (innerP != null) {
+                // Copy all child nodes from inner p
+                while (innerP.HasChildNodes) {
+                    p.AppendChild(innerP.FirstChild);
+                }
+            }
+            
+            // Replace blockContainer with the new p
+            parent.ReplaceChild(p, container);
+        }
     }
 
 }

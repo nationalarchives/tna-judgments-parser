@@ -9,6 +9,7 @@ using System.Xml.Xsl;
 using Xunit;
 
 using CaseLaw = UK.Gov.NationalArchives.CaseLaw;
+using UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation.ImpactAssessments.Test {
 
@@ -54,6 +55,24 @@ public class TestIA {
         Assert.Equal(expected, actual);
     }
 
+    [Fact(Skip = "Manual regeneration only")]
+    public void RegenerateAllTestFiles() {
+        // Navigate from bin/Debug/net8.0 back to project root
+        var projectRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(
+            System.AppDomain.CurrentDomain.BaseDirectory,
+            "..", "..", "..", ".."
+        ));
+        
+        foreach (var testData in Indices) {
+            int i = (int)testData[0];
+            var docx = CaseLaw.Tests.ReadDocx($"test.leg.ia.test{i}.docx");
+            var akn = Helper.Parse(docx).Serialize();
+            var outputPath = System.IO.Path.Combine(projectRoot, "test", "leg", "ia", $"test{i}.akn");
+            System.IO.File.WriteAllText(outputPath, akn);
+            System.Console.WriteLine($"Regenerated test{i}.akn");
+        }
+    }
+
     private static string xslt = @"<?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' xmlns:uk='https://legislation.gov.uk/akn'>
   <xsl:template match='akn:FRBRdate/@date'/>
@@ -72,6 +91,22 @@ public class TestIA {
         using XmlWriter xWriter = XmlWriter.Create(sWriter);
         Transform.Transform(reader, xWriter);
         return sWriter.ToString();
+    }
+
+    [Theory]
+    [MemberData(nameof(Indices))]
+    public void ValidateAkn(int i) {
+        var aknXml = CaseLaw.Tests.ReadXml($"test.leg.ia.test{i}.akn");
+        var doc = new XmlDocument();
+        doc.LoadXml(aknXml);
+        
+        var validator = new Validator();
+        var errors = validator.Validate(doc);
+        
+        if (errors.Count > 0) {
+            var errorMessages = string.Join("\n", errors.Select(e => $"  - {e.Message}"));
+            throw new Exception($"Validation failed for test{i}.akn with {errors.Count} error(s):\n{errorMessages}");
+        }
     }
 
 }
