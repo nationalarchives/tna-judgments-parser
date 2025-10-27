@@ -98,8 +98,10 @@ record ValidDate(DateTime Date, string Format, ReferenceKey Key) : DocDate
 
 record NoDate() : DocDate
 {
-    public override XNode? Build(Document _) => null;
-
+    public override XNode? Build(Document _) =>
+        new XElement(akn + "docDate",
+            new XAttribute("date", "9999-01-01")
+        );
 };
 
 record UnknownDate(string Text) : DocDate

@@ -13,11 +13,16 @@ using static  UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 namespace UK.Gov.Legislation.Lawmaker.Date;
 public record DatesContainer(IEnumerable<DateBlock> DateBlocks) : IBlock, IBuildable<XNode>
 {
-    public XNode? Build(Document document) =>
-        new XElement(akn + "container",
+    // temporary workaround for the broken eId logic in Lawmaker
+    internal static int commenceDateOC = 0;
+    public XNode? Build(Document document)
+    {
+        commenceDateOC = 0;
+        return new XElement(akn + "container",
             new XAttribute("name", "dates"),
             DateBlocks.Select(b => b.Build(document))
         );
+    }
 
     public static DatesContainer? Parse(IParser<IBlock> parser) =>
         parser.MatchWhile(
@@ -46,8 +51,10 @@ public abstract partial record DateBlock(
     //         ? new Reference(key, validDate.Date.ToString("o", System.Globalization.CultureInfo.InvariantCulture))
     //         : null;
 
-    public XNode? Build(Document document) =>
-        new XElement(akn + "block",
+    public XNode? Build(Document document)
+    {
+        return new XElement(akn + "block",
+            this is CommenceDate ? new XAttribute("eId", GetCommenceEId()) : null,
             new XAttribute("name", Name),
             Class is null ? null : new XAttribute(akn + "class", Class),
             new XElement(akn + "span",
@@ -56,6 +63,28 @@ public abstract partial record DateBlock(
                     ? " " + text
                     : ""))),
             Date.Build(document));
+    }
+
+    // Lamakers eId generation is broken, this is a workaround to ensure the
+    // eIds are correct for Lawmaker (until Lawmaker can be fixed)
+    public string GetCommenceEId() => "fnt__dates___commenceDate" + this switch
+    {
+        CommenceDate(_, _, UnknownDate _, _) => "Description",
+        CommenceDate(_, _, NoDate _, _) => "Description",
+        _ => IncrementCommenceOC(),
+    } + (DatesContainer.commenceDateOC > 1 ? $"__oc_{DatesContainer.commenceDateOC}" : "");
+
+    private string IncrementCommenceOC()
+    {
+        DatesContainer.commenceDateOC++;
+        return "";
+    }
+
+    private static string GetEId()
+    {
+        DatesContainer.commenceDateOC++;
+        return "Description";
+    }
 
     public static DateBlock? Parse(IParser<IBlock> parser)
     {

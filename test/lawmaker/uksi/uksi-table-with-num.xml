@@ -21,8 +21,8 @@
 	  </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
       <container name="dates">
-        <block name="madeDate"><span>Made</span><docDate date="2023-07-05"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varMadeDate" class="#placeholder"/></docDate></block>
-        <block name="commenceDate"><span>Coming into force</span><docDate date="2023-07-27"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder"/></docDate></block>
+        <block name="madeDate"><span>Made</span><docDate date="2023-07-05"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varMadeDate" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="2023-07-27"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder" /></docDate></block>
       </container>
     </preface>	  
     <body>
@@ -37,11 +37,6 @@
           </content>
         </article>
       </part>
-			 
-				 
-											 
-				  
-			  
       <part eId="pt_2" class="group2">
         <num>Part 2</num>
         <heading>LICENSED ACTIVITIES</heading>
