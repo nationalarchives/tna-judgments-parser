@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docDepartment { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+.ia-table td:empty {
+	display: none !important;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* Special styling for header summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA semantic containers */
+.hcontainer.summary {
+	/* Semantic container - styling handled by inner table */
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+
+</style>
+   </head>
+   <body>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center"><span class="docType"><b>EXPLANATORY MEMORANDUM TO</b></span></p>
+            <p class="center"><b>THE UNIVERSAL CREDIT (CHILDCARE) (AMENDMENT) REGULATIONS 2023</b></p>
+            <p class="center"><span class="docNumber"><b>2023 No. 593</b></span></p>
+         </div>
+         <div class="body">
+            <section class="section num heading">
+               <h2><span class="num"><b>1.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1.1</span></h2>
+                  <p>This explanatory memorandum has been prepared by The Department for Work and Pensions
+                     (DWP) and is laid before Parliament by Command of His Majesty.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>2.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>The purpose of this instrument is to allow certain payments made by the Secretary
+                     of State, that would otherwise be excluded due to being “other relevant support”,
+                     to be taken into account in determining the charges for relevant childcare costs paid
+                     by the claimant when a claimant is taking up, or is due to take up, paid work or is
+                     significantly increasing their hours of paid work. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2.2</span></h2>
+                  <p>This instrument also increases the maximum amount which can be paid in each assessment
+                     period in respect of childcare costs in Universal Credit.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>3.</b></span></h2>
+               <section class="level heading">
+                  <h2><span class="heading"><b><i>Matters of special interest to the Joint Committee on Statutory Instruments</i></b></span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.1</span></h2>
+                     <p>None.</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>4.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>The extent of this instrument is England and Wales and Scotland.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>The territorial application of this instrument is England and Wales and Scotland.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>5.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>As the instrument is subject to negative resolution procedure and does not amend primary
+                     legislation, no statement is required.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>6.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>This instrument makes changes to the Universal Credit Regulations 2013<span class="fn">1</span> (S.I. 2013/376). Under those regulations, a claimant can have an amount included
+                     in their Universal Credit award in respect of childcare costs if they meet the relevant
+                     entitlement conditions for that additional amount.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.2</span></h2>
+                  <p>Regulation 2 of The Universal Credit (Childcare) (Amendment) Regulations 2023 (this
+                     instrument) amends regulation 34 of the Universal Credit Regulations 2013. That regulation
+                     sets out how the amount in respect of childcare costs is calculated for the purposes
+                     of the Universal Credit award. The amendment provides for certain payments made by
+                     the Secretary of State (which have previously been left out of account) to be taken
+                     into account in determining the charges for childcare costs paid by the claimant.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.3</span></h2>
+                  <p>Regulation 2(3) of this instrument amends regulation 36 of the Universal Credit Regulations
+                     2013 and increases the maximum amount which can be paid in respect of childcare costs
+                     in Universal Credit in each assessment period.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>7.</b></span></h2>
+               <section class="level heading">
+                  <h2><span class="heading"><b><i>What is being done and why?</i></b></span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading"><i><u>Addressing the issue of upfront childcare costs</u></i></span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.1</span></h2>
+                        <p>The Universal Credit Regulations 2013, specifically the current provision in regulation
+                           34, does not allow Universal Credit claimants to receive payment of the Universal
+                           Credit childcare element for any amount that is being met or reimbursed by an employer
+                           or some other person or is covered by “other relevant support”.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.2</span></h2>
+                        <p>“Other relevant support” means payments out of funds provided by the Secretary of
+                           State or by Scottish or Welsh Ministers in connection with the claimant's participation
+                           in work-related activity or training.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.3</span></h2>
+                        <p>The Secretary of State can make provision to assist claimants with upfront childcare
+                           costs and currently this is done via the Flexible Support Fund, a non-recoverable
+                           discretionary fund that Jobcentre staff can use to remove barriers claimants face
+                           when moving into work or progressing in work. Regulation 34, however, means that,
+                           when claimants receive funds for upfront childcare costs from the Secretary of State
+                           (or Scottish or Welsh Ministers), whilst helpful, some Universal Credit claimants
+                           will still find it very difficult to find the funds to pay their next set of childcare
+                           costs.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.4</span></h2>
+                        <p>This instrument introduces a change that addresses this issue by allowing Universal
+                           Credit claimants, who are responsible for a child, to claim back up to 85% of a payment
+                           to the childcare provider, made by the Secretary of State for upfront childcare costs,
+                           where the claimant is taking up paid work or increasing their working hours. The funds
+                           received as part of the Universal Credit award can then be set aside and used to help
+                           pay the next set of childcare costs making it easier for the claimant to get into
+                           the Universal Credit childcare costs payment cycle. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading"><i><u>Increasing the childcare cost caps</u></i></span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.5</span></h2>
+                        <p>Currently the Universal Credit Regulations 2013 provides for the amount of Universal
+                           Credit in respect of childcare costs to be capped at £646.35 for one child or £1108.04
+                           for two or more children, per assessment period.  These amounts have not changed,
+                           as a standalone measure, since 2006.</p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.6</span></h2>
+                        <p>This instrument introduces a change which will increase the childcare cost caps to
+                           £950.92 for one child and £1630.15 for two or more children, per assessment period.
+                           </p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>8.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>This instrument does not relate to withdrawal from the European Union / trigger the
+                     statement requirements under the European Union (Withdrawal) Act.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>9.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>Informal consolidated text of instruments is available to the public free of charge
+                     via The National Archives website: www.legislation.gov.uk.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>10.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>The Department presented the draft regulations to the Social Security Advisory Committee
+                     (SSAC) on 26th April 2023. The Committee agreed that it will not take the regulations
+                     on formal reference.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>11.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>A range of digital and offline channels will be used to help ensure that relevant
+                     operational staff, stakeholders and claimants are aware of, and understand, the changes.
+                     This will include: </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>inform and upskill DWP operational staff to ensure that the measures are delivered
+                        to claimants who need it;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>updating internal guidance;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p><a href="http://www.gov.uk/universal-credit">www.gov.uk/universal-credit</a> and <a href="http://www.understandinguniversalcredit.gov.uk/">www.understandinguniversalcredit.gov.uk</a> will be updated by the coming into force date;</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>work with partner organisations and other stakeholders to encourage them to amplify
+                        the message to their networks and customers, and to ensure they are able to communicate
+                        accurate information; and</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>continue to work with other relevant government departments to ensure that their processes
+                        and procedures reflect the changes as appropriate</p>
+                  </section>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>12.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>There is no, or no significant, impact on business, charities or voluntary bodies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.2</span></h2>
+                  <p>There is no, or no significant, impact on the public sector.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.3</span></h2>
+                  <p>A full impact assessment has not been prepared for this instrument as no, or no significant,
+                     impact on the private, public or voluntary sectors is foreseen.</p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>13.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13.1</span></h2>
+                  <p>The legislation does not apply to activities that are undertaken by small businesses.
+                     </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>14.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14.1</span></h2>
+                  <p>The changes set out in this instrument aim to increase the take up of Universal Credit
+                     childcare costs and help Universal Credit claimants take up paid work by increasing
+                     the generosity of the offer and helping to address a known barrier.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.2</span></h2>
+                  <p>The success criteria for this instrument is to use existing quality assurance processes
+                     to monitor and review the impact of these changes to ensure the policy is delivered
+                     as intended. Take-up of the Universal Credit childcare offer will continue to be monitored.
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.3</span></h2>
+                  <p>The instrument does not include a statutory review clause.  </p>
+               </section>
+            </section>
+            <section class="section num heading">
+               <h2><span class="num"><b>15.</b></span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15.1</span></h2>
+                  <p>Niamh Parker at the Department for Work and Pensions, email: Niamh.Parker@dwp.gov.uk
+                     can be contacted with any queries regarding the instrument.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.2</span></h2>
+                  <p>Graeme Connor, Deputy Director for Universal Credit Policy Division, at the Department
+                     for Work and Pensions can confirm that this Explanatory Memorandum meets the required
+                     standard.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.3</span></h2>
+                  <p>Minister for Social Mobility, Youth and Progression at the Department for Work and
+                     Pensions can confirm that this Explanatory Memorandum meets the required standard.</p>
+               </section>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><span class="marker">1</span>  <a href="https://www.legislation.gov.uk/uksi/2013/376/contents"><u>https://www.legislation.gov.uk/uksi/2013/376/contents</u></a></p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

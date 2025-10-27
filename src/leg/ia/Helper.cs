@@ -329,16 +329,16 @@ class Helper : BaseHelper {
         if (!string.IsNullOrEmpty(headingText)) {
             var heading = xml.CreateElement("heading", AKN_NAMESPACE);
             heading.InnerText = headingText;
-            hcontainer.AppendChild(heading);
+            section.AppendChild(heading);
         }
 
-        // Copy all child nodes from level to hcontainer
+        // Copy all child nodes from level to section
         while (level.HasChildNodes) {
-            hcontainer.AppendChild(level.FirstChild);
+            section.AppendChild(level.FirstChild);
         }
 
-        // Replace the level element with hcontainer
-        level.ParentNode.ReplaceChild(hcontainer, level);
+        // Replace the level element with section
+        level.ParentNode.ReplaceChild(section, level);
     }
 
     private static string ExtractSectionHeading(XmlNode level) {
