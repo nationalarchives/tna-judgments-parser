@@ -9,7 +9,7 @@
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="proceduralRubric">Draft Order laid before the Assembly under paragraph 7(2) of Schedule 4 to the European Union (Withdrawal) Act 2018 and Article 39(1), (2) and (3) of the Waste and Contaminated Land (Northern Ireland) Order 1997 for approval</block>
       <block name="banner">DRAFT STATUTORY RULES OF NORTHERN IRELAND</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
@@ -19,6 +19,10 @@
 		</container>
       </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made xxxx 2025</span><docDate date="9999-01-01" /></block>
+        <block eId="fnt__dates___commenceDateDescription" name="commenceDate"><span>Coming into operation xxxx 2025</span><docDate date="9999-01-01" /></block>
+      </container>
     </preface>  
     <preamble eId="preamble">
       <formula name="enactingText">

@@ -35,7 +35,15 @@ namespace UK.Gov.Legislation.Lawmaker
             Dictionary<string, string> copy = new(this.State);
             UpdateStateAndRemoveStyleAttributes(e);
             e.ChildNodes.Cast<XmlNode>().ToList().ForEach(VisitNode);
-            RemoveSpan(e);
+            if (e.HasAttribute("keep"))
+            {
+                // workaround becuase there ARE some span elements we don't
+                // want to delete
+                e.RemoveAttribute("keep");
+            } else
+            {
+                RemoveSpan(e); // why??
+            }
             State = copy;
         }
 
