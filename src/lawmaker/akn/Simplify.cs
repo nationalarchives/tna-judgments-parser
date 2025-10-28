@@ -50,7 +50,16 @@ namespace UK.Gov.Legislation.Lawmaker
         private new void VisitText(XmlText text)
         {
             List<string> allowedParents = ["span", "b", "i", "u", "sup", "sub"];
-            if (!allowedParents.Contains(text.ParentNode.LocalName))
+            List<string> checkGrandparents = ["p", "heading", "block", "num", "tocItem"];
+            string parentName = text.ParentNode.LocalName;
+            XmlNode grandparent = text.ParentNode.ParentNode;
+            // Don't need to insert style tags for whitespace
+            if (string.IsNullOrWhiteSpace(text.Value))
+                return;
+            if (!allowedParents.Contains(parentName))
+                return;
+            // The parent span is a lone child meaning the current XmlText is the entire line so don't insert inline style tags
+            if (parentName.Equals("span") && checkGrandparents.Contains(grandparent.LocalName) && grandparent.ChildNodes.Count < 2)
                 return;
             if (State.GetValueOrDefault("font-weight") == "bold")
             {
