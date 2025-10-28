@@ -13,6 +13,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         internal Dictionary<string, Dictionary<string, string>> Styles { get; init; }
 
+        public required Metadata Metadata { get; init; }
+
         internal IList<IBlock> CoverPage { get; init; }
 
         internal IList<IBlock> Preface { get; init; }
@@ -22,7 +24,6 @@ namespace UK.Gov.Legislation.Lawmaker
         internal IList<IDivision> Body { get; init; }
 
         internal IList<Schedule> Schedules { get; init; }
-        
         internal IList<BlockContainer> Conclusions { get; init; }
 
     }

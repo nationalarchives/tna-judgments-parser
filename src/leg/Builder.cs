@@ -300,9 +300,14 @@ class Builder : AkN.Builder {
     /* annexes */
 
     protected void AddAnnexes(XmlElement main, IDocument document) {
-        // Annexes/attachments are not supported in the IA subschema for doc elements
-        // Skip them to maintain schema compliance
-        // TODO: Consider alternative representation for annexes in doc elements
+        if (document.Annexes is null)
+            return;
+        if (!document.Annexes.Any())
+            return;
+        XmlElement attachments = doc.CreateElement("attachments", ns);
+        main.AppendChild(attachments);
+        foreach (var annex in document.Annexes.Select((value, i) => new { i, value }))
+            AddAnnex(attachments, annex.value, annex.i + 1, document.Meta);
     }
 
     private void AddAnnex(XmlElement attachments, IAnnex annex, int n, DocumentMetadata meta) {
@@ -314,8 +319,19 @@ class Builder : AkN.Builder {
         AddMetadata(main, new AnnexMetadata(meta, n));
         XmlElement body = doc.CreateElement("mainBody", ns);
         main.AppendChild(body);
-        p(body, annex.Number);
-        blocks(body, annex.Contents);
+        
+        // Wrap annex content in hcontainer > content to comply with IA subschema
+        // Now that we've extended the schema to allow blockContainer in block-container type,
+        // we can use the simpler content structure
+        XmlElement hcontainer = doc.CreateElement("hcontainer", ns);
+        hcontainer.SetAttribute("name", "annexContent");
+        body.AppendChild(hcontainer);
+        XmlElement content = doc.CreateElement("content", ns);
+        hcontainer.AppendChild(content);
+        
+        // Add annex number and contents
+        p(content, annex.Number);
+        blocks(content, annex.Contents);
     }
 
 }

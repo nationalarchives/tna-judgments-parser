@@ -15,11 +15,13 @@
             <xs:element ref="meta" />
             <xs:element ref="preface" minOccurs="0" />
             <xs:element ref="mainBody" />
+            <xs:element ref="attachments" minOccurs="0" />
         </xs:sequence>
         <xs:attribute name="name" use="required">
             <xs:simpleType>
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="ImpactAssessment" />
+                    <xs:enumeration value="annex" />
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
@@ -27,6 +29,25 @@
 </xs:element>
 
 <xs:element name="meta" />
+
+
+<!-- attachments -->
+
+<xs:element name="attachments">
+    <xs:complexType>
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="attachment" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="attachment">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="doc" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
 
 
 <!-- preface -->
@@ -228,6 +249,7 @@
         <xs:element ref="p" />
         <xs:element ref="table"  />
         <xs:element ref="block"  />
+        <xs:element ref="blockContainer"  />
     </xs:choice>
 </xs:complexType>
 

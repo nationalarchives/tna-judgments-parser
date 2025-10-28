@@ -23,4 +23,6 @@ interface ILineable
     IEnumerable<WLine> Lines { get; }
     WLine? GetLastLine() => Lines.LastOrDefault();
 
+    string? GetLastLineAsString() => Lines.LastOrDefault()?.TextContent;
+
 }

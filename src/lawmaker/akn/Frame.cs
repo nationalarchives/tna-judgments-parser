@@ -89,12 +89,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public bool IsSecondaryDocName()
         {
-            return IsSecondaryDocName(CurrentDocName);
-        }
-
-        public static bool IsSecondaryDocName(DocName docName)
-        {
-            return DocNames.IsSecondaryDocName(docName);
+            return CurrentDocName.IsSecondaryDocName();
         }
 
         public bool Pop()
