@@ -150,7 +150,7 @@ namespace UK.Gov.Legislation.Lawmaker;
                     continue;
                 }
 
-                if (IsLeftAligned(line) && IsFlushLeft(line) && !line.IsAllItalicized())
+                if (Preamble.IsStart(line))
                 {
                     preamble.Add(line);
                     i += 1;
@@ -175,10 +175,6 @@ namespace UK.Gov.Legislation.Lawmaker;
             i = 0;
         }
 
-        /*
-         * Identifies and skips over the Table of Contents.
-         */
-
         private BlockContainer? ParseWelshBlockContainer()
         {
             ExplanatoryNote? explanatoryNote = ParseExplanatoryNote();
@@ -192,3 +188,11 @@ namespace UK.Gov.Legislation.Lawmaker;
             return null;
         }
     }
+
+public class Preamble
+{
+    internal static bool IsStart(WLine line) =>
+        line.IsLeftAligned()
+            && line.IsFlushLeft()
+            && !line.IsAllItalicized();
+}

@@ -277,7 +277,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (next is UnnumberedLeaf)
             {
-                if (!IsLeftAligned(firstLine))
+                if (!firstLine.IsLeftAligned())
                     return null;
                 if (LineIsIndentedLessThan(firstLine, leader))
                     return null;
