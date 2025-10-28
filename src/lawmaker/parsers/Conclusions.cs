@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private readonly List<BlockContainer> conclusions = [];
 
         private void ParseConclusions()
-        {                    
+        {
             ExplanatoryNote? explanatoryNote = ParseExplanatoryNote();
             if (explanatoryNote is not null)
                 conclusions.Add(explanatoryNote);
@@ -26,14 +26,14 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private ExplanatoryNote? ParseExplanatoryNote()
         {
-            if (i >= Document.Body.Count)
+            if (i >= Body.Count)
                 return null;
 
             // Handle heading and subheading
-            if (!ExplanatoryNote.IsHeading(langService, Current()))
+            if (!ExplanatoryNote.IsHeading(LanguageService, Current()))
                 return null;
             WLine heading = (Current() as WLine)!;
-            
+
             int save = i;
             i += 1;
 
@@ -43,9 +43,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 subheading = Current() as WLine;
                 i += 1;
             }
-            
+
             List<IBlock> content = [];
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 IBlock? currentBlock = Current();
                 if (currentBlock is null)
@@ -53,7 +53,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 // If we hit the the start of the Commencement History table,
                 // then the Explanatory Note must have ended.
-                if (CommencementHistory.IsHeading(langService, currentBlock))
+                if (CommencementHistory.IsHeading(LanguageService, currentBlock))
                     break;
 
                 if (currentBlock is WLine line && IsCenterAligned(line))
@@ -72,7 +72,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save;
                 return null;
             }
-            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(content);
+            BlockParser parser = new(content) { LanguageService = LanguageService };
+            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(parser);
             return new ExplanatoryNote { Heading = heading, Subheading = subheading, Content = structuredContent };
         }
 
@@ -86,7 +87,7 @@ namespace UK.Gov.Legislation.Lawmaker
             i += 1;
 
             List<IBlock> content = [];
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 IBlock? currentBlock = Current();
                 if (currentBlock is null)
@@ -94,7 +95,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 // If we hit the the start of the Commencement History table,
                 // then the Explanatory Note must have ended.
-                if (CommencementHistory.IsHeading(langService, currentBlock))
+                if (CommencementHistory.IsHeading(LanguageService, currentBlock))
                     break;
 
                 // If we hit another Tblock heading, this Tblock must end.
@@ -109,17 +110,18 @@ namespace UK.Gov.Legislation.Lawmaker
                 i = save;
                 return null;
             }
-            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(content);
+            BlockParser parser = new(content) { LanguageService = LanguageService };
+            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(parser);
             return new HeadingTblock { Heading = heading, Content = structuredContent };
         }
 
         private CommencementHistory? ParseCommencementHistory()
         {
-            if (i >= Document.Body.Count)
+            if (i >= Body.Count)
                 return null;
 
             // Handle heading and subheading
-            if (!CommencementHistory.IsHeading(langService, Current()))
+            if (!CommencementHistory.IsHeading(LanguageService, Current()))
                 return null;
             WLine heading = (Current() as WLine)!;
 
@@ -135,9 +137,9 @@ namespace UK.Gov.Legislation.Lawmaker
 
             List<IBlock> blocks = [];
             IBlock block;
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
-                block = Document.Body[i].Block;
+                block = Body[i];
 
                 if (block is WLine line && IsCenterAligned(line))
                     break;
@@ -163,10 +165,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class { get; internal init; } = "explanatoryNote";
 
-        private static readonly Dictionary<Lang, string> HeadingPatterns = new()
+        private static readonly LanguagePatterns HeadingPatterns = new()
         {
-            [Lang.ENG] = @"^EXPLANATORY +NOTE$",
-            [Lang.CYM] = @"^NODYN +ESBONIADOL"
+            [Lang.ENG] = [@"^EXPLANATORY +NOTE$"],
+            [Lang.CYM] = [@"^NODYN +ESBONIADOL"]
         };
 
         public static bool IsHeading(LanguageService langService, IBlock? block)
@@ -201,10 +203,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class { get; internal init; } = "commencementHistory";
 
-        private static readonly Dictionary<Lang, string> HeadingPatterns = new()
+        private static readonly LanguagePatterns HeadingPatterns = new()
         {
-            [Lang.ENG] = @"^NOTE +AS +TO +EARLIER +COMMENCEMENT.*$",
-            [Lang.CYM] = @"^NODYN +AM +Y +(RHEOLIADAU|GORCHMYNION|GORCHYMYN) +CYCHWYN +(CYNHARACH|BLAENOROL)$"
+            [Lang.ENG] = [@"^NOTE +AS +TO +EARLIER +COMMENCEMENT.*$"],
+            [Lang.CYM] = [@"^NODYN +AM +Y +(RHEOLIADAU|GORCHMYNION|GORCHYMYN) +CYCHWYN +(CYNHARACH|BLAENOROL)$"]
         };
 
         public static bool IsHeading(LanguageService langService, IBlock? block)

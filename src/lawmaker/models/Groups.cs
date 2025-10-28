@@ -10,10 +10,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
     internal interface GroupOfParts
     {
-        public static readonly Dictionary<Lang, string> NumberPatterns = new()
+        public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = @"^THE +(\w+) +GROUP +OF +PARTS$",
-            [Lang.CYM] = @"^GRŴP +O +RANNAU$"
+            [Lang.ENG] = [@"^THE +(\w+) +GROUP +OF +PARTS$"],
+            [Lang.CYM] = [@"^GRŴP +O +RANNAU$"]
         };
 
         public static bool IsValidChild(IDivision child)
@@ -45,10 +45,10 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface Part
     {
 
-        public static readonly Dictionary<Lang, string> NumberPatterns = new()
+        public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = @"^PART [A-Z]*\d+[A-Z]*$",
-            [Lang.CYM] = @"^RHAN [A-Z]*\d+[A-Z]*$"
+            [Lang.ENG] = [@"^PART [A-Z]*\d+[A-Z]*$"],
+            [Lang.CYM] = [@"^RHAN [A-Z]*\d+[A-Z]*$"]
         };
 
         public static bool IsValidChild(IDivision child)
@@ -88,10 +88,10 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface Chapter
     {
 
-        public static readonly Dictionary<Lang, string> NumberPatterns = new()
+        public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = @"^CHAPTER [A-Z]*\d+[A-Z]*$",
-            [Lang.CYM] = @"^PENNOD [A-Z]*\d+[A-Z]*$"
+            [Lang.ENG] = [@"^CHAPTER [A-Z]*\d+[A-Z]*$"],
+            [Lang.CYM] = [@"^PENNOD [A-Z]*\d+[A-Z]*$"]
         };
 
         public static bool IsValidChild(IDivision child)
@@ -200,10 +200,10 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override bool HeadingPrecedesNumber => true;
 
-        public static readonly Dictionary<Lang, string> HeadingPatterns = new()
+        public static readonly LanguagePatterns HeadingPatterns = new()
         {
-            [Lang.ENG] = @"^SCHEDULES$",
-            [Lang.CYM] = @"^YR ATODLENNI$"
+            [Lang.ENG] = [@"^SCHEDULES$"],
+            [Lang.CYM] = [@"^YR ATODLENNI$"]
         };
 
         public static bool IsValidChild(IDivision child)
@@ -219,10 +219,10 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface SchedulePart
     {
 
-        public static readonly Dictionary<Lang, string> NumberPatterns = new()
+        public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = @"^PART [A-Z]*\d+[A-Z]*$",
-            [Lang.CYM] = @"^RHAN [A-Z]*\d+[A-Z]*$"
+            [Lang.ENG] = [@"^PART [A-Z]*\d+[A-Z]*$"],
+            [Lang.CYM] = [@"^RHAN [A-Z]*\d+[A-Z]*$"]
         };
 
         public static bool IsValidChild(IDivision child)
@@ -261,10 +261,10 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface ScheduleChapter
     {
 
-        public static readonly Dictionary<Lang, string> NumberPatterns = new()
+        public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = @"^CHAPTER [A-Z]*\d+[A-Z]*$",
-            [Lang.CYM] = @"^PENNOD [A-Z]*\d+[A-Z]*$"
+            [Lang.ENG] = [@"^CHAPTER [A-Z]*\d+[A-Z]*$"],
+            [Lang.CYM] = [@"^PENNOD [A-Z]*\d+[A-Z]*$"]
         };
 
         public static bool IsValidChild(IDivision child)

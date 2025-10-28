@@ -1,9 +1,13 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.VariantTypes;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.Imaging;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -195,7 +199,7 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> container = [];
             HandleMod(first, container);
 
-            while (i < Document.Body.Count)
+            while (i < Body.Count)
             {
                 int save = i;
                 IList<IBlock> extraParagraph = GetExtraParagraph(line, nextExpected);
@@ -301,31 +305,162 @@ namespace UK.Gov.Legislation.Lawmaker
             return [..leaf.Contents];
         }
 
-        /*
-         * Prevents the ParseAndMemoize method from recursing too deep.
-         * If we are inside a Prov1/SchProv1 or any of their descendants, and we
-         * encounter another (non-quoted) Prov1/SchProv1 or a grouping provision,
-         * then we know the current Prov1/SchProv1 must have ended, and must break.
-         */
+        /// <summary>
+        /// Peeks at the next line and breaks from the current Prov1/SchProv1 element if
+        /// the line represents the beginning of a following sibling or grouping provision
+        /// (which indicates that the current Prov1/SchProv1 element has come to an end).
+        /// </summary>
+        /// <remarks>
+        /// This ensures that sequences of Prov1/SchProv1 elements are parsed iteratively rather than
+        /// recursively, cutting down on the maximum recursion depth and lowering the risk of stack overflow.
+        /// </remarks>
+        /// <returns>Whether to break from the current Prov1/SchProv1 element.</returns>
         private bool BreakFromProv1()
         {
             if (Current() is not WLine line)
                 return false;
 
-            // Sections cannot occur in a Schedule context, so no need to check for them
-            if (!frames.IsScheduleContext() && PeekProv1(line))
-                return true;
-            // Disabled for now, as numbered list items appear identical to SchProv1 elements
-            // and were causing an unnecessary and problematic break
-            /*
-            if (PeekSchProv1(line))
-                return true;
-            */
-            // If centre-aligned, it must be a grouping provision
+            // If centre-aligned, it must be the start of a new grouping provision
             if (IsCenterAligned(line))
                 return true;
+
+            // If we reach the heading of another Prov1, this Prov1 must be over
+            if (provisionRecords.IsInProv1(quoteDepth) && PeekProv1(line))
+                return true;
+
+            // If we encounter what appears to be a headingless Prov1/SchProv1
+            // whose number is the next number in the sequence, this Prov1 must be over
+            if (isSubsequentProv1(line) || isSubsequentSchProv1(line))
+            {
+                string parentNum = GetNumString(provisionRecords.CurrentNumber(quoteDepth));
+                string childNum = GetNumString(line);
+                return IsSubsequentNum(parentNum, childNum);
+            }
+
             return false;
         }
+
+        private bool isSubsequentProv1(WLine line) => provisionRecords.IsInProv1(quoteDepth) && PeekBareProv1(line);
+
+        private bool isSubsequentSchProv1(WLine line) => provisionRecords.IsInSchProv1(quoteDepth) && PeekSchProv1(line);
+
+        private string GetNumString(WLine line)
+        {
+            if (line is not WOldNumberedParagraph np)
+                return null;
+            return GetNumString(np.Number);
+        }
+
+        private string GetNumString(IFormattedText number)
+        {
+            return IgnoreQuotedStructureStart(number.Text, quoteDepth);
+        }
+
+        /// <summary>
+        /// Returns <c>true</c> if <paramref name="lo"/> and <paramref name="hi"/> are numbered sequentially.
+        /// </summary>
+        /// <param name="lo">The first number</param>
+        /// <param name="hi">The second number</param>
+        private static bool IsSubsequentNum(string lo, string hi)
+        {
+            lo = lo.Replace(".", " ").Trim();
+            hi = hi.Replace(".", " ").Trim();
+
+            // Check direct increments
+            // For example: 1 -> 2, 1A -> 1B, 1Z1D -> 1Z1E
+            if (GetNumIncrementOf(lo) == hi)
+                return true;
+
+            // Check direct decrements
+            // For example: A1 -> 1, AZ1 -> A1
+            if (GetNumDecrementOf(hi) == lo)
+                return true;
+
+            // Check for the addition of any number of 'Z' followed by an 'A'
+            // For example: 1 -> 1A, 2B -> 2BA, 3 -> 3ZA, 7 -> 7ZZA
+            if (hi.Length > lo.Length)
+            {
+                string diff = Regex.Replace(hi, @$"^{lo}", "");
+                if (Regex.IsMatch(diff, @"^Z*A$"))
+                    return true;
+            }
+
+            if (hi.Length < lo.Length)
+            {
+                // Check for when a character is dropped, then the number incremented
+                // i.e. (1B -> 2, 1CA -> 1D)
+                string loTrimmed = string.Concat(lo.SkipLast(1));
+                if (GetNumIncrementOf(loTrimmed) == hi)
+                    return true;
+                // Check for when every char after the final Z is dropped, then the number incremented
+                // i.e. (1Z1 -> 2, 3Z10 -> 4)
+                loTrimmed = Regex.Replace(lo, @"Z\d+$", "");
+                if (GetNumIncrementOf(loTrimmed) == hi)
+                    return true;
+                // Check for when every char after the final Z is dropped, and an 'A' or '1' is added
+                // 5ZC -> 5A, AZ3 -> A1
+                string diff = Regex.Replace(hi, @$"^{loTrimmed}", "");
+                if (hi.StartsWith(loTrimmed) && (diff == "A" || diff == "1"))
+                    return true;
+
+            }
+            return false;
+        }
+
+        /// <summary>Increments an alphanumeric number string.</summary>
+        /// <param name="numString">The alphanumeric number to increment (as a string).</param>
+        /// <returns>The incremented number (as a string).</returns>
+        private static string GetNumIncrementOf(string numString)
+        {
+            // If the num is entirely numeric, simply increment it
+            // For example: 1 -> 2
+            bool isInt = int.TryParse(numString, out int numInt);
+            if (isInt)
+                return (numInt + 1).ToString();
+
+            // If the num ends with a numeric portion, increment that portion
+            // For example: A9 -> A10, 1Z1 -> 1Z2
+            string finalDigitsString = Regex.Match(numString, @"\d+$").Value;
+            if (finalDigitsString.Length > 0)
+            {
+                int.TryParse(finalDigitsString, out int finalDigitsInt);
+                return Regex.Replace(numString, @"\d+$", (finalDigitsInt + 1).ToString());
+            }
+
+            // If the num ends with an alphabetic portion, increment that portion
+            // For example: 1A -> 1B, 1Z1D -> 1Z1E
+            char finalChar = numString.Last();
+            // Special case: the increment of 'Z' is 'Z1'
+            if (finalChar == 'Z')
+                return numString + '1';
+            // Special case: the increment of 'N' is 'P' (skips 'O')
+            if (finalChar == 'N')
+                return new string(numString.SkipLast(1).Append('P').ToArray());
+            // Typical case
+            char charIncrement = (char)(finalChar + 1);
+            return new string(numString.SkipLast(1).Append(charIncrement).ToArray());
+        }
+
+        /// <summary>Decrements an alphanumeric number string.</summary>
+        /// <remarks>
+        /// Note that this is special logic used only when a child element is inserted before an existing element
+        /// with a number ending in a '1' or 'A'. For example, A1 comes before 1, and 3ZA comes before 3A.
+        /// </remarks>
+        /// <param name="numString">The alphanumeric number to decrement (as a string).</param>
+        /// <returns>The decremented number (as a string).</returns>
+        private static string GetNumDecrementOf(string numString)
+        {
+            bool isInt = int.TryParse(numString, out int numInt);
+            // For purely numeric nums, 'A' is prepended to decrement
+            // For example: A1 -> 1
+            if (isInt)
+                return 'A' + numString;
+
+            // Otherwise, a 'Z' is placed in the second last position to decrement
+            // For example: AZ1 -> A1, 1ZA -> 1A
+            return numString.Substring(0, numString.Length - 1) + "Z" + numString.Substring(numString.Length - 1);
+        }
+
 
         /*
          * Prevents the ParseAndMemoize method from recursing too deep.
@@ -372,16 +507,22 @@ namespace UK.Gov.Legislation.Lawmaker
             return null;
         }
 
+        #nullable enable
         /*
          * Attempts to identify the current line as one of a small number of provisions
          * which can exist as the very first provision in the body of a document.
          * Otherwise, returns null.
          */
-        private HContainer PeekBodyStartProvision()
+        private HContainer? PeekBodyStartProvision()
         {
             if (Current() is not WLine line)
                 return null;
+            return PeekBodyStartProvision(line);
+        }
+        private HContainer? PeekBodyStartProvision(WLine? line)
+        {
 
+            if (line is null) return null;
             if (PeekGroupOfPartsHeading(line))
                 return new GroupOfPartsLeaf { };
             if (PeekPartHeading(line))
@@ -395,6 +536,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
             return null;
         }
+
+        internal bool IsStartOfBody() => PeekBodyStartProvision() is not null;
 
     }
 }
