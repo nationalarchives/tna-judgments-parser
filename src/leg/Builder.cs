@@ -32,6 +32,12 @@ class Builder : AkN.Builder {
         XmlElement main = CreateAndAppend("doc", akomaNtoso);
         main.SetAttribute("name", document.Meta.Name);
         main.SetAttribute("xmlns:uk", UKNS);
+        
+        // Add dc namespace if this is an IA document with LastModified
+        if (document.Meta is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) {
+            main.SetAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
+        }
+        
         AddMetadata(main, document.Meta);
         if (document.Header is not null && document.Header.Any()) {
             XmlElement header = doc.CreateElement("preface", ns);
@@ -131,6 +137,13 @@ class Builder : AkN.Builder {
         XmlElement parser = doc.CreateElement("uk", "parser", UKNS);
         proprietary.AppendChild(parser);
         parser.AppendChild(doc.CreateTextNode(AkN.Metadata.GetParserVersion()));
+        
+        // Add dc:modified for IA documents if LastModified is available
+        if (data is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) {
+            XmlElement modified = doc.CreateElement("dc", "modified", "http://purl.org/dc/elements/1.1/");
+            proprietary.AppendChild(modified);
+            modified.AppendChild(doc.CreateTextNode(FormatDateAndTime(iaData.LastModified)));
+        }
 
         if (data.CSS is not null) {
             XmlElement presentation = CreateAndAppend("presentation", meta);

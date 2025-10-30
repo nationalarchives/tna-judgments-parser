@@ -35,6 +35,11 @@ partial class Parser : BaseLegislativeDocumentParser {
         return header;
     }
 
+    // Override to use IA-specific metadata that extracts docDate
+    protected override DocumentMetadata MakeMetadata(List<IBlock> header) {
+        return IAMetadata.Make(header, doc, Config);
+    }
+
 }
 
 }

@@ -56,12 +56,22 @@ public class TestEM {
         return sWriter.ToString();
     }
 
-    [Fact(Skip = "Manual regeneration only")]
-    public void RegenerateAllTestFiles() {
-        var projectRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(
-            System.AppDomain.CurrentDomain.BaseDirectory,
-            "..", "..", "..", ".."
-        ));
+    [Fact]
+    public void RegenerateAllEMTestFiles() {
+        var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+        var assemblyDir = System.IO.Path.GetDirectoryName(assembly.Location);
+        var projectRoot = assemblyDir;
+        
+        // Look for either .sln file or .git directory to find project root
+        while (projectRoot != null && 
+               !System.IO.File.Exists(System.IO.Path.Combine(projectRoot, "tna-judgments-parser.sln")) &&
+               !System.IO.Directory.Exists(System.IO.Path.Combine(projectRoot, ".git"))) {
+            projectRoot = System.IO.Directory.GetParent(projectRoot)?.FullName;
+        }
+        
+        if (projectRoot == null) {
+            throw new System.Exception("Could not find project root");
+        }
         
         foreach (var testData in Indices) {
             int i = (int)testData[0];
