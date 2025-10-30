@@ -1,12 +1,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using OpenXmlPowerTools;
 
 using Microsoft.Extensions.Logging;
 
@@ -23,7 +25,7 @@ class Numbering2 {
 
     public static bool HasOwnNumber(Paragraph paragraph) {
         MainDocumentPart main = Main.Get(paragraph);
-        (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
+        (int? numId, int ilvl) = Numbering.GetNumberingIdAndLevelReference(main, paragraph);
         if (!numId.HasValue)
             return false;
         if (numId.Value == 0)
@@ -74,21 +76,40 @@ class Numbering2 {
 
     public static NumberInfo? GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
 
+        var stopwatch = new Stopwatch();
+        //stopwatch.Start();
         string cached = GetCachedNumberQuietly(paragraph);
+        //stopwatch.Stop();
+        //Console.WriteLine($"GetCachedNumberQuietly: {stopwatch.ElapsedMilliseconds}ms");
+
         if (cached is not null && cached == "")
             return null;
 
-        (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
+        //stopwatch.Restart();
+        (int? numId, int ilvl) = Numbering.GetNumberingIdAndLevelReference(main, paragraph);
+        //stopwatch.Stop();
+        //Console.WriteLine($"GetNumberingIdAndIlvl: {stopwatch.ElapsedMilliseconds}ms");
+
         if (!numId.HasValue) {
+            //stopwatch.Restart();
             SetCachedNumber(paragraph, "");
+            //stopwatch.Stop();
+            //Console.WriteLine($"SetCachedNumber: {stopwatch.ElapsedMilliseconds}ms");
             return null;
         }
 
+        //stopwatch.Restart();
         Level level = Numbering.GetLevel(main, numId.Value, ilvl);
+        //stopwatch.Stop();
+        //Console.WriteLine($"Numbering.GetLevel: {stopwatch.ElapsedMilliseconds}ms");
+
 
         string formatted;
         if (cached is null) {
+            //stopwatch.Restart();
             formatted = Magic2(main, paragraph, numId.Value, ilvl);
+            //stopwatch.Stop();
+            //Console.WriteLine($"Magic2: {stopwatch.ElapsedMilliseconds}ms");
             SetCachedNumber(paragraph, formatted);
             if (string.IsNullOrEmpty(formatted))
                 return null;
@@ -100,7 +121,7 @@ class Numbering2 {
     }
 
     private static string Magic2(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
-        NumberingInstance instance = Numbering.GetNumbering(main, numberingId);
+        NumberingInstance instance = Numbering.GetNumberingInstance(main, numberingId);
         if (instance is null)
             return null;
         AbstractNum abstractNum = Numbering.GetAbstractNum(main, instance);
@@ -109,6 +130,9 @@ class Numbering2 {
         if (baseLevel is null)  // [2023] UKFTT 00089 (TC), a very strange case
             return null;
         LevelText format = baseLevel.LevelText;
+
+        //var stopwatch = new Stopwatch();
+        //stopwatch.Start();
 
         /* None */
         if (baseLevel.NumberingFormat.Val == NumberFormatValues.None) { // EWHC/QB/2009/406
@@ -197,6 +221,10 @@ class Numbering2 {
             return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.$");
+
+        //stopwatch.Stop();
+        //Console.WriteLine($"Pattern matching: {stopwatch.ElapsedMilliseconds}ms");
+
         if (match.Success) {
             OneCombinator combine = num => num + ".";
             return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
@@ -329,26 +357,27 @@ class Numbering2 {
         throw new Exception("unsupported level text: " + format.Val.Value);
     }
 
-    private static int GetAbstractStart(MainDocumentPart main, int absNumId, int ilvl) {
-        AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
+    // Gets the 'start numbering value' of a given iLvl of a given AbstractNum
+    private static int GetAbstractStart(MainDocumentPart main, int abstractNumId, int iLvl) {
+        AbstractNum abstractNum = main.NumberingDefinitionsPart.Numbering.ChildElements
             .OfType<AbstractNum>()
-            .Where(a => a.AbstractNumberId.Value == absNumId)
+            .Where(a => a.AbstractNumberId.Value == abstractNumId)
             .First();
-        Level level = abs.ChildElements
+        Level level = abstractNum.ChildElements
             .OfType<Level>()
-            .Where(l => l.LevelIndex.Value == ilvl)
+            .Where(l => l.LevelIndex.Value == iLvl)
             .FirstOrDefault();  // does not exist in EWHC/Ch/2003/2902
         return level?.StartNumberingValue?.Val ?? 1;
     }
 
     private static int GetStart(MainDocumentPart main, int numberingId, int ilvl) {
-        NumberingInstance numbering = Numbering.GetNumbering(main, numberingId);
+        NumberingInstance numbering = Numbering.GetNumberingInstance(main, numberingId);
         int? start = numbering.Descendants<Level>()
             .Where(l => l.LevelIndex.Value == ilvl)
             .FirstOrDefault()?.StartNumberingValue?.Val?.Value;
         if (start.HasValue)
             return start.Value;
-        int? lvlOver = GetStartOverride(numbering, ilvl);
+        int? lvlOver = GetStartOverrideNumberingValue(numbering, ilvl);
         if (lvlOver.HasValue)
             return lvlOver.Value;
         return GetAbstractStart(main, numbering.AbstractNumId.Val.Value, ilvl);
@@ -361,10 +390,28 @@ class Numbering2 {
         return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl, combine);
     }
     private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, int ilvl, OneCombinator combine) {
+        var stopwatch = new Stopwatch();
+        stopwatch.Start();
+
         Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
+        stopwatch.Stop();
+        Console.WriteLine($"Numbering.GetLevel: {stopwatch.ElapsedMilliseconds}ms");
+
+        stopwatch.Restart();
         int n = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl);
+        stopwatch.Stop();
+        Console.WriteLine($"CalculateN: {stopwatch.ElapsedMilliseconds}ms");
+
+        stopwatch.Restart();
         n += Fields.CountPrecedingParagraphsWithListNum(numberingId, ilvl, paragraph);
+        stopwatch.Stop();
+        Console.WriteLine($"CountPrecedingParagraphsWithListNum: {stopwatch.ElapsedMilliseconds}ms");
+
+        stopwatch.Restart();
         string num = FormatN(n, lvl.NumberingFormat);
+        stopwatch.Stop();
+        Console.WriteLine($"FormatN: {stopwatch.ElapsedMilliseconds}ms");
+
         return combine(num);
     }
 
@@ -582,34 +629,34 @@ class Numbering2 {
         throw new Exception("unsupported level text: " + lvlText);
     }
 
-    private static int? GetStartOverride(MainDocumentPart main, int numberingId, int ilvl) {
-        NumberingInstance numbering = Numbering.GetNumbering(main, numberingId);
-        return GetStartOverride(numbering, ilvl);
+    private static int? GetStartOverrideNumberingValue(MainDocumentPart main, int numberingId, int ilvl) {
+        NumberingInstance numbering = Numbering.GetNumberingInstance(main, numberingId);
+        return GetStartOverrideNumberingValue(numbering, ilvl);
     }
-    private static int? GetStartOverride(NumberingInstance numbering, int ilvl) {
-        LevelOverride over = numbering?.ChildElements.OfType<LevelOverride>()
+    private static int? GetStartOverrideNumberingValue(NumberingInstance numberingInstance, int ilvl) {
+        LevelOverride over = numberingInstance?.ChildElements.OfType<LevelOverride>()
             .Where(l => l.LevelIndex.Value == ilvl)
             .FirstOrDefault();
         return over?.StartOverrideNumberingValue?.Val?.Value;
     }
 
     private static bool StartOverrideIsOperative(MainDocumentPart main, Paragraph target, int ilvl) {
-        (int? targetNumId, int targetIlvl) = Numbering.GetNumberingIdAndIlvl(main, target);
+        (int? targetNumId, int targetIlvl) = Numbering.GetNumberingIdAndLevelReference(main, target);
         if (!targetNumId.HasValue)
             throw new Exception();
         if (targetIlvl != ilvl)
             throw new Exception();
-        NumberingInstance targetNumbering = Numbering.GetNumbering(main, targetNumId.Value);
+        NumberingInstance targetNumbering = Numbering.GetNumberingInstance(main, targetNumId.Value);
 
         int numIdOfStartOverride = -1;
         var allPrev = target.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, target));
         foreach (Paragraph prev in allPrev) {
             // if (Paragraphs.IsEmptySectionBreak(prev))
             //     continue;
-            (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
+            (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndLevelReference(main, prev);
             if (!prevNumId.HasValue)
                 continue;
-            NumberingInstance prevNumbering = Numbering.GetNumbering(main, prevNumId.Value);
+            NumberingInstance prevNumbering = Numbering.GetNumberingInstance(main, prevNumId.Value);
             if (prevNumbering is null)
                 continue;
             AbstractNum prevAbsNum = Numbering.GetAbstractNum(main, prevNumbering);
@@ -627,7 +674,7 @@ class Numbering2 {
             }
             // prevIlvl == ilvl
             if (prevNumId != numIdOfStartOverride) {
-                int? prevOver = GetStartOverride(prevNumbering, ilvl);
+                int? prevOver = GetStartOverrideNumberingValue(prevNumbering, ilvl);
                 if (prevOver.HasValue)
                     numIdOfStartOverride = prevNumId.Value;
             }
@@ -635,23 +682,24 @@ class Numbering2 {
         return true;
     }
 
+    // Maps a given combination of numId and iLvl to 
     class StartAccumulator {
 
         private readonly Dictionary<int, Dictionary<int, int>> Map = new();
 
-        internal int? Get(int pevNumId, int prevIlvl) {
-            if (!Map.TryGetValue(pevNumId, out Dictionary<int, int> prevAbsStartsByIlvl))
+        internal int? Get(int numId, int iLvl) {
+            if (!Map.TryGetValue(numId, out Dictionary<int, int> prevAbsStartsByIlvl))
                 return null;
-            if (!prevAbsStartsByIlvl.TryGetValue(prevIlvl, out int prevAbsStart))
+            if (!prevAbsStartsByIlvl.TryGetValue(iLvl, out int prevAbsStart))
                 return null;
             return prevAbsStart;
         }
 
-        internal void Put(int prevNumId, int prevIlvl, int prevAbsStart) {
-            if (!Map.ContainsKey(prevNumId))
-                Map.Add(prevNumId, new Dictionary<int, int>());
-            if (!Map[prevNumId].ContainsKey(prevIlvl))
-                Map[prevNumId].Add(prevIlvl, prevAbsStart);
+        internal void Put(int numId, int iLvl, int prevAbsStart) {
+            if (!Map.ContainsKey(numId))
+                Map.Add(numId, new Dictionary<int, int>());
+            if (!Map[numId].ContainsKey(iLvl))
+                Map[numId].Add(iLvl, prevAbsStart);
         }
 
     }
@@ -682,42 +730,43 @@ class Numbering2 {
         var prevStarts = new StartAccumulator();
         int count = 0;
 
-        foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
+        foreach (Paragraph prevPara in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
 
-            if (Paragraphs.IsDeleted(prev))
+            if (Paragraphs.IsDeleted(prevPara))
                 continue;
-            if (Paragraphs.IsEmptySectionBreak(prev))
+            if (Paragraphs.IsEmptySectionBreak(prevPara))
                 continue;
-            if (Paragraphs.IsMergedWithFollowing(prev))
+            if (Paragraphs.IsMergedWithFollowing(prevPara))
                 continue;
-            (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
+
+            (int? prevNumId, int prevILvl) = Numbering.GetNumberingIdAndLevelReference(main, prevPara);
             if (!prevNumId.HasValue)
                 continue;
-            NumberingInstance prevNumbering = Numbering.GetNumbering(main, prevNumId.Value);
-            if (prevNumbering is null)
+            NumberingInstance prevNumberingInstance = Numbering.GetNumberingInstance(main, prevNumId.Value);
+            if (prevNumberingInstance is null)
                 continue;
 
             // [2024] EWHC 3163 (Comm)
-            if (prev.Parent is TableCell tc) {
+            if (prevPara.Parent is DocumentFormat.OpenXml.Wordprocessing.TableCell tc) {
                 var merge = tc.TableCellProperties?.VerticalMerge;
                 if (merge is not null) {
                     if (merge.Val is null || merge.Val == MergedCellValues.Continue) {
-                        if (string.IsNullOrEmpty(prev.InnerText))
+                        if (string.IsNullOrEmpty(prevPara.InnerText))
                             continue;
                     }
                 }
             }
 
-            AbstractNum prevAbsNum = Numbering.GetAbstractNum(main, prevNumbering);
-            int prevAbsNumId = prevAbsNum.AbstractNumberId;
-            if (prevAbsNumId != abstractNumId)
+            AbstractNum prevAbstractNum = Numbering.GetAbstractNum(main, prevNumberingInstance);
+            int prevAbstractNumId = prevAbstractNum.AbstractNumberId;
+            if (prevAbstractNumId != abstractNumId)
                 continue;
 
-            int? prevNumIdWithoutStyle = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
-            int? prevNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, prev), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
-            Style prevStyle =  Styles.GetStyle(main, prev);
+            Style prevStyle = Styles.GetStyle(main, prevPara);
+            int? prevNumIdWithoutStyle = prevPara.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+            int? prevNumIdFromStyle = Styles.GetStyleProperty(prevStyle, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
 
-            if (prevIlvl < ilvl) {
+            if (prevILvl < ilvl) {
                 if (numIdOfStartOverride == -2) {
                     ;
                 } else if (numIdOfStartOverride == numberingId) {
@@ -732,7 +781,7 @@ class Numbering2 {
 
                 // the strange case of [2023] EWCA Civ 657 (test60)
                 // prevIlvl > 0 needed for test76
-                if (prevIlvl > 0 && !prevNumIdWithoutStyle.HasValue && !thisNumIdWithoutStyle.HasValue) {
+                if (prevILvl > 0 && !prevNumIdWithoutStyle.HasValue && !thisNumIdWithoutStyle.HasValue) {
                     string prevBasedOn = prevStyle?.BasedOn?.Val?.Value;
                     string thisStyleId = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
                     int? prevStyleIlvl = prevStyle?.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
@@ -740,7 +789,7 @@ class Numbering2 {
                         continue;
                 }
                 // for test 94
-                if (prevIlvl > 0) {
+                if (prevILvl > 0) {
                     bool prevIsOutlineNumbered = prevStyle?.StyleParagraphProperties?.OutlineLevel?.Val?.Value is not null;
                     bool thisIsOutlineNumbered = thisStyle?.StyleParagraphProperties?.OutlineLevel?.Val?.Value is not null;
                     if (prevIsOutlineNumbered && !thisIsOutlineNumbered)
@@ -751,20 +800,20 @@ class Numbering2 {
                 continue;
             }
 
-            if (prevIlvl > ilvl) {
+            if (prevILvl > ilvl) {
 
                 if (count == 0) // test35
                     count += 1;
 
-                int? prevStartOverride = GetStartOverride(prevNumbering, prevIlvl);
+                int? prevStartOverride = GetStartOverrideNumberingValue(prevNumberingInstance, prevILvl);
                 if (prevStartOverride.HasValue) { // see tests 38, 47, 66, 67, & 77
 
                     if (prevNumIdWithoutStyle.HasValue && prevNumIdWithoutStyle.Value > 1)
-                        prevAbsStarts.Put(prevNumIdWithoutStyle.Value, prevIlvl, absStart);
-                    if (prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value > 1)
-                        prevAbsStartsStyle.Put(prevNumIdOfStyle.Value, prevIlvl, absStart);
+                        prevAbsStarts.Put(prevNumIdWithoutStyle.Value, prevILvl, absStart);
+                    if (prevNumIdFromStyle.HasValue && prevNumIdFromStyle.Value > 1)
+                        prevAbsStartsStyle.Put(prevNumIdFromStyle.Value, prevILvl, absStart);
 
-                    bool styleNumbersDontMatch = prevNumIdOfStyle.HasValue && thisNumIdOfStyle.HasValue && prevNumIdOfStyle.Value != thisNumIdOfStyle.Value;
+                    bool styleNumbersDontMatch = prevNumIdFromStyle.HasValue && thisNumIdOfStyle.HasValue && prevNumIdFromStyle.Value != thisNumIdOfStyle.Value;
                     if (styleNumbersDontMatch) { // test 67
                         start = absStart;
                         numIdOfStartOverride = -2;
@@ -774,7 +823,7 @@ class Numbering2 {
                     if (prevNumIdWithoutStyle == numberingId && prevStartOverride.Value > 1)
                         prevContainsNumOverrideAtLowerLevel = true;
                     if (!isHigher && prevNumIdWithoutStyle.HasValue) // for test 91, !isHight for test 68
-                        prevStarts.Put(prevNumIdWithoutStyle.Value, prevIlvl, prevStartOverride.Value);
+                        prevStarts.Put(prevNumIdWithoutStyle.Value, prevILvl, prevStartOverride.Value);
                 }
 
                 continue;
@@ -783,45 +832,44 @@ class Numbering2 {
             // now prevIlvl == ilvl
 
             if (prevNumIdWithoutStyle.HasValue) {
-                var prevAbsStart = prevAbsStarts.Get(prevNumIdWithoutStyle.Value, prevIlvl + 2);
+                var prevAbsStart = prevAbsStarts.Get(prevNumIdWithoutStyle.Value, prevILvl + 2);
                 if (prevAbsStart.HasValue) {
                     start = prevAbsStart.Value;
                     numIdOfStartOverride = -2;
                 }
-            }
-            if (prevNumIdWithoutStyle.HasValue) {
                 var prevStart = prevStarts.Get(prevNumIdWithoutStyle.Value, ilvl + 1);
-                if (prevStart.HasValue) {
+                if (prevStart.HasValue)
+                {
                     start = prevStart.Value;
                     numIdOfStartOverride = -2;
                 }
             }
 
-            bool numOverrideShouldntApplyToPrev1 = numOverrideShouldntApplyToStyleOnly && !prevNumIdWithoutStyle.HasValue && prevNumIdOfStyle == numIdOfStartOverrideStyle;
+            bool numOverrideShouldntApplyToPrev1 = numOverrideShouldntApplyToStyleOnly && !prevNumIdWithoutStyle.HasValue && prevNumIdFromStyle == numIdOfStartOverrideStyle;
             bool numOverrideShouldntApplyToPrev2 = numOverrideShouldntApplyToStyleAndAdHoc &&
-                prevNumIdOfStyle.HasValue && prevNumIdOfStyle == numIdOfStartOverrideStyle &&
+                prevNumIdFromStyle.HasValue && prevNumIdFromStyle == numIdOfStartOverrideStyle &&
                 prevNumIdWithoutStyle.HasValue && numIdOfStartOverrideWithoutStyle.HasValue && prevNumIdWithoutStyle.Value != numIdOfStartOverrideWithoutStyle.Value;
 
-            int? prevOver = GetStartOverride(prevNumbering, ilvl);
-            if (prevOver.HasValue && prevOver.Value > 1) {
+            int? prevStartOverrideNumberingValue = GetStartOverrideNumberingValue(prevNumberingInstance, ilvl);
+            if (prevStartOverrideNumberingValue.HasValue && prevStartOverrideNumberingValue.Value > 1) {
                 numOverrideShouldntApplyToPrev1 = false;
                 numOverrideShouldntApplyToPrev2 = false;
             }
 
             if (!numOverrideShouldntApplyToPrev1 && !numOverrideShouldntApplyToPrev2 && prevNumId.Value != numIdOfStartOverride && numIdOfStartOverride != -2) {
-                if (!isHigher || prevNumIdOfStyle.HasValue) {  // test68
-                    if (prevOver.HasValue && StartOverrideIsOperative(main, prev, prevIlvl)) {
-                        start = prevOver.Value;
+                if (!isHigher || prevNumIdFromStyle.HasValue) {  // test68
+                    if (prevStartOverrideNumberingValue.HasValue && StartOverrideIsOperative(main, prevPara, prevILvl)) {
+                        start = prevStartOverrideNumberingValue.Value;
                         numIdOfStartOverride = prevNumId.Value;
-                        if (prevNumIdOfStyle == numIdOfStartOverrideStyle && prevNumIdWithoutStyle.HasValue && !numIdOfStartOverrideWithoutStyle.HasValue) {
+                        if (prevNumIdFromStyle == numIdOfStartOverrideStyle && prevNumIdWithoutStyle.HasValue && !numIdOfStartOverrideWithoutStyle.HasValue) {
                             numOverrideShouldntApplyToStyleOnly = true;
                             // When the number override comes from a paragraph that has a style but also numbering of its own,
                             // then the number override shouldn't apply to paragraphs with only that style. See test 86.
                         }
-                        if (prevIlvl == 0 && prevOver.Value > 1 && prevNumIdOfStyle.HasValue && prevNumIdOfStyle.Value == thisNumIdOfStyle && prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumIdWithoutStyle.Value != thisNumIdWithoutStyle.Value)
+                        if (prevILvl == 0 && prevStartOverrideNumberingValue.Value > 1 && prevNumIdFromStyle.HasValue && prevNumIdFromStyle.Value == thisNumIdOfStyle && prevNumIdWithoutStyle.HasValue && thisNumIdWithoutStyle.HasValue && prevNumIdWithoutStyle.Value != thisNumIdWithoutStyle.Value)
                             numOverrideShouldntApplyToStyleAndAdHoc = true;
 
-                        numIdOfStartOverrideStyle = prevNumIdOfStyle;
+                        numIdOfStartOverrideStyle = prevNumIdFromStyle;
                         numIdOfStartOverrideWithoutStyle = prevNumIdWithoutStyle;
                         if (!prevContainsNumOverrideAtLowerLevel)  // tests 37 and 87 need this condition
                             count = 0;
@@ -838,10 +886,9 @@ class Numbering2 {
                 start = prevAbsStart.Value;
                 numIdOfStartOverride = -2;
             }
-        }
-        if (thisNumIdWithoutStyle.HasValue) {
             var prevStart = prevStarts.Get(thisNumIdWithoutStyle.Value, ilvl + 1);
-            if (prevStart.HasValue) {
+            if (prevStart.HasValue)
+            {
                 start = prevStart.Value;
                 numIdOfStartOverride = -2;
             }
@@ -855,7 +902,7 @@ class Numbering2 {
             thisNumIdOfStyle.HasValue && thisNumIdOfStyle == numIdOfStartOverrideStyle &&
             thisNumIdWithoutStyle.HasValue && numIdOfStartOverrideWithoutStyle.HasValue && thisNumIdWithoutStyle.Value != numIdOfStartOverrideWithoutStyle.Value;
 
-        int? over = GetStartOverride(main, numberingId, ilvl);
+        int? over = GetStartOverrideNumberingValue(main, numberingId, ilvl);
         if (over.HasValue && over.Value > 1) {
             numOverrideShouldntApply1 = false;
             numOverrideShouldntApply2 = false;
@@ -876,7 +923,7 @@ class Numbering2 {
 
     // for REF \w -- see EWHC/Comm/2018/1368
     public static string GetNumberInFullContext(MainDocumentPart main, Paragraph paragraph) {
-        (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
+        (int? numId, int ilvl) = Numbering.GetNumberingIdAndLevelReference(main, paragraph);
         if (!numId.HasValue)
             return null;
         string formatted = Magic2(main, paragraph, numId.Value, ilvl);
@@ -890,7 +937,7 @@ class Numbering2 {
     /* gets formatting number of parent level (by subtracting 1 from n) */
     /* assumes number format involves only one level */
     private static string Magic3(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
-        NumberingInstance instance = Numbering.GetNumbering(main, numberingId);
+        NumberingInstance instance = Numbering.GetNumberingInstance(main, numberingId);
         AbstractNum abstractNum = Numbering.GetAbstractNum(main, instance);
         Int32Value abstractNumberId = abstractNum.AbstractNumberId;
         Level baseLevel = Numbering.GetLevel(main, numberingId, baseIlvl);

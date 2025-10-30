@@ -200,7 +200,7 @@ class Inline2 {
             e = Elements[i];
         }
         code = DOCX.Fields.NormalizeFieldCode(code);
-        Logger.LogDebug("field code: " + code);
+        //Logger.LogDebug("field code: " + code);
 
         if (i < Elements.Count && e.ChildElements.All(child => child is RunProperties)) {
             i += 1;

@@ -10,10 +10,10 @@ namespace UK.Gov.Legislation.Judgments.DOCX {
 
 class Numbering {
 
-    public static NumberingInstance GetNumbering(MainDocumentPart main, int id) {
+    public static NumberingInstance GetNumberingInstance(MainDocumentPart main, int numberingLevelId) {
         return main.NumberingDefinitionsPart?.Numbering.ChildElements
             .OfType<NumberingInstance>()
-            .Where(n => n.NumberID.Equals(id))
+            .Where(n => n.NumberID.Equals(numberingLevelId))
             .FirstOrDefault();
     }
 
@@ -31,10 +31,12 @@ class Numbering {
             .Where(abs => name.Equals(abs.AbstractNumDefinitionName?.Val?.Value, StringComparison.InvariantCultureIgnoreCase))
             .FirstOrDefault();
     }
-    public static AbstractNum GetAbstractNum(MainDocumentPart main, NumberingInstance numbering) {
+
+    // Gets the AbstractNum of the NumberingInstance
+    public static AbstractNum GetAbstractNum(MainDocumentPart main, NumberingInstance numberingInstance) {
         return main.NumberingDefinitionsPart.Numbering.ChildElements
             .OfType<AbstractNum>()
-            .Where(abs => abs.AbstractNumberId.Value == numbering.AbstractNumId.Val.Value)
+            .Where(abs => abs.AbstractNumberId.Value == numberingInstance.AbstractNumId.Val.Value)
             .FirstOrDefault();
     }
 
@@ -50,7 +52,7 @@ class Numbering {
         return level;
     }
     public static Level GetLevel(MainDocumentPart main, int numberingId, int ilvl) {
-        NumberingInstance numbering = GetNumbering(main, numberingId);
+        NumberingInstance numbering = GetNumberingInstance(main, numberingId);
         if (numbering is null)  // this does happen, I think it means that (style) numbering is removed
             return null;
         Level level = numbering.Descendants<Level>()
@@ -131,7 +133,7 @@ class Numbering {
     }
 
     public static Level GetLevelOrStyleLevel(MainDocumentPart main, Paragraph paragraph) {
-        (int? numId, int ilvl) = GetNumberingIdAndIlvl(main, paragraph);
+        (int? numId, int ilvl) = GetNumberingIdAndLevelReference(main, paragraph);
         if (!numId.HasValue)
             return null;
         return GetLevel(main, numId.Value, ilvl);
@@ -161,7 +163,7 @@ class Numbering {
     //     return props;
     // }
 
-    internal static Tuple<int?, int> GetNumberingIdAndIlvl(MainDocumentPart main, Paragraph paragraph) {
+    internal static Tuple<int?, int> GetNumberingIdAndLevelReference(MainDocumentPart main, Paragraph paragraph) {
         int? id = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
         if (!id.HasValue && paragraph.ParagraphProperties?.NumberingProperties?.NumberingChange?.Id?.Value is not null)
             id = int.Parse(paragraph.ParagraphProperties.NumberingProperties.NumberingChange.Id.Value);

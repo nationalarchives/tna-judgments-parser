@@ -39,8 +39,8 @@ public class Parser {
     /// <exception cref="InvalidAkNException"></exception>
     public static Response Parse(Request request) {
 
-        if (request.Filename is not null)
-            Logger.LogInformation($"parsing { request.Filename }");
+        //if (request.Filename is not null)
+            //Logger.LogInformation($"parsing { request.Filename }");
 
         ParseFunction parse = GetParser(request.Hint);
 

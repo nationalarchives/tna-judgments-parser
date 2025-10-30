@@ -183,7 +183,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (conclusionElements.Count <= 0)
             {
-                logger.LogWarning("The parsed Conclusions elements were empty!");
+                //logger.LogWarning("The parsed Conclusions elements were empty!");
                 return;
             }
             XmlElement conc = CreateAndAppend("conclusions", main);

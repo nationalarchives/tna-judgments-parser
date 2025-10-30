@@ -1,5 +1,7 @@
 
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Xml;
 using UK.Gov.Legislation.Lawmaker.Api;
@@ -12,8 +14,13 @@ namespace UK.Gov.Legislation.Lawmaker
         // Invoked via CLI when running locally
         public static Bundle LocalParse(string path, LegislationClassifier classifier, LanguageService languageService)
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
             byte[] docx = File.ReadAllBytes(path);
-            return Parse(docx, classifier, languageService);
+            Bundle bundle =  Parse(docx, classifier, languageService);
+            stopwatch.Stop();
+            Console.WriteLine($"TOTAL TIME: {stopwatch.ElapsedMilliseconds}ms");
+            return bundle;
         }
 
         // Invoked via AWS Lambda function handler
@@ -33,9 +40,24 @@ namespace UK.Gov.Legislation.Lawmaker
         {
 
             Document bill = LegislationParser.Parse(docx, classifier, languageService);
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
             XmlDocument doc = Builder.Build(bill);
+            stopwatch.Stop();
+            Console.WriteLine($"BUILDING TIME: {stopwatch.ElapsedMilliseconds}ms");
+
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
             Simplifier.Simplify(doc, bill.Styles);
+            stopwatch.Stop();
+            Console.WriteLine($"SIMPLIFYING TIME: {stopwatch.ElapsedMilliseconds}ms");
+
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
             string xml = NationalArchives.Judgments.Api.Parser.SerializeXml(doc);
+            stopwatch.Stop();
+            Console.WriteLine($"SERIALIZING TIME: {stopwatch.ElapsedMilliseconds}ms");
+
             return new Bundle { Xml = xml };
         }
 

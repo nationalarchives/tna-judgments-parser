@@ -8,6 +8,8 @@ using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using CaseLaw = UK.Gov.NationalArchives.CaseLaw.Parse;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
+using System.Diagnostics;
+using System;
 
 
 namespace UK.Gov.Legislation.Lawmaker;
@@ -30,9 +32,25 @@ public partial class LegislationParser
     */
     public static Document Parse(byte[] docx, LegislationClassifier classifier, LanguageService languageService)
     {
+        var stopwatch = new Stopwatch();
+        stopwatch.Start();
         WordprocessingDocument doc = AkN.Parser.Read(docx);
+        stopwatch.Stop();
+        Console.WriteLine($"READING IN TIME: {stopwatch.ElapsedMilliseconds}ms");
+
+        stopwatch = new Stopwatch();
+        stopwatch.Start();
         CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
-        return new LegislationParser(simple, classifier, languageService) { LanguageService = languageService }.Parse();
+        stopwatch.Stop();
+        Console.WriteLine($"PREPARSING TIME: {stopwatch.ElapsedMilliseconds}ms");
+
+        stopwatch = new Stopwatch();
+        stopwatch.Start();
+        Document outputDoc = new LegislationParser(simple, classifier, languageService) { LanguageService = languageService }.Parse();
+        stopwatch.Stop();
+        Console.WriteLine($"PARSING TIME: {stopwatch.ElapsedMilliseconds}ms");
+
+        return outputDoc;
     }
 
     private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier, LanguageService languageService) : this(
@@ -73,8 +91,8 @@ public partial class LegislationParser
         if (i != Body.Count)
             Logger.LogWarning("parsing did not complete: {}", i);
 
-        Logger.LogInformation($"Maximum ParseAndMemoize depth reached: {parseAndMemoizeDepthMax}");
-        Logger.LogInformation($"Maximum Parse depth reached: {parseDepthMax}");
+        //Logger.LogInformation($"Maximum ParseAndMemoize depth reached: {parseAndMemoizeDepthMax}");
+        //Logger.LogInformation($"Maximum Parse depth reached: {parseDepthMax}");
 
         // Handle start and end quotes after parsing is complete, because it alters the
         // contents of parsed results which does not work well with memoization

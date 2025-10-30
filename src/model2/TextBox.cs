@@ -35,7 +35,7 @@ internal class WTextBox {
     }
 
     internal static WTextBox Extract(MainDocumentPart main, TextBoxContent txbxContent) {
-        IEnumerable<WLine> lines = txbxContent.ChildElements.OfType<Paragraph>().Select(p => PreParser.ParseParagraph(main, p));
+        IEnumerable<WLine> lines = txbxContent.ChildElements.OfType<Paragraph>().Select(p => PreParser.ParseParagraph(null, null, null));
         if (!lines.Any())
             return null;
         return new WTextBox { Lines = lines.ToList() };

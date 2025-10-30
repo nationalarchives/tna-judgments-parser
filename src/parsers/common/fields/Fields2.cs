@@ -217,11 +217,11 @@ internal class Fields2 {
         if (!code.StartsWith(" REF ", StringComparison.InvariantCultureIgnoreCase))
             return null;
         if (contents.Any()) {
-            Logger.LogDebug($"using contents of REF: { IInline.ToString(contents) }");
+            //Logger.LogDebug($"using contents of REF: { IInline.ToString(contents) }");
             return contents;
         }
         contents = UK.Gov.Legislation.Judgments.Parse.Ref.Construct(main, run, code);
-        Logger.LogWarning($"constructed empty REF: { IInline.ToString(contents) }");
+        //Logger.LogWarning($"constructed empty REF: { IInline.ToString(contents) }");
         return contents;
     }
 
@@ -246,14 +246,14 @@ internal class Fields2 {
 
     private static List<IInline> _UseContents(string code, List<IInline> contents) {
         if (!contents.Any()) {
-            Logger.LogWarning($"field code { code } has no contents");
+            //Logger.LogWarning($"field code { code } has no contents");
             return contents;
         }
         string s = IInline.ToString(contents);
-        if (string.IsNullOrWhiteSpace(s))
-            Logger.LogWarning($"field code { code } has no contents");
-        else
-            Logger.LogDebug($"using static contents of field code { code }: { s }");
+        //if (string.IsNullOrWhiteSpace(s))
+            //Logger.LogWarning($"field code { code } has no contents");
+        //else
+            //Logger.LogDebug($"using static contents of field code { code }: { s }");
         return contents;
     }
 
