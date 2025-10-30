@@ -30,12 +30,16 @@ public class RegenerateAkn {
             // Find the project root by going up from the test assembly location
             var assemblyDir = Path.GetDirectoryName(assembly.Location);
             var projectRoot = assemblyDir;
-            while (projectRoot != null && !File.Exists(Path.Combine(projectRoot, "tna-judgments-parser.sln"))) {
+            
+            // Look for either .sln file or .git directory to find project root
+            while (projectRoot != null && 
+                   !File.Exists(Path.Combine(projectRoot, "tna-judgments-parser.sln")) &&
+                   !Directory.Exists(Path.Combine(projectRoot, ".git"))) {
                 projectRoot = Directory.GetParent(projectRoot)?.FullName;
             }
             
             if (projectRoot == null) {
-                Console.WriteLine($"    ✗ Could not find project root");
+                Console.WriteLine($"    ✗ Could not find project root for test{testNum}");
                 continue;
             }
             
