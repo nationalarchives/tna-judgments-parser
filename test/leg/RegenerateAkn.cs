@@ -26,7 +26,20 @@ public class RegenerateAkn {
             // Extract test number
             var testNum = docxResource.Replace("test.leg.ia.test", "").Replace(".docx", "");
             var aknFileName = $"test{testNum}.akn";
-            var aknPath = Path.Combine("test", "leg", "ia", aknFileName);
+            
+            // Find the project root by going up from the test assembly location
+            var assemblyDir = Path.GetDirectoryName(assembly.Location);
+            var projectRoot = assemblyDir;
+            while (projectRoot != null && !File.Exists(Path.Combine(projectRoot, "tna-judgments-parser.sln"))) {
+                projectRoot = Directory.GetParent(projectRoot)?.FullName;
+            }
+            
+            if (projectRoot == null) {
+                Console.WriteLine($"    ✗ Could not find project root");
+                continue;
+            }
+            
+            var aknPath = Path.Combine(projectRoot, "test", "leg", "ia", aknFileName);
             
             Console.WriteLine($"  Processing test{testNum}...");
             

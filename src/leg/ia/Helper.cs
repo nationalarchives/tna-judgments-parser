@@ -27,8 +27,8 @@ class Helper : BaseHelper {
         // { "IA No:", "docNumber" },  // Commented out: not valid in AKN 3.0 schema for <p> elements
         { "Stage:", "docStage" },
         { "Date:", "docDate" },
-        { "Lead department or agency:", "docDepartment" },
-        { "Other departments or agencies", "docDepartment" }
+        { "Lead department or agency:", "docProponent" },
+        { "Other departments or agencies", "docProponent" }
     };
 
     private static readonly Helper Instance = new Helper();
@@ -178,8 +178,12 @@ class Helper : BaseHelper {
             if (!string.IsNullOrEmpty(valueText)) {
                 var semanticElement = xml.CreateElement(semanticElementName, AKN_NAMESPACE);
                 
-                // Note: date attribute removed - not valid in standard AKN 3.0 schema
-                // The date value is already captured in the text content of docDate
+                // For docDate elements, add the required 'date' attribute
+                if (semanticElementName == "docDate") {
+                    if (TryParseDateFromValue(valueText, out string normalizedDate)) {
+                        semanticElement.SetAttribute("date", normalizedDate);
+                    }
+                }
                 
                 semanticElement.InnerText = valueText;
                 paragraph.AppendChild(semanticElement);
@@ -204,17 +208,19 @@ class Helper : BaseHelper {
     private static bool TryParseDateFromValue(string dateValue, out string isoDate) {
         isoDate = null;
         
-        // Handle the specific format from the test: "030/9/2015" should become "2015-09-30"
-        if (System.Text.RegularExpressions.Regex.IsMatch(dateValue, @"^\d{1,2}0?/\d{1,2}/\d{4}$")) {
-            var parts = dateValue.Split('/');
-            if (parts.Length == 3 && 
-                int.TryParse(parts[0], out int day) && 
-                int.TryParse(parts[1], out int month) && 
-                int.TryParse(parts[2], out int year)) {
+        if (string.IsNullOrWhiteSpace(dateValue)) {
+            return false;
+        }
+        
+        // Handle malformed dates with extra leading zeros like "030/9/2015"
+        var match = System.Text.RegularExpressions.Regex.Match(dateValue, @"^(\d{2,3})/(\d{1,2})/(\d{4})$");
+        if (match.Success) {
+            if (int.TryParse(match.Groups[1].Value, out int day) && 
+                int.TryParse(match.Groups[2].Value, out int month) && 
+                int.TryParse(match.Groups[3].Value, out int year)) {
                 
-                // Handle the case where day might have leading zero issues like "030"
+                // Handle extra leading zero (e.g., "030" → 30)
                 if (day > 31) {
-                    // Assume it's "030" meaning "30"
                     day = day % 100;
                 }
                 
@@ -224,8 +230,33 @@ class Helper : BaseHelper {
                     return true;
                 }
                 catch {
-                    return false;
+                    // Fall through to other parsers
                 }
+            }
+        }
+        
+        // Try UK date format culture first (DD/MM/YYYY) as this is the expected format for UK IA documents
+        if (DateTime.TryParse(dateValue, new System.Globalization.CultureInfo("en-GB"), 
+            System.Globalization.DateTimeStyles.None, out DateTime parsedDate)) {
+            isoDate = parsedDate.ToString("yyyy-MM-dd");
+            return true;
+        }
+        
+        // Try to parse using DateTime.TryParse which handles many formats
+        if (DateTime.TryParse(dateValue, System.Globalization.CultureInfo.InvariantCulture, 
+            System.Globalization.DateTimeStyles.None, out parsedDate)) {
+            isoDate = parsedDate.ToString("yyyy-MM-dd");
+            return true;
+        }
+        
+        // Try parsing month-year formats like "Aug 2022" or "July 2022"
+        // Default to first day of the month
+        if (System.Text.RegularExpressions.Regex.IsMatch(dateValue, @"^[A-Za-z]+\s+\d{4}$")) {
+            if (DateTime.TryParseExact(dateValue, new[] { "MMMM yyyy", "MMM yyyy" }, 
+                System.Globalization.CultureInfo.InvariantCulture, 
+                System.Globalization.DateTimeStyles.None, out parsedDate)) {
+                isoDate = parsedDate.ToString("yyyy-MM-dd");
+                return true;
             }
         }
         
@@ -258,7 +289,7 @@ class Helper : BaseHelper {
         if (firstLevel == null) return;
 
         // Check if this level contains IA header metadata (docTitle, docStage, docDate, etc.)
-        var hasHeaderMetadata = firstLevel.SelectNodes(".//akn:docTitle | .//akn:docStage | .//akn:docDate | .//akn:docDepartment", nsmgr).Count > 0;
+        var hasHeaderMetadata = firstLevel.SelectNodes(".//akn:docTitle | .//akn:docStage | .//akn:docDate | .//akn:docProponent", nsmgr).Count > 0;
         
         if (hasHeaderMetadata) {
             // Transform to section element

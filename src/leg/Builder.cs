@@ -174,7 +174,7 @@ class Builder : AkN.Builder {
             foreach (Judgments.IInline child in docDate.Contents)
                 base.AddInline(e, child);
         } else if (model is DocDepartment docDept) {
-            XmlElement e = CreateAndAppend("docDepartment", parent);
+            XmlElement e = CreateAndAppend("docProponent", parent);
             foreach (Judgments.IInline child in docDept.Contents)
                 base.AddInline(e, child);
         } else {

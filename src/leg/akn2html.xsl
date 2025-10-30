@@ -10,7 +10,7 @@
 <xsl:output method="html" version="5" encoding="utf-8" indent="yes" include-content-type="no" />
 
 <xsl:strip-space elements="*" />
-<xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docStage docDepartment time b i u" />
+<xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docStage docProponent time b i u" />
 
 <xsl:param name="image-base" as="xs:string" select="'/'" />
 
@@ -87,7 +87,7 @@ article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
 .ia-header-text { font-size: 10pt; margin: 2pt 4pt }
 .ia-stage { font-size: 11pt; margin: 2pt 4pt }
 /* IA semantic inline elements */
-.docTitle, .docNumber, .docStage, .docDate, .docDepartment { 
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
 	font-size: 11pt; 
 	line-height: 1.2;
 }
@@ -252,7 +252,7 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 	<!-- Hidden for semantic purposes only -->
 </xsl:template>
 
-<xsl:template match="num | heading | docType | docNumber | docTitle | docStage | docDate | docDepartment | date">
+<xsl:template match="num | heading | docType | docNumber | docTitle | docStage | docDate | docProponent | date">
 	<span class="{ local-name() }">
 		<xsl:apply-templates />
 	</span>

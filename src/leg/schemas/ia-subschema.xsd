@@ -69,7 +69,7 @@
                 <xs:element ref="docTitle" />
                 <xs:element ref="docStage" />
                 <xs:element ref="docDate" />
-                <xs:element ref="docDepartment" />
+                <xs:element ref="docProponent" />
             </xs:choice>
             <xs:attribute name="class" >
                 <xs:simpleType>
@@ -92,9 +92,17 @@
 
 <xs:element name="docStage" type="inline-container" />
 
-<xs:element name="docDate" type="inline-container" />
+<xs:element name="docDate">
+    <xs:complexType mixed="true">
+        <xs:complexContent>
+            <xs:extension base="inline-container">
+                <xs:attribute name="date" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:element>
 
-<xs:element name="docDepartment" type="inline-container" />
+<xs:element name="docProponent" type="inline-container" />
 
 
 <!-- body -->
@@ -327,7 +335,7 @@
             <xs:element ref="docTitle" />
             <xs:element ref="docStage" />
             <xs:element ref="docDate" />
-            <xs:element ref="docDepartment" />
+            <xs:element ref="docProponent" />
         </xs:choice>
         <xs:attribute name="class" >
             <xs:simpleType>
