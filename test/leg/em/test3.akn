@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryMemorandum" xmlns:uk="https://legislation.gov.uk/akn">
+  <doc name="ExplanatoryMemorandum" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2023/720/memorandum" />
           <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2023/720/memorandum" />
-          <FRBRdate date="2025-10-30" name="generated" />
+          <FRBRdate date="2025-10-31" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2023/720/memorandum/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2023/720/memorandum/data.akn" />
-          <FRBRdate date="2025-10-30T15:53:28Z" name="transform" />
+          <FRBRdate date="2025-10-31T13:45:47Z" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -30,6 +30,7 @@
       </references>
       <proprietary source="#">
         <uk:parser>0.28.0</uk:parser>
+        <dc:modified>2023-06-29T09:58:00Z</dc:modified>
         <uk:hash>6cfb5ff3d24247cc773dd6cc5526f000b4a90ab842f035e81671c48f602bd17c</uk:hash>
       </proprietary>
     </meta>
