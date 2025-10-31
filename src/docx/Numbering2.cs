@@ -11,6 +11,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using OpenXmlPowerTools;
 
 using Microsoft.Extensions.Logging;
+using System.Xml.Linq;
 
 namespace UK.Gov.Legislation.Judgments.DOCX {
 
@@ -119,6 +120,11 @@ class Numbering2 {
 
         return new NumberInfo() { Number = formatted, Props = level.NumberingSymbolRunProperties };
     }
+    /*
+    public static NumberInfo? GetFormattedNumber(WordprocessingDocument doc, Paragraph child, XElement xChild) {
+
+    }
+    */
 
     private static string Magic2(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl) {
         NumberingInstance instance = Numbering.GetNumberingInstance(main, numberingId);

@@ -163,7 +163,7 @@ class Numbering {
     //     return props;
     // }
 
-    internal static Tuple<int?, int> GetNumberingIdAndLevelReference(MainDocumentPart main, Paragraph paragraph) {
+    public static Tuple<int?, int> GetNumberingIdAndLevelReference(MainDocumentPart main, Paragraph paragraph) {
         int? id = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
         if (!id.HasValue && paragraph.ParagraphProperties?.NumberingProperties?.NumberingChange?.Id?.Value is not null)
             id = int.Parse(paragraph.ParagraphProperties.NumberingProperties.NumberingChange.Id.Value);

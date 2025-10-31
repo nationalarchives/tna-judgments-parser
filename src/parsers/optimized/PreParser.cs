@@ -169,44 +169,39 @@ class PreParser {
         return unmerged;
     }
 
-    private static List<IBlock> ParseElement(WordprocessingDocument doc, XElement e, Stopwatch stopwatch2, XDocument mainXDoc) {
-        //if (e is Paragraph p)
-          //  {
-                stopwatch2.Start();
-                IBlock block = ParseParagraph(doc, e, mainXDoc);
-                stopwatch2.Stop();
+    private static List<IBlock> ParseElement(WordprocessingDocument doc, OpenXmlElement child, XElement xChild, Stopwatch stopwatch) {
+        if (child is Paragraph p)
+            {
+                stopwatch.Start();
+                IBlock block = ParseParagraph(doc, p, xChild);
+                stopwatch.Stop();
                 return new List<IBlock>(1) { block };
-        //}
-        /*if (e is DocumentFormat.OpenXml.Wordprocessing.Table table)
+        }
+        if (child is DocumentFormat.OpenXml.Wordprocessing.Table table)
             return new List<IBlock>(1) { new WTable(doc.MainDocumentPart, table) };
-        if (e is SdtBlock sdt)
-            return Blocks.ParseStdBlock(doc.MainDocumentPart, sdt).ToList();*/
+        if (child is SdtBlock sdt)
+            return Blocks.ParseStdBlock(doc.MainDocumentPart, sdt).ToList();
         return [];
     }
 
-    internal static WLine ParseParagraph(WordprocessingDocument doc, XElement xElement, XDocument mainXDoc) {
+    internal static WLine ParseParagraph(WordprocessingDocument doc, Paragraph child, XElement xChild) {
+        string num = RetrieveListItem(doc, xChild);
+
+        DOCX.NumberInfo? info = null;
+        Level? level = null;
+        (int? numId, int ilvl) = DOCX.Numbering.GetNumberingIdAndLevelReference(doc.MainDocumentPart, child);
+        if (numId is not null)
+            level = DOCX.Numbering.GetLevel(doc.MainDocumentPart, numId.Value, ilvl);
+        if (level is not null)
+            info = new DOCX.NumberInfo() { Number = num, Props = level.NumberingSymbolRunProperties };
         
-        var stopwatch1 = new Stopwatch();
-        stopwatch1.Start();
-        string fabd = RetrieveListItem(doc, xElement);
-        Console.WriteLine($"num: {fabd}");
-        stopwatch1.Stop();
-
-        //DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, p);
-        //Console.WriteLine($"num: {fabd}");
-        //Console.WriteLine($"GetFormattedNumber: {stopwatch.ElapsedMilliseconds}ms");
-        /*
+        //DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(doc.MainDocumentPart, child);
+        
         if (info.HasValue)
-            return new WOldNumberedParagraph(info.Value, doc.MainDocumentPart, p);
-        WLine line = new WLine(doc.MainDocumentPart, p);
-        */
-        WLine line = null;
+            return new WOldNumberedParagraph(info.Value, doc.MainDocumentPart, child);
 
-        //stopwatch = new Stopwatch();
-        //stopwatch.Start();
-            INumber num2 = null;//Fields.RemoveListNum(line);  // mutates line if successful!
-        //stopwatch.Stop();
-        //Console.WriteLine($"RemoveListNum: {stopwatch.ElapsedMilliseconds}ms");
+        WLine line = new WLine(doc.MainDocumentPart, child);
+        INumber num2 = Fields.RemoveListNum(line);  // mutates line if successful!
 
         if (num2 is not null)
             return new WOldNumberedParagraph(num2, line);
@@ -269,33 +264,32 @@ class PreParser {
         private readonly ILogger Logger = Logging.Factory.CreateLogger<FirstPass1>();
 
         private List<MergedBlockWithBreak> DoPass() {
-
-            XDocument mainXDoc = Main.GetXDocument();
-
-
             List<MergedBlockWithBreak> unmerged = new List<MergedBlockWithBreak>();
             bool lineBreakBefore = false;
             List<OpenXmlElement> skpdBkmrks = new();
 
-                var stopwatch1 = new Stopwatch();
-                var stopwatch2 = new Stopwatch();
+            var stopwatch1 = new Stopwatch();
+            var stopwatch2 = new Stopwatch();
 
+            XDocument xDoc = Main.GetXDocument();
+            IEnumerable<XElement> bodyChildren = xDoc.Root.Element(W.body).Elements();
 
-            var paragraphs = mainXDoc.Descendants(W.p);
-            while (i < paragraphs.Count()) {
-                    XElement xElement = paragraphs.ElementAt(i);
-                /*lineBreakBefore = lineBreakBefore || UK.Gov.Legislation.Judgments.Util.IsSectionOrPageBreak(e);
-                if (IsSkippable(e)) {
-                    if (Bookmarks.IsBookmark(e))
-                        skpdBkmrks.Add(e);
+            while (i < bodyChildren.Count()) {
+                XElement xChild = bodyChildren.ElementAt(i);
+                OpenXmlElement child = Main.Document.Body.ChildElements.ElementAt(i);
+
+                lineBreakBefore = lineBreakBefore || Legislation.Judgments.Util.IsSectionOrPageBreak(child);
+                if (IsSkippable(child)) {
+                    if (Bookmarks.IsBookmark(child))
+                        skpdBkmrks.Add(child);
                     else
-                        skpdBkmrks.AddRange(e.Descendants().Where(Bookmarks.IsBookmark));
+                        skpdBkmrks.AddRange(child.Descendants().Where(Bookmarks.IsBookmark));
                     i += 1;
                     continue;
-                }*/
-                /*
+                }
+                
                 int save = i;
-                TableOfContents toc = ParseTableOfContents(e);
+                TableOfContents toc = ParseTableOfContents(Doc, bodyChildren, child, xChild);
                 if (toc is not null) {
                     unmerged.Add(new MergedBlockWithBreak { Block = toc, LineBreakBefore = lineBreakBefore });
                     lineBreakBefore = false;
@@ -304,12 +298,12 @@ class PreParser {
                     continue;
                 } else {
                     i = save;
-                }*/
+                }
 
                 stopwatch1.Start();
-                List<IBlock> blocks = ParseElement(Doc, xElement, stopwatch2, mainXDoc);
+                List<IBlock> blocks = ParseElement(Doc, child, xChild, stopwatch2);
                 stopwatch1.Stop();
-                /*
+                
                 AddSkippedBookmarksToFirstLine(skpdBkmrks, blocks);
                 skpdBkmrks = new();
                 foreach (IBlock block in blocks) {
@@ -317,10 +311,10 @@ class PreParser {
                     lineBreakBefore = false;
                 }
                 foreach (IBlock block in blocks.TakeLast(1)) {
-                    bool mergedWithNext = e is Paragraph p && DOCX.Paragraphs.IsMergedWithFollowing(p);
+                    bool mergedWithNext = child is Paragraph p && DOCX.Paragraphs.IsMergedWithFollowing(p);
                     unmerged.Add(new MergedBlockWithBreak { Block = block, LineBreakBefore = lineBreakBefore, MergedWithNext = mergedWithNext });
                     lineBreakBefore = false;
-                }*/
+                }
                 i += 1;
             }
 
@@ -343,27 +337,29 @@ class PreParser {
             wLine.PrependBookmarksFromPrecedingSkippedLines(parsed);
         }
 
-        private TableOfContents ParseTableOfContents(OpenXmlElement e1) {
-            if (e1 is not Paragraph p1)
+        private TableOfContents ParseTableOfContents(WordprocessingDocument doc, IEnumerable<XElement> bodyElements, OpenXmlElement element, XElement xElement) {
+            if (element is not Paragraph firstPara)
                 return null;
-            if (!IsTOCStart(p1))
+            if (!IsTOCStart(firstPara))
                 return null;
             List<WLine> contents = new List<WLine>();
 
-            WLine line1 = ParseParagraph(null, null, null);
+            WLine line1 = ParseParagraph(doc, firstPara, xElement); // TODO
             contents.Add(line1);
             i += 1;
 
             while (i < Main.Document.Body.ChildElements.Count) {
-                OpenXmlElement e = Main.Document.Body.ChildElements.ElementAt(i);
-                if (e is not Paragraph p)
+                OpenXmlElement child = Main.Document.Body.ChildElements.ElementAt(i);
+                XElement xChild = bodyElements.ElementAt(i);
+
+                if (child is not Paragraph para)
                     return null;
                 i += 1;
-                if (HasAnExtraFieldEnd(p)) // needs to be before IsSkippable
+                if (HasAnExtraFieldEnd(para)) // needs to be before IsSkippable
                     return new TableOfContents { Contents = contents };
-                if (IsSkippable(e))
+                if (IsSkippable(child))
                     continue;
-                WLine line = ParseParagraph(null, null, null);
+                WLine line = ParseParagraph(doc, para, xChild); //TODO
                 contents.Add(line);
             }
             return null;

@@ -164,6 +164,7 @@ class WLine : ILine, ILineable {
     }
 
     private float? CalculateMinNumberWidth() {
+        //return null; // TODO
         if (Paragraph is null)
             return null;
         var info = DOCX.Numbering2.GetFormattedNumber(this.main, Paragraph);
