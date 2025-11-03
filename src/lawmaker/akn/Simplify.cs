@@ -35,16 +35,15 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             Dictionary<string, string> copy = new(this.State);
             UpdateStateAndRemoveStyleAttributes(e);
+            // Inline elements with styles applied (i.e. italics) are wrapped in spans.
+            // For inline styles which have dedicated elements (i, b, u, sub, sup) we 
+            // convert remove the span and replace it with the corresponding element.
+            // There are some spans (marked with 'keep') which we do NOT want to delete.
             e.ChildNodes.Cast<XmlNode>().ToList().ForEach(VisitNode);
-            if (e.HasAttribute("keep"))
-            {
-                // workaround becuase there ARE some span elements we don't
-                // want to delete
+            if (!e.HasAttribute("keep"))
+                RemoveSpan(e);
+            else
                 e.RemoveAttribute("keep");
-            } else
-            {
-                RemoveSpan(e); // why??
-            }
             State = copy;
         }
 
