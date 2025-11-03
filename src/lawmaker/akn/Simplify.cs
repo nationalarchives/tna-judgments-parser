@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using DocumentFormat.OpenXml.Office2016.Excel;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -59,68 +60,20 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (!ShouldInsertStyleTags(text))
                 return;
-            if (State.GetValueOrDefault("font-weight") == "bold")
-            {
-                var b = text.OwnerDocument.CreateElement("b", Builder.ns);
-                text.ParentNode.ReplaceChild(b, text);
-                b.AppendChild(text);
-                State.Remove("font-weight");
-                VisitText(text);
-                State["font-weight"] = "bold";
+            if (ApplyStylingIfPresent(text, "font-weight", "bold", "b")) 
                 return;
-            }
-            if (State.GetValueOrDefault("font-style") == "italic")
-            {
-                var i = text.OwnerDocument.CreateElement("i", Builder.ns);
-                text.ParentNode.ReplaceChild(i, text);
-                i.AppendChild(text);
-                State.Remove("font-style");
-                VisitText(text);
-                State["font-style"] = "italic";
+            if (ApplyStylingIfPresent(text, "font-style", "italic", "i")) 
                 return;
-            }
-            if (State.GetValueOrDefault("text-decoration") == "underline")
-            {
-                var u = text.OwnerDocument.CreateElement("u", Builder.ns);
-                text.ParentNode.ReplaceChild(u, text);
-                u.AppendChild(text);
-                State.Remove("text-decoration");
-                VisitText(text);
-                State["text-decoration"] = "underline";
+            if (ApplyStylingIfPresent(text, "text-decoration", "underline", "u")) 
                 return;
-            }
-            if (State.GetValueOrDefault("text-decoration-line") == "underline")
-            {
-                var u = text.OwnerDocument.CreateElement("u", Builder.ns);
-                text.ParentNode.ReplaceChild(u, text);
-                u.AppendChild(text);
-                State.Remove("text-decoration-line");
-                VisitText(text);
-                State["text-decoration-line"] = "underline";
+            if (ApplyStylingIfPresent(text, "text-decoration-line", "underline", "u")) 
                 return;
-            }
-            if (State.GetValueOrDefault("vertical-align") == "super")
-            {
-                var sup = text.OwnerDocument.CreateElement("sup", Builder.ns);
-                text.ParentNode.ReplaceChild(sup, text);
-                sup.AppendChild(text);
-                State.Remove("vertical-align");
-                VisitText(text);
-                State["vertical-align"] = "super";
+            if (ApplyStylingIfPresent(text, "vertical-align", "super", "sup")) 
                 return;
-            }
-            if (State.GetValueOrDefault("vertical-align") == "sub")
-            {
-                var sub = text.OwnerDocument.CreateElement("sub", Builder.ns);
-                text.ParentNode.ReplaceChild(sub, text);
-                sub.AppendChild(text);
-                State.Remove("vertical-align");
-                VisitText(text);
-                State["vertical-align"] = "sub";
+            if (ApplyStylingIfPresent(text, "vertical-align", "sub", "sub")) 
                 return;
-            }
         }
-        
+
         private static bool ShouldInsertStyleTags(XmlText text)
         {
             List<string> allowedParents = ["span", "b", "i", "u", "sup", "sub"];
@@ -136,6 +89,21 @@ namespace UK.Gov.Legislation.Lawmaker
             if (parentName.Equals("span") && checkGrandparents.Contains(grandparent.LocalName) && grandparent.ChildNodes.Count < 2)
                 return false;
             return true;
+        }
+        
+        private bool ApplyStylingIfPresent(XmlText text, string attribute, string style, string tag)
+        {
+            if (State.GetValueOrDefault(attribute) == style)
+            {
+                var element = text.OwnerDocument.CreateElement(tag, Builder.ns);
+                text.ParentNode.ReplaceChild(element, text);
+                element.AppendChild(text);
+                State.Remove(attribute);
+                VisitText(text);
+                State[attribute] = style;
+                return true;
+            }
+            return false;
         }
 
     }
