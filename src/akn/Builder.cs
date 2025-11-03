@@ -531,9 +531,9 @@ abstract class Builder {
     }
 
     private void TextWithoutFormatting(XmlElement parent, IFormattedText model) {
-        // string content = IsRedacted(model) ? ReplaceRedacted(model.Text) : model.Text;
-        // XmlText text = doc.CreateTextNode(content);
-        XmlText text = doc.CreateTextNode(model.Text);
+        // Handle Word's weird bullet character.
+        string corrected = new string(model.Text.Select(c => ((uint)c == 61623) ? '\u2022' : c).ToArray());
+        XmlText text = doc.CreateTextNode(corrected);
         parent.AppendChild(text);
     }
 
