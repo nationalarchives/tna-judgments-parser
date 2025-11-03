@@ -46,11 +46,6 @@ public abstract partial record DateBlock(
 {
     private static readonly ILogger Logger = Logging.Factory.CreateLogger<DateBlock>();
 
-    // private Reference? _ref = Key is ReferenceKey key
-    //             && Date is ValidDate validDate
-    //         ? new Reference(key, validDate.Date.ToString("o", System.Globalization.CultureInfo.InvariantCulture))
-    //         : null;
-
     public XNode? Build(Document document)
     {
         return new XElement(akn + "block",
@@ -191,7 +186,6 @@ internal sealed partial record MadeDate(
     public static bool IsMade(LanguageService languageService, string text) =>
         languageService.IsMatch(text, LanguagePatterns)?.Count > 0;
 
-    // public static MadeDate? ParseByText(IParser<IBlock>) => MadeDate.IsMade(ls, t) => new MadeDate(spanText, ToDate(date)),
     private static readonly string[] STYLES = ["Made"];
     public static bool IsStyled(WLine line)
     {
