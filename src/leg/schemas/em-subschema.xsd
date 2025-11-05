@@ -93,6 +93,9 @@
             <xs:element ref="level" />
             <xs:element ref="section" />
             <xs:element ref="paragraph" />
+            <xs:element ref="p" />
+            <xs:element ref="table" />
+            <xs:element ref="blockContainer" />
         </xs:choice>
     </xs:complexType>
 </xs:element>

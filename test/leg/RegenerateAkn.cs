@@ -4,10 +4,64 @@ using System.Linq;
 using System.Reflection;
 using Xunit;
 using CaseLaw = UK.Gov.NationalArchives.CaseLaw;
+using EMHelper = UK.Gov.Legislation.ExplanatoryMemoranda.Helper;
 
 namespace UK.Gov.Legislation.ImpactAssessments.Test {
 
 public class RegenerateAkn {
+
+    [Fact]
+    public void RegenerateAllEMTestFiles() {
+        var assembly = Assembly.GetExecutingAssembly();
+        var resourceNames = assembly.GetManifestResourceNames();
+        
+        // Find all EM test DOCX files
+        var emDocxFiles = resourceNames
+            .Where(name => name.StartsWith("test.leg.em.test") && name.EndsWith(".docx"))
+            .OrderBy(name => name)
+            .ToList();
+        
+        Console.WriteLine($"Found {emDocxFiles.Count} EM test DOCX files to regenerate:");
+        
+        foreach (var docxResource in emDocxFiles) {
+            // Extract test number
+            var testNum = docxResource.Replace("test.leg.em.test", "").Replace(".docx", "");
+            var aknFileName = $"test{testNum}.akn";
+            
+            // Find the project root by going up from the test assembly location
+            var assemblyDir = Path.GetDirectoryName(assembly.Location);
+            var projectRoot = assemblyDir;
+            
+            // Look for either .sln file or .git directory to find project root
+            while (projectRoot != null && 
+                   !File.Exists(Path.Combine(projectRoot, "tna-judgments-parser.sln")) &&
+                   !Directory.Exists(Path.Combine(projectRoot, ".git"))) {
+                projectRoot = Directory.GetParent(projectRoot)?.FullName;
+            }
+            
+            if (projectRoot == null) {
+                Console.WriteLine($"    ✗ Could not find project root for test{testNum}");
+                continue;
+            }
+            
+            var aknPath = Path.Combine(projectRoot, "test", "leg", "em", aknFileName);
+            
+            Console.WriteLine($"  Processing test{testNum}...");
+            
+            try {
+                // Parse DOCX
+                var docx = CaseLaw.Tests.ReadDocx(docxResource);
+                var akn = EMHelper.Parse(docx).Serialize();
+                
+                // Write to file
+                File.WriteAllText(aknPath, akn);
+                Console.WriteLine($"    ✓ Regenerated {aknFileName}");
+            }
+            catch (Exception ex) {
+                Console.WriteLine($"    ✗ Error regenerating {aknFileName}: {ex.Message}");
+            }
+        }
+    }
 
     [Fact]
     public void RegenerateAllIATestFiles() {

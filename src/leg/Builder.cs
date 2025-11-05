@@ -210,18 +210,10 @@ class Builder : AkN.Builder {
         XmlElement body = doc.CreateElement("mainBody", ns);
         main.AppendChild(body);
         
-        // Wrap annex content in hcontainer > content to comply with IA subschema
-        // Now that we've extended the schema to allow blockContainer in block-container type,
-        // we can use the simpler content structure
-        XmlElement hcontainer = doc.CreateElement("hcontainer", ns);
-        hcontainer.SetAttribute("name", "annexContent");
-        body.AppendChild(hcontainer);
-        XmlElement content = doc.CreateElement("content", ns);
-        hcontainer.AppendChild(content);
-        
-        // Add annex number and contents
-        p(content, annex.Number);
-        blocks(content, annex.Contents);
+        // Annex content goes directly in mainBody (no wrapper needed)
+        // Schema now allows block elements (p, table, blockContainer) in mainBody
+        p(body, annex.Number);
+        blocks(body, annex.Contents);
     }
 
 }
