@@ -166,6 +166,14 @@ class Helper : BaseHelper {
             // Extract the value part after the label
             string valueText = ExtractValueText(content, labelText);
             
+            // For docDate elements, validate date parsing before creating the element
+            // If we can't parse the date, don't create docDate at all (date attribute is required)
+            if (semanticElementName == "docDate") {
+                if (!TryParseDateFromValue(valueText, out _)) {
+                    return false; // Fall back to CSS-only approach
+                }
+            }
+            
             // Clear existing content and rebuild with semantic structure
             paragraph.RemoveAll();
             

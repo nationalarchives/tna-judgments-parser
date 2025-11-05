@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/" />
           <FRBRuri value="http://www.legislation.gov.uk/id/" />
-          <FRBRdate date="2019-08-27" name="document" />
+          <FRBRdate date="2025-11-05" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/" />
           <FRBRuri value="http://www.legislation.gov.uk/" />
-          <FRBRdate date="2019-08-27" name="document" />
+          <FRBRdate date="2020-07-15T13:33:00Z" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk//data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk//data.akn" />
-          <FRBRdate date="2025-10-31T13:46:21Z" name="transform" />
+          <FRBRdate date="2025-11-05T10:35:00Z" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -30,7 +30,6 @@
       </references>
       <proprietary source="#">
         <uk:parser>0.28.0</uk:parser>
-        <dc:modified>2020-07-15T13:33:00Z</dc:modified>
         <uk:hash>11ec3bda19808be2e9f19fd9bbd7bc76352ccd06e92d4b20d3824740f01a44e3</uk:hash>
       </proprietary>
     </meta>

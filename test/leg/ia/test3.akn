@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/" />
           <FRBRuri value="http://www.legislation.gov.uk/id/" />
-          <FRBRdate date="2012-07-02" name="document" />
+          <FRBRdate date="2025-11-05" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="http://www.legislation.gov.uk/" />
           <FRBRuri value="http://www.legislation.gov.uk/" />
-          <FRBRdate date="2012-07-02" name="document" />
+          <FRBRdate date="2014-08-08T10:55:00Z" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk//data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk//data.akn" />
-          <FRBRdate date="2025-10-31T13:46:19Z" name="transform" />
+          <FRBRdate date="2025-11-05T10:34:58Z" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -30,7 +30,6 @@
       </references>
       <proprietary source="#">
         <uk:parser>0.28.0</uk:parser>
-        <dc:modified>2014-08-08T10:55:00Z</dc:modified>
         <uk:hash>1604ae5d150749ac9f49cac5d89ccb41082490ca814894d0a4c129fda85ea2ae</uk:hash>
       </proprietary>
     </meta>
@@ -289,7 +288,7 @@
                 <p class="ia-table-text">Crispin Blunt</p>
               </td>
               <td>
-                <p><b>Date:</b> </p>
+                <p class="ia-table-text"> Date:</p>
               </td>
               <td>
                 <p class="ia-table-text">22nd June 2012</p>
