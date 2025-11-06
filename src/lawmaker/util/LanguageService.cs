@@ -17,12 +17,12 @@ public class LanguageService
     private List<Lang> languages;
 
     /// <summary>
-    /// Supported language codes following ISO 639-3 standard.
+    /// Supported language codes following ISO 639-1 standard.
     /// </summary>
     public enum Lang
     {
-        ENG,  // English
-        CYM,  // Welsh
+        EN,  // English
+        CY,  // Welsh
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class LanguageService
     /// <param name="languages">Collection of supported languages</param>
     public LanguageService(IEnumerable<Lang> languages)
     {
-        this.languages = languages?.Any() == true ? languages.ToList() : [Lang.ENG];
+        this.languages = languages?.Any() == true ? languages.ToList() : [Lang.EN];
     }
 
     /// <summary>

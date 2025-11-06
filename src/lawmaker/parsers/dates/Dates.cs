@@ -206,8 +206,8 @@ internal sealed partial record MadeDate(
 
     private static readonly Dictionary<LanguageService.Lang, IEnumerable<Regex>> LanguagePatterns = new()
     {
-        [LanguageService.Lang.ENG] = [ EnglishRegex() ],
-        [LanguageService.Lang.CYM] = [ WelshRegex() ]
+        [LanguageService.Lang.EN] = [ EnglishRegex() ],
+        [LanguageService.Lang.CY] = [ WelshRegex() ]
     };
 }
 
@@ -236,8 +236,8 @@ internal sealed partial record LaidDate(
 
     private static readonly Dictionary<LanguageService.Lang, IEnumerable<Regex>> LanguagePatterns = new()
     {
-        [LanguageService.Lang.ENG] = [ EnglishRegex() ],
-        [LanguageService.Lang.CYM] = [ WelshRegex() ]
+        [LanguageService.Lang.EN] = [ EnglishRegex() ],
+        [LanguageService.Lang.CY] = [ WelshRegex() ]
     };
 
 }
@@ -274,8 +274,8 @@ internal sealed partial record CommenceDate(
 
     private static readonly Dictionary<LanguageService.Lang, IEnumerable<Regex>> LanguagePatterns = new()
     {
-        [LanguageService.Lang.ENG] = [ EnglishRegex() ],
-        [LanguageService.Lang.CYM] = [ WelshRegex() ]
+        [LanguageService.Lang.EN] = [ EnglishRegex() ],
+        [LanguageService.Lang.CY] = [ WelshRegex() ]
     };
 
 }
@@ -300,6 +300,6 @@ internal sealed partial record OtherDate(
 
     private static readonly Dictionary<LanguageService.Lang, IEnumerable<Regex>> LanguagePatterns = new()
     {
-        [LanguageService.Lang.ENG] = [ EngSiftReqRegex() ],
+        [LanguageService.Lang.EN] = [ EngSiftReqRegex() ],
     };
 }
