@@ -86,6 +86,16 @@ public class LanguageService
         .Where(it => it.Count > 0)
         .FirstOrDefault();
 
+    /// <summary>
+    /// Creates a copy of <paramref name="languagePatterns"/> with all inactive language entries removed. 
+    /// </summary>
+    /// <param name="languagePatterns">Dictionary of language-specific regex patterns</param>
+    /// <returns>A copy of <paramref name="languagePatterns"/> with all inactive language entries removed</returns>
+    public Dictionary<Lang, IEnumerable<string>> GetActive(LanguagePatterns languagePatterns)
+    {
+        return languagePatterns.Patterns.Where(lp => languages.Contains(lp.Key)).ToDictionary();
+    }
+
 }
 
 /// <summary>

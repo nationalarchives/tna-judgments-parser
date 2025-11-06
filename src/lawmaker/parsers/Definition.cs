@@ -2,28 +2,74 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
+using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Enrichment;
+using Lang = UK.Gov.Legislation.Lawmaker.LanguageService.Lang;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
 
     public partial class LegislationParser
     {
+        private static string _definedTermPattern;
 
-        private static string defPattern;
-
-        private static string DefPattern()
+        /// <summary>
+        /// Returns a regular expression string which matches a 'defined term'. 
+        /// That is, a portion of text surrounded by a pair of opening and closing quotes.
+        /// </summary>
+        private static string DefinedTermPattern()
         {
-            if (defPattern is not null)
-                return defPattern;
+            if (_definedTermPattern is not null)
+                return _definedTermPattern;
 
             string startQuote = "[\u201C]";
             string endQuote = "[\u201D]";
-            defPattern = $@"({startQuote}(?:(?!{startQuote}|{endQuote}).)*{endQuote})";
-            return defPattern;
+            _definedTermPattern = $@"({startQuote}(?:(?!{startQuote}|{endQuote}).)*{endQuote})";
+            return _definedTermPattern;
+        }
+
+        private string _definitionPrefixes;
+
+        /// <summary>
+        /// Returns a regular expression string which matches special phrases that are allowed to 
+        /// appear before the 'defined term' at the beginning of a definition.
+        /// </summary>
+        private string DefinitionPrefixes() 
+        {
+            if (_definitionPrefixes is not null)
+                return _definitionPrefixes;
+
+            LanguagePatterns prefixes = new()
+            {
+                [Lang.CYM] = ["mae", "mae i", "nid yw", "o ran", "ystyr"],
+            };
+
+            // Flatten all prefixes for all active languages into a single regular expression
+            Dictionary<Lang, IEnumerable<string>> activePrefixes = LanguageService.GetActive(prefixes);
+            _definitionPrefixes = $@"(?:(?:{string.Join("|", activePrefixes.SelectMany(it => it.Value))})\s*)";
+            return _definitionPrefixes;
+        }
+
+        private string _definitionPattern;
+
+        /// <summary>
+        /// Returns a regular expression string which matches a 'definition'.
+        /// </summary>
+        /// <remarks>
+        /// A 'definition' is a line beginning with a 'defined term'. Although the line IS allowed to begin with 
+        /// certain specific words (known as 'prefixes') or quoted structure opening quotes.
+        /// </remarks>
+        private string DefinitionPattern()
+        {
+            if (_definitionPattern is not null)
+                return _definitionPattern;
+
+            _definitionPattern = $@"^{QuotedStructureStartPattern()}?{DefinitionPrefixes()}?{DefinedTermPattern()}.*\w+.*$";
+            return _definitionPattern;
         }
 
         private HContainer ParseDefinition(WLine line)
@@ -50,7 +96,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 return new Def() { Contents = inlines.ToList(), StartQuote = startQuote, EndQuote = endQuote };
             }
-            WLine enriched = EnrichFromBeginning.Enrich(line, defPattern, constructor);
+            WLine enriched = EnrichFromBeginning.Enrich(line, DefinedTermPattern(), constructor);
             if (ReferenceEquals(enriched, line))
                 return null;
 
@@ -99,13 +145,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (!line.IsLeftAligned())
                 return false;
-
-            string definitionPattern = $@"^{QuotedStructureStartPattern()}?{DefPattern()}.*\w+.*$";
-            if (!Regex.IsMatch(line.NormalizedContent, definitionPattern))
+            if (!Regex.IsMatch(line.NormalizedContent, DefinitionPattern(), RegexOptions.IgnoreCase))
                 return false;
             return true;
         }
-
     }
 
 }
