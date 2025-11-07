@@ -123,6 +123,30 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE
 
         public static Api.Meta GetMetadata(ParserInputs inputs, ILogger logger)
         {
+            void ValidateFclUri(string uri)
+            {
+                if (uri is null) { return; }
+                logger.LogInformation("input URI is {}", uri);
+                if (Citations.IsValidUriComponent(uri)) // old style, uksc/2023/1
+                {
+                    bool docPressSummary = inputs.DocumentType == "pressSummary";
+                    bool uriPressSummary = uri.Contains("press-summary");
+                    if (docPressSummary != uriPressSummary)
+                    {
+                        logger.LogCritical("document type and URI do not match");
+                        throw new Exception("document type and URI do not match");
+                    }
+                    return;
+                }
+                if (Regex.IsMatch(uri, @"^d-[0-9a-f-]{36}$")) // new style, UUID
+                {
+                    return;
+                }
+                    
+                logger.LogCritical("input URI is not supported: {}", inputs.Metadata.URI);
+                throw new Exception("input URI is not supported: " + inputs.Metadata.URI);            
+            }
+
             if (inputs is null)
                 return new Api.Meta();
             if (inputs.Metadata is null)
@@ -157,23 +181,7 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE
             /* validation and normalization */
 
             uri = Api.URI.ExtractShortURIComponent(uri);
-            if (uri is not null && !Citations.IsValidUriComponent(uri))  // !URIRegex().IsMatch(uri)
-            {
-                logger.LogCritical("input URI is not supported: {}", inputs.Metadata.URI);
-                throw new Exception("input URI is not supported: " + inputs.Metadata.URI);
-            }
-            if (uri is not null)
-                logger.LogInformation("input URI is {}", uri);
-            if (uri is not null && inputs.DocumentType == "pressSummary" && !uri.Contains("press-summary"))
-            {
-                logger.LogCritical("document type and URI do not match");
-                throw new Exception("document type and URI do not match");
-            }
-            if (uri is not null && inputs.DocumentType != "pressSummary" && uri.Contains("press-summary"))
-            {
-                logger.LogCritical("document type and URI do not match");
-                throw new Exception("document type and URI do not match");
-            }
+            ValidateFclUri(uri);
 
             cite = cite is null ? null : Citations.Normalize(cite);
             if (cite is null && inputs.Metadata.Cite is not null)
