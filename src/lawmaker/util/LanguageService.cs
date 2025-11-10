@@ -37,18 +37,18 @@ public class LanguageService
 
     /// <summary>
     /// Initializes a new instance of LanguageService with the specified languages
-    /// (represented as ISO 639-3 language strings). Defaults to English if no languages are provided,
+    /// (represented as ISO 639-1 language strings). Defaults to English if no languages are provided,
     /// </summary>
-    /// <param name="languages">Collection of ISO 639-3 language codes as strings</param>
+    /// <param name="languages">Collection of ISO 639-1 language codes as strings</param>
     public LanguageService(IEnumerable<string> languages)
         : this(ParseLanguageStrings(languages))
     {
     }
 
     /// <summary>
-    /// Converts ISO 639-3 language code strings to Lang enum values.
+    /// Converts ISO 639-1 language code strings to Lang enum values.
     /// </summary>
-    /// <param name="languageStrings">Collection of ISO 639-3 language codes as strings</param>
+    /// <param name="languageStrings">Collection of ISO 639-1 language codes as strings</param>
     /// <returns>Collection of valid Lang enum values</returns>
     private static IEnumerable<Lang> ParseLanguageStrings(IEnumerable<string> languageStrings)
     {
