@@ -25,6 +25,19 @@ public partial class LegislationParser
         return true;
     }
 
+    private bool PeekDefinitionWrapUp(IBlock block)
+    {
+        if (block is not WLine line)
+            return false;
+        if (line is WOldNumberedParagraph)
+            return false;
+        if (!line.IsLeftAligned()) // Disregard grouping headings
+            return false;
+        if (line.IsAllBold()) // Disregard section headings
+            return false;
+        return true;
+    }
+
     private HContainer ParseDefinition(WLine line)
     {
         if (!PeekDefinition(line))
@@ -42,26 +55,41 @@ public partial class LegislationParser
             return new DefinitionLeaf { Contents = intro };
 
         List<IDivision> children = [];
+        List<IBlock> wrapUp = [];
 
+        int finalChildStart = i;
         while (i < Body.Count)
         {
+            // Break early if we encounter the next definition.
             if (PeekDefinition(Current()))
-                break;
-            if (CurrentLineIsIndentedLessThan(line))
                 break;
 
             int save = i;
+            IBlock saveBlock = Body[i];
+
             IDivision next = ParseNextBodyDivision();
-            if (next is not Para1)
+            if (!Definition.IsValidChild(next))
+            {
+                i = save;
+                break;
+            }
+            // Para1 children must be intended further than the definition itself
+            if (next is Para1 && LineIsIndentedLessThan(saveBlock as WLine, line))
             {
                 i = save;
                 break;
             }
             children.Add(next);
+            finalChildStart = save;
+
+            if (IsEndOfQuotedStructure(next))
+                break;
         }
+        wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
+
         if (children.Count == 0)
             return new DefinitionLeaf { Contents = intro };
-        return new DefinitionBranch { Intro = intro, Children = children };
+        return new DefinitionBranch { Intro = intro, Children = children, WrapUp = wrapUp };
     }
 
     private static string _definedTermPattern;
