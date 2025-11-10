@@ -64,7 +64,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private bool PeekBareProv1(WLine line)
         {
             bool quoted = quoteDepth > 0;
-            if (!line.IsFlushLeft() && !quoted)
+            if (!line.IsLeftAligned())
                 return false;
             if (line is not WOldNumberedParagraph np)
                 return false;

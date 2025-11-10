@@ -205,8 +205,8 @@ partial record Number(
 
     private static readonly Dictionary<LanguageService.Lang, IEnumerable<Regex>> LanguagePatterns = new()
     {
-        [LanguageService.Lang.ENG] = [ EnglishRegex() ],
-        [LanguageService.Lang.CYM] = [ WelshRegex() ]
+        [LanguageService.Lang.EN] = [ EnglishRegex() ],
+        [LanguageService.Lang.CY] = [ WelshRegex() ]
     };
 }
 

@@ -31,8 +31,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static readonly LanguagePatterns AmendingPrefixes = new()
         {
-            [Lang.ENG] = ["insert", "substitute", "omit", "leave out"],
-            [Lang.CYM] = ["mewnosoder", "rhodder", "hepgorer"],
+            [Lang.EN] = ["insert", "substitute", "omit", "leave out"],
+            [Lang.CY] = ["mewnosoder", "rhodder", "hepgorer"],
         };
 
     }

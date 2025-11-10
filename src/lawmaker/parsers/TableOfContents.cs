@@ -11,8 +11,8 @@ record TableOfContents(IEnumerable<TableOfContentsLine> Lines)
 
     private static readonly LanguagePatterns ContentsHeadingPatterns = new()
     {
-        [Lang.ENG] = [@"^CONTENTS$"],
-        [Lang.CYM] = [@"^CYNNWYS$"]
+        [Lang.EN] = [@"^CONTENTS$"],
+        [Lang.CY] = [@"^CYNNWYS$"]
     };
 
     public static bool IsTableOfContentsHeading(IBlock? block, LanguageService languageService) =>
