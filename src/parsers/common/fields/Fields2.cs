@@ -197,7 +197,7 @@ internal class Fields2 {
         if (!code.StartsWith(" NOTEREF "))
             return null;
         if (contents.Any()) {
-            Logger.LogDebug($"using contents of NOTEREF: { IInline.ToString(contents) }");
+            //Logger.LogDebug($"using contents of NOTEREF: { IInline.ToString(contents) }");
             return contents;
         }
         contents = UK.Gov.Legislation.Judgments.Parse.NoteRef.Construct(main, run, code);
@@ -217,7 +217,7 @@ internal class Fields2 {
         if (!code.StartsWith(" REF ", StringComparison.InvariantCultureIgnoreCase))
             return null;
         if (contents.Any()) {
-            Logger.LogDebug($"using contents of REF: { IInline.ToString(contents) }");
+            //Logger.LogDebug($"using contents of REF: { IInline.ToString(contents) }");
             return contents;
         }
         contents = UK.Gov.Legislation.Judgments.Parse.Ref.Construct(main, run, code);
@@ -252,8 +252,8 @@ internal class Fields2 {
         string s = IInline.ToString(contents);
         if (string.IsNullOrWhiteSpace(s))
             Logger.LogWarning($"field code { code } has no contents");
-        else
-            Logger.LogDebug($"using static contents of field code { code }: { s }");
+        //else
+            //Logger.LogDebug($"using static contents of field code { code }: { s }");
         return contents;
     }
 

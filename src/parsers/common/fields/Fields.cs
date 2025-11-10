@@ -93,7 +93,7 @@ class Fields {
             i += 1;
         }
         fieldCode = DOCX.Fields.NormalizeFieldCode(fieldCode);
-        logger.LogDebug("field code: " + fieldCode);
+        //logger.LogDebug("field code: " + fieldCode);
         if (string.IsNullOrWhiteSpace(fieldCode))    // [2021] EWFC 89
             return Enumerable.Empty<IInline>();
         if (Advance.Is(fieldCode))

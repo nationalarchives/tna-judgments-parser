@@ -259,8 +259,6 @@ class PreParser {
             XDocument xDoc = Main.GetXDocument();
             IEnumerable<XElement> bodyChildren = xDoc.Root.Element(W.body).Elements();
 
-            Stopwatch stopwatch = new Stopwatch();
-
             while (i < bodyChildren.Count()) {
                 XElement xChild = bodyChildren.ElementAt(i);
                 OpenXmlElement child = Main.Document.Body.ChildElements.ElementAt(i);
@@ -286,11 +284,7 @@ class PreParser {
                 } else {
                     i = save;
                 }
-
-                stopwatch.Start();
                 List<IBlock> blocks = ParseElement(doc, child, xChild);
-                stopwatch.Stop();
-
                 AddSkippedBookmarksToFirstLine(skpdBkmrks, blocks);
                 skpdBkmrks = new();
                 foreach (IBlock block in Enumerable.SkipLast(blocks, 1)) {
@@ -304,7 +298,6 @@ class PreParser {
                 }
                 i += 1;
             }
-            Console.WriteLine($"Parse element: {stopwatch.ElapsedMilliseconds}ms");
             return unmerged;
         }
 
