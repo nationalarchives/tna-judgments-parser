@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
-using Backlog.Src.Batch.One;
-using CsvHelper;
-using CsvHelper.Configuration;
+using Backlog.Src;
 
 namespace Backlog.Test
 {

@@ -6,7 +6,7 @@ using System.IO;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using ExtendedMetadata = Backlog.Src.ExtendedMetadata;
 
-namespace Backlog.Src.Batch.One
+namespace Backlog.Src
 {
     class Helper
     {

@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 
-namespace Backlog.Src.Batch.One
+namespace Backlog.Src
 {
 
     class Categories

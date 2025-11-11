@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Backlog.Src.Batch.One
+namespace Backlog.Src
 {
     /// <summary>
     /// Provides file operations for processing backlog documents, including UUID lookup,
