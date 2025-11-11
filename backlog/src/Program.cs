@@ -7,8 +7,6 @@ using System.Linq;
 
 using Amazon.S3.Model;
 
-using Backlog.Src.Batch.One;
-
 namespace Backlog.Src
 {
 

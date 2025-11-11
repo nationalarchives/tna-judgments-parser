@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace Backlog.Src.Batch.One
+namespace Backlog.Src
 {
 
     class Tracker
