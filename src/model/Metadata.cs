@@ -15,6 +15,8 @@ interface IMetadata {
 
     Court? Court { get; }
 
+    IEnumerable<IDocJurisdiction> Jurisdictions { get; }
+
     int? Year { get; }
 
     int? Number { get; }
