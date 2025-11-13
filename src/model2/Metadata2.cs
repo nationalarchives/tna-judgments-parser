@@ -1,9 +1,7 @@
 
-
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 
@@ -71,6 +69,25 @@ class WMetadata3 : WMetadata, IMetadataExtended {
 
     override public Court? Court { get => outside.Court ?? base.Court; }
 
+    override public IEnumerable<IDocJurisdiction> Jurisdictions
+    {
+        get
+        {
+            if (outside.JurisdictionShortNames.Count == 0)
+                return base.Jurisdictions;
+
+            var matchingJurisdictionsFromDoc = new List<IDocJurisdiction>();
+
+            foreach (var outsideJurisdictionShortName in outside.JurisdictionShortNames) {
+                IDocJurisdiction? match = base.Jurisdictions.SingleOrDefault(j => j.ShortName == outsideJurisdictionShortName);
+
+                matchingJurisdictionsFromDoc.Add(match ?? new OutsideJurisdiction{ShortName = outsideJurisdictionShortName});
+            }
+
+            return matchingJurisdictionsFromDoc;
+        }
+    }
+
     override public int? Year { get {
         return outside.Year ?? base.Year;
     } }
@@ -113,4 +130,13 @@ class WMetadata3 : WMetadata, IMetadataExtended {
 
 }
 
+internal class OutsideJurisdiction : IDocJurisdiction
+{
+    public IEnumerable<IInline> Contents => throw new NotSupportedException();
+    public string Id => throw new NotSupportedException();
+    public string LongName => throw new NotSupportedException();
+    public string ShortName { get; init; }
+    
+    public bool Overridden => true;
+}
 }
