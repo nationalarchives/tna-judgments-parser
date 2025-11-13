@@ -196,13 +196,6 @@ namespace Backlog.Test
             return MetadataScrubber.RemoveSomeMetadata(xml);
         }
 
-        [Obsolete("RemoveNonDeterministicMetadata handles timestamp scrubbing.")]
-        private string NormalizeTimestamps(string xml)
-        {
-            return System.Text.RegularExpressions.Regex.Replace(xml, 
-                @"date=""\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}""", "date=\"TIMESTAMP\"");
-        }
-
         [Test]
         public async Task ProcessBacklogJudgment_SuccessfullyUploadsToS3()
         {

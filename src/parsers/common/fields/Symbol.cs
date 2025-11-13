@@ -1,12 +1,7 @@
 
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-
 
 namespace UK.Gov.Legislation.Judgments.Parse.Fieldss {
 
@@ -24,11 +19,6 @@ class Symbol {
         // Win ANSI encoding not registered by default in on .NET Core
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         ANSI = Encoding.GetEncoding(1252);
-    }
-
-    [Obsolete]
-    internal static IInline Parse(MainDocumentPart main, string fieldCode, IEnumerable<OpenXmlElement> rest) {
-        return Convert(fieldCode);
     }
 
     internal static SpecialCharacter Convert(string fieldCode) {
