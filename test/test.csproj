@@ -37,4 +37,10 @@
 
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="TestContent.cs" />
+    <Compile Remove="TestHeaders.cs" />
+    <Compile Remove="TestMetadata.cs" />
+  </ItemGroup>
+
 </Project>

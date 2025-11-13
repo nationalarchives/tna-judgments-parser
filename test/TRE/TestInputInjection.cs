@@ -13,7 +13,7 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
 
         private readonly Lambda Lambda = new();
 
-        private readonly byte[] Docx1 = Tests.ReadDocx(1);
+        private readonly byte[] Docx1 = DocumentHelpers.ReadDocx(1);
 
         [Fact]
         public void TestUri()

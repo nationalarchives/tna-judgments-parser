@@ -29,9 +29,9 @@ public class TestEM {
     [Theory]
     [MemberData(nameof(Indices))]
     public void Test(int i) {
-        var docx = CaseLaw.Tests.ReadDocx($"test.leg.em.test{i}.docx");
+        var docx = CaseLaw.DocumentHelpers.ReadDocx($"test.leg.em.test{i}.docx");
         var actual = Helper.Parse(docx).Serialize();
-        var expected = CaseLaw.Tests.ReadXml($"test.leg.em.test{i}.akn");
+        var expected = CaseLaw.DocumentHelpers.ReadXml($"test.leg.em.test{i}.akn");
         actual = RemoveSomeMetadata(actual);
         expected = RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);

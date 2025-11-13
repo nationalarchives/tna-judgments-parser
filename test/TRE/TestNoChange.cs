@@ -17,7 +17,7 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
         // [MemberData(nameof(Indices))]
         public static void TestJudgments(int i)
         {
-            byte[] docx = Tests.ReadDocx(i);
+            byte[] docx = DocumentHelpers.ReadDocx(i);
             Api.Response response1 = TestInputInjection.LambdaTest(docx, null);
             ParserInputs inputs = new()
             {

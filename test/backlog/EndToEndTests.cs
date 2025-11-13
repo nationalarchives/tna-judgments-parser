@@ -12,6 +12,7 @@ using Moq;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
 using System.Xml.Linq;
+using UK.Gov.NationalArchives.CaseLaw;
 
 namespace Backlog.Test
 {
@@ -25,7 +26,6 @@ namespace Backlog.Test
         private string bulkNumbersPath;
         private Mock<IAmazonS3> mockS3Client;
         private const string TEST_BUCKET = "test-bucket";
-        private static readonly UK.Gov.NationalArchives.CaseLaw.Tests MetadataScrubber = new();
         private static readonly string ExpectedParserVersion = typeof(UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata)
             .Assembly
             .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
@@ -193,7 +193,7 @@ namespace Backlog.Test
         /// </summary>
         private static string RemoveNonDeterministicMetadata(string xml)
         {
-            return MetadataScrubber.RemoveSomeMetadata(xml);
+            return DocumentHelpers.RemoveSomeMetadata(xml);
         }
 
         [Obsolete("RemoveNonDeterministicMetadata handles timestamp scrubbing.")]
