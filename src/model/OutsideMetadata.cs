@@ -21,6 +21,8 @@ interface IOutsideMetadata {
 
     Court? Court { get; }
 
+    List<string> JurisdictionShortNames { get; }
+
     int? Year { get; }
 
     int? Number { get; }
