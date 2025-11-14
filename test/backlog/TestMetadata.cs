@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using NUnit.Framework;
 
 using UK.Gov.Legislation.Judgments;
-using UK.Gov.NationalArchives.CaseLaw.Model;
 using Backlog.Src;
-using Backlog.Src.Batch.One;
 
 namespace Backlog.Test
 {

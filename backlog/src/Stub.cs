@@ -77,7 +77,7 @@ namespace Backlog.Src
             date.SetAttribute("date", Data.Date?.Date);
             date.SetAttribute("name", Data.Date?.Name);
             XmlElement author = CreateAndAppend("FRBRauthor", work);
-            author.SetAttribute("href", "#" + Metadata.MakeCourtId(Data.Court));
+            author.SetAttribute("href", "#" + UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeCourtId(Data.Court));
             XmlElement country = CreateAndAppend("FRBRcountry", work);
             country.SetAttribute("value", "GB-UKM");
             if (Data.Name is not null)
@@ -98,7 +98,7 @@ namespace Backlog.Src
             date.SetAttribute("date", Data.Date?.Date);
             date.SetAttribute("name", Data.Date?.Name);
             XmlElement author = CreateAndAppend("FRBRauthor", expr);
-            author.SetAttribute("href", "#" + Metadata.MakeCourtId(Data.Court));
+            author.SetAttribute("href", "#" + UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeCourtId(Data.Court));
             XmlElement lang = CreateAndAppend("FRBRlanguage", expr);
             lang.SetAttribute("language", "eng");
         }
@@ -125,7 +125,7 @@ namespace Backlog.Src
             lifecycle.SetAttribute("source", "#");
             XmlElement eventRef = CreateAndAppend("eventRef", lifecycle);
             eventRef.SetAttribute("date", Data.Date.Date);
-            eventRef.SetAttribute("refersTo", "#" + Metadata.MakeDateId(Data.Date));
+            eventRef.SetAttribute("refersTo", "#" + UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeDateId(Data.Date));
             eventRef.SetAttribute("source", "#");
         }
 
@@ -140,14 +140,14 @@ namespace Backlog.Src
             if (Data.Court is not null)
             {
                 XmlElement tldOrg = CreateAndAppend("TLCOrganization", references);
-                tldOrg.SetAttribute("eId", Metadata.MakeCourtId(Data.Court));
+                tldOrg.SetAttribute("eId", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeCourtId(Data.Court));
                 tldOrg.SetAttribute("href", Data.Court.Value.URL);
                 tldOrg.SetAttribute("showAs", Data.Court.Value.LongName);
                 if (Data.Court.Value.ShortName is not null)
                     tldOrg.SetAttribute("shortForm", Data.Court.Value.ShortName);
             }
             XmlElement tlcEvent = CreateAndAppend("TLCEvent", references);
-            tlcEvent.SetAttribute("eId", Metadata.MakeDateId(Data.Date));
+            tlcEvent.SetAttribute("eId", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeDateId(Data.Date));
             tlcEvent.SetAttribute("href", "#");
             tlcEvent.SetAttribute("showAs", Data.Date.Name);
         }
@@ -196,7 +196,7 @@ namespace Backlog.Src
 
             XmlElement parser = CreateAndAppendUK("parser", proprietary);
             proprietary.AppendChild(parser);
-            parser.AppendChild(Document.CreateTextNode(Metadata.GetParserVersion()));
+            parser.AppendChild(Document.CreateTextNode(UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.GetParserVersion()));
         }
 
         internal static XmlElement AddProprietaryField(XmlElement proprietary, string name, string value) {
