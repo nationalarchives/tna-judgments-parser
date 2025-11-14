@@ -14,14 +14,18 @@ record TableOfContents(IEnumerable<TableOfContentsLine> Lines)
         [Lang.ENG] = [@"^CONTENTS$"],
         [Lang.CYM] = [@"^CYNNWYS$"]
     };
+
+    public static bool IsTableOfContentsHeading(IBlock? block, LanguageService languageService) =>
+        block is WLine line
+            && LegislationParser.IsCenterAligned(line)
+            && languageService
+                .IsMatch(line.NormalizedContent, ContentsHeadingPatterns);
+
     public static TableOfContents? Parse(IParser<IBlock> parser)
     {
         // Identify 'CONTENTS' heading
         IBlock? block = parser.Advance();
-        if (block is not WLine line
-            || !LegislationParser.IsCenterAligned(line)
-            || !parser.LanguageService
-                .IsMatch(line.NormalizedContent, ContentsHeadingPatterns))
+        if (!IsTableOfContentsHeading(block, parser.LanguageService))
         {
             return null;
         }

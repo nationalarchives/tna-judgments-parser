@@ -97,7 +97,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (line is WOldNumberedParagraph)
                 return false;
-            if (!IsLeftAligned(line))
+            if (!line.IsLeftAligned())
                 return false;
 
             string definitionPattern = $@"^{QuotedStructureStartPattern()}?{DefPattern()}.*\w+.*$";
