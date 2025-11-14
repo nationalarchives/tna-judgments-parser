@@ -46,6 +46,18 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
         }
 
         [Fact]
+        public void TestNewStyleUri()
+        {
+            /// FCL may pass UUID-based URIs 
+            ParserInputs inputs = new()
+            {
+                DocumentType = ParserInputs.JudgmentDocumentType,
+                Metadata = new InputMetadata() { URI = "d-00000000-0000-0000-ffff-000000000000" }
+            };
+            InputHelper.GetMetadata(inputs, Logger);
+        }
+
+        [Fact]
         public void TestBadCite()
         {
             ParserInputs inputs = new()
