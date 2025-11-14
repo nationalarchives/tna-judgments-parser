@@ -61,18 +61,17 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             }
 
-            var save1 = i;
             frames.PushScheduleContext();
 
             HContainer schedule;
-            IDivision next = ParseNextBodyDivision();
-            if (next is UnnumberedLeaf content)
+            List<IBlock> content = HandleParagraphs(headingLine); // What about tables? Do they work with this method?
+
+            if (content.Count > 0)
             {
-                schedule = new ScheduleLeaf { Number = number, Heading = headingLine, ReferenceNote = referenceNote, Contents = content.Contents };
+                schedule = new ScheduleLeaf { Number = number, Heading = headingLine, ReferenceNote = referenceNote, Contents = content };
             }
             else
             {
-                i = save1;
                 List<IDivision> children = ParseScheduleChildren();
                 if (children.Count == 0)
                 {
