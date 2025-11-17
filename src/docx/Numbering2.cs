@@ -44,6 +44,9 @@ class Numbering2 {
 
         internal bool StyleNumberingCached;
         internal int? StyleNumberingId;
+
+        internal bool SkipFlagsCached;
+        internal bool ShouldSkip;
     }
 
     private static readonly ConditionalWeakTable<MainDocumentPart, ParagraphOrderCacheEntry> ParagraphOrderCache = new();
@@ -115,6 +118,18 @@ class Numbering2 {
             metadata.StyleNumberingCached = true;
         }
         return metadata.StyleNumberingId;
+    }
+
+    private static bool ShouldSkipHistoryParagraph(Paragraph paragraph) {
+        ParagraphMetadata metadata = GetParagraphMetadata(paragraph);
+        if (!metadata.SkipFlagsCached) {
+            bool skip = Paragraphs.IsDeleted(paragraph)
+                || Paragraphs.IsEmptySectionBreak(paragraph)
+                || Paragraphs.IsMergedWithFollowing(paragraph);
+            metadata.ShouldSkip = skip;
+            metadata.SkipFlagsCached = true;
+        }
+        return metadata.ShouldSkip;
     }
 
     public static bool HasOwnNumber(Paragraph paragraph) {
@@ -780,11 +795,7 @@ class Numbering2 {
 
         foreach (Paragraph prev in EnumeratePreviousParagraphs(main, paragraph)) {
 
-            if (Paragraphs.IsDeleted(prev))
-                continue;
-            if (Paragraphs.IsEmptySectionBreak(prev))
-                continue;
-            if (Paragraphs.IsMergedWithFollowing(prev))
+            if (ShouldSkipHistoryParagraph(prev))
                 continue;
             (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
             if (!prevNumId.HasValue)
