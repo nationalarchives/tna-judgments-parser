@@ -1,8 +1,21 @@
 
+using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Judgments;
+
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    internal interface Definition { }
+    internal interface Definition 
+    {
+        public static bool IsValidChild(IDivision child)
+        {
+            return child switch
+            {
+                Para1 or UnnumberedParagraph or WDummyDivision => true,
+                _ => false,
+            };
+        }
+    }
 
     internal class DefinitionBranch : Branch, Definition
     {
