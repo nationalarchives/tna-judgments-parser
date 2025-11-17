@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Amazon.S3;
 using Amazon.S3.Model;
+
 using Moq;
+
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+
 using System.Xml.Linq;
+
+using test;
 
 namespace Backlog.Test
 {
@@ -25,7 +30,6 @@ namespace Backlog.Test
         private string bulkNumbersPath;
         private Mock<IAmazonS3> mockS3Client;
         private const string TEST_BUCKET = "test-bucket";
-        private static readonly UK.Gov.NationalArchives.CaseLaw.Tests MetadataScrubber = new();
         private static readonly string ExpectedParserVersion = typeof(UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata)
             .Assembly
             .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
@@ -162,8 +166,8 @@ namespace Backlog.Test
 
                 AssertParserVersion(actualXml);
 
-                actualXml = RemoveNonDeterministicMetadata(actualXml);
-                expectedXml = RemoveNonDeterministicMetadata(expectedXml);
+                actualXml = DocumentHelpers.RemoveNonDeterministicMetadata(actualXml);
+                expectedXml = DocumentHelpers.RemoveNonDeterministicMetadata(expectedXml);
 
                 Assert.That(actualXml, Is.EqualTo(expectedXml), "Generated XML does not match expected output");
             }
@@ -186,14 +190,6 @@ namespace Backlog.Test
             var document = XDocument.Parse(xml, LoadOptions.PreserveWhitespace);
             XNamespace uk = "https://caselaw.nationalarchives.gov.uk/akn";
             return document.Descendants(uk + "parser").FirstOrDefault()?.Value;
-        }
-
-        /// <summary>
-        /// Runs the shared scrubber to align volatile metadata (parser, timestamps, etc.).
-        /// </summary>
-        private static string RemoveNonDeterministicMetadata(string xml)
-        {
-            return MetadataScrubber.RemoveSomeMetadata(xml);
         }
 
         [Test]
