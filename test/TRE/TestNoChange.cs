@@ -1,7 +1,5 @@
 
-using System.Xml.Xsl;
-using System.IO;
-using System.Xml;
+using System.Linq;
 
 using test;
 
@@ -13,12 +11,12 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
 {
     public class TestNoChange
     {
+        private static readonly int[] FailingTestsToSkip = [6, 8, 31, 32];
+        public static readonly TheoryData<int> PassingTests = new(Tests.Indices.Except(FailingTestsToSkip));
 
-        public static readonly System.Collections.Generic.IEnumerable<object[]> Indices = Tests.indices;
-
-        // [Theory]
-        // [MemberData(nameof(Indices))]
-        public static void TestJudgments(int i)
+        [Theory]
+        [MemberData(nameof(PassingTests))]
+        public void TestJudgments(int i)
         {
             byte[] docx = DocumentHelpers.ReadDocx(i);
             Api.Response response1 = TestInputInjection.LambdaTest(docx, null);

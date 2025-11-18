@@ -12,20 +12,16 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 namespace UK.Gov.NationalArchives.CaseLaw;
 
 public class Tests {
+    const int Total = 98;
 
-    static readonly int total = 98;
-
-    public static readonly IEnumerable<object[]> indices =
-        Enumerable.Concat(
-            Enumerable.Range(1, 10),
-        Enumerable.Concat(
-            Enumerable.Range(12, 16),
-            Enumerable.Range(29, total - 29 + 1)
-        )
-    ).Select(i => new object[] { i });
+    public static readonly TheoryData<int> Indices = new(
+        Enumerable.Range(1, 10).Concat(
+            Enumerable.Range(12, 16).Concat(
+                Enumerable.Range(29, Total - 29 + 1)))
+    );
 
     [Theory]
-    [MemberData(nameof(indices))]
+    [MemberData(nameof(Indices))]
     public void Test(int i) {
         var docx = DocumentHelpers.ReadDocx(i);
         var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
