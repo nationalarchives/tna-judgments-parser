@@ -154,7 +154,7 @@ namespace UK.Gov.Legislation.Lawmaker;
                 {
                     preamble.Add(line);
                     i += 1;
-                } else if (!foundContents && (Preface.SIPreface.Parse(this) is IBlock prefaceBlock))
+                } else if (!foundContents && (Match(Preface.SIPreface.Parse) is IBlock prefaceBlock))
                 {
                     // SIPreface.Parse appropriately increments i
                     preface.Add(prefaceBlock);
