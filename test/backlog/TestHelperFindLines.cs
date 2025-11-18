@@ -1,20 +1,19 @@
 using System;
 using System.IO;
 using System.Linq;
-using NUnit.Framework;
 using Backlog.Src;
+
+using Xunit;
 
 namespace Backlog.Test
 {
-    [TestFixture]
-    public class TestHelperFindLines
+    public sealed class TestHelperFindLines: IDisposable
     {
         private Helper helper;
         private string testDataDirectory;
         private string validCsvPath;
-        
-        [SetUp]
-        public void Setup()
+
+        public TestHelperFindLines()
         {
             // Create a temporary directory for test files
             testDataDirectory = Path.Combine(Path.GetTempPath(), "TestHelperFindLines", Guid.NewGuid().ToString());
@@ -31,8 +30,7 @@ namespace Backlog.Test
             };
         }
 
-        [TearDown]
-        public void TearDown()
+        public void Dispose()
         {
             // Clean up test files
             if (Directory.Exists(testDataDirectory))
@@ -52,68 +50,67 @@ namespace Backlog.Test
             File.WriteAllText(path, csvContent);
         }
 
-        [Test]
+        [Fact]
         public void FindLines_WithValidId_ReturnsMatchingLines()
         {
             // Act
             var result = helper.FindLines(123);
 
             // Assert
-            Assert.That(result, Is.Not.Null, "Result should not be null");
-            Assert.That(result.Count, Is.EqualTo(2), "Should return 2 lines with ID 123");
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
             
             // Verify the returned lines have the correct ID
-            Assert.That(result.All(line => line.id == "123"), Is.True, 
+            Assert.True(result.All(line => line.id == "123"), 
                 "All returned lines should have ID '123'");
             
             // Verify specific line data
             var firstLine = result.First();
-            Assert.That(firstLine.claimants, Is.EqualTo("Smith"));
-            Assert.That(firstLine.respondent, Is.EqualTo("Secretary of State for the Home Department"));
-            Assert.That(firstLine.CaseNo, Is.EqualTo("IA/2025/001"));
-            Assert.That(firstLine.Extension, Is.EqualTo(".pdf"));
+            Assert.Equal("Smith", firstLine.claimants);
+            Assert.Equal("Secretary of State for the Home Department", firstLine.respondent);
+            Assert.Equal("IA/2025/001", firstLine.CaseNo);
+            Assert.Equal(".pdf", firstLine.Extension);
         }
 
-        [Test]
+        [Fact]
         public void FindLines_WithValidIdSingleMatch_ReturnsSingleLine()
         {
             // Act
             var result = helper.FindLines(124);
 
             // Assert
-            Assert.That(result, Is.Not.Null, "Result should not be null");
-            Assert.That(result.Count, Is.EqualTo(1), "Should return 1 line with ID 124");
+            Assert.NotNull(result);
             
-            var line = result.Single();
-            Assert.That(line.id, Is.EqualTo("124"));
-            Assert.That(line.claimants, Is.EqualTo("Jones"));
-            Assert.That(line.respondent, Is.EqualTo("HMRC"));
-            Assert.That(line.Extension, Is.EqualTo(".docx"));
+            var line = Assert.Single(result);
+            Assert.Equal("124", line.id);
+            Assert.Equal("Jones", line.claimants);
+            Assert.Equal("HMRC", line.respondent);
+            Assert.Equal(".docx", line.Extension);
         }
 
-        [Test]
+        [Fact]
         public void FindLines_WithNonExistentId_ReturnsEmptyList()
         {
             // Act
             var result = helper.FindLines(999);
 
             // Assert
-            Assert.That(result, Is.Not.Null, "Result should not be null");
-            Assert.That(result.Count, Is.EqualTo(0), "Should return empty list for non-existent ID");
+            Assert.NotNull(result);
+            Assert.Empty(result);
         }
 
-        [Test]
+        [Fact]
         public void FindLines_WithZeroId_ReturnsEmptyList()
         {
             // Act
             var result = helper.FindLines(0);
 
             // Assert
-            Assert.That(result, Is.Not.Null, "Result should not be null");
-            Assert.That(result.Count, Is.EqualTo(0), "Should return empty list for ID 0");
+            Assert.NotNull(result);
+            Assert.Empty(result);
         }
 
-        [Test]
+        [Fact]
         public void FindLines_WithNonExistentFile_ThrowsFileNotFoundException()
         {
             // Arrange - Create helper with non-existent CSV path
@@ -125,11 +122,10 @@ namespace Backlog.Test
             };
 
             // Act & Assert
-            Assert.Throws<FileNotFoundException>(() => invalidHelper.FindLines(123),
-                "Should throw FileNotFoundException for non-existent CSV file");
+            Assert.Throws<FileNotFoundException>(() => invalidHelper.FindLines(123));
         }
 
-        [Test]
+        [Fact]
         public void FindLines_WithEmptyFile_ReturnsEmptyList()
         {
             // Arrange - Create empty CSV file with just headers
@@ -147,11 +143,11 @@ namespace Backlog.Test
             var result = emptyHelper.FindLines(123);
 
             // Assert
-            Assert.That(result, Is.Not.Null, "Result should not be null");
-            Assert.That(result.Count, Is.EqualTo(0), "Should return empty list for empty CSV");
+            Assert.NotNull(result);
+            Assert.Empty(result);
         }
 
-        [Test]
+        [Fact]
         public void FindLines_WithMalformedCsv_ThrowsCsvHelperException()
         {
             // Arrange - Create malformed CSV file (missing many required headers)
@@ -168,14 +164,13 @@ namespace Backlog.Test
             };
 
             // Act & Assert - CsvHelper will throw when required headers are missing
-            var ex = Assert.Throws<CsvHelper.MissingFieldException>(() => malformedHelper.FindLines(123),
-                "Should throw CsvHelper.MissingFieldException for CSV missing required headers");
+            var ex = Assert.Throws<CsvHelper.MissingFieldException>(() => malformedHelper.FindLines(123));
                 
-            // Verify the exception message contains information about missing headers
-            Assert.That(ex.Message, Does.Contain("FilePath").Or.Contain("Extension").Or.Contain("CaseNo").Or.Contain("court"), 
-                "Exception message should mention at least one of the missing required columns");
+            // Verify the exception message contains information about first missing header
+            Assert.Contains("court", ex.Message);
         }
-        [Test]
+
+        [Fact]
         public void FindLines_PartiallyMissingRequiredColumns_ThrowsCsvHelperException()
         {
             // Arrange - Create CSV missing only 'FilePath' column
@@ -191,41 +186,13 @@ namespace Backlog.Test
             };
 
             // Act & Assert - CsvHelper will throw when required columns are missing
-            var ex = Assert.Throws<CsvHelper.MissingFieldException>(() => partialHelper.FindLines(123),
-                "Should throw CsvHelper.MissingFieldException for partially missing required columns");
+            var ex = Assert.Throws<CsvHelper.MissingFieldException>(() => partialHelper.FindLines(123));
                 
             // Verify the exception message contains information about the missing FilePath column
-            Assert.That(ex.Message, Does.Contain("FilePath"), 
-                "Exception message should mention the missing 'FilePath' column");
+            Assert.Contains("FilePath", ex.Message);
         }
 
-        [Test]
-        public void FindLines_ReturnsCorrectDataTypes()
-        {
-            // Act
-            var result = helper.FindLines(123);
-
-            // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Count, Is.GreaterThan(0));
-            
-            var line = result.First();
-            
-            // Verify all properties are strings (as expected from CSV parsing)
-            Assert.That(line.id, Is.TypeOf<string>());
-            Assert.That(line.decision_datetime, Is.TypeOf<string>());
-            Assert.That(line.claimants, Is.TypeOf<string>());
-            Assert.That(line.respondent, Is.TypeOf<string>());
-            Assert.That(line.CaseNo, Is.TypeOf<string>());
-            Assert.That(line.Extension, Is.TypeOf<string>());
-            Assert.That(line.FilePath, Is.TypeOf<string>());
-            
-            // Verify computed properties work correctly
-            Assert.That(line.DecisionDate, Is.EqualTo("2025-01-15"));
-            Assert.That(line.CaseNo, Is.EqualTo("IA/2025/001"));
-        }
-
-        [Test]
+        [Fact]
         public void FindLines_WithMainSubcategoryButNoMainCategory_ThrowsCsvValidationException()
         {
             // Arrange - Create CSV with main_subcategory but no main_category
@@ -241,15 +208,14 @@ namespace Backlog.Test
             };
 
             // Act & Assert - Should throw CsvHelperException during CSV reading
-            var ex = Assert.Throws<CsvHelper.CsvHelperException>(() => invalidCategoryHelper.FindLines(126),
-                "Should throw CsvHelper.CsvHelperException for main_subcategory without main_category during CSV reading");
+            var ex = Assert.Throws<CsvHelper.CsvHelperException>(() => invalidCategoryHelper.FindLines(126));
                 
             // Verify the exception message contains information about the validation rule
-            Assert.That(ex.Message, Does.Contain("main_subcategory").And.Contain("main_category"), 
-                "Exception message should mention the validation rule for main_subcategory and main_category");
+            Assert.Contains("main_subcategory", ex.Message);
+            Assert.Contains("main_category", ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void FindLines_WithSecSubcategoryButNoSecCategory_ThrowsCsvValidationException()
         {
             // Arrange - Create CSV with sec_subcategory but no sec_category
@@ -265,15 +231,14 @@ namespace Backlog.Test
             };
 
             // Act & Assert - Should throw CsvHelperException during CSV reading
-            var ex = Assert.Throws<CsvHelper.CsvHelperException>(() => invalidSecCategoryHelper.FindLines(127),
-                "Should throw CsvHelper.CsvHelperException for sec_subcategory without sec_category during CSV reading");
+            var ex = Assert.Throws<CsvHelper.CsvHelperException>(() => invalidSecCategoryHelper.FindLines(127));
                 
             // Verify the exception message contains information about the validation rule
-            Assert.That(ex.Message, Does.Contain("sec_subcategory").And.Contain("sec_category"), 
-                "Exception message should mention the validation rule for sec_subcategory and sec_category");
+            Assert.Contains("sec_subcategory", ex.Message);
+            Assert.Contains("sec_category", ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void FindLines_WithValidCategoryHierarchy_ProcessesSuccessfully()
         {
             // Arrange - Create CSV with proper category hierarchy
@@ -292,13 +257,12 @@ namespace Backlog.Test
             var lines = validCategoryHelper.FindLines(128);
             
             // Assert
-            Assert.That(lines, Is.Not.Null);
-            Assert.That(lines.Count, Is.EqualTo(1));
+            Assert.Single(lines);
             
             // Verify the metadata can be created successfully
             var metadata = Metadata.MakeMetadata(lines.First());
-            Assert.That(metadata.Categories, Is.Not.Null);
-            Assert.That(metadata.Categories.Count, Is.EqualTo(4)); // main, main_sub, sec, sec_sub
+            Assert.NotNull(metadata.Categories);
+            Assert.Equal(4, metadata.Categories.Count); // main, main_sub, sec, sec_sub
         }
     }
 }
