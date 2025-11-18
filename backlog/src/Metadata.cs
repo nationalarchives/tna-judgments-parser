@@ -12,9 +12,8 @@ using CsvHelper.Configuration.Attributes;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-using UK.Gov.NationalArchives.CaseLaw.Model;
 
-namespace Backlog.Src.Batch.One
+namespace Backlog.Src
 {
     /// <summary>
     /// Custom validation attribute to ensure subcategories can only exist if their parent category is defined

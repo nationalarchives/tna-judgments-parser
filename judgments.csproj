@@ -16,6 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="**" />
     <Compile Include="src/**/*.cs" />
     <EmbeddedResource Include="src/akn/akomantoso30.xsd">
       <LogicalName>akn.akomantoso30.xsd</LogicalName>
