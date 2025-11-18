@@ -297,7 +297,7 @@ namespace Backlog.Test
             }
 
             // Verify tracker was updated for all processed items
-            var trackerContent = await File.ReadAllTextAsync(trackerPath);
+            var trackerContent = await File.ReadAllTextAsync(trackerPath, TestContext.Current.CancellationToken);
             foreach (var capture in s3Captures)
             {
                 var uuid = capture.CapturedKey.Substring(0, capture.CapturedKey.Length - 7); // Remove .tar.gz
@@ -321,7 +321,7 @@ namespace Backlog.Test
             Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
 
             // Pre-populate tracker to mark first item as already processed
-            await File.WriteAllTextAsync(trackerPath, "100/JudgmentFiles\\j100\\test1.doc,some-uuid-1,132345678901234567\n");
+            await File.WriteAllTextAsync(trackerPath, "100/JudgmentFiles\\j100\\test1.doc,some-uuid-1,132345678901234567\n", TestContext.Current.CancellationToken);
 
             // Configure S3 client
             Backlog.Src.Bucket.Configure(mockS3Client.Object, TEST_BUCKET);
@@ -357,7 +357,7 @@ namespace Backlog.Test
             
             // Should process fewer items than total (since one was already done)
             // The exact count depends on test data - we'll verify this doesn't process ALL items
-            var trackerContent = await File.ReadAllTextAsync(trackerPath);
+            var trackerContent = await File.ReadAllTextAsync(trackerPath, TestContext.Current.CancellationToken);
             var trackerLines = trackerContent.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             
             // Should have the original entry plus new entries

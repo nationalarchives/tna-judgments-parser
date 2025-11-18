@@ -14,14 +14,14 @@ namespace UK.Gov.NationalArchives.CaseLaw;
 public class Tests {
     const int Total = 98;
 
-    public static readonly TheoryData<int> Indices = new(
-        Enumerable.Range(1, 10).Concat(
+    public static readonly IEnumerable<int> Indices = Enumerable.Range(1, 10).Concat(
             Enumerable.Range(12, 16).Concat(
-                Enumerable.Range(29, Total - 29 + 1)))
-    );
+                Enumerable.Range(29, Total - 29 + 1)));
+    
+    public static readonly TheoryData<int> IndicesTheoryData = new(Indices);
 
     [Theory]
-    [MemberData(nameof(Indices))]
+    [MemberData(nameof(IndicesTheoryData))]
     public void Test(int i) {
         var docx = DocumentHelpers.ReadDocx(i);
         var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
