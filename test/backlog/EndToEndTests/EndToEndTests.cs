@@ -5,66 +5,45 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-using Backlog.Src;
-
 using Xunit;
 
 using Metadata = UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata;
 
-namespace test.backlog
+namespace test.backlog.EndToEndTests
 {
-    public class EndToEndTests : IDisposable
+    public class EndToEndTests : BaseEndToEndTests
     {
         private static readonly string ExpectedParserVersion = typeof(Metadata)
                                                                .Assembly
                                                                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
                                                                .InformationalVersion;
 
-        private readonly MockS3Client mockS3Client = new();
-        private string bulkNumbersPath;
-        private string courtMetadataPath;
-        private string dataDir;
-        private string outputPath;
+        private string outputDir;
         private string trackerPath;
 
-        public EndToEndTests()
+        public EndToEndTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
             // Ensure environment is clean before running any tests
-            CleanEnvironment();
+            CleanFiles();
         }
 
-        public void Dispose()
+        protected override void Dispose(bool disposing)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            CleanFiles();
+            base.Dispose(disposing);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void CleanFiles()
         {
-            CleanEnvironment();
-        }
-
-        private void CleanEnvironment()
-        {
-            // Clean up environment variables
-            Environment.SetEnvironmentVariable("COURT_METADATA_PATH", null);
-            Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", null);
-            Environment.SetEnvironmentVariable("TRACKER_PATH", null);
-            Environment.SetEnvironmentVariable("OUTPUT_PATH", null);
-            Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", null);
-            Environment.SetEnvironmentVariable("AWS_REGION", null);
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", null);
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", null);
-
             // Only clean up output files and tracker, leave test data intact
             if (File.Exists(trackerPath))
             {
                 File.Delete(trackerPath);
             }
 
-            if (Directory.Exists(outputPath))
+            if (Directory.Exists(outputDir))
             {
-                Directory.Delete(outputPath, true);
+                Directory.Delete(outputDir, true);
             }
         }
 
@@ -81,32 +60,25 @@ namespace test.backlog
             var testDataDirectory = backlogDirectory.GetDirectories("test-data").SingleOrDefault()
                                     ?? throw new DirectoryNotFoundException("Could not find test-data directory");
 
-            dataDir = testDataDirectory.GetDirectories(testCaseName).SingleOrDefault()?.FullName
-                      ?? throw new DirectoryNotFoundException($"Could not find {testCaseName} directory");
-
-            // Create paths for required files
-            courtMetadataPath = Path.Combine(dataDir, "court_metadata.csv");
-            trackerPath = Path.Combine(dataDir, "uploaded-production.csv");
-            outputPath = Path.Combine(dataDir, "output");
-            bulkNumbersPath = Path.Combine(dataDir, "bulk_numbers.csv");
+            var dataDir = testDataDirectory.GetDirectories(testCaseName).SingleOrDefault()?.FullName
+                          ?? throw new DirectoryNotFoundException($"Could not find {testCaseName} directory");
 
             // Create the output directory - input directories should already exist with test data
-            Directory.CreateDirectory(outputPath);
+            outputDir = Path.Combine(dataDir, "output");
+            Directory.CreateDirectory(outputDir);
+
+            // Store the tracker path so we can clean it later
+            trackerPath = Path.Combine(dataDir, "uploaded-production.csv");
 
             // Set environment variables for this test
-            Environment.SetEnvironmentVariable("COURT_METADATA_PATH", courtMetadataPath);
-            Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", dataDir);
-            Environment.SetEnvironmentVariable("TRACKER_PATH", trackerPath);
-            Environment.SetEnvironmentVariable("OUTPUT_PATH", outputPath);
-            Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", bulkNumbersPath);
-            Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
+            SetPathEnvironmentVariables(dataDir, outputDir, trackerPath: trackerPath);
         }
 
         private void AssertCapturedContentMatchesOutputContent(string capturedKey)
         {
             var capturedContent = mockS3Client.GetCapturedContent(capturedKey);
 
-            var outputFilePath = Path.Combine(outputPath, capturedKey);
+            var outputFilePath = Path.Combine(outputDir, capturedKey);
             Assert.True(File.Exists(outputFilePath), "Output file should exist");
 
             var outputContent = File.ReadAllBytes(outputFilePath);
@@ -145,9 +117,6 @@ namespace test.backlog
             Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
             Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
 
-            // Configure S3 client
-            Bucket.Configure(mockS3Client.Object, MockS3Client.TestBucket);
-
             // Arrange
             const uint docId = 5; // doc id 5 from the court_metadata.csv being tested
 
@@ -169,11 +138,6 @@ namespace test.backlog
                 "test.backlog.expected_output.Altaf Ebrahim t_a Ebrahim & Co v OISC.xml");
         }
 
-        private static void AssertProgramExitedSuccessfully(int exitCode)
-        {
-            Assert.True(exitCode == 0, "Program should exit successfully");
-        }
-
         [Fact]
         public void ProcessBacklogJudgment_SuccessfullyProcessesPDF()
         {
@@ -181,9 +145,6 @@ namespace test.backlog
             ConfigureTestEnvironment("Money Worries Ltd v Office of Fair Trading");
             Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "Documents\\");
             Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/Consumer Credit Appeals/Documents/");
-
-            // Configure S3 client
-            Bucket.Configure(mockS3Client.Object, MockS3Client.TestBucket);
 
             // Arrange
             const uint docId = 20; // Using doc id of a PDF
@@ -208,12 +169,6 @@ namespace test.backlog
                 "test.backlog.expected_output.Money Worries Ltd v Office of Fair Trading.xml");
         }
 
-        private static string GetUuidFromKey(string capturedKey)
-        {
-            var capturedUuid = capturedKey.Substring(0, capturedKey.Length - 7); // Remove .tar.gz
-            return capturedUuid;
-        }
-
         [Fact]
         public void ProcessBacklogJudgment_FullCSV_ProcessesMultipleJudgments()
         {
@@ -221,9 +176,6 @@ namespace test.backlog
             ConfigureTestEnvironment("MultiLineTest");
             Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
             Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
-
-            // Configure S3 client
-            Bucket.Configure(mockS3Client.Object, MockS3Client.TestBucket);
 
             // Act - Run without --id to process full CSV
             var exitCode = Backlog.Src.Program.Main(new string[0]);
