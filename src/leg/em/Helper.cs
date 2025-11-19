@@ -5,28 +5,28 @@ using System.Xml;
 using DocumentFormat.OpenXml.Packaging;
 
 using UK.Gov.NationalArchives.AkomaNtoso;
+using UK.Gov.Legislation.Common;
+using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Models;
 
 namespace UK.Gov.Legislation.ExplanatoryMemoranda {
 
-class Helper {
+class Helper : BaseHelper {
 
-    public static IXmlDocument Parse(Stream docx, bool simplify = true) {
-        WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify);
+    private static readonly Helper Instance = new Helper();
+
+    private Helper() : base(LegislativeDocumentConfig.ForExplanatoryMemoranda()) { }
+
+    public static new IXmlDocument Parse(Stream docx, bool simplify = true) {
+        return ((BaseHelper)Instance).Parse(docx, simplify);
     }
 
-    public static IXmlDocument Parse(byte[] docx, bool simplify = true) {
-        WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify);
+    public static new IXmlDocument Parse(byte[] docx, bool simplify = true) {
+        return ((BaseHelper)Instance).Parse(docx, simplify);
     }
 
-    private static IXmlDocument Parse(WordprocessingDocument docx, bool simplify) {
-        IDocument doc = ExplanatoryMemoranda.Parser.Parse(docx);
-        XmlDocument xml = Builder.Build(doc);
-        docx.Dispose();
-        if (simplify)
-            Simplifier.Simplify(xml);
-        return new XmlDocument_ { Document = xml };
+    protected override IDocument ParseDocument(WordprocessingDocument docx) {
+        return ExplanatoryMemoranda.Parser.Parse(docx);
     }
 
 }
