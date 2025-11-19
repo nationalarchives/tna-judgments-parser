@@ -18,7 +18,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
 
             private sealed class ParagraphState
             {
-                internal readonly Dictionary<int, int> CountersByIlvl = new();
+                internal readonly Dictionary<int, int> CountersByIlvl = [];
             }
 
             internal NumberingContext(MainDocumentPart main)
@@ -70,19 +70,16 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 return cached;
 
             int? numId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+            // TODO consider paragraph.ParagraphProperties?.NumberingProperties?.NumberingChange?.Id?.Value
             if (numId is null)
                 return 0;
-
             Paragraph? previous = FindPreviousParagraph(ctx, paragraph, numId.Value, ilvl);
+
             int value;
             if (previous is null)
-            {
                 value = 1;
-            }
             else
-            {
                 value = CalculateN(ctx, previous, ilvl) + 1;
-            }
 
             ctx.SetCachedN(paragraph, ilvl, value);
             return value;
@@ -90,23 +87,17 @@ namespace UK.Gov.Legislation.Judgments.DOCX
 
         private static Paragraph? FindPreviousParagraph(NumberingContext ctx, Paragraph paragraph, int numId, int ilvl)
         {
-            Body? body = ctx.Main.Document?.Body;
-            if (body is null)
-                return null;
-
-            Paragraph? last = null;
-            foreach (Paragraph candidate in body.Elements<Paragraph>())
+            Paragraph? prev = paragraph.PreviousSibling<Paragraph>();
+            while (prev != null)
             {
-                if (ReferenceEquals(candidate, paragraph))
-                    break;
-
-                var info = UK.Gov.Legislation.Judgments.DOCX.Numbering.GetNumberingIdAndIlvl(ctx.Main, candidate);
-                if (!info.Item1.HasValue)
-                    continue;
-                if (info.Item1.Value == numId && info.Item2 == ilvl)
-                    last = candidate;
+                int? prevNumId = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+                // TODO consider prev.ParagraphProperties?.NumberingProperties?.NumberingChange?.Id?.Value
+                int? prevIlvl = prev.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
+                if (prevNumId.HasValue && prevNumId.Value == numId && prevIlvl.HasValue && prevIlvl.Value == ilvl)
+                    return prev;
+                prev = prev.PreviousSibling<Paragraph>();
             }
-            return last;
+            return null;
         }
 
     }
