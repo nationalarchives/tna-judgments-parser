@@ -1,11 +1,9 @@
 #nullable enable
 
+using System.Formats.Tar;
 using System.IO;
-using System.Text;
+using System.IO.Compression;
 using System.Text.RegularExpressions;
-
-using ICSharpCode.SharpZipLib.GZip;
-using ICSharpCode.SharpZipLib.Tar;
 
 using Xunit;
 
@@ -15,18 +13,23 @@ public static class ZipFileHelpers
 {
     public static string GetFileFromZippedContent(byte[] content, string fileRegexPattern)
     {
-        using var gzipStream = new GZipInputStream(new MemoryStream(content));
-        using var archive = new TarInputStream(gzipStream, Encoding.UTF8);
+        using MemoryStream memoryStream = new(content);
+        using GZipStream gz = new(memoryStream, CompressionMode.Decompress);
+        using var tarReader = new TarReader(gz, true);
 
-        var entry = archive.GetNextEntry();
-        while (entry != null && !Regex.IsMatch(entry.Name, fileRegexPattern))
+        while (tarReader.GetNextEntry() is { } entry)
         {
-            entry = archive.GetNextEntry();
+            if (Regex.IsMatch(entry.Name, fileRegexPattern))
+            {
+                var entryDataStream = entry.DataStream;
+                Assert.True(entryDataStream is not null, $"File found matching {fileRegexPattern} but it had no data");
+
+                using var streamReader = new StreamReader(entryDataStream);
+                return streamReader.ReadToEnd();
+            }
         }
 
-        Assert.True(entry is not null, $"Could not find file in content matching {fileRegexPattern}");
-
-        using var reader = new StreamReader(archive);
-        return reader.ReadToEnd();
-    }   
+        Assert.Fail($"Could not find file in content matching {fileRegexPattern}");
+        return null;
+    }
 }
