@@ -14,6 +14,7 @@ namespace test.backlog.EndToEndTests;
 
 public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
 {
+    private const int DocIdWithJurisdiction = 70;
     private string? courtMetadataPath;
     private string? tempDataDir;
 
@@ -78,10 +79,20 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         const string judgmentsFilePath = @"JudgmentFiles\";
         Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", judgmentsFilePath);
 
-        var headerLine = "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent";
+        var headerLine =
+            "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,jurisdictions";
         var csvMetadataLines = new List<string> { headerLine };
         csvMetadataLines.AddRange(metadataLines.Select(metadataLine =>
-            $"{testJudgementNumber},{judgmentsFilePath}{originalFileName},{metadataLine.Extension},{metadataLine.decision_datetime},{metadataLine.CaseNo},{metadataLine.court},{metadataLine.appellants},{metadataLine.claimants},{metadataLine.respondent}"));
+        {
+            var jurisdictions = string.Join(',', metadataLine.Jurisdictions);
+            if (metadataLine.Jurisdictions.Count() > 1)
+            {
+                jurisdictions = $"\"{jurisdictions}\"";
+            }
+
+            return
+                $"{testJudgementNumber},{judgmentsFilePath}{originalFileName},{metadataLine.Extension},{metadataLine.decision_datetime},{metadataLine.CaseNo},{metadataLine.court},{metadataLine.appellants},{metadataLine.claimants},{metadataLine.respondent},{jurisdictions}";
+        }));
 
         var metadataPath = courtMetadataPath ??
                            throw new InvalidOperationException($"{nameof(courtMetadataPath)} must be set");
@@ -90,25 +101,24 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
     }
 
     [Fact]
-    public void ProcessBacklogTribunal_WithMetaDataOverrides_OverridesMetadata()
+    public void ProcessBacklogTribunal_WithExternalMetaData_AddsMetadata()
     {
-        // Test 70 has judgments
-        const int docId = 70;
-        var originalFileName = $"test{docId}.docx";
+        const int docWithoutJurisdictionsId = 21;
+        var originalFileName = $"test{docWithoutJurisdictionsId}.docx";
 
-        ConfigureTestEnvironment(docId, originalFileName);
-
-        // Metadata
+        ConfigureTestEnvironment(docWithoutJurisdictionsId, originalFileName);
+        
         var metadataLine = new Metadata.Line
         {
             Extension = ".docx",
             decision_datetime = "2099-01-31 00:00:00",
             CaseNo = "new case number",
-            court = "UKFTT-GRC",
-            appellants = "new appellants",
-            respondent = "new respondent"
+            court = "UKUT-LC",
+            claimants = "new claimants",
+            respondent = "new respondent",
+            Jurisdictions = ["new jurisdiction"]
         };
-        WriteCourtMetadataCsv(docId, originalFileName, metadataLine);
+        WriteCourtMetadataCsv(docWithoutJurisdictionsId, originalFileName, metadataLine);
 
         // Act
         var exitCode = Backlog.Src.Program.Main([]);
@@ -121,20 +131,86 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         // Assert xml is as expected
         doc.HasSingleNodeWithName("proprietary")
            .Which().HasChildrenMatching(
-               child => child.Should().Match("uk:court", "UKFTT-GRC"),
-               child => child.Should().Match("uk:year", "2023"),
-               child => child.Should().Match("uk:number", "916"),
-               child => child.Should().Match("uk:cite", "[2023] UKFTT 916 (GRC)"),
+               child => child.Should().Match("uk:court", "UKUT-LC"),
                child => child.Should().Match("uk:caseNumber", "new case number"),
-               child => child.Should().Match("uk:jurisdiction", "InformationRights"),
-               child => child.Should().Match("uk:party", "new appellants", ("role", "Appellant")),
+               child => child.Should().Match("uk:party", "new claimants", ("role", "Claimant")),
                child => child.Should().Match("uk:party", "new respondent", ("role", "Respondent")),
+               child => child.Should().Match("uk:jurisdiction", "new jurisdiction"),
                child => child.Should().Match("uk:sourceFormat",
                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"),
                child => child.Should().HaveName("uk:parser"),
-               child => child.Should().Match("uk:hash",
-                   "134025e65cf965cd195d28246b1713ee78d93731fe751d724fc236b90626f9bc")
+               child => child.Should().Match("uk:hash", "4684bfd014fadda75dc2bd683fb4edf8df0f42656a2ac85013bb3dfb14ca512e"),
+               child => child.Should().Match("uk:year", "2022"),
+               child => child.Should().Match("uk:number", "121"),
+               child => child.Should().Match("uk:cite", "[2022] UKUT 121 (LC)")
            );
+
+        doc.HasSingleNodeWithName("references")
+           .Which().DoesNotHaveChildWithName("docJurisdiction");
+    }
+
+    [Fact]
+    public void ProcessBacklogTribunal_WithConflictingJurisdictionMetaData_Fails()
+    {
+        var originalFileName = $"test{DocIdWithJurisdiction}.docx";
+
+        ConfigureTestEnvironment(DocIdWithJurisdiction, originalFileName);
+
+        // Metadata
+        var metadataLine = new Metadata.Line
+        {
+            Extension = ".docx",
+            decision_datetime = "2099-01-31 00:00:00",
+            CaseNo = "new case number",
+            court = "UKFTT-GRC",
+            appellants = "new appellants",
+            respondent = "new respondent",
+            Jurisdictions = ["A jurisdiction which is not in the original document"]
+        };
+        WriteCourtMetadataCsv(DocIdWithJurisdiction, originalFileName, metadataLine);
+
+        // Act
+        var exitCode = Backlog.Src.Program.Main([]);
+
+        //Assert
+        Assert.True(exitCode != 0, "Expected program to error but it exited successfully");
+        Assert.Contains(
+            "MetadataConflictException: Jurisdictions found in document are missing in supplied outside metadata",
+            TestOutputHelper.Output);
+    }
+
+    [Fact]
+    public void ProcessBacklogTribunal_WithAdditionalJurisdictionMetaData_AddsExtraJurisdiction()
+    {
+        var originalFileName = $"test{DocIdWithJurisdiction}.docx";
+
+        ConfigureTestEnvironment(DocIdWithJurisdiction, originalFileName);
+
+        // Metadata
+        var metadataLine = new Metadata.Line
+        {
+            Extension = ".docx",
+            decision_datetime = "2023-11-01 00:00:00",
+            CaseNo = "EA/2023/0132",
+            court = "UKFTT-GRC",
+            appellants = "NIGEL RAWLINS",
+            respondent = "THE INFORMATION COMMISSIONER",
+            Jurisdictions = ["InformationRights", "new jurisdiction"]
+        };
+        WriteCourtMetadataCsv(DocIdWithJurisdiction, originalFileName, metadataLine);
+
+        // Act
+        var exitCode = Backlog.Src.Program.Main([]);
+
+        // Assert program finished successfully
+        AssertProgramExitedSuccessfully(exitCode);
+
+        var doc = GetXmlDocumentFromS3();
+
+        // Assert xml is as expected
+        doc.HasSingleNodeWithName("proprietary")
+           .Which().HasChildMatching("uk:jurisdiction", "InformationRights")
+           .And().HasChildMatching("uk:jurisdiction", "new jurisdiction");
 
         doc.HasSingleNodeWithName("references")
            .Which().HasChildrenMatching(
@@ -182,11 +258,9 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
     [Fact]
     public void ProcessBacklogTribunal_WithSameMetaDataAsInDocument_DoesNotChangeOutput()
     {
-        // Test 70 has judgments
-        const int docId = 70;
-        var originalFileName = $"test{docId}.docx";
+        var originalFileName = $"test{DocIdWithJurisdiction}.docx";
 
-        ConfigureTestEnvironment(docId, originalFileName);
+        ConfigureTestEnvironment(DocIdWithJurisdiction, originalFileName);
 
         // Metadata
         var metadataLine = new Metadata.Line
@@ -196,9 +270,10 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             CaseNo = "EA/2023/0132",
             court = "UKFTT-GRC",
             appellants = "NIGEL RAWLINS",
-            respondent = "THE INFORMATION COMMISSIONER"
+            respondent = "THE INFORMATION COMMISSIONER",
+            Jurisdictions = ["InformationRights"]
         };
-        WriteCourtMetadataCsv(docId, originalFileName, metadataLine);
+        WriteCourtMetadataCsv(DocIdWithJurisdiction, originalFileName, metadataLine);
 
         // Act
         var exitCode = Backlog.Src.Program.Main([]);
@@ -257,4 +332,6 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
                ("refersTo", "#jurisdiction-informationrights"),
                ("style", "font-weight:bold;font-family:Arial"));
     }
+    
+    //todo: ensure pdfs work
 }
