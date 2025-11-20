@@ -1,12 +1,12 @@
 using System;
 
-using UK.Gov.Legislation.Judgments;
-
 using Backlog.Src;
+
+using UK.Gov.Legislation.Judgments;
 
 using Xunit;
 
-namespace Backlog.Test
+namespace test.backlog
 {
     public class TestMetadata
     {

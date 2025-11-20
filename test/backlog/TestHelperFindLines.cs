@@ -1,11 +1,12 @@
 using System;
 using System.IO;
 using System.Linq;
+
 using Backlog.Src;
 
 using Xunit;
 
-namespace Backlog.Test
+namespace test.backlog
 {
     public sealed class TestHelperFindLines: IDisposable
     {

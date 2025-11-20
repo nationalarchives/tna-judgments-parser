@@ -7,7 +7,7 @@ using Backlog.Src;
 
 using Xunit;
 
-namespace Tests.Backlog
+namespace test.backlog
 {
     /// <summary>
     /// Tests for the Files class focusing on file path handling and UUID resolution.
