@@ -341,7 +341,7 @@ class Numbering2 {
         return level?.StartNumberingValue?.Val ?? 1;
     }
 
-    private static int GetStart(MainDocumentPart main, int numberingId, int ilvl) {
+    internal static int GetStart(MainDocumentPart main, int numberingId, int ilvl) {
         NumberingInstance numbering = Numbering.GetNumbering(main, numberingId);
         int? start = numbering.Descendants<Level>()
             .Where(l => l.LevelIndex.Value == ilvl)

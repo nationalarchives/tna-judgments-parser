@@ -87,7 +87,6 @@ namespace UK.Gov.Legislation.Judgments.DOCX
 
             foreach (var paragraph in ctx.Main.Document.Body.Descendants<Paragraph>())
             {
-
                 Style style = Styles.GetStyle(ctx.Main, paragraph) ?? Styles.GetDefaultParagraphStyle(ctx.Main);
 
                 int? ownNumId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
@@ -115,6 +114,14 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     counters[absNumId] = new Dictionary<int, int>();
                 var ilvlCounters = counters[absNumId];
 
+                // Initialize all parent levels if they don't exist yet.
+                for (int parentLevel = 0; parentLevel < ilvl; parentLevel++)
+                {
+                    if (!ilvlCounters.ContainsKey(parentLevel))
+                        ilvlCounters[parentLevel] = Numbering2.GetStart(ctx.Main, numId, parentLevel);
+                    ctx.SetCachedN(paragraph, parentLevel, ilvlCounters[parentLevel]);
+                }
+
                 // When a paragraph appears at a given level,
                 // it implicitly restarts the numbering of any deeper levels.
                 var levelsToReset = ilvlCounters.Keys.Where(l => l > ilvl).ToList();
@@ -125,7 +132,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 if (ilvlCounters.TryGetValue(ilvl, out int currentValue))
                     newValue = currentValue + 1;
                 else
-                    newValue = GetStartValue(ctx, numId, ilvl);
+                    newValue = Numbering2.GetStart(ctx.Main, numId, ilvl);
 
                 ilvlCounters[ilvl] = newValue;
                 ctx.SetCachedN(paragraph, ilvl, newValue);
@@ -139,15 +146,6 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 return null;
             AbstractNum abstractNum = Numbering.GetAbstractNum(ctx.Main, instance);
             return abstractNum.AbstractNumberId;
-        }
-
-        private static int GetStartValue(NumberingContext ctx, int numId, int ilvl)
-        {
-            var level = Numbering.GetLevel(ctx.Main, numId, ilvl);
-            int? start = level?.StartNumberingValue?.Val?.Value;
-            if (start.HasValue)
-                return start.Value;
-            return 1;
         }
 
     }
