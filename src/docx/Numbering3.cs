@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 using DocumentFormat.OpenXml.Packaging;
@@ -10,9 +11,10 @@ namespace UK.Gov.Legislation.Judgments.DOCX
     class Numbering3
     {
 
-        class NumberingContext
+        private class NumberingContext
         {
             internal MainDocumentPart Main { get; }
+            internal bool NumbersHaveBeenCalculated = false;
 
             private readonly ConditionalWeakTable<Paragraph, ParagraphState> _states = [];
 
@@ -66,52 +68,56 @@ namespace UK.Gov.Legislation.Judgments.DOCX
 
         private static int CalculateN(NumberingContext ctx, Paragraph paragraph, int ilvl)
         {
+            if (!ctx.NumbersHaveBeenCalculated)
+            {
+                CalculateAllNumbers(ctx);
+                ctx.NumbersHaveBeenCalculated = true;
+            }
             if (ctx.TryGetCachedN(paragraph, ilvl, out int cached))
                 return cached;
-
-            Style style = Styles.GetStyle(ctx.Main, paragraph) ?? Styles.GetDefaultParagraphStyle(ctx.Main);
-
-            int? ownNumId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
-            // TODO consider paragraph.ParagraphProperties?.NumberingProperties?.NumberingChange?.Id?.Value
-            int? styleNumId = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
-            int? numId = ownNumId ?? styleNumId;
-
-
-            if (numId is null)
-                return 0;
-            Paragraph previous = FindPreviousParagraph(ctx, paragraph, numId.Value, ilvl);
-
-            int value;
-            if (previous is null)
-                value = GetStartValue(ctx, numId.Value, ilvl);
-            else
-                value = CalculateN(ctx, previous, ilvl) + 1;
-
-            ctx.SetCachedN(paragraph, ilvl, value);
-            return value;
+            return 0;
         }
 
-        private static Paragraph FindPreviousParagraph(NumberingContext ctx, Paragraph paragraph, int numId, int ilvl)
+        private static void CalculateAllNumbers(NumberingContext ctx)
         {
-            Paragraph prev = paragraph.PreviousSibling<Paragraph>();
-            while (prev != null)
+            // numId -> ilvl -> value
+            var counters = new Dictionary<int, Dictionary<int, int>>();
+            foreach (var paragraph in ctx.Main.Document.Body.Descendants<Paragraph>())
             {
-                Style prevStyle = Styles.GetStyle(ctx.Main, prev) ?? Styles.GetDefaultParagraphStyle(ctx.Main);
-                int? prevOwnNumId = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
-                // TODO consider prev.ParagraphProperties?.NumberingProperties?.NumberingChange?.Id?.Value
-                int? prevStyleNumId = Styles.GetStyleProperty(prevStyle, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
-                int? prevNumId = prevOwnNumId ?? prevStyleNumId;
 
-                int? prevOwnIlvl = prev.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
-                int? prevStyleIlvl = Styles.GetStyleProperty(prevStyle, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value);
-                int prevIlvl = prevOwnIlvl ?? prevStyleIlvl ?? 0; // This differs a bit from Numbering.GetNumberingIdAndIlvl
+                Style style = Styles.GetStyle(ctx.Main, paragraph) ?? Styles.GetDefaultParagraphStyle(ctx.Main);
 
-                if (prevNumId.HasValue && prevNumId.Value == numId && prevIlvl == ilvl)
-                    return prev;
+                int? ownNumId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+                // TODO consider paragraph.ParagraphProperties?.NumberingProperties?.NumberingChange?.Id?.Value
+                int? styleNumId = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+                int? numIdOpt = ownNumId ?? styleNumId;
+                if (!numIdOpt.HasValue)
+                    continue;
+                int numId = numIdOpt.Value;
 
-                prev = prev.PreviousSibling<Paragraph>();
+                int? ownIlvl = paragraph.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
+                int? styleIlvl = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value);
+                int ilvl = ownIlvl ?? styleIlvl ?? 0; // This differs a bit from Numbering.GetNumberingIdAndIlvl
+
+                if (!counters.ContainsKey(numId))
+                    counters[numId] = new Dictionary<int, int>();
+                var ilvlCounters = counters[numId];
+
+                // When a paragraph appears at a given level,
+                // it implicitly restarts the numbering of any deeper levels.
+                var levelsToReset = ilvlCounters.Keys.Where(l => l > ilvl).ToList();
+                foreach (var l in levelsToReset)
+                    ilvlCounters.Remove(l);
+
+                int newValue;
+                if (ilvlCounters.TryGetValue(ilvl, out int currentValue))
+                    newValue = currentValue + 1;
+                else
+                    newValue = GetStartValue(ctx, numId, ilvl);
+
+                ilvlCounters[ilvl] = newValue;
+                ctx.SetCachedN(paragraph, ilvl, newValue);
             }
-            return null;
         }
 
         private static int GetStartValue(NumberingContext ctx, int numId, int ilvl)
