@@ -21,6 +21,7 @@ public class NumberingTest
     [InlineData("numbering2")]
     [InlineData("numbering3")]
     [InlineData("numbering4")]
+    [InlineData("numbering5")]
     public void NumberingSamples(string name)
     {
         byte[] docBytes = ReadResourceBytes($"test.numbering.{name}.docx");

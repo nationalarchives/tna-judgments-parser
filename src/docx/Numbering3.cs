@@ -69,11 +69,17 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             if (ctx.TryGetCachedN(paragraph, ilvl, out int cached))
                 return cached;
 
-            int? numId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+            Style style = Styles.GetStyle(ctx.Main, paragraph) ?? Styles.GetDefaultParagraphStyle(ctx.Main);
+
+            int? ownNumId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
             // TODO consider paragraph.ParagraphProperties?.NumberingProperties?.NumberingChange?.Id?.Value
+            int? styleNumId = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+            int? numId = ownNumId ?? styleNumId;
+
+
             if (numId is null)
                 return 0;
-            Paragraph? previous = FindPreviousParagraph(ctx, paragraph, numId.Value, ilvl);
+            Paragraph previous = FindPreviousParagraph(ctx, paragraph, numId.Value, ilvl);
 
             int value;
             if (previous is null)
@@ -85,16 +91,24 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             return value;
         }
 
-        private static Paragraph? FindPreviousParagraph(NumberingContext ctx, Paragraph paragraph, int numId, int ilvl)
+        private static Paragraph FindPreviousParagraph(NumberingContext ctx, Paragraph paragraph, int numId, int ilvl)
         {
-            Paragraph? prev = paragraph.PreviousSibling<Paragraph>();
+            Paragraph prev = paragraph.PreviousSibling<Paragraph>();
             while (prev != null)
             {
-                int? prevNumId = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+                Style prevStyle = Styles.GetStyle(ctx.Main, prev) ?? Styles.GetDefaultParagraphStyle(ctx.Main);
+                int? prevOwnNumId = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
                 // TODO consider prev.ParagraphProperties?.NumberingProperties?.NumberingChange?.Id?.Value
-                int? prevIlvl = prev.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
-                if (prevNumId.HasValue && prevNumId.Value == numId && prevIlvl.HasValue && prevIlvl.Value == ilvl)
+                int? prevStyleNumId = Styles.GetStyleProperty(prevStyle, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+                int? prevNumId = prevOwnNumId ?? prevStyleNumId;
+
+                int? prevOwnIlvl = prev.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
+                int? prevStyleIlvl = Styles.GetStyleProperty(prevStyle, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value);
+                int prevIlvl = prevOwnIlvl ?? prevStyleIlvl ?? 0; // This differs a bit from Numbering.GetNumberingIdAndIlvl
+
+                if (prevNumId.HasValue && prevNumId.Value == numId && prevIlvl == ilvl)
                     return prev;
+
                 prev = prev.PreviousSibling<Paragraph>();
             }
             return null;
