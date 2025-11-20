@@ -56,6 +56,33 @@ public class TestEM {
         return sWriter.ToString();
     }
 
+    [Fact]
+    public void RegenerateAllEMTestFiles() {
+        var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+        var assemblyDir = System.IO.Path.GetDirectoryName(assembly.Location);
+        var projectRoot = assemblyDir;
+        
+        // Look for either .sln file or .git directory to find project root
+        while (projectRoot != null && 
+               !System.IO.File.Exists(System.IO.Path.Combine(projectRoot, "tna-judgments-parser.sln")) &&
+               !System.IO.Directory.Exists(System.IO.Path.Combine(projectRoot, ".git"))) {
+            projectRoot = System.IO.Directory.GetParent(projectRoot)?.FullName;
+        }
+        
+        if (projectRoot == null) {
+            throw new System.Exception("Could not find project root");
+        }
+        
+        foreach (var testData in Indices) {
+            int i = (int)testData[0];
+            var docx = CaseLaw.Tests.ReadDocx($"test.leg.em.test{i}.docx");
+            var akn = Helper.Parse(docx).Serialize();
+            var outputPath = System.IO.Path.Combine(projectRoot, "test", "leg", "em", $"test{i}.akn");
+            System.IO.File.WriteAllText(outputPath, akn);
+            System.Console.WriteLine($"Regenerated test{i}.akn");
+        }
+    }
+
 }
 
 }

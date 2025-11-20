@@ -4,6 +4,7 @@ using System.Xml;
 using System.Linq;
 
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Models;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation {
@@ -11,6 +12,7 @@ namespace UK.Gov.Legislation {
 class Builder : AkN.Builder {
 
     override protected string UKNS => "https://legislation.gov.uk/akn";
+
 
     private static string FormatDateOnly(DateTime? date) {
         return date?.ToString("s")[..10];
@@ -30,6 +32,15 @@ class Builder : AkN.Builder {
         XmlElement main = CreateAndAppend("doc", akomaNtoso);
         main.SetAttribute("name", document.Meta.Name);
         main.SetAttribute("xmlns:uk", UKNS);
+        
+        // Add dc namespace if document has lastModified info (for dc:modified in proprietary)
+        // Check both ExpressionDate with lastModified name and IA-specific LastModified property
+        bool hasModified = (document.Meta.ExpressionDateName == "lastModified" && document.Meta.ExpressionDate != null) ||
+                          (document.Meta is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue);
+        if (hasModified) {
+            main.SetAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
+        }
+        
         AddMetadata(main, document.Meta);
         if (document.Header is not null && document.Header.Any()) {
             XmlElement header = doc.CreateElement("preface", ns);
@@ -129,6 +140,25 @@ class Builder : AkN.Builder {
         XmlElement parser = doc.CreateElement("uk", "parser", UKNS);
         proprietary.AppendChild(parser);
         parser.AppendChild(doc.CreateTextNode(AkN.Metadata.GetParserVersion()));
+        
+        // Add dc:modified for all documents that have lastModified information
+        // This provides a consistent location for file modification timestamp
+        string modifiedValue = null;
+        
+        // For IA documents, use the LastModified property
+        if (data is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) {
+            modifiedValue = FormatDateAndTime(iaData.LastModified);
+        }
+        // For other documents (like EMs), use ExpressionDate if it's a lastModified timestamp
+        else if (data.ExpressionDateName == "lastModified" && data.ExpressionDate != null) {
+            modifiedValue = data.ExpressionDate;
+        }
+        
+        if (modifiedValue != null) {
+            XmlElement modified = doc.CreateElement("dc", "modified", "http://purl.org/dc/elements/1.1/");
+            proprietary.AppendChild(modified);
+            modified.AppendChild(doc.CreateTextNode(modifiedValue));
+        }
 
         if (data.CSS is not null) {
             XmlElement presentation = CreateAndAppend("presentation", meta);
@@ -142,22 +172,38 @@ class Builder : AkN.Builder {
     }
 
     // protected override void AddDivision(XmlElement parent, Judgments.IDivision div) {
-    //     if (div is Model.IParagraph para)
+    //     if (div is IParagraph para)
     //         base.AddDivision(parent, div);
-    //     else if (div is Model.ISubparagraph subpara)
+    //     else if (div is ISubparagraph subpara)
     //         base.AddDivision(parent, div);
     //     else
     //         base.AddDivision(parent, div);
     // }
 
     protected override void AddInline(XmlElement parent, Judgments.IInline model) {
-        if (model is Model.DocType2 docType) {
+        if (model is DocType2 docType) {
             XmlElement e = CreateAndAppend("docType", parent);
             foreach (Judgments.IInline child in docType.Contents)
                 base.AddInline(e, child);
-        } else if (model is Model.DocNumber2 docNum) {
+        } else if (model is DocNumber2 docNum) {
             XmlElement e = CreateAndAppend("docNumber", parent);
             foreach (Judgments.IInline child in docNum.Contents)
+                base.AddInline(e, child);
+        } else if (model is DocTitle docTitle) {
+            XmlElement e = CreateAndAppend("docTitle", parent);
+            foreach (Judgments.IInline child in docTitle.Contents)
+                base.AddInline(e, child);
+        } else if (model is DocStage docStage) {
+            XmlElement e = CreateAndAppend("docStage", parent);
+            foreach (Judgments.IInline child in docStage.Contents)
+                base.AddInline(e, child);
+        } else if (model is DocDate docDate) {
+            XmlElement e = CreateAndAppend("docDate", parent);
+            foreach (Judgments.IInline child in docDate.Contents)
+                base.AddInline(e, child);
+        } else if (model is DocDepartment docDept) {
+            XmlElement e = CreateAndAppend("docProponent", parent);
+            foreach (Judgments.IInline child in docDept.Contents)
                 base.AddInline(e, child);
         } else {
             base.AddInline(parent, model);
@@ -167,6 +213,7 @@ class Builder : AkN.Builder {
     protected override string MakeDivisionId(IDivision div) {
         return null;
     }
+
 
     /* annexes */
 
@@ -190,6 +237,9 @@ class Builder : AkN.Builder {
         AddMetadata(main, new AnnexMetadata(meta, n));
         XmlElement body = doc.CreateElement("mainBody", ns);
         main.AppendChild(body);
+        
+        // Annex content goes directly in mainBody (no wrapper needed)
+        // Schema now allows block elements (p, table, blockContainer) in mainBody
         p(body, annex.Number);
         blocks(body, annex.Contents);
     }
