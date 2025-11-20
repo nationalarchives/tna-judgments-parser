@@ -76,15 +76,23 @@ class WMetadata3 : WMetadata, IMetadataExtended {
             if (outside.JurisdictionShortNames.Count == 0)
                 return base.Jurisdictions;
 
-            var matchingJurisdictionsFromDoc = new List<IDocJurisdiction>();
+            // Enumerate array to speed up searches by preventing downstream calculations reoccurring
+            var jurisdictionsFoundInDoc = base.Jurisdictions.ToArray();
 
+            var areAllJurisdictionsFoundInDocInOutsideMetadata = jurisdictionsFoundInDoc
+                .All(jurisdictionFromDoc => outside.JurisdictionShortNames.Contains(jurisdictionFromDoc.ShortName));
+
+            if (!areAllJurisdictionsFoundInDocInOutsideMetadata)
+                throw new MetadataConflictException("Jurisdictions found in document are missing in supplied outside metadata");
+
+            // Combine outside and doc-provided metadata, returning jurisdictions found in doc where possible
+            var combinedJurisdictions = new List<IDocJurisdiction>();
             foreach (var outsideJurisdictionShortName in outside.JurisdictionShortNames) {
-                IDocJurisdiction? match = base.Jurisdictions.SingleOrDefault(j => j.ShortName == outsideJurisdictionShortName);
+                var match = jurisdictionsFoundInDoc.SingleOrDefault(j => j.ShortName == outsideJurisdictionShortName);
 
-                matchingJurisdictionsFromDoc.Add(match ?? new OutsideJurisdiction{ShortName = outsideJurisdictionShortName});
+                combinedJurisdictions.Add(match ?? new OutsideJurisdiction{ShortName = outsideJurisdictionShortName});
             }
-
-            return matchingJurisdictionsFromDoc;
+            return combinedJurisdictions;
         }
     }
 
