@@ -77,7 +77,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
 
             int value;
             if (previous is null)
-                value = 1;
+                value = GetStartValue(ctx, numId.Value, ilvl);
             else
                 value = CalculateN(ctx, previous, ilvl) + 1;
 
@@ -98,6 +98,15 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 prev = prev.PreviousSibling<Paragraph>();
             }
             return null;
+        }
+
+        private static int GetStartValue(NumberingContext ctx, int numId, int ilvl)
+        {
+            var level = Numbering.GetLevel(ctx.Main, numId, ilvl);
+            int? start = level?.StartNumberingValue?.Val?.Value;
+            if (start.HasValue)
+                return start.Value;
+            return 1;
         }
 
     }
