@@ -135,6 +135,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
                child => child.Should().Match("uk:caseNumber", "new case number"),
                child => child.Should().Match("uk:party", "new claimants", ("role", "Claimant")),
                child => child.Should().Match("uk:party", "new respondent", ("role", "Respondent")),
+               child => child.Should().Match("uk:jurisdiction", "new jurisdiction"),
                child => child.Should().Match("uk:sourceFormat",
                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"),
                child => child.Should().HaveName("uk:parser"),
@@ -145,24 +146,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
            );
 
         doc.HasSingleNodeWithName("references")
-           .Which().HasChildrenMatching(
-               node => node.Should().HaveName("TLCOrganization")
-                           .And().Attributes.ThatMatch(
-                               ("eId", "ukftt-grc"),
-                               ("href",
-                                   "https://www.gov.uk/courts-tribunals/first-tier-tribunal-general-regulatory-chamber"),
-                               ("showAs", "United Kingdom First-tier Tribunal (General Regulatory Chamber)")),
-               node => node.Should().HaveName("TLCOrganization")
-                           .And().Attributes.ThatMatch(
-                               ("eId", "tna"),
-                               ("href", "https://www.nationalarchives.gov.uk/"),
-                               ("showAs", "The National Archives")),
-               node => node.Should().HaveName("TLCEvent")
-                           .And().Attributes.ThatMatch(
-                               ("eId", "decision"),
-                               ("href", "#"),
-                               ("showAs", "decision"))
-           );
+           .Which().DoesNotHaveChildWithName("docJurisdiction");
     }
 
     [Fact]
@@ -347,4 +331,6 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
                ("refersTo", "#jurisdiction-informationrights"),
                ("style", "font-weight:bold;font-family:Arial"));
     }
+    
+    //todo: ensure pdfs work
 }

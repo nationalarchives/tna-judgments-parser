@@ -100,6 +100,16 @@ public static class XmlAssertions
 
         return node;
     }
+    
+    public static XmlNode DoesNotHaveChildWithName(this XmlNode node, string name)
+    {
+        var childNodes = node.Cast<XmlNode>();
+
+        if (childNodes.Any(child => string.Equals(child.Name, name, StringComparison.InvariantCultureIgnoreCase)))
+            Assert.Fail($"Was not expecting to find a child of {node.Name} with name {name}");
+
+        return node;
+    }
 
     #region Readability No Ops
     
