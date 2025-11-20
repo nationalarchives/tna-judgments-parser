@@ -82,6 +82,9 @@ namespace UK.Gov.Legislation.Judgments.DOCX
         {
             // numId -> ilvl -> value
             var counters = new Dictionary<int, Dictionary<int, int>>();
+
+            var numIdToAbsNumId = new Dictionary<int, int>();
+
             foreach (var paragraph in ctx.Main.Document.Body.Descendants<Paragraph>())
             {
 
@@ -95,13 +98,22 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     continue;
                 int numId = numIdOpt.Value;
 
+                if (!numIdToAbsNumId.TryGetValue(numId, out var absNumId))
+                {
+                    int? absOpt = GetAbstractNumId(ctx, numId);
+                    if (!absOpt.HasValue)
+                        continue;
+                    absNumId = absOpt.Value;
+                    numIdToAbsNumId[numId] = absNumId;
+                }
+
                 int? ownIlvl = paragraph.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
                 int? styleIlvl = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value);
                 int ilvl = ownIlvl ?? styleIlvl ?? 0; // This differs a bit from Numbering.GetNumberingIdAndIlvl
 
-                if (!counters.ContainsKey(numId))
-                    counters[numId] = new Dictionary<int, int>();
-                var ilvlCounters = counters[numId];
+                if (!counters.ContainsKey(absNumId))
+                    counters[absNumId] = new Dictionary<int, int>();
+                var ilvlCounters = counters[absNumId];
 
                 // When a paragraph appears at a given level,
                 // it implicitly restarts the numbering of any deeper levels.
@@ -118,6 +130,15 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 ilvlCounters[ilvl] = newValue;
                 ctx.SetCachedN(paragraph, ilvl, newValue);
             }
+        }
+
+        private static int? GetAbstractNumId(NumberingContext ctx, int numId)
+        {
+            NumberingInstance instance = Numbering.GetNumbering(ctx.Main, numId);
+            if (instance is null)
+                return null;
+            AbstractNum abstractNum = Numbering.GetAbstractNum(ctx.Main, instance);
+            return abstractNum.AbstractNumberId;
         }
 
         private static int GetStartValue(NumberingContext ctx, int numId, int ilvl)
