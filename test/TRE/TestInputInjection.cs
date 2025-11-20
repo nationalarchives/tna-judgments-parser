@@ -3,7 +3,10 @@ using Xunit;
 
 using Microsoft.Extensions.Logging;
 
+using test;
+
 using UK.Gov.Legislation.Judgments;
+
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
@@ -13,7 +16,7 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
 
         private readonly Lambda Lambda = new();
 
-        private readonly byte[] Docx1 = Tests.ReadDocx(1);
+        private readonly byte[] Docx1 = DocumentHelpers.ReadDocx(1);
 
         [Fact]
         public void TestUri()

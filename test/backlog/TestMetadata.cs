@@ -1,15 +1,16 @@
 using System;
-using NUnit.Framework;
 
 using UK.Gov.Legislation.Judgments;
+
 using Backlog.Src;
+
+using Xunit;
 
 namespace Backlog.Test
 {
-    [TestFixture]
     public class TestMetadata
     {
-        [Test]
+        [Fact]
         public void MakeMetadata_WithBasicLine_CreatesCorrectMetadata()
         {
             // Arrange
@@ -34,28 +35,28 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Type, Is.EqualTo(JudgmentType.Decision));
-            Assert.That(result.Court, Is.EqualTo(Courts.FirstTierTribunal_GRC));
-            Assert.That(result.Date.Date, Is.EqualTo("2023-01-14"));
-            Assert.That(result.Date.Name, Is.EqualTo("decision"));
-            Assert.That(result.Name, Is.EqualTo("John Smith v HMRC"));
-            Assert.That(result.CaseNumbers, Is.Not.Null);
-            Assert.That(result.CaseNumbers.Count, Is.EqualTo(1));
-            Assert.That(result.CaseNumbers[0], Is.EqualTo("ABC/2023/001"));
-            Assert.That(result.SourceFormat, Is.EqualTo("application/pdf"));
-            Assert.That(result.Parties.Count, Is.EqualTo(2));
+            Assert.NotNull(result);
+            Assert.Equal(JudgmentType.Decision, result.Type);
+            Assert.Equal(Courts.FirstTierTribunal_GRC, result.Court);
+            Assert.Equal("2023-01-14", result.Date.Date);
+            Assert.Equal("decision", result.Date.Name);
+            Assert.Equal("John Smith v HMRC", result.Name);
+            Assert.NotNull(result.CaseNumbers);
+            var caseNumber = Assert.Single(result.CaseNumbers);
+            Assert.Equal("ABC/2023/001", caseNumber);
+            Assert.Equal("application/pdf", result.SourceFormat);
+            Assert.Equal(2, result.Parties.Count);
             
             var firstParty = result.Parties.Find(p => p.Role == PartyRole.Claimant);
             var secondParty = result.Parties.Find(p => p.Role == PartyRole.Respondent);
             
-            Assert.That(firstParty, Is.Not.Null);
-            Assert.That(firstParty.Name, Is.EqualTo("John Smith"));
-            Assert.That(secondParty, Is.Not.Null);
-            Assert.That(secondParty.Name, Is.EqualTo("HMRC"));
+            Assert.NotNull(firstParty);
+            Assert.Equal("John Smith", firstParty.Name);
+            Assert.NotNull(secondParty);
+            Assert.Equal("HMRC", secondParty.Name);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithAppellants_CreatesCorrectMetadata()
         {
             // Arrange
@@ -76,28 +77,28 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Type, Is.EqualTo(JudgmentType.Decision));
-            Assert.That(result.Court, Is.EqualTo(Courts.FirstTierTribunal_GRC));
-            Assert.That(result.Date.Date, Is.EqualTo("2023-01-14"));
-            Assert.That(result.Date.Name, Is.EqualTo("decision"));
-            Assert.That(result.Name, Is.EqualTo("Jane Doe v Home Office"));
-            Assert.That(result.CaseNumbers, Is.Not.Null);
-            Assert.That(result.CaseNumbers.Count, Is.EqualTo(1));
-            Assert.That(result.CaseNumbers[0], Is.EqualTo("ABC/2023/002"));
-            Assert.That(result.SourceFormat, Is.EqualTo("application/pdf"));
-            Assert.That(result.Parties.Count, Is.EqualTo(2));
+            Assert.NotNull(result);
+            Assert.Equal(JudgmentType.Decision, result.Type);
+            Assert.Equal(Courts.FirstTierTribunal_GRC, result.Court);
+            Assert.Equal("2023-01-14", result.Date.Date);
+            Assert.Equal("decision", result.Date.Name);
+            Assert.Equal("Jane Doe v Home Office", result.Name);
+            Assert.NotNull(result.CaseNumbers);
+            var caseNumber = Assert.Single(result.CaseNumbers);
+            Assert.Equal("ABC/2023/002", caseNumber);
+            Assert.Equal("application/pdf", result.SourceFormat);
+            Assert.Equal(2, result.Parties.Count);
             
             var firstParty = result.Parties.Find(p => p.Role == PartyRole.Appellant);
             var secondParty = result.Parties.Find(p => p.Role == PartyRole.Respondent);
             
-            Assert.That(firstParty, Is.Not.Null);
-            Assert.That(firstParty.Name, Is.EqualTo("Jane Doe"));
-            Assert.That(secondParty, Is.Not.Null);
-            Assert.That(secondParty.Name, Is.EqualTo("Home Office"));
+            Assert.NotNull(firstParty);
+            Assert.Equal("Jane Doe", firstParty.Name);
+            Assert.NotNull(secondParty);
+            Assert.Equal("Home Office", secondParty.Name);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithDocxFile_SetsCorrectSourceFormat()
         {
             // Arrange
@@ -117,10 +118,10 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result.SourceFormat, Is.EqualTo("application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
+            Assert.Equal("application/vnd.openxmlformats-officedocument.wordprocessingml.document", result.SourceFormat);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithDocFile_SetsCorrectSourceFormat()
         {
             // Arrange
@@ -140,10 +141,10 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result.SourceFormat, Is.EqualTo("application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
+            Assert.Equal("application/vnd.openxmlformats-officedocument.wordprocessingml.document", result.SourceFormat);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithUnsupportedExtension_ThrowsException()
         {
             // Arrange
@@ -161,10 +162,10 @@ namespace Backlog.Test
 
             // Act & Assert
             var ex = Assert.Throws<Exception>(() => Metadata.MakeMetadata(line));
-            Assert.That(ex.Message, Is.EqualTo("Unexpected extension .txt"));
+            Assert.Equal("Unexpected extension .txt", ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithNewDate_UsesFirstTierTribunal()
         {
             // Arrange - Date on or after 2010-01-18
@@ -184,10 +185,10 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result.Court, Is.EqualTo(Courts.FirstTierTribunal_GRC));
+            Assert.Equal(Courts.FirstTierTribunal_GRC, result.Court);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithPartiesData_CreatesCorrectParties()
         {
             // Arrange
@@ -207,20 +208,20 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result.Parties, Is.Not.Null);
-            Assert.That(result.Parties.Count, Is.EqualTo(2));
+            Assert.NotNull(result.Parties);
+            Assert.Equal(2, result.Parties.Count);
             
             var claimant = result.Parties.Find(p => p.Role == PartyRole.Claimant);
             var respondent = result.Parties.Find(p => p.Role == PartyRole.Respondent);
             
-            Assert.That(claimant, Is.Not.Null);
-            Assert.That(claimant.Name, Is.EqualTo("Jane Doe & John Smith"));
+            Assert.NotNull(claimant);
+            Assert.Equal("Jane Doe & John Smith", claimant.Name);
             
-            Assert.That(respondent, Is.Not.Null);
-            Assert.That(respondent.Name, Is.EqualTo("Home Office"));
+            Assert.NotNull(respondent);
+            Assert.Equal("Home Office", respondent.Name);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithAppellantPartiesData_CreatesCorrectParties()
         {
             // Arrange
@@ -240,20 +241,20 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result.Parties, Is.Not.Null);
-            Assert.That(result.Parties.Count, Is.EqualTo(2));
+            Assert.NotNull(result.Parties);
+            Assert.Equal(2, result.Parties.Count);
             
             var appellant = result.Parties.Find(p => p.Role == PartyRole.Appellant);
             var respondent = result.Parties.Find(p => p.Role == PartyRole.Respondent);
             
-            Assert.That(appellant, Is.Not.Null);
-            Assert.That(appellant.Name, Is.EqualTo("Jane Doe & John Smith"));
+            Assert.NotNull(appellant);
+            Assert.Equal("Jane Doe & John Smith", appellant.Name);
             
-            Assert.That(respondent, Is.Not.Null);
-            Assert.That(respondent.Name, Is.EqualTo("Home Office"));
+            Assert.NotNull(respondent);
+            Assert.Equal("Home Office", respondent.Name);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithCategoriesData_CreatesCorrectCategories()
         {
             // Arrange
@@ -275,25 +276,25 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result.Categories, Is.Not.Null);
-            Assert.That(result.Categories.Count, Is.EqualTo(4));
+            Assert.NotNull(result.Categories);
+            Assert.Equal(4, result.Categories.Count);
 
             // Check main category and subcategory
             var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
             var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
             
-            Assert.That(mainCategory, Is.Not.Null);
-            Assert.That(mainSubcategory, Is.Not.Null);
+            Assert.NotNull(mainCategory);
+            Assert.NotNull(mainSubcategory);
 
             // Check secondary category and subcategory
             var secCategory = result.Categories.Find(c => c.Name == "Human Rights" && c.Parent == null);
             var secSubcategory = result.Categories.Find(c => c.Name == "Article 8" && c.Parent == "Human Rights");
             
-            Assert.That(secCategory, Is.Not.Null);
-            Assert.That(secSubcategory, Is.Not.Null);
+            Assert.NotNull(secCategory);
+            Assert.NotNull(secSubcategory);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithoutSecondaryCategory_CreatesOnlyMainCategories()
         {
             // Arrange
@@ -315,18 +316,18 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result.Categories, Is.Not.Null);
-            Assert.That(result.Categories.Count, Is.EqualTo(2));
+            Assert.NotNull(result.Categories);
+            Assert.Equal(2, result.Categories.Count);
 
             // Check only main category and subcategory exist
             var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
             var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
             
-            Assert.That(mainCategory, Is.Not.Null);
-            Assert.That(mainSubcategory, Is.Not.Null);
+            Assert.NotNull(mainCategory);
+            Assert.NotNull(mainSubcategory);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithWhitespaceSecondaryCategory_CreatesOnlyMainCategories()
         {
             // Arrange
@@ -348,18 +349,18 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result.Categories, Is.Not.Null);
-            Assert.That(result.Categories.Count, Is.EqualTo(2));
+            Assert.NotNull(result.Categories);
+            Assert.Equal(2, result.Categories.Count);
 
             // Check only main category and subcategory exist
             var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
             var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
             
-            Assert.That(mainCategory, Is.Not.Null);
-            Assert.That(mainSubcategory, Is.Not.Null);
+            Assert.NotNull(mainCategory);
+            Assert.NotNull(mainSubcategory);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithComplexFileNumbers_CreatesCorrectCaseNumber()
         {
             // Arrange
@@ -379,10 +380,10 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result.CaseNumbers[0], Is.EqualTo("IA/12345/2023"));
+            Assert.Equal("IA/12345/2023", result.CaseNumbers[0]);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_DecisionDate_ParsesCorrectly()
         {
             // Arrange
@@ -402,11 +403,11 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result.Date.Date, Is.EqualTo("2023-12-25"));
-            Assert.That(result.Date.Name, Is.EqualTo("decision"));
+            Assert.Equal("2023-12-25", result.Date.Date);
+            Assert.Equal("decision", result.Date.Name);
         }
 
-        [Test]
+        [Fact]
         public void Line_DecisionDate_Property_ParsesCorrectly()
         {
             // Arrange
@@ -420,11 +421,11 @@ namespace Backlog.Test
             var decisionDate = line.DecisionDate;
 
             // Assert
-            Assert.That(decisionDate, Is.EqualTo("2023-07-04"));
+            Assert.Equal("2023-07-04", decisionDate);
         }
 
 
-        [Test]
+        [Fact]
         public void Line_DecisionDate_Property_WithInvalidDate_ThrowsException()
         {
             // Arrange
@@ -438,7 +439,7 @@ namespace Backlog.Test
             Assert.Throws<FormatException>(() => _ = line.DecisionDate);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithNCN_SetsNCNProperty()
         {
             // Arrange
@@ -459,11 +460,11 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.NCN, Is.EqualTo("[2023] UKUT 123 (IAC)"));
+            Assert.NotNull(result);
+            Assert.Equal("[2023] UKUT 123 (IAC)", result.NCN);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithoutNCN_NCNPropertyIsNull()
         {
             // Arrange
@@ -484,11 +485,11 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.NCN, Is.Null);
+            Assert.NotNull(result);
+            Assert.Null(result.NCN);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithEmptyNCN_NCNPropertyIsEmpty()
         {
             // Arrange
@@ -509,11 +510,11 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.NCN, Is.EqualTo(""));
+            Assert.NotNull(result);
+            Assert.Equal("", result.NCN);
         }
 
-        [Test]
+        [Fact]
         public void MakeMetadata_WithWhitespaceNCN_NCNPropertyIsWhitespace()
         {
             // Arrange
@@ -534,11 +535,11 @@ namespace Backlog.Test
             var result = Metadata.MakeMetadata(line);
 
             // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.NCN, Is.EqualTo("   "));
+            Assert.NotNull(result);
+            Assert.Equal("   ", result.NCN);
         }
 
-        [Test]
+        [Fact]
         public void Stub_WithNCN_AppearsInXmlAsCite()
         {
             // Arrange
@@ -561,10 +562,10 @@ namespace Backlog.Test
             var xml = stub.Serialize();
 
             // Assert
-            Assert.That(xml, Does.Contain("<uk:cite>[2023] UKUT 123 (IAC)</uk:cite>"));
+            Assert.Contains("<uk:cite>[2023] UKUT 123 (IAC)</uk:cite>", xml);
         }
 
-        [Test]
+        [Fact]
         public void Stub_WithEmptyNCN_DoesNotAppearInXml()
         {
             // Arrange
@@ -587,11 +588,11 @@ namespace Backlog.Test
             var xml = stub.Serialize();
 
             // Assert
-            Assert.That(xml, Does.Not.Contain("<uk:cite"));
-            Assert.That(xml, Does.Not.Contain("</uk:cite>"));
+            Assert.DoesNotContain("<uk:cite", xml);
+            Assert.DoesNotContain("</uk:cite>", xml);
         }
 
-        [Test]
+        [Fact]
         public void Stub_WithNullNCN_DoesNotAppearInXml()
         {
             // Arrange
@@ -614,11 +615,11 @@ namespace Backlog.Test
             var xml = stub.Serialize();
 
             // Assert
-            Assert.That(xml, Does.Not.Contain("<uk:cite"));
-            Assert.That(xml, Does.Not.Contain("</uk:cite>"));
+            Assert.DoesNotContain("<uk:cite", xml);
+            Assert.DoesNotContain("</uk:cite>", xml);
         }
 
-        [Test]
+        [Fact]
         public void Stub_WithWhitespaceNCN_DoesNotAppearInXml()
         {
             // Arrange
@@ -641,11 +642,11 @@ namespace Backlog.Test
             var xml = stub.Serialize();
 
             // Assert
-            Assert.That(xml, Does.Not.Contain("<uk:cite"));
-            Assert.That(xml, Does.Not.Contain("</uk:cite>"));
+            Assert.DoesNotContain("<uk:cite", xml);
+            Assert.DoesNotContain("</uk:cite>", xml);
         }
 
-        [Test]
+        [Fact]
         public void Stub_WithNCNSpecialCharacters_AppearsCorrectlyInXml()
         {
             // Arrange
@@ -668,12 +669,12 @@ namespace Backlog.Test
             var xml = stub.Serialize();
 
             // Assert
-            Assert.That(xml, Does.Contain("<uk:cite"));
-            Assert.That(xml, Does.Contain("[2023] EWCA Civ 123 &amp; 124"));
-            Assert.That(xml, Does.Contain("</uk:cite>"));
+            Assert.Contains("<uk:cite", xml);
+            Assert.Contains("[2023] EWCA Civ 123 &amp; 124", xml);
+            Assert.Contains("</uk:cite>", xml);
         }
 
-        [Test]
+        [Fact]
         public void Line_ValidateCategoryRules_WithBothClaimantsAndAppellants_ThrowsException()
         {
             // Arrange
@@ -691,10 +692,10 @@ namespace Backlog.Test
 
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() => line.ValidateCategoryRules());
-            Assert.That(ex.Message, Does.Contain("Cannot have both claimants and appellants"));
+            Assert.Contains("Cannot have both claimants and appellants", ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void Line_ValidateCategoryRules_WithNeitherClaimantsNorAppellants_ThrowsException()
         {
             // Arrange
@@ -711,10 +712,10 @@ namespace Backlog.Test
 
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() => line.ValidateCategoryRules());
-            Assert.That(ex.Message, Does.Contain("Must have either claimants or appellants"));
+            Assert.Contains("Must have either claimants or appellants", ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void Line_FirstPartyName_WithClaimants_ReturnsClaimants()
         {
             // Arrange
@@ -729,10 +730,10 @@ namespace Backlog.Test
             var result = line.FirstPartyName;
 
             // Assert
-            Assert.That(result, Is.EqualTo("John Smith"));
+            Assert.Equal("John Smith", result);
         }
 
-        [Test]
+        [Fact]
         public void Line_FirstPartyName_WithAppellants_ReturnsAppellants()
         {
             // Arrange
@@ -747,10 +748,10 @@ namespace Backlog.Test
             var result = line.FirstPartyName;
 
             // Assert
-            Assert.That(result, Is.EqualTo("Jane Doe"));
+            Assert.Equal("Jane Doe", result);
         }
 
-        [Test]
+        [Fact]
         public void Line_FirstPartyRole_WithClaimants_ReturnsClaimant()
         {
             // Arrange
@@ -765,10 +766,10 @@ namespace Backlog.Test
             var result = line.FirstPartyRole;
 
             // Assert
-            Assert.That(result, Is.EqualTo(PartyRole.Claimant));
+            Assert.Equal(PartyRole.Claimant, result);
         }
 
-        [Test]
+        [Fact]
         public void Line_FirstPartyRole_WithAppellants_ReturnsAppellant()
         {
             // Arrange
@@ -783,7 +784,7 @@ namespace Backlog.Test
             var result = line.FirstPartyRole;
 
             // Assert
-            Assert.That(result, Is.EqualTo(PartyRole.Appellant));
+            Assert.Equal(PartyRole.Appellant, result);
         }
     }
 }
