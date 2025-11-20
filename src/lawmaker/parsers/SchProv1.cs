@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (!PeekSchProv1(line))
                 return null;
-            
+
             int save = i;
             WOldNumberedParagraph np = line as WOldNumberedParagraph;
             HContainer next = Parse(line, np);
@@ -88,7 +88,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private bool PeekSchProv1(WLine line)
         {
             bool quoted = quoteDepth > 0;
-            if (!IsFlushLeft(line) && !quoted)
+            if (!line.IsFlushLeft() && !quoted)
                 return false;
             if (line is not WOldNumberedParagraph np)
                 return false;

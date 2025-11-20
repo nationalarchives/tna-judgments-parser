@@ -1,7 +1,8 @@
-
+#nullable enable
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
+using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
 namespace UK.Gov.Legislation.Lawmaker;
 
@@ -96,17 +97,27 @@ namespace UK.Gov.Legislation.Lawmaker;
     }
 
 
+/// <summary>
+///
+/// </summary>
+/// <param name="Key"></param>
+/// <param name="ShowAs"></param>
+/// <param name="Href"></param>
+/// <param name="Num"></param>
 public record Reference(
-    ReferenceKey EId,
+    ReferenceKey Key,
     string ShowAs = "",
     string Href = "#varOntologies"
 ) : IBuildable<XNode>
 {
-    private readonly ReferenceType type = EId.GetReferenceType();
+    private readonly ReferenceType type = Key.GetReferenceType();
 
-    public XNode Build() =>
-        new XElement(XmlExt.AknNamespace + type.ToString(),
-            new XAttribute("eId", EId.ToString()),
+    public uint Num { get; set; }
+    public string EId { get => $"{Key}{(Num > 0 ? Num + 1 : "")}"; }
+
+    public XNode? Build(Document _) =>
+        new XElement(akn + type.ToString(),
+            new XAttribute("eId", EId),
             new XAttribute("href", Href),
             new XAttribute("showAs", ShowAs)
         );
@@ -168,6 +179,7 @@ public enum ReferenceKey
     varMadeDate,
     varLaidDate,
     varCommenceDate,
+    varOtherDate,
     varSINoComp,
     varSINo,
     varSISubsidiaryNos,
@@ -219,6 +231,7 @@ static class ReferenceKeys
         or ReferenceKey.varMadeDate
         or ReferenceKey.varLaidDate
         or ReferenceKey.varCommenceDate
+        or ReferenceKey.varOtherDate
         or ReferenceKey.varSINoComp
         or ReferenceKey.varSINo
         or ReferenceKey.varSISubsidiaryNos

@@ -104,8 +104,8 @@ partial record LdappTableNumber(
 
     private static readonly LanguagePatterns TableNumberPatterns = new()
     {
-        [Lang.ENG] = [@"^Table\s+\w+$"],
-        [Lang.CYM] = [@"^Tabl\s+\w+$"]
+        [Lang.EN] = [@"^Table\s+\w+$"],
+        [Lang.CY] = [@"^Tabl\s+\w+$"]
     };
 
     public IEnumerable<WLine> Lines => Captions is null ? [Number] : Captions.Prepend(Number);

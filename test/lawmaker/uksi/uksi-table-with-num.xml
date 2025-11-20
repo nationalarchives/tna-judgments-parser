@@ -5,11 +5,13 @@
       <references source="#author">
         <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Boston Alternative Energy Facility Order 2023" />
         <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2023" />
+        <TLCConcept eId="varMadeDate" href="#varOntologies" showAs="2023-07-05T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2023-07-27T00:00:00.0000000" />
         <TLCConcept eId="varSINoComp" href="#varOntologies" showAs="0000" />
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="banner">STATUTORY INSTRUMENTS</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
       <container name="subjects">
@@ -18,6 +20,10 @@
 		</container>
 	  </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="2023-07-05"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varMadeDate" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="2023-07-27"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder" /></docDate></block>
+      </container>
     </preface>	  
     <body>
       <part eId="pt_1" class="group2">
@@ -31,11 +37,6 @@
           </content>
         </article>
       </part>
-			 
-				 
-											 
-				  
-			  
       <part eId="pt_2" class="group2">
         <num>Part 2</num>
         <heading>LICENSED ACTIVITIES</heading>

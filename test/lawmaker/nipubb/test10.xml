@@ -2,9 +2,7 @@
 <akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
   <bill name="nipubb">
     <meta>
-      <references source="#author">
-        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="" />
-      </references>
+      <references source="#author" />
     </meta>
     <coverPage />
     <body>
@@ -23,7 +21,22 @@
           </hcontainer>
           <hcontainer name="definition" class="definition">
             <content>
-              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> following words;</p>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">a <u>defined</u> term</def> following words;</p>
+            </content>
+          </hcontainer>
+          <hcontainer name="definition" class="definition">
+            <content>
+              <p><def ukl:startQuote="“" ukl:endQuote="”"><u>a defined term</u></def> following words;</p>
+            </content>
+          </hcontainer>
+          <hcontainer name="definition" class="definition">
+            <content>
+              <p><def ukl:startQuote="“" ukl:endQuote="”"><u>a defined term</u></def> following words;</p>
+            </content>
+          </hcontainer>
+          <hcontainer name="definition" class="definition">
+            <content>
+              <p><def ukl:startQuote="“" ukl:endQuote="”"><u>a defined term</u></def><u> following</u> words;</p>
             </content>
           </hcontainer>
           <hcontainer name="definition" class="definition">
@@ -33,52 +46,37 @@
           </hcontainer>
           <hcontainer name="definition" class="definition">
             <content>
-              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> following words;</p>
+              <p><def ukl:startQuote="“" ukl:endQuote="”"><u>a defined</u> term</def> following words;</p>
             </content>
           </hcontainer>
           <hcontainer name="definition" class="definition">
             <content>
-              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> following words;</p>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def><u> following</u> words;</p>
             </content>
           </hcontainer>
           <hcontainer name="definition" class="definition">
             <content>
-              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> following words;</p>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined <u>term</u></def><u> following</u> words;</p>
             </content>
           </hcontainer>
           <hcontainer name="definition" class="definition">
             <content>
-              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> following words;</p>
+              <p><def ukl:startQuote="“" ukl:endQuote="”"><u>a defined term</u></def><u> following words;</u></p>
             </content>
           </hcontainer>
           <hcontainer name="definition" class="definition">
             <content>
-              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> following words;</p>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> <u>following</u> words;</p>
             </content>
           </hcontainer>
           <hcontainer name="definition" class="definition">
             <content>
-              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> following words;</p>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def><u> following</u> words;</p>
             </content>
           </hcontainer>
           <hcontainer name="definition" class="definition">
             <content>
-              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> following words;</p>
-            </content>
-          </hcontainer>
-          <hcontainer name="definition" class="definition">
-            <content>
-              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> following words;</p>
-            </content>
-          </hcontainer>
-          <hcontainer name="definition" class="definition">
-            <content>
-              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> following words;</p>
-            </content>
-          </hcontainer>
-          <hcontainer name="definition" class="definition">
-            <content>
-              <p><def ukl:startQuote="“" ukl:endQuote="”">a defined term</def> following words;</p>
+              <p><def ukl:startQuote="“" ukl:endQuote="”">a <u>defined</u> term</def> following <u>words</u>;</p>
             </content>
           </hcontainer>
         </subsection>

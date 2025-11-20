@@ -5,10 +5,12 @@
       <references source="#author">
         <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Climate Change (Local Development Plan) (Repeals) (Scotland) Order 2025" />
         <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2025" />
+        <TLCConcept eId="varMadeDate" href="#varOntologies" showAs="2025-01-01T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2025-11-01T00:00:00.0000000" />
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="proceduralRubric">Draft Order laid before the Scottish Parliament under section 96(4) of the Climate Change (Scotland) Act 2009, for approval by resolution of the Scottish Parliament.</block>
       <block name="banner">DRAFT SCOTTISH STATUTORY INSTRUMENTS</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
@@ -21,6 +23,10 @@
 		</container>
 		</container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="2025-01-01"><ref ukl:dateFormat="yyyy" href="#varMadeDate" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="2025-11-01"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder" /></docDate></block>
+      </container>
     </preface>
     <preamble eId="preamble">
       <formula name="enactingText">

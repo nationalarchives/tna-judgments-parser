@@ -112,10 +112,6 @@ public class BlockParser : IParser<IBlock>
         return matches;
     }
 
-    public static IBlock? Identity(IParser<IBlock> parser)
-    {
-        return parser.Advance() as IBlock;
-    }
     private bool IsInRange(int i) => i >= 0 && i < Body.Count;
 
     public List<R>? MatchWhile<R>(Predicate<R> condition, params IParser<IBlock>.ParseStrategy<R>[] strategies)

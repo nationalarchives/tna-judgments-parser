@@ -15,7 +15,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph)
                 return null;
-            if (!IsLeftAligned(line))
+            if (!line.IsLeftAligned())
                 return null;
 
             i += 1;
