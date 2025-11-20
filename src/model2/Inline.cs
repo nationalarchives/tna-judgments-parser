@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml;
+
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -441,6 +441,7 @@ internal class WDocJurisdiction : WInlineContainer, IDocJurisdiction {
 
     public string ShortName { get; internal init; }
 
+    public bool Overridden => false;
 }
 
 

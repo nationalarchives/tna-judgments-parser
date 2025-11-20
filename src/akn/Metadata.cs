@@ -203,8 +203,7 @@ class Metadata {
                 tlcLocation.SetAttribute("showAs", loc.Name);
             }
 
-            IEnumerable<IDocJurisdiction> jurisdictions = Util.Descendants<IDocJurisdiction>(judgment.Header);
-            foreach (IDocJurisdiction jd in jurisdictions) {
+            foreach (IDocJurisdiction jd in metadata.Jurisdictions.Where(j => !j.Overridden)) {
                 XmlElement tlcConcept = append(references, "TLCConcept");
                 tlcConcept.SetAttribute("eId", jd.Id);
                 tlcConcept.SetAttribute("href", "/" + jd.Id.Replace('-', '/'));
@@ -241,7 +240,7 @@ class Metadata {
                 MetadataExtensions.AddProprietaryField(proprietary, "caseNumber", caseNo);
             }
 
-            foreach (IDocJurisdiction jd in jurisdictions) {
+            foreach (IDocJurisdiction jd in metadata.Jurisdictions) {
                 XmlElement juris = doc.CreateElement("uk", "jurisdiction", ukns);
                 proprietary.AppendChild(juris);
                 juris.AppendChild(doc.CreateTextNode(jd.ShortName));
@@ -298,6 +297,8 @@ class AttachmentMetadata : IMetadata {
 
     public Court? Court => prototype.Court;
 
+    public IEnumerable<IDocJurisdiction> Jurisdictions => prototype.Jurisdictions;
+    
     public int? Year { get => prototype.Year; }
 
     public int? Number { get => prototype.Number; }
