@@ -88,9 +88,6 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             // numId -> abstractNumId cache to avoid repeated lookups
             var numIdToAbsNumId = new Dictionary<int, int>();
 
-            // remembers which numId last emitted each (abstract, level), so only that parent resets its children
-            var levelOwners = new Dictionary<(int absNumId, int ilvl), int>();
-
             // tracks which (numId, ilvl) start overrides already fired
             var startOverrideConsumed = new HashSet<(int numId, int ilvl)>();
 
@@ -149,19 +146,10 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     counters[absNumId] = new Dictionary<int, (int value, int numId)>();
                 var ilvlCounters = counters[absNumId];
 
-                // Track which numbering instance last emitted this (abstract, level) so
-                // we only reset deeper counters when the same logical parent advances.
-                var levelKey = (absNumId, ilvl);
-                if (levelOwners.TryGetValue(levelKey, out var lastOwner))
-                {
-                    if (lastOwner == numId)
-                    {
-                        var levelsToReset = ilvlCounters.Keys.Where(l => l > ilvl).ToList();
-                        foreach (var l in levelsToReset)
-                            ilvlCounters.Remove(l);
-                    }
-                }
-                levelOwners[levelKey] = numId;
+                // reset deeper counters
+                var levelsToReset = ilvlCounters.Keys.Where(l => l > ilvl).ToList();
+                foreach (var l in levelsToReset)
+                    ilvlCounters.Remove(l);
 
                 // Cache parent level values for this paragraph (for formats like "%1.%2")
                 for (int parentLevel = 0; parentLevel < ilvl; parentLevel++)
