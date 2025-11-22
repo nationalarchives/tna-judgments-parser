@@ -107,16 +107,24 @@ namespace UK.Gov.Legislation.Judgments.DOCX
 
                 int? ownIlvl;
 
-                if (numId == 0 && TryListNum(paragraph, out int listNumId, out int listIlvl))
+                if (numId == 0)
                 {
-                    ownNumId = listNumId;
-                    numId = listNumId;
-                    ownIlvl = listIlvl;
+                    if (TryListNum(paragraph, out int listNumId, out int listIlvl))
+                    {
+                        ownNumId = listNumId;
+                        numId = listNumId;
+                        ownIlvl = listIlvl;
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
                 else
                 {
                     ownIlvl = paragraph.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
                 }
+
                 int? styleIlvl = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value);
                 int ilvl = ownIlvl ?? styleIlvl ?? 0; // This differs a bit from Numbering.GetNumberingIdAndIlvl
 
