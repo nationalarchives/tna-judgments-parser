@@ -81,10 +81,18 @@ namespace UK.Gov.Legislation.Judgments.DOCX
 
         private static void CalculateAllNumbers(NumberingContext ctx)
         {
-            // abstractNumId -> ilvl -> (value, lastNumId)
+            // abstractNumId -> ilvl -> (value, lastNumId). Shared counter state per abstract list.
+            // We keep the last numId so continuations can inherit state.
             var counters = new Dictionary<int, Dictionary<int, (int value, int numId)>>();
 
+            // numId -> abstractNumId cache to avoid repeated lookups
             var numIdToAbsNumId = new Dictionary<int, int>();
+
+            // remembers which numId last emitted each (abstract, level), so only that parent resets its children
+            var levelOwners = new Dictionary<(int absNumId, int ilvl), int>();
+
+            // tracks which (numId, ilvl) start overrides already fired
+            var startOverrideConsumed = new HashSet<(int numId, int ilvl)>();
 
             foreach (var paragraph in ctx.Main.Document.Body.Descendants<Paragraph>())
             {
@@ -141,6 +149,20 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     counters[absNumId] = new Dictionary<int, (int value, int numId)>();
                 var ilvlCounters = counters[absNumId];
 
+                // Track which numbering instance last emitted this (abstract, level) so
+                // we only reset deeper counters when the same logical parent advances.
+                var levelKey = (absNumId, ilvl);
+                if (levelOwners.TryGetValue(levelKey, out var lastOwner))
+                {
+                    if (lastOwner == numId)
+                    {
+                        var levelsToReset = ilvlCounters.Keys.Where(l => l > ilvl).ToList();
+                        foreach (var l in levelsToReset)
+                            ilvlCounters.Remove(l);
+                    }
+                }
+                levelOwners[levelKey] = numId;
+
                 // Cache parent level values for this paragraph (for formats like "%1.%2")
                 for (int parentLevel = 0; parentLevel < ilvl; parentLevel++)
                 {
@@ -152,21 +174,14 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     ctx.SetCachedN(paragraph, parentLevel, parentValue);
                 }
 
-                // When a paragraph appears at a given level,
-                // it implicitly restarts the numbering of any deeper levels.
-                var levelsToReset = ilvlCounters.Keys.Where(l => l > ilvl).ToList();
-                foreach (var l in levelsToReset)
-                    ilvlCounters.Remove(l);
-
                 int newValue;
                 if (ilvlCounters.TryGetValue(ilvl, out var current))
                 {
                     // If this is a different numId, check if it has a startOverride
                     if (current.numId != numId)
                     {
-                        int? startOverride = Numbering2.GetStartOverride(ctx.Main, numId, ilvl);
-                        if (startOverride.HasValue)
-                            newValue = startOverride.Value;
+                        if (TryApplyStartOverride(ctx, numId, ilvl, startOverrideConsumed, out int overrideValue))
+                            newValue = overrideValue;
                         else
                             newValue = current.value + 1;
                     }
@@ -177,7 +192,10 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 }
                 else
                 {
-                    newValue = Numbering2.GetStart(ctx.Main, numId, ilvl);
+                    if (TryApplyStartOverride(ctx, numId, ilvl, startOverrideConsumed, out int overrideValue))
+                        newValue = overrideValue;
+                    else
+                        newValue = Numbering2.GetStart(ctx.Main, numId, ilvl);
                 }
 
                 ilvlCounters[ilvl] = (newValue, numId);
@@ -209,6 +227,27 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             numId = int.Parse(match.Groups[1].Value);
             ilvl = int.Parse(match.Groups[2].Value) - 1; // ilvl indexes are 0 based
             return true;
+        }
+
+        // Word’s <w:startOverride> applies only once per numbering instance and level.
+        // We memoize each (numId, ilvl) pair so that the override seeds the counter for
+        // the very first paragraph of that sequence, and subsequent paragraphs just increment.
+        private static bool TryApplyStartOverride(NumberingContext ctx, int numId, int ilvl, HashSet<(int numId, int ilvl)> consumed, out int value)
+        {
+            if (consumed.Contains((numId, ilvl)))
+            {
+                value = default;
+                return false;
+            }
+            int? startOverride = Numbering2.GetStartOverride(ctx.Main, numId, ilvl);
+            if (startOverride.HasValue)
+            {
+                value = startOverride.Value;
+                consumed.Add((numId, ilvl));
+                return true;
+            }
+            value = default;
+            return false;
         }
 
     }
