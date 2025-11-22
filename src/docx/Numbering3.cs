@@ -105,8 +105,20 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     continue;
                 int numId = numIdOpt.Value;
 
-                if (numId == 0 && TryHandleListNum(ctx, paragraph, counters))
-                    continue;
+                int? ownIlvl;
+
+                if (numId == 0 && TryListNum(paragraph, out int listNumId, out int listIlvl))
+                {
+                    ownNumId = listNumId;
+                    numId = listNumId;
+                    ownIlvl = listIlvl;
+                }
+                else
+                {
+                    ownIlvl = paragraph.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
+                }
+                int? styleIlvl = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value);
+                int ilvl = ownIlvl ?? styleIlvl ?? 0; // This differs a bit from Numbering.GetNumberingIdAndIlvl
 
                 if (!numIdToAbsNumId.TryGetValue(numId, out var absNumId))
                 {
@@ -116,10 +128,6 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     absNumId = absOpt.Value;
                     numIdToAbsNumId[numId] = absNumId;
                 }
-
-                int? ownIlvl = paragraph.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value;
-                int? styleIlvl = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value);
-                int ilvl = ownIlvl ?? styleIlvl ?? 0; // This differs a bit from Numbering.GetNumberingIdAndIlvl
 
                 if (!counters.ContainsKey(absNumId))
                     counters[absNumId] = new Dictionary<int, (int value, int numId)>();
@@ -181,46 +189,17 @@ namespace UK.Gov.Legislation.Judgments.DOCX
         [GeneratedRegex(@"^ ?LISTNUM (\d+) \\l (\d)")]
         private static partial Regex ListNumRegex();
 
-        private static bool TryHandleListNum(NumberingContext ctx, Paragraph paragraph, Dictionary<int, Dictionary<int, (int value, int numId)>> counters)
+        private static bool TryListNum(Paragraph paragraph, out int numId, out int ilvl)
         {
             Match match = ListNumRegex().Match(paragraph.InnerText);
             if (!match.Success)
-                return false;
-
-            int numId = int.Parse(match.Groups[1].Value);
-            int ilvl = int.Parse(match.Groups[2].Value) - 1; // ilvl indexes are 0 based
-            int? absOpt = GetAbstractNumId(ctx, numId);
-            if (!absOpt.HasValue)
-                return false;
-            int absNumId = absOpt.Value;
-
-            if (!counters.ContainsKey(absNumId))
-                counters[absNumId] = new Dictionary<int, (int value, int numId)>();
-            var ilvlCounters = counters[absNumId];
-
-            int newValue;
-            if (ilvlCounters.TryGetValue(ilvl, out var current))
             {
-                if (current.numId != numId)
-                {
-                    int? startOverride = Numbering2.GetStartOverride(ctx.Main, numId, ilvl);
-                    if (startOverride.HasValue)
-                        newValue = startOverride.Value;
-                    else
-                        newValue = current.value + 1;
-                }
-                else
-                {
-                    newValue = current.value + 1;
-                }
+                numId = default;
+                ilvl = default;
+                return false;
             }
-            else
-            {
-                newValue = Numbering2.GetStart(ctx.Main, numId, ilvl);
-            }
-
-            ilvlCounters[ilvl] = (newValue, numId);
-            ctx.SetCachedN(paragraph, ilvl, newValue);
+            numId = int.Parse(match.Groups[1].Value);
+            ilvl = int.Parse(match.Groups[2].Value) - 1; // ilvl indexes are 0 based
             return true;
         }
 
