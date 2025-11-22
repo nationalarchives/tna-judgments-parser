@@ -81,8 +81,8 @@ namespace UK.Gov.Legislation.Judgments.DOCX
 
         private static void CalculateAllNumbers(NumberingContext ctx)
         {
-            // numId -> ilvl -> value
-            var counters = new Dictionary<int, Dictionary<int, int>>();
+            // abstractNumId -> ilvl -> (value, lastNumId)
+            var counters = new Dictionary<int, Dictionary<int, (int value, int numId)>>();
 
             var numIdToAbsNumId = new Dictionary<int, int>();
 
@@ -122,15 +122,18 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 int ilvl = ownIlvl ?? styleIlvl ?? 0; // This differs a bit from Numbering.GetNumberingIdAndIlvl
 
                 if (!counters.ContainsKey(absNumId))
-                    counters[absNumId] = new Dictionary<int, int>();
+                    counters[absNumId] = new Dictionary<int, (int value, int numId)>();
                 var ilvlCounters = counters[absNumId];
 
-                // Initialize all parent levels if they don't exist yet.
+                // Cache parent level values for this paragraph (for formats like "%1.%2")
                 for (int parentLevel = 0; parentLevel < ilvl; parentLevel++)
                 {
-                    if (!ilvlCounters.ContainsKey(parentLevel))
-                        ilvlCounters[parentLevel] = Numbering2.GetStart(ctx.Main, numId, parentLevel);
-                    ctx.SetCachedN(paragraph, parentLevel, ilvlCounters[parentLevel]);
+                    int parentValue;
+                    if (ilvlCounters.TryGetValue(parentLevel, out var parentState))
+                        parentValue = parentState.value;
+                    else
+                        parentValue = Numbering2.GetStart(ctx.Main, numId, parentLevel);
+                    ctx.SetCachedN(paragraph, parentLevel, parentValue);
                 }
 
                 // When a paragraph appears at a given level,
@@ -140,12 +143,28 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     ilvlCounters.Remove(l);
 
                 int newValue;
-                if (ilvlCounters.TryGetValue(ilvl, out int currentValue))
-                    newValue = currentValue + 1;
+                if (ilvlCounters.TryGetValue(ilvl, out var current))
+                {
+                    // If this is a different numId, check if it has a startOverride
+                    if (current.numId != numId)
+                    {
+                        int? startOverride = Numbering2.GetStartOverride(ctx.Main, numId, ilvl);
+                        if (startOverride.HasValue)
+                            newValue = startOverride.Value;
+                        else
+                            newValue = current.value + 1;
+                    }
+                    else
+                    {
+                        newValue = current.value + 1;
+                    }
+                }
                 else
+                {
                     newValue = Numbering2.GetStart(ctx.Main, numId, ilvl);
+                }
 
-                ilvlCounters[ilvl] = newValue;
+                ilvlCounters[ilvl] = (newValue, numId);
                 ctx.SetCachedN(paragraph, ilvl, newValue);
             }
         }
@@ -162,7 +181,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
         [GeneratedRegex(@"^ ?LISTNUM (\d+) \\l (\d)")]
         private static partial Regex ListNumRegex();
 
-        private static bool TryHandleListNum(NumberingContext ctx, Paragraph paragraph, Dictionary<int, Dictionary<int, int>> counters)
+        private static bool TryHandleListNum(NumberingContext ctx, Paragraph paragraph, Dictionary<int, Dictionary<int, (int value, int numId)>> counters)
         {
             Match match = ListNumRegex().Match(paragraph.InnerText);
             if (!match.Success)
@@ -176,16 +195,31 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             int absNumId = absOpt.Value;
 
             if (!counters.ContainsKey(absNumId))
-                counters[absNumId] = new Dictionary<int, int>();
+                counters[absNumId] = new Dictionary<int, (int value, int numId)>();
             var ilvlCounters = counters[absNumId];
 
             int newValue;
-            if (ilvlCounters.TryGetValue(ilvl, out int currentValue))
-                newValue = currentValue + 1;
+            if (ilvlCounters.TryGetValue(ilvl, out var current))
+            {
+                if (current.numId != numId)
+                {
+                    int? startOverride = Numbering2.GetStartOverride(ctx.Main, numId, ilvl);
+                    if (startOverride.HasValue)
+                        newValue = startOverride.Value;
+                    else
+                        newValue = current.value + 1;
+                }
+                else
+                {
+                    newValue = current.value + 1;
+                }
+            }
             else
+            {
                 newValue = Numbering2.GetStart(ctx.Main, numId, ilvl);
+            }
 
-            ilvlCounters[ilvl] = newValue;
+            ilvlCounters[ilvl] = (newValue, numId);
             ctx.SetCachedN(paragraph, ilvl, newValue);
             return true;
         }

@@ -581,7 +581,7 @@ class Numbering2 {
         throw new Exception("unsupported level text: " + lvlText);
     }
 
-    private static int? GetStartOverride(MainDocumentPart main, int numberingId, int ilvl) {
+    internal static int? GetStartOverride(MainDocumentPart main, int numberingId, int ilvl) {
         NumberingInstance numbering = Numbering.GetNumbering(main, numberingId);
         return GetStartOverride(numbering, ilvl);
     }
