@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace UK.Gov.Legislation.Judgments.DOCX
 {
-    class Numbering3
+    partial class Numbering3
     {
 
         private class NumberingContext
@@ -87,6 +88,13 @@ namespace UK.Gov.Legislation.Judgments.DOCX
 
             foreach (var paragraph in ctx.Main.Document.Body.Descendants<Paragraph>())
             {
+                if (Paragraphs.IsDeleted(paragraph))
+                    continue;
+                if (Paragraphs.IsEmptySectionBreak(paragraph))
+                    continue;
+                if (Paragraphs.IsMergedWithFollowing(paragraph))
+                    continue;
+
                 Style style = Styles.GetStyle(ctx.Main, paragraph) ?? Styles.GetDefaultParagraphStyle(ctx.Main);
 
                 int? ownNumId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
@@ -96,6 +104,9 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 if (!numIdOpt.HasValue)
                     continue;
                 int numId = numIdOpt.Value;
+
+                if (numId == 0 && TryHandleListNum(ctx, paragraph, counters))
+                    continue;
 
                 if (!numIdToAbsNumId.TryGetValue(numId, out var absNumId))
                 {
@@ -146,6 +157,37 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 return null;
             AbstractNum abstractNum = Numbering.GetAbstractNum(ctx.Main, instance);
             return abstractNum.AbstractNumberId;
+        }
+
+        [GeneratedRegex(@"^ ?LISTNUM (\d+) \\l (\d)")]
+        private static partial Regex ListNumRegex();
+
+        private static bool TryHandleListNum(NumberingContext ctx, Paragraph paragraph, Dictionary<int, Dictionary<int, int>> counters)
+        {
+            Match match = ListNumRegex().Match(paragraph.InnerText);
+            if (!match.Success)
+                return false;
+
+            int numId = int.Parse(match.Groups[1].Value);
+            int ilvl = int.Parse(match.Groups[2].Value) - 1; // ilvl indexes are 0 based
+            int? absOpt = GetAbstractNumId(ctx, numId);
+            if (!absOpt.HasValue)
+                return false;
+            int absNumId = absOpt.Value;
+
+            if (!counters.ContainsKey(absNumId))
+                counters[absNumId] = new Dictionary<int, int>();
+            var ilvlCounters = counters[absNumId];
+
+            int newValue;
+            if (ilvlCounters.TryGetValue(ilvl, out int currentValue))
+                newValue = currentValue + 1;
+            else
+                newValue = Numbering2.GetStart(ctx.Main, numId, ilvl);
+
+            ilvlCounters[ilvl] = newValue;
+            ctx.SetCachedN(paragraph, ilvl, newValue);
+            return true;
         }
 
     }

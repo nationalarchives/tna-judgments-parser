@@ -363,7 +363,6 @@ class Numbering2 {
     private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, int ilvl, OneCombinator combine) {
         Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
         int n = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl);
-        n += Fields.CountPrecedingParagraphsWithListNum(numberingId, ilvl, paragraph);
         string num = FormatN(n, lvl.NumberingFormat);
         return combine(num);
     }
