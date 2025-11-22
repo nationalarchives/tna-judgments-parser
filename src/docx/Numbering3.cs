@@ -91,6 +91,9 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             // tracks which (numId, ilvl) start overrides already fired
             var startOverrideConsumed = new HashSet<(int numId, int ilvl)>();
 
+            // tracks the last ilvl for each abstractNumId
+            var lastIlvls = new Dictionary<int, int>();
+
             foreach (var paragraph in ctx.Main.Document.Body.Descendants<Paragraph>())
             {
                 if (Paragraphs.IsDeleted(paragraph))
@@ -180,13 +183,19 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 }
                 else
                 {
-                    if (TryApplyStartOverride(ctx, numId, ilvl, startOverrideConsumed, out int overrideValue))
+                    // check if we are returning from a deeper level
+                    if (lastIlvls.TryGetValue(absNumId, out int lastIlvl) && lastIlvl > ilvl)
+                    {
+                        newValue = Numbering2.GetStart(ctx.Main, numId, ilvl) + 1;
+                    }
+                    else if (TryApplyStartOverride(ctx, numId, ilvl, startOverrideConsumed, out int overrideValue))
                         newValue = overrideValue;
                     else
                         newValue = Numbering2.GetStart(ctx.Main, numId, ilvl);
                 }
 
                 ilvlCounters[ilvl] = (newValue, numId);
+                lastIlvls[absNumId] = ilvl;
                 ctx.SetCachedN(paragraph, ilvl, newValue);
             }
         }
