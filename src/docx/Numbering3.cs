@@ -94,6 +94,26 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             // tracks the last ilvl for each abstractNumId
             var lastIlvls = new Dictionary<int, int>();
 
+            // tracks which (abstractNumId, ilvl) pairs have consumed a startOverride (test37, test87)
+            var overrideConsumedAtLevel = new HashSet<(int absNumId, int ilvl)>();
+
+            // helper to check if we should apply an override
+            bool ShouldApplyOverride(int absNumId, int numId, int ilvl, out int overrideVal)
+            {
+                // test37, test87: check if we JUST came from a deeper level that consumed override
+                bool justCameFromDeeperWithOverride = lastIlvls.TryGetValue(absNumId, out int prevIlvl) &&
+                                                       prevIlvl > ilvl &&
+                                                       overrideConsumedAtLevel.Contains((absNumId, prevIlvl));
+
+                if (justCameFromDeeperWithOverride)
+                {
+                    overrideVal = default;
+                    return false;
+                }
+
+                return TryApplyStartOverride(ctx, absNumId, numId, ilvl, startOverrideConsumed, overrideConsumedAtLevel, out overrideVal);
+            }
+
             foreach (var paragraph in ctx.Main.Document.Body.Descendants<Paragraph>())
             {
                 if (Paragraphs.IsDeleted(paragraph))
@@ -171,7 +191,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     // If this is a different numId, check if it has a startOverride
                     if (current.numId != numId)
                     {
-                        if (TryApplyStartOverride(ctx, numId, ilvl, startOverrideConsumed, out int overrideValue))
+                        if (ShouldApplyOverride(absNumId, numId, ilvl, out int overrideValue))
                             newValue = overrideValue;
                         else
                             newValue = current.value + 1;
@@ -188,10 +208,13 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     {
                         newValue = Numbering2.GetStart(ctx.Main, numId, ilvl) + 1;
                     }
-                    else if (TryApplyStartOverride(ctx, numId, ilvl, startOverrideConsumed, out int overrideValue))
-                        newValue = overrideValue;
                     else
-                        newValue = Numbering2.GetStart(ctx.Main, numId, ilvl);
+                    {
+                        if (ShouldApplyOverride(absNumId, numId, ilvl, out int overrideValue))
+                            newValue = overrideValue;
+                        else
+                            newValue = Numbering2.GetStart(ctx.Main, numId, ilvl);
+                    }
                 }
 
                 ilvlCounters[ilvl] = (newValue, numId);
@@ -226,10 +249,11 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             return true;
         }
 
-        // Word’s <w:startOverride> applies only once per numbering instance and level.
+        // Word's <w:startOverride> applies only once per numbering instance and level.
         // We memoize each (numId, ilvl) pair so that the override seeds the counter for
         // the very first paragraph of that sequence, and subsequent paragraphs just increment.
-        private static bool TryApplyStartOverride(NumberingContext ctx, int numId, int ilvl, HashSet<(int numId, int ilvl)> consumed, out int value)
+        private static bool TryApplyStartOverride(NumberingContext ctx, int absNumId, int numId, int ilvl,
+            HashSet<(int numId, int ilvl)> consumed, HashSet<(int absNumId, int ilvl)> overrideConsumedAtLevel, out int value)
         {
             if (consumed.Contains((numId, ilvl)))
             {
@@ -241,6 +265,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             {
                 value = startOverride.Value;
                 consumed.Add((numId, ilvl));
+                overrideConsumedAtLevel.Add((absNumId, ilvl));
                 return true;
             }
             value = default;
