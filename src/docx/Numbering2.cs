@@ -329,7 +329,7 @@ class Numbering2 {
         throw new Exception("unsupported level text: " + format.Val.Value);
     }
 
-    private static int GetAbstractStart(MainDocumentPart main, int absNumId, int ilvl) {
+    internal static int GetAbstractStart(MainDocumentPart main, int absNumId, int ilvl) {
         AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
             .OfType<AbstractNum>()
             .Where(a => a.AbstractNumberId.Value == absNumId)

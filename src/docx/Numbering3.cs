@@ -79,11 +79,43 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             return 0;
         }
 
+        private static bool ShouldSkipReset(
+            NumberingContext ctx,
+            Style currentStyle,
+            string? targetStyleId,
+            bool currentHasExplicitNumId,
+            bool targetHasExplicitNumId)
+        {
+            if (targetHasExplicitNumId || currentHasExplicitNumId)
+                return false;
+
+            if (currentStyle is null || string.IsNullOrEmpty(targetStyleId))
+                return false;
+
+            string currentStyleId = currentStyle.StyleId?.Value;
+            if (currentStyleId == targetStyleId)
+                return true;
+
+            string basedOn = currentStyle.BasedOn?.Val?.Value;
+            while (basedOn != null)
+            {
+                if (basedOn == targetStyleId)
+                    return true;
+
+                Style baseStyle = Styles.GetStyle(ctx.Main, basedOn);
+                if (baseStyle == null)
+                    break;
+
+                basedOn = baseStyle.BasedOn?.Val?.Value;
+            }
+            return false;
+        }
+
         private static void CalculateAllNumbers(NumberingContext ctx)
         {
             // abstractNumId -> ilvl -> (value, lastNumId). Shared counter state per abstract list.
             // We keep the last numId so continuations can inherit state.
-            var counters = new Dictionary<int, Dictionary<int, (int value, int numId)>>();
+            var counters = new Dictionary<int, Dictionary<int, (int value, int numId, string styleId, bool hasExplicitNumId)>>();
 
             // numId -> abstractNumId cache to avoid repeated lookups
             var numIdToAbsNumId = new Dictionary<int, int>();
@@ -185,13 +217,17 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 }
 
                 if (!counters.ContainsKey(absNumId))
-                    counters[absNumId] = new Dictionary<int, (int value, int numId)>();
+                    counters[absNumId] = new Dictionary<int, (int value, int numId, string styleId, bool hasExplicitNumId)>();
                 var ilvlCounters = counters[absNumId];
 
                 // reset deeper counters
                 var levelsToReset = ilvlCounters.Keys.Where(l => l > ilvl).ToList();
                 foreach (var l in levelsToReset)
+                {
+                    if (ShouldSkipReset(ctx, style, ilvlCounters[l].styleId, hasExplicitNumId, ilvlCounters[l].hasExplicitNumId))
+                        continue;
                     ilvlCounters.Remove(l);
+                }
 
                 // Cache parent level values for this paragraph (for formats like "%1.%2")
                 for (int parentLevel = 0; parentLevel < ilvl; parentLevel++)
@@ -236,7 +272,8 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     }
                 }
 
-                ilvlCounters[ilvl] = (newValue, numId);
+                string styleId = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value ?? style.StyleId?.Value;
+                ilvlCounters[ilvl] = (newValue, numId, styleId, hasExplicitNumId);
                 lastIlvls[absNumId] = ilvl;
                 levelOwners[(absNumId, ilvl)] = numId;
                 ctx.SetCachedN(paragraph, ilvl, newValue);
