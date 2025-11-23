@@ -97,9 +97,24 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             // tracks which (abstractNumId, ilvl) pairs have consumed a startOverride (test37, test87)
             var overrideConsumedAtLevel = new HashSet<(int absNumId, int ilvl)>();
 
+            // tracks which numbering instance currently "owns" each level in an abstract list.
+            // We reuse this both for parent/child relationships so we can detect when a child
+            // level is running under a different parent instance (test46).
+            var levelOwners = new Dictionary<(int absNumId, int ilvl), int>();
+
             // helper to check if we should apply an override
-            bool ShouldApplyOverride(int absNumId, int numId, int ilvl, out int overrideVal)
+            bool ShouldApplyOverride(int absNumId, int numId, int ilvl, bool requiresParentOwner, out int overrideVal)
             {
+                // Style-only paragraphs inherit their numbering identity from the parent style.
+                // When a sibling with an explicit numId temporarily owns the parent level, Word
+                // suppresses the child's override so the list remains sequential (test46 copy).
+                if (requiresParentOwner && ilvl > 0 &&
+                    levelOwners.TryGetValue((absNumId, ilvl - 1), out int parentOwner) && parentOwner != numId)
+                {
+                    overrideVal = default;
+                    return false;
+                }
+
                 // test37, test87: check if we JUST came from a deeper level that consumed override
                 bool justCameFromDeeperWithOverride = lastIlvls.TryGetValue(absNumId, out int prevIlvl) &&
                                                        prevIlvl > ilvl &&
@@ -126,6 +141,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 Style style = Styles.GetStyle(ctx.Main, paragraph) ?? Styles.GetDefaultParagraphStyle(ctx.Main);
 
                 int? ownNumId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
+                bool hasExplicitNumId = ownNumId.HasValue;
                 // TODO consider paragraph.ParagraphProperties?.NumberingProperties?.NumberingChange?.Id?.Value
                 int? styleNumId = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
                 int? numIdOpt = ownNumId ?? styleNumId;
@@ -142,6 +158,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                         ownNumId = listNumId;
                         numId = listNumId;
                         ownIlvl = listIlvl;
+                        hasExplicitNumId = true;
                     }
                     else
                     {
@@ -155,6 +172,8 @@ namespace UK.Gov.Legislation.Judgments.DOCX
 
                 int? styleIlvl = Styles.GetStyleProperty(style, s => s.StyleParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value);
                 int ilvl = ownIlvl ?? styleIlvl ?? 0; // This differs a bit from Numbering.GetNumberingIdAndIlvl
+
+                bool requiresParentOwner = !hasExplicitNumId && styleNumId.HasValue;
 
                 if (!numIdToAbsNumId.TryGetValue(numId, out var absNumId))
                 {
@@ -181,7 +200,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     if (ilvlCounters.TryGetValue(parentLevel, out var parentState))
                         parentValue = parentState.value;
                     else
-                        parentValue = Numbering2.GetStart(ctx.Main, numId, parentLevel);
+                        parentValue = GetBaseStart(ctx, absNumId, numId, parentLevel);
                     ctx.SetCachedN(paragraph, parentLevel, parentValue);
                 }
 
@@ -191,7 +210,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     // If this is a different numId, check if it has a startOverride
                     if (current.numId != numId)
                     {
-                        if (ShouldApplyOverride(absNumId, numId, ilvl, out int overrideValue))
+                        if (ShouldApplyOverride(absNumId, numId, ilvl, requiresParentOwner, out int overrideValue))
                             newValue = overrideValue;
                         else
                             newValue = current.value + 1;
@@ -206,19 +225,20 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     // check if we are returning from a deeper level
                     if (lastIlvls.TryGetValue(absNumId, out int lastIlvl) && lastIlvl > ilvl)
                     {
-                        newValue = Numbering2.GetStart(ctx.Main, numId, ilvl) + 1;
+                        newValue = GetBaseStart(ctx, absNumId, numId, ilvl) + 1;
                     }
                     else
                     {
-                        if (ShouldApplyOverride(absNumId, numId, ilvl, out int overrideValue))
+                        if (ShouldApplyOverride(absNumId, numId, ilvl, requiresParentOwner, out int overrideValue))
                             newValue = overrideValue;
                         else
-                            newValue = Numbering2.GetStart(ctx.Main, numId, ilvl);
+                            newValue = GetBaseStart(ctx, absNumId, numId, ilvl);
                     }
                 }
 
                 ilvlCounters[ilvl] = (newValue, numId);
                 lastIlvls[absNumId] = ilvl;
+                levelOwners[(absNumId, ilvl)] = numId;
                 ctx.SetCachedN(paragraph, ilvl, newValue);
             }
         }
@@ -247,6 +267,20 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             numId = int.Parse(match.Groups[1].Value);
             ilvl = int.Parse(match.Groups[2].Value) - 1; // ilvl indexes are 0 based
             return true;
+        }
+
+        private static int GetBaseStart(NumberingContext ctx, int absNumId, int numId, int ilvl)
+        {
+            NumberingInstance instance = Numbering.GetNumbering(ctx.Main, numId);
+            if (instance != null)
+            {
+                foreach (Level level in instance.Descendants<Level>())
+                {
+                    if (level.LevelIndex?.Value == ilvl && level.StartNumberingValue?.Val?.Value is int start)
+                        return start;
+                }
+            }
+            return Numbering2.GetAbstractStart(ctx.Main, absNumId, ilvl);
         }
 
         // Word's <w:startOverride> applies only once per numbering instance and level.
