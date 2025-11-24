@@ -140,8 +140,11 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             // level is running under a different parent instance (test46).
             var levelOwners = new Dictionary<(int absNumId, int ilvl), int>();
 
+            // tracks which numIds have been seen globally to distinguish fresh lists from continuations
+            var seenNumIds = new HashSet<int>();
+
             // helper to check if we should apply an override
-            bool ShouldApplyOverride(int absNumId, int numId, int ilvl, bool requiresParentOwner, out int overrideVal)
+            bool ShouldApplyOverride(int absNumId, int numId, int ilvl, bool requiresParentOwner, bool isGloballyNew, out int overrideVal)
             {
                 // Style-only paragraphs inherit their numbering identity from the parent style.
                 // When a sibling with an explicit numId temporarily owns the parent level, Word
@@ -154,7 +157,10 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 }
 
                 // test37, test87: check if we JUST came from a deeper level that consumed override
-                bool justCameFromDeeperWithOverride = lastIlvls.TryGetValue(absNumId, out int prevIlvl) &&
+                // test66: BUT if we are a GLOBALLY new numId with an EXPLICIT override, we are a fresh list instance and should ignore sibling history
+                bool hasExplicit = HasExplicitOverride(ctx.Main, numId, ilvl);
+                bool justCameFromDeeperWithOverride = (!isGloballyNew || !hasExplicit) &&
+                                                       lastIlvls.TryGetValue(absNumId, out int prevIlvl) &&
                                                        prevIlvl > ilvl &&
                                                        overrideConsumedAtLevel.Contains((absNumId, prevIlvl));
 
@@ -251,9 +257,10 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 if (ilvlCounters.TryGetValue(ilvl, out var current))
                 {
                     // If this is a different numId, check if it has a startOverride
+                    bool isGloballyNew = seenNumIds.Add(numId);
                     if (current.NumId != numId)
                     {
-                        if (ShouldApplyOverride(absNumId, numId, ilvl, requiresParentOwner, out int overrideValue))
+                        if (ShouldApplyOverride(absNumId, numId, ilvl, requiresParentOwner, isGloballyNew, out int overrideValue))
                             newValue = overrideValue;
                         else
                             newValue = current.Value + 1;
@@ -272,7 +279,8 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     }
                     else
                     {
-                        if (ShouldApplyOverride(absNumId, numId, ilvl, requiresParentOwner, out int overrideValue))
+                        bool isGloballyNew = seenNumIds.Add(numId);
+                        if (ShouldApplyOverride(absNumId, numId, ilvl, requiresParentOwner, isGloballyNew, out int overrideValue))
                             newValue = overrideValue;
                         else
                             newValue = GetBaseStart(ctx, absNumId, numId, ilvl);
@@ -311,6 +319,19 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             numId = int.Parse(match.Groups[1].Value);
             ilvl = int.Parse(match.Groups[2].Value) - 1; // ilvl indexes are 0 based
             return true;
+        }
+
+        private static bool HasExplicitOverride(MainDocumentPart main, int numId, int ilvl)
+        {
+            NumberingInstance instance = Numbering.GetNumbering(main, numId);
+            if (instance == null)
+                return false;
+            foreach (LevelOverride lo in instance.Descendants<LevelOverride>())
+            {
+                if (lo.LevelIndex != null && lo.LevelIndex.Value == ilvl && lo.StartOverrideNumberingValue != null)
+                    return true;
+            }
+            return false;
         }
 
         private static int GetBaseStart(NumberingContext ctx, int absNumId, int numId, int ilvl)

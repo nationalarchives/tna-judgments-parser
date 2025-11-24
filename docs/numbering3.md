@@ -21,7 +21,7 @@ var numIdToAbsNumId = new Dictionary<int, int>();
 
 For each paragraph we resolve its effective `(numId, ilvl)` (inline `w:numPr`, `LISTNUM`, or paragraph style).
 We then map `numId → absNumId` (cached in `numIdToAbsNumId`) and retrieve the counter bucket for that abstract list.
-Each bucket stores the current value and the `numId` that produced it for every level in that abstract (`(value, numId)`).
+Each bucket stores a `LevelCounter` for every level in that abstract, holding the current value, the `numId` that produced it, the paragraph's style ID, and whether it had explicit numbering properties.
 That lets different `numId`s that share the same `abstractNumId` continue one another when Word expects it.
 
 **Legacy analogue.** `Numbering2.CalculateN` replays every prior paragraph, recomputing the same information by
@@ -36,7 +36,8 @@ Before emitting a new number we reset any levels deeper than the current `ilvl`.
 var levelsToReset = ilvlCounters.Keys.Where(l => l > ilvl).ToList();
 foreach (var l in levelsToReset)
 {
-    if (ShouldSkipReset(ctx, currentStyle, entry.styleId, hasExplicitNumId, entry.hasExplicitNumId))
+    LevelCounter counter = ilvlCounters[l];
+    if (ShouldSkipReset(ctx, style, counter.StyleId, hasExplicitNumId, counter.HasExplicitNumId))
         continue;
     ilvlCounters.Remove(l);
 }
@@ -117,7 +118,7 @@ backtracking run because the legacy algorithm recomputes the start for each prio
 After all checks:
 
 ```
-ilvlCounters[ilvl] = (newValue, numId);
+ilvlCounters[ilvl] = new LevelCounter(newValue, numId, styleId, hasExplicitNumId);
 lastIlvls[absNumId] = ilvl;
 levelOwners[(absNumId, ilvl)] = numId;
 ctx.SetCachedN(paragraph, ilvl, newValue);
@@ -126,14 +127,43 @@ ctx.SetCachedN(paragraph, ilvl, newValue);
 `lastIlvls` records the deepest level we just processed so that `ShouldApplyOverride` can detect the “returning from
 child override” scenario. Finally the per-paragraph cache holds the computed integers for later formatting.
 
-## Putting It Together
+## 9. Handling Interleaved Lists and Continuations
+
+A critical challenge in Word numbering is distinguishing between a **fresh list instance** (which should apply its `startOverride`) and a **continuation** of an existing list (which should respect suppression if it was interrupted by a parent level).
+
+To solve this, we track globally seen `numId`s:
+
+```csharp
+var seenNumIds = new HashSet<int>();
+```
+
+Inside the main loop, we determine if a `numId` is being encountered for the first time:
+
+```csharp
+bool isGloballyNew = seenNumIds.Add(numId);
+```
+
+This `isGloballyNew` flag is passed to `ShouldApplyOverride`. The logic for bypassing the "just came from deeper" suppression check is:
+
+```csharp
+bool hasExplicit = HasExplicitOverride(ctx.Main, numId, ilvl);
+bool justCameFromDeeperWithOverride = (!isGloballyNew || !hasExplicit) && ...
+```
+
+*   **Fresh List (`isGloballyNew = true`)**: If the list is new AND has an explicit override (e.g., **test66**), we treat it as a new start. The suppression check is bypassed, and the override is applied.
+*   **Continuation (`isGloballyNew = false`)**: If the list has been seen before (e.g., **test37**), it is a continuation. We respect the `justCameFromDeeperWithOverride` check, ensuring that if the list was merely interrupted by a parent level, it doesn't incorrectly consume a new override upon returning.
+
+**Legacy analogue.** The legacy code implicitly handled this by re-scanning the entire document prefix for every paragraph. It could "see" if the `numId` had appeared before by iterating through `allPrev`. The `seenNumIds` set provides the same capability in O(1) time.
+
+## 10. Putting It Together
 
 1. Resolve effective `(numId, ilvl)` from inline properties, LISTNUM fields, or style fallbacks.
-2. Map to `absNumId` and load the counter bucket.
+2. Map to `absNumId`, load the counter bucket, and check if `numId` is globally new.
 3. Reset deeper levels and cache parent values.
 4. Decide whether to apply a start override:
    - Style-only paragraphs require the parent level to be owned by the same `numId`.
-   - Overrides fire once per `(numId, ilvl)` and are suppressed right after a child consumed one.
+   - Overrides fire once per `(numId, ilvl)`.
+   - **Continuations** are suppressed if returning from a deeper level, but **fresh lists** (new `numId` with explicit override) bypass this suppression.
 5. If no override applies, use `GetBaseStart(...)` (or increment the existing counter) to get the next value.
 6. Store the new counter, update `lastIlvls`, `levelOwners`, and the per-paragraph cache.
 
