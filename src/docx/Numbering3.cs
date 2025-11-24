@@ -228,6 +228,8 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     numIdToAbsNumId[numId] = absNumId;
                 }
 
+                bool isGloballyNew = seenNumIds.Add(numId);
+
                 if (!counters.ContainsKey(absNumId))
                     counters[absNumId] = new Dictionary<int, LevelCounter>();
                 var ilvlCounters = counters[absNumId];
@@ -257,7 +259,6 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 if (ilvlCounters.TryGetValue(ilvl, out var current))
                 {
                     // If this is a different numId, check if it has a startOverride
-                    bool isGloballyNew = seenNumIds.Add(numId);
                     if (current.NumId != numId)
                     {
                         if (ShouldApplyOverride(absNumId, numId, ilvl, requiresParentOwner, isGloballyNew, out int overrideValue))
@@ -273,7 +274,6 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 else
                 {
                     // No existing counter at this level
-                    bool isGloballyNew = seenNumIds.Add(numId);
                     bool returningFromDeeper = lastIlvls.TryGetValue(absNumId, out int lastIlvl) && lastIlvl > ilvl;
 
                     if (ShouldApplyOverride(absNumId, numId, ilvl, requiresParentOwner, isGloballyNew, out int overrideValue))
