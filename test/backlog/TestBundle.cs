@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Text.Json;
 
-using Api = UK.Gov.NationalArchives.Judgments.Api;
 using Backlog.Src;
 
 using Xunit;
 
-namespace Backlog.Test
+using Api = UK.Gov.NationalArchives.Judgments.Api;
+
+namespace test.backlog
 {
     public class TestBundle
     {
@@ -87,21 +87,7 @@ namespace Backlog.Test
             var bundle = Bundle.Make(source, response, customFields);
 
             // Assert - Extract and verify metadata.json from TarGz
-            using var memStream = new MemoryStream(bundle.TarGz);
-            using var gzStream = new ICSharpCode.SharpZipLib.GZip.GZipInputStream(memStream);
-            using var tarStream = new ICSharpCode.SharpZipLib.Tar.TarInputStream(gzStream, System.Text.Encoding.UTF8);
-
-            var entry = tarStream.GetNextEntry();
-            while (entry != null && !entry.Name.EndsWith("metadata.json"))
-            {
-                entry = tarStream.GetNextEntry();
-            }
-
-            Assert.True(entry is not null, "metadata.json not found in tar.gz");
-
-            // Read the metadata.json content
-            using var reader = new StreamReader(tarStream);
-            var jsonContent = reader.ReadToEnd();
+            var jsonContent = ZipFileHelpers.GetFileFromZippedContent(bundle.TarGz, @"metadata\.json$");
             var metadata = JsonSerializer.Deserialize<Bundle.Metadata>(jsonContent,
                 new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
 
