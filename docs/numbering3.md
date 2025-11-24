@@ -96,7 +96,7 @@ numbering purely from styles (`!hasExplicitNumId && styleNumId.HasValue`). When 
 `ShouldApplyOverride(...)` checks `levelOwners` for the immediate parent level (`ilvl - 1`). If the parent level is
 currently owned by a different `numId`, we suppress the child's override. The parent ownership check is skipped entirely
 for paragraphs with explicit inline numbering, allowing them to apply their overrides regardless of what the parent level
-is doing. This reproduces Word's behaviour in fixtures like **test46 copy** where an inline numId temporarily borrows
+is doing. This reproduces Word's behaviour in fixtures like **test46** where an inline numId temporarily borrows
 the parent level: style-only children do not restart while that borrowed parent is active.
 
 **Legacy analogue.** The streaming backtracker models ownership indirectly via `prevNumIdOfStyle`, `prevNumIdWithoutStyle`,
@@ -155,7 +155,76 @@ bool justCameFromDeeperWithOverride = (!isGloballyNew || !hasExplicit) && ...
 
 **Legacy analogue.** The legacy code implicitly handled this by re-scanning the entire document prefix for every paragraph. It could "see" if the `numId` had appeared before by iterating through `allPrev`. The `seenNumIds` set provides the same capability in O(1) time.
 
-## 10. Putting It Together
+## 10. Returning from Deeper Levels with Start Overrides
+
+When processing a paragraph at a shallower level after visiting deeper levels (e.g., returning from ilvl=1 to ilvl=0), a critical question arises: should we increment from the base start value, or use the start override directly?
+
+**The Rule**: If a `startOverride` applies at this level, use it **as-is** without adding +1, even when returning from a deeper level:
+
+```csharp
+if (ShouldApplyOverride(..., out int overrideValue))
+{
+    // Override applies, use it as-is (don't add +1 even if returning from deeper)
+    newValue = overrideValue;
+}
+else if (returningFromDeeper)
+{
+    // Returning from deeper level without override: increment from base
+    newValue = GetBaseStart(ctx, absNumId, numId, ilvl) + 1;
+}
+```
+
+**Example (test68)**: Consider a document with three numIds (8, 11, 16) sharing abstractNumId=7:
+- Para 0: `numId=11, ilvl=1` displays as `1.2` (parent cached as 1, child uses startOverride=2)
+- Para 1: `numId=16, ilvl=0` displays as `5` (startOverride=5 applied directly, NOT 5+1=6)
+- Para 2: `numId=11, ilvl=1` displays as `5.1` (parent=5 from counter, child starts fresh)
+- Para 3: `numId=8, ilvl=1` displays as `5.2` (parent=5, child increments)
+
+When para 1 is processed at ilvl=0, we're returning from ilvl=1. The `startOverride=5` exists and hasn't been consumed for this `(numId=16, ilvl=0)` pair. The override is applied directly as `5`, not incremented to `6`. This ensures that explicit restart values take precedence over continuation logic.
+
+**Why this matters**: Without this rule, returning from a deeper level would always add +1 to the base start, causing paragraphs with explicit `startOverride` values to display incorrectly. Word treats overrides as absolute restart points that supersede any continuation or increment logic.
+
+## 11. Abstract Start vs Level Start After Reset
+
+When a counter doesn't exist at a level and no override applies, we must choose between two potential start values:
+
+1. **`GetBaseStart(...)`**: Returns the `<w:start>` value from the `<w:lvl>` element inside `<w:lvlOverride>`, which often matches the `<w:startOverride>` value
+2. **`Numbering2.GetAbstractStart(...)`**: Returns the `<w:start>` value from the abstract numbering definition
+
+**The Rule**: When starting fresh without an override (typically after a counter has been reset), use the **abstract start**, not the Level start:
+
+```csharp
+else
+{
+    // Fresh start at this level - use abstract start, not Level start,
+    // since any startOverride has already been consumed
+    newValue = Numbering2.GetAbstractStart(ctx.Main, absNumId, ilvl);
+}
+```
+
+**Example (test68 continued)**: When para 2 (`numId=11, ilvl=1`) is processed:
+- The ilvl=1 counter was reset when para 1 (ilvl=0) was processed
+- No counter exists at ilvl=1, so we enter the `else` branch
+- `isGloballyNew = false` (we saw numId=11 in para 0)
+- `ShouldApplyOverride` returns false (the startOverride=2 was already consumed by para 0)
+- `returningFromDeeper = false` (we're going deeper from ilvl=0 to ilvl=1, not returning)
+- We use `Numbering2.GetAbstractStart(main, 7, 1)` which returns `1`
+- Para 2 displays as `5.1`, not `5.2`
+
+**Why this matters**: The `<w:lvl>` elements inside `<w:lvlOverride>` often have `<w:start>` values that match the `<w:startOverride>`. For example, numId=11 has:
+```xml
+<w:lvlOverride w:ilvl="1">
+  <w:startOverride w:val="2"/>
+  <w:lvl w:ilvl="1">
+    <w:start w:val="2"/>
+    ...
+  </w:lvl>
+</w:lvlOverride>
+```
+
+If we used `GetBaseStart(...)` after the override was consumed, we'd get `2` from the `<w:lvl>/<w:start>` element, causing para 2 to display as `5.2` instead of the correct `5.1`. The abstract numbering definition (abstractNumId=7) has the true base start value of `1`, which is what should be used when restarting the counter after a reset.
+
+## 12. Putting It Together
 
 1. Resolve effective `(numId, ilvl)` from inline properties, LISTNUM fields, or style fallbacks.
 2. Map to `absNumId`, load the counter bucket, and check if `numId` is globally new.

@@ -272,18 +272,25 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 }
                 else
                 {
-                    // check if we are returning from a deeper level
-                    if (lastIlvls.TryGetValue(absNumId, out int lastIlvl) && lastIlvl > ilvl)
+                    // No existing counter at this level
+                    bool isGloballyNew = seenNumIds.Add(numId);
+                    bool returningFromDeeper = lastIlvls.TryGetValue(absNumId, out int lastIlvl) && lastIlvl > ilvl;
+
+                    if (ShouldApplyOverride(absNumId, numId, ilvl, requiresParentOwner, isGloballyNew, out int overrideValue))
                     {
+                        // Override applies, use it as-is (don't add +1 even if returning from deeper)
+                        newValue = overrideValue;
+                    }
+                    else if (returningFromDeeper)
+                    {
+                        // Returning from deeper level without override: increment from base
                         newValue = GetBaseStart(ctx, absNumId, numId, ilvl) + 1;
                     }
                     else
                     {
-                        bool isGloballyNew = seenNumIds.Add(numId);
-                        if (ShouldApplyOverride(absNumId, numId, ilvl, requiresParentOwner, isGloballyNew, out int overrideValue))
-                            newValue = overrideValue;
-                        else
-                            newValue = GetBaseStart(ctx, absNumId, numId, ilvl);
+                        // Fresh start at this level - use abstract start, not Level start,
+                        // since any startOverride has already been consumed
+                        newValue = Numbering2.GetAbstractStart(ctx.Main, absNumId, ilvl);
                     }
                 }
 
