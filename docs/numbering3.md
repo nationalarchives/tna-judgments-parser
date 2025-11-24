@@ -13,7 +13,9 @@ why each bit of state exists.
 ## 2. Shared Counters Per Abstract List
 
 ```
-var counters = new Dictionary<int, Dictionary<int, (int value, int numId, string styleId, bool hasExplicitNumId)>>();
+private readonly record struct LevelCounter(int Value, int NumId, string? StyleId, bool HasExplicitNumId);
+
+var counters = new Dictionary<int, Dictionary<int, LevelCounter>>();
 var numIdToAbsNumId = new Dictionary<int, int>();
 ```
 

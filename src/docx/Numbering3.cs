@@ -12,6 +12,12 @@ namespace UK.Gov.Legislation.Judgments.DOCX
     partial class Numbering3
     {
 
+        private readonly record struct LevelCounter(
+            int Value,
+            int NumId,
+            string? StyleId,
+            bool HasExplicitNumId);
+
         private class NumberingContext
         {
             internal MainDocumentPart Main { get; }
@@ -115,7 +121,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
         {
             // abstractNumId -> ilvl -> (value, lastNumId). Shared counter state per abstract list.
             // We keep the last numId so continuations can inherit state.
-            var counters = new Dictionary<int, Dictionary<int, (int value, int numId, string styleId, bool hasExplicitNumId)>>();
+            var counters = new Dictionary<int, Dictionary<int, LevelCounter>>();
 
             // numId -> abstractNumId cache to avoid repeated lookups
             var numIdToAbsNumId = new Dictionary<int, int>();
@@ -217,14 +223,15 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 }
 
                 if (!counters.ContainsKey(absNumId))
-                    counters[absNumId] = new Dictionary<int, (int value, int numId, string styleId, bool hasExplicitNumId)>();
+                    counters[absNumId] = new Dictionary<int, LevelCounter>();
                 var ilvlCounters = counters[absNumId];
 
                 // reset deeper counters
                 var levelsToReset = ilvlCounters.Keys.Where(l => l > ilvl).ToList();
                 foreach (var l in levelsToReset)
                 {
-                    if (ShouldSkipReset(ctx, style, ilvlCounters[l].styleId, hasExplicitNumId, ilvlCounters[l].hasExplicitNumId))
+                    LevelCounter counter = ilvlCounters[l];
+                    if (ShouldSkipReset(ctx, style, counter.StyleId, hasExplicitNumId, counter.HasExplicitNumId))
                         continue;
                     ilvlCounters.Remove(l);
                 }
@@ -234,7 +241,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 {
                     int parentValue;
                     if (ilvlCounters.TryGetValue(parentLevel, out var parentState))
-                        parentValue = parentState.value;
+                        parentValue = parentState.Value;
                     else
                         parentValue = GetBaseStart(ctx, absNumId, numId, parentLevel);
                     ctx.SetCachedN(paragraph, parentLevel, parentValue);
@@ -244,16 +251,16 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 if (ilvlCounters.TryGetValue(ilvl, out var current))
                 {
                     // If this is a different numId, check if it has a startOverride
-                    if (current.numId != numId)
+                    if (current.NumId != numId)
                     {
                         if (ShouldApplyOverride(absNumId, numId, ilvl, requiresParentOwner, out int overrideValue))
                             newValue = overrideValue;
                         else
-                            newValue = current.value + 1;
+                            newValue = current.Value + 1;
                     }
                     else
                     {
-                        newValue = current.value + 1;
+                        newValue = current.Value + 1;
                     }
                 }
                 else
@@ -273,7 +280,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 }
 
                 string styleId = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value ?? style.StyleId?.Value;
-                ilvlCounters[ilvl] = (newValue, numId, styleId, hasExplicitNumId);
+                ilvlCounters[ilvl] = new LevelCounter(newValue, numId, styleId, hasExplicitNumId);
                 lastIlvls[absNumId] = ilvl;
                 levelOwners[(absNumId, ilvl)] = numId;
                 ctx.SetCachedN(paragraph, ilvl, newValue);
