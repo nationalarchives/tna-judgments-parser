@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml;
 
 using Xunit;
+using Xunit.Sdk;
 
 namespace test;
 
@@ -68,9 +69,37 @@ public static class XmlAssertions
 
     public static void HasChildrenMatching(this XmlNode node, params Action<XmlNode>[] childInspectors)
     {
-        var referencesNodeChildren = node.Cast<XmlNode>();
+        var referencesNodeChildren = node.Cast<XmlNode>().ToArray();
 
-        Assert.Collection(referencesNodeChildren, childInspectors);
+        var expectedNumberOfChildren = childInspectors.Length;
+        var actualNumberOfChildren = referencesNodeChildren.Length;
+        Assert.True(actualNumberOfChildren == expectedNumberOfChildren, $"Expected there to be {expectedNumberOfChildren} children of node <{node.Name}> but found {actualNumberOfChildren}");
+
+        var unpassedInspectors = childInspectors.ToList();
+        
+        foreach (var child in referencesNodeChildren)
+        {
+            var hasPassedInspection = false;
+            
+            foreach (var inspector in unpassedInspectors)
+            {
+                try
+                {
+                    inspector(child);
+                    hasPassedInspection = true;
+                    unpassedInspectors.Remove(inspector);
+                    break;
+                }
+                catch (XunitException)
+                {
+                    // This inspector failed, try the next one
+                }
+            }
+
+            Assert.True(hasPassedInspection, $"""Found unexpected child node <{child.Name}> with value "{child.InnerText}" in <{node.Name}>""");
+        }
+
+        Assert.True(unpassedInspectors.Count == 0, $"{unpassedInspectors.Count} inspectors were not satisfied for <{node.Name}>");
     }
 
     #region Readability No Ops
