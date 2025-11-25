@@ -30,7 +30,7 @@ Those structures infer which abstract owns the current paragraph, but only after
 
 ## 3. Resetting Deeper Levels
 
-Before emitting a new number we reset any levels deeper than the current `ilvl`. Each counter entry remembers the paragraph’s style id and whether it supplied an inline `w:numPr`. When we loop through deeper levels we now ask `ShouldSkipReset(...)`: if both paragraphs rely purely on style numbering and the stored style lies inside the current style’s `BasedOn` chain (e.g., Heading4CL inherits BodyCL), the reset is skipped. Otherwise we remove the counter as usual:
+Before emitting a new number we reset any levels deeper than the current `ilvl`. Each counter entry remembers the paragraph’s style id and whether it supplied an inline `w:numPr`. When we loop through deeper levels we now ask `ShouldSkipReset(...)`: if both paragraphs rely purely on style numbering and the stored style lies inside the current style’s `BasedOn` chain (e.g., Heading4CL inherits BodyCL), the reset is skipped. Otherwise we remove the counter as usual. Root-level parents (ilvl = 0) never skip the reset, matching the legacy guard `prevIlvl > 0`—see the comment “`// prevIlvl > 0 needed for test76`” in `Numbering2.cs`.
 
 ```
 var levelsToReset = ilvlCounters.Keys.Where(l => l > ilvl).ToList();
@@ -46,10 +46,7 @@ foreach (var l in levelsToReset)
 This mirrors Word’s behaviour: whenever a shallower level emits, all deeper levels are discarded so that the next
 child list will restart with its configured `<w:start>` or override.
 
-**Legacy analogue.** The backtracking code implicitly resets children because it recomputes every counter from scratch
-for the target paragraph, stopping once it reaches the right level. It also contains explicit loops that decrement `count`
-whenever it sees deeper levels (e.g., the `prevContainsNumOverrideAtLowerLevel` flags around lines 830–860) plus the
-“BasedOn” exception around lines 744‑750 that told it to keep the child counter alive for style-only inheritance. `ShouldSkipReset(...)` is the single-pass equivalent of that exception.
+**Legacy analogue.** The backtracking code implicitly resets children because it recomputes every counter from scratch for the target paragraph, stopping once it reaches the right level. It also contains explicit loops that decrement `count` whenever it sees deeper levels (e.g., the `prevContainsNumOverrideAtLowerLevel` flags around lines 830–860) plus the “BasedOn” exception around lines 744‑750 that told it to keep the child counter alive for style-only inheritance. That exemption required `prevIlvl > 0`; otherwise the reset happened unconditionally—exactly the behavior we enforce here so root-level sections like **test76** reset their children.
 
 ## 4. Caching Parent Values
 

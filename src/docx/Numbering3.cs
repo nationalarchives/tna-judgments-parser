@@ -90,8 +90,13 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             Style currentStyle,
             string? targetStyleId,
             bool currentHasExplicitNumId,
-            bool targetHasExplicitNumId)
+            bool targetHasExplicitNumId,
+            int currentIlvl)
         {
+            // Root-level paragraphs always reset their children (legacy behavior, see test76).
+            if (currentIlvl == 0)
+                return false;
+
             if (targetHasExplicitNumId || currentHasExplicitNumId)
                 return false;
 
@@ -239,7 +244,7 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 foreach (var l in levelsToReset)
                 {
                     LevelCounter counter = ilvlCounters[l];
-                    if (ShouldSkipReset(ctx, style, counter.StyleId, hasExplicitNumId, counter.HasExplicitNumId))
+                    if (ShouldSkipReset(ctx, style, counter.StyleId, hasExplicitNumId, counter.HasExplicitNumId, ilvl))
                         continue;
                     ilvlCounters.Remove(l);
                 }
