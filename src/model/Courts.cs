@@ -1,10 +1,9 @@
-
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace UK.Gov.Legislation.Judgments {
+namespace UK.Gov.Legislation.Judgments;
 
 public readonly struct Court {
 
@@ -375,11 +374,19 @@ public readonly partial struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax",
         CitationPattern = new Regex(@"^\[\d{4}\] UKFTT \d+ \(TC\)$")
     };
+
     public static readonly Court FirstTierTribunal_GRC = new Court {
         Code = "UKFTT-GRC",
         LongName = "United Kingdom First-tier Tribunal (General Regulatory Chamber)",
         URL = "https://www.gov.uk/courts-tribunals/first-tier-tribunal-general-regulatory-chamber",
         CitationPattern = new Regex(@"^\[\d{4}\] UKFTT \d+ \(GRC\)$")
+    };
+
+    public static readonly Court FirstTierTribunal_PropertyChamber = new() {
+        Code = "UKFTT-PC",
+        LongName = "United Kingdom First-tier Tribunal (Property Chamber)",
+        URL = "https://www.gov.uk/courts-tribunals/first-tier-tribunal-property-chamber",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKFTT \d+ \(PC\)$")
     };
 
     public static readonly Court EmploymentTribunal = new Court {
@@ -412,7 +419,7 @@ public readonly partial struct Courts {
         Code = "UKFTT-Estate",
         LongName = "Estate Agents Tribunal",
         URL = "https://webarchive.nationalarchives.gov.uk/ukgwa/20130206050212/https://www.justice.gov.uk/tribunals/estate-agents",
-    }; 
+    };
 
     public static readonly Court[] All = {
         SupremeCourt,
@@ -458,6 +465,7 @@ public readonly partial struct Courts {
 
         FirstTierTribunal_Tax,
         FirstTierTribunal_GRC,
+        FirstTierTribunal_PropertyChamber,
 
         EmploymentTribunal,
 
@@ -481,7 +489,5 @@ public readonly partial struct Courts {
         }
         return null;
     }
-
-}
 
 }
