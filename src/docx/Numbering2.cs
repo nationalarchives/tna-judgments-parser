@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
@@ -20,6 +21,116 @@ readonly struct NumberInfo {
 class Numbering2 {
 
     private static ILogger logger = Logging.Factory.CreateLogger<DOCX.Numbering2>();
+
+    private sealed class ParagraphOrderCacheEntry {
+        internal Paragraph[] Paragraphs { get; }
+        internal Dictionary<Paragraph, int> Indices { get; }
+
+        internal ParagraphOrderCacheEntry(MainDocumentPart main) {
+            Paragraphs = main.Document?.Descendants<Paragraph>().ToArray() ?? Array.Empty<Paragraph>();
+            Indices = new Dictionary<Paragraph, int>(ReferenceEqualityComparer<Paragraph>.Instance);
+            for (int i = 0; i < Paragraphs.Length; i++)
+                Indices[Paragraphs[i]] = i;
+        }
+    }
+
+    private sealed class ParagraphMetadata {
+        internal bool NumberingCached;
+        internal int? NumberingId;
+        internal int Ilvl;
+
+        internal bool StyleCached;
+        internal Style? Style;
+
+        internal bool StyleNumberingCached;
+        internal int? StyleNumberingId;
+
+        internal bool SkipFlagsCached;
+        internal bool ShouldSkip;
+    }
+
+    private static readonly ConditionalWeakTable<MainDocumentPart, ParagraphOrderCacheEntry> ParagraphOrderCache = new();
+    private static readonly ConditionalWeakTable<Paragraph, ParagraphMetadata> ParagraphMetadataCache = new();
+
+    private sealed class ReferenceEqualityComparer<T> : IEqualityComparer<T>
+        where T : class {
+        internal static readonly ReferenceEqualityComparer<T> Instance = new ReferenceEqualityComparer<T>();
+
+        public bool Equals(T? x, T? y) => ReferenceEquals(x, y);
+
+        public int GetHashCode(T obj) => RuntimeHelpers.GetHashCode(obj);
+    }
+
+    private static IEnumerable<Paragraph> EnumeratePreviousParagraphs(MainDocumentPart main, Paragraph paragraph) {
+        if (TryGetParagraphSequence(main, paragraph, out Paragraph[] paragraphs, out int stopExclusive)) {
+            for (int i = 0; i < stopExclusive; i++)
+                yield return paragraphs[i];
+            yield break;
+        }
+
+        foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>()) {
+            if (ReferenceEquals(prev, paragraph))
+                yield break;
+            yield return prev;
+        }
+    }
+
+    private static bool TryGetParagraphSequence(MainDocumentPart main, Paragraph paragraph, out Paragraph[] paragraphs, out int stopExclusive) {
+        ParagraphOrderCacheEntry entry = ParagraphOrderCache.GetValue(main, static part => new ParagraphOrderCacheEntry(part));
+        if (entry.Indices.TryGetValue(paragraph, out int idx)) {
+            paragraphs = entry.Paragraphs;
+            stopExclusive = idx;
+            return true;
+        }
+        paragraphs = Array.Empty<Paragraph>();
+        stopExclusive = 0;
+        return false;
+    }
+
+    private static ParagraphMetadata GetParagraphMetadata(Paragraph paragraph) {
+        return ParagraphMetadataCache.GetValue(paragraph, static _ => new ParagraphMetadata());
+    }
+
+    private static (int? numId, int ilvl) GetCachedNumbering(MainDocumentPart main, Paragraph paragraph) {
+        ParagraphMetadata metadata = GetParagraphMetadata(paragraph);
+        if (!metadata.NumberingCached) {
+            (metadata.NumberingId, metadata.Ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
+            metadata.NumberingCached = true;
+        }
+        return (metadata.NumberingId, metadata.Ilvl);
+    }
+
+    private static Style? GetCachedStyle(MainDocumentPart main, Paragraph paragraph) {
+        ParagraphMetadata metadata = GetParagraphMetadata(paragraph);
+        if (!metadata.StyleCached) {
+            metadata.Style = Styles.GetStyle(main, paragraph);
+            metadata.StyleCached = true;
+        }
+        return metadata.Style;
+    }
+
+    private static int? GetCachedStyleNumberingId(MainDocumentPart main, Paragraph paragraph) {
+        ParagraphMetadata metadata = GetParagraphMetadata(paragraph);
+        if (!metadata.StyleNumberingCached) {
+            metadata.StyleNumberingId = Styles.GetStyleProperty(
+                GetCachedStyle(main, paragraph),
+                s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+            metadata.StyleNumberingCached = true;
+        }
+        return metadata.StyleNumberingId;
+    }
+
+    private static bool ShouldSkipHistoryParagraph(Paragraph paragraph) {
+        ParagraphMetadata metadata = GetParagraphMetadata(paragraph);
+        if (!metadata.SkipFlagsCached) {
+            bool skip = Paragraphs.IsDeleted(paragraph)
+                || Paragraphs.IsEmptySectionBreak(paragraph)
+                || Paragraphs.IsMergedWithFollowing(paragraph);
+            metadata.ShouldSkip = skip;
+            metadata.SkipFlagsCached = true;
+        }
+        return metadata.ShouldSkip;
+    }
 
     public static bool HasOwnNumber(Paragraph paragraph) {
         MainDocumentPart main = Main.Get(paragraph);
@@ -44,7 +155,7 @@ class Numbering2 {
         if (numId.HasValue && numId.Value == 0)
             return false;
         var main = Main.Get(paragraph);
-        Style style = Styles.GetStyle(main, paragraph);
+        Style style = GetCachedStyle(main, paragraph);
         if (style is null)
             style = Styles.GetDefaultParagraphStyle(main);
         if (style is null)
@@ -606,7 +717,7 @@ class Numbering2 {
         foreach (Paragraph prev in allPrev) {
             // if (Paragraphs.IsEmptySectionBreak(prev))
             //     continue;
-            (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
+            (int? prevNumId, int prevIlvl) = GetCachedNumbering(main, prev);
             if (!prevNumId.HasValue)
                 continue;
             NumberingInstance prevNumbering = Numbering.GetNumbering(main, prevNumId.Value);
@@ -660,8 +771,8 @@ class Numbering2 {
     internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher = false) {
 
         int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
-        int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
-        Style thisStyle = Styles.GetStyle(main, paragraph);
+        int? thisNumIdOfStyle = GetCachedStyleNumberingId(main, paragraph);
+        Style thisStyle = GetCachedStyle(main, paragraph);
 
         int? start = null;
         int numIdOfStartOverride = -1;
@@ -682,13 +793,9 @@ class Numbering2 {
         var prevStarts = new StartAccumulator();
         int count = 0;
 
-        foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
+        foreach (Paragraph prev in EnumeratePreviousParagraphs(main, paragraph)) {
 
-            if (Paragraphs.IsDeleted(prev))
-                continue;
-            if (Paragraphs.IsEmptySectionBreak(prev))
-                continue;
-            if (Paragraphs.IsMergedWithFollowing(prev))
+            if (ShouldSkipHistoryParagraph(prev))
                 continue;
             (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
             if (!prevNumId.HasValue)
@@ -714,8 +821,8 @@ class Numbering2 {
                 continue;
 
             int? prevNumIdWithoutStyle = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
-            int? prevNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, prev), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
-            Style prevStyle =  Styles.GetStyle(main, prev);
+            int? prevNumIdOfStyle = GetCachedStyleNumberingId(main, prev);
+            Style prevStyle =  GetCachedStyle(main, prev);
 
             if (prevIlvl < ilvl) {
                 if (numIdOfStartOverride == -2) {
