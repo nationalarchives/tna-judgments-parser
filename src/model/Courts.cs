@@ -1,18 +1,17 @@
-using System.Collections.Generic;
+#nullable enable
+
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments;
 
-public readonly struct Court {
-
+public readonly record struct Court {
     public string Code { get; init; }
     public string LongName { get; init; }
     public string ShortName { get; init; }
     public string URL { get; init; }
-    public Regex CitationPattern { get; init; }
-
+    public Regex? CitationPattern { get; init; }
 }
 
 public readonly partial struct Courts {
@@ -475,19 +474,15 @@ public readonly partial struct Courts {
         EstateAgentsTribunal
     };
 
-    public static readonly ImmutableDictionary<string, Court> ByCode =
-        new Dictionary<string, Court>(All.Select(c => new KeyValuePair<string, Court>(c.Code, c)))
-        .ToImmutableDictionary();
-    
-    public static Court? ExtractFromCitation(string cite) {
-        cite = Regex.Replace(cite, @"\s+", " ").Trim();
-        foreach (Court court in All) {
-            if (court.CitationPattern is null)
-                continue;
-            if (court.CitationPattern.IsMatch(cite))
-                return court;
-        }
-        return null;
+    public static readonly ImmutableDictionary<string, Court> ByCode = All.ToImmutableDictionary(c => c.Code, c => c);
+
+    public static Court? ExtractFromCitation(string cite)
+    {
+        var cleanedCite = WhitespaceRegex().Replace(cite, " ").Trim();
+
+        return All.FirstOrDefault(c => c.CitationPattern?.IsMatch(cleanedCite) ?? false);
     }
 
+    [GeneratedRegex(@"\s+")]
+    private static partial Regex WhitespaceRegex();
 }
