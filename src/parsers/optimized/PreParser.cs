@@ -115,28 +115,6 @@ class PreParser {
         return merged;
     }
 
-    [Obsolete]
-    private List<MergedBlockWithBreak> FirstPass(MainDocumentPart main) {
-        List<MergedBlockWithBreak> unmerged = new List<MergedBlockWithBreak>();
-        bool lineBreakBefore = false;
-        foreach (var e in main.Document.Body.ChildElements) {
-            lineBreakBefore = lineBreakBefore || Util.IsSectionOrPageBreak(e);
-            if (IsSkippable(e))
-                continue;
-            List<IBlock> blocks = ParseElement(main, e);
-            foreach (IBlock block in blocks.SkipLast(1)) {
-                unmerged.Add(new MergedBlockWithBreak { Block = block, LineBreakBefore = lineBreakBefore });
-                lineBreakBefore = false;
-            }
-            foreach (IBlock block in blocks.TakeLast(1)) {
-                bool merged1 = e is Paragraph p && DOCX.Paragraphs.IsMergedWithFollowing(p);
-                unmerged.Add(new MergedBlockWithBreak { Block = block, LineBreakBefore = lineBreakBefore, MergedWithNext = merged1 });
-                lineBreakBefore = false;
-            }
-        }
-        return unmerged;
-    }
-
     private static List<IBlock> ParseElement(MainDocumentPart main, OpenXmlElement e) {
         if (e is Paragraph p)
             return new List<IBlock>(1) { ParseParagraph(main, p) };

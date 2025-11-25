@@ -26,13 +26,6 @@ class WLine : ILine, ILineable {
     internal bool IsFirstLineOfNumberedParagraph { get; set; }
     private Paragraph Paragraph { get; init; }
 
-    [Obsolete]
-    internal WLine(MainDocumentPart main, ParagraphProperties properties, IEnumerable<IInline> contents) {
-        this.main = main;
-        this.properties = properties;
-        this.contents = contents.ToList();
-        Paragraph = null;
-    }
     internal WLine(MainDocumentPart main, Paragraph paragraph) {
         this.main = main;
         this.properties = paragraph.ParagraphProperties;
