@@ -2,24 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using NUnit.Framework;
-using NUnit.Framework.Legacy;
+
 using Backlog.Src;
 
-namespace Tests.Backlog
+using Xunit;
+
+namespace test.backlog
 {
     /// <summary>
     /// Tests for the Files class focusing on file path handling and UUID resolution.
     /// </summary>
-    [TestFixture]
-    public class TestFiles
+    public class TestFiles : IDisposable
     {
         private string _tempTestDir;
         private string _courtDocumentsDir;
         private string _tdrMetadataDir;
 
-        [SetUp]
-        public void SetUp()
+        public TestFiles()
         {
             // Create a temporary directory for test files
             _tempTestDir = Path.Combine(Path.GetTempPath(), $"FilesTest_{Guid.NewGuid()}");
@@ -32,8 +31,7 @@ namespace Tests.Backlog
             Directory.CreateDirectory(_tdrMetadataDir);
         }
 
-        [TearDown]
-        public void TearDown()
+        public void Dispose()
         {
             // Clean up test files
             if (Directory.Exists(_tempTestDir))
@@ -46,7 +44,7 @@ namespace Tests.Backlog
         /// Tests that GetUuid can handle when JUDGMENTS_FILE_PATH is 2 levels deep (e.g., "Documents\Decisions")
         /// and still successfully resolve UUIDs without error.
         /// </summary>
-        [Test]
+        [Fact]
         public void TestGetUuid_WithTwoLevelDeepJudgmentsFilePath_ReturnsUuidSuccessfully()
         {
             // Arrange - Set up test data with 2-level deep judgments file path
@@ -75,22 +73,17 @@ namespace Tests.Backlog
             File.WriteAllBytes(courtDocumentPath, new byte[] { 1, 2, 3, 4 });
 
             // Act & Assert - This should not throw an exception
-            Assert.DoesNotThrow(() =>
-            {
-                byte[] fileContent = Files.ReadFile(_tempTestDir, metadataLine, judgmentsFilePath, hmctsFilePath);
+            byte[] fileContent = Files.ReadFile(_tempTestDir, metadataLine, judgmentsFilePath, hmctsFilePath);
 
-                // Verify that we actually got the file content
-                ClassicAssert.IsNotNull(fileContent);
-                ClassicAssert.AreEqual(4, fileContent.Length);
-                ClassicAssert.AreEqual(new byte[] { 1, 2, 3, 4 }, fileContent);
-            });
+            // Verify that we actually got the file content
+            Assert.Equal(new byte[] { 1, 2, 3, 4 }, fileContent);
         }
 
         /// <summary>
         /// Tests that GetUuid works with various path separators and handles path normalization correctly
         /// when JUDGMENTS_FILE_PATH has multiple levels.
         /// </summary>
-        [Test]
+        [Fact]
         public void TestGetUuid_WithMixedPathSeparators_HandlesNormalizationCorrectly()
         {
             // Arrange - Set up test data with mixed path separators
@@ -118,23 +111,18 @@ namespace Tests.Backlog
             var courtDocumentPath = Path.Combine(_courtDocumentsDir, expectedUuid + ".docx");
             File.WriteAllBytes(courtDocumentPath, new byte[] { 5, 6, 7, 8, 9 });
 
-            // Act & Assert - This should not throw an exception and handle path normalization
-            Assert.DoesNotThrow(() =>
-            {
-                byte[] fileContent = Files.ReadFile(_tempTestDir, metadataLine, judgmentsFilePath, hmctsFilePath);
+            // Act & Assert - This should handle path normalization
+            byte[] fileContent = Files.ReadFile(_tempTestDir, metadataLine, judgmentsFilePath, hmctsFilePath);
 
-                // Verify that we got the file content and .doc extension was handled correctly
-                ClassicAssert.IsNotNull(fileContent);
-                ClassicAssert.AreEqual(5, fileContent.Length);
-                ClassicAssert.AreEqual(new byte[] { 5, 6, 7, 8, 9 }, fileContent);
-            });
+            // Verify that we got the file content and .doc extension was handled correctly
+            Assert.Equal(new byte[] { 5, 6, 7, 8, 9 }, fileContent);
         }
 
         /// <summary>
         /// Tests that when JUDGMENTS_FILE_PATH doesn't match the metadata file path, 
         /// an appropriate exception is thrown.
         /// </summary>
-        [Test]
+        [Fact]
         public void TestGetUuid_WithMismatchedJudgmentsFilePath_ThrowsArgumentException()
         {
             // Arrange
@@ -154,14 +142,14 @@ namespace Tests.Backlog
                 Files.ReadFile(_tempTestDir, metadataLine, judgmentsFilePath, hmctsFilePath);
             });
 
-            Assert.That(exception.Message, Does.Contain("must start with"));
+            Assert.Contains("must start with", exception.Message);
         }
 
         /// <summary>
         /// Tests the CopyAllFilesWithExtension method with 2-level deep judgments file path
         /// to ensure file copying works correctly.
         /// </summary>
-        [Test]
+        [Fact]
         public void TestCopyAllFilesWithExtension_WithTwoLevelDeepPath_CopiesFilesSuccessfully()
         {
             // Arrange
@@ -201,21 +189,18 @@ namespace Tests.Backlog
             File.WriteAllBytes(sourcePath2, new byte[] { 40, 50, 60 });
 
             // Act
-            Assert.DoesNotThrow(() =>
-            {
-                Files.CopyAllFilesWithExtension(_tempTestDir, metadataLines, judgmentsFilePath, hmctsFilePath);
-            });
+            Files.CopyAllFilesWithExtension(_tempTestDir, metadataLines, judgmentsFilePath, hmctsFilePath);
 
             // Assert - Check that files were copied with correct extensions
             var targetPath1 = Path.Combine(_courtDocumentsDir, expectedUuid1 + ".pdf");
             var targetPath2 = Path.Combine(_courtDocumentsDir, expectedUuid2 + ".doc");
 
-            Assert.That(File.Exists(targetPath1), "PDF file should be copied");
-            Assert.That(File.Exists(targetPath2), "DOC file should be copied with .doc extension");
+            Assert.True(File.Exists(targetPath1), "PDF file should be copied");
+            Assert.True(File.Exists(targetPath2), "DOC file should be copied with .doc extension");
 
             // Verify file contents
-            ClassicAssert.AreEqual(new byte[] { 10, 20, 30 }, File.ReadAllBytes(targetPath1));
-            ClassicAssert.AreEqual(new byte[] { 40, 50, 60 }, File.ReadAllBytes(targetPath2));
+            Assert.Equal(new byte[] { 10, 20, 30 }, File.ReadAllBytes(targetPath1));
+            Assert.Equal(new byte[] { 40, 50, 60 }, File.ReadAllBytes(targetPath2));
         }
     }
 }

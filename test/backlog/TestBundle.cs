@@ -1,15 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text.Json;
-using NUnit.Framework;
-using UK.Gov.NationalArchives.Judgments;
-using Api = UK.Gov.NationalArchives.Judgments.Api;
+
 using Backlog.Src;
 
-namespace Backlog.Test
+using Xunit;
+
+using Api = UK.Gov.NationalArchives.Judgments.Api;
+
+namespace test.backlog
 {
-    [TestFixture]
     public class TestBundle
     {
         private Bundle.Source CreateTestSource()
@@ -36,7 +35,7 @@ namespace Backlog.Test
             };
         }
 
-        [Test]
+        [Fact]
         public void TestBundleContainsSourceContent()
         {
             // Arrange
@@ -47,12 +46,12 @@ namespace Backlog.Test
             var bundle = Bundle.Make(source, response, null);
 
             // Assert
-            Assert.That(bundle.Data.Parameters.IngestorOptions.Source, Is.Not.Null);
-            Assert.That(bundle.Data.Parameters.IngestorOptions.Source.Format, Is.EqualTo("application/pdf"));
-            Assert.That(bundle.Data.Parameters.TRE.Payload.Filename, Is.EqualTo("test.pdf"));
+            Assert.NotNull(bundle.Data.Parameters.IngestorOptions.Source);
+            Assert.Equal("application/pdf", bundle.Data.Parameters.IngestorOptions.Source.Format);
+            Assert.Equal("test.pdf", bundle.Data.Parameters.TRE.Payload.Filename);
         }
 
-        [Test]
+        [Fact]
         public void TestBundleContainsApiResponse()
         {
             // Arrange
@@ -63,12 +62,12 @@ namespace Backlog.Test
             var bundle = Bundle.Make(source, response, null);
 
             // Assert
-            Assert.That(bundle.Data.Parameters.PARSER, Is.Not.Null);
-            Assert.That(bundle.Data.Parameters.PARSER.DocumentType, Is.EqualTo("decision"));
-            Assert.That(bundle.Data.Parameters.PARSER.Court, Is.EqualTo("test-court"));
+            Assert.NotNull(bundle.Data.Parameters.PARSER);
+            Assert.Equal("decision", bundle.Data.Parameters.PARSER.DocumentType);
+            Assert.Equal("test-court", bundle.Data.Parameters.PARSER.Court);
         }
 
-        [Test]
+        [Fact]
         public void TestCustomFieldsAreSerializedInTarGzAndBundleData()
         {
             // Arrange
@@ -88,36 +87,22 @@ namespace Backlog.Test
             var bundle = Bundle.Make(source, response, customFields);
 
             // Assert - Extract and verify metadata.json from TarGz
-            using var memStream = new MemoryStream(bundle.TarGz);
-            using var gzStream = new ICSharpCode.SharpZipLib.GZip.GZipInputStream(memStream);
-            using var tarStream = new ICSharpCode.SharpZipLib.Tar.TarInputStream(gzStream, System.Text.Encoding.UTF8);
-
-            var entry = tarStream.GetNextEntry();
-            while (entry != null && !entry.Name.EndsWith("metadata.json"))
-            {
-                entry = tarStream.GetNextEntry();
-            }
-
-            Assert.That(entry, Is.Not.Null, "metadata.json not found in tar.gz");
-
-            // Read the metadata.json content
-            using var reader = new StreamReader(tarStream);
-            var jsonContent = reader.ReadToEnd();
+            var jsonContent = ZipFileHelpers.GetFileFromZippedContent(bundle.TarGz, @"metadata\.json$");
             var metadata = JsonSerializer.Deserialize<Bundle.Metadata>(jsonContent,
                 new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
 
 
             // Assert
-            Assert.That(metadata.Parameters.CustomFields, Is.Not.Null);
-            Assert.That(metadata.Parameters.CustomFields.Count, Is.EqualTo(1));
-            Assert.That(metadata.Parameters.CustomFields[0].Name, Is.EqualTo("headnote_summary"));
-            Assert.That(metadata.Parameters.CustomFields[0].Value, Is.EqualTo("Test headnote"));
+            Assert.NotNull(metadata.Parameters.CustomFields);
+            var metadataCustomFields = Assert.Single(metadata.Parameters.CustomFields);
+            Assert.Equal("headnote_summary", metadataCustomFields.Name);
+            Assert.Equal("Test headnote", metadataCustomFields.Value);
             
 
-            Assert.That(bundle.Data.Parameters.CustomFields, Is.Not.Null);
-            Assert.That(bundle.Data.Parameters.CustomFields.Count, Is.EqualTo(1));
-            Assert.That(bundle.Data.Parameters.CustomFields[0].Name, Is.EqualTo("headnote_summary"));
-            Assert.That(bundle.Data.Parameters.CustomFields[0].Value, Is.EqualTo("Test headnote"));
+            Assert.NotNull(bundle.Data.Parameters.CustomFields);
+            var bundleCustomFields = Assert.Single(bundle.Data.Parameters.CustomFields);
+            Assert.Equal("headnote_summary", bundleCustomFields.Name);
+            Assert.Equal("Test headnote", bundleCustomFields.Value);
         }
     }
 }

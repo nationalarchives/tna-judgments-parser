@@ -18,7 +18,7 @@ jobs:
     steps:
       # Checkout the code
       - name: Checkout code
-        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       # Set up .NET environment (assuming C# is the primary language)
       - name: Setup .NET
@@ -28,7 +28,7 @@ jobs:
 
       # Install dependencies
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore tna-judgments-parser.sln
 
       # Run tests
       - name: Run tests

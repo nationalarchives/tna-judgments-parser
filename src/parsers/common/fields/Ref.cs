@@ -24,41 +24,6 @@ internal class Ref {
         return fieldCode.StartsWith(" REF ");
     }
 
-    [Obsolete]
-    internal static IEnumerable<IInline> Parse(MainDocumentPart main, string fieldCode, List<OpenXmlElement> withinField, int i) {
-        Match match = Regex.Match(fieldCode, pattern);
-        if (!match.Success)
-            throw new Exception();
-        string bookmarkName = match.Groups[1].Value;
-
-        CaptureCollection swtchs = match.Groups[2].Captures;
-        bool rSwitch = swtchs.Where(v => v.Value == @" \r" || v.Value == @" r").Any();  // EWCA/Civ/2009/1119 has no \ character
-        bool nSwitch = swtchs.Where(v => v.Value == @" \n" || v.Value == @" n").Any();  // EWHC/Patents/2013/2927
-        bool pSwitch = swtchs.Where(v => v.Value == @" \p" || v.Value == @" p").Any();
-        bool wSwitch = swtchs.Where(v => v.Value == @" \w" || v.Value == @" w").Any();
-        bool hSwitch = swtchs.Where(v => v.Value == @" \h" || v.Value == @" h").Any();  // EWCA/Civ/2009/1119 has no \ character
-
-        if (i == withinField.Count)
-            return IgnoreFollowing(main, bookmarkName, rSwitch, pSwitch, wSwitch, (Run) withinField.First());
-
-        OpenXmlElement next = withinField[i];
-        if (next is InsertedRun && !next.ChildElements.Any()) { // EWCA/Civ/2008/643.rtf
-            i += 1;
-            next = withinField[i];
-        }
-        if (!Fields.IsFieldSeparater(next))
-            throw new Exception();
-
-        try {
-            return IgnoreFollowing(main, bookmarkName, rSwitch, pSwitch, wSwitch, (Run) withinField.First());
-        } catch (Exception) {
-            logger.LogWarning("no bookmark for " + bookmarkName);
-        }
-
-        IEnumerable<OpenXmlElement> remaining = withinField.Skip(i + 1);
-        return Inline.ParseRuns(main, remaining);
-    }
-
     internal static List<IInline> Construct(MainDocumentPart main, Run run, string fieldCode) {
         // with the current regex pattern, the regex will never match a Lawmaker reference and
         // we assume the reference is invalid if it's empty.
