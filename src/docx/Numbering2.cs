@@ -53,48 +53,17 @@ class Numbering2 {
         return numId.HasValue && numId.Value != 0;
     }
 
-    private static readonly string AttrPrefix = "uk";
-    private static readonly string AttrLocalName = "number";
-    private static readonly string AttrNamespace = "https://caselaw.nationalarchives.gov.uk/";
-
-    private static string GetCachedNumberQuietly(Paragraph paragraph) {
-        foreach (OpenXmlAttribute attr in paragraph.GetAttributes()) {
-            if (attr.LocalName != AttrLocalName)
-                continue;
-            if (attr.NamespaceUri != AttrNamespace)
-                continue;
-            return attr.Value;
-        }
-        return null;
-    }
-    private static void SetCachedNumber(Paragraph paragraph, string number) {
-        OpenXmlAttribute attr = new (AttrPrefix, AttrLocalName, AttrNamespace, number ?? "");
-        paragraph.SetAttribute(attr);
-    }
-
     public static NumberInfo? GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
 
-        string cached = GetCachedNumberQuietly(paragraph);
-        if (cached is not null && cached == "")
-            return null;
-
         (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
-        if (!numId.HasValue) {
-            SetCachedNumber(paragraph, "");
+        if (!numId.HasValue)
             return null;
-        }
 
         Level level = Numbering.GetLevel(main, numId.Value, ilvl);
 
-        string formatted;
-        if (cached is null) {
-            formatted = Magic2(main, paragraph, numId.Value, ilvl);
-            SetCachedNumber(paragraph, formatted);
-            if (string.IsNullOrEmpty(formatted))
-                return null;
-        } else {
-            formatted = cached;
-        }
+        string formatted = Magic2(main, paragraph, numId.Value, ilvl);
+        if (string.IsNullOrEmpty(formatted))
+            return null;
 
         return new NumberInfo() { Number = formatted, Props = level.NumberingSymbolRunProperties };
     }
