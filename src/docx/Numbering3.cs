@@ -187,6 +187,14 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 if (Paragraphs.IsMergedWithFollowing(paragraph))
                     continue;
 
+                var merge = (paragraph.Parent as TableCell)?.TableCellProperties?.VerticalMerge;
+                if (merge is not null
+                    && (merge.Val is null || merge.Val == MergedCellValues.Continue)
+                    && string.IsNullOrEmpty(paragraph.InnerText))
+                {
+                    continue; // skip empty paragraphs in vertically merged table cells (test97)
+                }
+
                 Style style = Styles.GetStyle(ctx.Main, paragraph) ?? Styles.GetDefaultParagraphStyle(ctx.Main);
 
                 int? ownNumId = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
