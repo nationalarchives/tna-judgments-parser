@@ -6,6 +6,7 @@ using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using System.Text.RegularExpressions;
 using System;
+using System.Linq;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -134,17 +135,17 @@ namespace UK.Gov.Legislation.Lawmaker
             int save = i;
             List<IBlock> contents = [];
 
-            // Handle when schedule content begins immediately with a quoted structure.
+            // Handle when schedule content begins immediately with one or more quoted structures.
             HandleMod(heading, contents, true);
             if (contents.Count > 0)
                 return contents;
-            
+
             // Handle all other schedule content.
-            IDivision nextDivision = ParseNextBodyDivision();
-            if (nextDivision is UnnumberedLeaf leaf)
-                contents.AddRange(leaf.Contents);
-            else
-                i = save;
+            // If the next line(s) do not constitute a division, handle them as paragraphs (or tables).
+            IDivision next = ParseNextBodyDivision();
+            i = save;
+            if (next is UnnumberedLeaf || next is UnknownLevel || next is WDummyDivision)
+                contents = HandleParagraphs(heading).Skip(1).ToList();
             return contents;
         }
 
