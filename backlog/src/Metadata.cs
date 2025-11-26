@@ -56,7 +56,7 @@ namespace Backlog.Src
                     {	
                         // Get value
                         convertFromStringArgs.Row.TryGetField<string>("jurisdictions", out var field);
-                        return field?.Split(',') ?? [];
+                        return field?.Split(',').Select(item => item.Trim()) ?? [];
                     });
             }
         }

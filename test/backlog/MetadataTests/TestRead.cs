@@ -76,7 +76,8 @@ public class TestRead
 125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC/2025/003,UKFTT-GRC,,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case,,[2023] EWCA Civ 123 & 124
 123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA/2025/004,UKUT-IAC,Brown,,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case,,
 126,/test/data/test-case5.docx,.docx,2025-01-19 13:00:00,IA/2025/005,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions,""Community,Environment"",
-127,/test/data/test-case6.docx,.docx,2025-01-19 13:00:00,IA/2025/006,UKUT-IAC,,Davies,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,One Jurisdiction,Environment,";
+127,/test/data/test-case6.docx,.docx,2025-01-19 13:00:00,IA/2025/006,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions with spaces,""Community, Environment,Other , Another ,"",
+128,/test/data/test-case7.docx,.docx,2025-01-19 13:00:00,IA/2025/007,UKUT-IAC,,Davies,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,One Jurisdiction,Environment,";
 
         // Arrange - Double check that csv input has all columns in case new ones are added
         var publicPropertiesInLineClass = typeof(Backlog.Src.Metadata.Line).GetProperties().Select(p => p.Name);
@@ -202,6 +203,26 @@ public class TestRead
                     Extension = ".docx",
                     decision_datetime = "2025-01-19 13:00:00",
                     CaseNo = "IA/2025/006",
+                    Jurisdictions = ["Community", "Environment", "Other", "Another"],
+                    claimants = "Taylor",
+                    appellants = "",
+                    respondent = "Home Office",
+                    main_category = "Immigration",
+                    main_subcategory = "Entry Clearance",
+                    sec_category = "Administrative Law",
+                    sec_subcategory = "Case Management",
+                    ncn = "",
+                    headnote_summary = "Multiple Jurisdictions with spaces"
+                }, line),
+            line => Assert.Equivalent(
+                new Backlog.Src.Metadata.Line
+                {
+                    id = "128",
+                    court = "UKUT-IAC",
+                    FilePath = "/test/data/test-case7.docx",
+                    Extension = ".docx",
+                    decision_datetime = "2025-01-19 13:00:00",
+                    CaseNo = "IA/2025/007",
                     Jurisdictions = ["Environment"],
                     claimants = "Davies",
                     appellants = "",
