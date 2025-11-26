@@ -222,20 +222,21 @@ namespace UK.Gov.Legislation.Lawmaker
          * If the block is followed by one or more quoted structures,
          * it is wrapped in a Mod together with the quoted structures.
         */
-        private void HandleMod(IBlock block, List<IBlock> container)
+        private void HandleMod(IBlock block, List<IBlock> container, bool skipInitialLine = false)
         {
             if (block is not WLine line)
             {
-                container.Add(block);
+                if (!skipInitialLine) container.Add(block);
                 return;
             }
             List <IQuotedStructure> quotedStructures = HandleQuotedStructuresAfter(line);
             if (quotedStructures.Count == 0)
             {
-                container.Add(line);
+                if (!skipInitialLine) container.Add(line);
                 return;
             }
-            List<IBlock> contents = [line, .. quotedStructures];
+            List<IBlock> contents = [.. quotedStructures];
+            if (!skipInitialLine) contents.Insert(0, line);
             Mod mod = new() { Contents = contents };
             container.Add(mod);
         }
