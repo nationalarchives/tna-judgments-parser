@@ -378,18 +378,8 @@ class Numbering2 {
     private static string Two(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, int ilvl1, int ilvl2, TwoCombinator combine) {
         Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-        int start1 = GetStart(main, numberingId, ilvl1);
-        int start2 = GetStart(main, numberingId, ilvl2);
         int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
-        if (ilvl1 < baseIlvl && n1 > start1)
-            n1 -= 1;
-        else if (ilvl1 > baseIlvl)
-            throw new Exception();
         int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2);
-        if (ilvl2 < baseIlvl && n2 > start2)
-            n2 -= 1;
-        else if (ilvl2 > baseIlvl)
-            throw new Exception();
         string num1 = FormatN(n1, lvl1.NumberingFormat);
         string num2 = FormatN(n2, lvl2.NumberingFormat);
         return combine(num1, num2);
@@ -404,24 +394,9 @@ class Numbering2 {
         Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
         Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
-        int start1 = GetStart(main, numberingId, ilvl1);
-        int start2 = GetStart(main, numberingId, ilvl2);
-        int start3 = GetStart(main, numberingId, ilvl3);
         int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
-        if (ilvl1 < baseIlvl && n1 > start1)
-            n1 -= 1;
-        else if (ilvl1 > baseIlvl)
-            throw new Exception();
         int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2, true);
-        if (ilvl2 < baseIlvl && n2 > start2)
-            n2 -= 1;
-        else if (ilvl2 > baseIlvl)
-            throw new Exception();
         int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3);
-        if (ilvl3 < baseIlvl && n3 > start3)
-            n3 -= 1;
-        else if (ilvl3 > baseIlvl)
-            throw new Exception();
         string num1 = FormatN(n1, lvl1.NumberingFormat);
         string num2 = FormatN(n2, lvl2.NumberingFormat);
         string num3 = FormatN(n3, lvl3.NumberingFormat);
@@ -439,30 +414,10 @@ class Numbering2 {
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
         Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
         Level lvl4 = Numbering.GetLevel(main, numberingId, ilvl4);
-        int start1 = GetStart(main, numberingId, ilvl1);
-        int start2 = GetStart(main, numberingId, ilvl2);
-        int start3 = GetStart(main, numberingId, ilvl3);
-        int start4 = GetStart(main, numberingId, ilvl4);
         int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
-        if (ilvl1 < baseIlvl && n1 > start1)
-            n1 -= 1;
-        else if (ilvl1 > baseIlvl)
-            throw new Exception();
         int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2, true);
-        if (ilvl2 < baseIlvl && n2 > start2)
-            n2 -= 1;
-        else if (ilvl2 > baseIlvl)
-            throw new Exception();
         int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3, true);
-        if (ilvl3 < baseIlvl && n3 > start3)
-            n3 -= 1;
-        else if (ilvl3 > baseIlvl)
-            throw new Exception();
         int n4 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl4);
-        if (ilvl4 < baseIlvl && n4 > start4)
-            n4 -= 1;
-        else if (ilvl4 > baseIlvl)
-            throw new Exception();
         string num1 = FormatN(n1, lvl1.NumberingFormat);
         string num2 = FormatN(n2, lvl2.NumberingFormat);
         string num3 = FormatN(n3, lvl3.NumberingFormat);
@@ -483,36 +438,11 @@ class Numbering2 {
         Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
         Level lvl4 = Numbering.GetLevel(main, numberingId, ilvl4);
         Level lvl5 = Numbering.GetLevel(main, numberingId, ilvl5);
-        int start1 = GetStart(main, numberingId, ilvl1);
-        int start2 = GetStart(main, numberingId, ilvl2);
-        int start3 = GetStart(main, numberingId, ilvl3);
-        int start4 = GetStart(main, numberingId, ilvl4);
-        int start5 = GetStart(main, numberingId, ilvl5);
         int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
-        if (ilvl1 < baseIlvl && n1 > start1)
-            n1 -= 1;
-        else if (ilvl1 > baseIlvl)
-            throw new Exception();
         int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2, true);
-        if (ilvl2 < baseIlvl && n2 > start2)
-            n2 -= 1;
-        else if (ilvl2 > baseIlvl)
-            throw new Exception();
         int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3, true);
-        if (ilvl3 < baseIlvl && n3 > start3)
-            n3 -= 1;
-        else if (ilvl3 > baseIlvl)
-            throw new Exception();
-        int n4 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl4);
-        if (ilvl4 < baseIlvl && n4 > start4)
-            n4 -= 1;
-        else if (ilvl4 > baseIlvl)
-            throw new Exception();
+        int n4 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl4, true);
         int n5 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl5);
-        if (ilvl5 < baseIlvl && n5 > start5)
-            n5 -= 1;
-        else if (ilvl5 > baseIlvl)
-            throw new Exception();
         string num1 = FormatN(n1, lvl1.NumberingFormat);
         string num2 = FormatN(n2, lvl2.NumberingFormat);
         string num3 = FormatN(n3, lvl3.NumberingFormat);
@@ -655,8 +585,14 @@ class Numbering2 {
 
     }
 
-    /// <param name="isHigher">whether the number to be calculated is a higher-level component, such as the 1 in 1.2</param>
+    /// <param name="isHigher">no longer used</param>
     internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher = false) {
+        return Numbering3.CalculateN(main, paragraph, ilvl);
+    }
+
+    [Obsolete]
+    /// <param name="isHigher">whether the number to be calculated is a higher-level component, such as the 1 in 1.2</param>
+    internal static int LegacyCalculateN_KeptForDocumentationPurposesOnly(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher = false) {
 
         int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
         int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
