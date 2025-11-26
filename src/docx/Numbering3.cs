@@ -246,6 +246,9 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                     LevelCounter counter = ilvlCounters[l];
                     if (ShouldSkipReset(ctx, style, counter.StyleId, hasExplicitNumId, counter.HasExplicitNumId, ilvl))
                         continue;
+                    // If lvlRestart=0, this level should never restart (test94)
+                    if (LevelNeverRestarts(ctx.Main, absNumId, l))
+                        continue;
                     ilvlCounters.Remove(l);
                 }
 
@@ -358,6 +361,15 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 }
             }
             return Numbering2.GetAbstractStart(ctx.Main, absNumId, ilvl);
+        }
+
+        // Checks if an abstract level has lvlRestart=0, meaning it should never restart its numbering,
+        // even when returning from a deeper level (test94).
+        private static bool LevelNeverRestarts(MainDocumentPart main, int absNumId, int ilvl)
+        {
+            Level level = Numbering.GetLevelAbstract(main, absNumId, ilvl);
+            int? restart = level?.LevelRestart?.Val?.Value;
+            return restart.HasValue && restart.Value == 0;
         }
 
         // Word's <w:startOverride> applies only once per numbering instance and level.

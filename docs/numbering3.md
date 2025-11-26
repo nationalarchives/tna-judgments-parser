@@ -39,6 +39,9 @@ foreach (var l in levelsToReset)
     LevelCounter counter = ilvlCounters[l];
     if (ShouldSkipReset(ctx, style, counter.StyleId, hasExplicitNumId, counter.HasExplicitNumId))
         continue;
+    // Also skip reset if the level explicitly declares it never restarts (see §12)
+    if (LevelNeverRestarts(ctx.Main, absNumId, l))
+        continue;
     ilvlCounters.Remove(l);
 }
 ```
@@ -221,7 +224,24 @@ else
 
 If we used `GetBaseStart(...)` after the override was consumed, we'd get `2` from the `<w:lvl>/<w:start>` element, causing para 2 to display as `5.2` instead of the correct `5.1`. The abstract numbering definition (abstractNumId=7) has the true base start value of `1`, which is what should be used when restarting the counter after a reset.
 
-## 12. Putting It Together
+## 12. Levels That Never Restart
+
+Word allows a level to declare `<w:lvlRestart w:val="0"/>`, which means "never restart this level's counter," even when returning from a deeper level. We honor that by inspecting the abstract numbering definition before resetting. If the abstract level at `(absNumId, ilvl)` has `lvlRestart="0"`, we leave the stored counter intact. This surfaces in **test94**, where the child list should flow straight through root interruptions.
+
+We check this before removing any counter during the reset loop:
+
+```csharp
+// If lvlRestart=0, this level should never restart (test94)
+if (LevelNeverRestarts(ctx.Main, absNumId, l))
+    continue;
+ilvlCounters.Remove(l);
+```
+
+At present we only check the abstract definition; we haven't yet seen a case where a numbering instance overrides `lvlRestart`, but it's something we may need to consider if a future fixture relies on it.
+
+**Legacy analogue.** `Numbering2` replayed the document history, so levels that never restarted naturally carried their counters forward: the walker never deleted the counter when it replayed the entire prefix. We recreate that effect with a dedicated check so the single-pass algorithm behaves the same way.
+
+## 13. Putting It Together
 
 1. Resolve effective `(numId, ilvl)` from inline properties, LISTNUM fields, or style fallbacks.
 2. Map to `absNumId`, load the counter bucket, and check if `numId` is globally new.
