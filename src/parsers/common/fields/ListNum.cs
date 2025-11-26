@@ -67,9 +67,7 @@ internal class ListNum {
             Paragraph p = first.Ancestors<Paragraph>().First();
             int n = DOCX.Fields.CountPrecedingParagraphsWithListNum(numId, ilvl, p) + 1;
 
-            NumberingInstance numbering = DOCX.Numbering.GetNumbering(main, numId);
-            AbstractNum absNum = DOCX.Numbering.GetAbstractNum(main, numbering);
-            n += DOCX.Numbering2.CalculateN(main, p, numId, absNum.AbstractNumberId.Value, ilvl) - 1;
+            n += DOCX.Numbering2.CalculateN(main, p,ilvl) - 1;
 
             string fNum = DOCX.Numbering2.FormatNumber(numId, ilvl, n, main);
             RunProperties rProps = first.RunProperties;
@@ -172,9 +170,7 @@ internal class ListNum {
             int ilvl = int.Parse(match.Groups[2].Value) - 1;    // ilvl indexes are 0 based
             Paragraph p = first.Ancestors<Paragraph>().First();
 
-            NumberingInstance numbering = DOCX.Numbering.GetNumbering(main, numId);
-            AbstractNum absNum = DOCX.Numbering.GetAbstractNum(main, numbering);
-            int n = DOCX.Numbering2.CalculateN(main, p, numId, absNum.AbstractNumberId.Value, ilvl);
+            int n = DOCX.Numbering2.CalculateN(main, p, ilvl);
 
             string fNum = DOCX.Numbering2.FormatNumber(numId, ilvl, n, main);
             RunProperties rProps = first.RunProperties;
