@@ -421,6 +421,7 @@ public readonly partial struct Courts {
     };
 
     public const string FirstTierTribunalChamberCodesPattern = "TC|GRC|PC";
+    public const string UpperTribunalChamberCodesPattern = "AAC|IAC|LC|TCC";
     
     public static readonly Court[] All = {
         SupremeCourt,

@@ -18,7 +18,7 @@ class Citation : FirstMatch2 {
         if (!line.Any())
             return line;
         if (line.Last() is WText last) {
-            Match match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKUT \d+ *\((AAC|IAC|LC|TCC)\)) *$");
+            Match match = Regex.Match(last.Text, $@"(\[?\d{{4}}[\]\[] UKUT \d+ *\(({Courts.UpperTribunalChamberCodesPattern})\)) *$");
             if (!match.Success)
                 match = Regex.Match(last.Text, $@"(\[?\d{{4}}[\]\[] UKFTT \d+ *\(({Courts.FirstTierTribunalChamberCodesPattern})\)) *$");
             if (!match.Success)
@@ -28,7 +28,7 @@ class Citation : FirstMatch2 {
                 return Enumerable.Concat(line.SkipLast(1), enriched);
             }
             if (last.Text == "." && line.SkipLast(1).Any() && line.SkipLast(1).Last() is WText penult) {  // [2023] UKFTT 00004 (GRC)
-                Match match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKUT \d+ *\((AAC|IAC|LC|TCC)\)) *$");
+                Match match2 = Regex.Match(penult.Text, $@"(\[?\d{{4}}[\]\[] UKUT \d+ *\(({Courts.UpperTribunalChamberCodesPattern})\)) *$");
                 if (!match2.Success)
                     match2 = Regex.Match(penult.Text, $@"(\[?\d{{4}}[\]\[] UKFTT \d+ *\(({Courts.FirstTierTribunalChamberCodesPattern})\)) *$");
                 if (!match2.Success)
@@ -40,15 +40,15 @@ class Citation : FirstMatch2 {
             }
         }
         if (line.First() is WText first) {
-            Match match = Regex.Match(first.Text, @"^Neutral [Cc]itation [Nn]umber: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
+            Match match = Regex.Match(first.Text, $@"^Neutral [Cc]itation [Nn]umber: (\[\d{{4}}\] UKUT \d+ \(({Courts.UpperTribunalChamberCodesPattern})\))");
             if (!match.Success)
-                match = Regex.Match(first.Text, @"^UT Neutral [Cc]itation [Nn]umber: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
+                match = Regex.Match(first.Text, $@"^UT Neutral [Cc]itation [Nn]umber: (\[\d{{4}}\] UKUT \d+ \(({Courts.UpperTribunalChamberCodesPattern})\))");
             if (!match.Success)
-                match = Regex.Match(first.Text, @"^NCN: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
+                match = Regex.Match(first.Text, $@"^NCN: (\[\d{{4}}\] UKUT \d+ \(({Courts.UpperTribunalChamberCodesPattern})\))");
             if (!match.Success)
                 match = Regex.Match(first.Text, $@"^NCN:? (\[\d{{4}}\] UKFTT \d+ \(({Courts.FirstTierTribunalChamberCodesPattern})\))");
             if (!match.Success)
-                match = Regex.Match(first.Text, @"^ *(\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");  // [2023] UKUT 168 (LC)
+                match = Regex.Match(first.Text, $@"^ *(\[\d{{4}}\] UKUT \d+ \(({Courts.UpperTribunalChamberCodesPattern})\))");  // [2023] UKUT 168 (LC)
             if (match.Success) {
                 List<IInline> enriched = Helper.SplitOnGroup(first, match.Groups[1], (text, props) => new WNeutralCitation(text, props));
                 return Enumerable.Concat(enriched, line.Skip(1));
@@ -56,7 +56,7 @@ class Citation : FirstMatch2 {
             if (line.Skip(1).Any() && line.Skip(1).All(i => i is WText)) {
                 string all = IInline.ToString(line);
                 match = Regex.Match(first.Text, @"^(Neutral Citation: )\[\d{4}\]");
-                bool match2 = Regex.IsMatch(all, @"^Neutral Citation: \[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\)$");
+                bool match2 = Regex.IsMatch(all, $@"^Neutral Citation: \[\d{{4}}\] UKUT \d+ \(({Courts.UpperTribunalChamberCodesPattern})\)$");
                 if (match.Success && match2) {
                     System.Tuple<WText, WText> split = first.Split(match.Groups[1].Length);
                     WNeutralCitation2 ncn = new WNeutralCitation2 { Contents = line.Skip(1).Cast<WText>().Prepend(split.Item2) };
