@@ -16,7 +16,7 @@ public abstract partial record DocDate() : IBuildable<XNode>
     // or just a year "yyyy"
     // e.g. "17th June 2025", "9 October 2021", "2025"
     // Any other format will result in the date attribute being set to "9999-01-01"
-    private static readonly string[] locales = ["en-GB", "cy-GB"];
+    private static readonly CultureInfo[] cultures = [CultureInfo.GetCultureInfo("en-GB"), CultureInfo.GetCultureInfo("cy-GB")];
     private static readonly Dictionary<string, string> formats = new() {
             { "d MMMM yyyy", "d'th' MMMM yyyy" },
             { "yyyy", "yyyy"},
@@ -39,14 +39,14 @@ public abstract partial record DocDate() : IBuildable<XNode>
             return new PlaceholderDate();
         }
 
-        foreach (string locale in locales)
+        foreach (CultureInfo culture in cultures)
         {
             foreach (string format in formats.Keys)
             {
                 if (DateTime.TryParseExact(
                     text,
                     format,
-                    CultureInfo.GetCultureInfo(locale),
+                    culture,
                     DateTimeStyles.None,
                     out DateTime dateTime))
                 {
