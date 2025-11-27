@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <AssemblyAttribute Include="Xunit.CaptureConsole"/>
+  </ItemGroup>
+    
+  <ItemGroup>
     <ProjectReference Include="../judgments.csproj" />
     <ProjectReference Include="../TRE/TRE.csproj" />
     <ProjectReference Include="../backlog/backlog.csproj" />

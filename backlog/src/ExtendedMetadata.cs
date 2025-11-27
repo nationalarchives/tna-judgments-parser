@@ -5,11 +5,13 @@ using UK.Gov.NationalArchives.CaseLaw.Model;
 
 namespace Backlog.Src
 {
-    internal class ExtendedMetadata : IMetadata, IMetadataExtended
+    internal class ExtendedMetadata : IMetadataExtended
     {
         internal JudgmentType Type { get; init; }
 
         public Court? Court { get; init; }
+
+        public IEnumerable<IDocJurisdiction> Jurisdictions { get; init; }
 
         public int? Year { get; init; }
 
@@ -58,7 +60,6 @@ namespace Backlog.Src
             public string Parent { get; init; }
 
         }
-
     }
 
 }
