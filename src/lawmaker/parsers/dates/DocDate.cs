@@ -50,7 +50,7 @@ public abstract partial record DocDate() : IBuildable<XNode>
                     DateTimeStyles.None,
                     out DateTime dateTime))
                 {
-                    return new ValidDate(dateTime, formats[format], key);
+                    return new ValidDate(dateTime, text, formats[format], key);
                 }
             }
         }
@@ -80,18 +80,15 @@ record PlaceholderDate() : DocDate
         );
 };
 
-record ValidDate(DateTime Date, string Format, ReferenceKey Key) : DocDate
+record ValidDate(DateTime Date, string DateText, string Format, ReferenceKey Key) : DocDate
 {
     public override XNode Build(Document document)
     {
-        Reference dateRef = document.Metadata
+        Reference _ = document.Metadata
             .Register(new Reference(Key, Date.ToString("o", System.Globalization.CultureInfo.InvariantCulture)));
         return new XElement(akn + "docDate",
             new XAttribute("date", Date.ToString("yyyy-MM-dd")),
-            new XElement(akn + "ref",
-                new XAttribute(ukl + "dateFormat", Format),
-                new XAttribute(akn + "class", "#placeholder"),
-                new XAttribute("href", $"#{dateRef.EId}")));
+            new XText(DateText));
     }
 
 };
@@ -108,6 +105,7 @@ record UnknownDate(string Text) : DocDate
 {
     public override XNode Build(Document _) =>
         new XElement(akn + "docDate",
-            new XAttribute("date", "9999-01-01")
+            new XAttribute("date", "9999-01-01"),
+            new XText(Text)
         );
 }

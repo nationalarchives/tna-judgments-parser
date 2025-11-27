@@ -46,11 +46,6 @@ public abstract partial record DateBlock(
 {
     private static readonly ILogger Logger = Logging.Factory.CreateLogger<DateBlock>();
 
-    // private Reference? _ref = Key is ReferenceKey key
-    //             && Date is ValidDate validDate
-    //         ? new Reference(key, validDate.Date.ToString("o", System.Globalization.CultureInfo.InvariantCulture))
-    //         : null;
-
     public XNode? Build(Document document)
     {
         return new XElement(akn + "block",
@@ -59,9 +54,7 @@ public abstract partial record DateBlock(
             Class is null ? null : new XAttribute(akn + "class", Class),
             new XElement(akn + "span",
                 new XAttribute("keep", "true"),
-                new XText(SpanText + (Date is UnknownDate(string text)
-                    ? " " + text
-                    : ""))),
+                new XText(SpanText)),
             Date.Build(document));
     }
 
