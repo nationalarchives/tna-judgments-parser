@@ -159,7 +159,7 @@ public abstract partial record DateBlock(
     // it may be worth writing a regex to find the actual dates,
     // something like this?
     // (?<day>\d\d?(th|rd|st|nd))\s+(?<month>(January|Februrary|March|April|May|June|July|August|September|October|November|December))\s+(?<year>\d{2, 4})
-    private const string DATE = @"(?<date>[^\s].*$)";
+    private const string DATE = @"(?<date>[^\s-].*$|$)";
 
     // we generally always expect the date to be separated from it's text by
     // at least one tab as it's required in Word to achieve the formatting.
