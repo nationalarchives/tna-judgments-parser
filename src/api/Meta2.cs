@@ -60,11 +60,11 @@ internal class MetaWrapper : IOutsideMetadata {
 
     public string SourceFormat => Meta.Extensions?.SourceFormat;
 
-    public List<string> CaseNumbers => Meta.Extensions?.CaseNumbers;
+    public List<string> CaseNumbers => Meta.Extensions?.CaseNumbers ?? [];
 
-    public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties => Meta.Extensions?.Parties;
+    public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties => Meta.Extensions?.Parties ?? [];
 
-    public List<ICategory> Categories=> Meta.Extensions?.Categories;
+    public List<ICategory> Categories => Meta.Extensions?.Categories ?? [];
 
     public string NCN => Meta.Extensions?.NCN;
 

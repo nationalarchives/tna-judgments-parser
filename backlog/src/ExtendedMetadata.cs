@@ -45,7 +45,7 @@ namespace Backlog.Src
 
         public Dictionary<string, Dictionary<string, string>> CSSStyles() => [];
 
-        public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties { get; init; }
+        public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties { get; init; } = [];
 
         public string SourceFormat { get; init; }
 
