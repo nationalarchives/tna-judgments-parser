@@ -39,14 +39,16 @@ namespace UK.Gov.Legislation.Lawmaker
             HContainer schedule;
             IFormattedText number;
             IFormattedText referenceNote;
-            WLine heading;
+            WLine? heading;
             if (ParseScheduleHeader(line) is var result && result.HasValue)
                 (number, referenceNote, heading) = result.Value;
             else
                 return null;
 
+
             frames.PushScheduleContext();
-            List<IBlock> contents = ParseScheduleLeafContent(heading);
+            WLine scheduleBodyStartLine = (WLine) Body[i-1];
+            List<IBlock> contents = ParseScheduleLeafContent(scheduleBodyStartLine);
             if (contents.Count > 0)
             {
                 schedule = new ScheduleLeaf { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = contents };
@@ -76,7 +78,7 @@ namespace UK.Gov.Legislation.Lawmaker
         /// </summary>
         /// <param name="line">The first line of the schedule.</param>
         /// <returns>A tuple containing the number, reference note, and heading of the <c>Schedule</c>.</returns>
-        internal (IFormattedText number, IFormattedText referenceNote, WLine heading)? ParseScheduleHeader(WLine line)
+        internal (IFormattedText number, IFormattedText referenceNote, WLine? heading)? ParseScheduleHeader(WLine line)
         {
             int save = i;
 
@@ -88,8 +90,8 @@ namespace UK.Gov.Legislation.Lawmaker
             if (Body[i + 1] is not WLine line2)
                 return null;
 
-            // Number can be followed by a reference note & heading, or just a heading.
-            WLine heading;
+            // Number can optionally be followed by a reference note and/or heading.
+            WLine? heading;
             WLine? referenceNoteLine;
             if (IsScheduleReferenceNote(line2))
             {
@@ -108,8 +110,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (!IsCenterAligned(heading))
             {
-                i = save;
-                return null;
+                heading = null;
+                i -= 1;
             }
 
             // SI documents occasionally have schedule reference notes on the same line as the schedule number

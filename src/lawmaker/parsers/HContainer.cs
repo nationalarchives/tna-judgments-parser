@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.VariantTypes;
+using DocumentFormat.OpenXml.Vml;
+
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -280,7 +282,12 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 if (!firstLine.IsLeftAligned())
                     return null;
-                if (LineIsIndentedLessThan(firstLine, leader))
+                // If the leader is left-aligned, we enforce that extra pargraphs be must indented further than the leader.
+                // Except when the leader is a Schedule number, which is potentially left-aligned if it has a reference 
+                // note on the same line, in which case we pretend it's center-aligned.
+                string numberText = GetScheduleNumber(leader, true);
+                bool isScheduleNumber = LanguageService.IsMatch(numberText, Schedule.NumberPatterns);
+                if (LineIsIndentedLessThan(firstLine, leader) && !isScheduleNumber)
                     return null;
             }
             return leaf.Contents;
