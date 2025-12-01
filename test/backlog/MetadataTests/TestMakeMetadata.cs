@@ -526,6 +526,34 @@ public class TestMakeMetadata
     }
 
     [Fact]
+    public void MakeMetadata_WithWebArchiving_SetsWebArchivingLinkProperty()
+    {
+        // Arrange
+        var line = GetNewMetadataLineWithSampleValues();
+        line.webarchiving = "http://webarchivelink";
+
+        // Act
+        var result = Metadata.MakeMetadata(line);
+
+        // Assert
+        Assert.Equal("http://webarchivelink", result.WebArchivingLink);
+    }
+
+    [Fact]
+    public void MakeMetadata_WithoutWebArchiving_WebArchivingLinkIsNull()
+    {
+        // Arrange
+        var line = GetNewMetadataLineWithSampleValues();
+        line.webarchiving = "";
+
+        // Act
+        var result = Metadata.MakeMetadata(line);
+
+        // Assert
+        Assert.Null(result.WebArchivingLink);
+    }
+
+    [Fact]
     public void MakeMetadata_WithJurisdiction_SetsJurisdictionProperty()
     {
         // Arrange

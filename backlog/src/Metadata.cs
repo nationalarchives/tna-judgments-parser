@@ -99,6 +99,9 @@ namespace Backlog.Src
             
             [Optional]
             public string headnote_summary { get; set; }
+
+            [Optional]
+            public string webarchiving { get; set; }
             
             private readonly string DateFormat = "yyyy-MM-dd HH:mm:ss";
             internal string DecisionDate { get => System.DateTime.ParseExact(decision_datetime, DateFormat, CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"); }
@@ -256,7 +259,17 @@ namespace Backlog.Src
             var jurisdictions = line.Jurisdictions
                 .Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction))
                 .Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction });
-            
+
+            string webArchivingLink;
+            if (!string.IsNullOrWhiteSpace(line.webarchiving))
+            {
+                webArchivingLink = line.webarchiving;
+            }
+            else
+            {
+                webArchivingLink = null;
+            }
+
             ExtendedMetadata meta = new()
             {
                 Type = JudgmentType.Decision,
@@ -271,7 +284,8 @@ namespace Backlog.Src
                 ],
                 SourceFormat = sourceFormat,
                 Categories = [.. categories],
-                NCN = line.ncn
+                NCN = line.ncn,
+                WebArchivingLink = webArchivingLink
             };
             return meta;
         }

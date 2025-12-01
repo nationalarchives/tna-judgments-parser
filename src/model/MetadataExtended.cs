@@ -19,6 +19,7 @@ namespace UK.Gov.NationalArchives.CaseLaw.Model
 
         string NCN { get; }
 
+        string WebArchivingLink { get; }
     }
 
     public class Party {

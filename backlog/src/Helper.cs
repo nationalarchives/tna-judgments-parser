@@ -52,7 +52,8 @@ namespace Backlog.Src
                         SourceFormat = meta.SourceFormat,
                         CaseNumbers = meta.CaseNumbers,
                         Parties = meta.Parties,
-                        Categories = meta.Categories
+                        Categories = meta.Categories,
+                        WebArchivingLink = meta.WebArchivingLink
                     }
                 };
 

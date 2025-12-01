@@ -75,7 +75,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", judgmentsFilePath);
 
         var headerLine =
-            "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,jurisdictions";
+            "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,jurisdictions,webarchiving";
         var csvMetadataLines = new List<string> { headerLine };
         csvMetadataLines.AddRange(metadataLines.Select(metadataLine =>
         {
@@ -86,7 +86,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             }
 
             return
-                $"{lineId},{judgmentsFilePath}{originalFileName},{metadataLine.Extension},{metadataLine.decision_datetime},{metadataLine.CaseNo},{metadataLine.court},{metadataLine.appellants},{metadataLine.claimants},{metadataLine.respondent},{jurisdictions}";
+                $"{lineId},{judgmentsFilePath}{originalFileName},{metadataLine.Extension},{metadataLine.decision_datetime},{metadataLine.CaseNo},{metadataLine.court},{metadataLine.appellants},{metadataLine.claimants},{metadataLine.respondent},{jurisdictions},{metadataLine.webarchiving}";
         }));
 
         var metadataPath = courtMetadataPath ??
@@ -111,7 +111,8 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             court = "UKUT-LC",
             claimants = "new claimants",
             respondent = "new respondent",
-            Jurisdictions = ["new jurisdiction"]
+            Jurisdictions = ["new jurisdiction"],
+            webarchiving = "my web archiving link"
         };
         WriteCourtMetadataCsv(docWithoutJurisdictionsId, originalFileName, metadataLine);
 
@@ -137,7 +138,8 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
                child => child.Should().Match("uk:hash", "4684bfd014fadda75dc2bd683fb4edf8df0f42656a2ac85013bb3dfb14ca512e"),
                child => child.Should().Match("uk:year", "2022"),
                child => child.Should().Match("uk:number", "121"),
-               child => child.Should().Match("uk:cite", "[2022] UKUT 121 (LC)")
+               child => child.Should().Match("uk:cite", "[2022] UKUT 121 (LC)"),
+               child => child.Should().Match("uk:webarchiving", "my web archiving link")
            );
 
         doc.HasSingleNodeWithName("references")
@@ -159,7 +161,8 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             court = "UKUT-LC",
             claimants = "new claimants",
             respondent = "new respondent",
-            Jurisdictions = ["new jurisdiction"]
+            Jurisdictions = ["new jurisdiction"],
+            webarchiving = "my web archiving link"
         };
         WriteCourtMetadataCsv(42, originalFileName, metadataLine);
 
@@ -181,7 +184,8 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
                child => child.Should().Match("uk:jurisdiction", "new jurisdiction"),
                child => child.Should().Match("uk:sourceFormat", "application/pdf"),
                child => child.Should().HaveName("uk:parser"),
-               child => child.Should().Match("uk:year", "2099")
+               child => child.Should().Match("uk:year", "2099"),
+               child => child.Should().Match("uk:webarchiving", "my web archiving link")
            );
 
         doc.HasSingleNodeWithName("references")

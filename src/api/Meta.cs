@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UK.Gov.NationalArchives.CaseLaw.Model;
 
-namespace UK.Gov.NationalArchives.Judgments.Api {
+namespace UK.Gov.NationalArchives.Judgments.Api;
 
 public class Meta {
 
@@ -39,6 +39,7 @@ public class Extensions {
 
     public string NCN { get; set; }
 
+    public required string WebArchivingLink { get; init; }
 }
 
 public class ExternalAttachment {
@@ -46,7 +47,5 @@ public class ExternalAttachment {
     public string Name { get; set; }
 
     public string Link { get; set; }
-
-}
 
 }

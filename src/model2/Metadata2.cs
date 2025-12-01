@@ -136,6 +136,7 @@ class WMetadata3 : WMetadata, IMetadataExtended {
 
     public string NCN => outside.NCN;
 
+    public string WebArchivingLink => outside.WebArchivingLink;
 }
 
 internal class OutsideJurisdiction : IDocJurisdiction

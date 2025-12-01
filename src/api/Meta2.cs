@@ -6,7 +6,7 @@ using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.NationalArchives.CaseLaw.Model;
 
-namespace UK.Gov.NationalArchives.Judgments.Api {
+namespace UK.Gov.NationalArchives.Judgments.Api;
 
 internal class MetaWrapper : IOutsideMetadata {
 
@@ -68,6 +68,7 @@ internal class MetaWrapper : IOutsideMetadata {
 
     public string NCN => Meta.Extensions?.NCN;
 
+    public string WebArchivingLink => Meta.Extensions?.WebArchivingLink;
 }
 
 internal class ExternalAttachmentWrapper : IExternalAttachment {
@@ -81,7 +82,5 @@ internal class ExternalAttachmentWrapper : IExternalAttachment {
     public string Type => Attachment.Name;
 
     public string Link => Attachment.Link;
-
-}
 
 }
