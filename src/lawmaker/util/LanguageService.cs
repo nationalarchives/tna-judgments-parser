@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using static UK.Gov.Legislation.Lawmaker.LanguageService;
+using System.Globalization;
 
 namespace UK.Gov.Legislation.Lawmaker;
 
@@ -16,6 +17,10 @@ public class LanguageService
 
     private List<Lang> languages;
 
+    // not ideal just having a variable like this
+    public IReadOnlyCollection<CultureInfo> Cultures {
+        get;
+    }
     /// <summary>
     /// Supported language codes following ISO 639-1 standard.
     /// </summary>
@@ -33,6 +38,17 @@ public class LanguageService
     public LanguageService(IEnumerable<Lang> languages)
     {
         this.languages = languages?.Any() == true ? languages.ToList() : [Lang.EN];
+        IEnumerable<CultureInfo> _cultures = [];
+        foreach (Lang lang in this.languages)
+        {
+            _cultures = lang switch
+            {
+                Lang.EN => _cultures.Append(CultureInfo.GetCultureInfo("en-GB")),
+                Lang.CY => _cultures.Append(CultureInfo.GetCultureInfo("cy-GB")),
+            };
+        }
+        Cultures = Array.AsReadOnly(_cultures.ToArray());
+
     }
 
     /// <summary>
