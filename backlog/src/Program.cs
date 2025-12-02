@@ -7,6 +7,11 @@ using System.Linq;
 
 using Amazon.S3.Model;
 
+using Microsoft.Extensions.Logging;
+
+using UK.Gov.Legislation.Judgments;
+using UK.Gov.NationalArchives.Judgments.Api;
+
 namespace Backlog.Src
 {
 
@@ -51,7 +56,7 @@ namespace Backlog.Src
                 string judgmentsFilePath = Environment.GetEnvironmentVariable("JUDGMENTS_FILE_PATH");
                 string hmctsFilePath = Environment.GetEnvironmentVariable("HMCTS_FILES_PATH");
 
-                Helper helper = new()
+                Helper helper = new(new Parser(Logging.Factory.CreateLogger<Parser>(), new UK.Gov.Legislation.Judgments.AkomaNtoso.Validator()))
                 {
                     PathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "court_metadata.csv"),
                     PathToDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ?? AppDomain.CurrentDomain.BaseDirectory

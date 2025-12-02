@@ -1,13 +1,14 @@
-
 using System.Linq;
 
-using test;
+using test.ApiTests;
+
+using UK.Gov.NationalArchives.CaseLaw.TRE;
 
 using Xunit;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
-namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
+namespace test.TRE
 {
     public class TestNoChange
     {

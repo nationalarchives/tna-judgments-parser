@@ -5,9 +5,15 @@ using System.Reflection;
 using System.Xml;
 using System.Xml.Schema;
 
-namespace UK.Gov.Legislation.Judgments.AkomaNtoso {
+namespace UK.Gov.Legislation.Judgments.AkomaNtoso;
 
-public class Validator {
+public interface IValidator
+{
+    List<ValidationEventArgs> Validate(XmlDocument akn);
+}
+
+public class Validator : IValidator
+{
 
     private XmlSchemaSet Schemas = new XmlSchemaSet();
 
@@ -32,7 +38,4 @@ public class Validator {
         copy.Validate((sender, e) => errors.Add(e));    // modifies the DOM
         return errors;
     }
-
-}
-
 }
