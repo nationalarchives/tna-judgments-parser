@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation;
 using UK.Gov.Legislation.Judgments;
+using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using EM = UK.Gov.Legislation.ExplanatoryMemoranda;
 using UK.Gov.Legislation.Lawmaker;
@@ -98,7 +99,9 @@ class Program {
             Api.Attachment a = new Api.Attachment { Content = docxA, Filename = attachment.Name };
             request = new Api.Request { Content = docx, Attachments = new Api.Attachment[] { a } };
         }
-        Api.Response response = Api.Parser.Parse(request);
+
+        var parser = new Api.Parser(Logging.Factory.CreateLogger<Api.Parser>(), new AkN.Validator());
+        Api.Response response = parser.Parse(request);
         if (outputZip is not null)
             SaveZip(response, outputZip);
         else if (output is not null)
