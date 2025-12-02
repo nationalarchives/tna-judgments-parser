@@ -4,13 +4,21 @@ using System.Linq;
 
 using Backlog.Src;
 
+using test.Mocks;
+
+using UK.Gov.Legislation.Judgments.AkomaNtoso;
+
 using Xunit;
+
+using Metadata = Backlog.Src.Metadata;
+using Parser = UK.Gov.NationalArchives.Judgments.Api.Parser;
 
 namespace test.backlog
 {
     public sealed class TestHelperFindLines: IDisposable
     {
-        private Helper helper;
+        private readonly Helper helper;
+        private readonly Parser parser = new(new MockLogger<Parser>().Object, new Validator());
         private string testDataDirectory;
         private string validCsvPath;
 
@@ -24,7 +32,7 @@ namespace test.backlog
             validCsvPath = Path.Combine(testDataDirectory, "valid-metadata.csv");
             CreateValidCsvFile(validCsvPath);
             
-            helper = new Helper
+            helper = new Helper(parser)
             {
                 PathToCourtMetadataFile = validCsvPath,
                 PathToDataFolder = testDataDirectory
@@ -116,7 +124,7 @@ namespace test.backlog
         {
             // Arrange - Create helper with non-existent CSV path
             var nonExistentPath = Path.Combine(testDataDirectory, "does-not-exist.csv");
-            var invalidHelper = new Helper
+            var invalidHelper = new Helper(parser)
             {
                 PathToCourtMetadataFile = nonExistentPath,
                 PathToDataFolder = testDataDirectory
@@ -134,7 +142,7 @@ namespace test.backlog
             var emptyContent = "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary";
             File.WriteAllText(emptyCsvPath, emptyContent);
             
-            var emptyHelper = new Helper
+            var emptyHelper = new Helper(parser)
             {
                 PathToCourtMetadataFile = emptyCsvPath,
                 PathToDataFolder = testDataDirectory
@@ -158,7 +166,7 @@ namespace test.backlog
 124,2025-01-16 10:00:00,Jones,HMRC";
             File.WriteAllText(malformedCsvPath, malformedContent);
             
-            var malformedHelper = new Helper
+            var malformedHelper = new Helper(parser)
             {
                 PathToCourtMetadataFile = malformedCsvPath,
                 PathToDataFolder = testDataDirectory
@@ -180,7 +188,7 @@ namespace test.backlog
 123,.pdf,2025-01-15 09:00:00,IA/2025/001,Smith,Secretary of State for the Home Department,UKUT-IAC";
             File.WriteAllText(partialCsvPath, partialContent);
             
-            var partialHelper = new Helper
+            var partialHelper = new Helper(parser)
             {
                 PathToCourtMetadataFile = partialCsvPath,
                 PathToDataFolder = testDataDirectory
@@ -202,7 +210,7 @@ namespace test.backlog
 126,/test/data/test-case-invalid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State,,Appeals,Tax,VAT,Test case with orphaned main_subcategory";
             File.WriteAllText(invalidCategoryCsvPath, invalidCategoryContent);
             
-            var invalidCategoryHelper = new Helper
+            var invalidCategoryHelper = new Helper(parser)
             {
                 PathToCourtMetadataFile = invalidCategoryCsvPath,
                 PathToDataFolder = testDataDirectory
@@ -225,7 +233,7 @@ namespace test.backlog
 127,/test/data/test-case-invalid2.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State,Immigration,Appeals,,VAT,Test case with orphaned sec_subcategory";
             File.WriteAllText(invalidSecCategoryCsvPath, invalidSecCategoryContent);
             
-            var invalidSecCategoryHelper = new Helper
+            var invalidSecCategoryHelper = new Helper(parser)
             {
                 PathToCourtMetadataFile = invalidSecCategoryCsvPath,
                 PathToDataFolder = testDataDirectory
@@ -248,7 +256,7 @@ namespace test.backlog
 128,/test/data/test-case-valid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State,Immigration,Appeals,Tax,VAT,Test case with valid category hierarchy";
             File.WriteAllText(validCategoryCsvPath, validCategoryContent);
             
-            var validCategoryHelper = new Helper
+            var validCategoryHelper = new Helper(parser)
             {
                 PathToCourtMetadataFile = validCategoryCsvPath,
                 PathToDataFolder = testDataDirectory
