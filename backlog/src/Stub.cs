@@ -163,6 +163,14 @@ namespace Backlog.Src
                 proprietary.AppendChild(court);
                 court.AppendChild(Document.CreateTextNode(Data.Court.Value.Code.ToString()));
             }
+
+            foreach (var jurisdiction in Data.Jurisdictions)
+            {
+                XmlElement jurisdictionNode = CreateAndAppendUK("jurisdiction", proprietary);
+                proprietary.AppendChild(jurisdictionNode);
+                jurisdictionNode.AppendChild(Document.CreateTextNode(jurisdiction.ShortName));
+            }
+            
             XmlElement year = CreateAndAppendUK("year", proprietary);
             proprietary.AppendChild(year);
             year.AppendChild(Document.CreateTextNode(Data.Date.Date[..4]));

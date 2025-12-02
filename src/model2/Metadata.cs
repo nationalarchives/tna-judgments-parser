@@ -56,6 +56,8 @@ class WMetadata : IMetadata {
         return _court;
     } }
 
+    public virtual IEnumerable<IDocJurisdiction> Jurisdictions => Util.Descendants<IDocJurisdiction>(judgment.Header);
+
     virtual public int? Year { get {
         if (ShortUriComponent is null)
             return null;

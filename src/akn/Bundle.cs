@@ -17,10 +17,6 @@ public interface ILazyBundle : System.IDisposable {
     XmlDocument Judgment { get; }
 
     IEnumerable<IImage> Images { get; }
-
-    [Obsolete("use Dispose()")]
-    void Close();
-
 }
 
 internal class Bundle : ILazyBundle {
@@ -47,10 +43,6 @@ internal class Bundle : ILazyBundle {
 
     public IEnumerable<IImage> Images { get => judgment.Images; }
 
-    [Obsolete("use Dispose()")]
-    public void Close() {
-        Dispose();
-    }
     public void Dispose() {
         doc.Dispose();
     }
@@ -82,10 +74,6 @@ internal class PSBundle : ILazyBundle {
 
     public IEnumerable<IImage> Images { get => PS.Images; }
 
-    [Obsolete("use Dispose()")]
-    public void Close() {
-        Dispose();
-    }
     public void Dispose() {
         doc.Dispose();
     }

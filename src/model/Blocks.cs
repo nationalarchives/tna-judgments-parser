@@ -44,34 +44,6 @@ interface ILine : IBlock, IBordered {
         return styles;
     }
 
-    [System.Obsolete]
-    static string TextContent(IEnumerable<IInline> contents) {
-        IEnumerable<string> texts = contents
-            .Select(i => {
-                if (i is IFormattedText t)
-                    return (t.Uppercase.HasValue && t.Uppercase.Value) ? t.Text.ToUpper() : t.Text;
-                if (i is ITab)
-                    return " ";
-                return "";
-            });
-        return string.Join("", texts);
-    }
-
-    [System.Obsolete]
-    string TextContent() {
-        return TextContent(this.Contents);
-    }
-
-    [System.Obsolete]
-    static string NormalizeContent(ILine line) {
-        string text = line.TextContent();
-        return Regex.Replace(text, @"\s+", " ").Trim();
-    }
-    [System.Obsolete]
-    string NormalizedContent() {
-        return NormalizeContent(this);
-    }
-
     bool IsEmpty() {
         if (!this.Contents.Any())
             return true;

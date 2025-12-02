@@ -5,9 +5,9 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Xsl;
 
-using Xunit;
+using test;
 
-using CaseLaw = UK.Gov.NationalArchives.CaseLaw;
+using Xunit;
 
 namespace UK.Gov.Legislation.ExplanatoryMemoranda.Test {
 
@@ -29,9 +29,9 @@ public class TestEM {
     [Theory]
     [MemberData(nameof(Indices))]
     public void Test(int i) {
-        var docx = CaseLaw.Tests.ReadDocx($"test.leg.em.test{i}.docx");
+        var docx = DocumentHelpers.ReadDocx($"test.leg.em.test{i}.docx");
         var actual = Helper.Parse(docx).Serialize();
-        var expected = CaseLaw.Tests.ReadXml($"test.leg.em.test{i}.akn");
+        var expected = DocumentHelpers.ReadXml($"test.leg.em.test{i}.akn");
         actual = RemoveSomeMetadata(actual);
         expected = RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
