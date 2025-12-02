@@ -420,6 +420,9 @@ public readonly partial struct Courts {
         URL = "https://webarchive.nationalarchives.gov.uk/ukgwa/20130206050212/https://www.justice.gov.uk/tribunals/estate-agents",
     };
 
+    public const string FirstTierTribunalChamberCodesPattern = "TC|GRC|PC";
+    public const string UpperTribunalChamberCodesPattern = "AAC|IAC|LC|TCC";
+    
     public static readonly Court[] All = {
         SupremeCourt,
         PrivyCouncil,

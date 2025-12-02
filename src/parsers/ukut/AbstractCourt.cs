@@ -52,14 +52,14 @@ abstract class AbstractCourtType : Enricher2 {
         return blocks;
     }
 
-    protected abstract IEnumerable<Combo3> Combo3s();
+    protected abstract IEnumerable<Combo3> Combo3s { get; }
 
-    protected abstract IEnumerable<Combo2> Combo2s();
+    protected abstract IEnumerable<Combo2> Combo2s { get; }
 
-    protected abstract IEnumerable<Combo1> Combo1s();
+    protected abstract IEnumerable<Combo1> Combo1s { get; }
 
     protected List<WLine> Match3(IBlock one, IBlock two, IBlock three) {
-        foreach (Combo3 combo in Combo3s()) {
+        foreach (Combo3 combo in Combo3s) {
             if (combo.Match(one, two, three))
                 return combo.Transform(one, two, three);
             if (combo.MatchFirstRun(one, two, three))
@@ -71,7 +71,7 @@ abstract class AbstractCourtType : Enricher2 {
     }
 
     protected List<WLine> Match2(IBlock one, IBlock two) {
-        foreach (Combo2 combo in Combo2s()) {
+        foreach (Combo2 combo in Combo2s) {
             if (combo.Match(one, two))
                 return combo.Transform(one, two);
             if (combo.MatchFirstRun(one, two))
@@ -83,7 +83,7 @@ abstract class AbstractCourtType : Enricher2 {
     }
 
     protected List<WLine> Match1(IBlock block) {
-        foreach (Combo1 combo in Combo1s())
+        foreach (Combo1 combo in Combo1s)
             if (combo.Match(block))
                 return combo.Transform(block);
         return null;
