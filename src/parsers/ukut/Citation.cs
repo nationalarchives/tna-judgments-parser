@@ -20,7 +20,7 @@ class Citation : FirstMatch2 {
         if (line.Last() is WText last) {
             Match match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKUT \d+ *\((AAC|IAC|LC|TCC)\)) *$");
             if (!match.Success)
-                match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ *\((GRC|TC)\)) *$");
+                match = Regex.Match(last.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ *\((GRC|TC|PC)\)) *$");
             if (!match.Success)
                 match = Regex.Match(last.Text, @"(\[?\d{4}\]? UKAIT \d+) *$");
             if (match.Success) {
@@ -30,7 +30,7 @@ class Citation : FirstMatch2 {
             if (last.Text == "." && line.SkipLast(1).Any() && line.SkipLast(1).Last() is WText penult) {  // [2023] UKFTT 00004 (GRC)
                 Match match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKUT \d+ *\((AAC|IAC|LC|TCC)\)) *$");
                 if (!match2.Success)
-                    match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ *\((TC|GRC)\)) *$");
+                    match2 = Regex.Match(penult.Text, @"(\[?\d{4}[\]\[] UKFTT \d+ *\((TC|GRC|PC)\)) *$");
                 if (!match2.Success)
                     match2 = Regex.Match(penult.Text, @"(\[?\d{4}\]? UKAIT \d+) *$");
                 if (match2.Success) {
@@ -46,7 +46,7 @@ class Citation : FirstMatch2 {
             if (!match.Success)
                 match = Regex.Match(first.Text, @"^NCN: (\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");
             if (!match.Success)
-                match = Regex.Match(first.Text, @"^NCN:? (\[\d{4}\] UKFTT \d+ \((GRC|TC)\))");
+                match = Regex.Match(first.Text, @"^NCN:? (\[\d{4}\] UKFTT \d+ \((GRC|TC|PC)\))");
             if (!match.Success)
                 match = Regex.Match(first.Text, @"^ *(\[\d{4}\] UKUT \d+ \((AAC|IAC|LC|TCC)\))");  // [2023] UKUT 168 (LC)
             if (match.Success) {

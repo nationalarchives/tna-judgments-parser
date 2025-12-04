@@ -24,6 +24,7 @@ internal class MetaWrapper : IOutsideMetadata {
         return Courts.ByCode[Meta.Court];
     } }
 
+    public List<string> JurisdictionShortNames => Meta.JurisdictionShortNames;
 
     public int? Year { get {
         if (ShortUriComponent is null)

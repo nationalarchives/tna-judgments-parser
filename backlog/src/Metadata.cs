@@ -50,6 +50,14 @@ namespace Backlog.Src
             public LineMap()
             {
                 AutoMap(CultureInfo.InvariantCulture);
+                Map(l => l.Jurisdictions)
+                    .Optional()
+                    .Convert(convertFromStringArgs =>
+                    {	
+                        // Get value
+                        convertFromStringArgs.Row.TryGetField<string>("jurisdictions", out var field);
+                        return field?.Split(',').Select(item => item.Trim()) ?? [];
+                    });
             }
         }
 
@@ -62,6 +70,9 @@ namespace Backlog.Src
             public string Extension { get; set; }
             public string decision_datetime { get; set; }
             public string CaseNo { get; set; }
+
+            [Optional]
+            public IEnumerable<string> Jurisdictions { get; set; } = [];
             
             [Optional]
             public string claimants { get; set; }
@@ -157,16 +168,19 @@ namespace Backlog.Src
             }
         }
 
-
-
-        internal static List<Line> Read(string path)
+        internal static List<Line> Read(string csvPath)
         {
-            using var reader = new StreamReader(path);
+            using var streamReader = new StreamReader(csvPath);
+            return Read(streamReader);
+        }
+
+        internal static List<Line> Read(TextReader textReader)
+        {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 ShouldSkipRecord = args => false
             };
-            using var csv = new CsvReader(reader, config);
+            using var csv = new CsvReader(textReader, config);
             
             csv.Context.RegisterClassMap<LineMap>();
             
@@ -236,11 +250,18 @@ namespace Backlog.Src
                 sourceFormat = "application/pdf";
             else
                 throw new Exception($"Unexpected extension {line.Extension}");
+
             Court court = Courts.ByCode[line.court];
+
+            var jurisdictions = line.Jurisdictions
+                .Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction))
+                .Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction });
+            
             ExtendedMetadata meta = new()
             {
                 Type = JudgmentType.Decision,
                 Court = court,
+                Jurisdictions = jurisdictions,
                 Date = new WNamedDate { Date = line.DecisionDate, Name = "decision" },
                 Name = line.FirstPartyName + " v " + line.respondent,
                 CaseNumbers = [line.CaseNo],
