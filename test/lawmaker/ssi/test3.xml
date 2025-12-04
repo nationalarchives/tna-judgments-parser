@@ -5,10 +5,13 @@
       <references source="#author">
         <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The National Health Service Superannuation and Pension Schemes (Miscellaneous Amendment) (Scotland) Regulations 2024" />
         <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2024" />
+        <TLCConcept eId="varMadeDate" href="#varOntologies" showAs="2024-10-01T00:00:00.0000000" />
+        <TLCConcept eId="varLaidDate" href="#varOntologies" showAs="2024-10-03T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2024-11-29T00:00:00.0000000" />
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="banner">SCOTTISH STATUTORY INSTRUMENTS</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
       <container name="subjects">
@@ -20,6 +23,11 @@
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
       <block name="approval">Approved by both Houses of Parliament</block>
       <block name="laidInDraft">Laid before Parliament in draft</block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="2024-10-01"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varMadeDate" class="#placeholder" /></docDate></block>
+        <block name="laidDate"><span>Laid before the Scottish Parliament</span><docDate date="2024-10-03"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varLaidDate" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="2024-11-29"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder" /></docDate></block>
+      </container>
     </preface>
     <preamble eId="preamble">
       <formula name="enactingText">

@@ -8,7 +8,7 @@
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="proceduralRubric">Draft Order in Council laid before the House of Commons under section 173(7) of the Finance Act 2006 and section 5(2) of the Taxation (International and Other Provisions) Act 2010, for approval by resolution of that House.</block>
       <block name="banner">DRAFT STATUTORY INSTRUMENTS</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
@@ -24,6 +24,9 @@
 		</container>
 	  </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="9999-01-01" /></block>
+      </container>
     </preface>
     <preamble eId="preamble">
       <formula name="enactingText">

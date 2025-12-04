@@ -74,9 +74,11 @@ class WLine : ILine, ILineable {
         return new WLine(np, np.Contents);
     }
 
-    public string Style {
+#nullable enable
+    public string? Style {
         get => properties?.ParagraphStyleId?.Val;
     }
+#nullable disable
 
     public AlignmentValues? Alignment {
         get {
@@ -232,7 +234,7 @@ class WLine : ILine, ILineable {
     }
 
     /// <summary>
-    /// The value of the <c>NumberingLevelReference</c> of this <c>WLine</c>, if present, 
+    /// The value of the <c>NumberingLevelReference</c> of this <c>WLine</c>, if present,
     /// as defined in the <c>Style</c>. Otherwise defaults to <c>-1</c>.
     /// </summary>
     public int NumberingLevel

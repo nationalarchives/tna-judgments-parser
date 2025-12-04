@@ -15,12 +15,6 @@ namespace UK.Gov.Legislation.Lawmaker
     partial class LegislationParser : BlockParser
     {
 
-        private static bool IsLeftAligned(WLine line)
-        {
-            var alignment = line.GetEffectiveAlignment();
-            return !alignment.HasValue || alignment == AlignmentValues.Left || alignment == AlignmentValues.Justify;
-        }
-
         internal static bool IsCenterAligned(WLine line)
         {
             var alignment = line.GetEffectiveAlignment();
@@ -60,8 +54,6 @@ namespace UK.Gov.Legislation.Lawmaker
             return true;
         }
 
-        private static bool IsFlushLeft(WLine line) => OptimizedParser.IsFlushLeft(line);
-
         private static float GetEffectiveIndent(WLine line) => OptimizedParser.GetEffectiveIndent(line);
 
         private bool CurrentLineIsIndentedLessThan(WLine parent)
@@ -85,7 +77,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (block is not WLine line)
                 return true;
-            if (!IsLeftAligned(line))
+            if (!line.IsLeftAligned())
                 return false;
             if (LineIsIndentedLessThan(line, leader))
                 return false;

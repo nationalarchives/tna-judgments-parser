@@ -5,10 +5,12 @@
       <references source="#author">
         <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Drax Power Station Bioenergy with Carbon Capture and Storage Extension Order 2024" />
         <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2024" />
+        <TLCConcept eId="varMadeDate" href="#varOntologies" showAs="2024-01-16T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2024-02-07T00:00:00.0000000" />
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="banner">STATUTORY INSTRUMENTS</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
 	  <container name="subjects">
@@ -17,6 +19,10 @@
 		</container>
 	  </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="2024-01-16"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varMadeDate" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="2024-02-07"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder" /></docDate></block>
+      </container>
     </preface>
     <body>
       <article eId="sec_1" class="prov1">

@@ -1,3 +1,4 @@
+#nullable enable
 namespace UK.Gov.Legislation.Lawmaker;
 
 /// <summary>
@@ -19,5 +20,5 @@ interface IBuildable<T>
     /// There are no guarentees this method will not change state in the
     /// implementer, though this should be avoided where possible.
     /// </remarks>
-    T Build();
+    T? Build(Document Document);
 }

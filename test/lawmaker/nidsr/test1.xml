@@ -8,7 +8,7 @@
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="proceduralRubric">In accordance with section 50 (6) (d) of the Agriculture Act 2020 a draft of these Regulations has been laid for approval and resolution by the Assembly.</block>
       <block name="banner">DRAFT Statutory Rules of Northern Ireland</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
@@ -18,6 +18,10 @@
 		</container>
       </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made XXXX 2025</span><docDate date="9999-01-01" /></block>
+        <block eId="fnt__dates___commenceDateDescription" name="commenceDate"><span>Coming into operation XXXX 2025</span><docDate date="9999-01-01" /></block>
+      </container>
     </preface>
     <preamble eId="preamble">
       <formula name="enactingText">

@@ -56,7 +56,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (frames.IsSecondaryDocName())
             {
-                if (!IsFlushLeft(line) && quoteDepth == 0)
+                if (!line.IsFlushLeft() && quoteDepth == 0)
                     return false;
                 return line.IsPartiallyBold();
             }

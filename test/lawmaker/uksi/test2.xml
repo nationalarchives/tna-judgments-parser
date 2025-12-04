@@ -5,18 +5,32 @@
       <references source="#author">
         <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Trailer Registration (Amendment) Regulations 2021" />
         <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2021" />
+        <TLCConcept eId="varLaidDate" href="#varOntologies" showAs="2021-09-20T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2021-09-20T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate2" href="#varOntologies" showAs="2021-09-21T00:00:00.0000000" />
+        <TLCConcept eId="varOtherDate" href="#varOntologies" showAs="2021-09-24T00:00:00.0000000" />
+        <TLCConcept eId="varOtherDate2" href="#varOntologies" showAs="2021-09-30T00:00:00.0000000" />
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="banner">STATUTORY INSTRUMENTS</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
-	  <container name="subjects">
-		<container name="subject">
-			<block name="subject"><concept refersTo="" class="title">ROAD TRAFFIC</concept></block>
-		</container>
-	  </container>
+      <container name="subjects">
+        <container name="subject">
+          <block name="subject"><concept refersTo="" class="title">ROAD TRAFFIC</concept></block>
+        </container>
+      </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="9999-01-01" /></block>
+        <block name="laidDate"><span>Laid before Parliament</span><docDate date="2021-09-20"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varLaidDate" class="#placeholder" /></docDate></block>
+        <block name="otherDate"><span>Unknown looks like a date</span><docDate date="2021-09-24"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varOtherDate" class="#placeholder" /></docDate></block>
+        <block name="otherDate"><span>Sift requirements satisfied</span><docDate date="2021-09-30"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varOtherDate2" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDateDescription" name="commenceDate"><span>Coming into force</span><docDate date="9999-01-01" /></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate" class="commenceClauses"><span>For the purpose of</span><docDate date="2021-09-20"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDate__oc_2" name="commenceDate" class="commenceClauses"><span>For the other purpose of</span><docDate date="2021-09-21"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate2" class="#placeholder" /></docDate></block>
+      </container>
     </preface>
     <preamble eId="preamble">
       <formula name="enactingText">
@@ -28,9 +42,6 @@
       <article eId="sec_1" class="prov1">
         <heading>Citation, commencement, extent and application</heading>
         <num>1.</num>
-	  
-																					   
-	
         <paragraph class="prov2">
           <num>(1)</num>
           <content>
