@@ -7,7 +7,9 @@
         <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2024" />
         <TLCConcept eId="varMadeDate" href="#varOntologies" showAs="2024-10-01T00:00:00.0000000" />
         <TLCConcept eId="varLaidDate" href="#varOntologies" showAs="2024-10-03T00:00:00.0000000" />
-        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2024-11-29T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2025-10-03T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate2" href="#varOntologies" showAs="2025-10-23T00:00:00.0000000" />
+        <TLCConcept eId="varOtherDate" href="#varOntologies" showAs="2024-10-01T00:00:00.0000000" />
       </references>
     </meta>
     <coverPage />
@@ -25,8 +27,11 @@
       <block name="laidInDraft">Laid before Parliament in draft</block>
       <container name="dates">
         <block name="madeDate"><span>Made</span><docDate date="2024-10-01">1 October 2024</docDate></block>
-        <block name="laidDate"><span>Laid before the Scottish Parliament</span><docDate date="2024-10-03">3 October 2024</docDate></block>
-        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="2024-11-29">29 November 2024</docDate></block>
+        <block name="laidDate"><span>To be laid before the Scottish Parliament</span><docDate date="2024-10-03">3 October 2024</docDate></block>
+        <block eId="fnt__dates___commenceDateDescription" name="commenceDate"><span>Coming into force</span><docDate date="9999-01-01" /></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate" class="commenceClauses"><span>For the purpose of regulation 1</span><docDate date="2025-10-03">3 October 2025</docDate></block>
+        <block eId="fnt__dates___commenceDate__oc_2" name="commenceDate" class="commenceClauses"><span>For all other purposes</span><docDate date="2025-10-23">23 October 2025</docDate></block>
+        <block name="otherDate"><span>Sift requirements satisfied</span><docDate date="2024-10-01">1 October 2024</docDate></block>
       </container>
     </preface>
     <preamble eId="preamble">
