@@ -5,11 +5,13 @@ using UK.Gov.NationalArchives.CaseLaw.Model;
 
 namespace Backlog.Src
 {
-    internal class ExtendedMetadata : IMetadata, IMetadataExtended
+    internal class ExtendedMetadata : IMetadataExtended
     {
         internal JudgmentType Type { get; init; }
 
         public Court? Court { get; init; }
+
+        public IEnumerable<IDocJurisdiction> Jurisdictions { get; init; }
 
         public int? Year { get; init; }
 
@@ -43,13 +45,15 @@ namespace Backlog.Src
 
         public Dictionary<string, Dictionary<string, string>> CSSStyles() => [];
 
-        public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties { get; init; }
+        public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties { get; init; } = [];
 
         public string SourceFormat { get; init; }
 
         public List<ICategory> Categories { get; init; } = [];
         
         public string NCN { get; init; }
+        
+        public string WebArchivingLink { get; init; }
 
         internal class Category : ICategory {
 
@@ -58,7 +62,6 @@ namespace Backlog.Src
             public string Parent { get; init; }
 
         }
-
     }
 
 }

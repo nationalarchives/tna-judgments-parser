@@ -14,11 +14,11 @@ namespace test.backlog.EndToEndTests;
 public abstract class BaseEndToEndTests : IDisposable
 {
     protected readonly MockS3Client mockS3Client = new();
-    private readonly ITestOutputHelper testOutputHelper;
+    protected readonly ITestOutputHelper TestOutputHelper;
 
     protected BaseEndToEndTests(ITestOutputHelper testOutputHelper)
     {
-        this.testOutputHelper = testOutputHelper;
+        TestOutputHelper = testOutputHelper;
 
         // Ensure environment is clean before running any tests
         CleanEnvironmentVariables();
@@ -90,7 +90,7 @@ public abstract class BaseEndToEndTests : IDisposable
         foreach (var line in lines)
         {
             var numberedLine = $"{currentLineNumber}: {line}";
-            testOutputHelper.WriteLine(numberedLine);
+            TestOutputHelper.WriteLine(numberedLine);
             currentLineNumber++;
         }
     }

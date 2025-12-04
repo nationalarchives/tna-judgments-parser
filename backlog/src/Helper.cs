@@ -1,10 +1,9 @@
-
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
-using ExtendedMetadata = Backlog.Src.ExtendedMetadata;
 
 namespace Backlog.Src
 {
@@ -45,14 +44,16 @@ namespace Backlog.Src
                 {
                     DocumentType = "decision",
                     Court = meta.Court?.Code,
-                    Date = meta.Date?.Date.ToString(),
+                    Date = meta.Date?.Date,
                     Name = meta.Name,
+                    JurisdictionShortNames = meta.Jurisdictions.Select(j => j.ShortName).ToList(),
                     Extensions = new()
                     {
                         SourceFormat = meta.SourceFormat,
                         CaseNumbers = meta.CaseNumbers,
                         Parties = meta.Parties,
-                        Categories = meta.Categories
+                        Categories = meta.Categories,
+                        WebArchivingLink = meta.WebArchivingLink
                     }
                 };
 

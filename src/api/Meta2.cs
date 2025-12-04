@@ -6,7 +6,7 @@ using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.NationalArchives.CaseLaw.Model;
 
-namespace UK.Gov.NationalArchives.Judgments.Api {
+namespace UK.Gov.NationalArchives.Judgments.Api;
 
 internal class MetaWrapper : IOutsideMetadata {
 
@@ -24,6 +24,7 @@ internal class MetaWrapper : IOutsideMetadata {
         return Courts.ByCode[Meta.Court];
     } }
 
+    public List<string> JurisdictionShortNames => Meta.JurisdictionShortNames;
 
     public int? Year { get {
         if (ShortUriComponent is null)
@@ -59,14 +60,15 @@ internal class MetaWrapper : IOutsideMetadata {
 
     public string SourceFormat => Meta.Extensions?.SourceFormat;
 
-    public List<string> CaseNumbers => Meta.Extensions?.CaseNumbers;
+    public List<string> CaseNumbers => Meta.Extensions?.CaseNumbers ?? [];
 
-    public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties => Meta.Extensions?.Parties;
+    public List<UK.Gov.NationalArchives.CaseLaw.Model.Party> Parties => Meta.Extensions?.Parties ?? [];
 
-    public List<ICategory> Categories=> Meta.Extensions?.Categories;
+    public List<ICategory> Categories => Meta.Extensions?.Categories ?? [];
 
     public string NCN => Meta.Extensions?.NCN;
 
+    public string WebArchivingLink => Meta.Extensions?.WebArchivingLink;
 }
 
 internal class ExternalAttachmentWrapper : IExternalAttachment {
@@ -80,7 +82,5 @@ internal class ExternalAttachmentWrapper : IExternalAttachment {
     public string Type => Attachment.Name;
 
     public string Link => Attachment.Link;
-
-}
 
 }

@@ -1,19 +1,17 @@
+#nullable enable
 
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace UK.Gov.Legislation.Judgments {
+namespace UK.Gov.Legislation.Judgments;
 
-public readonly struct Court {
-
+public readonly record struct Court {
     public string Code { get; init; }
     public string LongName { get; init; }
     public string ShortName { get; init; }
     public string URL { get; init; }
-    public Regex CitationPattern { get; init; }
-
+    public Regex? CitationPattern { get; init; }
 }
 
 public readonly partial struct Courts {
@@ -375,11 +373,19 @@ public readonly partial struct Courts {
         URL = "https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax",
         CitationPattern = new Regex(@"^\[\d{4}\] UKFTT \d+ \(TC\)$")
     };
+
     public static readonly Court FirstTierTribunal_GRC = new Court {
         Code = "UKFTT-GRC",
         LongName = "United Kingdom First-tier Tribunal (General Regulatory Chamber)",
         URL = "https://www.gov.uk/courts-tribunals/first-tier-tribunal-general-regulatory-chamber",
         CitationPattern = new Regex(@"^\[\d{4}\] UKFTT \d+ \(GRC\)$")
+    };
+
+    public static readonly Court FirstTierTribunal_PropertyChamber = new() {
+        Code = "UKFTT-PC",
+        LongName = "United Kingdom First-tier Tribunal (Property Chamber)",
+        URL = "https://www.gov.uk/courts-tribunals/first-tier-tribunal-property-chamber",
+        CitationPattern = new Regex(@"^\[\d{4}\] UKFTT \d+ \(PC\)$")
     };
 
     public static readonly Court EmploymentTribunal = new Court {
@@ -412,8 +418,11 @@ public readonly partial struct Courts {
         Code = "UKFTT-Estate",
         LongName = "Estate Agents Tribunal",
         URL = "https://webarchive.nationalarchives.gov.uk/ukgwa/20130206050212/https://www.justice.gov.uk/tribunals/estate-agents",
-    }; 
+    };
 
+    public const string FirstTierTribunalChamberCodesPattern = "TC|GRC|PC";
+    public const string UpperTribunalChamberCodesPattern = "AAC|IAC|LC|TCC";
+    
     public static readonly Court[] All = {
         SupremeCourt,
         PrivyCouncil,
@@ -458,6 +467,7 @@ public readonly partial struct Courts {
 
         FirstTierTribunal_Tax,
         FirstTierTribunal_GRC,
+        FirstTierTribunal_PropertyChamber,
 
         EmploymentTribunal,
 
@@ -467,21 +477,15 @@ public readonly partial struct Courts {
         EstateAgentsTribunal
     };
 
-    public static readonly ImmutableDictionary<string, Court> ByCode =
-        new Dictionary<string, Court>(All.Select(c => new KeyValuePair<string, Court>(c.Code, c)))
-        .ToImmutableDictionary();
-    
-    public static Court? ExtractFromCitation(string cite) {
-        cite = Regex.Replace(cite, @"\s+", " ").Trim();
-        foreach (Court court in All) {
-            if (court.CitationPattern is null)
-                continue;
-            if (court.CitationPattern.IsMatch(cite))
-                return court;
-        }
-        return null;
+    public static readonly ImmutableDictionary<string, Court> ByCode = All.ToImmutableDictionary(c => c.Code, c => c);
+
+    public static Court? ExtractFromCitation(string cite)
+    {
+        var cleanedCite = WhitespaceRegex().Replace(cite, " ").Trim();
+
+        return All.FirstOrDefault(c => c.CitationPattern?.IsMatch(cleanedCite) ?? false);
     }
 
-}
-
+    [GeneratedRegex(@"\s+")]
+    private static partial Regex WhitespaceRegex();
 }

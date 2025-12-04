@@ -1,9 +1,9 @@
 
 using System.Collections.Generic;
-using UK.Gov.Legislation.Judgments;
+
 using UK.Gov.NationalArchives.CaseLaw.Model;
 
-namespace UK.Gov.NationalArchives.Judgments.Api {
+namespace UK.Gov.NationalArchives.Judgments.Api;
 
 public class Meta {
 
@@ -12,6 +12,8 @@ public class Meta {
     public string Uri { get; set; }
 
     public string Court { get; set; }
+
+    public List<string> JurisdictionShortNames { get; set; } = [];
 
     public string Cite { get; set; }
 
@@ -37,6 +39,7 @@ public class Extensions {
 
     public string NCN { get; set; }
 
+    public required string WebArchivingLink { get; init; }
 }
 
 public class ExternalAttachment {
@@ -44,7 +47,5 @@ public class ExternalAttachment {
     public string Name { get; set; }
 
     public string Link { get; set; }
-
-}
 
 }

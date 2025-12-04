@@ -12,7 +12,7 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 namespace UK.Gov.NationalArchives.CaseLaw;
 
 public class Tests {
-    const int Total = 98;
+    const int Total = 99;
 
     public static readonly IEnumerable<int> Indices = Enumerable.Range(1, 10).Concat(
             Enumerable.Range(12, 16).Concat(
@@ -26,7 +26,7 @@ public class Tests {
         var docx = DocumentHelpers.ReadDocx(i);
         var actual = Api.Parser.Parse(new Api.Request(){ Content = docx }).Xml;
         var expected = DocumentHelpers.ReadXml(i);
-        // Assert.NotEqual(expected, actual);
+
         actual = DocumentHelpers.RemoveNonDeterministicMetadata(actual);
         expected = DocumentHelpers.RemoveNonDeterministicMetadata(expected);
         Assert.Equal(expected, actual);
@@ -48,7 +48,7 @@ public class Tests {
         List<Api.Attachment> attachments = new List<Api.Attachment>(1) { new Api.Attachment() { Content = attach, Type = type } };
         var actual = Api.Parser.Parse(new Api.Request(){ Content = main, Attachments = attachments }).Xml;
         var expected = DocumentHelpers.ReadXml(i);
-        // Assert.NotEqual(expected, actual);
+
         actual = DocumentHelpers.RemoveNonDeterministicMetadata(actual);
         expected = DocumentHelpers.RemoveNonDeterministicMetadata(expected);
         Assert.Equal(expected, actual);

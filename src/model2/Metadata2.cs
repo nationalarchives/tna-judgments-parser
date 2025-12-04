@@ -1,9 +1,7 @@
 
-
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 
@@ -71,6 +69,33 @@ class WMetadata3 : WMetadata, IMetadataExtended {
 
     override public Court? Court { get => outside.Court ?? base.Court; }
 
+    override public IEnumerable<IDocJurisdiction> Jurisdictions
+    {
+        get
+        {
+            if (outside.JurisdictionShortNames.Count == 0)
+                return base.Jurisdictions;
+
+            // Enumerate array to speed up searches by preventing downstream calculations reoccurring
+            var jurisdictionsFoundInDoc = base.Jurisdictions.ToArray();
+
+            var areAllJurisdictionsFoundInDocInOutsideMetadata = jurisdictionsFoundInDoc
+                .All(jurisdictionFromDoc => outside.JurisdictionShortNames.Contains(jurisdictionFromDoc.ShortName));
+
+            if (!areAllJurisdictionsFoundInDocInOutsideMetadata)
+                throw new MetadataConflictException("Jurisdictions found in document are missing in supplied outside metadata");
+
+            // Combine outside and doc-provided metadata, returning jurisdictions found in doc where possible
+            var combinedJurisdictions = new List<IDocJurisdiction>();
+            foreach (var outsideJurisdictionShortName in outside.JurisdictionShortNames) {
+                var match = jurisdictionsFoundInDoc.SingleOrDefault(j => j.ShortName == outsideJurisdictionShortName);
+
+                combinedJurisdictions.Add(match ?? new OutsideJurisdiction{ShortName = outsideJurisdictionShortName});
+            }
+            return combinedJurisdictions;
+        }
+    }
+
     override public int? Year { get {
         return outside.Year ?? base.Year;
     } }
@@ -111,6 +136,16 @@ class WMetadata3 : WMetadata, IMetadataExtended {
 
     public string NCN => outside.NCN;
 
+    public string WebArchivingLink => outside.WebArchivingLink;
 }
 
+internal class OutsideJurisdiction : IDocJurisdiction
+{
+    public IEnumerable<IInline> Contents => throw new NotSupportedException();
+    public string Id => throw new NotSupportedException();
+    public string LongName => throw new NotSupportedException();
+    public string ShortName { get; init; }
+    
+    public bool Overridden => true;
+}
 }
