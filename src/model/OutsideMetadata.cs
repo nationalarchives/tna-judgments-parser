@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UK.Gov.NationalArchives.CaseLaw.Model;
 
-namespace UK.Gov.Legislation.Judgments {
+namespace UK.Gov.Legislation.Judgments;
 
 interface IExternalAttachment {
 
@@ -49,7 +49,5 @@ interface IOutsideMetadata {
 
     string NCN { get; }
 
-
-}
-
+    string WebArchivingLink { get; }
 }

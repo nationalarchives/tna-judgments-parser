@@ -312,4 +312,89 @@ public class TestStub
         doc.LoadXml(xml);
         doc.DoesNotHaveNodeWithName("uk:jurisdiction");
     }
+
+    [Fact]
+    public void Stub_WithWebArchivingLink_AppearsInXmlAsUkWebarchiving()
+    {
+        // Arrange
+        var line = new Metadata.Line
+        {
+            id = "123",
+            court = "UKFTT-GRC",
+            decision_datetime = "2023-01-14 14:30:00",
+            CaseNo = "ABC/2023/001",
+            claimants = "John Smith",
+            respondent = "HMRC",
+            main_category = "Immigration",
+            Extension = ".pdf",
+            webarchiving = "a web archive link"
+        };
+        var metadata = Metadata.MakeMetadata(line);
+
+        // Act
+        var stub = Stub.Make(metadata);
+        var xml = stub.Serialize();
+
+        // Assert
+        var doc = new XmlDocument();
+        doc.LoadXml(xml);
+        doc.HasSingleNodeWithName("proprietary").Which().HasChildMatching("uk:webarchiving", "a web archive link");
+    }
+
+    
+        [Fact]
+    public void Stub_WithEmptyWebArchivingLink_DoesNotAppearInXml()
+    {
+        // Arrange
+        var line = new Metadata.Line
+        {
+            id = "123",
+            court = "UKFTT-GRC",
+            decision_datetime = "2023-01-14 14:30:00",
+            CaseNo = "ABC/2023/001",
+            claimants = "John Smith",
+            respondent = "HMRC",
+            main_category = "Immigration",
+            Extension = ".pdf",
+            webarchiving = ""
+        };
+        var metadata = Metadata.MakeMetadata(line);
+
+        // Act
+        var stub = Stub.Make(metadata);
+        var xml = stub.Serialize();
+
+        // Assert
+        var doc = new XmlDocument();
+        doc.LoadXml(xml);
+        doc.DoesNotHaveNodeWithName("uk:webarchiving");
+    }
+
+    [Fact]
+    public void Stub_WithNoWebArchivingLink_DoesNotAppearInXml()
+    {
+        // Arrange
+        var line = new Metadata.Line
+        {
+            id = "123",
+            court = "UKFTT-GRC",
+            decision_datetime = "2023-01-14 14:30:00",
+            CaseNo = "ABC/2023/001",
+            claimants = "John Smith",
+            respondent = "HMRC",
+            main_category = "Immigration",
+            Extension = ".pdf"
+            // WebArchiving is not set (empty)
+        };
+        var metadata = Metadata.MakeMetadata(line);
+
+        // Act
+        var stub = Stub.Make(metadata);
+        var xml = stub.Serialize();
+
+        // Assert
+        var doc = new XmlDocument();
+        doc.LoadXml(xml);
+        doc.DoesNotHaveNodeWithName("uk:webarchiving");
+    }
 }
