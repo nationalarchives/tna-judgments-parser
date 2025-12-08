@@ -54,6 +54,8 @@ For local development or CI environments where AWS configuration isn't automatic
 | `BULK_NUMBERS_PATH` | Path to the CSV file tracking bulk numbers | `{BaseDir}/bulk_numbers.csv` |
 | `LAST_BEFORE_BATCH` | The last bulk number used before this batch started | `0` |
 | `AWS_REGION` | AWS region for S3 bucket operations | Defaults to the region configured in AWS deployment environment |
+| `JUDGMENTS_FILE_PATH` | The filepath prefix used in the court metadata csv (used to crossference with file-metadata.csv paths) | `""`                                                            |
+| `HMCTS_FILES_PATH`    | The filepath prefix used in the file-metadata csv (used to crossference with court metadata csv paths) | `""`                                                            |
 
 Note: The `AWS_REGION` variable (e.g., 'eu-west-2' for London) is typically automatically set in AWS deployment environments (EC2, Lambda, ECS, etc.). You only need to set it manually when running locally or in environments without AWS configuration. In CI/CD pipelines, ensure this is set to match your S3 bucket's region.
 
