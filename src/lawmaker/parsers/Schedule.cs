@@ -21,7 +21,7 @@ namespace UK.Gov.Legislation.Lawmaker
             DocName docname = frames.CurrentDocName;
             if (!docname.IsWelshSecondary() && !IsCenterAligned(line))
                 return false;
-            if (i > Body.Count - 3)
+            if (i > Body.Count - 2)
                 return false;
             string numberText = GetScheduleNumber(line, true);
             if (!LanguageService.IsMatch(numberText, Schedule.NumberPatterns))
@@ -45,14 +45,11 @@ namespace UK.Gov.Legislation.Lawmaker
             else
                 return null;
 
-
             frames.PushScheduleContext();
             WLine scheduleBodyStartLine = (WLine) Body[i-1];
             List<IBlock> contents = ParseScheduleLeafContent(scheduleBodyStartLine);
             if (contents.Count > 0)
-            {
                 schedule = new ScheduleLeaf { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = contents };
-            }
             else
             {
                 List<IDivision> children = ParseScheduleBranchChildren();
@@ -87,28 +84,34 @@ namespace UK.Gov.Legislation.Lawmaker
             string numberText = GetScheduleNumber(numberLine, false);
             IFormattedText number = new WText(numberText, null);
 
-            if (Body[i + 1] is not WLine line2)
+            IBlock line2 = Body[i + 1];
+            // line2 may be a WLine or WTable
+            if (line2 is not WLine && line2 is not WTable)
                 return null;
 
             // Number can optionally be followed by a reference note and/or heading.
-            WLine? heading;
-            WLine? referenceNoteLine;
-            if (IsScheduleReferenceNote(line2))
+            WLine? heading = null;
+            WLine? referenceNoteLine = null;
+            if (line2 is WLine && IsScheduleReferenceNote((WLine) line2))
             {
                 if (Body[i + 2] is not WLine line3)
                     return null;
-                referenceNoteLine = line2;
+                referenceNoteLine = (WLine) line2;
                 heading = line3;
                 i += 3;
             }
-            else
+            else if (line2 is WLine)
             {
                 referenceNoteLine = null;
-                heading = line2;
+                heading = (WLine) line2;
                 i += 2;
             }
+            else
+                i += 1;
 
-            if (!IsCenterAligned(heading))
+            // There might not be a Schedule heading
+            // If the line isn't center aligned or it matches a Part's num then this Schedule does not have a heading
+            if (heading is not null && (!IsCenterAligned(heading) || LanguageService.IsMatch(heading.TextContent, SchedulePart.NumberPatterns)))
             {
                 heading = null;
                 i -= 1;

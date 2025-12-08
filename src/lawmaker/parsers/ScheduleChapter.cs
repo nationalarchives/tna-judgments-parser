@@ -13,6 +13,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseScheduleChapter(WLine line)
         {
+            var save = i;
+            
             if (!PeekScheduleChapterHeading(line))
                 return null;
 
@@ -24,18 +26,87 @@ namespace UK.Gov.Legislation.Lawmaker
             if (IsEndOfQuotedStructure(line.NormalizedContent))
                 return new ScheduleChapterLeaf { Number = number };
 
-            if (Body[i + 1] is not WLine line2)
+            IBlock line2 = Body[i + 1];
+            // Current line may be a WLine or WTable
+            if (line2 is not WLine && line2 is not WTable)
                 return null;
-            if (!IsCenterAligned(line2))
-                return null;
-            ILine heading = line2;
+            
+            // Schedule chapters may have no heading
+            ILine heading = null;
+            if (line2 is WLine)
+                if (IsCenterAligned((WLine) line2))
+                    heading = (WLine) line2;
+            
+            i += heading is null ? 1 : 2;
 
-            if (IsEndOfQuotedStructure(line2.NormalizedContent))
+            if (line2 is WLine && IsEndOfQuotedStructure(((WLine) line2).NormalizedContent))
                 return new ScheduleChapterLeaf { Number = number, Heading = heading };
 
-            var save1 = i;
-            i += 2;
+            WLine chapterBodyStartLine = (WLine) Body[i-1];
+            List<IBlock> contents = ParseScheduleChapterLeafContent(chapterBodyStartLine);
+            HContainer chapter;
+            if (contents.Count > 0)
+                chapter = new ScheduleChapterLeaf { Number = number, Heading = heading, Contents = contents };
+            else
+            {
+                List<IDivision> children = ParseScheduleChapterBranchChildren();
+                // A ScheduleChapterBranch must have at least 1 child.
+                if (children.Count == 0)
+                {
+                    i = save;
+                    return null;
+                }
+                chapter = new ScheduleChapterBranch { Number = number, Heading = heading, Children = children };
+            }
 
+            return chapter;
+        }
+
+        private bool PeekScheduleChapterHeading(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!IsCenterAligned(line))
+                return false;
+            if (i > Body.Count - 2)
+                return false;
+            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
+            if (!LanguageService.IsMatch(numText, ScheduleChapter.NumberPatterns))
+                return false;
+            return true;
+        }
+        
+        /// <summary>
+        /// Returns the <c>ScheduleChapterLeaf</c> content following the <paramref name="heading"/>, if present. 
+        /// Otherwise, returns an empty list.
+        /// </summary>
+        /// <param name="heading">The line representing the schedule heading.</param>
+        /// <returns>A list of <c>ScheduleChapterLeaf</c> content.</returns>
+        internal List<IBlock> ParseScheduleChapterLeafContent(WLine heading)
+        {
+            int save = i;
+            List<IBlock> contents = [];
+
+            // Handle when schedule content begins immediately with one or more quoted structures.
+            HandleMod(heading, contents, true);
+            if (contents.Count > 0)
+                return contents;
+
+            // Handle all other schedule content.
+            // If the next line(s) do not constitute a division, handle them as paragraphs (or tables).
+            IDivision next = ParseNextBodyDivision();
+            i = save;
+            if (next is UnnumberedLeaf || next is UnknownLevel || next is WDummyDivision)
+                contents = HandleParagraphs(heading).Skip(1).ToList();
+            return contents;
+        }
+
+        /// <summary>
+        /// Parses and returns a list of child divisions belonging to the <c>ScheduleChapterBranch</c>.
+        /// </summary>
+        /// <returns>A list of child divisions belonging to the <c>ScheduleChapterBranch</c></returns>
+        internal List<IDivision> ParseScheduleChapterBranchChildren()
+        {
             List<IDivision> children = [];
             while (i < Body.Count)
             {
@@ -55,26 +126,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (IsEndOfQuotedStructure(next))
                     break;
             }
-            if (children.Count == 0)
-            {
-                i = save1;
-                return null;
-            }
-            return new ScheduleChapterBranch { Number = number, Heading = heading, Children = children };
-        }
-
-        private bool PeekScheduleChapterHeading(WLine line)
-        {
-            if (line is WOldNumberedParagraph np)
-                return false;
-            if (!IsCenterAligned(line))
-                return false;
-            if (i > Body.Count - 3)
-                return false;
-            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
-            if (!LanguageService.IsMatch(numText, ScheduleChapter.NumberPatterns))
-                return false;
-            return true;
+            return children;
         }
 
     }
