@@ -45,15 +45,13 @@ For local development or CI environments where AWS configuration isn't automatic
 
 ### Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `COURT_METADATA_PATH` | Path to the CSV file containing court metadata | `{BaseDir}/court_metadata.csv` |
-| `DATA_FOLDER_PATH` | Path to the folder containing judgment data files | `{BaseDir}` |
-| `TRACKER_PATH` | Path to the CSV file tracking uploaded judgments | `{BaseDir}/uploaded-production.csv` |
-| `OUTPUT_PATH` | Path where generated bundle files will be saved | `{BaseDir}` |
-| `BULK_NUMBERS_PATH` | Path to the CSV file tracking bulk numbers | `{BaseDir}/bulk_numbers.csv` |
-| `LAST_BEFORE_BATCH` | The last bulk number used before this batch started | `0` |
-| `AWS_REGION` | AWS region for S3 bucket operations | Defaults to the region configured in AWS deployment environment |
+| Variable              | Description                                                                                            | Default                                                         |
+|-----------------------|--------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `COURT_METADATA_PATH` | Path to the CSV file containing court metadata                                                         | `{BaseDir}/court_metadata.csv`                                  |
+| `DATA_FOLDER_PATH`    | Path to the folder containing judgment data files                                                      | `{BaseDir}`                                                     |
+| `TRACKER_PATH`        | Path to the CSV file tracking uploaded judgments                                                       | `{BaseDir}/uploaded-production.csv`                             |
+| `OUTPUT_PATH`         | Path where generated bundle files will be saved                                                        | `{BaseDir}`                                                     |
+| `AWS_REGION`          | AWS region for S3 bucket operations                                                                    | Defaults to the region configured in AWS deployment environment |
 | `JUDGMENTS_FILE_PATH` | The filepath prefix used in the court metadata csv (used to crossference with file-metadata.csv paths) | `""`                                                            |
 | `HMCTS_FILES_PATH`    | The filepath prefix used in the file-metadata csv (used to crossference with court metadata csv paths) | `""`                                                            |
 
@@ -108,22 +106,6 @@ Tracks which judgments have been uploaded to production, preventing duplicate pr
 - Multiple runs might be needed to process all files
 - Some files might fail and need reprocessing
 - Source files might be updated and need reprocessing
-
-### Bulk Numbers CSV
-
-Maintains a record of bulk number assignments for processed judgments. This is necessary because:
-
-- Each judgment needs a unique identifier in the system
-- Identifiers must be sequential within each batch
-- We need to track which tribunal ID maps to which bulk number
-
-Format:
-
-```csv
-bulk_num,trib_id
-```
-
-This tracking ensures consistency across multiple processing runs and helps maintain referential integrity between the source tribunal system and our system.
 
 ## Court Codes
 
@@ -263,8 +245,6 @@ id,court,FilePath,Extension,decision_datetime,CaseNo,claimants,respondent,main_c
    export DATA_FOLDER_PATH=/path/to/data
    export TRACKER_PATH=/path/to/tracker.csv
    export OUTPUT_PATH=/path/to/output
-   export BULK_NUMBERS_PATH=/path/to/bulk_numbers.csv
-   export LAST_BEFORE_BATCH=0
    ```
 
 2. **Prepare data directory structure** as shown in the Implementation Details section.
