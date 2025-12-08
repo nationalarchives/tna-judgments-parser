@@ -315,6 +315,8 @@ namespace UK.Gov.Legislation.Judgments.DOCX
                 lastIlvls[absNumId] = ilvl;
                 levelOwners[(absNumId, ilvl)] = numId;
                 ctx.SetCachedN(paragraph, ilvl, newValue);
+
+                HandleNamedListNum(ctx, paragraph, counters);
             }
         }
 
@@ -342,6 +344,39 @@ namespace UK.Gov.Legislation.Judgments.DOCX
             numId = int.Parse(match.Groups[1].Value);
             ilvl = int.Parse(match.Groups[2].Value) - 1; // ilvl indexes are 0 based
             return true;
+        }
+
+
+        [GeneratedRegex(@"^ ?LISTNUM ""(?<name>[A-Za-z][A-Za-z0-9]*)"" \\l (?<l>\d)( \\s (?<s>\d+))? $")]
+        private static partial Regex NamedListNumRegex();
+
+        // KNOWN LIMITATIONS:
+        // - Does not respect custom abstract start values from the numbering definition
+        // - Does not handle parent level dependencies/resets
+        // - Does not update lastIlvls[absNumId] or levelOwners[(absNumId, ilvl)]
+        private static void HandleNamedListNum(NumberingContext ctx, Paragraph paragraph, Dictionary<int, Dictionary<int, LevelCounter>> counters)
+        {
+            Match match = paragraph.Descendants<Run>()
+                .Select(r => NamedListNumRegex().Match(r.InnerText))
+                .Where(m => m.Success)
+                .FirstOrDefault();
+            if (match is null)
+                return;
+
+            string name = match.Groups["name"].Value;
+            AbstractNum absNum = Numbering.GetAbstractNum(ctx.Main, name);
+            int absNumId = absNum.AbstractNumberId;
+            int ilvl = int.Parse(match.Groups["l"].Value) - 1; // ilvl indexes are 0 based
+
+            if (!counters.ContainsKey(absNumId))
+                counters[absNumId] = [];
+            var ilvlCounters = counters[absNumId];
+
+            var start = match.Groups["s"].Success ? int.Parse(match.Groups["s"].Value) : 1;
+
+            ilvlCounters[ilvl] = new LevelCounter(start, -1, null, false);
+            // lastIlvls[absNumId] = ilvl;
+            ctx.SetCachedN(paragraph, ilvl, start);
         }
 
         private static bool HasExplicitOverride(MainDocumentPart main, int numId, int ilvl)
