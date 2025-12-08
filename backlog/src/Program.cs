@@ -102,6 +102,7 @@ namespace Backlog.Src
                         Bundle bundle = helper.GenerateBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
 
                         string outputPath = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
+                        Directory.CreateDirectory(outputPath);
                         string output = Path.Combine(outputPath, bundle.Uuid + ".tar.gz");
                         System.IO.File.WriteAllBytes(output, bundle.TarGz);
 
