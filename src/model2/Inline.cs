@@ -34,9 +34,11 @@ internal class WText : IFormattedText {
         return new WText("-", properties);
     }
 
-    public string Style {
+    #nullable enable
+    public string? Style {
         get => properties?.RunStyle?.Val;
     }
+    #nullable disable
 
     public bool? Italic {
         get {
@@ -384,7 +386,7 @@ internal class WRole : IRole {
 internal class WSignatureBlock : ISignatureBlock {
 
     public string Name { get; init; }
-    
+
     public IEnumerable<IInline> Content { get; init; }
 
 }

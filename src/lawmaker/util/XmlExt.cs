@@ -12,9 +12,6 @@ namespace UK.Gov.Legislation.Lawmaker;
 public static class XmlExt
 {
 
-    public static readonly XNamespace AknNamespace = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
-    public static readonly XNamespace HtmlNamespace = "http://www.w3.org/1999/xhtml";
-
     /// <summary>
     /// Converts an <c>Xml.Linq.XNode</c> to an <x>Xml.XmlNode</c>, using <c>ownerDocument</c>
     /// </summary>
@@ -28,4 +25,11 @@ public static class XmlExt
     {
         return ownerDocument.ReadNode(el.CreateReader());
     }
+}
+
+public static class XmlNamespaces
+{
+    public static readonly XNamespace akn = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
+    public static readonly XNamespace ukl = "https://www.legislation.gov.uk/namespaces/UK-AKN";
+    public static readonly XNamespace html = "http://www.w3.org/1999/xhtml";
 }

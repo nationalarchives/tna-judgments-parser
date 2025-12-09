@@ -49,7 +49,7 @@ namespace UK.Gov.Legislation.Lawmaker
             bool quoted = quoteDepth > 0;
             if (line is WOldNumberedParagraph)
                 return false;  // could ParseBaseProv1(np);
-            if (!IsFlushLeft(line) && !quoted)
+            if (!line.IsFlushLeft() && !quoted)
                 return false;
             if (i > Body.Count - 2)
                 return false;
@@ -64,7 +64,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private bool PeekBareProv1(WLine line)
         {
             bool quoted = quoteDepth > 0;
-            if (!IsFlushLeft(line) && !quoted)
+            if (!line.IsLeftAligned())
                 return false;
             if (line is not WOldNumberedParagraph np)
                 return false;

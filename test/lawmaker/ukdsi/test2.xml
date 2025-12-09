@@ -5,11 +5,12 @@
       <references source="#author">
         <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Human Medicines (Authorisation by Pharmacists and Supervision by Pharmacy Technicians) Order 2025" />
         <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2025" />
+        <TLCConcept eId="varMadeDate" href="#varOntologies" showAs="2025-01-01T00:00:00.0000000" />
         <TLCConcept eId="varSINoComp" href="#varOntologies" showAs="000" />
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="proceduralRubric">Draft Order in Council laid before Parliament under section 62(9) of the Health Act 1999, for approval by resolution of each House of Parliament.</block>
       <block name="banner">DRAFT STATUTORY INSTRUMENTS</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
@@ -22,10 +23,14 @@
 		</container>
 	  </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="2025-01-01"><ref ukl:dateFormat="yyyy" href="#varMadeDate" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDateDescription" name="commenceDate"><span>Coming into force in accordance with article 1(2) to (5)</span><docDate date="9999-01-01" /></block>
+      </container>
     </preface>		  
     <preamble eId="preamble">
       <formula name="enactingText">
-        <p>This Order in Council is made in exercise of the powers conferred by sections 60(1)(a), (2)(h) and (2A)(b) and (c) and 62(4) and (4A) of, and paragraphs 1(e), 2, 3 and 6 of Schedule 3 to, the Health Act 1999<authorialNote marker="1" class="footnote"><p>1999 c. 8. Section 60 has been amended by: the National Health Service Reform and Health Care Professions Act 2002 (c. 17) (“the 2002 Act”), section 26(9); the Health and Social Care Act 2008 (c. 14) (“the 2008 Act”), Schedule 8, paragraph 1,  and Schedule 15, Part 2; the Health and Social Care Act 2012 (c. 7) (“the 2012 Act”), sections 209 and 210  and Schedule 15, paragraphs 60 and 72; the Children and Social Work Act 2017 (c. 16) (“the 2017 Act”), section 61 the Health and Care Act 2022 (c. 31) (“the 2022 Act”), section 168(2); and S.I.  2012/1916. Section 62 has been amended by: the National Health Service (Consequential Provisions) Act 2006 (c. 43), Schedule 4; the 2008 Act, Schedule 8, paragraph 2, and Schedule 10, paragraph 11; and the 2022 Act, section 168(3). Schedule 3 has been amended by: the 2002 Act, sections 26(10) ; the Health and Social Care (Community Health and Standards) Act 2003  (c.43), Schedule 11, paragraph 67, and Schedule 14, Part 4; the Health Act 2006 (c. 28), section 33 and Schedule 9; the 2008 Act, Schedule 8, paragraphs 4 to 10, and Schedule 15, Part 2; the 2012 Act, section 211 and Schedule 15, paragraphs 61 ; the 2017 Act, section 61(4); the 2022 Act, section 168(4); and S.I. 2002/254. See the definition of “the relevant regulatory body” in section 60(2B) of the Health Act 1999, inserted by the 2008 Act, Schedule 8, paragraph 1, which is relevant to the powers being exercised.</p></authorialNote>.</p>
+        <p>This Order in Council is made in exercise of the powers conferred by sections 60(1)(a), (2)(h) and (2A)(b) and (c) and 62(4) and (4A) of, and paragraphs 1(e), 2, 3 and 6 of Schedule 3 to, the Health Act 1999<authorialNote marker="1" class="footnote"><p>1999 c. 8. Section 60 has been amended by: the National Health Service Reform and Health Care Professions Act 2002 (c. 17) (“the 2002 Act”), section 26(9); the Health and Social Care Act 2008 (c. 14) (“the 2008 Act”), Schedule 8, paragraph 1,  and Schedule 15, Part 2; the Health and Social Care Act 2012 (c. 7) (“the 2012 Act”), sections 209 and 210  and Schedule 15, paragraphs 60 and 72; the Children and Social Work Act 2017 (c. 16) (“the 2017 Act”), section 61 the Health and Care Act 2022 (c. 31) (“the 2022 Act”), section 168(2); and S.I.  2012/1916. Section 62 has been amended by: the National Health Service (Consequential Provisions) Act 2006 (c. 43), Schedule 4; the 2008 Act, Schedule 8, paragraph 2, and Schedule 10, paragraph 11; and the 2022 Act, section 168(3). Schedule 3 has been amended by: the 2002 Act, sections 26(10) ; the Health and Social Care (Community Health and Standards) Act 2003  (c.43), Schedule 11, paragraph 67, and Schedule 14, Part 4; the Health Act 2006 (c. 28), section 33 and Schedule 9; the 2008 Act, Schedule 8, paragraphs 4 to 10, and Schedule 15, Part 2; the 2012 Act, section 211 and Schedule 15, paragraphs 61 ; the 2017 Act, section 61(4); the 2022 Act, section 168(4); and S.I. 2002/254. <i>See </i>the definition of “the relevant regulatory body” in section 60(2B) of the Health Act 1999, inserted by the 2008 Act, Schedule 8, paragraph 1, which is relevant to the powers being exercised.</p></authorialNote>.</p>
         <p>The Secretary of State published a draft of this Order in Council and invited representations as required by paragraph 9(1) of Schedule 3 to the Health Act 1999.</p>
         <p>The period of three months mentioned in paragraph 9(2) of that Schedule expired before a draft of this Order in Council, together with a report about the consultation, was laid before Parliament.</p>
         <p>A draft of this Order in Council has been approved by resolution of each House of Parliament in accordance with section 62(9) of the Health Act 1999.</p>
