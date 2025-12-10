@@ -276,7 +276,22 @@ At present we only check the abstract definition; we haven't yet seen a case whe
 
 **Legacy analogue.** `Numbering2` handled this implicitly because its backtracking algorithm recomputed the counter state for each paragraph from scratch. A level with `lvlRestart="0"` would naturally carry its counter forward *if* its conditions for continuation were met during the historical replay, as the re-computation simply wouldn't apply a reset. `Numbering3` explicitly preserves the stored counter to achieve the same effect in a single pass.
 
-## 15. Putting It Together
+## 15. Handling Named LISTNUM Fields
+
+Word LISTNUM fields can be “named” sequences (e.g., `LISTNUM "SEQ1" \l 2 \s 5`) that don’t carry `w:numPr`. We detect such fields in the paragraph’s runs and set the counter for the referenced abstract list:
+
+- Resolve the abstract numbering by name via `Numbering.GetAbstractNum(main, name)`.
+- Use the field's `\l` level (Word's 1-based converted to 0-based) and optional `\s` start value (default 1).
+- Store the start value in the counter bucket and cache it for the paragraph. (The counter's `NumId` is set to `-1` to mark it as field-generated rather than from paragraph properties.)
+
+**Current limitations (intentional for now):**
+- Each named LISTNUM sets the level to its `\s` value (or 1); consecutive paragraphs with the same named LISTNUM don't auto-increment—each resets to its declared start.
+- Parent levels aren't seeded or reset here; mixed named LISTNUM and normal paragraphs may need refinement.
+- `\r` (reset) and custom abstract starts in the named sequence aren't yet honored.
+
+There is no legacy analogue in `Numbering2`; the legacy code assumed LISTNUM would be converted upstream.
+
+## 16. Putting It Together
 
 1. Resolve effective `(numId, ilvl)` from inline properties, LISTNUM fields, or style fallbacks.
 2. Map to `absNumId`, load the counter bucket, and check if `numId` is globally new.

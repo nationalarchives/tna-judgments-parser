@@ -198,6 +198,12 @@ namespace Backlog.Src
                 proprietary.AppendChild(cite);
                 cite.AppendChild(Document.CreateTextNode(Data.NCN));
             }
+            if (!string.IsNullOrWhiteSpace(Data.WebArchivingLink))
+            {
+                XmlElement webarchivingNode = CreateAndAppendUK("webarchiving", proprietary);
+                proprietary.AppendChild(webarchivingNode);
+                webarchivingNode.AppendChild(Document.CreateTextNode(Data.WebArchivingLink));
+            }
             XmlElement sourceFormat = CreateAndAppendUK("sourceFormat", proprietary);
             proprietary.AppendChild(sourceFormat);
             sourceFormat.AppendChild(Document.CreateTextNode(Data.SourceFormat));

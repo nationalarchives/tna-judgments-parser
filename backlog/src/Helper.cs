@@ -7,9 +7,8 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src
 {
-    class Helper
+    class Helper(Api.Parser parser)
     {
-
         internal string PathToCourtMetadataFile { get; init; }
 
         internal string PathToDataFolder { get; init; }
@@ -52,7 +51,8 @@ namespace Backlog.Src
                         SourceFormat = meta.SourceFormat,
                         CaseNumbers = meta.CaseNumbers,
                         Parties = meta.Parties,
-                        Categories = meta.Categories
+                        Categories = meta.Categories,
+                        WebArchivingLink = meta.WebArchivingLink
                     }
                 };
 
@@ -63,7 +63,7 @@ namespace Backlog.Src
                     Content = content
                 };
 
-                var response = Api.Parser.Parse(request);
+                var response = parser.Parse(request);
                 return response;
             }
         }
