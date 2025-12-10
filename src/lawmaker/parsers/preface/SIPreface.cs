@@ -10,7 +10,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.Legislation.Lawmaker.Date;
 using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
-namespace UK.Gov.Legislation.Lawmaker.Preface;
+namespace UK.Gov.Legislation.Lawmaker.Header;
 
 // Note: eIds are set here due to a shortcoming in Lawmaker's eId
 // population logic. Ideally the parser doesn't have to worry about eIds!

@@ -120,7 +120,7 @@ namespace UK.Gov.Legislation.Lawmaker;
             IBlock? lastBannerInBody = Body
                 .TakeWhile(block => PeekBodyStartProvision(block as WLine) is null)
                 .OfType<WLine>()
-                .Where(Preface.Banner.IsBanner)
+                .Where(Header.Banner.IsBanner)
                 .LastOrDefault();
             IBlock? lastBannerPassed = null;
             // If we encounter a provision heading (outside of the ToC),
@@ -128,7 +128,7 @@ namespace UK.Gov.Legislation.Lawmaker;
             while (i < Body.Count && PeekBodyStartProvision() is null)
             {
                 IBlock block = Body[i];
-                if (Preface.Banner.IsBanner(block as WLine))
+                if (Header.Banner.IsBanner(block as WLine))
                 {
                     lastBannerPassed = block;
                 }
@@ -154,7 +154,7 @@ namespace UK.Gov.Legislation.Lawmaker;
                 {
                     preamble.Add(line);
                     i += 1;
-                } else if (!foundContents && (Match(Preface.SIPreface.Parse) is IBlock prefaceBlock))
+                } else if (!foundContents && (Match(Header.SIPreface.Parse) is IBlock prefaceBlock))
                 {
                     // SIPreface.Parse appropriately increments i
                     preface.Add(prefaceBlock);
