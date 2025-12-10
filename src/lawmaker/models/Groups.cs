@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.Parse;
 
 using Lang = UK.Gov.Legislation.Lawmaker.LanguageService.Lang;
 
@@ -235,6 +236,8 @@ namespace UK.Gov.Legislation.Lawmaker
                 return true;
             if (child is SchProv1)
                 return true;
+            if (child is WDummyDivision) // Tables are a valid immeidate child
+                return true;
             return false;
 
         }
@@ -274,6 +277,8 @@ namespace UK.Gov.Legislation.Lawmaker
             if (child is ScheduleCrossHeading)
                 return true;
             if (child is SchProv1)
+                return true;
+            if (child is WDummyDivision) // Tables are a valid immeidate child
                 return true;
             return false;
         }
