@@ -1,58 +1,58 @@
+#nullable enable
 
 using System.Xml;
 
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
 using UK.Gov.NationalArchives.CaseLaw.Model;
 
-namespace judgments.src.akn
+namespace judgments.src.akn;
+
+internal static class MetadataExtensions
 {
-
-    class MetadataExtensions
+    internal static void AddProprietaryFields(this XmlElement proprietary, IMetadataExtended meta)
     {
-
-        internal static void AddProprietaryFields(XmlElement proprietary, IMetadataExtended meta) {
-            if (meta?.Parties != null) {
-                foreach (var party in meta.Parties)
-                    if (party != null)
-                        AddParty(proprietary, party);
-            }
-            if (meta?.Categories != null) {
-                foreach (var cat in meta.Categories)
-                    if (cat != null)
-                        AddCategory(proprietary, cat);
-            }
-            if (meta?.SourceFormat != null) {
-                AddSourceFormat(proprietary, meta.SourceFormat);
-            }
-        }
-
-        static void AddParty(XmlElement proprietary, UK.Gov.NationalArchives.CaseLaw.Model.Party party)
+        foreach (var party in meta.Parties)
         {
-            XmlElement e = AddProprietaryField(proprietary, "party", party.Name);
-            e.SetAttribute("role", party.Role.ShowAs());
+            proprietary.AddParty(party);
         }
 
-        static void AddSourceFormat(XmlElement proprietary, string sourceFormat)
+        foreach (var cat in meta.Categories)
         {
-            AddProprietaryField(proprietary, "sourceFormat", sourceFormat);
+            proprietary.AddCategory(cat);
         }
 
-        static void AddCategory(XmlElement proprietary, ICategory cat)
+        if (meta.SourceFormat is not null)
         {
-            var e = AddProprietaryField(proprietary, "category", cat.Name);
-            if (cat.Parent is not null)
-                e.SetAttribute("parent", cat.Parent);
+            proprietary.AddProprietaryField("sourceFormat", meta.SourceFormat);
         }
 
-        internal static XmlElement AddProprietaryField(XmlElement proprietary, string name, string value)
+        if (meta.WebArchivingLink is not null)
         {
-            XmlElement e = proprietary.OwnerDocument.CreateElement("uk", name, Metadata.ukns);
-            proprietary.AppendChild(e);
-            var text = proprietary.OwnerDocument.CreateTextNode(value);
-            e.AppendChild(text);
-            return e;
+            proprietary.AddProprietaryField("webarchiving", meta.WebArchivingLink);
         }
-
     }
 
+    private static void AddParty(this XmlElement proprietary, Party party)
+    {
+        var e = proprietary.AddProprietaryField("party", party.Name);
+        e.SetAttribute("role", party.Role.ShowAs());
+    }
+
+    private static void AddCategory(this XmlElement proprietary, ICategory cat)
+    {
+        var e = proprietary.AddProprietaryField("category", cat.Name);
+        if (cat.Parent is not null)
+        {
+            e.SetAttribute("parent", cat.Parent);
+        }
+    }
+
+    internal static XmlElement AddProprietaryField(this XmlElement proprietary, string name, string value)
+    {
+        var e = proprietary.OwnerDocument.CreateElement("uk", name, Metadata.ukns);
+        proprietary.AppendChild(e);
+        var text = proprietary.OwnerDocument.CreateTextNode(value);
+        e.AppendChild(text);
+        return e;
+    }
 }

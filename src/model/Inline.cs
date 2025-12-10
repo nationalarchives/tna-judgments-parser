@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
-using UK.Gov.Legislation.Judgments.Parse;
+
 using Imaging = UK.Gov.NationalArchives.Imaging;
 
 namespace UK.Gov.Legislation.Judgments {
@@ -334,6 +334,7 @@ interface IDocJurisdiction : IInlineContainer {
 
     string ShortName { get; }
 
+    bool Overridden { get; }
 }
 
 

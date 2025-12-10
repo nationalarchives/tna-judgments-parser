@@ -61,6 +61,15 @@ class WLine : ILine, ILineable {
             return new WUnknownLine(line, contents);
         return new WLine(prototype, contents);
     }
+
+    /// <summary>
+    /// Override to give more useful information in the debugger
+    /// </summary>
+    public override string ToString()
+    {
+        return TextContent ?? base.ToString();
+    }
+
     public static WLine RemoveNumber(WOldNumberedParagraph np) {
         return new WLine(np, np.Contents);
     }

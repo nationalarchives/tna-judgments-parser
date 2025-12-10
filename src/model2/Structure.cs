@@ -137,6 +137,14 @@ internal class WOldNumberedParagraph : WLine, IOldNumberedParagraph {
         TabsRemoved = tabsRemoved;
     }
 
+    /// <summary>
+    /// Override to give more useful information in the debugger
+    /// </summary>
+    public override string ToString()
+    {
+        return TextContent ?? base.ToString();
+    }
+
     public IFormattedText Number { get; }
 
     private string _textContent;
