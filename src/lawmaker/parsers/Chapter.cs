@@ -13,6 +13,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseChapter(WLine line)
         {
+            var save1 = i;
+            
             if (!PeekChapterHeading(line))
                 return null;
 
@@ -26,15 +28,16 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (Body[i + 1] is not WLine line2)
                 return null;
-            if (!IsCenterAligned(line2))
-                return null;
-            ILine heading = line2;
+                
+            // Chapters may have no heading
+            ILine heading = null;
+            // If line2 is center aligned, parse as the heading
+            if (IsCenterAligned(line2))
+                heading = line2;
+            i += heading is null ? 1 : 2;
 
             if (IsEndOfQuotedStructure(line2.NormalizedContent))
                 return new ChapterLeaf { Number = number, Heading = heading };
-
-            var save1 = i;
-            i += 2;
 
             List<IDivision> children = [];
 
