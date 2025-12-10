@@ -52,16 +52,13 @@ internal class ListNum {
             RunProperties rProps = first.RunProperties;
             return new DOCX.WNumber2(num, rProps, main, pProps);
         }
-        match = Regex.Match(fieldCode, @"^ LISTNUM (\d) \\l (\d) $");    // EWHC/Ch/2011/3553 (test 12)
+        match = Regex.Match(fieldCode, @"^ LISTNUM (\d+) \\l (\d) $");    // EWHC/Ch/2011/3553 (test 12)
         if (match.Success) {
             int numId = int.Parse(match.Groups[1].Value);
             int ilvl = int.Parse(match.Groups[2].Value) - 1;    // ilvl indexes are 0 based
             Paragraph p = first.Ancestors<Paragraph>().First();
-            int n = DOCX.Fields.CountPrecedingParagraphsWithListNum(numId, ilvl, p) + 1;
 
-            NumberingInstance numbering = DOCX.Numbering.GetNumbering(main, numId);
-            AbstractNum absNum = DOCX.Numbering.GetAbstractNum(main, numbering);
-            n += DOCX.Numbering2.CalculateN(main, p, numId, absNum.AbstractNumberId.Value, ilvl) - 1;
+            int n = DOCX.Numbering2.CalculateN(main, p, ilvl);
 
             string fNum = DOCX.Numbering2.FormatNumber(numId, ilvl, n, main);
             RunProperties rProps = first.RunProperties;
