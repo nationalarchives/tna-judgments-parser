@@ -547,5 +547,30 @@ namespace UK.Gov.Legislation.Lawmaker
 
         internal bool IsStartOfBody() => PeekBodyStartProvision() is not null;
 
+        /// <summary>
+        /// Returns the <c>Leaf</c> content (if present) following the <paramref name="heading"/>
+        /// of a grouping provision. Otherwise, returns an empty list.
+        /// </summary>
+        /// <param name="heading">The line representing the schedule heading.</param>
+        /// <returns>A list of <c>Leaf</c> content.</returns>
+        private List<IBlock> ParseLeafContents(WLine heading)
+        {
+            int save = i;
+            List<IBlock> contents = [];
+
+            // Handle when schedule content begins immediately with one or more quoted structures.
+            HandleMod(heading, contents, true);
+            if (contents.Count > 0)
+                return contents;
+
+            // Handle all other schedule content.
+            // If the next line(s) do not constitute a division, handle them as paragraphs (or tables).
+            IDivision next = ParseNextBodyDivision();
+            i = save;
+            if (next is UnnumberedLeaf || next is UnknownLevel || next is WDummyDivision)
+                contents = HandleParagraphs(heading).Skip(1).ToList();
+            return contents;
+        }
+
     }
 }

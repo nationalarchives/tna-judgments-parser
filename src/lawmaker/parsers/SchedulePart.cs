@@ -42,7 +42,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new SchedulePartLeaf { Number = number, Heading = heading };
                 
             WLine partBodyStartLine = (WLine) Body[i-1];
-            List<IBlock> contents = ParseSchedulePartLeafContent(partBodyStartLine);
+            List<IBlock> contents = ParseLeafContents(partBodyStartLine);
             HContainer part;
             if (contents.Count > 0)
                 part = new SchedulePartLeaf { Number = number, Heading = heading, Contents = contents };
@@ -73,31 +73,6 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!LanguageService.IsMatch(numText, SchedulePart.NumberPatterns))
                 return false;
             return true;
-        }
-        
-        /// <summary>
-        /// Returns the <c>SchedulePartLeaf</c> content following the <paramref name="heading"/>, if present. 
-        /// Otherwise, returns an empty list.
-        /// </summary>
-        /// <param name="heading">The line representing the schedule heading.</param>
-        /// <returns>A list of <c>SchedulePartLeaf</c> content.</returns>
-        internal List<IBlock> ParseSchedulePartLeafContent(WLine heading)
-        {
-            int save = i;
-            List<IBlock> contents = [];
-
-            // Handle when schedule content begins immediately with one or more quoted structures.
-            HandleMod(heading, contents, true);
-            if (contents.Count > 0)
-                return contents;
-
-            // Handle all other schedule content.
-            // If the next line(s) do not constitute a division, handle them as paragraphs (or tables).
-            IDivision next = ParseNextBodyDivision();
-            i = save;
-            if (next is UnnumberedLeaf || next is UnknownLevel || next is WDummyDivision)
-                contents = HandleParagraphs(heading).Skip(1).ToList();
-            return contents;
         }
 
         /// <summary>

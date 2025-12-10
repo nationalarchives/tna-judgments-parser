@@ -47,7 +47,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             frames.PushScheduleContext();
             WLine scheduleBodyStartLine = (WLine) Body[i-1];
-            List<IBlock> contents = ParseScheduleLeafContent(scheduleBodyStartLine);
+            List<IBlock> contents = ParseLeafContents(scheduleBodyStartLine);
             if (contents.Count > 0)
                 schedule = new ScheduleLeaf { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = contents };
             else
@@ -127,31 +127,6 @@ namespace UK.Gov.Legislation.Lawmaker
             IFormattedText referenceNote = new WText(referenceNoteText, null);
 
             return (number, referenceNote, heading);
-        }
-
-        /// <summary>
-        /// Returns the <c>ScheduleLeaf</c> content following the <paramref name="heading"/>, if present. 
-        /// Otherwise, returns an empty list.
-        /// </summary>
-        /// <param name="heading">The line representing the schedule heading.</param>
-        /// <returns>A list of <c>ScheduleLeaf</c> content.</returns>
-        internal List<IBlock> ParseScheduleLeafContent(WLine heading)
-        {
-            int save = i;
-            List<IBlock> contents = [];
-
-            // Handle when schedule content begins immediately with one or more quoted structures.
-            HandleMod(heading, contents, true);
-            if (contents.Count > 0)
-                return contents;
-
-            // Handle all other schedule content.
-            // If the next line(s) do not constitute a division, handle them as paragraphs (or tables).
-            IDivision next = ParseNextBodyDivision();
-            i = save;
-            if (next is UnnumberedLeaf || next is UnknownLevel || next is WDummyDivision)
-                contents = HandleParagraphs(heading).Skip(1).ToList();
-            return contents;
         }
 
         /// <summary>
