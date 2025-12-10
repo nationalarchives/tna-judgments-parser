@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="ssi">
+    <meta>
+      <references source="#author">
+        <TLCConcept eId="varSITitle" href="#varOntologies" showAs="Title" />
+        <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2021" />
+      </references>
+    </meta>
+    <coverPage />
+    <preface eId="fnt">
+      <block name="banner">STATUTORY INSTRUMENTS</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+      <container name="subjects">
+        <container name="subject">
+          <block name="subject"><concept refersTo="" class="title">SUBJECT</concept></block>
+          <block name="subsubject"><concept refersTo="" class="subtitle">subsubject</concept></block>
+        </container>
+      </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="9999-01-01" /></block>
+        <block name="laidDate"><span>Laid before Parliament</span><docDate date="9999-01-01" /></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="9999-01-01" /></block>
+      </container>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Secretary of State, in exercise of the powers conferred by sections 9 of the Energy Act 2010<authorialNote marker="1" class="footnote"><p /></authorialNote>, makes the following Regulation</p>
+      </formula>
+    </preamble>
+    <body>
+      <article eId="sec_1" class="prov1">
+        <heading>Section heading</heading>
+        <num>1.</num>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>Testing a part and chapter each without a headings</p>
+          </content>
+        </paragraph>
+      </article>
+      <hcontainer name="schedules" class="schs">
+        <heading>SCHEDULES</heading>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 1<authorialNote class="referenceNote"><p>Regulation 1</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <content>
+            <p><mod><quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="ssi">
+                  <hcontainer name="schedule" class="sch">
+                    <num>Schedule 1A<authorialNote class="referenceNote"><p /></authorialNote></num>
+                    <heading>FIRST QUOTED SCHEDULE HEADING</heading>
+                    <paragraph class="schProv1">
+                      <num>1.</num>
+                      <subparagraph class="schProv2">
+                        <num>(1)</num>
+                        <content>
+                          <p>Testing schedule containing immediate quoted structures.</p>
+                        </content>
+                      </subparagraph>
+                    </paragraph>
+                  </hcontainer>
+                </quotedStructure><inline name="AppendText" /><quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="ssi">
+                  <hcontainer name="schedule" class="sch">
+                    <num>Schedule 1B<authorialNote class="referenceNote"><p /></authorialNote></num>
+                    <heading>SECOND QUOTED SCHEDULE HEADING</heading>
+                    <paragraph class="schProv1">
+                      <num>1.</num>
+                      <subparagraph class="schProv2">
+                        <num>(1)</num>
+                        <content>
+                          <p>Testing schedule containing immediate quoted structures.</p>
+                        </content>
+                      </subparagraph>
+                    </paragraph>
+                  </hcontainer>
+                </quotedStructure><inline name="AppendText" /></mod></p>
+          </content>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 2<authorialNote class="referenceNote"><p>Regulation 2</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <heading>PART HEADING</heading>
+            <content>
+              <p><mod><quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="ssi">
+                    <hcontainer name="schedule" class="sch">
+                      <num>Schedule 1A<authorialNote class="referenceNote"><p /></authorialNote></num>
+                      <heading>FIRST QUOTED SCHEDULE HEADING</heading>
+                      <paragraph class="schProv1">
+                        <num>1.</num>
+                        <subparagraph class="schProv2">
+                          <num>(1)</num>
+                          <content>
+                            <p>Testing schedule chapter containing immediate quoted structures.</p>
+                          </content>
+                        </subparagraph>
+                      </paragraph>
+                    </hcontainer>
+                  </quotedStructure><inline name="AppendText" /><quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="ssi">
+                    <hcontainer name="schedule" class="sch">
+                      <num>Schedule 1B<authorialNote class="referenceNote"><p /></authorialNote></num>
+                      <heading>SECOND QUOTED SCHEDULE HEADING</heading>
+                      <paragraph class="schProv1">
+                        <num>1.</num>
+                        <subparagraph class="schProv2">
+                          <num>(1)</num>
+                          <content>
+                            <p>Testing schedule chapter containing immediate quoted structures.</p>
+                          </content>
+                        </subparagraph>
+                      </paragraph>
+                    </hcontainer>
+                  </quotedStructure><inline name="AppendText" /></mod></p>
+            </content>
+          </part>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 3<authorialNote class="referenceNote"><p>Regulation 3</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <heading>PART HEADING</heading>
+            <chapter class="schGroup4">
+              <num>CHAPTER 1</num>
+              <heading>CHAPTER HEADING</heading>
+              <content>
+                <p><mod><quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="ssi">
+                      <hcontainer name="schedule" class="sch">
+                        <num>Schedule 1A<authorialNote class="referenceNote"><p /></authorialNote></num>
+                        <heading>FIRST QUOTED SCHEDULE HEADING</heading>
+                        <paragraph class="schProv1">
+                          <num>1.</num>
+                          <subparagraph class="schProv2">
+                            <num>(1)</num>
+                            <content>
+                              <p>Testing schedule chapter containing immediate quoted structures.</p>
+                            </content>
+                          </subparagraph>
+                        </paragraph>
+                      </hcontainer>
+                    </quotedStructure><inline name="AppendText" /><quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="ssi">
+                      <hcontainer name="schedule" class="sch">
+                        <num>Schedule 1B<authorialNote class="referenceNote"><p /></authorialNote></num>
+                        <heading>SECOND QUOTED SCHEDULE HEADING</heading>
+                        <paragraph class="schProv1">
+                          <num>1.</num>
+                          <subparagraph class="schProv2">
+                            <num>(1)</num>
+                            <content>
+                              <p>Testing schedule chapter containing immediate quoted structures.</p>
+                            </content>
+                          </subparagraph>
+                        </paragraph>
+                      </hcontainer>
+                    </quotedStructure><inline name="AppendText" /></mod></p>
+              </content>
+            </chapter>
+          </part>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 4<authorialNote class="referenceNote"><p>Regulation 4</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <content>
+            <p>This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content.</p>
+          </content>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 5<authorialNote class="referenceNote"><p>Regulation 5</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <content>
+            <tblock class="table">
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="allBorders tableleft width100">
+                  <thead class="bold centre">
+                    <tr>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+            <tblock class="table">
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="allBorders tableleft width100">
+                  <thead class="bold centre">
+                    <tr>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+          </content>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 5<authorialNote class="referenceNote"><p>Regulation 5</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <heading>PART HEADING</heading>
+            <content>
+              <p>This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content.</p>
+            </content>
+          </part>
+          <part class="schGroup2">
+            <num>PART 2</num>
+            <heading>PART HEADING</heading>
+            <content>
+              <tblock class="table">
+                <foreign>
+                  <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="allBorders tableleft width100">
+                    <thead class="bold centre">
+                      <tr>
+                        <th>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                        </th>
+                        <th>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                        </th>
+                        <th>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="left">
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </foreign>
+              </tblock>
+              <tblock class="table">
+                <foreign>
+                  <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="allBorders tableleft width100">
+                    <thead class="bold centre">
+                      <tr>
+                        <th>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                        </th>
+                        <th>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                        </th>
+                        <th>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="left">
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </foreign>
+              </tblock>
+            </content>
+          </part>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 6<authorialNote class="referenceNote"><p>Regulation 6</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <heading>PART HEADING</heading>
+            <chapter class="schGroup4">
+              <num>CHAPTER 1</num>
+              <heading>CHAPTER HEADING</heading>
+              <content>
+                <p>This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content. This is leaf content.</p>
+              </content>
+            </chapter>
+            <chapter class="schGroup4">
+              <num>CHAPTER 2</num>
+              <heading>CHAPTER HEADING</heading>
+              <content>
+                <tblock class="table">
+                  <foreign>
+                    <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="allBorders tableleft width100">
+                      <thead class="bold centre">
+                        <tr>
+                          <th>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                          </th>
+                          <th>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                          </th>
+                          <th>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody class="left">
+                        <tr>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                          </td>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                          </td>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                          </td>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                          </td>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </foreign>
+                </tblock>
+                <tblock class="table">
+                  <foreign>
+                    <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="3" class="allBorders tableleft width100">
+                      <thead class="bold centre">
+                        <tr>
+                          <th>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                          </th>
+                          <th>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                          </th>
+                          <th>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Table header</p>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody class="left">
+                        <tr>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                          </td>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                          </td>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">First table row</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                          </td>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                          </td>
+                          <td>
+                            <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Second table row</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </foreign>
+                </tblock>
+              </content>
+            </chapter>
+          </part>
+        </hcontainer>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>
