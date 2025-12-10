@@ -5,7 +5,10 @@
       <references source="#author">
         <TLCConcept eId="varSITitle" href="#varOntologies" showAs="Rheoliadau Diogelu’r Amgylchedd (Fêps Untro) (Cymru) (Diwygio) 2025" />
         <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2025" />
-        <TLCConcept eId="varSISubsidiaryNos" href="#varOntologies" showAs="(Cy. )" />
+        <TLCConcept eId="varMadeDate" href="#varOntologies" showAs="2025-06-17T00:00:00.0000000" />
+        <TLCConcept eId="varLaidDate" href="#varOntologies" showAs="2025-06-18T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2025-06-19T00:00:00.0000000" />
+		<TLCConcept eId="varSISubsidiaryNos" href="#varOntologies" showAs="(Cy. )" />
       </references>
     </meta>
     <coverPage>
@@ -90,7 +93,7 @@
         </tblock>
       </blockContainer>
     </coverPage>
-    <preface>
+    <preface eId="fnt">
       <block name="banner">OFFERYNNAU STATUDOL CYMRU</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
       <container name="subjects">
@@ -99,6 +102,11 @@
         </container>
       </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Gwnaed</span><docDate date="2025-06-17"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varMadeDate" class="#placeholder" /></docDate></block>
+        <block name="laidDate"><span>Gosodwyd gerbron Senedd Cymru</span><docDate date="2025-06-18"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varLaidDate" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Yn dod i rym</span><docDate date="2025-06-19"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder" /></docDate></block>
+      </container>
     </preface>
     <preamble eId="preamble">
       <formula name="enactingText">
@@ -169,13 +177,13 @@
                 <level class="para1">
                   <num>(a)</num>
                   <content>
-                    <p>“Ficus carica L.”, yn yr ail golofn o dan “RNQPs”, yn “Viruses, viroids, virus-like diseases and phytoplasmas” y cofnod ar gyfer “Fig mosaic agent [FGM000]” wedi ei hepgor;</p>
+                    <p>“<i>Ficus carica</i> L.”, yn yr ail golofn o dan “RNQPs”, yn “Viruses, viroids, virus-like diseases and phytoplasmas” y cofnod ar gyfer “Fig mosaic agent [FGM000]” wedi ei hepgor;</p>
                   </content>
                 </level>
                 <level class="para1">
                   <num>(b)</num>
                   <content>
-                    <p>“Fragaria L.”, yn yr ail golofn o dan “RNQPs”, yn “Viruses, viroids, virus-like diseases and phytoplasmas” y cofnod ar gyfer “Candidatus Phytoplasma australiense Davis et al. [PHYPAU]” wedi ei hepgor;</p>
+                    <p>“<i>Fragaria </i>L.”, yn yr ail golofn o dan “RNQPs”, yn “Viruses, viroids, virus-like diseases and phytoplasmas” y cofnod ar gyfer “<i>Candidatus</i> Phytoplasma <i>australiense</i> Davis <i>et al</i>. [PHYPAU]” wedi ei hepgor;</p>
                   </content>
                 </level>
               </paragraph>

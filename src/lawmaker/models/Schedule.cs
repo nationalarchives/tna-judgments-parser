@@ -14,8 +14,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = [@"^\s*SCHEDULE\s*([A-Z]*\d+[A-Z]*)?$"],
-            [Lang.CYM] = [@"^\s*(YR +)?ATODLEN\s*([A-Z]*\d+[A-Z]*)?$"]
+            [Lang.EN] = [@"^\s*SCHEDULE\s*([A-Z]*\d+[A-Z]*)?$"],
+            [Lang.CY] = [@"^\s*(YR +)?ATODLEN\s*([A-Z]*\d+[A-Z]*)?$"]
         };
 
         public static bool IsValidChild(IDivision child)

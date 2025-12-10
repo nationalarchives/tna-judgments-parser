@@ -1,0 +1,2063 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="wsi">
+    <meta>
+      <references source="#author">
+        <TLCConcept eId="varSITitle" href="#varOntologies" showAs="Gorchymyn Cyflogau Amaethyddol (Cymru) 2025" />
+        <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2025" />
+        <TLCConcept eId="varMadeDate" href="#varOntologies" showAs="2025-03-06T00:00:00.0000000" />
+        <TLCConcept eId="varLaidDate" href="#varOntologies" showAs="2025-03-11T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2025-04-01T00:00:00.0000000" />
+        <TLCConcept eId="varSISubsidiaryNos" href="#varOntologies" showAs="(Cy. )" />
+      </references>
+    </meta>
+    <coverPage>
+      <blockContainer class="explanatoryNote">
+        <heading>NODYN ESBONIADOL</heading>
+        <subheading>(Nid yw’r nodyn hwn yn rhan o’r Gorchymyn)</subheading>
+        <p>Yn ddarostyngedig i rai newidiadau ac un ddarpariaeth drosiannol, mae’r Gorchymyn hwn yn dirymu ac yn disodli Gorchymyn Cyflogau Amaethyddol (Cymru) 2024.</p>
+        <p>Mae Rhan 2 o’r Gorchymyn yn darparu bod gweithwyr amaethyddol i gael eu cyflogi yn ddarostyngedig i’r telerau a’r amodau sydd wedi eu nodi yn Rhannau 2 i 5 o’r Gorchymyn (erthygl 3) ac yn pennu’r graddau a’r categorïau gwahanol o weithiwr amaethyddol (erthyglau 5 i 10).</p>
+        <p>Mae Rhan 3 yn gwneud darpariaeth ynghylch y cyfraddau tâl isaf y mae rhaid eu talu i weithwyr amaethyddol (erthygl 11). Mae darpariaeth yn cael ei gwneud ar gyfer lwfans gwrthbwyso llety a all gael ei dynnu oddi ar dâl gweithiwr amaethyddol (erthygl 14). Mae darpariaeth yn cael ei gwneud hefyd ar gyfer lwfans cŵn, lwfans ar alwad, lwfans gwaith nos a grantiau geni a mabwysiadu nad ydynt yn ffurfio rhan o dâl gweithiwr amaethyddol (erthygl 15).</p>
+        <p>Mae Rhan 4 yn darparu bod gan weithiwr amaethyddol hawl i gael tâl salwch amaethyddol o dan yr amgylchiadau sydd wedi eu pennu (erthyglau 17 i 20). Mae darpariaeth yn cael ei gwneud ynghylch cyfrifo faint o dâl salwch amaethyddol y mae gan weithiwr amaethyddol hawl i’w gael (erthygl 21). Mae taliad tâl salwch statudol i gyfrif tuag at hawl gweithiwr amaethyddol i gael tâl salwch amaethyddol (erthygl 22).</p>
+        <p>Mae Rhan 5 yn gwneud darpariaeth ynghylch hawl gweithiwr amaethyddol i gael amser i ffwrdd. Mae darpariaeth yn cael ei gwneud ynghylch hawl gweithiwr amaethyddol i gael seibiannau gorffwys (erthygl 27), gorffwys dyddiol (erthygl 28) a chyfnod gorffwys wythnosol (erthygl 29). Mae darpariaeth yn cael ei gwneud hefyd sy’n pennu blwyddyn gwyliau blynyddol y gweithiwr amaethyddol ac ynghylch hawl y gweithiwr amaethyddol i gael gwyliau blynyddol a thâl gwyliau ac ynghylch taliad yn lle gwyliau blynyddol (erthyglau 30 i 37). Mae darpariaeth ynghylch hawl gweithiwr amaethyddol i gael absenoldeb â thâl oherwydd profedigaeth yn cael ei gwneud yn erthyglau 40 i 42 ac i wneud cais am absenoldeb di-dâl yn erthygl 43.</p>
+        <p>Mae Rhan 6 yn cynnwys dirymiad a darpariaeth drosiannol (erthygl 44).</p>
+        <p>Ystyriwyd Cod Ymarfer Gweinidogion Cymru ar gynnal Asesiadau Effaith Rheoleiddiol mewn perthynas â’r Gorchymyn hwn. O ganlyniad, lluniwyd asesiad effaith rheoleiddiol o’r costau a’r manteision sy’n debygol o ddeillio o gydymffurfio â’r Gorchymyn hwn. Gellir cael copi oddi wrth: Llywodraeth Cymru, Parc Cathays, Caerdydd, CF10 3NQ ac ar wefan Llywodraeth Cymru ar <a href="http://www.llyw.cymru/">www.llyw.cymru</a>.</p>
+      </blockContainer>
+    </coverPage>
+    <preface eId="fnt">
+      <block name="banner">OFFERYNNAU STATUDOL CYMRU</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+      <container name="subjects">
+        <container name="subject">
+          <block name="subject"><concept refersTo="" class="title">AMAETHYDDIAETH, CYMRU</concept></block>
+        </container>
+      </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Gwnaed</span><docDate date="2025-03-06"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varMadeDate" class="#placeholder" /></docDate></block>
+        <block name="laidDate"><span>Gosodwyd gerbron Senedd Cymru</span><docDate date="2025-03-11"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varLaidDate" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Yn dod i rym</span><docDate date="2025-04-01"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder" /></docDate></block>
+      </container>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>Mae Panel Cynghori ar Amaethyddiaeth Cymru, yn unol â’i swyddogaethau o dan erthygl 3(2)(b) o Orchymyn Panel Cynghori ar Amaethyddiaeth Cymru (Sefydlu) 2016<authorialNote marker="1" class="footnote"><p>(<b>1</b>)O.S. 2016/255 (Cy. 89).</p></authorialNote>, wedi llunio gorchymyn cyflogau amaethyddol ar ffurf ddrafft, wedi ymgynghori ar y gorchymyn ac wedi ei gyflwyno i Weinidogion Cymru i’w gymeradwyo ganddynt.</p>
+        <p>Mae Gweinidogion Cymru wedi cymeradwyo’r gorchymyn cyflogau amaethyddol drafft yn unol ag adran 4(1)(a) o Ddeddf Sector Amaethyddol (Cymru) 2014<authorialNote marker="2" class="footnote"><p>(<b>2</b>)2014 dccc 6.</p></authorialNote>.</p>
+        <p>Mae Gweinidogion Cymru, drwy arfer y pwerau a roddir iddynt gan adrannau 3, 4(1) a 17 o Ddeddf Sector Amaethyddol (Cymru) 2014, yn gwneud y Gorchymyn a ganlyn.</p>
+      </formula>
+    </preamble>
+    <body>
+      <part eId="rhan_1" class="group2">
+        <num>Rhan 1</num>
+        <heading>Rhagarweiniol</heading>
+        <article eId="sec_1" class="prov1">
+          <heading>Enwi a dod i rym</heading>
+          <num>1.</num>
+          <content>
+            <p>Enw’r Gorchymyn hwn yw Gorchymyn Cyflogau Amaethyddol (Cymru) 2025 ac mae’n dod i rym ar 1 Ebrill 2025.</p>
+          </content>
+        </article>
+        <article eId="sec_2" class="prov1">
+          <heading>Dehongli</heading>
+          <num>2.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>Yn y Gorchymyn hwn—</p>
+            </intro>
+            <hcontainer name="definition" class="definition">
+              <intro>
+                <p>ystyr <def ukl:startQuote="“" ukl:endQuote="”">absenoldeb salwch</def> (“<i>sickness absence</i>”) yw absenoldeb gweithiwr amaethyddol o’r gwaith oherwydd analluedd yn sgil—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>unrhyw salwch a ddioddefir gan y gweithiwr amaethyddol,</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>salwch neu analluedd a achosir am fod y gweithiwr amaethyddol yn feichiog neu a ddioddefir o ganlyniad i eni plentyn,</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>anaf sy’n digwydd i’r gweithiwr amaethyddol yn ei le gwaith,</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(d)</num>
+                <content>
+                  <p>anaf sy’n digwydd i’r gweithiwr amaethyddol wrth deithio yn ôl ac ymlaen i’w le gwaith,</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(e)</num>
+                <content>
+                  <p>amser a dreulir gan y gweithiwr amaethyddol yn ymadfer ar ôl llawdriniaeth a achoswyd gan salwch, neu</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(f)</num>
+                <content>
+                  <p>amser a dreulir gan y gweithiwr amaethyddol yn ymadfer ar ôl llawdriniaeth o ganlyniad i anaf a ddioddefwyd yn ei le gwaith neu anaf a ddioddefwyd wrth deithio yn ôl ac ymlaen i’w le gwaith,</p>
+                </content>
+              </level>
+              <wrapUp>
+                <p>ond nid yw’n cynnwys unrhyw anaf a ddioddefir gan y gweithiwr amaethyddol pan na fo yn ei le gwaith nac unrhyw anaf a ddioddefir pan na fo’r gweithiwr amaethyddol yn teithio yn ôl ac ymlaen i’w le gwaith;</p>
+              </wrapUp>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <intro>
+                <p>mae <def ukl:startQuote="“" ukl:endQuote="”">amaethyddiaeth</def> (“<i>agriculture</i>”) yn cynnwys—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>ffermio gwartheg godro;</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>cynhyrchu unrhyw gynnyrch defnyddiadwy at ddibenion masnach neu fusnes neu unrhyw fenter arall (pa un a wneir hynny i wneud elw ai peidio);</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>defnyddio tir fel tir pori, gweirglodd neu ddoldir;</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(d)</num>
+                <content>
+                  <p>defnyddio tir ar gyfer perllannau, tir helyg gwiail neu goetir;</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(e)</num>
+                <content>
+                  <p>defnyddio tir ar gyfer gerddi marchnad neu blanhigfeydd;</p>
+                </content>
+              </level>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>Ystyr <def ukl:startQuote="“" ukl:endQuote="”">cyflogaeth</def> (“<i>employment</i>”) yw unigolion sydd wedi eu cymryd ymlaen fel cyflogeion, gweithwyr, gweithwyr asiantaeth a gweithwyr a gyflogir gan gangfeistri;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>nid yw <def ukl:startQuote="“" ukl:endQuote="”">cynnyrch defnyddiadwy</def> (“<i>consumable produce</i>”) yw cynnyrch a dyfir i’w fwyta ac i’w yfed neu i’w ddefnyddio fel arall ar ôl iddo adael y tir lle cafodd ei dyfu;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <intro>
+                <p>o ran <def ukl:startQuote="“" ukl:endQuote="”">diwrnodau cymwys</def> (“<i>qualifying days</i>”) (ac eithrio yn erthygl 21 lle y mae diffiniad gwahanol yn gymwys) yw diwrnodau pan fyddai’n ofynnol fel arfer i’r gweithiwr amaethyddol fod ar gael i weithio gan gynnwys diwrnodau pan oedd y gweithiwr amaethyddol—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>yn cymryd gwyliau blynyddol,</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>yn cymryd absenoldeb oherwydd profedigaeth,</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>yn cymryd absenoldeb mamolaeth, tadolaeth, rhiant a rennir neu fabwysiadu statudol, neu</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(d)</num>
+                <content>
+                  <p>ar gyfnod o absenoldeb salwch;</p>
+                </content>
+              </level>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>O ran <def ukl:startQuote="“" ukl:endQuote="”">fframwaith prentisiaethau</def> (“<i>apprenticeship framework</i>”) yw unrhyw un neu ragor o’r Fframweithiau Prentisiaethau cyfredol ar gyfer y sector amaethyddol yng Nghymru a ddyroddwyd gan Lywodraeth Cymru ac a gyhoeddwyd gan Lantra<authorialNote marker="3" class="footnote"><p>https://acwcerts.co.uk/web/frameworks-library.</p></authorialNote> ar y dyddiad neu cyn y dyddiad y daw’r Gorchymyn hwn i rym, neu fersiynau blaenorol o’r Fframweithiau Prentisiaethau ar gyfer y sector amaethyddol yng Nghymru a gyhoeddwyd gan Lantra;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <intro>
+                <p>ystyr <def ukl:startQuote="“" ukl:endQuote="”">goramser</def> (“<i>overtime</i>”) yw—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <intro>
+                  <p>mewn perthynas â gweithiwr amaethyddol a ddechreuodd ei gyflogaeth cyn 1 Hydref 2006, amser nad yw’n oramser gwarantedig y mae’r gweithiwr amaethyddol yn ei weithio—</p>
+                </intro>
+                <level class="para2">
+                  <num>(i)</num>
+                  <content>
+                    <p>yn fwy nag oriau gwaith sylfaenol, neu</p>
+                  </content>
+                </level>
+                <level class="para2">
+                  <num>(ii)</num>
+                  <content>
+                    <p>ar ŵyl gyhoeddus, neu</p>
+                  </content>
+                </level>
+                <level class="para2">
+                  <num>(iii)</num>
+                  <content>
+                    <p>ar ddydd Sul, neu</p>
+                  </content>
+                </level>
+                <level class="para2">
+                  <num>(iv)</num>
+                  <content>
+                    <p>mewn unrhyw gyfnod sy’n cychwyn ar ddydd Sul ac yn parhau hyd y dydd Llun canlynol hyd at yr amser y byddai’r gweithiwr amaethyddol hwnnw yn cychwyn ei ddiwrnod gwaith fel arfer;</p>
+                  </content>
+                </level>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <intro>
+                  <p>mewn perthynas â phob gweithiwr amaethyddol arall a ddechreuodd ei gyflogaeth ar neu ar ôl 1 Hydref 2006, amser nad yw’n oramser gwarantedig y mae’r gweithiwr amaethyddol yn ei weithio—</p>
+                </intro>
+                <level class="para2">
+                  <num>(i)</num>
+                  <content>
+                    <p>yn ychwanegol at oriau gwaith sylfaenol, neu</p>
+                  </content>
+                </level>
+                <level class="para2">
+                  <num>(ii)</num>
+                  <content>
+                    <p>ar ŵyl gyhoeddus;</p>
+                  </content>
+                </level>
+              </level>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>ystyr <def ukl:startQuote="“" ukl:endQuote="”">goramser gwarantedig</def> (“<i>guaranteed overtime</i>”) yw goramser y mae’n ofynnol i weithiwr amaethyddol ei weithio o dan naill ai ei gontract neu ei brentisiaeth ac y mae cyflogwr y gweithiwr amaethyddol yn gwarantu taliad ar ei gyfer, pa un a oes gwaith i’r gweithiwr amaethyddol ei wneud ai peidio;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <intro>
+                <p>ystyr <def ukl:startQuote="“" ukl:endQuote="”">gwaith</def> (“<i>work</i>”) yw—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>unrhyw gyfnod pryd y mae’r gweithiwr amaethyddol yn gweithio, ar gael i’w gyflogwr ac yn cyflawni ei weithgareddau neu ei ddyletswyddau;</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>unrhyw gyfnod pryd y mae’r gweithiwr amaethyddol yn cael hyfforddiant perthnasol;</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>unrhyw gyfnod a dreulir gan weithiwr amaethyddol yn teithio at ddibenion ei gyflogaeth ond nad yw’n cynnwys amser a dreulir yn teithio rhwng ei gartref a’i le gwaith;</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(d)</num>
+                <content>
+                  <p>unrhyw gyfnod y mae gweithiwr amaethyddol yn cael ei rwystro rhag cyflawni gweithgareddau neu ddyletswyddau yn unol â’i gontract neu ei brentisiaeth oherwydd tywydd drwg;</p>
+                </content>
+              </level>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>ystyr <def ukl:startQuote="“" ukl:endQuote="”">gweithiwr amaethyddol</def> (“<i>agricultural worker</i>”) yw person a gyflogir ym maes amaethyddiaeth yng Nghymru, pa un a yw’r holl waith yr ymgymerir ag ef yn rhinwedd y gyflogaeth honno yn cael ei wneud yng Nghymru ai peidio;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>mae i <def ukl:startQuote="“" ukl:endQuote="”">gweithiwr oriau afreolaidd</def> yr ystyr a roddir i “irregular hours worker” yn rheoliad 15F o Reoliadau Amser Gwaith 1998<authorialNote marker="4" class="footnote"><p>(<b>1</b>)O.S. 1998/1833. Mewnosodwyd rheoliad 15F gan reoliad 3(7) o Reoliadau Hawliau Cyflogaeth (Diwygio, Dirymu a Darpariaeth Drosiannol) 2023 (O.S. 2023/1426).</p></authorialNote>;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>Mae i <def ukl:startQuote="“" ukl:endQuote="”">gweithiwr rhan o’r flwyddyn</def> yr ystyr a roddir i <def ukl:startQuote="“" ukl:endQuote="”">part-year worker</def> gan reoliad 15F o Reoliadau Amser Gwaith 1998;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>ystyr <def ukl:startQuote="“" ukl:endQuote="”">Lantra</def> yw’r cwmni, neu unrhyw sefydliad sy’n ei olynu, beth bynnag fo’i enw, sydd â’i gyfeiriad swyddfa gofrestredig yn Lantra House, Stoneleigh Park, Swydd Warwick, CV8 2LG ac sydd â’r rhif cofrestru cwmni 02823181 yng Nghymru a Lloegr;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>mae <def ukl:startQuote="“" ukl:endQuote="”">oriau</def> (“<i>hours</i>”) yn cynnwys ffracsiwn o awr;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>ystyr <def ukl:startQuote="“" ukl:endQuote="”">oriau sylfaenol</def> (“<i>basic hours</i>”) yw uchafswm o 39 o oriau gwaith yr wythnos, neu oriau gwaith eraill y cytunir arnynt (yn ddarostyngedig i’r uchafswm hwnnw), o dan gontract y gweithiwr amaethyddol neu brentisiaeth y gweithiwr amaethyddol, ac eithrio goramser a goramser gwarantedig, a weithir yn unol â naill ai contract gweithiwr amaethyddol neu brentisiaeth gweithiwr amaethyddol;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>mae i <def ukl:startQuote="“" ukl:endQuote="”">plentyn</def> yr ystyr a roddir i “child” yn adran 80EA o Ddeddf Hawliau Cyflogaeth 1996<authorialNote marker="5" class="footnote"><p>(<b>1</b>)1996 p. 18. Mewnosodwyd adran 80EA gan baragraff 2 o Ran 1 o’r Atodlen i Ddeddf Profedigaeth Rhiant (Absenoldeb a Thâl) 2018 (p. 24).</p></authorialNote>. Mae plentyn yn blentyn gweithiwr amaethyddol os yw’r gweithiwr amaethyddol yn bodloni’r amodau a bennir yn rheoliad 4(2) o Reoliadau Absenoldeb Profedigaeth Rhiant 2020<authorialNote marker="6" class="footnote"><p>(<b>2</b>)O.S. 2020/249.</p></authorialNote>;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <intro>
+                <p>ystyr <def ukl:startQuote="“" ukl:endQuote="”">teithio</def> (“<i>travelling</i>”) yw siwrnai drwy gyfrwng dull teithio neu siwrnai ar droed yn cynnwys—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>aros wrth fan ymadael i gychwyn siwrnai drwy gyfrwng dull teithio,</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>aros wrth fan ymadael i siwrnai ailgychwyn naill ai drwy gyfrwng yr un dull teithio neu drwy gyfrwng un arall, ac eithrio unrhyw amser a dreulir gan y gweithiwr amaethyddol yn cymryd seibiant gorffwys, ac</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>aros ar ddiwedd siwrnai i gyflawni dyletswyddau, neu i dderbyn hyfforddiant, ac eithrio unrhyw amser a dreulir gan y gweithiwr amaethyddol yn cymryd seibiant gorffwys.</p>
+                </content>
+              </level>
+            </hcontainer>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <intro>
+              <p>Yn yr erthygl hon mae’r cyfeiriad at weithwyr amaethyddol a ddechreuodd eu cyflogaeth cyn 1 Hydref 2006 yn cynnwys gweithwyr amaethyddol—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>y mae telerau eu contract wedi bod yn destun unrhyw amrywiad ers hynny; neu</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>sydd wedi eu cyflogi gan gyflogwr newydd ers hynny yn unol â Rheoliadau Trosglwyddo Ymgymeriadau (Diogelu Cyflogaeth) 2006<authorialNote marker="7" class="footnote"><p>(<b>3</b>)O.S. 2006/246.</p></authorialNote>.</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <content>
+              <p>Mae cyfeiriadau yn y Gorchymyn hwn at gyfnod o gyflogaeth ddi-dor i’w dehongli fel cyfnod o</p>
+              <p>gyflogaeth ddi-dor a gyfrifir yn unol ag adrannau 210 i 219 o Ddeddf Hawliau Cyflogaeth 1996<authorialNote marker="8" class="footnote"><p>1996 p. 18. Diwygiwyd adran 211 gan Atodlen 8 i O.S. 2006/1031. Diwygiwyd adran 212 gan Atodlenni 4 a 9 i Ddeddf Cysylltiadau Cyflogaeth 1999 (p. 26). Diwygiwyd adran 215 gan Atodlen 7 i Ddeddf Cyfraniadau Nawdd Cymdeithasol (Trosglwyddo Swyddogaethau, etc.) 1999 (p. 2). Diwygiwyd adran 219 gan Atodlen 1 i Ddeddf Hawliau Cyflogaeth (Datrys Anghydfodau) 1998 (p. 8). Mae offerynnau diwygio eraill ond nid yw’r un ohonynt yn berthnasol i’r Gorchymyn hwn.</p></authorialNote>.</p>
+            </content>
+          </paragraph>
+        </article>
+      </part>
+      <part eId="rhan_2" class="group2">
+        <num>Rhan 2</num>
+        <heading>Gweithwyr amaethyddol</heading>
+        <article eId="sec_3" class="prov1">
+          <heading>Telerau ac amodau cyflogaeth</heading>
+          <num>3.</num>
+          <content>
+            <p>Mae cyflogaeth gweithiwr amaethyddol yn ddarostyngedig i’r telerau a’r amodau a nodir yn y Rhan hon ac yn Rhannau 3, 4 a 5 o’r Gorchymyn hwn.</p>
+          </content>
+        </article>
+        <article eId="sec_4" class="prov1">
+          <heading>Graddau a chategorïau gweithiwr amaethyddol</heading>
+          <num>4.</num>
+          <content>
+            <p>Rhaid i weithiwr amaethyddol gael ei gyflogi’n weithiwr amaethyddol ar un o’r Graddau a bennir yn erthyglau 5 i 9 neu fel prentis yn unol â’r darpariaethau yn erthygl 10.</p>
+          </content>
+        </article>
+        <article eId="sec_5" class="prov1">
+          <heading>Gweithiwr Datblygu Amaethyddol Gradd A</heading>
+          <num>5.</num>
+          <intro>
+            <p>Rhaid i weithiwr amaethyddol—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p>sydd â llai na 3 blynedd o brofiad ymarferol sy’n berthnasol i’w rôl mewn amaethyddiaeth, a</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p>na all ddarparu tystiolaeth ddogfennol i gyflogwr fod y prif gymhwyster neu gymwysterau sy’n ofynnol ar gyfer prentisiaeth lefel 2 sy’n berthnasol i’w rôl mewn amaethyddiaeth wedi eu dyfarnu iddo yn unol â’r fframwaith prentisiaethau, neu ei fod wedi bodloni gofynion prentisiaeth lefel 2 neu brentisiaeth gyfatebol, o’r tu allan i Gymru, fel y pennir yn Nhablau A neu B yn Atodlen 4, sy’n berthnasol i’w rôl mewn amaethyddiaeth,</p>
+            </content>
+          </level>
+          <wrapUp>
+            <p>gael ei gyflogi’n Weithiwr Datblygu Amaethyddol Gradd A.</p>
+          </wrapUp>
+        </article>
+        <article eId="sec_6" class="prov1">
+          <heading>Gweithiwr Amaethyddol Gradd B</heading>
+          <num>6.</num>
+          <intro>
+            <p>Rhaid i weithiwr amaethyddol—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p>sy’n darparu tystiolaeth ddogfennol i gyflogwr fod y prif gymhwyster neu gymwysterau sy’n ofynnol ar gyfer prentisiaeth lefel 2, y mae rhaid iddynt fod yn berthnasol i’w rôl mewn amaethyddiaeth, wedi eu dyfarnu iddo yn unol â’r fframwaith prentisiaethau, neu ei fod wedi bodloni gofynion prentisiaeth lefel 2 neu brentisiaeth gyfatebol, o’r tu allan i Gymru, fel y pennir yn Nhablau A neu B yn Atodlen 4, y mae rhaid iddi fod yn berthnasol i’w rôl mewn amaethyddiaeth, neu</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p>sydd ag o leiaf 3 blynedd o brofiad ymarferol mewn amaethyddiaeth fel Gweithiwr Datblygu Amaethyddol Gradd A,</p>
+            </content>
+          </level>
+          <wrapUp>
+            <p>gael ei gyflogi’n Weithiwr Amaethyddol Gradd B.</p>
+          </wrapUp>
+        </article>
+        <article eId="sec_7" class="prov1">
+          <heading>Gweithiwr Amaethyddol Uwch Gradd C</heading>
+          <num>7.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>Rhaid i weithiwr amaethyddol—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>sy’n darparu tystiolaeth ddogfennol i gyflogwr fod y prif gymhwyster neu gymwysterau sy’n ofynnol ar gyfer prentisiaeth lefel 3, y mae rhaid iddynt fod yn berthnasol i’w rôl mewn amaethyddiaeth, wedi eu dyfarnu iddo yn unol â’r fframwaith prentisiaethau, neu ei fod wedi bodloni gofynion prentisiaeth lefel 3 neu brentisiaeth gyfatebol, o’r tu allan i Gymru, fel y pennir yn Nhablau A neu B yn Atodlen 4, y mae rhaid iddi fod yn berthnasol i’w rôl mewn amaethyddiaeth,</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>sydd ag o leiaf 2 flynedd o brofiad ymarferol mewn amaethyddiaeth fel Gweithiwr Amaethyddol Gradd B, neu</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p>sydd wedi ei gyflogi’n arweinydd tîm,</p>
+              </content>
+            </level>
+            <wrapUp>
+              <p>gael ei gyflogi’n Weithiwr Amaethyddol Uwch Gradd C.</p>
+            </wrapUp>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>At ddibenion yr erthygl hon, mae <def ukl:startQuote="“" ukl:endQuote="”">arweinydd tîm</def> yn gyfrifol am arwain tîm o weithwyr amaethyddol ac am fonitro sut mae’r tîm yn cydymffurfio â chyfarwyddiadau a roddir gan neu ar ran eu cyflogwr ond nid yw’n gyfrifol am faterion disgyblu.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_8" class="prov1">
+          <heading>Uwch-weithiwr Amaethyddol Gradd D</heading>
+          <num>8.</num>
+          <intro>
+            <p>Rhaid i weithiwr amaethyddol—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p>sy’n darparu tystiolaeth ddogfennol i gyflogwr fod y prif gymhwyster neu gymwysterau sy’n ofynnol ar gyfer prentisiaeth lefel 4, y mae rhaid iddynt fod yn berthnasol i’w rôl mewn amaethyddiaeth, wedi eu dyfarnu iddo yn unol â’r fframwaith prentisiaethau, neu ei fod wedi bodloni gofynion prentisiaeth lefel 4 neu brentisiaeth gyfatebol, o’r tu allan i Gymru, fel y pennir yn Nhablau A neu B yn Atodlen 4, y mae rhaid iddi fod yn berthnasol i’w rôl mewn amaethyddiaeth, neu</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p>sydd â chyfrifoldebau sy’n cynnwys gweithredu penderfyniadau rheoli yn annibynnol neu oruchwylio staff,</p>
+            </content>
+          </level>
+          <wrapUp>
+            <p>gael ei gyflogi’n Uwch-weithiwr Amaethyddol Gradd D.</p>
+          </wrapUp>
+        </article>
+        <article eId="sec_9" class="prov1">
+          <heading>Rheolwr Amaethyddol Gradd E</heading>
+          <num>9.</num>
+          <intro>
+            <p>Rhaid i weithiwr amaethyddol y mae’n ofynnol iddo ysgwyddo cyfrifoldeb o ddydd i ddydd, gan gynnwys hurio a rheoli staff pan fo’n berthnasol—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p>dros ddaliad cyfan y cyflogwr, neu</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p>dros ran o ddaliad y cyflogwr a redir fel gweithrediad neu fusnes ar wahân,</p>
+            </content>
+          </level>
+          <wrapUp>
+            <p>gael ei gyflogi’n Rheolwr Amaethyddol Gradd E.</p>
+          </wrapUp>
+        </article>
+        <article eId="sec_10" class="prov1">
+          <heading>Prentisiaid</heading>
+          <num>10.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae gweithiwr amaethyddol yn brentis sydd wedi ei gyflogi o dan brentisiaeth os yw’n cael ei gyflogi o dan naill ai contract prentisiaeth neu gytundeb prentisiaeth o fewn ystyr “apprenticeship agreement” yn adran 32 o Ddeddf Prentisiaethau, Sgiliau, Plant a Dysgu 2009<authorialNote marker="9" class="footnote"><p>2009 p. 22</p></authorialNote>, neu’n cael ei drin fel pe bai wedi ei gyflogi o dan gontract prentisiaeth.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Rhaid i weithiwr amaethyddol gael ei drin fel pe bai wedi ei gyflogi o dan gontract prentisiaeth os yw wedi ei gymryd ymlaen yng Nghymru o dan drefniadau Llywodraeth o’r enw Prentisiaethau Sylfaen, Prentisiaethau neu Brentisiaethau Uwch.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Yn yr erthygl hon, ystyr “trefniadau Llywodraeth” yw trefniadau a wneir o dan adran 2 o Ddeddf Cyflogaeth  a Hyfforddiant 1973<authorialNote marker="10" class="footnote"><p>1973 p. 50. Diwygiwyd adran 2 gan adran 25 o Ddeddf Cyflogaeth 1988 (p. 19) ac adran 47 o Ddeddf Diwygio Undebau Llafur a Hawliau Cyflogaeth 1993 (p. 19). Trosglwyddwyd swyddogaethau perthnasol yr Ysgrifennydd Gwladol, i’r graddau y maent yn arferadwy o ran Cymru, i Gynulliad Cenedlaethol Cymru gan Orchymyn Cynulliad Cenedlaethol Cymru (Trosglwyddo Swyddogaethau) 1999 (O.S. 1999/672). Trosglwyddwyd swyddogaethau Cynulliad Cenedlaethol Cymru i Weinidogion Cymru yn rhinwedd adran 162 o Ddeddf Llywodraeth Cymru 2006 (p. 32), a pharagraffau 30 a 32 o Atodlen 11 iddi.</p></authorialNote> neu o dan adran 17B o Ddeddf Ceiswyr Gwaith 1995<authorialNote marker="11" class="footnote"><p>1995 p. 18. Diddymwyd adran 17B gan adran 147 o Ddeddf Diwygio Lles 2012 (p. 5) a Rhan 4 o Atodlen 14 iddi. Mae’r diddymiad yn cael effaith at ddibenion penodol yn unol ag O.S. 2013/983, O.S. 2013/1511, O.S. 2013/2657, O.S. 2013/2846, O.S. 2014/209, O.S. 2014/1583, O.S. 2014/2321, O.S. 2014/3094, O.S. 2015/33, O.S. 2015/101, O.S. 2015/634, O.S. 2015/1537, O.S. 2015/1930, O.S. 2016/33 ac O.S. 2016/407.</p></authorialNote>.</p>
+            </content>
+          </paragraph>
+        </article>
+      </part>
+      <part eId="rhan_3" class="group2">
+        <num>Rhan 3</num>
+        <heading>Yr isafswm cyflog amaethyddol</heading>
+        <article eId="sec_11" class="prov1">
+          <heading>Cyfraddau tâl isaf</heading>
+          <num>11.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Yn ddarostyngedig i weithrediad adran 1 o Ddeddf Isafswm Cyflog Cenedlaethol 1998<authorialNote marker="12" class="footnote"><p>1998 p. 39.</p></authorialNote>, rhaid i weithwyr amaethyddol gael eu talu gan eu cyflogwr mewn cysylltiad â’u gwaith yn ôl cyfradd nad yw’n llai na’r isafswm cyflog amaethyddol.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Yr isafswm cyflog amaethyddol yw’r gyfradd isaf fesul awr a bennir yn y Tabl yn Atodlen 1 fel y gyfradd sy’n gymwys i bob gradd o weithiwr amaethyddol ac i brentisiaid.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_12" class="prov1">
+          <heading>Cyfraddau tâl isaf am oramser</heading>
+          <num>12.</num>
+          <content>
+            <p>Rhaid i weithwyr amaethyddol gael eu talu gan eu cyflogwr mewn cysylltiad â goramser a weithir yn ôl cyfradd sy’n cyfateb i o leiaf 1.5 gwaith eu cyfradd tâl sylfaenol fesul awr o dan eu contract neu brentisiaeth.</p>
+          </content>
+        </article>
+        <article eId="sec_13" class="prov1">
+          <heading>Cyfraddau tâl isaf am waith allbwn</heading>
+          <num>13.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Rhaid i weithwyr amaethyddol gael eu talu gan eu cyflogwr mewn cysylltiad â gwaith allbwn yn ôl cyfradd nad yw’n llai na’r isafswm cyflog amaethyddol a bennir yn erthygl 11 o’r Gorchymyn hwn ac Atodlen 1 iddo sy’n gymwys i’w radd neu i’w gategori.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Yn yr erthygl hon ystyr “<i>gwaith allbwn</i>” yw gwaith sydd, at ddibenion tâl, yn cael ei fesur yn ôl nifer y darnau a wneir neu a brosesir neu nifer y tasgau a gyflawnir gan weithiwr amaethyddol.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_14" class="prov1">
+          <heading>Lwfans gwrthbwyso llety</heading>
+          <num>14.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Pan fo cyflogwr, mewn unrhyw wythnos, yn darparu tŷ i weithiwr amaethyddol am y cyfan o’r wythnos honno, caiff y cyflogwr dynnu’r swm o £1.97 yr wythnos oddi ar gyflog y gweithiwr amaethyddol sy’n daladwy ar gyfer yr wythnos honno.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Yn ddarostyngedig i baragraffau (5) a (6), pan fo cyflogwr, mewn unrhyw wythnos, yn darparu llety arall i weithiwr amaethyddol, caiff y cyflogwr dynnu’r swm o £6.31 y dydd oddi ar gyflog y gweithiwr amaethyddol sy’n daladwy am bob diwrnod yn yr wythnos y darperir y llety arall i’r gweithiwr amaethyddol.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>At ddibenion paragraffau (1) a (4), ystyr <def ukl:startQuote="“" ukl:endQuote="”">tŷ</def> yw tŷ annedd cyfan neu lety hunangynhwysol (gan gynnwys unrhyw ardd o fewn cwrtil y tŷ annedd neu’r llety hunangynhwysol hwnnw) y mae’n ofynnol i’r gweithiwr amaethyddol fyw ynddo yn rhinwedd contract y gweithiwr amaethyddol er mwyn cyflawni ei ddyletswyddau mewn modd priodol neu well.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <intro>
+              <p>At ddibenion paragraff (2), ystyr <def ukl:startQuote="“" ukl:endQuote="”">llety arall</def> yw unrhyw lety byw heblaw tŷ—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>sy’n addas i bobl fyw ynddo,</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>sy’n ddiogel ac yn ddiddos,</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p>sy’n darparu gwely i’w ddefnyddio gan bob gweithiwr amaethyddol unigol yn unig, a</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(d)</num>
+              <content>
+                <p>sy’n darparu dŵr yfed glân, cyfleusterau glanweithdra addas a digonol a chyfleusterau ymolchi i weithwyr amaethyddol yn unol â rheoliadau 20 i 22 o Reoliadau Gweithleoedd (Iechyd, Diogelwch a Lles) 1992<authorialNote marker="13" class="footnote"><p>O.S. 1992/3004.</p><p /></authorialNote> fel pe bai’r llety’n weithle yr oedd rheoliadau 20 i 22 o’r Rheoliadau hynny’n gymwys iddo.</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(4)</num>
+            <content>
+              <p>Dim ond pan fo’r gweithiwr amaethyddol wedi gweithio o leiaf 15 awr yn ystod yr wythnos honno y caniateir i’r didyniad ym mharagraff (2) gael ei wneud.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(5)</num>
+            <content>
+              <p>Rhaid i unrhyw amser yn ystod yr wythnos honno pan fo’r gweithiwr amaethyddol ar wyliau blynyddol neu absenoldeb oherwydd profedigaeth gyfrif tuag at y 15 awr hynny.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_15" class="prov1">
+          <heading>Taliadau nad ydynt yn ffurfio rhan o dâl gweithiwr amaethyddol</heading>
+          <num>15.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>Nid yw’r lwfansau a’r taliadau a ganlyn yn ffurfio rhan o dâl gweithiwr amaethyddol—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>lwfans cŵn o £11.18 y ci i’w dalu’n wythnosol pan fo’i gyflogwr yn ei gwneud yn ofynnol i weithiwr amaethyddol gadw un neu ragor o gŵn,</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>lwfans ar alwad o swm sy’n cyfateb i dair gwaith cyfradd fesul awr y gweithiwr amaethyddol yn ôl ei radd. Mae’r lwfans ar alwad yn daladwy mewn cysylltiad â phob cyfnod y mae’r gweithiwr amaethyddol ar alwad. Ni chaiff cyfnod trefniant ar alwad fod yn hwy na 24 awr,</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p>lwfans gwaith nos o £2.12 am bob awr o waith nos, a</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(d)</num>
+              <content>
+                <p>grant geni a mabwysiadu o £87.85 am bob plentyn.</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <intro>
+              <p>Yn yr erthygl hon—</p>
+            </intro>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>ystyr <def ukl:startQuote="“" ukl:endQuote="”">ar alwad</def> (“<i>on-call</i>”) yw trefniant ffurfiol rhwng y gweithiwr amaethyddol a’i gyflogwr pan fo gweithiwr amaethyddol nad yw yn y gwaith yn cytuno â’i gyflogwr y bydd modd cysylltu ag ef drwy gyfrwng y cytunir arno ac y gall gyrraedd y fan lle y gall fod yn ofynnol iddo weithio o fewn amser y cytunir arno;</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <intro>
+                <p>ystyr <def ukl:startQuote="“" ukl:endQuote="”">grant geni a mabwysiadu</def> (“<i>birth and adoption grant</i>”) yw taliad y mae gan weithiwr amaethyddol hawl i’w gael oddi wrth ei gyflogwr pan enir plentyn iddo neu pan fydd yn mabwysiadu plentyn ac mae’n daladwy—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>pan fo’r gweithiwr amaethyddol wedi rhoi copi i’w gyflogwr o Dystysgrif Geni’r plentyn neu ei Orchymyn Mabwysiadu (sy’n enwi’r gweithiwr amaethyddol fel rhiant y plentyn neu ei riant mabwysiadol) o fewn 3 mis ar ôl geni neu fabwysiadu’r plentyn, a</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>o dan amgylchiadau pan fo’r ddau riant neu’r ddau riant mabwysiadol yn weithwyr amaethyddol gyda’r un cyflogwr, i’r ddau weithiwr amaethyddol;</p>
+                </content>
+              </level>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p>ystyr <def ukl:startQuote="“" ukl:endQuote="”">gwaith nos</def> (“<i>night work</i>”) yw gwaith (heblaw oriau goramser) a wneir gan weithiwr amaethyddol rhwng 7 p.m. un noson a 6 a.m. fore trannoeth, ond heb gynnwys y ddwy awr gyntaf o waith y mae gweithiwr amaethyddol yn ei wneud yn y cyfnod hwnnw.</p>
+              </content>
+            </hcontainer>
+          </paragraph>
+        </article>
+        <article eId="sec_16" class="prov1">
+          <heading>Costau hyfforddi</heading>
+          <num>16.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>Pan fo gweithiwr amaethyddol yn mynd ar gwrs hyfforddi gyda chytundeb ei gyflogwr ymlaen llaw, rhaid i’r cyflogwr dalu—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>unrhyw ffioedd am y cwrs, a</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>unrhyw gostau teithio a llety yr eir iddynt gan y gweithiwr amaethyddol wrth fynd ar y cwrs.</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Bernir bod gweithiwr amaethyddol sydd wedi ei gyflogi’n ddi-dor fel Gweithiwr Datblygu Amaethyddol Gradd A gan yr un cyflogwr am ddim llai na 30 wythnos wedi cael cymeradwyaeth ei gyflogwr i ymgymryd â hyfforddiant gyda golwg ar sicrhau’r cymwysterau angenrheidiol sy’n ofynnol gan Weithiwr Amaethyddol Gradd B.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <content>
+              <p>Y cyflogwr sydd i dalu am unrhyw hyfforddiant y mae gweithiwr amaethyddol yn ymgymryd ag ef yn unol â pharagraff (2).</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(4)</num>
+            <intro>
+              <p>Os yw’r gweithiwr amaethyddol yn rhoi’r gorau i’w gyflogaeth yn ystod y cwrs hyfforddi neu o fewn 12 mis i gwblhau’r cwrs hyfforddi, caiff y cyflogwr adennill y costau a amlinellir ym mharagraff 1—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>i’r graddau eu bod wedi cael eu hariannu gan y cyflogwr ac nid gan drydydd parti (e.e. drwy grant neu gymhorthdal perthnasol arall), a</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>ar yr amod bod contract y gweithiwr amaethyddol yn darparu ar gyfer adennill costau hyfforddi o’r fath.</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(5)</num>
+            <content>
+              <p>Ni fydd yn ofynnol i’r gweithiwr amaethyddol ad-dalu unrhyw gostau hyfforddi pan fo’r cyflogwr wedi terfynu ei gyflogaeth ac eithrio pan oedd gan y cyflogwr hawl i derfynu’r gyflogaeth yn ddiannod a’i fod wedi gwneud hynny.</p>
+            </content>
+          </paragraph>
+        </article>
+      </part>
+      <part eId="rhan_4" class="group2">
+        <num>Rhan 4</num>
+        <heading>Yr hawl i gael tâl salwch amaethyddol</heading>
+        <article eId="sec_17" class="prov1">
+          <heading>Yr hawl i gael tâl salwch amaethyddol</heading>
+          <num>17.</num>
+          <content>
+            <p>Yn ddarostyngedig i’r darpariaethau yn y Rhan hon, mae gan weithiwr amaethyddol hawl i gael tâl salwch amaethyddol gan ei gyflogwr mewn cysylltiad â’i absenoldeb salwch.</p>
+          </content>
+        </article>
+        <article eId="sec_18" class="prov1">
+          <heading>Amodau cymhwyso ar gyfer tâl salwch amaethyddol</heading>
+          <num>18.</num>
+          <intro>
+            <p>Mae gweithiwr amaethyddol yn cymhwyso ar gyfer tâl salwch amaethyddol o dan y Gorchymyn hwn ar yr amod bod y gweithiwr amaethyddol—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <content>
+              <p>wedi cael ei gyflogi’n ddi-dor gan ei gyflogwr am gyfnod o 52 o wythnosau o leiaf cyn yr absenoldeb salwch,</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(b)</num>
+            <content>
+              <p>wedi hysbysu ei gyflogwr am yr absenoldeb salwch mewn ffordd y cytunwyd arno yn flaenorol gyda’i gyflogwr neu, yn niffyg unrhyw gytundeb o’r fath, drwy unrhyw ddull rhesymol, ac</p>
+            </content>
+          </level>
+          <level class="para1">
+            <num>(c)</num>
+            <content>
+              <p>o dan amgylchiadau pan fo’r absenoldeb salwch wedi parhau am gyfnod o 8 diwrnod yn olynol neu ragor, wedi darparu tystysgrif i’w gyflogwr gan ymarferydd meddygol cofrestredig sy’n datgelu’r diagnosis ynghylch anhwylder meddygol y gweithiwr amaethyddol ac sy’n datgan mai’r anhwylder sydd wedi achosi absenoldeb salwch y gweithiwr amaethyddol.</p>
+            </content>
+          </level>
+        </article>
+        <article eId="sec_19" class="prov1">
+          <heading>Cyfnodau absenoldeb salwch</heading>
+          <num>19.</num>
+          <content>
+            <p>Rhaid i unrhyw 2 gyfnod o absenoldeb salwch sydd â chyfnod o 14 o ddiwrnodau neu lai rhyngddynt gael eu trin fel un cyfnod o absenoldeb salwch.</p>
+          </content>
+        </article>
+        <article eId="sec_20" class="prov1">
+          <heading>Cyfyngiadau ar yr hawl i dâl salwch amaethyddol</heading>
+          <num>20.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Nid yw tâl salwch amaethyddol yn daladwy am y 3 diwrnod cyntaf o absenoldeb salwch o dan amgylchiadau pan fo hyd yr absenoldeb salwch yn llai na 14 o ddiwrnodau.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>Yn ystod pob cyfnod hawl, uchafswm nifer yr wythnosau y mae gan weithiwr amaethyddol hawl i gael tâl salwch amaethyddol ar eu cyfer yw—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>13 o wythnosau yn ail flwyddyn y gyflogaeth;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>16 o wythnosau yn nhrydedd flwyddyn y gyflogaeth;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p>19 o wythnosau ym mhedwaredd flwyddyn y gyflogaeth;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(d)</num>
+              <content>
+                <p>22 o wythnosau ym mhumed flwyddyn y gyflogaeth;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(e)</num>
+              <content>
+                <p>26 o wythnosau yn chweched flwyddyn a phob blwyddyn olynol y gyflogaeth.</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Pan fo gweithiwr amaethyddol yn gweithio oriau sylfaenol neu, pan fo’n gymwys, unrhyw oramser gwarantedig ar nifer penodedig o ddiwrnodau bob wythnos, cyfrifir uchafswm nifer y diwrnodau o dâl salwch amaethyddol y mae gan y gweithiwr amaethyddol hawl i’w cael drwy luosi uchafswm nifer yr wythnosau sy’n berthnasol i’r gweithiwr amaethyddol â nifer y diwrnodau cymwys a weithiwyd bob wythnos.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <content>
+              <p>Pan fo gweithiwr amaethyddol yn gweithio oriau sylfaenol neu, pan fo’n gymwys, unrhyw oramser gwarantedig ar nifer amrywiol o ddiwrnodau bob wythnos, cyfrifir uchafswm nifer y diwrnodau o dâl salwch amaethyddol y mae gan y gweithiwr amaethyddol hawl i’w cael drwy luosi uchafswm nifer yr wythnosau sy’n berthnasol i’r gweithiwr amaethyddol â nifer y diwrnodau perthnasol.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(4)</num>
+            <content>
+              <p>Cyfrifir nifer y diwrnodau perthnasol drwy rannu nifer y diwrnodau cymwys a weithiwyd yn ystod y cyfnod o 12 mis yn arwain at gyfnod yr absenoldeb salwch â 52.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(5)</num>
+            <content>
+              <p>Mae uchafswm hawl gweithiwr amaethyddol i gael tâl salwch amaethyddol yn gymwys pa faint bynnag o gyfnodau o absenoldeb salwch a geir yn ystod unrhyw gyfnod hawl.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(6)</num>
+            <content>
+              <p>Yn ddarostyngedig i baragraff (8), yn yr erthygl hon, <def ukl:startQuote="“" ukl:endQuote="”">cyfnod hawl</def> yw cyfnod sy’n dechrau â chychwyn absenoldeb salwch ac sy’n dod i ben 12 mis yn ddiweddarach.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(7)</num>
+            <intro>
+              <p>Os yw’r gweithiwr amaethyddol yn cael cyfnod o absenoldeb salwch sy’n cychwyn unrhyw bryd yn ystod y cyfnod hawl a ddisgrifir ym mharagraff (7), ond sy’n parhau y tu hwnt i ddiwedd y cyfnod hawl hwnnw, rhaid estyn y cyfnod hawl fel y bo’n dod i ben â pha un bynnag o’r canlynol sy’n digwydd gyntaf—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>y dyddiad y mae absenoldeb salwch y gweithiwr amaethyddol yn dod i ben ac y mae’r gweithiwr amaethyddol yn dychwelyd i’r gwaith, neu</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>y diwrnod y mae’r gweithiwr amaethyddol yn cyrraedd uchafswm yr hawl i gael tâl salwch amaethyddol sy’n gymwys i’r cyfnod o 12 mis y cyfeirir ato ym mharagraff (7) (pe na bai hwnnw wedi ei estyn).</p>
+              </content>
+            </level>
+          </paragraph>
+        </article>
+        <article eId="sec_21" class="prov1">
+          <heading>Pennu swm tâl salwch amaethyddol</heading>
+          <num>21.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae tâl salwch amaethyddol yn daladwy yn ôl cyfradd sy’n cyfateb i o leiaf y gyfradd tâl isaf fesul awr a ragnodir yn erthygl 11 o’r Gorchymyn hwn ac Atodlen 1 iddo fel y gyfradd sy’n gymwys i’r radd honno neu’r categori hwnnw o weithiwr amaethyddol.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Pennir swm y tâl salwch amaethyddol sy’n daladwy i weithiwr amaethyddol drwy gyfrifo nifer yr oriau contract dyddiol a fyddai wedi cael eu gweithio yn ystod cyfnod o absenoldeb salwch.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <intro>
+              <p>Pennir nifer yr oriau contract dyddiol—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>o dan amgylchiadau pan fo gweithiwr amaethyddol yn gweithio nifer penodedig o oriau bob wythnos drwy rannu cyfanswm nifer yr oriau a weithiwyd yn ystod unrhyw wythnos â nifer y diwrnodau a weithiwyd yn yr wythnos honno;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>o dan amgylchiadau pan fo gweithiwr amaethyddol yn gweithio nifer amrywiol o oriau bob wythnos, drwy ddefnyddio’r fformwla—</p>
+                <p>QH ÷ 8</p>
+                <p>DWEW</p>
+                <p>pan fo, at ddibenion yr erthygl hon:</p>
+                <p><b>QH</b> yn gyfanswm nifer yr oriau cymwys yn y cyfnod, a</p>
+                <p><b>DWEW</b> yn nifer y diwrnodau a weithiwyd bob wythnos gan y gweithiwr amaethyddol o’u cymryd ar gyfartaledd yn ystod cyfnod o 8 wythnos yn union cyn i’r absenoldeb salwch gychwyn.</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <intro>
+              <p>Yn yr erthygl hon—</p>
+            </intro>
+            <hcontainer name="definition" class="definition">
+              <content>
+                <p><def ukl:startQuote="“" ukl:endQuote="”">diwrnodau cymwys</def> (“<i>qualifying days</i>”) yw unrhyw ddiwrnodau o fewn y cyfnod y cafwyd ynddynt oriau cymwys mewn perthynas â’r gweithiwr amaethyddol</p>
+              </content>
+            </hcontainer>
+            <hcontainer name="definition" class="definition">
+              <intro>
+                <p><def ukl:startQuote="“" ukl:endQuote="”">oriau cymwys</def> (“<i>qualifying hours</i>”) yw oriau—</p>
+              </intro>
+              <level class="para1">
+                <num>(a)</num>
+                <content>
+                  <p>pan fu’r gweithiwr amaethyddol yn gweithio oriau sylfaenol neu oramser gwarantedig,</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(b)</num>
+                <content>
+                  <p>pan gymerodd y gweithiwr amaethyddol wyliau blynyddol neu absenoldeb oherwydd profedigaeth,</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(c)</num>
+                <content>
+                  <p>pan gafodd y gweithiwr amaethyddol absenoldeb salwch a oedd yn gymwys ar gyfer tâl salwch amaethyddol o dan y Gorchymyn hwn, neu</p>
+                </content>
+              </level>
+              <level class="para1">
+                <num>(d)</num>
+                <content>
+                  <p>pan gafodd y gweithiwr amaethyddol absenoldeb salwch nad oedd yn gymwys ar gyfer tâl salwch amaethyddol o dan y Gorchymyn hwn.</p>
+                </content>
+              </level>
+            </hcontainer>
+          </paragraph>
+        </article>
+        <article eId="sec_22" class="prov1">
+          <heading>Tâl salwch amaethyddol i gymryd tâl salwch statudol i ystyriaeth</heading>
+          <num>22.</num>
+          <content>
+            <p>Caniateir i swm sy’n hafal i unrhyw daliad tâl salwch statudol a wneir yn unol â Rhan XI o Ddeddf Cyfraniadau a Budd-daliadau Nawdd Cymdeithasol 1992<authorialNote marker="14" class="footnote"><p>1992 p. 4.</p></authorialNote> mewn cysylltiad â chyfnod absenoldeb salwch gweithiwr amaethyddol gael ei dynnu oddi ar dâl salwch amaethyddol y gweithiwr amaethyddol hwnnw.</p>
+          </content>
+        </article>
+        <article eId="sec_23" class="prov1">
+          <heading>Talu tâl salwch amaethyddol</heading>
+          <num>23.</num>
+          <content>
+            <p>Rhaid i dâl salwch amaethyddol gael ei dalu i’r gweithiwr amaethyddol ar ei ddiwrnod cyflog arferol yn unol â naill ai ei gontract neu ei brentisiaeth.</p>
+          </content>
+        </article>
+        <article eId="sec_24" class="prov1">
+          <heading>Cyflogaeth yn dod i ben yn ystod absenoldeb salwch</heading>
+          <num>24.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>Yn ddarostyngedig i baragraff (2), os yn ystod cyfnod o absenoldeb salwch, y terfynir naill ai contract gweithiwr amaethyddol neu ei brentisiaeth neu y rhoddir hysbysiad i’r gweithiwr amaethyddol fod naill ai ei gontract neu ei brentisiaeth i gael ei derfynu neu ei therfynu, mae unrhyw hawl sydd gan y gweithiwr amaethyddol i gael tâl salwch amaethyddol yn parhau ar ôl i’r contract hwnnw ddod i ben fel pe bai’r gweithiwr amaethyddol yn dal yn cael ei gyflogi gan ei gyflogwr, hyd nes i un o’r canlynol ddigwydd—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>bod absenoldeb salwch y gweithiwr amaethyddol yn dod i ben,</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>bod y gweithiwr amaethyddol yn dechrau gweithio i gyflogwr arall, neu</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p>bod uchafswm yr hawl i gael tâl salwch amaethyddol yn unol ag erthygl 20 yn cael ei ddihysbyddu.</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Nid oes gan weithiwr amaethyddol y terfynwyd ei gontract hawl i gael unrhyw dâl salwch amaethyddol ar ôl diwedd ei gyflogaeth yn unol â pharagraff (1) os rhoddwyd hysbysiad i’r gweithiwr amaethyddol fod ei gyflogwr yn bwriadu terfynu ei gontract neu ei brentisiaeth cyn i’r cyfnod o absenoldeb salwch gychwyn.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_25" class="prov1">
+          <heading>Gordalu tâl salwch amaethyddol</heading>
+          <num>25.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Yn ddarostyngedig i ddarpariaethau paragraff (2), os caiff gweithiwr amaethyddol sydd â hawl i gael tâl salwch amaethyddol o dan y Rhan hon daliad am fwy o dâl salwch amaethyddol na’i hawl, caiff ei gyflogwr adennill gordaliad y tâl salwch amaethyddol hwnnw drwy ei dynnu oddi ar gyflog y gweithiwr amaethyddol hwnnw.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Os tynnir gordaliad tâl salwch amaethyddol o dan y Gorchymyn hwn fel y’i crybwyllir ym mharagraff (1), ni chaiff y cyflogwr dynnu mwy nag 20% o gyflog gros y gweithiwr amaethyddol oni bai bod hysbysiad wedi ei roi i derfynu’r gyflogaeth neu fod y gyflogaeth eisoes wedi ei therfynu, pryd y caniateir i fwy nag 20% o gyflog gros y gweithiwr amaethyddol gael ei dynnu gan y cyflogwr oddi ar daliad cyflog olaf y gweithiwr amaethyddol.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_26" class="prov1">
+          <heading>Iawndal a adenillir yn sgil colli enillion</heading>
+          <num>26.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae’r erthygl hon yn gymwys i weithiwr amaethyddol y mae ei hawl i gael tâl salwch amaethyddol yn codi oherwydd gweithred neu anweithred person heblaw ei gyflogwr ac mae’r iawndal yn cael ei adennill gan y gweithiwr amaethyddol mewn cysylltiad â cholled enillion a ddioddefwyd yn ystod y cyfnod y cafodd y gweithiwr amaethyddol dâl salwch amaethyddol gan ei gyflogwr ar ei gyfer.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>Pan fo paragraff (1) yn gymwys—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>rhaid i’r gweithiwr amaethyddol roi gwybod ar unwaith i’w gyflogwr am yr holl amgylchiadau perthnasol ac am unrhyw hawliad ac am unrhyw iawndal a adenillwyd o dan unrhyw gyfaddawd, setliad neu ddyfarniad,</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>rhaid i’r holl dâl salwch amaethyddol a dalwyd gan y cyflogwr i’r gweithiwr amaethyddol hwnnw mewn cysylltiad â’r absenoldeb salwch yr adenillir iawndal am golli enillion ar ei gyfer fod yn gyfystyr â benthyciad i’r gweithiwr amaethyddol, ac</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <intro>
+                <p>rhaid i’r gweithiwr amaethyddol ad-dalu i’w gyflogwr swm nad yw’n fwy na’r lleiaf o’r canlynol—</p>
+              </intro>
+              <level class="para2">
+                <num>(i)</num>
+                <content>
+                  <p>swm yr iawndal a adenillwyd am golli enillion yn y cyfnod y talwyd tâl salwch amaethyddol ar ei gyfer, a</p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(ii)</num>
+                <content>
+                  <p>y symiau a roddwyd i’r gweithiwr amaethyddol gan ei gyflogwr o dan y Rhan hon ar ffurf tâl salwch amaethyddol.</p>
+                </content>
+              </level>
+            </level>
+          </paragraph>
+        </article>
+      </part>
+      <part eId="rhan_5" class="group2">
+        <num>Rhan 5</num>
+        <heading>Yr hawl i gael amser i ffwrdd</heading>
+        <article eId="sec_27" class="prov1">
+          <heading>Seibiannau gorffwys</heading>
+          <num>27.</num>
+          <content>
+            <p>Mae gan weithiwr amaethyddol hawl i seibiannau gorffwys yn unol â rheoliadau 12, 20, 21 a 24 o Reoliadau Amser Gwaith 1998<authorialNote marker="15" class="footnote"><p>O.S. 1998/1833, a ddiwygiwyd gan O.S. 1999/3372 ac O.S. 2002/3128; mae offerynnau diwygio eraill ond nid yw’r un ohonynt yn berthnasol i’r Gorchymyn hwn.</p></authorialNote>.</p>
+          </content>
+        </article>
+        <article eId="sec_28" class="prov1">
+          <heading>Gorffwys dyddiol</heading>
+          <num>28.</num>
+          <content>
+            <p>Mae gan weithiwr amaethyddol hawl i gyfnod gorffwys dyddiol yn unol â rheoliadau 10, 20, 21 a 24 o Reoliadau Amser Gwaith 1998.</p>
+          </content>
+        </article>
+        <article eId="sec_29" class="prov1">
+          <heading>Cyfnod gorffwys wythnosol</heading>
+          <num>29.</num>
+          <content>
+            <p>Mae gan weithiwr amaethyddol hawl i gyfnod gorffwys wythnosol yn unol â rheoliadau 11, 20, 21 a 24 o Reoliadau Amser Gwaith 1998.</p>
+          </content>
+        </article>
+        <article eId="sec_30" class="prov1">
+          <heading>Y flwyddyn gwyliau blynyddol</heading>
+          <num>30.</num>
+          <content>
+            <p>Y flwyddyn gwyliau blynyddol i bob gweithiwr amaethyddol yw’r cyfnod o 12 mis sy’n dechrau ar 1 Hydref ac sy’n dod i ben ar 30 Medi, oni bai bod y gweithiwr amaethyddol a’i gyflogwr yn cytuno rhyngddynt ar flwyddyn gwyliau wahanol.</p>
+          </content>
+        </article>
+        <article eId="sec_31" class="prov1">
+          <heading>Swm gwyliau blynyddol gweithwyr amaethyddol a chanddynt ddiwrnodau gweithio penodedig a gyflogir drwy gydol y flwyddyn gwyliau</heading>
+          <num>31.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae gan weithiwr amaethyddol a gyflogir gan yr un cyflogwr drwy gydol y flwyddyn gwyliau blynyddol hawl i gael y swm gwyliau blynyddol a ragnodir yn y Tabl yn Atodlen 2.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Pan fo gweithiwr amaethyddol yn gweithio ei oriau sylfaenol a, phan fo’n gymwys, unrhyw oramser gwarantedig ar nifer penodedig o ddiwrnodau cymwys bob wythnos, nifer y diwrnodau a weithiwyd bob wythnos at ddibenion y Tabl yn Atodlen 2 yw’r nifer penodedig hwnnw o ddiwrnodau.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_32" class="prov1">
+          <heading>Swm gwyliau blynyddol gweithwyr amaethyddol a chanddynt ddiwrnodau gweithio neu oriau amrywiol a gyflogir drwy gydol y flwyddyn gwyliau blynyddol</heading>
+          <num>32.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Pan fo gweithiwr amaethyddol yn gweithio ei oriau sylfaenol ar nifer amrywiol o ddiwrnodau bob wythnos, cymerir mai nifer y diwrnodau a weithiwyd bob wythnos at ddibenion y Tabl yn Atodlen 2 yw cyfartaledd nifer y diwrnodau cymwys a weithiwyd bob wythnos yn ystod y cyfnod o 52 o wythnosau yn union cyn i flwyddyn gwyliau blynyddol y gweithiwr amaethyddol gychwyn a rhaid i’r nifer cyfartalog hwnnw o ddiwrnodau cymwys gael ei dalgrynnu i’r diwrnod cyfan agosaf, pan fo hynny’n briodol.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Ar ddiwedd y flwyddyn gwyliau blynyddol rhaid i’r cyflogwr gyfrifo hawl wirioneddol y gweithiwr amaethyddol at ddibenion y Tabl yn Atodlen 2, ar sail nifer y diwrnodau cymwys a weithiwyd bob wythnos, wedi ei gymryd fel cyfartaledd nifer y diwrnodau cymwys a weithiwyd bob wythnos yn ystod y flwyddyn gwyliau blynyddol (h.y. dros gyfnod o 52 o wythnosau) a rhaid i nifer cyfartalog y diwrnodau cymwys gael ei dalgrynnu i’r diwrnod cyfan agosaf, pan fo hynny’n briodol.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Os yw’r gweithiwr amaethyddol, ar ddiwedd y flwyddyn gwyliau blynyddol, wedi cronni hawl gwyliau blynyddol ond heb ei chymryd, mae gan y gweithiwr amaethyddol hawl i ddwyn ymlaen unrhyw wyliau blynyddol a gronnwyd ond nas cymerwyd i’r flwyddyn gwyliau blynyddol ganlynol yn unol ag erthygl 34(3) o’r Gorchymyn hwn neu caiff y gweithiwr amaethyddol a’r cyflogwr gytuno i daliad yn lle unrhyw hawl gwyliau blynyddol a gronnwyd ond nas cymerwyd yn unol ag erthygl 37.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <content>
+              <p>Os yw’r gweithiwr amaethyddol, ar ddiwedd y flwyddyn gwyliau blynyddol, wedi cymryd mwy o ddiwrnodau gwyliau nag yr oedd ganddo hawl iddynt o dan y Gorchymyn hwn, ar sail nifer cyfartalog y diwrnodau cymwys a weithiwyd bob wythnos (wedi ei gyfrifo yn unol â pharagraff (2)), mae gan y cyflogwr hawl i ddidynnu unrhyw dâl am ddiwrnodau gwyliau a gymerwyd uwchlaw hawl y gweithiwr amaethyddol neu, fel arall, ddidynnu’r diwrnodau gwyliau a gymerwyd uwchlaw hawl y gweithiwr amaethyddol o’i hawl ar gyfer y flwyddyn gwyliau blynyddol ganlynol (ar yr amod nad yw didyniad o’r fath yn arwain at fod y gweithiwr amaethyddol yn cael llai na’i hawl gwyliau blynyddol statudol llawn o dan reoliadau 13 a 13A o Reoliadau Amser Gwaith 1998<authorialNote marker="16" class="footnote"><p>O.S. 1998/1833, a ddiwygiwyd gan O.S. 2001/3256, 2007/2079 a 2023/1426.</p></authorialNote>).</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(4)</num>
+            <content>
+              <p>Os yw’r gweithiwr amaethyddol yn weithiwr oriau afreolaidd neu’n weithiwr rhan o’r flwyddyn, caniateir cyfrifo ei hawl gwyliau blynyddol fel canran o’i oriau gwaith gwirioneddol yn seiliedig ar y cyfrifiad canlynol:</p>
+              <p>(cyfanswm yr hawl gwyliau blynyddol a fynegir mewn wythnosau a nodir yn Atodlen 2 ÷ wythnosau gwaith sy’n weddill yn y flwyddyn gwyliau blynyddol) x 100</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_33" class="prov1">
+          <heading>Swm gwyliau blynyddol gweithwyr amaethyddol a gyflogir am ran o’r flwyddyn gwyliau</heading>
+          <num>33.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae gan weithiwr amaethyddol a gyflogir gan yr un cyflogwr am ran o’r flwyddyn gwyliau blynyddol hawl i gronni gwyliau blynyddol yn ôl cyfradd o 1/52 o’r hawl gwyliau blynyddol a bennir yn y Tabl yn Atodlen 2 am bob wythnos orffenedig o wasanaeth gyda’r un cyflogwr.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>Pan fo swm y gwyliau blynyddol a gronnwyd mewn achos penodol yn cynnwys ffracsiwn o ddiwrnod heblaw hanner diwrnod, mae’r ffracsiwn hwnnw—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>i’w dalgrynnu i lawr i’r diwrnod cyfan nesaf os yw’n llai na hanner diwrnod, a</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>i’w dalgrynnu i fyny i’r diwrnod cyfan nesaf os yw’n fwy na hanner diwrnod.</p>
+              </content>
+            </level>
+          </paragraph>
+        </article>
+        <article eId="sec_34" class="prov1">
+          <heading>Amseru gwyliau blynyddol</heading>
+          <num>34.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Caiff gweithiwr amaethyddol gymryd gwyliau blynyddol y mae ganddo hawl i’w cymryd o dan y Gorchymyn hwn unrhyw bryd o fewn y flwyddyn gwyliau blynyddol yn ddarostyngedig i gymeradwyaeth ei gyflogwr.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Nid oes gan weithiwr amaethyddol hawl i ddwyn unrhyw hawl gwyliau blynyddol nas cymerwyd ymlaen o’r naill flwyddyn gwyliau blynyddol i’r flwyddyn gwyliau blynyddol nesaf heb gymeradwyaeth ei gyflogwr.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Pan fo cyflogwr wedi cytuno y caiff gweithiwr amaethyddol ddwyn unrhyw hawl gwyliau blynyddol nas cymerwyd ymlaen, dim ond yn ystod y flwyddyn gwyliau blynyddol y mae’n cael ei ddwyn ymlaen iddi y caniateir i’r balans gael ei gymryd.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <content>
+              <p>Yn ystod y 6 mis cyntaf mewn unrhyw flwyddyn gwyliau blynyddol caiff cyflogwr ei gwneud yn ofynnol i weithiwr amaethyddol gymryd hyd at 2 wythnos o’i hawl gwyliau blynyddol o dan y Gorchymyn hwn a chaiff gyfarwyddo i’r gweithiwr amaethyddol gymryd un o’r 2 wythnos hynny o wyliau blynyddol ar ddiwrnodau yn yr un wythnos.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(4)</num>
+            <content>
+              <p>Yn ystod yr ail 6 mis mewn unrhyw flwyddyn gwyliau blynyddol, rhaid i gyflogwr ganiatáu i weithiwr amaethyddol gymryd 2 wythnos o hawl gwyliau blynyddol y gweithiwr amaethyddol o dan y Gorchymyn hwn mewn wythnosau olynol.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(5)</num>
+            <content>
+              <p>At ddibenion yr erthygl hon, mae 1 wythnos o wyliau blynyddol gweithiwr amaethyddol yn cyfateb i nifer y diwrnodau a weithiwyd bob wythnos gan y gweithiwr amaethyddol fel y’i pennir yn unol ag erthyglau 31 a 32.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_35" class="prov1">
+          <heading>Tâl gwyliau</heading>
+          <num>35.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae gan weithiwr amaethyddol hawl i gael ei dalu mewn cysylltiad â phob diwrnod o wyliau blynyddol y mae’n ei gymryd yn seiliedig ar gyflog wythnosol arferol y gweithiwr amaethyddol.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae swm y tâl gwyliau y mae gan weithiwr amaethyddol hawl iddo o dan baragraff (1) i’w bennu yn unol â rheoliad 16 neu 16A o Reoliadau Amser Gwaith 1998<authorialNote marker="17" class="footnote"><p>O.S. 1998/1833. Diwygiwyd rheoliad 16 gan O.S. 2014/3322, O.S. 2018/1378 ac O.S. 2023/1426. Mewnosodwyd rheoliad 16A gan Reoliadau Hawliau Cyflogaeth (Diwygio, Dirymu a Darpariaeth Drosiannol) 2023 (O.S. 2023/1426).</p></authorialNote>.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Caniateir i dâl gwyliau gweithwyr amaethyddol sy’n weithwyr oriau afreolaidd neu’n weithwyr rhan o’r flwyddyn gael ei dalu drwy godiad canrannol i dâl y gweithiwr amaethyddol. Canfyddir y ganran sy’n gymwys ar gyfer cyfrifo’r codiad yn unol ag erthygl 32(5).</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <intro>
+              <p>Yn yr erthygl hon, ystyr <def ukl:startQuote="“" ukl:endQuote="”">tâl wythnosol arferol</def> yw—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>taliadau, gan gynnwys taliadau comisiwn, sydd â chysylltiad cynhenid â chyflawni tasgau y mae’n ofynnol i weithiwr amaethyddol eu cyflawni o dan delerau ei gontract;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>taliadau am statws proffesiynol neu bersonol sy’n ymwneud â hyd gwasanaeth, pa mor uchel yw’r safle neu gymwysterau proffesiynol;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p>taliadau eraill, fel taliadau goramser, sydd wedi eu talu’n rheolaidd i weithiwr amaethyddol yn y 52 o wythnosau cyn y dyddiad cyfrifo.</p>
+              </content>
+            </level>
+          </paragraph>
+        </article>
+        <article eId="sec_36" class="prov1">
+          <heading>Gwyliau cyhoeddus a gwyliau banc</heading>
+          <num>36.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae’r erthygl hon yn gymwys pan fo gŵyl gyhoeddus neu ŵyl banc yng Nghymru yn syrthio ar ddiwrnod pan fo’n ofynnol fel arfer i weithiwr amaethyddol weithio o dan naill ai ei gontract neu ei brentisiaeth.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae gan weithiwr amaethyddol y mae ei gyflogwr yn ei gwneud yn ofynnol iddo weithio ar yr ŵyl gyhoeddus neu’r ŵyl banc hawl i gael tâl nad yw’n llai na’r gyfradd goramser a bennir yn erthygl 12.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Mae balans y gwyliau blynyddol sydd wedi eu cronni ar gyfer y flwyddyn gwyliau honno o dan y Gorchymyn hwn gan weithiwr amaethyddol nad yw ei gyflogwr yn ei gwneud yn ofynnol iddo weithio ar yr ŵyl gyhoeddus neu’r ŵyl banc i gael ei leihau o 1 diwrnod mewn cysylltiad â’r ŵyl gyhoeddus neu’r ŵyl banc nad yw’n ofynnol i’r gweithiwr amaethyddol weithio arni.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_37" class="prov1">
+          <heading>Taliad yn lle gwyliau blynyddol</heading>
+          <num>37.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Yn ddarostyngedig i’r amodau ym mharagraff (2), caiff gweithiwr amaethyddol a’i gyflogwr gytuno bod y gweithiwr amaethyddol i gael taliad yn lle diwrnod o hawl gwyliau blynyddol y gweithiwr amaethyddol.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>Yr amodau y cyfeirir atynt ym mharagraff (1) yw—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>bod uchafswm nifer y diwrnodau y caiff gweithiwr amaethyddol gael taliad yn lle gwyliau blynyddol ar eu cyfer yn ystod unrhyw flwyddyn gwyliau blynyddol wedi ei ragnodi yn y Tabl yn Atodlen 3,</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>bod cofnod ysgrifenedig i’w gadw gan y cyflogwr ynglŷn ag unrhyw gytundeb y caiff gweithiwr amaethyddol daliad yn lle diwrnod o wyliau blynyddol am o leiaf 3 blynedd gan gychwyn ar ddiwedd y flwyddyn gwyliau honno,</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p>o dan amgylchiadau pan nad yw’r gweithiwr amaethyddol yn gweithio ar ddiwrnod fel y cytunir yn unol â pharagraff (1), bod y diwrnod hwnnw i barhau’n rhan o hawl gwyliau blynyddol y gweithiwr amaethyddol, a</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(d)</num>
+              <content>
+                <p>bod taliad yn lle gwyliau blynyddol i’w dalu ar gyfradd sy’n cynnwys y gyfradd goramser a bennir yn erthygl 12 yn ogystal â thâl gwyliau a gyfrifir yn unol ag erthygl 35 fel pe bai’r diwrnod y gwneir taliad yn lle gwyliau blynyddol ar ei gyfer yn ddiwrnod y mae’r gweithiwr amaethyddol yn cymryd gwyliau blynyddol.</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Nid yw darpariaethau’r erthygl hon yn atal gweithiwr amaethyddol sy’n bodloni’r diffiniad o weithiwr oriau afreolaidd neu weithiwr rhan o’r flwyddyn rhag cael codiad yn ei gyflog mewn cysylltiad â’r cyfan o’i hawl i wyliau yn unol ag erthygl 35(3).</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_38" class="prov1">
+          <heading>Talu tâl gwyliau wrth derfynu cyflogaeth</heading>
+          <num>38.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Pan derfynir cyflogaeth gweithiwr amaethyddol ac nad yw’r gweithiwr amaethyddol wedi cymryd yr holl hawl gwyliau blynyddol sydd wedi cronni iddo ar ddyddiad terfynu’r gyflogaeth, mae gan y gweithiwr amaethyddol hawl yn unol â pharagraff (2) i gael taliad yn lle’r gwyliau blynyddol a gronnwyd ond nas cymerwyd.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae swm y taliad sydd i’w dalu i’r gweithiwr amaethyddol yn lle pob diwrnod o’i wyliau blynyddol a gronnwyd ond nas cymerwyd ar ddyddiad terfynu’r gyflogaeth i’w gyfrifo yn unol ag erthygl 35 fel pe bai dyddiad terfynu’r gyflogaeth yn ddiwrnod cyntaf cyfnod o wyliau blynyddol y gweithiwr amaethyddol.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_39" class="prov1">
+          <heading>Adennill tâl gwyliau</heading>
+          <num>39.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Os terfynir cyflogaeth gweithiwr amaethyddol cyn diwedd y flwyddyn gwyliau blynyddol a bod y gweithiwr amaethyddol wedi cymryd mwy o wyliau blynyddol nag yr oedd ganddo hawl i’w cael o dan ddarpariaethau’r Gorchymyn hwn neu fel arall, mae gan ei gyflogwr hawl i adennill swm y tâl gwyliau a dalwyd i’r gweithiwr amaethyddol mewn cysylltiad â gwyliau blynyddol a gymerwyd uwchlaw ei hawl.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Pan fo gan gyflogwr hawl o dan baragraff (1) i adennill tâl gwyliau oddi ar weithiwr amaethyddol, caiff y cyflogwr wneud hynny drwy ei dynnu oddi ar daliad cyflog olaf y gweithiwr amaethyddol.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_40" class="prov1">
+          <heading>Absenoldeb oherwydd profedigaeth</heading>
+          <num>40.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae gan weithiwr amaethyddol hawl i gael absenoldeb oherwydd profedigaeth â thâl a thâl profedigaeth amaethyddol yn unol ag erthygl 41 o dan amgylchiadau pan fo’r brofedigaeth yn ymwneud â pherson yng Nghategori A, Categori B neu Gategori C.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>At ddibenion paragraff (1), personau yng Nghategori A yw plentyn.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <intro>
+              <p>At ddibenion paragraff (1), personau yng Nghategori B yw—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>rhiant i’r gweithiwr amaethyddol,</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>priod neu bartner sifil y gweithiwr amaethyddol, neu</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p>rhywun y mae’r gweithiwr amaethyddol yn byw gydag ef fel pe baent yn briod (heb fod yn gyfreithiol briod) neu rywun y mae’r gweithiwr amaethyddol yn byw gydag ef fel pe baent mewn partneriaeth sifil (heb fod mewn partneriaeth sifil yn gyfreithiol).</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <intro>
+              <p>At ddibenion paragraff (1), personau yng Nghategori C yw—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>brawd neu chwaer i’r gweithiwr amaethyddol,</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>mam-gu/nain neu dad-cu/taid i’r gweithiwr amaethyddol, neu</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p>ŵyr neu wyres i’r gweithiwr amaethyddol.</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(4)</num>
+            <content>
+              <p>At ddibenion paragraff (1) mae absenoldeb oherwydd profedigaeth yn ychwanegol at unrhyw hawliau eraill i gael absenoldeb o dan y Gorchymyn hwn.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_41" class="prov1">
+          <heading>Pennu swm absenoldeb oherwydd profedigaeth</heading>
+          <num>41.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Swm yr absenoldeb oherwydd profedigaeth y mae gan weithiwr amaethyddol hawl i’w gael yn sgil marwolaeth person yng Nghategori A yw 2 wythnos.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>Swm yr absenoldeb oherwydd profedigaeth y mae gan weithiwr amaethyddol hawl i’w gael yn sgil marwolaeth person yng Nghategori B yw—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>4 diwrnod pan fo’r gweithiwr amaethyddol yn gweithio ei oriau sylfaenol ar 5 niwrnod neu fwy bob wythnos i’r un cyflogwr, neu</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>pan fo’r gweithiwr amaethyddol yn gweithio ei oriau sylfaenol ar 4 diwrnod yr wythnos neu lai i’r un cyflogwr, nifer y diwrnodau a gyfrifir yn unol â pharagraff (3).</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Yn ddarostyngedig i baragraff (7), mae swm hawl gweithiwr amaethyddol i gael absenoldeb oherwydd profedigaeth yn sgil marwolaeth person yng Nghategori B i’w gyfrifo yn ôl y fformwla a ganlyn—</p>
+              <p><u>DWEW</u> x 4</p>
+              <p>5</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(3)</num>
+            <intro>
+              <p>Swm yr absenoldeb oherwydd profedigaeth y mae gan weithiwr amaethyddol hawl i’w gael yn sgil marwolaeth person yng Nghategori C yw—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>2 diwrnod pan fo’r gweithiwr amaethyddol yn gweithio ei oriau sylfaenol ar 5 niwrnod neu fwy bob wythnos i’r un cyflogwr, neu</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>pan fo’r gweithiwr amaethyddol yn gweithio ei oriau sylfaenol ar 4 diwrnod yr wythnos neu lai i’r un cyflogwr, nifer y diwrnodau a gyfrifir yn unol â pharagraff (5).</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(4)</num>
+            <content>
+              <p>Yn ddarostyngedig i baragraff (7), mae swm hawl gweithiwr amaethyddol i gael absenoldeb oherwydd profedigaeth yn sgil marwolaeth person yng Nghategori C i’w gyfrifo yn ôl y fformwla a ganlyn—</p>
+              <p><u>DWEW</u> x 2</p>
+              <p>5</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(5)</num>
+            <content>
+              <p>At ddibenion y fformwla ym mharagraffau (3) a (5), DWEW yw nifer y diwrnodau a weithiwyd bob wythnos gan y gweithiwr amaethyddol wedi ei gyfrifo yn unol ag erthygl 31 neu 32 (fel y bo’n briodol).</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(6)</num>
+            <content>
+              <p>Pan fo’r cyfrifiad ym mharagraff (3) neu (5) yn arwain at hawl i gael absenoldeb oherwydd profedigaeth o lai nag 1 diwrnod, mae’r hawl i’w thalgrynnu i fyny i un diwrnod cyfan.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(7)</num>
+            <content>
+              <p>O dan amgylchiadau pan fo mwy nag un gyflogaeth gan weithiwr amaethyddol (boed gyda’r un cyflogwr neu gyda chyflogwyr gwahanol), caniateir cymryd absenoldeb oherwydd profedigaeth â thâl mewn cysylltiad â mwy nag un gyflogaeth ond ni chaiff, mewn cysylltiad ag unrhyw un brofedigaeth, fod yn fwy nag uchafswm yr absenoldeb oherwydd profedigaeth a bennir ar gyfer un gyflogaeth yn yr erthygl hon.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_42" class="prov1">
+          <heading>Tâl absenoldeb profedigaeth amaethyddol</heading>
+          <num>42.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae swm y tâl mewn cysylltiad ag absenoldeb oherwydd profedigaeth yn sgil marwolaeth person yng Nghategori A, am y pedwar diwrnod cyntaf neu, pan fo’r gweithiwr amaethyddol yn gweithio ei oriau sylfaenol ar 4 diwrnod yr wythnos neu lai, nifer y diwrnodau a gyfrifir yn unol ag erthygl 41(3), i’w bennu yn unol â darpariaethau erthygl 35 fel pe bai diwrnod cyntaf absenoldeb y gweithiwr amaethyddol oherwydd profedigaeth yn ddiwrnod cyntaf gwyliau blynyddol y gweithiwr amaethyddol hwnnw. Ar gyfer gweddill unrhyw gyfnod o absenoldeb oherwydd profedigaeth, mae gan y gweithiwr amaethyddol hawl i gael swm sy’n cyfateb i dâl absenoldeb profedigaeth rhiant statudol sy’n gymwys o bryd i’w gilydd.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae unrhyw dâl absenoldeb profedigaeth amaethyddol a delir i’r gweithiwr amaethyddol yn unol â pharagraff (1) yn cynnwys unrhyw dâl absenoldeb profedigaeth rhiant statudol y gall y gweithiwr amaethyddol fod â hawl i’w gael ar gyfer yr un cyfnod.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Mae swm y tâl absenoldeb profedigaeth amaethyddol y mae gan weithiwr amaethyddol hawl i’w gael yn sgil marwolaeth person yng Nghategori B neu C i’w bennu yn unol â darpariaethau erthygl 35 fel pe bai diwrnod cyntaf absenoldeb y gweithiwr amaethyddol oherwydd profedigaeth yn ddiwrnod cyntaf gwyliau blynyddol y gweithiwr amaethyddol hwnnw.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_43" class="prov1">
+          <heading>Absenoldeb di-dâl</heading>
+          <num>43.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae gan weithiwr amaethyddol yr hawl i ofyn am gyfnod o absenoldeb di-dâl gan ei gyflogwr.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Pan fo’r gweithiwr amaethyddol yn bodloni’r gofynion cymhwystra ar gyfer amser i ffwrdd ar gyfer dyletswyddau cyhoeddus neu ddibynyddion o dan Ddeddf Hawliau Cyflogaeth 1996, absenoldeb rhiant o dan Reoliadau Absenoldeb Mamolaeth a Rhiant etc. 1999<authorialNote marker="18" class="footnote"><p>O.S. 1999/3312, fel ’i diwygiwyd gan O.S. 2001/4010, 2002/2789, 2006/2014, 2008/1966, 2013/283, 2013/388, 2013/591, 2014/3221 a 2024/264.</p></authorialNote> neu absenoldeb gofalwr o dan Reoliadau Absenoldeb Gofalwr 2024<authorialNote marker="19" class="footnote"><p>O.S. 2024/251.</p></authorialNote>, rhaid i'r cyflogwr ymateb yn unol â’r ddeddfwriaeth berthnasol.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Mewn achosion eraill, caiff y cyflogwr ddewis pa un ai i gydsynio i gais y gweithiwr amaethyddol am absenoldeb di-dâl.</p>
+            </content>
+          </paragraph>
+        </article>
+      </part>
+      <part eId="rhan_6" class="group2">
+        <num>Rhan 6</num>
+        <heading>Dirymu a darpariaeth drosiannol</heading>
+        <article eId="sec_44" class="prov1">
+          <heading>Dirymu a darpariaeth drosiannol</heading>
+          <num>44.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae Gorchymyn Cyflogau Amaethyddol (Cymru) 2024<authorialNote marker="20" class="footnote"><p>O.S. 2024/390 (Cy. 69).</p></authorialNote> wedi ei ddirymu.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Mae gweithiwr amaethyddol a gyflogir yn weithiwr amaethyddol ar Radd neu’n brentis, ac sy’n ddarostyngedig i’r telerau a’r amodau a ragnodwyd yng Ngorchymyn Cyflogau Amaethyddol (Cymru) 2024 neu unrhyw Orchmynion blaenorol, yn ddarostyngedig, o’r dyddiad y mae’r Gorchymyn hwn yn cymryd effaith, i’r telerau a’r amodau a nodir yn Rhannau 2 i 5 o’r Gorchymyn hwn.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>Yn yr erthygl hon ystyr “Gorchmynion blaenorol” yw Gorchymyn Cyflogau Amaethyddol (Cymru) 2024, Gorchymyn Cyflogau Amaethyddol (Cymru) 2023<authorialNote marker="21" class="footnote"><p>O.S. 2023/260 (Cy. 37).</p></authorialNote>, Gorchymyn Cyflogau Amaethyddol (Rhif 2) (Cymru) 2022<authorialNote marker="22" class="footnote"><p>O.S. 2022/794 (Cy. 172).</p></authorialNote>, Gorchymyn Cyflogau Amaethyddol (Cymru) 2022<authorialNote marker="23" class="footnote"><p>O.S. 2022/417 (Cy. 102).</p></authorialNote>, Gorchymyn Cyflogau Amaethyddol (Cymru) 2020<authorialNote marker="24" class="footnote"><p>O.S. 2020/347 (Cy. 78).</p></authorialNote>, Gorchymyn Cyflogau Amaethyddol (Cymru) 2019<authorialNote marker="25" class="footnote"><p>O.S. 2019/511 (Cy. 118).</p></authorialNote>, Gorchymyn Cyflogau Amaethyddol (Cymru) 2018<authorialNote marker="26" class="footnote"><p>O.S. 2018/433 (Cy. 76).</p></authorialNote>, Gorchymyn Cyflogau Amaethyddol (Cymru) 2017<authorialNote marker="27" class="footnote"><p>O.S. 2017/1058 (Cy. 271).</p></authorialNote>, Gorchymyn Cyflogau Amaethyddol (Cymru) 2016<authorialNote marker="28" class="footnote"><p>O.S. 2016/107 (Cy. 53).</p></authorialNote>, Gorchymyn Cyflogau Amaethyddol (Cymru a Lloegr) 2012 a phob gorchymyn a ddirymwyd gan erthygl 70 o’r Gorchymyn hwnnw.</p>
+            </content>
+          </paragraph>
+        </article>
+      </part>
+      <hcontainer name="signatures">
+        <hcontainer name="signatureBlock">
+          <content>
+            <block name="signature">Huw Irranca-Davies</block>
+            <block name="role">Y Dirprwy Brif Weinidog ac Ysgrifennydd y Cabinet dros Newid Hinsawdd a Materion Gwledig, un o Weinidogion Cymru</block>
+            <block name="date"><date date="9999-01-01">6 Mawrth 2025</date></block>
+          </content>
+        </hcontainer>
+      </hcontainer>
+      <hcontainer name="schedules" class="schs">
+        <hcontainer name="schedule" class="sch">
+          <num>ATODLEN 1<authorialNote class="referenceNote"><p>Erthyglau 11, 13 ac 21</p></authorialNote></num>
+          <heading>CYFRADDAU TÂL ISAF</heading>
+          <content>
+            <p>Y Tabl</p>
+            <tblock class="table">
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
+                  <thead class="bold centre">
+                    <tr>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Gradd</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><b>Y gyfradd</b> <b>isaf</b> <b>o</b> <b>1</b> <b>Ebrill</b> <b>2025</b></p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">A1 – Gweithiwr datblygu amaethyddol (16-17 oed)</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£7.55</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">A2 – Gweithiwr datblygu amaethyddol (18-20 oed)</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£10.00</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">A3 – Gweithiwr datblygu amaethyddol (21+ oed)</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£12.21</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">B1 – Gweithiwr amaethyddol (16-17 oed)</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£7.55</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">B2 – Gweithiwr amaethyddol (18-20 oed)</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£10.00</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">B3 – Gweithiwr amaethyddol (21+ oed)</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£12.59</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">C – Gweithiwr amaethyddol uwch</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£13.48</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">D – Uwch-weithiwr amaethyddol</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£14.79</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">E – Rheolwr amaethyddol</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£16.23</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentis Blwyddyn 1</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£7.55</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentis Blwyddyn 2 a’r tu hwnt (16-17 oed)</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£7.55</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentis Blwyddyn 2 a’r tu hwnt (18-20 oed)</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£10.00</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentis Blwyddyn 2 a’r tu hwnt (21+ oed)</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">£12.21</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+          </content>
+        </hcontainer>
+      </hcontainer>
+      <hcontainer name="schedules" class="schs">
+        <hcontainer name="schedule" class="sch">
+          <num>ATODLEN 2<authorialNote class="referenceNote"><p>Erthyglau 31, 32 a 33</p></authorialNote></num>
+          <heading>HAWLIAU GWYLIAU BLYNYDDOL</heading>
+          <content>
+            <p>Y Tabl</p>
+            <tblock class="table">
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="8" class="allBorders tableleft width100">
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Nifer y diwrnodau a weithir bob wythnos gan weithiwr amaethyddol</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy na 6</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy na 5 ond heb fod yn fwy na 6</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy na 4 ond heb fod yn fwy na 5</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy na 3 ond heb fod yn fwy na 4</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy na 2 ond heb fod yn fwy na 3</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy nag 1 ond heb fod yn fwy na 2</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">1 neu lai</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Hawliau gwyliau blynyddol (diwrnodau)</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">38</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">35</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">31</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">25</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">20</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">13</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">7.5</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Hawliau gwyliau blynyddol (wythnosau)</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">6.3</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">5.8</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">6.2</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">6.3</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">6.7</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">6.5</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">7.5</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+          </content>
+        </hcontainer>
+      </hcontainer>
+      <hcontainer name="schedules" class="schs">
+        <hcontainer name="schedule" class="sch">
+          <num>ATODLEN 3<authorialNote class="referenceNote"><p>Erthygl 37</p></authorialNote></num>
+          <heading>TALIAD YN LLE GWYLIAU BLYNYDDOL</heading>
+          <content>
+            <p>Y Tabl</p>
+            <tblock class="table">
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="8" class="allBorders tableleft width100">
+                  <thead class="bold centre">
+                    <tr>
+                      <th colspan="8">
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Uchafswm nifer y diwrnodau gwyliau blynyddol y caniateir taliad yn eu lle</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Diwrnodau a weithir bob wythnos</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy na 6</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy na 5 ond heb fod yn fwy na 6</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy na 4 ond heb fod yn fwy na 5</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy na 3 ond heb fod yn fwy na 4</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy na 2 ond heb fod yn fwy na 3</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Mwy nag 1 ond heb fod yn fwy na 2</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">1 neu lai</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Uchafswm nifer y diwrnodau gwyliau blynyddol o dan y Gorchymyn hwn y caniateir taliad yn eu lle</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">10</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">7</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">3</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">2.5</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">2.5</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">1.5</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">1.5</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+          </content>
+        </hcontainer>
+      </hcontainer>
+      <hcontainer name="schedules" class="schs">
+        <hcontainer name="schedule" class="sch">
+          <num>ATODLEN 4<authorialNote class="referenceNote"><p>Erthyglau 5, 6, 7 ac 8</p></authorialNote></num>
+          <heading>CYMWYSTERAU CYFATEBOL Y TU ALLAN I GYMRU</heading>
+          <level>
+            <content>
+              <tblock class="table">
+                <num>Tabl A</num>
+                <foreign>
+                  <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="5" class="allBorders tableleft width100">
+                    <thead class="bold centre">
+                      <tr>
+                        <th colspan="5">
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymwysterau cyfatebol yn Lloegr, Gogledd Iwerddon, Gweriniaeth Iwerddon a’r Alban</p>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymru</p>
+                        </th>
+                        <th>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Lloegr</p>
+                        </th>
+                        <th>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Gogledd Iwerddon</p>
+                        </th>
+                        <th>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Gweriniaeth Iwerddon</p>
+                        </th>
+                        <th>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Yr Alban</p>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="left">
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Sylfaen Lefel 2</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Ganolradd Lefel 2</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Hyfforddeiaethau Gogledd Iwerddon Lefel 2</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">-</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Fodern Lefel 5</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 3</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Uwch Brentisiaeth Lefel 3</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Gogledd Iwerddon Lefel 3</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 5</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Fodern Lefel 6, Prentisiaeth Sylfaen Lefel 6</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Uwch Lefel 4</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Uwch Lefel 4</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel Uwch Lefel 4</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 6</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Fodern Lefel 7</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </foreign>
+              </tblock>
+            </content>
+          </level>
+          <level>
+            <content>
+              <tblock class="table">
+                <num>Tabl B</num>
+                <foreign>
+                  <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
+                    <thead class="bold centre">
+                      <tr>
+                        <th colspan="2">
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymwysterau cyfatebol o dan y Fframwaith Cymwysterau Ewropeaidd (‘FfCE’)</p>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="left">
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymru</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Sylfaen Lefel 2</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE Lefel 3</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 3</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE Lefel 4</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Uwch Lefel 4</p>
+                        </td>
+                        <td>
+                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE Lefel 5</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </foreign>
+              </tblock>
+            </content>
+          </level>
+        </hcontainer>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>

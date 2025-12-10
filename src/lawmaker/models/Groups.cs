@@ -12,8 +12,8 @@ namespace UK.Gov.Legislation.Lawmaker
     {
         public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = [@"^THE +(\w+) +GROUP +OF +PARTS$"],
-            [Lang.CYM] = [@"^GRŴP +O +RANNAU$"]
+            [Lang.EN] = [@"^THE +(\w+) +GROUP +OF +PARTS$"],
+            [Lang.CY] = [@"^GRŴP +O +RANNAU$"]
         };
 
         public static bool IsValidChild(IDivision child)
@@ -47,8 +47,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = [@"^PART [A-Z]*\d+[A-Z]*$"],
-            [Lang.CYM] = [@"^RHAN [A-Z]*\d+[A-Z]*$"]
+            [Lang.EN] = [@"^PART [A-Z]*\d+[A-Z]*$"],
+            [Lang.CY] = [@"^RHAN [A-Z]*\d+[A-Z]*$"]
         };
 
         public static bool IsValidChild(IDivision child)
@@ -90,8 +90,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = [@"^CHAPTER [A-Z]*\d+[A-Z]*$"],
-            [Lang.CYM] = [@"^PENNOD [A-Z]*\d+[A-Z]*$"]
+            [Lang.EN] = [@"^CHAPTER [A-Z]*\d+[A-Z]*$"],
+            [Lang.CY] = [@"^PENNOD [A-Z]*\d+[A-Z]*$"]
         };
 
         public static bool IsValidChild(IDivision child)
@@ -202,8 +202,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static readonly LanguagePatterns HeadingPatterns = new()
         {
-            [Lang.ENG] = [@"^SCHEDULES$"],
-            [Lang.CYM] = [@"^YR ATODLENNI$"]
+            [Lang.EN] = [@"^SCHEDULES$"],
+            [Lang.CY] = [@"^YR ATODLENNI$"]
         };
 
         public static bool IsValidChild(IDivision child)
@@ -221,8 +221,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = [@"^PART [A-Z]*\d+[A-Z]*$"],
-            [Lang.CYM] = [@"^RHAN [A-Z]*\d+[A-Z]*$"]
+            [Lang.EN] = [@"^PART [A-Z]*\d+[A-Z]*$"],
+            [Lang.CY] = [@"^RHAN [A-Z]*\d+[A-Z]*$"]
         };
 
         public static bool IsValidChild(IDivision child)
@@ -263,8 +263,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public static readonly LanguagePatterns NumberPatterns = new()
         {
-            [Lang.ENG] = [@"^CHAPTER [A-Z]*\d+[A-Z]*$"],
-            [Lang.CYM] = [@"^PENNOD [A-Z]*\d+[A-Z]*$"]
+            [Lang.EN] = [@"^CHAPTER [A-Z]*\d+[A-Z]*$"],
+            [Lang.CY] = [@"^PENNOD [A-Z]*\d+[A-Z]*$"]
         };
 
         public static bool IsValidChild(IDivision child)

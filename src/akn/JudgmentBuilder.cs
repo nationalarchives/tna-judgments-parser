@@ -10,16 +10,20 @@ using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
 using UK.Gov.Legislation.Judgments.Parse;
 
-namespace UK.Gov.NationalArchives.CaseLaw {
+namespace UK.Gov.NationalArchives.CaseLaw;
 
 class JudgmentBuilder : Builder {
 
     override protected string UKNS => Metadata.ukns;
 
-    override protected string MakeDivisionId(IDivision division) {
-        int hash = division.GetHashCode();
-        DivHashToId.TryGetValue(hash, out string id);
-        return id;
+    /// <summary>
+    /// Looks for a previously generated id for the given division and returns null if not found
+    /// </summary>
+    /// <param name="division"></param>
+    /// <returns>division id or null</returns>
+    override protected string MakeDivisionId(IDivision division)
+    {
+       return DivHashToId.GetValueOrDefault(division);
     }
 
     public static XmlDocument Build(IJudgment judgment) {
@@ -56,21 +60,20 @@ class JudgmentBuilder : Builder {
         return id;
     }
 
-    readonly Dictionary<int, string> DivHashToId = new();
+    readonly Dictionary<IDivision, string> DivHashToId = new();
 
     private void GenerateIds(IEnumerable<IDivision> divisions, string parent = null) {
         int lvl = 0;
         foreach (var div in divisions) {
-            int hash = div.GetHashCode();
             string para = MakeParagraphnId(div);
             if (para is not null) {
-                DivHashToId.Add(hash, para);
+                DivHashToId.Add(div, para);
                 continue;
             }
             string prefix = parent ?? "lvl";
             lvl += 1;
             string id = prefix + "_"+ lvl;
-            DivHashToId.Add(hash, id);
+            DivHashToId.Add(div, id);
             if (div.Name == "paragraph")
                 continue;
             if (div is not IBranch branch)
@@ -162,7 +165,5 @@ class JudgmentBuilder : Builder {
         a.SetAttribute("href", "#" + id);
         AddInlineContainerContents(a, link.Contents);
     }
-
-}
 
 }

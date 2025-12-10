@@ -5,11 +5,13 @@
       <references source="#author">
         <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Goods Vehicles (International Road Transport Permits and Haulage Within the EU) Regulations 2024" />
         <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2024" />
+        <TLCConcept eId="varMadeDate" href="#varOntologies" showAs="2024-05-21T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2024-06-11T00:00:00.0000000" />
         <TLCConcept eId="varSINoComp" href="#varOntologies" showAs="0000" />
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="banner">STATUTORY INSTRUMENTS</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
       <container name="subjects">
@@ -21,6 +23,10 @@
         </container>
       </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="2024-05-21"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varMadeDate" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="2024-06-11"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder" /></docDate></block>
+      </container>
     </preface>
     <preamble eId="preamble">
       <formula name="enactingText">
