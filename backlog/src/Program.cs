@@ -17,6 +17,11 @@ namespace Backlog.Src;
 
 public static class Program
 {
+    private static readonly Option<bool> DryRunOption = new("--dry-run")
+    {
+        Description = "Use the dry run flag to run the parser without sending to AWS"
+    };
+
     private static readonly Option<uint?> FileIdOption = new("--id")
     {
         Description =
@@ -29,9 +34,12 @@ public static class Program
         {
             RootCommand rootCommand = new("Backlog parser used to bulk parse imported files")
             {
-                Options = { FileIdOption }
+                Options = { DryRunOption, FileIdOption }
             };
-            rootCommand.SetAction(parseResult => RunBacklogParser(parseResult.GetValue(FileIdOption)));
+            rootCommand.SetAction(parseResult => RunBacklogParser(
+                parseResult.GetValue(DryRunOption),
+                parseResult.GetValue(FileIdOption))
+            );
 
             var parseResult = rootCommand.Parse(args);
             if (parseResult.Errors.Count > 0)
@@ -54,7 +62,7 @@ public static class Program
         }
     }
 
-    private static int RunBacklogParser(uint? id)
+    private static int RunBacklogParser(bool isDryRun, uint? id)
     {
         var autoPublish = true;
 
@@ -122,7 +130,10 @@ public static class Program
                 Console.WriteLine(bundle.Uuid + ".tar.gz");
                 Console.WriteLine(DateTime.Now);
 
-                Bucket.UploadBundle(bundle.Uuid + ".tar.gz", bundle.TarGz).Wait();
+                if (!isDryRun)
+                {
+                    Bucket.UploadBundle(bundle.Uuid + ".tar.gz", bundle.TarGz).Wait();
+                }
 
                 tracker.MarkDone(line, bundle.Uuid);
 
