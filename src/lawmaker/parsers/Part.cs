@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private HContainer ParsePart(WLine line)
         {
             var save1 = i;
-            
+
             if (!PeekPartHeading(line))
                 return null;
 
@@ -28,14 +28,13 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (Body[i + 1] is not WLine line2)
                 return null;
-                
+
             // Parts may have no heading
             ILine heading = null;
             // If line2 is centre aligned and does not match a chapter's num pattern, parse as the heading
-            if (!(!IsCenterAligned(line2) || LanguageService.IsMatch(line2.TextContent, Chapter.NumberPatterns)))
+            if (!(!line2.IsCenterAligned() || LanguageService.IsMatch(line2.TextContent, Chapter.NumberPatterns)))
                 heading = line2;
             i += heading is null ? 1 : 2;
-            
             if (IsEndOfQuotedStructure(line2.NormalizedContent))
                 return new PartLeaf { Number = number, Heading = heading };
 
@@ -49,7 +48,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
-                if (!Part.IsValidChild(next)) 
+                if (!Part.IsValidChild(next))
                 {
                     i = save;
                     break;
@@ -71,7 +70,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph np)
                 return false;
-            if (!IsCenterAligned(line))
+            if (!line.IsCenterAligned())
                 return false;
             if (i > Body.Count - 3)
                 return false;

@@ -19,7 +19,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (line is WOldNumberedParagraph)
                 return false;
             DocName docname = frames.CurrentDocName;
-            if (!docname.IsWelshSecondary() && !IsCenterAligned(line))
+            if (!docname.IsWelshSecondary() && !line.IsCenterAligned())
                 return false;
             if (i > Body.Count - 2)
                 return false;
@@ -62,7 +62,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 schedule = new ScheduleBranch { Number = number, Heading = heading, ReferenceNote = referenceNote, Children = children };
             }
             frames.Pop();
-            
+
             // If not in a quoted structure and not in Schedule context,
             // we need to wrap the parsed Schedule and any additional ones in a 'Schedules' hContainer with no heading
             if (quoteDepth == 0 && !frames.IsScheduleContext())
@@ -76,7 +76,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     i = save1;
                     children = [schedule];
                 }
-                
+
                 return new Schedules { Number = null, Heading = null, Children = children };
             }
             return schedule;
@@ -124,7 +124,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             // There might not be a Schedule heading
             // If the line isn't center aligned or it matches a Part's num then this Schedule does not have a heading
-            if (heading is not null && (!IsCenterAligned(heading) || LanguageService.IsMatch(heading.TextContent, SchedulePart.NumberPatterns)))
+            if (heading is not null && (!heading.IsCenterAligned() || LanguageService.IsMatch(heading.TextContent, SchedulePart.NumberPatterns)))
             {
                 heading = null;
                 i -= 1;
@@ -197,7 +197,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (docName.IsScottishPrimary() || docName.IsWelshPrimary())
             {
                 // Reference notes in SP and SC Bills/Acts are centre aligned and italic
-                if (IsCenterAligned(line) && line.IsAllItalicized())
+                if (line.IsCenterAligned() && line.IsAllItalicized())
                     return true;
                 // or begin with "(introduced by"
                 StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;

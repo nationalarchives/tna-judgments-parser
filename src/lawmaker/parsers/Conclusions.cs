@@ -56,7 +56,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (CommencementHistory.IsHeading(LanguageService, currentBlock))
                     break;
 
-                if (currentBlock is WLine line && IsCenterAligned(line))
+                if (currentBlock is WLine line && line.IsCenterAligned())
                     break;
 
                 if (ParseHeadingTblock() is HeadingTblock headingTblock)
@@ -141,7 +141,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 block = Body[i];
 
-                if (block is WLine line && IsCenterAligned(line))
+                if (block is WLine line && line.IsCenterAligned())
                     break;
 
                 if (Match(LdappTableBlock.Parse) is LdappTableBlock tableBlock)

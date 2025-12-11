@@ -17,7 +17,7 @@ record TableOfContents(IEnumerable<TableOfContentsLine> Lines)
 
     public static bool IsTableOfContentsHeading(IBlock? block, LanguageService languageService) =>
         block is WLine line
-            && LegislationParser.IsCenterAligned(line)
+            && line.IsCenterAligned()
             && languageService
                 .IsMatch(line.NormalizedContent, ContentsHeadingPatterns);
 
@@ -50,7 +50,7 @@ record TableOfContentsLine(WLine Line)
         if (block is not WLine contentsLine)
             return null;
         // ToC Grouping provisions are center aligned
-        if (LegislationParser.IsCenterAligned(contentsLine)
+        if (contentsLine.IsCenterAligned()
             // ToC Prov1 elements are numbered
             || contentsLine is WOldNumberedParagraph
             // ToC Schedules (and associated grouping provisions) have hanging indents
