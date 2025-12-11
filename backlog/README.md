@@ -83,7 +83,7 @@ The CSV file must contain the following columns (case-sensitive) for each judgme
 - `Extension` - File extension indicating the original file type (.pdf, .docx, .doc)
 - `decision_datetime` - Date and time when the decision was made (format: "yyyy-MM-dd HH:mm:ss")
 - `CaseNo` - Case number(s) (with space inbetween if multiple)
-- `claimants` - Name(s) of the claimant(s)
+- `claimants` OR `appellants` - Name(s) of the claimant(s)/appellant(s)
 - `respondent` - Name(s) of the respondent(s)
 
 #### Optional Columns
@@ -96,6 +96,8 @@ The following columns are optional:
 - `sec_subcategory` - Secondary subcategory name (child of sec_category, only used if sec_category is provided)
 - `ncn` - Neutral Citation Number (NCN) for the judgment, when available. If provided, this appears as `uk:cite` in the generated AkomaNtoso XML
 - `headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
+- `Jurisdictions` - Jurisdictions to be added as `uk:jurisdiction` elements in the xml. This can be blank, a single item or a comma seperated list in quotes (e.g. `"jurisdiction1,jurisdiction2"`)
+- `webarchiving` - Link to the webarchive for this judgment
 
 **Note**: Column names are case-sensitive. If required columns are missing, the system will throw a validation error listing the missing columns.
 
