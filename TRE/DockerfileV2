@@ -1,7 +1,7 @@
 FROM public.ecr.aws/lambda/dotnet:8@sha256:b0d5c77ede87ca6b77a4cfdda517db035b04286e44dfdabc3b6c4838b4e6f7e0 AS base
 WORKDIR /var/task
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:df1aebc5fd72a1315f34eda24206f195d5ca00ccf2e3009947a74c5a67166cbb AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:8f710c2f7f3e60392fba1d408dcd9c30c26295bd4ded326cb7cf6cc6fd66cfde AS build-env
 
 WORKDIR /src
 COPY ["TRE/TRE.csproj",""]
