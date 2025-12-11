@@ -21,24 +21,29 @@ record TableOfContents(IEnumerable<TableOfContentsLine> Lines)
             && languageService
                 .IsMatch(line.NormalizedContent, ContentsHeadingPatterns);
 
-    public static TableOfContents? Parse(IParser<IBlock> parser)
+    public static IParser<IBlock>.ParseStrategy<TableOfContents> Parse(System.Predicate<IBlock> takeWhile) => (IParser<IBlock> parser) =>
     {
         // Identify 'CONTENTS' heading
-        IBlock? block = parser.Advance();
-        if (!IsTableOfContentsHeading(block, parser.LanguageService))
+        if(parser.Advance() is not WLine line)
+        {
+            return null;
+        };
+        if (!IsTableOfContentsHeading(line, parser.LanguageService))
         {
             return null;
         }
-        if (parser.MatchWhile(TableOfContentsLine.Parse)
+        if (parser.MatchWhile(
+            takeWhile,
+            TableOfContentsLine.Parse)
             is IEnumerable<TableOfContentsLine> lines
             && lines.Any())
         {
-            return new(lines);
+            return new(lines.Prepend(new TableOfContentsLine(line)));
         } else
         {
             return null;
         }
-    }
+    };
 }
 
 record TableOfContentsLine(WLine Line)

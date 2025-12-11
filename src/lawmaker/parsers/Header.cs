@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Lawmaker.Header;
 
 namespace UK.Gov.Legislation.Lawmaker;
 
@@ -37,49 +38,14 @@ namespace UK.Gov.Legislation.Lawmaker;
          */
         private void ParsePrimaryHeader()
         {
-            bool foundPreface = false;
-            while (i < Body.Count - 10)
+            if (Match(NIHeader.Parse) is not NIHeader header)
             {
-                List<IBlock> blocks = [];
-                blocks.Add(Body[i]);
-                blocks.Add(Body[i + 1]);
-                blocks.Add(Body[i + 2]);
-
-                if (!foundPreface && blocks.All(b => b is WLine))
-                {
-                    IEnumerable<string> textContent = blocks
-                        .Select(b => (b as WLine).TextContent)
-                        .Select(s => Regex.Replace(s, @"\s", ""));
-
-                    string longTitle = string.Join(" ", textContent).ToUpper();
-                    if (longTitle == "A BILL TO")
-                    {
-                        preface.AddRange(blocks);
-                        i += 3;
-                        foundPreface = true;
-                        continue;
-                    }
-                }
-                if (foundPreface && blocks[0] is WLine line)
-                {
-                    string enactingText = Regex.Replace(line.TextContent, @"\s", "").ToUpper();
-                    if (enactingText.StartsWith("BEITENACTEDBY"))
-                    {
-                        preamble.Add(blocks[0]);
-                        i += 1;
-                        return;
-                    }
-                }
-                if (foundPreface)
-                    preface.Add(blocks[0]);
-                else
-                    coverPage.Add(blocks[0]);
-                i += 1;
+                return;
             }
-            coverPage.Clear();
-            preface.Clear();
-            preamble.Clear();
-            i = 0;
+            coverPage.AddRange(header?.CoverPage?.Blocks ?? []);
+            preface.AddRange(header?.Preface?.Blocks ?? []);
+            preamble.AddRange(header?.Preamble?.Blocks ?? []);
+
         }
 
         private void EnrichPrimaryHeader()
@@ -140,7 +106,7 @@ namespace UK.Gov.Legislation.Lawmaker;
                 }
 
                 if (!foundContents)
-                    foundContents = Match(TableOfContents.Parse) is not null;
+                    foundContents = Match(TableOfContents.Parse(_ => true)) is not null;
 
 
 
