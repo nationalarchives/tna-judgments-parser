@@ -53,8 +53,8 @@ namespace Backlog.Src
 
                 DotNetEnv.Env.Load();  // required for bucket name
 
-                string judgmentsFilePath = Environment.GetEnvironmentVariable("JUDGMENTS_FILE_PATH");
-                string hmctsFilePath = Environment.GetEnvironmentVariable("HMCTS_FILES_PATH");
+                string judgmentsFilePath = Environment.GetEnvironmentVariable("JUDGMENTS_FILE_PATH") ?? "";
+                string hmctsFilePath = Environment.GetEnvironmentVariable("HMCTS_FILES_PATH") ?? "";
 
                 Helper helper = new(new Parser(Logging.Factory.CreateLogger<Parser>(), new UK.Gov.Legislation.Judgments.AkomaNtoso.Validator()))
                 {
@@ -102,6 +102,7 @@ namespace Backlog.Src
                         Bundle bundle = helper.GenerateBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
 
                         string outputPath = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
+                        Directory.CreateDirectory(outputPath);
                         string output = Path.Combine(outputPath, bundle.Uuid + ".tar.gz");
                         System.IO.File.WriteAllBytes(output, bundle.TarGz);
 

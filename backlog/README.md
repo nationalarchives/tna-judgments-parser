@@ -45,15 +45,15 @@ For local development or CI environments where AWS configuration isn't automatic
 
 ### Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `COURT_METADATA_PATH` | Path to the CSV file containing court metadata | `{BaseDir}/court_metadata.csv` |
-| `DATA_FOLDER_PATH` | Path to the folder containing judgment data files | `{BaseDir}` |
-| `TRACKER_PATH` | Path to the CSV file tracking uploaded judgments | `{BaseDir}/uploaded-production.csv` |
-| `OUTPUT_PATH` | Path where generated bundle files will be saved | `{BaseDir}` |
-| `BULK_NUMBERS_PATH` | Path to the CSV file tracking bulk numbers | `{BaseDir}/bulk_numbers.csv` |
-| `LAST_BEFORE_BATCH` | The last bulk number used before this batch started | `0` |
-| `AWS_REGION` | AWS region for S3 bucket operations | Defaults to the region configured in AWS deployment environment |
+| Variable              | Description                                                                                            | Default                                                         |
+|-----------------------|--------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `COURT_METADATA_PATH` | Path to the CSV file containing court metadata                                                         | `{BaseDir}/court_metadata.csv`                                  |
+| `DATA_FOLDER_PATH`    | Path to the folder containing judgment data files                                                      | `{BaseDir}`                                                     |
+| `TRACKER_PATH`        | Path to the CSV file tracking uploaded judgments                                                       | `{BaseDir}/uploaded-production.csv`                             |
+| `OUTPUT_PATH`         | Path where generated bundle files will be saved                                                        | `{BaseDir}`                                                     |
+| `AWS_REGION`          | AWS region for S3 bucket operations                                                                    | Defaults to the region configured in AWS deployment environment |
+| `JUDGMENTS_FILE_PATH` | The filepath prefix used in the court metadata csv (used to crossference with file-metadata.csv paths) | `""`                                                            |
+| `HMCTS_FILES_PATH`    | The filepath prefix used in the file-metadata csv (used to crossference with court metadata csv paths) | `""`                                                            |
 
 Note: The `AWS_REGION` variable (e.g., 'eu-west-2' for London) is typically automatically set in AWS deployment environments (EC2, Lambda, ECS, etc.). You only need to set it manually when running locally or in environments without AWS configuration. In CI/CD pipelines, ensure this is set to match your S3 bucket's region.
 
@@ -83,7 +83,7 @@ The CSV file must contain the following columns (case-sensitive) for each judgme
 - `Extension` - File extension indicating the original file type (.pdf, .docx, .doc)
 - `decision_datetime` - Date and time when the decision was made (format: "yyyy-MM-dd HH:mm:ss")
 - `CaseNo` - Case number(s) (with space inbetween if multiple)
-- `claimants` - Name(s) of the claimant(s)
+- `claimants` OR `appellants` - Name(s) of the claimant(s)/appellant(s)
 - `respondent` - Name(s) of the respondent(s)
 
 #### Optional Columns
@@ -96,6 +96,8 @@ The following columns are optional:
 - `sec_subcategory` - Secondary subcategory name (child of sec_category, only used if sec_category is provided)
 - `ncn` - Neutral Citation Number (NCN) for the judgment, when available. If provided, this appears as `uk:cite` in the generated AkomaNtoso XML
 - `headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
+- `Jurisdictions` - Jurisdictions to be added as `uk:jurisdiction` elements in the xml. This can be blank, a single item or a comma seperated list in quotes (e.g. `"jurisdiction1,jurisdiction2"`)
+- `webarchiving` - Link to the webarchive for this judgment
 
 **Note**: Column names are case-sensitive. If required columns are missing, the system will throw a validation error listing the missing columns.
 
@@ -106,22 +108,6 @@ Tracks which judgments have been uploaded to production, preventing duplicate pr
 - Multiple runs might be needed to process all files
 - Some files might fail and need reprocessing
 - Source files might be updated and need reprocessing
-
-### Bulk Numbers CSV
-
-Maintains a record of bulk number assignments for processed judgments. This is necessary because:
-
-- Each judgment needs a unique identifier in the system
-- Identifiers must be sequential within each batch
-- We need to track which tribunal ID maps to which bulk number
-
-Format:
-
-```csv
-bulk_num,trib_id
-```
-
-This tracking ensures consistency across multiple processing runs and helps maintain referential integrity between the source tribunal system and our system.
 
 ## Court Codes
 
@@ -261,8 +247,6 @@ id,court,FilePath,Extension,decision_datetime,CaseNo,claimants,respondent,main_c
    export DATA_FOLDER_PATH=/path/to/data
    export TRACKER_PATH=/path/to/tracker.csv
    export OUTPUT_PATH=/path/to/output
-   export BULK_NUMBERS_PATH=/path/to/bulk_numbers.csv
-   export LAST_BEFORE_BATCH=0
    ```
 
 2. **Prepare data directory structure** as shown in the Implementation Details section.
