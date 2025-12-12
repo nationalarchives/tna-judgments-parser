@@ -6,12 +6,28 @@ using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using System.Text.RegularExpressions;
 using System;
+using System.Linq;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
 
     public partial class LegislationParser
     {
+
+        private bool PeekSchedule(WLine line)
+        {
+            if (line is WOldNumberedParagraph)
+                return false;
+            DocName docname = frames.CurrentDocName;
+            if (!docname.IsWelshSecondary() && !IsCenterAligned(line))
+                return false;
+            if (i > Body.Count - 2)
+                return false;
+            string numberText = GetScheduleNumber(line, true);
+            if (!LanguageService.IsMatch(numberText, Schedule.NumberPatterns))
+                return false;
+            return true;
+        }
 
         private HContainer? ParseSchedule(WLine line)
         {
@@ -20,30 +36,85 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!PeekSchedule(line))
                 return null;
 
-            // Handle number
-            WLine numberLine = line;
-            string numberText = GetNumber(numberLine, false);
-            IFormattedText number = new WText(numberText, null);
-
-            if (Body[i + 1] is not WLine line2)
+            HContainer schedule;
+            IFormattedText number;
+            IFormattedText referenceNote;
+            WLine? heading;
+            if (ParseScheduleHeader(line) is var result && result.HasValue)
+                (number, referenceNote, heading) = result.Value;
+            else
                 return null;
 
-            // Num can be followed by a reference note & heading, or just a heading.
-            WLine headingLine;
-            WLine? referenceNoteLine;
-            if (IsReferenceNote(line2))
+            frames.PushScheduleContext();
+            WLine scheduleBodyStartLine = (WLine) Body[i-1];
+            List<IBlock> contents = ParseLeafContents(scheduleBodyStartLine);
+            if (contents.Count > 0)
+                schedule = new ScheduleLeaf { Number = number, Heading = heading, ReferenceNote = referenceNote, Contents = contents };
+            else
+            {
+                List<IDivision> children = ParseScheduleBranchChildren();
+                // A ScheduleBranch must have at least 1 child.
+                if (children.Count == 0)
+                {
+                    i = save;
+                    return null;
+                }
+                schedule = new ScheduleBranch { Number = number, Heading = heading, ReferenceNote = referenceNote, Children = children };
+            }
+            frames.Pop();
+
+            // If we encounter a non-quoted Schedule outside of a Schedules container, it must be wrapped.
+            if (frames.IsScheduleContext() || quoteDepth > 0)
+                return schedule;
+            return new Schedules { Number = null, Children = [schedule] };
+        }
+
+        /// <summary>
+        /// Returns the number, reference note, and heading of the <c>Schedule</c> starting at <paramref name="line"/>.
+        /// Or <c>null</c> if unsuccessful.
+        /// </summary>
+        /// <param name="line">The first line of the schedule.</param>
+        /// <returns>A tuple containing the number, reference note, and heading of the <c>Schedule</c>.</returns>
+        internal (IFormattedText number, IFormattedText referenceNote, WLine? heading)? ParseScheduleHeader(WLine line)
+        {
+            int save = i;
+
+            // Handle number
+            WLine numberLine = line;
+            string numberText = GetScheduleNumber(numberLine, false);
+            IFormattedText number = new WText(numberText, null);
+
+            IBlock line2 = Body[i + 1];
+            // line2 may be a WLine or WTable
+            if (line2 is not WLine && line2 is not WTable)
+                return null;
+
+            // Number can optionally be followed by a reference note and/or heading.
+            WLine? heading = null;
+            WLine? referenceNoteLine = null;
+            if (line2 is WLine && IsScheduleReferenceNote((WLine) line2))
             {
                 if (Body[i + 2] is not WLine line3)
                     return null;
-                referenceNoteLine = line2;
-                headingLine = line3;
+                referenceNoteLine = (WLine) line2;
+                heading = line3;
                 i += 3;
             }
-            else
+            else if (line2 is WLine)
             {
                 referenceNoteLine = null;
-                headingLine = line2;
+                heading = (WLine) line2;
                 i += 2;
+            }
+            else
+                i += 1;
+
+            // There might not be a Schedule heading
+            // If the line isn't center aligned or it matches a Part's num then this Schedule does not have a heading
+            if (heading is not null && (!IsCenterAligned(heading) || LanguageService.IsMatch(heading.TextContent, SchedulePart.NumberPatterns)))
+            {
+                heading = null;
+                i -= 1;
             }
 
             // SI documents occasionally have schedule reference notes on the same line as the schedule number
@@ -55,59 +126,14 @@ namespace UK.Gov.Legislation.Lawmaker
                 referenceNoteText = referenceNoteLine?.NormalizedContent ?? "";
             IFormattedText referenceNote = new WText(referenceNoteText, null);
 
-            if (!IsCenterAligned(headingLine))
-            {
-                i = save;
-                return null;
-            }
-
-            var save1 = i;
-            frames.PushScheduleContext();
-
-            HContainer schedule;
-            IDivision next = ParseNextBodyDivision();
-            if (next is UnnumberedLeaf content)
-            {
-                schedule = new ScheduleLeaf { Number = number, Heading = headingLine, ReferenceNote = referenceNote, Contents = content.Contents };
-            }
-            else
-            {
-                i = save1;
-                List<IDivision> children = ParseScheduleChildren();
-                if (children.Count == 0)
-                {
-                    i = save;
-                    return null;
-                }
-                schedule = new ScheduleBranch { Number = number, Heading = headingLine, ReferenceNote = referenceNote, Children = children };
-            }
-
-            frames.Pop();
-
-            if (frames.IsScheduleContext() || quoteDepth > 0)
-                return schedule;
-
-            // If we encounter a non-quoted Schedule outside of a Schedules container, it must be wrapped
-            return new Schedules { Number = null, Children = [schedule] };
+            return (number, referenceNote, heading);
         }
 
-        private bool PeekSchedule(WLine line)
-        {
-            if (line is WOldNumberedParagraph np)
-                return false;
-
-            DocName docname = frames.CurrentDocName;
-            if (!docname.IsWelshSecondary() && !IsCenterAligned(line))
-                return false;
-            if (i > Body.Count - 3)
-                return false;
-            string numText = GetNumber(line, true);
-            if (!LanguageService.IsMatch(numText, Schedule.NumberPatterns))
-                return false;
-            return true;
-        }
-
-        internal List<IDivision> ParseScheduleChildren()
+        /// <summary>
+        /// Parses and returns a list of child divisions belonging to the <c>ScheduleBranch</c>.
+        /// </summary>
+        /// <returns>A list of child divisions belonging to the <c>ScheduleBranch</c></returns>
+        internal List<IDivision> ParseScheduleBranchChildren()
         {
             List<IDivision> children = [];
             while (i < Body.Count)
@@ -131,7 +157,15 @@ namespace UK.Gov.Legislation.Lawmaker
             return children;
         }
 
-        private string GetNumber(WLine line, bool ignoreQuotedStructureStart)
+        /// <summary>
+        /// Obtains and formats the <c>Schedule</c> number from the given <paramref name="line"/>.
+        /// </summary>
+        /// <param name="line">The line from which to obtain the <c>Schedule</c> number.</param>
+        /// <param name="ignoreQuotedStructureStart">
+        /// Whether to strip the quoted structure start pattern (if present) from the beginning of the number.
+        /// </param>
+        /// <returns>The formatted <c>Schedule</c> number.</returns>
+        private string GetScheduleNumber(WLine line, bool ignoreQuotedStructureStart)
         {
             string number = frames.IsSecondaryDocName() ? IgnoreRightTabbedText(line) : line.NormalizedContent;
             if (ignoreQuotedStructureStart)
@@ -139,7 +173,13 @@ namespace UK.Gov.Legislation.Lawmaker
             return Regex.Replace(number, @"SCHEDULE", "Schedule", RegexOptions.IgnoreCase);
         }
 
-        private bool IsReferenceNote(WLine line)
+
+        /// <summary>
+        /// Determines whether the given <paramref name="line"/> represents a <c>Schedule</c> reference note.
+        /// </summary>
+        /// <param name="line">The line.</param>
+        /// <returns>Whether <paramref name="line"/> represents a <c>Schedule</c> reference note.</returns>
+        private bool IsScheduleReferenceNote(WLine line)
         {
             if (docName.IsScottishPrimary())
             {
@@ -154,7 +194,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 return IsRightAligned(line);
             return false;
         }
-
 
     }
 

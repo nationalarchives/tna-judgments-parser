@@ -15,14 +15,14 @@ using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    partial class Builder(Document bill) : AkN.Builder
+    partial class Builder(Document bill, LanguageService languageService) : AkN.Builder
     {
 
         override protected string UKNS => "https://www.legislation.gov.uk/namespaces/UK-AKN";
 
-        public static XmlDocument Build(Document bill)
+        public static XmlDocument Build(Document bill, LanguageService languageService)
         {
-            return new Builder(bill).Build();
+            return new Builder(bill, languageService).Build();
         }
 
         private readonly Document bill = bill;
@@ -477,12 +477,21 @@ namespace UK.Gov.Legislation.Lawmaker
                     // Extract the numeric day and remove the suffix from the original string
                     text = text.Replace(match.Value, match.Groups[1].Value);
 
-                bool parsedDate = DateTime.TryParseExact(text, "d MMMM yyyy", CultureInfo.GetCultureInfo("en-GB"), DateTimeStyles.None, out DateTime dateTime);
-                if (parsedDate)
-                    dateString = dateTime.ToString("yyyy-MM-dd");
-                // Date was not parsed so set to dummy value
-                else
-                    dateString = "9999-01-01";
+                foreach (CultureInfo culture in languageService.Cultures)
+                {
+                    // this DateTime parsing should really be done in the parsing stage, not the building stage
+                    bool parsedDate = DateTime.TryParseExact(text, "d MMMM yyyy", culture, DateTimeStyles.None, out DateTime dateTime);
+                    if (parsedDate)
+                    {
+                        dateString = dateTime.ToString("yyyy-MM-dd");
+                        break;
+                    }
+                    // Date was not parsed so set to dummy value
+                    else
+                    {
+                        dateString = "9999-01-01";
+                    }
+                }
             }
             if (dateString is not null)
             {
