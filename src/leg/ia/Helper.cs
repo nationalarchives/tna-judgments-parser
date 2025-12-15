@@ -82,7 +82,10 @@ class Helper : BaseHelper {
     }
 
     protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
-        // Apply IA-specific style mappings
+        // Phase 1: Move tables from preface to mainBody (tables not allowed in preface)
+        MovePrefaceTablesToMainBody(xml);
+        
+        // Phase 2: Apply IA-specific style mappings
         ApplyIAStyleMappings(xml);
         
         // Extract docDate and update FRBR metadata (must be after semantic elements are created)

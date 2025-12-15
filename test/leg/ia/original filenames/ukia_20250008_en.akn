@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukia/2025/8/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukia/2025/8/data.akn" />
-          <FRBRdate date="2025-12-15T11:45:08Z" name="transform" />
+          <FRBRdate date="2025-12-15T12:07:29Z" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -30,6 +30,7 @@
       </references>
       <proprietary source="#">
         <uk:parser>1.0.0</uk:parser>
+        <dc:modified>2025-01-15T09:36:00Z</dc:modified>
         <uk:legislation>http://www.legislation.gov.uk/id/uksi/2025/36</uk:legislation>
         <uk:hash>2722230efefae6891c05138440e4918740cca3161fb4ba65b919787cdba70bbb</uk:hash>
       </proprietary>

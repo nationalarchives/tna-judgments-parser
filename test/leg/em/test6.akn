@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="PolicyNote" xmlns:uk="https://legislation.gov.uk/akn">
+  <doc name="PolicyNote" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ssi/2023/132/memorandum" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ssi/2023/132/memorandum" />
-          <FRBRdate date="2025-11-05" name="generated" />
+          <FRBRdate date="2025-12-15" name="generated" />
           <FRBRauthor href="#" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ssi/2023/132/memorandum/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ssi/2023/132/memorandum/data.akn" />
-          <FRBRdate date="2025-11-05T10:38:23Z" name="transform" />
+          <FRBRdate date="2025-12-15T12:08:20Z" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,7 +29,8 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>0.28.0</uk:parser>
+        <uk:parser>1.0.0</uk:parser>
+        <dc:modified>2023-04-26T10:20:00Z</dc:modified>
         <uk:hash>f6de65b2c381e9de70146da96b4f26fe05633cb1318b10fc36bbc0a8c4c30fbc</uk:hash>
       </proprietary>
     </meta>

@@ -16,6 +16,8 @@ namespace UK.Gov.Legislation.ImpactAssessments {
 /// </summary>
 class IAMetadata : DocumentMetadata {
 
+    public DateTime? LastModified { get; init; }
+
     internal static IAMetadata Make(List<IBlock> header, WordprocessingDocument doc, LegislativeDocumentConfig config, string filename) {
         string name = BaseHeaderSplitter.GetDocumentType(header, config);
         if (string.IsNullOrEmpty(name)) {
@@ -40,6 +42,7 @@ class IAMetadata : DocumentMetadata {
             ShortUriComponent = shortUri,
             ExpressionDate = Builder.FormatDateAndTime(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
+            LastModified = modified,
             Name = name,
             CSS = css,
             LegislationUri = legislationUri
