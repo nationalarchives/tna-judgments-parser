@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryMemorandum" xmlns:uk="https://legislation.gov.uk/akn">
+  <doc name="ExplanatoryMemorandum" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -30,6 +30,7 @@
       </references>
       <proprietary source="#">
         <uk:parser>0.28.0</uk:parser>
+        <dc:modified>2023-05-31T09:28:00Z</dc:modified>
         <uk:hash>9ff1ccf8f769c57f39d5022d13f91d56f5e4f2cc389df3bad3ce3ed92da2287b</uk:hash>
       </proprietary>
     </meta>

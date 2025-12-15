@@ -82,11 +82,11 @@ class Helper : BaseHelper {
     }
 
     protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
-        // Phase 1: Move tables from preface to mainBody (tables not allowed in preface)
-        MovePrefaceTablesToMainBody(xml);
-        
-        // Phase 2: Apply IA-specific style mappings
+        // Apply IA-specific style mappings
         ApplyIAStyleMappings(xml);
+        
+        // Extract docDate and update FRBR metadata (must be after semantic elements are created)
+        UpdateFRBRDatesFromDocDate(xml);
         
         // Phase 3: Header Structure Enhancement
         TransformHeaderStructure(xml);
@@ -329,6 +329,34 @@ class Helper : BaseHelper {
             parent = parent.ParentNode;
         }
         return false;
+    }
+
+    /// <summary>
+    /// Extract docDate from document and update FRBR dates
+    /// </summary>
+    private static void UpdateFRBRDatesFromDocDate(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        
+        // Find the first docDate element with a date attribute
+        var docDateNode = xml.SelectSingleNode("//akn:docDate[@date]", nsmgr) as XmlElement;
+        if (docDateNode != null) {
+            string docDate = docDateNode.GetAttribute("date");
+            
+            // Update FRBRWork date
+            var workDate = xml.SelectSingleNode("//akn:FRBRWork/akn:FRBRdate", nsmgr) as XmlElement;
+            if (workDate != null) {
+                workDate.SetAttribute("date", docDate);
+                workDate.SetAttribute("name", "document");
+            }
+            
+            // Update FRBRExpression date
+            var expDate = xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRdate", nsmgr) as XmlElement;
+            if (expDate != null) {
+                expDate.SetAttribute("date", docDate);
+                expDate.SetAttribute("name", "document");
+            }
+        }
     }
 
     /// <summary>

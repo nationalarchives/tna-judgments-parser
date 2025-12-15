@@ -32,6 +32,15 @@ class Builder : AkN.Builder {
         XmlElement main = CreateAndAppend("doc", akomaNtoso);
         main.SetAttribute("name", document.Meta.Name);
         main.SetAttribute("xmlns:uk", UKNS);
+        
+        // Add dc namespace if document has lastModified info (for dc:modified in proprietary)
+        // Check both ExpressionDate with lastModified name and IA-specific LastModified property
+        bool hasModified = (document.Meta.ExpressionDateName == "lastModified" && document.Meta.ExpressionDate != null) ||
+                          (document.Meta is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue);
+        if (hasModified) {
+            main.SetAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
+        }
+        
         AddMetadata(main, document.Meta);
         if (document.Header is not null && document.Header.Any()) {
             XmlElement header = doc.CreateElement("preface", ns);
@@ -131,6 +140,25 @@ class Builder : AkN.Builder {
         XmlElement parser = doc.CreateElement("uk", "parser", UKNS);
         proprietary.AppendChild(parser);
         parser.AppendChild(doc.CreateTextNode(AkN.Metadata.GetParserVersion()));
+        
+        // Add dc:modified for all documents that have lastModified information
+        // This provides a consistent location for file modification timestamp
+        string modifiedValue = null;
+        
+        // For IA documents, use the LastModified property
+        if (data is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) {
+            modifiedValue = FormatDateAndTime(iaData.LastModified);
+        }
+        // For other documents (like EMs), use ExpressionDate if it's a lastModified timestamp
+        else if (data.ExpressionDateName == "lastModified" && data.ExpressionDate != null) {
+            modifiedValue = data.ExpressionDate;
+        }
+        
+        if (modifiedValue != null) {
+            XmlElement modified = doc.CreateElement("dc", "modified", "http://purl.org/dc/elements/1.1/");
+            proprietary.AppendChild(modified);
+            modified.AppendChild(doc.CreateTextNode(modifiedValue));
+        }
 
         // Add legislation reference if available (for Impact Assessments)
         if (data.LegislationUri is not null) {

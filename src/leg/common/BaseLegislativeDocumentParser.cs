@@ -53,7 +53,7 @@ partial class BaseLegislativeDocumentParser : CaseLaw.OptimizedParser {
         logger.LogInformation("Maximum parse depth reached: {}", parseDepthMax);
 
         IEnumerable<IImage> images = WImage.Get(doc);
-        BaseMetadata metadata = BaseMetadata.Make(header, doc, Config);
+        DocumentMetadata metadata = MakeMetadata(header);
         logger.LogInformation("Document type: {}", metadata.Name);
         logger.LogInformation("Document URI: {}", metadata.ShortUriComponent);
         logger.LogInformation("Parsed {} divisions in body, {} annexes, {} images", 
@@ -66,6 +66,10 @@ partial class BaseLegislativeDocumentParser : CaseLaw.OptimizedParser {
             Images = images,
             Meta = metadata 
         };
+    }
+
+    protected virtual DocumentMetadata MakeMetadata(List<IBlock> header) {
+        return BaseMetadata.Make(header, doc, Config);
     }
 
     protected override List<IBlock> Header() {
