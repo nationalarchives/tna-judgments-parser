@@ -82,26 +82,35 @@ class Helper : BaseHelper {
     }
 
     protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
-        // Apply IA-specific style mappings
+        // Phase 1: Move tables from preface to mainBody (tables not allowed in preface)
+        MovePrefaceTablesToMainBody(xml);
+        
+        // Phase 2: Apply IA-specific style mappings
         ApplyIAStyleMappings(xml);
         
-        // Phase 2: Header Structure Enhancement
+        // Phase 3: Header Structure Enhancement
         TransformHeaderStructure(xml);
         
-        // Phase 3: Section-Based Organization
+        // Phase 4: Section-Based Organization
         TransformContentSections(xml);
         
-        // Phase 4: Clean up empty heading elements
+        // Phase 5: Clean up empty heading elements
         RemoveEmptyHeadings(xml);
         
-        // Phase 5: Replace th with td (th not supported in IA subschema)
+        // Phase 6: Replace th with td (th not supported in IA subschema)
         ReplaceThWithTd(xml);
         
-        // Phase 6: Remove unsupported elements (img, subFlow/math, TOC, marker/tab)
+        // Phase 7: Remove unsupported elements (img, subFlow/math, TOC, marker/tab)
         RemoveUnsupportedElements(xml);
         
-        // Phase 7: Convert blockContainer to p in table cells
+        // Phase 8: Convert blockContainer to p in table cells
         ConvertBlockContainerInTables(xml);
+        
+        // Phase 9: Fix heading position in sections (must come before content)
+        FixSectionHeadingPosition(xml);
+        
+        // Phase 10: Fix nested anchor elements (not allowed in AKN 3.0)
+        FixNestedAnchors(xml);
     }
 
     private static void ApplyIAStyleMappings(XmlDocument xml) {
@@ -549,6 +558,171 @@ class Helper : BaseHelper {
             
             // Replace blockContainer with the new p
             parent.ReplaceChild(p, container);
+        }
+    }
+
+    /// <summary>
+    /// Phase 1: Move tables from preface to mainBody
+    /// The IA schema only allows p elements in preface, not tables.
+    /// </summary>
+    private static void MovePrefaceTablesToMainBody(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        var logger = Logging.Factory.CreateLogger<Helper>();
+
+        var preface = xml.SelectSingleNode("//akn:preface", nsmgr);
+        var mainBody = xml.SelectSingleNode("//akn:mainBody", nsmgr);
+
+        if (preface == null || mainBody == null) {
+            return;
+        }
+
+        // Find all tables in preface
+        var tables = preface.SelectNodes("akn:table", nsmgr);
+        if (tables.Count == 0) {
+            return;
+        }
+
+        logger.LogInformation("Moving {Count} table(s) from preface to mainBody", tables.Count);
+
+        // Move tables to the beginning of mainBody
+        var firstChild = mainBody.FirstChild;
+        foreach (XmlNode table in tables) {
+            preface.RemoveChild(table);
+            if (firstChild != null) {
+                mainBody.InsertBefore(table, firstChild);
+            } else {
+                mainBody.AppendChild(table);
+            }
+        }
+
+        // If preface is now empty, remove it
+        if (!preface.HasChildNodes) {
+            preface.ParentNode.RemoveChild(preface);
+            logger.LogInformation("Removed empty preface element");
+        }
+    }
+
+    /// <summary>
+    /// Phase 9: Fix heading issues in sections
+    /// In AKN 3.0:
+    /// - Only one heading is allowed per section
+    /// - Heading must come before content elements (after optional num)
+    /// </summary>
+    private static void FixSectionHeadingPosition(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        var logger = Logging.Factory.CreateLogger<Helper>();
+
+        // Find all sections
+        var sections = xml.SelectNodes("//akn:section", nsmgr);
+
+        foreach (XmlElement section in sections) {
+            var headings = section.SelectNodes("akn:heading", nsmgr);
+            
+            if (headings.Count == 0) {
+                continue;
+            }
+
+            // If there are multiple headings, keep only the first one
+            // Remove the others (they shouldn't be headings anyway)
+            if (headings.Count > 1) {
+                logger.LogInformation("Section {EId} has {Count} headings, keeping only the first", 
+                    section.GetAttribute("eId"), headings.Count);
+                
+                for (int i = 1; i < headings.Count; i++) {
+                    var extraHeading = headings[i] as XmlElement;
+                    section.RemoveChild(extraHeading);
+                }
+            }
+
+            // Now ensure the remaining heading is in the right position
+            var heading = section.SelectSingleNode("akn:heading", nsmgr);
+            if (heading == null) {
+                continue;
+            }
+
+            var num = section.SelectSingleNode("akn:num", nsmgr);
+            
+            // Get the first non-text child
+            XmlNode firstElement = section.FirstChild;
+            while (firstElement != null && firstElement.NodeType == XmlNodeType.Text) {
+                firstElement = firstElement.NextSibling;
+            }
+
+            // Heading should be the first element (or after num if present)
+            bool needsMove = false;
+            if (num != null) {
+                // heading should be immediately after num
+                var afterNum = num.NextSibling;
+                while (afterNum != null && afterNum.NodeType == XmlNodeType.Text) {
+                    afterNum = afterNum.NextSibling;
+                }
+                needsMove = afterNum != heading;
+            } else {
+                // heading should be first element
+                needsMove = firstElement != heading;
+            }
+
+            if (needsMove) {
+                logger.LogInformation("Moving heading to correct position in section {EId}", section.GetAttribute("eId"));
+                section.RemoveChild(heading);
+                if (num != null) {
+                    section.InsertAfter(heading, num);
+                } else {
+                    section.InsertBefore(heading, section.FirstChild);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Phase 10: Fix nested anchor elements
+    /// AKN 3.0 does not allow nested &lt;a&gt; elements.
+    /// This flattens nested anchors by unwrapping inner anchors.
+    /// </summary>
+    private static void FixNestedAnchors(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        var logger = Logging.Factory.CreateLogger<Helper>();
+
+        // Find all anchor elements that contain other anchor elements
+        var nestedAnchors = xml.SelectNodes("//akn:a//akn:a", nsmgr);
+        
+        if (nestedAnchors.Count == 0) {
+            return;
+        }
+
+        logger.LogInformation("Found {Count} nested anchor elements to fix", nestedAnchors.Count);
+
+        // Process from innermost to outermost to avoid issues with node removal
+        var anchorsToFix = new List<XmlElement>();
+        foreach (XmlElement anchor in nestedAnchors) {
+            anchorsToFix.Add(anchor);
+        }
+
+        foreach (var innerAnchor in anchorsToFix) {
+            // Check if still nested (might have been fixed by previous iteration)
+            var parent = innerAnchor.ParentNode;
+            bool isStillNested = false;
+            while (parent != null) {
+                if (parent.LocalName == "a" && parent.NamespaceURI == AKN_NAMESPACE) {
+                    isStillNested = true;
+                    break;
+                }
+                parent = parent.ParentNode;
+            }
+
+            if (!isStillNested) {
+                continue;
+            }
+
+            // Unwrap the inner anchor - replace it with its contents
+            var parentNode = innerAnchor.ParentNode;
+            while (innerAnchor.HasChildNodes) {
+                parentNode.InsertBefore(innerAnchor.FirstChild, innerAnchor);
+            }
+            parentNode.RemoveChild(innerAnchor);
         }
     }
 
