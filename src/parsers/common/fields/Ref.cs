@@ -102,14 +102,27 @@ internal class Ref {
             logger.LogWarning("can't find bookmark {}", bookmarkName);
             return [];
         }
-        Paragraph bookmarkParagraph = bookmark.Ancestors<Paragraph>().First();
+        Paragraph bookmarkParagraph = bookmark.Ancestors<Paragraph>().FirstOrDefault();
+        if (bookmarkParagraph is null) {
+            logger.LogWarning("bookmark {} has no parent paragraph", bookmarkName);
+            return [];
+        }
         string num;
         if (wSwitch) {  // EWHC/Comm/2018/1368
             num = DOCX.Numbering2.GetNumberInFullContext(main, bookmarkParagraph);
         } else {
             DOCX.NumberInfo? info = DOCX.Numbering2.GetFormattedNumber(main, bookmarkParagraph);
-            if (info is null)
-                throw new Exception("REF has no content and target has no number");
+            if (info is null) {
+                // REF target has no number - use the paragraph text content instead
+                string text = bookmarkParagraph.InnerText?.Trim();
+                if (!string.IsNullOrEmpty(text)) {
+                    logger.LogDebug("REF target bookmark {} has no number, using paragraph text", bookmarkName);
+                    WText textInThisFormat = new WText(text, field.RunProperties);
+                    return new List<IInline>(1) { textInThisFormat };
+                }
+                logger.LogWarning("REF target bookmark {} has no number and no text content", bookmarkName);
+                return [];
+            }
             num = info.Value.Number;
         }
         num = num.TrimEnd('.');
