@@ -225,6 +225,15 @@ The backlog processor supports three modes of operation:
 
    Processes a specific judgment record by its ID from the court metadata CSV.
 
+3. **Dry run**:
+
+   ```bash
+   dotnet run --dry-run
+   dotnet run --dry-run --id <id>
+   ```
+   
+   Processes every record or specific record (as specified by `--id`), writes the files to the output path but does not send the results to S3
+
 ### CSV Line Example
 
 ```csv
