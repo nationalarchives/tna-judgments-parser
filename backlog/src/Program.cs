@@ -130,8 +130,13 @@ public static class Program
                 Console.WriteLine(bundle.Uuid + ".tar.gz");
                 Console.WriteLine(DateTime.Now);
 
-                if (!isDryRun)
+                if (isDryRun)
                 {
+                    Console.WriteLine("This is a dry run - not uploading to S3");
+                }
+                else
+                {
+                    Console.WriteLine("Uploading to S3");
                     Bucket.UploadBundle(bundle.Uuid + ".tar.gz", bundle.TarGz).Wait();
                 }
 
