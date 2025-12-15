@@ -131,10 +131,25 @@ public static class DocNames
     {
         return docName.ToEnacted().Equals(DocName.ASP);
     }
+    
+    public static bool IsUKPrimary(this DocName docName)
+    {
+        return docName.ToEnacted().Equals(DocName.UKPGA) || docName.ToEnacted().Equals(DocName.UKCM);
+    }
+    
+    // public static bool IsWelshPrimary(this DocName docName)
+    // {
+    //     return docName.ToEnacted().Equals(DocName.ASC);
+    // }
 
     public static bool IsWelshSecondary(this DocName docName)
     {
         return docName.ToEnacted().Equals(DocName.WSI);
+    }
+    
+    public static bool Prov1HeadingPrecedesNumber(this DocName docName)
+    {
+        return !(docName.IsScottishPrimary() || docName.IsUKPrimary()); // Or Welsh primary
     }
 }
 

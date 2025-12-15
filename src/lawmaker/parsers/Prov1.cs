@@ -18,19 +18,27 @@ namespace UK.Gov.Legislation.Lawmaker
             int save = i;
             ILine heading = null;
 
-            // A Prov1 element may or may not have a heading
-            // If it does, we cache and skip over the heading for now
-            if (PeekProv1(line))
+            // Prov1 with heading then num expected here
+            if (frames.CurrentDocName.Prov1HeadingPrecedesNumber())
             {
+                // A Prov1 element may or may not have a heading
+                // If it does, we cache and skip over the heading for now
+                if (PeekProv1(line))
+                {
+                    heading = line;
+                    i += 1;
+                }
+                // A heading-less Prov1 must be numbered in sequence
+                else if (!PeekBareProv1(line) || !IsNextProv1InSequence(line))
+                    return null;
+            }
+            // Handle Prov1s where the number precedes the heading
+            else
+            {
+                if (!PeekNumHeadingProv1(line))
+                    return null;
                 heading = line;
-                i += 1;
             }
-            // A heading-less Prov1 must numbered in sequence
-            else if (!PeekBareProv1(line) || !IsNextProv1InSequence(line))
-            {
-                return null;
-            }
-
             WOldNumberedParagraph np = Current() as WOldNumberedParagraph;
             HContainer next = ParseBareProv1(np, line);
             if (next is null)
@@ -68,7 +76,26 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (line is not WOldNumberedParagraph np)
                 return false;
-            if (!Prov1.IsValidNumber(GetNumString(np.Number)))
+            if (!Prov1.IsValidNumber(GetNumString(np.Number), frames.CurrentDocName))
+                return false;
+            return true;
+        }
+        
+        private bool PeekNumHeadingProv1(WLine line)
+        {
+            bool quoted = quoteDepth > 0;
+            if (line is not WOldNumberedParagraph np)
+                return false;
+            if (!line.IsFlushLeft() && !quoted)
+                return false;
+            if (i > Body.Count - 2)
+                return false;
+            if (Body[i + 1] is not WLine nextLine)
+                return false;
+            // The heading and first line should have the same indentation
+            if (LineIsIndentedMoreThan(line, nextLine, 0.2f)) // TODO: Some other jurisdictions have the nextLine a little more indented?
+                return false;
+            if (!Prov1.IsValidNumber(GetNumString(np.Number), frames.CurrentDocName))
                 return false;
             return true;
         }
@@ -78,6 +105,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             i += 1;
 
+            bool headingPrecedesNumber = frames.CurrentDocName.Prov1HeadingPrecedesNumber();
             IFormattedText num = np.Number;
             List<IBlock> intro = [];
             List<IDivision> children = [];
@@ -94,16 +122,16 @@ namespace UK.Gov.Legislation.Lawmaker
                 i -= 1;
                 HContainer prov2 = ParseAndMemoize(firstProv2Line, "Prov2", ParseProv2);
                 if (prov2 == null)
-                    return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro };
+                    return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro, HeadingPrecedesNumber = headingPrecedesNumber };
                 children.Add(prov2);
                 if (IsEndOfQuotedStructure(prov2))
-                    return new Prov1Branch { TagName = tagName, Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+                    return new Prov1Branch { TagName = tagName, Number = num, Intro = intro, Children = children, WrapUp = wrapUp, HeadingPrecedesNumber = headingPrecedesNumber };
             }
             else
             {
                 intro = HandleParagraphs(np);
                 if (IsEndOfQuotedStructure(intro))
-                    return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro };
+                    return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro, HeadingPrecedesNumber = headingPrecedesNumber };
             }
 
             int finalChildStart = i;
@@ -130,9 +158,9 @@ namespace UK.Gov.Legislation.Lawmaker
             provisionRecords.Pop();
 
             if (children.Count == 0)
-                return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro };
+                return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro, HeadingPrecedesNumber = headingPrecedesNumber };
 
-            return new Prov1Branch { TagName = tagName, Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            return new Prov1Branch { TagName = tagName, Number = num, Intro = intro, Children = children, WrapUp = wrapUp, HeadingPrecedesNumber = headingPrecedesNumber };
         }
 
         private (WText, WLine) FixFirstProv2Num(WLine line)
