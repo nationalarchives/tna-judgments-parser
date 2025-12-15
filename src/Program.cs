@@ -161,7 +161,7 @@ class Program {
         }
         
         byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = IA.Helper.Parse(docx);
+        var parsed = IA.Helper.Parse(docx, input.Name);
         if (outputZip is not null)
             SaveZip(parsed, outputZip);
         else if (output is not null)

@@ -71,6 +71,11 @@ internal class DocumentMetadata {
     public string ExpressionDateName { get; init; }
     public string ExpressionAuthor { get; init; }
 
+    /// <summary>
+    /// The URI of the legislation this document is associated with (e.g., for Impact Assessments).
+    /// </summary>
+    public string LegislationUri { get; init; }
+
     public Dictionary<string, Dictionary<string, string>> CSS { get; init; }
 
 }

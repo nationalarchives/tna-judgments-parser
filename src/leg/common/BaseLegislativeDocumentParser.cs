@@ -89,7 +89,7 @@ partial class BaseLegislativeDocumentParser : CaseLaw.OptimizedParser {
         return body;
     }
 
-    private IDivision ParseDivsion() {
+    protected IDivision ParseDivsion() {
         EnterParseDepth();
         try {
             int save = i;

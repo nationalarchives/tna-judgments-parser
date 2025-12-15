@@ -15,25 +15,23 @@ namespace UK.Gov.Legislation.ImpactAssessments.Test {
 
 public class TestIA {
 
-    public static readonly IEnumerable<object[]> Indices = GetTestIndices();
+    public static readonly IEnumerable<object[]> TestFiles = GetTestFiles();
 
-    private static IEnumerable<object[]> GetTestIndices() {
+    /// <summary>
+    /// Gets test files with ukia_YYYYNNNN_en.docx naming pattern
+    /// </summary>
+    private static IEnumerable<object[]> GetTestFiles() {
         var assembly = System.Reflection.Assembly.GetExecutingAssembly();
         var resourceNames = assembly.GetManifestResourceNames();
         
-        var regex = new Regex(@"^test\.leg\.ia\.test(\d+)\.docx$");
+        // Match pattern: test.leg.ia.original_filenames.ukia_20250001_en.docx
+        var regex = new Regex(@"^test\.leg\.ia\.original_filenames\.(ukia_\d+_en)\.docx$");
         return resourceNames
             .Select(name => regex.Match(name))
             .Where(match => match.Success)
-            .Select(match => int.Parse(match.Groups[1].Value))
-            .Where(i => {
-                // Check if both DOCX and AKN resources exist
-                var docxResource = $"test.leg.ia.test{i}.docx";
-                var aknResource = $"test.leg.ia.test{i}.akn";
-                return resourceNames.Contains(docxResource) && resourceNames.Contains(aknResource);
-            })
-            .OrderBy(i => i)
-            .Select(i => new object[] { i });
+            .Select(match => match.Groups[1].Value) // e.g., ukia_20250001_en
+            .OrderBy(name => name)
+            .Select(name => new object[] { name });
     }
 
     private XslCompiledTransform Transform = new XslCompiledTransform();
@@ -45,11 +43,27 @@ public class TestIA {
     }
 
     [Theory]
-    [MemberData(nameof(Indices))]
-    public void Test(int i) {
-        var docx = CaseLaw.Tests.ReadDocx($"test.leg.ia.test{i}.docx");
-        var actual = Helper.Parse(docx).Serialize();
-        var expected = CaseLaw.Tests.ReadXml($"test.leg.ia.test{i}.akn");
+    [MemberData(nameof(TestFiles))]
+    public void Test(string filename) {
+        var resourceName = $"test.leg.ia.original_filenames.{filename}.docx";
+        var docx = CaseLaw.Tests.ReadDocx(resourceName);
+        
+        // Pass the filename to enable metadata lookup
+        var actual = Helper.Parse(docx, filename + ".docx").Serialize();
+        
+        var expectedResourceName = $"test.leg.ia.original_filenames.{filename}.akn";
+        var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+        if (!assembly.GetManifestResourceNames().Contains(expectedResourceName)) {
+            // If no expected file exists yet, just validate the output
+            var doc = new XmlDocument();
+            doc.LoadXml(actual);
+            var validator = new Validator();
+            var errors = validator.Validate(doc);
+            Assert.Empty(errors);
+            return;
+        }
+        
+        var expected = CaseLaw.Tests.ReadXml(expectedResourceName);
         actual = RemoveSomeMetadata(actual);
         expected = RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
@@ -63,13 +77,14 @@ public class TestIA {
             "..", "..", "..", ".."
         ));
         
-        foreach (var testData in Indices) {
-            int i = (int)testData[0];
-            var docx = CaseLaw.Tests.ReadDocx($"test.leg.ia.test{i}.docx");
-            var akn = Helper.Parse(docx).Serialize();
-            var outputPath = System.IO.Path.Combine(projectRoot, "test", "leg", "ia", $"test{i}.akn");
+        foreach (var testData in TestFiles) {
+            string filename = (string)testData[0];
+            var resourceName = $"test.leg.ia.original_filenames.{filename}.docx";
+            var docx = CaseLaw.Tests.ReadDocx(resourceName);
+            var akn = Helper.Parse(docx, filename + ".docx").Serialize();
+            var outputPath = System.IO.Path.Combine(projectRoot, "test", "leg", "ia", "original filenames", $"{filename}.akn");
             System.IO.File.WriteAllText(outputPath, akn);
-            System.Console.WriteLine($"Regenerated test{i}.akn");
+            System.Console.WriteLine($"Regenerated {filename}.akn");
         }
     }
 
@@ -94,18 +109,23 @@ public class TestIA {
     }
 
     [Theory]
-    [MemberData(nameof(Indices))]
-    public void ValidateAkn(int i) {
-        var aknXml = CaseLaw.Tests.ReadXml($"test.leg.ia.test{i}.akn");
+    [MemberData(nameof(TestFiles))]
+    public void ValidateParsedOutput(string filename) {
+        var resourceName = $"test.leg.ia.original_filenames.{filename}.docx";
+        var docx = CaseLaw.Tests.ReadDocx(resourceName);
+        
+        // Parse with filename for proper metadata
+        var akn = Helper.Parse(docx, filename + ".docx").Serialize();
+        
         var doc = new XmlDocument();
-        doc.LoadXml(aknXml);
+        doc.LoadXml(akn);
         
         var validator = new Validator();
         var errors = validator.Validate(doc);
         
         if (errors.Count > 0) {
             var errorMessages = string.Join("\n", errors.Select(e => $"  - {e.Message}"));
-            throw new Exception($"Validation failed for test{i}.akn with {errors.Count} error(s):\n{errorMessages}");
+            throw new Exception($"Validation failed for {filename} with {errors.Count} error(s):\n{errorMessages}");
         }
     }
 

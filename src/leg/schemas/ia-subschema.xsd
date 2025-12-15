@@ -70,6 +70,7 @@
                 <xs:element ref="docStage" />
                 <xs:element ref="docDate" />
                 <xs:element ref="docProponent" />
+                <xs:element ref="inline" />
             </xs:choice>
             <xs:attribute name="class" >
                 <xs:simpleType>
@@ -103,6 +104,17 @@
 </xs:element>
 
 <xs:element name="docProponent" type="inline-container" />
+
+<!-- Custom inline element for extensibility -->
+<xs:element name="inline">
+    <xs:complexType mixed="true">
+        <xs:complexContent>
+            <xs:extension base="inline-container">
+                <xs:attribute name="name" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:element>
 
 
 <!-- body -->
@@ -339,6 +351,7 @@
             <xs:element ref="docStage" />
             <xs:element ref="docDate" />
             <xs:element ref="docProponent" />
+            <xs:element ref="inline" />
         </xs:choice>
         <xs:attribute name="class" >
             <xs:simpleType>

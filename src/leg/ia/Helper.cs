@@ -22,29 +22,63 @@ class Helper : BaseHelper {
     
     // Semantic element mappings
     // Note: docNumber is not included because it's not allowed as a child of <p> in AKN 3.0 schema
-    private static readonly Dictionary<string, string> SemanticMappings = new() {
-        { "Title:", "docTitle" },
-        // { "IA No:", "docNumber" },  // Commented out: not valid in AKN 3.0 schema for <p> elements
-        { "Stage:", "docStage" },
-        { "Date:", "docDate" },
-        { "Lead department or agency:", "docProponent" },
-        { "Other departments or agencies", "docProponent" }
+    // Tuple structure: (elementName, attributeValue) - attributeValue is used for 'name' attribute on inline elements
+    private static readonly Dictionary<string, (string elementName, string attributeValue)> SemanticMappings = new() {
+        { "Title:", ("docTitle", null) },
+        // { "IA No:", ("docNumber", null) },  // Commented out: not valid in AKN 3.0 schema for <p> elements
+        { "Stage:", ("docStage", null) },
+        { "Date:", ("docDate", null) },
+        { "Lead department or agency:", ("inline", "leadDepartment") },
+        { "Other departments or agencies", ("inline", "otherDepartments") }
     };
 
     private static readonly Helper Instance = new Helper();
+    
+    [ThreadStatic]
+    private static string _currentFilename;
 
     private Helper() : base(LegislativeDocumentConfig.ForImpactAssessments()) { }
 
     public static new IXmlDocument Parse(Stream docx, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify);
+        return Parse(docx, null, simplify);
     }
 
     public static new IXmlDocument Parse(byte[] docx, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify);
+        return Parse(docx, null, simplify);
+    }
+
+    /// <summary>
+    /// Parse an Impact Assessment document with filename for metadata lookup.
+    /// </summary>
+    /// <param name="docx">The document stream</param>
+    /// <param name="filename">The filename (e.g., ukia_20250001_en.docx) used for URI and legislation lookup</param>
+    /// <param name="simplify">Whether to simplify the output XML</param>
+    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true) {
+        _currentFilename = filename;
+        try {
+            return ((BaseHelper)Instance).Parse(docx, simplify);
+        } finally {
+            _currentFilename = null;
+        }
+    }
+
+    /// <summary>
+    /// Parse an Impact Assessment document with filename for metadata lookup.
+    /// </summary>
+    /// <param name="docx">The document bytes</param>
+    /// <param name="filename">The filename (e.g., ukia_20250001_en.docx) used for URI and legislation lookup</param>
+    /// <param name="simplify">Whether to simplify the output XML</param>
+    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true) {
+        _currentFilename = filename;
+        try {
+            return ((BaseHelper)Instance).Parse(docx, simplify);
+        } finally {
+            _currentFilename = null;
+        }
     }
 
     protected override IDocument ParseDocument(WordprocessingDocument docx) {
-        return ImpactAssessments.Parser.Parse(docx);
+        return ImpactAssessments.Parser.Parse(docx, _currentFilename);
     }
 
     protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
@@ -110,7 +144,7 @@ class Helper : BaseHelper {
     private static bool TryTransformToSemanticElement(XmlDocument xml, XmlNode paragraph, string cleanContent) {
         foreach (var mapping in SemanticMappings) {
             if (cleanContent.StartsWith(mapping.Key)) {
-                return TransformToSemanticElement(xml, paragraph, mapping.Key, mapping.Value);
+                return TransformToSemanticElement(xml, paragraph, mapping.Key, mapping.Value.elementName, mapping.Value.attributeValue);
             }
         }
         return false;
@@ -156,7 +190,7 @@ class Helper : BaseHelper {
         }
     }
     
-    private static bool TransformToSemanticElement(XmlDocument xml, XmlNode paragraph, string labelText, string semanticElementName) {
+    private static bool TransformToSemanticElement(XmlDocument xml, XmlNode paragraph, string labelText, string semanticElementName, string nameAttribute) {
         try {
             string content = paragraph.InnerText?.Trim() ?? "";
             
@@ -191,6 +225,11 @@ class Helper : BaseHelper {
                     if (TryParseDateFromValue(valueText, out string normalizedDate)) {
                         semanticElement.SetAttribute("date", normalizedDate);
                     }
+                }
+                
+                // For inline elements with a name attribute, add it
+                if (semanticElementName == "inline" && !string.IsNullOrEmpty(nameAttribute)) {
+                    semanticElement.SetAttribute("name", nameAttribute);
                 }
                 
                 semanticElement.InnerText = valueText;
@@ -297,7 +336,7 @@ class Helper : BaseHelper {
         if (firstLevel == null) return;
 
         // Check if this level contains IA header metadata (docTitle, docStage, docDate, etc.)
-        var hasHeaderMetadata = firstLevel.SelectNodes(".//akn:docTitle | .//akn:docStage | .//akn:docDate | .//akn:docProponent", nsmgr).Count > 0;
+        var hasHeaderMetadata = firstLevel.SelectNodes(".//akn:docTitle | .//akn:docStage | .//akn:docDate | .//akn:inline[@name='leadDepartment'] | .//akn:inline[@name='otherDepartments']", nsmgr).Count > 0;
         
         if (hasHeaderMetadata) {
             // Transform to section element

@@ -132,6 +132,13 @@ class Builder : AkN.Builder {
         proprietary.AppendChild(parser);
         parser.AppendChild(doc.CreateTextNode(AkN.Metadata.GetParserVersion()));
 
+        // Add legislation reference if available (for Impact Assessments)
+        if (data.LegislationUri is not null) {
+            XmlElement legislation = doc.CreateElement("uk", "legislation", UKNS);
+            proprietary.AppendChild(legislation);
+            legislation.AppendChild(doc.CreateTextNode(data.LegislationUri));
+        }
+
         if (data.CSS is not null) {
             XmlElement presentation = CreateAndAppend("presentation", meta);
             presentation.SetAttribute("source", "#");

@@ -33,6 +33,9 @@
     <EmbeddedResource Include="src/leg/schemas/ia-subschema.xsd">
       <LogicalName>leg.ia-subschema.xsd</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="src/leg/source/ia_to_legislation_mapping.csv">
+      <LogicalName>leg.ia_to_legislation_mapping.csv</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
