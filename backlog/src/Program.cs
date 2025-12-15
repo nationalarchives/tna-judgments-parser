@@ -70,17 +70,17 @@ public static class Program
 
         var judgmentsFilePath = Environment.GetEnvironmentVariable("JUDGMENTS_FILE_PATH") ?? "";
         var hmctsFilePath = Environment.GetEnvironmentVariable("HMCTS_FILES_PATH") ?? "";
-
+        var pathToCourtMetadataFile = Environment.GetEnvironmentVariable("COURT_METADATA_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "court_metadata.csv");
+        var pathToDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
+        var pathToOutputFolder = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
+        Directory.CreateDirectory(pathToOutputFolder);
+        
         Helper helper = new(new Parser(Logging.Factory.CreateLogger<Parser>(), new UK.Gov.Legislation.Judgments.AkomaNtoso.Validator()))
         {
-            PathToCourtMetadataFile =
-                Environment.GetEnvironmentVariable("COURT_METADATA_PATH") ??
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "court_metadata.csv"),
-            PathToDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ??
-                               AppDomain.CurrentDomain.BaseDirectory
+            PathToCourtMetadataFile = pathToCourtMetadataFile,
+            PathToDataFolder = pathToDataFolder
         };
-        var trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ??
-                          Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
+        var trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
         var tracker = new Tracker(trackerPath);
 
         List<Metadata.Line> lines;
@@ -115,20 +115,17 @@ public static class Program
 
             try
             {
+                Console.WriteLine(DateTime.Now);
                 Console.WriteLine($"Processing file: {line.FilePath}");
-                Console.WriteLine($"Using court metadata from: {helper.PathToCourtMetadataFile}");
-                Console.WriteLine($"Using data folder: {helper.PathToDataFolder}");
+                Console.WriteLine($"Using court metadata from: {pathToCourtMetadataFile}");
+                Console.WriteLine($"Using data folder: {pathToDataFolder}");
 
                 var bundle = helper.GenerateBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
 
-                var outputPath = Environment.GetEnvironmentVariable("OUTPUT_PATH") ??
-                                 AppDomain.CurrentDomain.BaseDirectory;
-                Directory.CreateDirectory(outputPath);
-                var output = Path.Combine(outputPath, bundle.Uuid + ".tar.gz");
+                var output = Path.Combine(pathToOutputFolder, bundle.Uuid + ".tar.gz");
+                Console.WriteLine($"Writing to output: {output}");
                 File.WriteAllBytes(output, bundle.TarGz);
 
-                Console.WriteLine(bundle.Uuid + ".tar.gz");
-                Console.WriteLine(DateTime.Now);
 
                 if (isDryRun)
                 {
@@ -143,8 +140,6 @@ public static class Program
                 tracker.MarkDone(line, bundle.Uuid);
 
                 Console.WriteLine("success");
-                Console.WriteLine(bundle.Uuid + ".tar.gz");
-                Console.WriteLine(DateTime.Now);
             }
             catch (Exception ex)
             {
