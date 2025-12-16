@@ -5,6 +5,8 @@ using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Lawmaker.Headers;
+
 using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
 namespace UK.Gov.Legislation.Lawmaker;
@@ -26,9 +28,12 @@ public class Metadata : IBuildable<XNode>
         string? title = "";
         try
         {
-            title = Judgments.Util.Descendants<ShortTitle>(bill.CoverPage)
-            .Select(title => IInline.ToString(title.Contents))
-            .FirstOrDefault();
+            if (bill.Header is NIHeader niHeader && niHeader?.CoverPage?.Blocks is not null)
+            {
+                title = Judgments.Util.Descendants<ShortTitle>(niHeader?.CoverPage?.Blocks)
+                .Select(title => IInline.ToString(title.Contents))
+                .FirstOrDefault();
+            }
         }
         catch (Exception e)
         {
@@ -43,8 +48,12 @@ public class Metadata : IBuildable<XNode>
         }
     }
 
-    public Reference Register(Reference reference)
+    public Reference? Register(Reference? reference)
     {
+        if (reference is null)
+        {
+            return null;
+        }
         uint i = 0;
         while (References.ContainsKey((reference.Key, i)))
         {

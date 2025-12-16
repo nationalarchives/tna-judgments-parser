@@ -15,11 +15,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public required Metadata Metadata { get; init; }
 
-        internal IList<IBlock> CoverPage { get; init; }
-
-        internal IList<IBlock> Preface { get; init; }
-
-        internal IList<IBlock> Preamble { get; init; }
+        internal IHeader Header { get; init; }
 
         internal IList<IDivision> Body { get; init; }
 

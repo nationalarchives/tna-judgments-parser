@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="sppubb">
+    <meta>
+      <references source="#author">
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="Disability Commissioner (Scotland) Bill " />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="3-Week Version" />
+      </references>
+    </meta>
+    <preface>
+      <block name="title"><docTitle><ref href="#varBillTitle" class="placeholder" /></docTitle></block>
+      <block name="stageVersion">[<docStage><ref href="varStageVersion" class="placeholder" /></docStage>]</block>
+      <longTitle>An Act of the Scottish Parliament to provide for the establishment and functions of a Disability Commissioner for Scotland; and for connected purposes.</longTitle>
+    </preface>
+    <body />
+  </bill>
+</akomaNtoso>

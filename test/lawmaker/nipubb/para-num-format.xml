@@ -2,11 +2,14 @@
 <akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
   <bill name="nipubb">
     <meta>
-      <references source="#author" />
+      <references source="#author">
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="Paragraph Number Format Tests Bill" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="As Introduced" />
+      </references>
     </meta>
     <coverPage>
-      <p>Paragraph Number Format Tests</p>
-      <p>[AS INTRODUCED]</p>
+      <p><shortTitle>Paragraph Number Format Tests Bill</shortTitle></p>
+      <block name="stageVersion">[<docStage><ref href="varStageVersion" class="placeholder" /></docStage>]</block>
       <p>CONTENTS</p>
       <p>1. Z rule tests</p>
       <p>2. Non-roman suffix tests</p>

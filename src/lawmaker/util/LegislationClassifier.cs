@@ -135,6 +135,8 @@ public static class DocNames
         };
     }
 
+
+
     public static bool IsSecondaryDocName(this DocName docName)
     {
         return docName.GetLegislationType() == LegislationType.SECONDARY;

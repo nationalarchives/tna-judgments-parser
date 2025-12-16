@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.DOCX;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Lawmaker.Headers;
+
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation.Lawmaker
@@ -36,9 +38,29 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
             main.SetAttribute("name", this.bill.Type.ToString().ToLower());
 
-            AddCoverPage(main, bill.CoverPage);
-            AddPreface(main, bill.Preface);
-            AddPreamble(main, bill.Preamble);
+            if (bill.Header is NIHeader niHeader)
+            {
+                if (niHeader?.CoverPage?.Blocks?.ToList() is not null)
+                {
+                    AddCoverPage(main, niHeader?.CoverPage?.Blocks?.ToList());
+                }
+                if (niHeader?.Preface?.Blocks?.ToList() is not null)
+                {
+                    AddPreface(main, niHeader?.Preface?.Blocks?.ToList());
+                }
+                if (niHeader?.Preamble?.Blocks?.ToList() is not null)
+                {
+                    AddPreamble(main, niHeader?.Preamble?.Blocks?.ToList());
+                }
+            } else if (bill.Header is SPHeader spHeader)
+            {
+                // ignore building the cover page for now
+                if (spHeader.Preface is IBuildable<XNode> preface)
+                {
+                    main.AppendChild(preface.Build(this.bill).ToXmlNode(main.OwnerDocument));
+                }
+
+            }
             AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
             AddConclusions(main, bill.Conclusions);
 
@@ -128,7 +150,6 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (preamble.Count <= 0)
             {
-                logger.LogWarning("The parsed Preamble elements were empty!");
                 return;
             }
             XmlElement e = CreateAndAppend("preamble", bill);
@@ -207,8 +228,17 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private void AddBlocks(XmlElement parent, IEnumerable<IBlock> blocks)
         {
+            if (blocks is null)
+            {
+                return;
+            }
             foreach (IBlock block in blocks)
             {
+                if (block is IBuildable<XNode> buildable)
+                {
+                    parent.AppendChild(buildable.Build(this.bill).ToXmlNode(parent.OwnerDocument));
+                    continue;
+                }
                 if (block is WOldNumberedParagraph np)
                 {
                     // In Lawmaker, by default, all numbered paragraphs should be marked up
