@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="ssi">
+    <meta>
+      <references source="#author">
+        <TLCConcept eId="varSITitle" href="#varOntologies" showAs="Title" />
+        <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2021" />
+      </references>
+    </meta>
+    <coverPage />
+    <preface eId="fnt">
+      <block name="banner">STATUTORY INSTRUMENTS</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+      <container name="subjects">
+        <container name="subject">
+          <block name="subject"><concept refersTo="" class="title">SUBJECT</concept></block>
+          <block name="subsubject"><concept refersTo="" class="subtitle">subsubject</concept></block>
+        </container>
+      </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="9999-01-01" /></block>
+        <block name="laidDate"><span>Laid before Parliament</span><docDate date="9999-01-01" /></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="9999-01-01" /></block>
+      </container>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Secretary of State, in exercise of the powers conferred by sections 9 of the Energy Act 2010<authorialNote marker="1" class="footnote"><p /><p /><p /><p /><p /></authorialNote>, makes the following Regulation</p>
+      </formula>
+    </preamble>
+    <body>
+      <part eId="pt_1" class="group2">
+        <num>Part 1</num>
+        <article eId="sec_1" class="prov1">
+          <heading>Section heading</heading>
+          <num>1.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>Testing a heading-less part with no children</p>
+            </content>
+          </paragraph>
+        </article>
+      </part>
+      <part eId="pt_2" class="group2">
+        <num>Part 2</num>
+        <chapter class="group4">
+          <num>Chapter 1</num>
+          <heading>Chapter heading</heading>
+          <article eId="sec_2" class="prov1">
+            <heading>Section heading</heading>
+            <num>2.</num>
+            <paragraph class="prov2">
+              <num>(1)</num>
+              <content>
+                <p>Testing a part and chapter each without a headings</p>
+              </content>
+            </paragraph>
+          </article>
+        </chapter>
+        <chapter class="group4">
+          <num>Chapter 2</num>
+          <article eId="sec_3" class="prov1">
+            <heading>Section heading</heading>
+            <num>3.</num>
+            <paragraph class="prov2">
+              <num>(1)</num>
+              <content>
+                <p>Testing a chapter without a heading</p>
+              </content>
+            </paragraph>
+          </article>
+        </chapter>
+      </part>
+      <hcontainer name="schedules" class="schs">
+        <heading>SCHEDULES</heading>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 1A<authorialNote class="referenceNote"><p>Regulation 1A</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <paragraph class="schProv1">
+            <num>1.</num>
+            <subparagraph class="schProv2">
+              <num>(1)</num>
+              <content>
+                <p>Testing schedule.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 1B<authorialNote class="referenceNote"><p>Regulation 1B</p></authorialNote></num>
+          <paragraph class="schProv1">
+            <num>1.</num>
+            <subparagraph class="schProv2">
+              <num>(1)</num>
+              <content>
+                <p>Testing heading-less schedule.</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 2A<authorialNote class="referenceNote"><p>Regulation 2A</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <heading>PART HEADING</heading>
+            <paragraph class="schProv1">
+              <num>1.</num>
+              <subparagraph class="schProv2">
+                <num>(1)</num>
+                <content>
+                  <p>Testing schedule with part.</p>
+                </content>
+              </subparagraph>
+            </paragraph>
+          </part>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 2B<authorialNote class="referenceNote"><p>Regulation 2B</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <paragraph class="schProv1">
+              <num>1.</num>
+              <subparagraph class="schProv2">
+                <num>(1)</num>
+                <content>
+                  <p>Testing schedule with heading-less part.</p>
+                </content>
+              </subparagraph>
+            </paragraph>
+          </part>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 2C<authorialNote class="referenceNote"><p>Regulation 2C</p></authorialNote></num>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <heading>PART HEADING</heading>
+            <paragraph class="schProv1">
+              <num>1.</num>
+              <subparagraph class="schProv2">
+                <num>(1)</num>
+                <content>
+                  <p>Testing heading-less schedule with part.</p>
+                </content>
+              </subparagraph>
+            </paragraph>
+          </part>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 2D<authorialNote class="referenceNote"><p>Regulation 2D</p></authorialNote></num>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <paragraph class="schProv1">
+              <num>1.</num>
+              <subparagraph class="schProv2">
+                <num>(1)</num>
+                <content>
+                  <p>Testing heading-less schedule with heading-less part.</p>
+                </content>
+              </subparagraph>
+            </paragraph>
+          </part>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 3A<authorialNote class="referenceNote"><p>Regulation 3A</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <heading>PART HEADING</heading>
+            <chapter class="schGroup4">
+              <num>CHAPTER 1</num>
+              <heading>CHAPTER HEADING</heading>
+              <paragraph class="schProv1">
+                <num>1.</num>
+                <subparagraph class="schProv2">
+                  <num>(1)</num>
+                  <content>
+                    <p>Testing schedule, part and chapter.</p>
+                  </content>
+                </subparagraph>
+              </paragraph>
+            </chapter>
+          </part>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 3B<authorialNote class="referenceNote"><p>Regulation 3B</p></authorialNote></num>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <chapter class="schGroup4">
+              <num>CHAPTER 1</num>
+              <heading>CHAPTER HEADING</heading>
+              <paragraph class="schProv1">
+                <num>1.</num>
+                <subparagraph class="schProv2">
+                  <num>(1)</num>
+                  <content>
+                    <p>Testing heading-less schedule, heading-less part, and chapter.</p>
+                  </content>
+                </subparagraph>
+              </paragraph>
+            </chapter>
+          </part>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 3C<authorialNote class="referenceNote"><p>Regulation 3C</p></authorialNote></num>
+          <heading>SCHEDULE HEADING</heading>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <heading>PART HEADING</heading>
+            <chapter class="schGroup4">
+              <num>CHAPTER 1</num>
+              <paragraph class="schProv1">
+                <num>1.</num>
+                <subparagraph class="schProv2">
+                  <num>(1)</num>
+                  <content>
+                    <p>Testing schedule, part, and heading-less chapter.</p>
+                  </content>
+                </subparagraph>
+              </paragraph>
+            </chapter>
+          </part>
+        </hcontainer>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 3B<authorialNote class="referenceNote"><p>Regulation 3B</p></authorialNote></num>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <chapter class="schGroup4">
+              <num>CHAPTER 1</num>
+              <paragraph class="schProv1">
+                <num>1.</num>
+                <subparagraph class="schProv2">
+                  <num>(1)</num>
+                  <content>
+                    <p>Testing heading-less schedule, part and chapter.</p>
+                  </content>
+                </subparagraph>
+              </paragraph>
+            </chapter>
+          </part>
+        </hcontainer>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>
