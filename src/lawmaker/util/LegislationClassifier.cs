@@ -34,7 +34,11 @@ public enum DocName
     NIDSI,
     NIDSR,
     WSI,
-    WDSI
+    WDSI,
+    ASC,
+    SCPUBB,
+    SCPRIB,
+    SCHYBB
 }
 
 public static class DocNames
@@ -80,6 +84,11 @@ public static class DocNames
             DocName.SPPUBB => DocName.ASP,
             DocName.SPPRIB => DocName.ASP,
             DocName.SPHYBB => DocName.ASP,
+            
+            DocName.ASC => DocName.ASC,
+            DocName.SCPUBB => DocName.ASC,
+            DocName.SCPRIB => DocName.ASC,
+            DocName.SCHYBB => DocName.ASC,
 
             DocName.SSI => DocName.SSI,
             DocName.SDSI => DocName.SSI,
@@ -108,6 +117,10 @@ public static class DocNames
             DocName.SPPUBB =>          LegislationType.PRIMARY,
             DocName.SPPRIB =>          LegislationType.PRIMARY,
             DocName.SPHYBB =>          LegislationType.PRIMARY,
+            DocName.ASC =>             LegislationType.PRIMARY,
+            DocName.SCPUBB =>          LegislationType.PRIMARY,
+            DocName.SCPRIB =>          LegislationType.PRIMARY,
+            DocName.SCHYBB =>          LegislationType.PRIMARY,
 
             DocName.NISI =>            LegislationType.SECONDARY,
             DocName.NIDSI =>           LegislationType.SECONDARY,
@@ -137,10 +150,10 @@ public static class DocNames
         return docName.ToEnacted().Equals(DocName.UKPGA) || docName.ToEnacted().Equals(DocName.UKCM);
     }
     
-    // public static bool IsWelshPrimary(this DocName docName)
-    // {
-    //     return docName.ToEnacted().Equals(DocName.ASC);
-    // }
+    public static bool IsWelshPrimary(this DocName docName)
+    {
+        return docName.ToEnacted().Equals(DocName.ASC);
+    }
 
     public static bool IsWelshSecondary(this DocName docName)
     {
@@ -149,7 +162,7 @@ public static class DocNames
     
     public static bool Prov1HeadingPrecedesNumber(this DocName docName)
     {
-        return !(docName.IsScottishPrimary() || docName.IsUKPrimary()); // Or Welsh primary
+        return !(docName.IsScottishPrimary() || docName.IsUKPrimary() || docName.IsWelshPrimary());
     }
 }
 

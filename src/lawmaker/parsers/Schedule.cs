@@ -117,10 +117,10 @@ namespace UK.Gov.Legislation.Lawmaker
                 i -= 1;
             }
 
-            // SI documents occasionally have schedule reference notes on the same line as the schedule number
+            // SI and UK bill documents occasionally have schedule reference notes on the same line as the schedule number
             // (separated by one or more tab characters) as opposed to having their own distinct line.
             string referenceNoteText;
-            if (referenceNoteLine is null && frames.IsSecondaryDocName())
+            if (referenceNoteLine is null && (frames.IsSecondaryDocName() || frames.CurrentDocName.IsUKPrimary()))
                 referenceNoteText = GetRightTabbedText(numberLine);
             else
                 referenceNoteText = referenceNoteLine?.NormalizedContent ?? "";
@@ -181,11 +181,12 @@ namespace UK.Gov.Legislation.Lawmaker
         /// <returns>Whether <paramref name="line"/> represents a <c>Schedule</c> reference note.</returns>
         private bool IsScheduleReferenceNote(WLine line)
         {
-            if (docName.IsScottishPrimary())
+            if (docName.IsScottishPrimary() || docName.IsWelshPrimary())
             {
-                // Reference notes in SP Bills/Acts are formatted differently
+                // Reference notes in SP and SC Bills/Acts are centre aligned and italic
                 if (IsCenterAligned(line) && line.IsAllItalicized())
                     return true;
+                // or begin with "(introduced by"
                 StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
                 if (line.NormalizedContent.StartsWith("(introduced by", ignoreCase))
                     return true;
