@@ -23,7 +23,7 @@ record NICoverPage(IEnumerable<IBlock> Blocks)
             blocks.Add(stageVersion);
         }
         if (parser.Match(
-            TableOfContents.Parse(block => parser.Peek(NIPreface.Parse) is not NIPreface preface))
+            TableOfContents.Parse(block => parser.Peek(NIPrimaryPreface.Parse) is not NIPrimaryPreface preface))
             is TableOfContents toc)
         {
             // normally a front cover must have a ToC, but we want to be more permissive here

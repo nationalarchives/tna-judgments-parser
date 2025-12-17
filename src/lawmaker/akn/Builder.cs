@@ -37,8 +37,19 @@ namespace UK.Gov.Legislation.Lawmaker
 
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
             main.SetAttribute("name", this.bill.Type.ToString().ToLower());
+            AddHeader(main, bill.Header);
+            AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
+            AddConclusions(main, bill.Conclusions);
 
-            if (bill.Header is NIHeader niHeader)
+            Metadata.ExtractTitle(bill, logger, bill.Metadata);
+            main.PrependChild(bill.Metadata.Build(bill).ToXmlNode(main.OwnerDocument));
+
+            return doc;
+        }
+
+        private void AddHeader(XmlElement main, IHeader header)
+        {
+            if (header is NIHeader niHeader)
             {
                 if (niHeader?.CoverPage?.Blocks?.ToList() is not null)
                 {
@@ -52,7 +63,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     AddPreamble(main, niHeader?.Preamble?.Blocks?.ToList());
                 }
-            } else if (bill.Header is SPHeader spHeader)
+            } else if (header is SPHeader spHeader)
             {
                 // ignore building the cover page for now
                 if (spHeader.Preface is IBuildable<XNode> preface)
@@ -61,13 +72,23 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
 
             }
-            AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
-            AddConclusions(main, bill.Conclusions);
+            else if (header is UKHeader ukHeader)
+            {
+                if (ukHeader.Preface is IBuildable<XNode> preface)
+                {
+                    main.AppendChild(preface.Build(this.bill).ToXmlNode(main.OwnerDocument));
+                }
+                if (ukHeader.Preamble is IBuildable<XNode> preamble)
+                {
+                    main.AppendChild(preamble.Build(this.bill).ToXmlNode(main.OwnerDocument));
+                }
+                if (ukHeader.Title is not null)
+                {
+                    this.bill.Metadata.Register(new Reference(ReferenceKey.varBillTitle, ukHeader.Title.NormalizedContent));
+                }
 
-            Metadata.ExtractTitle(bill, logger, bill.Metadata);
-            main.PrependChild(bill.Metadata.Build(bill).ToXmlNode(main.OwnerDocument));
+            }
 
-            return doc;
         }
 
         private void AddCoverPage(XmlElement bill, IList<IBlock> coverPage)

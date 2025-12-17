@@ -15,8 +15,7 @@ record GenericBillTitle
             return null;
         };
 
-        if (line.IsCenterAligned()
-            && line.NormalizedContent.EndsWith("Bill", StringComparison.CurrentCultureIgnoreCase))
+        if (line.NormalizedContent.EndsWith("Bill", StringComparison.CurrentCultureIgnoreCase))
         {
             return line;
         }

@@ -24,14 +24,14 @@ record NIPreface(IEnumerable<IBlock> Blocks)
         {
             return null;
         }
-        if (parser.Peek(NIPreamble.Parse) is NIPreamble preamble)
+        if (parser.Peek(Preamble.Parse) is Preamble preamble)
         {
             return new NIPreface(blocks);
         }
 
         blocks.AddRange(parser.AdvanceWhile(b => b is WLine line
             && line.IsLeftAligned()
-            && !NIPreamble.IsStartOfPreamble(b)));
+            && !Preamble.IsStartByText(b)));
 
         return new NIPreface(blocks);
 

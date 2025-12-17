@@ -9,7 +9,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.Legislation.Lawmaker;
 
-public static class Parsers
+public static partial class Parsers
 {
     public static IParser<T>.ParseStrategy<List<R>> StrictSequence<T, R>(params IParser<T>.ParseStrategy<R>[] strategies) =>
     (IParser<T> parser) =>
@@ -43,7 +43,7 @@ public static class Parsers
         return matches;
     };
 
-    public static IParser<IBlock>.ParseStrategy<IBlock> TextContent(Predicate<string> condition) =>
+    internal static IParser<IBlock>.ParseStrategy<WLine> TextContent(Predicate<string> condition) =>
     (IParser<IBlock> parser) =>
         parser.Match(p =>
             p.Advance() is WLine line
@@ -51,7 +51,7 @@ public static class Parsers
             ? line
             : null);
 
-    public static IParser<IBlock>.ParseStrategy<IBlock> TextContent(Regex regex) =>
+    internal static IParser<IBlock>.ParseStrategy<WLine> TextContent(Regex regex) =>
     (IParser<IBlock> parser) =>
         parser.Match(p =>
             p.Advance() is WLine line
@@ -59,13 +59,14 @@ public static class Parsers
             ? line
             : null);
 
-    public static IParser<IBlock>.ParseStrategy<IBlock> TextContent(string content) => (IParser<IBlock> parser) =>
+    internal static IParser<IBlock>.ParseStrategy<WLine> TextContent(string content) => (IParser<IBlock> parser) =>
         parser.Match(p =>
             p.Advance() is WLine line
-            && (line
-                .TextContent?
-                .Trim()?
-                .Equals(content, System.StringComparison.InvariantCultureIgnoreCase) ?? false) ? line : null);
+            && (Space().Replace(line
+                .TextContent, "")?
+                .Equals(content, System.StringComparison.InvariantCultureIgnoreCase) ?? false)
+            ? line
+            : null);
 
     internal static IParser<IBlock>.ParseStrategy<WLine> WLine(Predicate<WLine> predicate) =>
     (IParser<IBlock> parser) =>
@@ -73,4 +74,7 @@ public static class Parsers
         && predicate(line)
         ? line
         : null;
+
+    [GeneratedRegex(@"\s")]
+    private static partial Regex Space();
 }

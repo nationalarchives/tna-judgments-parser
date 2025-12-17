@@ -51,6 +51,8 @@ public interface IHeader {}
             {
                 DocName.NIPUBB => Match(NIHeader.Parse),
                 DocName.SPPUBB or DocName.SPPRIB or DocName.SPHYBB => Match(SPHeader.Parse),
+                DocName.UKPUBB or DocName.UKHYBB => Match(UKHeader.Parse),
+
                 _ => throw new NotImplementedException(),
             };
         }
@@ -148,7 +150,7 @@ public interface IHeader {}
             }
             if (PeekBodyStartProvision() != null)
             {
-                header = new NIHeader(new NICoverPage(coverPage), new NIPreface(preface), new NIPreamble(preamble));
+            header = new NIHeader(new NICoverPage(coverPage), new NIPreface(preface), new Headers.Preamble(preamble));
                 return;
             }
             // we haven't found the body or we've misparsed the body as the heading
@@ -168,11 +170,3 @@ public interface IHeader {}
             return null;
         }
     }
-
-public class Preamble
-{
-    internal static bool IsStart(WLine line) =>
-        line.IsLeftAligned()
-            && line.IsFlushLeft()
-            && !line.IsAllItalicized();
-}

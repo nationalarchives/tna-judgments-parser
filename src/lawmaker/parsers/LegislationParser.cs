@@ -91,7 +91,7 @@ public partial class LegislationParser
             {
                 footnoteEnricher.EnrichBlocks(preamble);
                 header = niHeader with {
-                    Preamble = new NIPreamble(preamble)
+                    Preamble = new Headers.Preamble(preamble)
                 };
             }
         }
