@@ -129,6 +129,7 @@
             <xs:element ref="p" />
             <xs:element ref="table" />
             <xs:element ref="blockContainer" />
+            <xs:element ref="toc" />
         </xs:choice>
     </xs:complexType>
 </xs:element>
@@ -516,6 +517,41 @@
             </xs:simpleType>
         </xs:attribute>
         <xs:attribute name="title" type="xs:string" />
+    </xs:complexType>
+</xs:element>
+
+
+<!-- Table of Contents -->
+
+<xs:element name="toc">
+    <xs:complexType>
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="tocItem" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="tocItem">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+            <xs:element ref="span" />
+            <xs:element ref="inline" />
+        </xs:choice>
+        <xs:attribute name="href" type="xs:string" use="required" />
+        <xs:attribute name="level" type="xs:integer" use="required" />
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="span">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+        </xs:choice>
     </xs:complexType>
 </xs:element>
 

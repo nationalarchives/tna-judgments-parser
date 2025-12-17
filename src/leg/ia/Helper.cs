@@ -114,6 +114,9 @@ class Helper : BaseHelper {
         
         // Phase 10: Fix nested anchor elements (not allowed in AKN 3.0)
         FixNestedAnchors(xml);
+        
+        // Phase 11: Generate table of contents from sections
+        GenerateTableOfContents(xml);
     }
 
     private static void ApplyIAStyleMappings(XmlDocument xml) {
@@ -754,6 +757,95 @@ class Helper : BaseHelper {
                 parentNode.InsertBefore(innerAnchor.FirstChild, innerAnchor);
             }
             parentNode.RemoveChild(innerAnchor);
+        }
+    }
+
+    /// <summary>
+    /// Phase 11: Generate table of contents from sections with headings
+    /// Creates a toc element with tocItem entries linking to each section using full URLs
+    /// </summary>
+    private static void GenerateTableOfContents(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        var logger = Logging.Factory.CreateLogger<Helper>();
+
+        var mainBody = xml.SelectSingleNode("//akn:mainBody", nsmgr);
+        if (mainBody == null) {
+            return;
+        }
+
+        // Get base URI from FRBRExpression for constructing full URLs
+        var expressionUri = xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRuri/@value", nsmgr)?.Value;
+        if (string.IsNullOrEmpty(expressionUri)) {
+            logger.LogWarning("No FRBRExpression URI found, using fragment references for TOC");
+        }
+
+        // Find all sections with headings (skip section_1 which is typically the header table)
+        var sectionsWithHeadings = xml.SelectNodes("//akn:mainBody/akn:section[akn:heading and @eId!='section_1']", nsmgr);
+        if (sectionsWithHeadings == null || sectionsWithHeadings.Count == 0) {
+            logger.LogDebug("No sections with headings found, skipping TOC generation");
+            return;
+        }
+
+        // Create toc element
+        var toc = xml.CreateElement("toc", AKN_NAMESPACE);
+        
+        foreach (XmlElement section in sectionsWithHeadings) {
+            var eId = section.GetAttribute("eId");
+            var heading = section.SelectSingleNode("akn:heading", nsmgr);
+            
+            if (string.IsNullOrEmpty(eId) || heading == null) {
+                continue;
+            }
+
+            // Get heading text (may contain inline elements, so use InnerText)
+            string headingText = heading.InnerText?.Trim();
+            if (string.IsNullOrEmpty(headingText)) {
+                continue;
+            }
+
+            // Truncate very long headings for TOC display
+            if (headingText.Length > 100) {
+                headingText = headingText.Substring(0, 97) + "...";
+            }
+
+            // Extract section number from eId (e.g., "section_2" -> "2")
+            string sectionNumber = eId.Replace("section_", "");
+
+            // Build full URL for href
+            string href;
+            if (!string.IsNullOrEmpty(expressionUri)) {
+                href = $"{expressionUri}/section/{sectionNumber}";
+            } else {
+                href = "#" + eId;
+            }
+
+            // Create tocItem with required attributes
+            var tocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
+            tocItem.SetAttribute("href", href);
+            tocItem.SetAttribute("level", "1");
+            
+            // Add inline element with tocHeading (matches legislation.gov.uk format)
+            // Note: IAs don't have meaningful section numbers, so we skip tocNum
+            var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
+            inlineHeading.SetAttribute("name", "tocHeading");
+            inlineHeading.InnerText = headingText;
+            tocItem.AppendChild(inlineHeading);
+            
+            toc.AppendChild(tocItem);
+        }
+
+        // Only add TOC if we have entries
+        if (toc.HasChildNodes) {
+            // Insert TOC after the first section (which is typically the header)
+            var firstSection = mainBody.SelectSingleNode("akn:section[1]", nsmgr);
+            if (firstSection != null && firstSection.NextSibling != null) {
+                mainBody.InsertBefore(toc, firstSection.NextSibling);
+            } else {
+                mainBody.InsertBefore(toc, mainBody.FirstChild);
+            }
+            
+            logger.LogInformation("Generated TOC with {Count} entries", toc.ChildNodes.Count);
         }
     }
 
