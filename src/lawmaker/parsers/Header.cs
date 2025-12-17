@@ -157,7 +157,7 @@ public interface IHeader {}
 
         private BlockContainer? ParseWelshBlockContainer()
         {
-            ExplanatoryNote? explanatoryNote = ParseExplanatoryNote();
+            ExplanatoryNote? explanatoryNote = Match(ExplanatoryNote.Parse);
             if (explanatoryNote is not null)
                 return explanatoryNote;
 

@@ -12,10 +12,11 @@ namespace UK.Gov.Legislation.Lawmaker.Headers;
 
 record BracketedStageVersion(Reference Stage) : IBlock, IBuildable<XNode>
 {
-    // We may want to parse metadata here
     internal static BracketedStageVersion? Parse(IParser<IBlock> parser)
     {
-        if (parser.Advance() is not WLine line)
+        if (parser.Advance() is not WLine line
+            // We have to assume a stage version isn't bold, otherwise it gets confused with Notes in UK front covers
+            || line.IsAllBold())
         {
             return null;
         };

@@ -66,4 +66,11 @@ public static class Parsers
                 .TextContent?
                 .Trim()?
                 .Equals(content, System.StringComparison.InvariantCultureIgnoreCase) ?? false) ? line : null);
+
+    internal static IParser<IBlock>.ParseStrategy<WLine> WLine(Predicate<WLine> predicate) =>
+    (IParser<IBlock> parser) =>
+        parser.Advance() is WLine line
+        && predicate(line)
+        ? line
+        : null;
 }
