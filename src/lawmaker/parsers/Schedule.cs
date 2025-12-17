@@ -62,11 +62,24 @@ namespace UK.Gov.Legislation.Lawmaker
                 schedule = new ScheduleBranch { Number = number, Heading = heading, ReferenceNote = referenceNote, Children = children };
             }
             frames.Pop();
-
-            // If we encounter a non-quoted Schedule outside of a Schedules container, it must be wrapped.
-            if (frames.IsScheduleContext() || quoteDepth > 0)
-                return schedule;
-            return new Schedules { Number = null, Children = [schedule] };
+            
+            // If not in a quoted structure and not in Schedule context,
+            // we need to wrap the parsed Schedule and any additional ones in a 'Schedules' hContainer with no heading
+            if (quoteDepth == 0 && !frames.IsScheduleContext())
+            {
+                var save1 = i;
+                List<IDivision> children = ParseSchedulesChildren();
+                if (children.Count > 0)
+                    children = children.Prepend(schedule).ToList();
+                else
+                {
+                    i = save1;
+                    children = [schedule];
+                }
+                
+                return new Schedules { Number = null, Heading = null, Children = children };
+            }
+            return schedule;
         }
 
         /// <summary>
