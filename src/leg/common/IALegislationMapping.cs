@@ -97,11 +97,59 @@ internal static partial class IALegislationMapping {
     }
 
     /// <summary>
-    /// Builds the short URI component (without base URL) from year and number.
+    /// Builds the short URI component for an Impact Assessment based on its linked legislation.
+    /// Format: {legislation-type}/{year}/{number}/impact-assessment
+    /// Falls back to ukia/{year}/{number}/impact-assessment if no legislation mapping exists.
     /// </summary>
+    /// <param name="year">The UKIA year</param>
+    /// <param name="number">The UKIA number</param>
+    /// <returns>The short URI component (e.g., 'uksi/2018/1149/impact-assessment')</returns>
     public static string BuildShortUriComponent(int year, int number) {
-        return $"ukia/{year}/{number}";
+        string legislationUri = GetLegislationUri(year, number);
+        
+        if (!string.IsNullOrEmpty(legislationUri)) {
+            var components = ParseLegislationUri(legislationUri);
+            if (components.HasValue) {
+                var (type, legYear, legNumber) = components.Value;
+                return $"{type}/{legYear}/{legNumber}/impact-assessment";
+            }
+        }
+        
+        // Fallback: use ukia-based URI if no legislation mapping exists
+        logger.LogWarning("No legislation mapping found for UKIA {Year}/{Number}, using fallback URI", year, number);
+        return $"ukia/{year}/{number}/impact-assessment";
     }
+
+    /// <summary>
+    /// Parses a legislation URI to extract type, year, and number.
+    /// </summary>
+    /// <param name="legislationUri">The full legislation URI (e.g., http://www.legislation.gov.uk/id/uksi/2018/1149)</param>
+    /// <returns>A tuple of (type, year, number) if parsing succeeds, otherwise null</returns>
+    public static (string type, int year, string number)? ParseLegislationUri(string legislationUri) {
+        if (string.IsNullOrEmpty(legislationUri))
+            return null;
+
+        // Match pattern: http://www.legislation.gov.uk/id/{type}/{year}/{number}
+        Match match = LegislationUriRegex().Match(legislationUri);
+        if (!match.Success) {
+            logger.LogWarning("Legislation URI '{Uri}' does not match expected pattern", legislationUri);
+            return null;
+        }
+
+        string type = match.Groups[1].Value;
+        string yearStr = match.Groups[2].Value;
+        string number = match.Groups[3].Value;
+
+        if (!int.TryParse(yearStr, out int year)) {
+            logger.LogWarning("Legislation URI '{Uri}' has non-numeric year", legislationUri);
+            return null;
+        }
+
+        return (type, year, number);
+    }
+
+    [GeneratedRegex(@"^https?://www\.legislation\.gov\.uk/id/([^/]+)/(\d{4})/(.+)$", RegexOptions.IgnoreCase)]
+    private static partial Regex LegislationUriRegex();
 
     /// <summary>
     /// Parses an IA filename to extract year and number.
