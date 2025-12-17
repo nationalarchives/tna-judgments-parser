@@ -16,7 +16,8 @@ partial record UKHeader(UKPreface? Preface, Preamble? Preamble, WLine? Title) : 
         WLine? title = null;
         BracketedStageVersion? stageVersion = null;
         UKPreface? preface = null;
-        while (parser.Peek(Preamble.Parse) is not Preamble _preamble)
+        while (parser.Peek(Preamble.Parse) is not Preamble _preamble
+                && !parser.IsAtEnd())
         {
             preface = parser.Match(UKPreface.Parse);
             if (preface is not null)
@@ -32,6 +33,10 @@ partial record UKHeader(UKPreface? Preface, Preamble? Preamble, WLine? Title) : 
 
         var preamble = parser.Match(Preamble.Parse);
 
+        if (preface is null && preamble is null && title is null)
+        {
+            return null;
+        }
         if (preface is not null && preface.StageVersion is null)
         {
             preface = preface with { StageVersion = stageVersion };
