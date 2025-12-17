@@ -14,9 +14,7 @@ record BracketedStageVersion(Reference Stage) : IBlock, IBuildable<XNode>
 {
     internal static BracketedStageVersion? Parse(IParser<IBlock> parser)
     {
-        if (parser.Advance() is not WLine line
-            // We have to assume a stage version isn't bold, otherwise it gets confused with Notes in UK front covers
-            || line.IsAllBold())
+        if (parser.Advance() is not WLine line)
         {
             return null;
         };
