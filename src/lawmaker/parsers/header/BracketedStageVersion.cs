@@ -38,7 +38,7 @@ record BracketedStageVersion(Reference Stage) : IBlock, IBuildable<XNode>
         new XElement(akn + "docStage",
             new XElement(akn + "ref",
                 new XAttribute(akn + "class", "placeholder"),
-                new XAttribute("href", $"#{Document.Metadata.Register(Stage)?.EId ?? ""}")
+                new XAttribute("href", $"#{Document.Metadata.Register(Stage)?.EId ?? "varStageVersion"}")
             )),
         new XText("]"));
 }

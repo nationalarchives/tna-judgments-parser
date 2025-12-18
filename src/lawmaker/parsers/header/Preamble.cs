@@ -13,7 +13,7 @@ using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
 namespace UK.Gov.Legislation.Lawmaker.Headers;
 
-partial record Preamble(IEnumerable<IBlock> Blocks) : IBuildable<XNode>
+partial record Preamble(IEnumerable<IBlock?> Blocks) : IBuildable<XNode>
 {
 
     private enum PreambleType
@@ -37,7 +37,8 @@ partial record Preamble(IEnumerable<IBlock> Blocks) : IBuildable<XNode>
         {
             return new Preamble([WLine.Make(line2, [
                 new WText("B", line2.Contents.OfType<WText>().FirstOrDefault()?.properties),
-                ..line2.Contents])])
+                ..line2.Contents, ]),
+                parser.Match(ParliamentAssembled)])
                 {
                     Type = PreambleType.BeItEnacted
                 };
@@ -46,13 +47,16 @@ partial record Preamble(IEnumerable<IBlock> Blocks) : IBuildable<XNode>
 
         if (IsStartByText(line))
         {
-            return new Preamble([line])
+            return new Preamble([line, parser.Match(ParliamentAssembled)])
             {
                 Type = PreambleType.BeItEnacted
             };
         }
         return null;
     }
+
+    internal static WLine? ParliamentAssembled(IParser<IBlock> parser) =>
+        Parsers.WLine(line => line.NormalizedContent.Trim().StartsWith("Parliament assembled"))(parser);
 
     // used for UKPRIB
     internal static Preamble? MayItTherefore(IParser<IBlock> parser)
