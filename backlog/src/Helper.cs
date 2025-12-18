@@ -9,15 +9,7 @@ namespace Backlog.Src
 {
     class Helper(Api.Parser parser)
     {
-        internal string PathToCourtMetadataFile { get; init; }
-
         internal string PathToDataFolder { get; init; }
-
-        internal List<CsvMetadata.Line> FindLines(uint id)
-        {
-            List<CsvMetadata.Line> lines = CsvMetadata.Read(PathToCourtMetadataFile);
-            return CsvMetadata.FindLines(lines, id);
-        }
 
         private Api.Response CreateResponse(ExtendedMetadata meta, byte[] content)
         {
