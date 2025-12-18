@@ -371,6 +371,9 @@ namespace UK.Gov.Legislation.Lawmaker
         /// <param name="hi">The second number</param>
         private static bool IsSubsequentNum(string lo, string hi)
         {
+            if (lo is null || hi is null)
+                return false;
+
             lo = lo.Replace(".", " ").Trim();
             hi = hi.Replace(".", " ").Trim();
 

@@ -113,6 +113,14 @@ namespace UK.Gov.Legislation.Lawmaker
             return true;
         }
 
+        /// <summary>
+        /// Attempts to parse a <c>Prov1</c> element starting from the given <paramref name="line"/>.
+        /// </summary>
+        /// <param name="line">The line from which to begin parsing.</param>
+        /// <returns>
+        /// An <c>HContainer</c> representing the parsed <c>Prov1</c> element, if successful. 
+        /// Otherwise <c>null</c>.
+        /// </returns>
         private HContainer? ParseProv1(WLine line)
         {
             int save = i;
@@ -139,6 +147,7 @@ namespace UK.Gov.Legislation.Lawmaker
             // Parse Prov1 contents/children
             IFormattedText? number = line is WOldNumberedParagraph np ? np.Number : null;
             HContainer parsedProv1 = ParseBareProv1(Current() as WLine, number);
+            provisionRecords.Pop();
             if (parsedProv1 is null)
             {
                 i = save;
@@ -158,7 +167,15 @@ namespace UK.Gov.Legislation.Lawmaker
             return parsedProv1;
         }
 
-        // matches only a numbered section without a heading
+        /// <summary>
+        /// Attempts to parse a <c>Prov1</c> element without the heading.
+        /// </summary>
+        /// <param name="line">The line from which to begin parsing.</param>
+        /// <param name="number">An override for the <c>Prov1</c> element's number.</param>
+        /// <returns>
+        /// An <c>HContainer</c> representing the parsed <c>Prov1</c> element, if successful. 
+        /// Otherwise <c>null</c>.
+        /// </returns>
         private HContainer ParseBareProv1(WLine line, IFormattedText? number)
         {
             List<IBlock> intro = [];
@@ -169,32 +186,34 @@ namespace UK.Gov.Legislation.Lawmaker
             bool headingPrecedesNumber = !frames.CurrentDocName.RequireNumberedProv1Headings();
             if (headingPrecedesNumber)
             {
-                // Must strip the Prov1 num from the beginning of the line (see scenarios [C] through [F])
-                WOldNumberedParagraph np = line as WOldNumberedParagraph;
-                number = np.Number;
-                provisionRecords.Push(typeof(Prov1), number, quoteDepth);
-
-                WOldNumberedParagraph? firstProv2Line = FixFirstProv2(np);
-                bool hasProv2Child = firstProv2Line != null;
-                if (hasProv2Child)
-                {
-                    HContainer prov2 = ParseAndMemoize(firstProv2Line, "Prov2", ParseProv2);
-                    if (prov2 == null)
-                        return new Prov1Leaf { TagName = tagName, Number = number, Contents = intro, HeadingPrecedesNumber = headingPrecedesNumber };
-                    children.Add(prov2);
-                    if (IsEndOfQuotedStructure(prov2))
-                        return new Prov1Branch { TagName = tagName, Number = number, Intro = intro, Children = children, WrapUp = wrapUp, HeadingPrecedesNumber = headingPrecedesNumber };
-                }
-                else
-                {
-                    i += 1;
-                    intro = HandleParagraphs(np);
-                    if (IsEndOfQuotedStructure(intro))
-                        return new Prov1Leaf { TagName = tagName, Number = number, Contents = intro, HeadingPrecedesNumber = headingPrecedesNumber };
-                }
-
+                // Must strip the Prov1 number from the beginning of the line (see scenarios [C] through [F])
+                if (line is WOldNumberedParagraph np)
+                    number = np.Number;
+                WOldNumberedParagraph? fixedProv2Line = FixFirstProv2(line);
+                if (fixedProv2Line is not null)
+                    line = fixedProv2Line;
             }
 
+            provisionRecords.Push(typeof(Prov1), number!, quoteDepth);
+
+            // Attempt to parse the first child as a Prov2
+            HContainer prov2 = ParseAndMemoize(line, "Prov2", ParseProv2);
+            if (prov2 != null)
+            {
+                children.Add(prov2);
+                if (IsEndOfQuotedStructure(prov2))
+                    return new Prov1Branch { TagName = tagName, Number = number, Intro = intro, Children = children, WrapUp = wrapUp, HeadingPrecedesNumber = headingPrecedesNumber };
+            }
+            // If unsuccessful, parse as unstructured content
+            else
+            {
+                i += 1;
+                intro = HandleParagraphs(line);
+                if (IsEndOfQuotedStructure(intro))
+                    return new Prov1Leaf { TagName = tagName, Number = number, Contents = intro, HeadingPrecedesNumber = headingPrecedesNumber };
+            }
+
+            // Handle additional children
             int finalChildStart = i;
             while (i < Body.Count)
             {
@@ -213,7 +232,6 @@ namespace UK.Gov.Legislation.Lawmaker
                     break;
             }
             wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
-            provisionRecords.Pop();
 
             if (children.Count == 0)
                 return new Prov1Leaf { TagName = tagName, Number = number, Contents = intro, HeadingPrecedesNumber = headingPrecedesNumber };
