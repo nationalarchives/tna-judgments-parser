@@ -53,7 +53,7 @@ namespace test.backlog
             const string expectedUuid = "test-uuid-12345";
 
             // Create a test metadata line with a file path that includes the 2-level judgments path
-            var metadataLine = new Metadata.Line
+            var metadataLine = new CsvMetadata.Line
             {
                 FilePath = @"Documents\Decisions\j100\test-decision.pdf",
                 Extension = ".pdf"
@@ -92,7 +92,7 @@ namespace test.backlog
             const string expectedUuid = "test-uuid-mixed-paths";
 
             // Create metadata line with backslashes (Windows style)
-            var metadataLine = new Metadata.Line
+            var metadataLine = new CsvMetadata.Line
             {
                 FilePath = @"Documents\Decisions\subfolder\test-file.doc",
                 Extension = ".doc"
@@ -130,7 +130,7 @@ namespace test.backlog
             const string hmctsFilePath = "data/Claims management decisions";
 
             // Create metadata line with a path that doesn't start with judgmentsFilePath
-            var metadataLine = new Metadata.Line
+            var metadataLine = new CsvMetadata.Line
             {
                 FilePath = @"Different\Path\j100\test-file.pdf",
                 Extension = ".pdf"
@@ -158,14 +158,14 @@ namespace test.backlog
             const string expectedUuid1 = "copy-test-uuid-1";
             const string expectedUuid2 = "copy-test-uuid-2";
 
-            var metadataLines = new List<Metadata.Line>
+            var metadataLines = new List<CsvMetadata.Line>
             {
-                new Metadata.Line
+                new CsvMetadata.Line
                 {
                     FilePath = @"Documents\Decisions\folder1\file1.pdf",
                     Extension = ".pdf"
                 },
-                new Metadata.Line
+                new CsvMetadata.Line
                 {
                     FilePath = @"Documents\Decisions\folder2\file2.doc",
                     Extension = ".doc"

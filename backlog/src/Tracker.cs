@@ -16,16 +16,16 @@ namespace Backlog.Src
             }
         }
 
-        private string MakeKey(Metadata.Line line) {
+        private string MakeKey(CsvMetadata.Line line) {
             return line.id + "/" + line.FilePath;
         }
 
-        internal bool WasDone(Metadata.Line line) {
+        internal bool WasDone(CsvMetadata.Line line) {
             var key = MakeKey(line);
             return File.ReadAllLines(file).Where(entry => entry.Contains(key)).Any();
         }
 
-        internal void MarkDone(Metadata.Line line, string uuid) {
+        internal void MarkDone(CsvMetadata.Line line, string uuid) {
             var key = MakeKey(line);
             var timestamp = System.DateTime.Now.ToFileTime();
             string next = key + "," + uuid + "," + timestamp;

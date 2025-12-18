@@ -77,7 +77,6 @@ public static class Program
         
         Helper helper = new(new Parser(Logging.Factory.CreateLogger<Parser>(), new UK.Gov.Legislation.Judgments.AkomaNtoso.Validator()))
         {
-            PathToCourtMetadataFile = pathToCourtMetadataFile,
             PathToDataFolder = pathToDataFolder
         };
         var trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
@@ -86,31 +85,27 @@ public static class Program
         Log($"Using data folder: {pathToDataFolder}");
         Log($"Using court metadata from: {pathToCourtMetadataFile}");
 
-        List<Metadata.Line> lines;
+        var lines = CsvMetadata.Read(pathToCourtMetadataFile);
+        if (!lines.Any())
+        {
+            Log("No records found in the metadata file");
+            return 1;
+        }
+
         if (id.HasValue)
         {
             // Process only the specific ID
-            lines = helper.FindLines(id.Value);
+            lines = CsvMetadata.FindLines(lines, id.Value);
             if (!lines.Any())
             {
                 Log($"No records found for id {id.Value}");
                 return 1;
             }
         }
-        else
-        {
-            // Process all lines from the document
-            lines = Metadata.Read(helper.PathToCourtMetadataFile);
-            if (!lines.Any())
-            {
-                Log("No records found in the metadata file");
-                return 1;
-            }
-        }
 
-        var alreadyDoneLines = new List<Metadata.Line>();
-        var successfulLines = new List<Metadata.Line>();
-        var failedLines = new List<(Metadata.Line line, Exception exception)>();
+        var alreadyDoneLines = new List<CsvMetadata.Line>();
+        var successfulLines = new List<CsvMetadata.Line>();
+        var failedLines = new List<(CsvMetadata.Line line, Exception exception)>();
 
         foreach (var line in lines)
         {

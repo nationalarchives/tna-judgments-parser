@@ -86,7 +86,11 @@ namespace Backlog.Src
         /// <returns>UUID from the transfer metadata file corresponding to the metadata line</returns>
         /// <exception cref="FileNotFoundException">Thrown when no matching UUID is found in transfer metadata</exception>
         /// <exception cref="ArgumentException">Thrown when file path normalization fails</exception>
-        private static string GetUuid(string pathToDataFolder, Metadata.Line meta, string judgmentsFilePath, string hmctsFilePath) {
+        private static string GetUuid(string pathToDataFolder, CsvMetadata.Line meta, string judgmentsFilePath, string hmctsFilePath)
+        {
+            if (!string.IsNullOrWhiteSpace(meta.Uuid))
+                return meta.Uuid;
+
             var tribunalDataFilePath = GetFilePathFromTribunalMetadata(meta.FilePath, judgmentsFilePath);
             System.Console.WriteLine($"Tribunal Metadata filepath: {tribunalDataFilePath}");
             return FindUuidInTransferMetadata(pathToDataFolder, tribunalDataFilePath, hmctsFilePath);
@@ -104,7 +108,7 @@ namespace Backlog.Src
         /// <returns>File contents as a byte array</returns>
         /// <exception cref="FileNotFoundException">Thrown when the file or its UUID cannot be found</exception>
         /// <exception cref="ArgumentException">Thrown when path normalization fails</exception>
-        internal static byte[] ReadFile(string pathToDataFolder, Metadata.Line meta, string judgmentsFilePath, string hmctsFilePath) {
+        internal static byte[] ReadFile(string pathToDataFolder, CsvMetadata.Line meta, string judgmentsFilePath, string hmctsFilePath) {
             string uuid = GetUuid(pathToDataFolder, meta, judgmentsFilePath, hmctsFilePath);
             string documentPath = Path.Combine(pathToDataFolder, COURT_DOCUMENTS_DIR);
             string path = Path.Combine(documentPath, uuid);
@@ -126,7 +130,7 @@ namespace Backlog.Src
         /// <param name="hmctsFilePath">The HMCTS file path prefix for UUID resolution</param>
         /// <exception cref="FileNotFoundException">Thrown when source files or UUIDs cannot be found</exception>
         /// <exception cref="ArgumentException">Thrown when path normalization fails</exception>
-        internal static void CopyAllFilesWithExtension(string pathToDataFolder, List<Metadata.Line> lines, string judgmentsFilePath, string hmctsFilePath) {
+        internal static void CopyAllFilesWithExtension(string pathToDataFolder, List<CsvMetadata.Line> lines, string judgmentsFilePath, string hmctsFilePath) {
             foreach (var line in lines)
             {
                 string uuid = GetUuid(pathToDataFolder, line, judgmentsFilePath, hmctsFilePath);

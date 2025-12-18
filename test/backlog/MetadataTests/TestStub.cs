@@ -12,7 +12,7 @@ public class TestStub
     public void Stub_WithNCN_AppearsInXmlAsCite()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -24,7 +24,7 @@ public class TestStub
             Extension = ".pdf",
             ncn = "[2023] UKUT 123 (IAC)"
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -38,7 +38,7 @@ public class TestStub
     public void Stub_WithEmptyNCN_DoesNotAppearInXml()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -50,7 +50,7 @@ public class TestStub
             Extension = ".pdf",
             ncn = ""
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -65,7 +65,7 @@ public class TestStub
     public void Stub_WithNullNCN_DoesNotAppearInXml()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -77,7 +77,7 @@ public class TestStub
             Extension = ".pdf"
             // ncn is not set (null)
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -92,7 +92,7 @@ public class TestStub
     public void Stub_WithWhitespaceNCN_DoesNotAppearInXml()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -104,7 +104,7 @@ public class TestStub
             Extension = ".pdf",
             ncn = "   "
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -119,7 +119,7 @@ public class TestStub
     public void Stub_WithNCNSpecialCharacters_AppearsCorrectlyInXml()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -131,7 +131,7 @@ public class TestStub
             Extension = ".pdf",
             ncn = "[2023] EWCA Civ 123 & 124"
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -147,7 +147,7 @@ public class TestStub
     public void Stub_WithSingleJurisdiction_AppearsInXmlAsUkJurisdiction()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -159,7 +159,7 @@ public class TestStub
             Extension = ".pdf",
             Jurisdictions = ["new jurisdiction"]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -175,7 +175,7 @@ public class TestStub
     public void Stub_WithMultipleJurisdictions_AppearInXmlAsUkJurisdictions()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -187,7 +187,7 @@ public class TestStub
             Extension = ".pdf",
             Jurisdictions = ["new jurisdiction", "other new jurisdiction"]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -205,7 +205,7 @@ public class TestStub
     public void Stub_WithEmptyJurisdiction_DoesNotAppearInXml()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -217,7 +217,7 @@ public class TestStub
             Extension = ".pdf",
             Jurisdictions = [""]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -233,7 +233,7 @@ public class TestStub
     public void Stub_WithNoJurisdiction_DoesNotAppearInXml()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -245,7 +245,7 @@ public class TestStub
             Extension = ".pdf"
             // Jurisdiction is not set (empty)
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -261,7 +261,7 @@ public class TestStub
     public void Stub_WithWhitespaceJurisdiction_DoesNotAppearInXml()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -273,7 +273,7 @@ public class TestStub
             Extension = ".pdf",
             Jurisdictions = ["   "]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -289,7 +289,7 @@ public class TestStub
     public void Stub_WithMultipleWhitespaceJurisdictions_DoesNotAppearInXml()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -301,7 +301,7 @@ public class TestStub
             Extension = ".pdf",
             Jurisdictions = ["   ", "", "  "]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -317,7 +317,7 @@ public class TestStub
     public void Stub_WithWebArchivingLink_AppearsInXmlAsUkWebarchiving()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -329,7 +329,7 @@ public class TestStub
             Extension = ".pdf",
             webarchiving = "a web archive link"
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -346,7 +346,7 @@ public class TestStub
     public void Stub_WithEmptyWebArchivingLink_DoesNotAppearInXml()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -358,7 +358,7 @@ public class TestStub
             Extension = ".pdf",
             webarchiving = ""
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -374,7 +374,7 @@ public class TestStub
     public void Stub_WithNoWebArchivingLink_DoesNotAppearInXml()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -386,7 +386,7 @@ public class TestStub
             Extension = ".pdf"
             // WebArchiving is not set (empty)
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
