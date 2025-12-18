@@ -329,7 +329,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
 
             // If centre-aligned, it must be the start of a new grouping provision
-            if (IsCenterAligned(line))
+            if (line.IsCenterAligned())
                 return true;
 
             // If we reach the heading of another Prov1, this Prov1 must be over
@@ -482,7 +482,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (Current() is not WLine line)
                 return null;
-            if (!IsCenterAligned(line))
+            if (!line.IsCenterAligned())
                 return null;
             if (frames.IsScheduleContext())
             {

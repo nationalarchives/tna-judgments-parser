@@ -15,12 +15,6 @@ namespace UK.Gov.Legislation.Lawmaker
     partial class LegislationParser : BlockParser
     {
 
-        internal static bool IsCenterAligned(WLine line)
-        {
-            var alignment = line.GetEffectiveAlignment();
-            return alignment == AlignmentValues.Center;
-        }
-
         private static bool IsRightAligned(WLine line)
         {
             var alignment = line.GetEffectiveAlignment();

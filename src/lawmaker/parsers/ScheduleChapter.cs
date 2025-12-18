@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private HContainer ParseScheduleChapter(WLine line)
         {
             var save = i;
-            
+
             if (!PeekScheduleChapterHeading(line))
                 return null;
 
@@ -30,13 +30,13 @@ namespace UK.Gov.Legislation.Lawmaker
             // Current line may be a WLine or WTable
             if (line2 is not WLine && line2 is not WTable)
                 return null;
-            
+
             // Schedule chapters may have no heading
             ILine heading = null;
-            if (line2 is WLine)
-                if (IsCenterAligned((WLine) line2))
+            if (line2 is WLine l2)
+                if (l2.IsCenterAligned())
                     heading = (WLine) line2;
-            
+
             i += heading is null ? 1 : 2;
 
             if (line2 is WLine && IsEndOfQuotedStructure(((WLine) line2).NormalizedContent))
@@ -66,7 +66,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph np)
                 return false;
-            if (!IsCenterAligned(line))
+            if (!line.IsCenterAligned())
                 return false;
             if (i > Body.Count - 2)
                 return false;
