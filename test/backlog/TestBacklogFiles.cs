@@ -12,13 +12,13 @@ namespace test.backlog
     /// <summary>
     /// Tests for the Files class focusing on file path handling and UUID resolution.
     /// </summary>
-    public class TestFiles : IDisposable
+    public class TestBacklogFiles : IDisposable
     {
         private string _tempTestDir;
         private string _courtDocumentsDir;
         private string _tdrMetadataDir;
 
-        public TestFiles()
+        public TestBacklogFiles()
         {
             // Create a temporary directory for test files
             _tempTestDir = Path.Combine(Path.GetTempPath(), $"FilesTest_{Guid.NewGuid()}");
@@ -73,7 +73,7 @@ namespace test.backlog
             File.WriteAllBytes(courtDocumentPath, new byte[] { 1, 2, 3, 4 });
 
             // Act & Assert - This should not throw an exception
-            byte[] fileContent = Files.ReadFile(_tempTestDir, metadataLine, judgmentsFilePath, hmctsFilePath);
+            byte[] fileContent = BacklogFiles.ReadFile(_tempTestDir, metadataLine, judgmentsFilePath, hmctsFilePath);
 
             // Verify that we actually got the file content
             Assert.Equal(new byte[] { 1, 2, 3, 4 }, fileContent);
@@ -112,7 +112,7 @@ namespace test.backlog
             File.WriteAllBytes(courtDocumentPath, new byte[] { 5, 6, 7, 8, 9 });
 
             // Act & Assert - This should handle path normalization
-            byte[] fileContent = Files.ReadFile(_tempTestDir, metadataLine, judgmentsFilePath, hmctsFilePath);
+            byte[] fileContent = BacklogFiles.ReadFile(_tempTestDir, metadataLine, judgmentsFilePath, hmctsFilePath);
 
             // Verify that we got the file content and .doc extension was handled correctly
             Assert.Equal(new byte[] { 5, 6, 7, 8, 9 }, fileContent);
@@ -139,7 +139,7 @@ namespace test.backlog
             // Act & Assert
             var exception = Assert.Throws<ArgumentException>(() =>
             {
-                Files.ReadFile(_tempTestDir, metadataLine, judgmentsFilePath, hmctsFilePath);
+                BacklogFiles.ReadFile(_tempTestDir, metadataLine, judgmentsFilePath, hmctsFilePath);
             });
 
             Assert.Contains("must start with", exception.Message);
@@ -189,7 +189,7 @@ namespace test.backlog
             File.WriteAllBytes(sourcePath2, new byte[] { 40, 50, 60 });
 
             // Act
-            Files.CopyAllFilesWithExtension(_tempTestDir, metadataLines, judgmentsFilePath, hmctsFilePath);
+            BacklogFiles.CopyAllFilesWithExtension(_tempTestDir, metadataLines, judgmentsFilePath, hmctsFilePath);
 
             // Assert - Check that files were copied with correct extensions
             var targetPath1 = Path.Combine(_courtDocumentsDir, expectedUuid1 + ".pdf");
