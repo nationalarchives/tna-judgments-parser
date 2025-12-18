@@ -54,9 +54,15 @@ public class Metadata : IBuildable<XNode>
         {
             return null;
         }
+
         uint i = 0;
         while (References.ContainsKey((reference.Key, i)))
         {
+            if (reference.ShowAs.Equals(References[(reference.Key, i)].ShowAs, StringComparison.CurrentCultureIgnoreCase))
+            {
+                reference.Num = i;
+                return reference;
+            }
             i++;
         }
         reference.Num = i;

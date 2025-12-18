@@ -82,9 +82,14 @@ namespace UK.Gov.Legislation.Lawmaker
                 {
                     main.AppendChild(preamble.Build(this.bill).ToXmlNode(main.OwnerDocument));
                 }
+                // ensure our metadata is registered
                 if (ukHeader.Title is not null)
                 {
                     this.bill.Metadata.Register(new Reference(ReferenceKey.varBillTitle, ukHeader.Title.NormalizedContent));
+                }
+                if (ukHeader.StageVersion is not null)
+                {
+                    this.bill.Metadata.Register(new Reference(ReferenceKey.varStageVersion, ukHeader.StageVersion.Stage.ShowAs));
                 }
 
             }
