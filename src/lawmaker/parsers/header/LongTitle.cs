@@ -41,16 +41,19 @@ record BillLongTitle(
             A is null
             ? null
             : new XElement(akn + "p",
+                new XAttribute(akn + "class", "A"),
                 new XText("A")),
             Bill is null
             ? null
             : new XElement(akn + "p",
+                new XAttribute(akn + "class", "Bill"),
                 new XText("bill")),
             To is null
             ? null
             : new XElement(akn + "p",
+                new XAttribute(akn + "class", "To"),
                 new XText("to")),
-            Rest?.Select(line => new XElement(akn + "p", line.TextContent))
+            Rest?.Select(line => new XElement(akn + "p", line.TextContent.Trim()))
 
         );
 }
