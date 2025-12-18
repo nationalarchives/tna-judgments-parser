@@ -97,7 +97,7 @@ namespace Backlog.Src
 
             var meta = Metadata.MakeMetadata(line);
 
-            var content = Files.ReadFile(PathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
+            var content = BacklogFiles.ReadFile(PathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
 
             var response = CreateResponse(meta, content);
 
