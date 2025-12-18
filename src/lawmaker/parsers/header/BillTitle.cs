@@ -1,12 +1,14 @@
 #nullable enable
 
 using System;
+using System.Text.RegularExpressions;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.Legislation.Lawmaker.Headers;
 
-record GenericBillTitle
+partial record GenericBillTitle
 {
     internal static WLine? Parse(IParser<IBlock> parser)
     {
@@ -15,11 +17,14 @@ record GenericBillTitle
             return null;
         };
 
-        if (line.NormalizedContent.EndsWith("Bill", StringComparison.CurrentCultureIgnoreCase))
+        if (TitleRegex().IsMatch(line.NormalizedContent))
         {
             return line;
         }
 
         return null;
     }
+
+    [GeneratedRegex(@"Bill$|Measure$", RegexOptions.IgnoreCase)]
+    private static partial Regex TitleRegex();
 }

@@ -10,12 +10,12 @@ using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
 namespace UK.Gov.Legislation.Lawmaker.Headers;
 
-record NIPrimaryPreface(LongTitle LongTitle) : IBuildable<XNode>
+record NIPrimaryPreface(BillLongTitle LongTitle) : IBuildable<XNode>
 {
 
     internal static NIPrimaryPreface? Parse(IParser<IBlock> parser)
     {
-        var longTitle = parser.Match(LongTitle.BigABillTo);
+        var longTitle = parser.Match(BillLongTitle.BigABillTo);
         if (longTitle is null)
         {
             return null;

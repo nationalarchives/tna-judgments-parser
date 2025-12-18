@@ -15,7 +15,7 @@ namespace UK.Gov.Legislation.Lawmaker.Headers;
 
 partial record UKPreface(
     BracketedStageVersion? StageVersion,
-    LongTitle LongTitle
+    BillLongTitle LongTitle
 ) : IBuildable<XNode> {
 
     internal static UKPreface? Parse(IParser<IBlock> parser)
@@ -23,7 +23,7 @@ partial record UKPreface(
         BracketedStageVersion? stageVersion = parser.Match(BracketedStageVersion.Parse);
         // we always expect a long title since it indicates the end of a preface
         var _notes = parser.MatchWhile(UKHeader.Note);
-        var longTitle = parser.Match(Headers.LongTitle.BigABillTo);
+        var longTitle = parser.Match(Headers.BillLongTitle.BigABillTo);
 
 
         if (longTitle is null)

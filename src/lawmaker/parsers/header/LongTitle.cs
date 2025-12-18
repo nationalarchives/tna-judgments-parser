@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 using UK.Gov.Legislation.Judgments;
@@ -11,13 +12,13 @@ using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
 namespace UK.Gov.Legislation.Lawmaker.Headers;
 
-record LongTitle(
+record BillLongTitle(
     WLine? A,
     WLine? Bill,
     WLine? To,
     IEnumerable<WLine>? Rest) : IBuildable<XNode>
 {
-    internal static LongTitle? BigABillTo(IParser<IBlock> parser)
+    internal static BillLongTitle? BigABillTo(IParser<IBlock> parser)
     {
         var (a, bill, to) = (
             parser.Match(Parsers.TextContent("A")),
@@ -32,7 +33,7 @@ record LongTitle(
             line.IsLeftAligned()
             && !Preamble.IsStartByText(line)));
 
-        return new LongTitle(a, bill, to, rest);
+        return new BillLongTitle(a, bill, to, rest);
     }
 
     public XNode? Build(Document Document) =>
@@ -52,4 +53,29 @@ record LongTitle(
             Rest?.Select(line => new XElement(akn + "p", line.TextContent))
 
         );
+}
+
+partial record CMLongTitle(
+    WLine Line
+) : IBuildable<XNode> {
+    internal static CMLongTitle? Parse(IParser<IBlock> parser)
+    {
+        if (parser.Advance() is not WLine line)
+        {
+            return null;
+        }
+        if (Space().Replace(line.NormalizedContent, @" ").Trim().StartsWith("A measure of the General"))
+        {
+            return new CMLongTitle(line);
+        }
+        return null;
+
+    }
+
+    [GeneratedRegex(@"\s+")]
+    private static partial Regex Space();
+
+    public XNode? Build(Document Document) =>
+        new XElement(akn + "longTitle",
+            new XElement(akn + "p", Line.TextContent));
 }

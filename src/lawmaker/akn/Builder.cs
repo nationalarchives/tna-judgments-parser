@@ -71,8 +71,7 @@ namespace UK.Gov.Legislation.Lawmaker
                     main.AppendChild(preface.Build(this.bill).ToXmlNode(main.OwnerDocument));
                 }
 
-            }
-            else if (header is UKHeader ukHeader)
+            } else if (header is UKHeader ukHeader)
             {
                 if (ukHeader.Preface is IBuildable<XNode> preface)
                 {
@@ -92,6 +91,16 @@ namespace UK.Gov.Legislation.Lawmaker
                     this.bill.Metadata.Register(new Reference(ReferenceKey.varStageVersion, ukHeader.StageVersion.Stage.ShowAs));
                 }
 
+            } else if (header is CMHeader cmHeader)
+            {
+                if (cmHeader.Preface is IBuildable<XNode> preface)
+                {
+                    main.AppendChild(preface.Build(this.bill).ToXmlNode(main.OwnerDocument));
+                }
+                if (cmHeader.Title is not null)
+                {
+                    this.bill.Metadata.Register(new Reference(ReferenceKey.varBillTitle, cmHeader.Title.NormalizedContent));
+                }
             }
 
         }
