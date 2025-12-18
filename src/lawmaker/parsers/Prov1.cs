@@ -185,6 +185,14 @@ namespace UK.Gov.Legislation.Lawmaker
                     if (IsEndOfQuotedStructure(prov2))
                         return new Prov1Branch { TagName = tagName, Number = number, Intro = intro, Children = children, WrapUp = wrapUp, HeadingPrecedesNumber = headingPrecedesNumber };
                 }
+                else
+                {
+                    i += 1;
+                    intro = HandleParagraphs(np);
+                    if (IsEndOfQuotedStructure(intro))
+                        return new Prov1Leaf { TagName = tagName, Number = number, Contents = intro, HeadingPrecedesNumber = headingPrecedesNumber };
+                }
+
             }
 
             int finalChildStart = i;
