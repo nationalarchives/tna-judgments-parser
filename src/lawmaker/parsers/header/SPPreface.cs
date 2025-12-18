@@ -101,5 +101,6 @@ partial record SPPreface(
                     new XAttribute("href", $"#{Document.Metadata.Register(BillTitle)?.EId ?? "varBillTitle"}")))),
         StageVersion?.Build(Document),
         new XElement(akn + "longTitle",
-            new XText(LongTitle?.TextContent ?? "")));
+            new XElement(akn + "p",
+                new XText(LongTitle?.TextContent ?? ""))));
 }
