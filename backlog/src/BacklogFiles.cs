@@ -86,7 +86,11 @@ namespace Backlog.Src
         /// <returns>UUID from the transfer metadata file corresponding to the metadata line</returns>
         /// <exception cref="FileNotFoundException">Thrown when no matching UUID is found in transfer metadata</exception>
         /// <exception cref="ArgumentException">Thrown when file path normalization fails</exception>
-        private static string GetUuid(string pathToDataFolder, Metadata.Line meta, string judgmentsFilePath, string hmctsFilePath) {
+        private static string GetUuid(string pathToDataFolder, Metadata.Line meta, string judgmentsFilePath, string hmctsFilePath)
+        {
+            if (!string.IsNullOrWhiteSpace(meta.Uuid))
+                return meta.Uuid;
+
             var tribunalDataFilePath = GetFilePathFromTribunalMetadata(meta.FilePath, judgmentsFilePath);
             System.Console.WriteLine($"Tribunal Metadata filepath: {tribunalDataFilePath}");
             return FindUuidInTransferMetadata(pathToDataFolder, tribunalDataFilePath, hmctsFilePath);
