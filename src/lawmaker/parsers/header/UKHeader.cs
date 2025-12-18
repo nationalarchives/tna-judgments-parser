@@ -8,15 +8,16 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.Legislation.Lawmaker.Headers;
 
-partial record UKHeader(UKPreface? Preface, Preamble? Preamble, WLine? Title) : IHeader
+partial record UKHeader(UKPreface? Preface, Preamble? Preamble, WLine? Title, BracketedStageVersion? StageVersion) : IHeader
 {
 
-    internal static UKHeader? Parse(IParser<IBlock> parser)
+    internal static IParser<IBlock>.ParseStrategy<UKHeader> Parse(IParser<IBlock>.ParseStrategy<Preamble> preambleStrategy) =>
+    (IParser<IBlock> parser) =>
     {
         WLine? title = null;
         BracketedStageVersion? stageVersion = null;
         UKPreface? preface = null;
-        while (parser.Peek(Preamble.Parse) is not Preamble _preamble
+        while (parser.Peek(preambleStrategy) is not Preamble _preamble
                 && !parser.IsAtEnd())
         {
             preface = parser.Match(UKPreface.Parse);
@@ -28,10 +29,11 @@ partial record UKHeader(UKPreface? Preface, Preamble? Preamble, WLine? Title) : 
             // TODO: handle title in running header
             stageVersion = parser.Match(BracketedStageVersion.Parse) ?? stageVersion;
 
+            // skip the unknown element
             var _ = parser.Advance();
         }
 
-        var preamble = parser.Match(Preamble.Parse);
+        var preamble = parser.Match(preambleStrategy);
 
         if (preface is null && preamble is null && title is null)
         {
@@ -41,8 +43,8 @@ partial record UKHeader(UKPreface? Preface, Preamble? Preamble, WLine? Title) : 
         {
             preface = preface with { StageVersion = stageVersion };
         }
-        return new UKHeader(preface, preamble, title);
-    }
+        return new UKHeader(preface, preamble, title, stageVersion);
+    };
 
     internal static WLine? Note(IParser<IBlock> parser) =>
         Parsers.WLine(line => line.IsAllBold()

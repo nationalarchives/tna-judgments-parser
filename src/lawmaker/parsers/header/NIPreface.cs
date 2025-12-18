@@ -24,7 +24,7 @@ record NIPreface(IEnumerable<IBlock> Blocks)
         {
             return null;
         }
-        if (parser.Peek(Preamble.Parse) is Preamble preamble)
+        if (parser.Peek(Preamble.BeItEnacted) is Preamble preamble)
         {
             return new NIPreface(blocks);
         }

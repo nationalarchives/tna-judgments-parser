@@ -51,7 +51,8 @@ public interface IHeader {}
             {
                 DocName.NIPUBB => Match(NIHeader.Parse),
                 DocName.SPPUBB or DocName.SPPRIB or DocName.SPHYBB => Match(SPHeader.Parse),
-                DocName.UKPUBB or DocName.UKHYBB => Match(UKHeader.Parse),
+                DocName.UKPUBB or DocName.UKHYBB => Match(UKHeader.Parse(Preamble.BeItEnacted)),
+                DocName.UKPRIB => Match(UKHeader.Parse(Preamble.MayItTherefore)),
 
                 _ => throw new NotImplementedException(),
             };

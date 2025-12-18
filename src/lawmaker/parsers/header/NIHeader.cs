@@ -12,7 +12,7 @@ record NIHeader(NICoverPage? CoverPage, NIPreface? Preface, Preamble? Preamble) 
     {
         NICoverPage? coverPage = parser.Match(NICoverPage.Parse);
         NIPreface? preface = parser.Match(NIPreface.Parse);
-        Preamble? preamble = parser.Match(Preamble.Parse);
+        Preamble? preamble = parser.Match(Preamble.BeItEnacted);
         return new NIHeader(coverPage, preface, preamble);
     }
 }
