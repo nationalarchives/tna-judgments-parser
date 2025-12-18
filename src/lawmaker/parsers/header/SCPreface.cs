@@ -1,25 +1,22 @@
+
 #nullable enable
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 using UK.Gov.Legislation.Judgments;
-using UK.Gov.Legislation.Judgments.Parse;
 
 using static UK.Gov.Legislation.Lawmaker.XmlNamespaces;
 
 namespace UK.Gov.Legislation.Lawmaker.Headers;
 
-partial record CMPreface(
-    CMLongTitle LongTitle
+partial record SCPreface(
+    SCLongTitle LongTitle
 ) : IPreface {
 
-    internal static CMPreface? Parse(IParser<IBlock> parser)
+    internal static SCPreface? Parse(IParser<IBlock> parser)
     {
         // we always expect a long title since it indicates the end of a preface
-        var longTitle = parser.Match(CMLongTitle.Parse);
+        var longTitle = parser.Match(SCLongTitle.Parse);
 
 
         if (longTitle is null)
@@ -27,7 +24,7 @@ partial record CMPreface(
             return null;
         }
 
-        return new CMPreface(
+        return new SCPreface(
             longTitle
         );
     }

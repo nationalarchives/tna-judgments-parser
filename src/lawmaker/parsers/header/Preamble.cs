@@ -20,21 +20,9 @@ partial record Preamble(IEnumerable<IBlock> Blocks) : IBuildable<XNode>
     {
         BeItEnacted,
         MayItTherefore,
+        HavingPassedSeneddCymru,
     }
 
-    private static IEnumerable<XNode> BuildType(PreambleType? type) => type switch
-    {
-        PreambleType.BeItEnacted =>
-            [],
-        PreambleType.MayItTherefore =>
-            [new XElement(akn + "inline",
-                new XAttribute("name", "dropCap"),
-                new XText("W")),
-            new XElement(akn + "inline",
-                new XAttribute("name", "smallCaps"),
-                new XText("HERAS"))],
-        _ => [],
-    };
     private PreambleType? Type { get; init; }
     internal static Preamble? BeItEnacted(IParser<IBlock> parser)
     {
@@ -66,6 +54,7 @@ partial record Preamble(IEnumerable<IBlock> Blocks) : IBuildable<XNode>
         return null;
     }
 
+    // used for UKPRIB
     internal static Preamble? MayItTherefore(IParser<IBlock> parser)
     {
         if (parser.Advance() is WLine whereas && Whereas().IsMatch(whereas.NormalizedContent))
@@ -75,9 +64,15 @@ partial record Preamble(IEnumerable<IBlock> Blocks) : IBuildable<XNode>
         return Parsers.WLine(line => PrivateBillEnactingTextStart().IsMatch(line.NormalizedContent))(parser) is WLine line
         ? new Preamble([line]) { Type = PreambleType.MayItTherefore }
         : null;
-
-
     }
+
+    internal static Preamble? HavingPassedSeneddCymru(IParser<IBlock> parser) =>
+        parser.Match(
+            Parsers.WLine(line => parser.LanguageService.IsMatch(line.NormalizedContent, HavingPassedSeneddCymruPatterns)?.Count <= 1))
+            is WLine line
+        ? new Preamble([line]) { Type = PreambleType.HavingPassedSeneddCymru }
+        : null;
+
     internal static bool IsStart(WLine line) =>
         line.IsLeftAligned()
             && line.IsFlushLeft()
@@ -99,6 +94,18 @@ partial record Preamble(IEnumerable<IBlock> Blocks) : IBuildable<XNode>
 
     [GeneratedRegex(@"^W?hereas", RegexOptions.IgnoreCase)]
     private static partial Regex Whereas();
+
+    [GeneratedRegex(@"^Having\s*been\s*passed\s*by\s*Senedd\s*Cymru", RegexOptions.IgnoreCase)]
+    private static partial Regex HavingPassedSeneddCymruEnglish();
+
+    [GeneratedRegex(@"^Gan\s*ei\s*fod\s*wedi\s*ei\s*basio\s*gan\s*Senedd\s*Cymru", RegexOptions.IgnoreCase)]
+    private static partial Regex HavingPassedSeneddCymruWelsh();
+
+    private static readonly Dictionary<LanguageService.Lang, IEnumerable<Regex>> HavingPassedSeneddCymruPatterns = new()
+    {
+        [LanguageService.Lang.EN] = [ HavingPassedSeneddCymruEnglish() ],
+        [LanguageService.Lang.CY] = [ HavingPassedSeneddCymruWelsh() ]
+    };
 
     public XNode? Build(Document Document) => this.Type switch
     {
@@ -128,5 +135,11 @@ partial record Preamble(IEnumerable<IBlock> Blocks) : IBuildable<XNode>
                 new XElement(akn + "p",
                     EnactingTextStart().Replace(string.Join(" ", Blocks.OfType<WLine>().Select(l => l.NormalizedContent)), ""))
                 )),
+        PreambleType.HavingPassedSeneddCymru =>
+        new XElement(akn + "preamble",
+            new XElement(akn + "formula",
+                new XAttribute("name", "enactingText"),
+                new XElement(akn + "p",
+                    EnactingTextStart().Replace(string.Join(" ", Blocks.OfType<WLine>().Select(l => l.NormalizedContent)), "")))),
     };
 }

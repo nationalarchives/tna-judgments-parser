@@ -16,7 +16,7 @@ namespace UK.Gov.Legislation.Lawmaker.Headers;
 partial record UKPreface(
     BracketedStageVersion? StageVersion,
     BillLongTitle LongTitle
-) : IBuildable<XNode> {
+) : IPreface {
 
     internal static UKPreface? Parse(IParser<IBlock> parser)
     {

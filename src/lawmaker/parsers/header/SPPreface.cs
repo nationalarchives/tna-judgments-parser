@@ -19,7 +19,7 @@ partial record SPPreface(
     Reference? BillTitle,
     BracketedStageVersion? StageVersion,
     WLine LongTitle
-) : IBuildable<XNode> {
+) : IPreface {
 
     internal static SPPreface? Parse(IParser<IBlock> parser)
     {

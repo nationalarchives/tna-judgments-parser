@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 using UK.Gov.Legislation.Judgments;
@@ -17,7 +18,7 @@ partial record GenericBillTitle
             return null;
         };
 
-        if (TitleRegex().IsMatch(line.NormalizedContent))
+        if (parser.LanguageService.IsMatch(line.NormalizedContent, BillTitleStartPatterns)?.Count >= 1)
         {
             return line;
         }
@@ -26,5 +27,14 @@ partial record GenericBillTitle
     }
 
     [GeneratedRegex(@"Bill$|Measure$", RegexOptions.IgnoreCase)]
-    private static partial Regex TitleRegex();
+    private static partial Regex TitleRegexEnglish();
+
+    [GeneratedRegex(@"^Bil ", RegexOptions.IgnoreCase)]
+    private static partial Regex TitleRegexWelsh();
+
+    private static readonly Dictionary<LanguageService.Lang, IEnumerable<Regex>> BillTitleStartPatterns = new()
+    {
+        [LanguageService.Lang.EN] = [ TitleRegexEnglish() ],
+        [LanguageService.Lang.CY] = [ TitleRegexWelsh() ]
+    };
 }

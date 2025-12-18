@@ -2,35 +2,49 @@
 #nullable enable
 
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.Legislation.Lawmaker.Headers;
 
-partial record UKHeader(UKPreface? Preface, Preamble? Preamble, WLine? Title, BracketedStageVersion? StageVersion) : IHeader
+interface IPreface : IBuildable<XNode> {}
+
+partial record UKHeader(IPreface? Preface, Preamble? Preamble, WLine? Title, BracketedStageVersion? StageVersion) : IHeader
 {
 
-    internal static IParser<IBlock>.ParseStrategy<UKHeader> Parse(IParser<IBlock>.ParseStrategy<Preamble> preambleStrategy) =>
+    internal static IParser<IBlock>.ParseStrategy<UKHeader> Parse(
+        IParser<IBlock>.ParseStrategy<Preamble> preambleStrategy,
+        IParser<IBlock>.ParseStrategy<IPreface> prefaceStrategy
+        ) =>
     (IParser<IBlock> parser) =>
     {
         WLine? title = null;
         BracketedStageVersion? stageVersion = null;
-        UKPreface? preface = null;
+        IPreface? preface = null;
         while (parser.Peek(preambleStrategy) is not Preamble _preamble
                 && !parser.IsAtEnd())
         {
-            preface = parser.Match(UKPreface.Parse);
+            preface = parser.Match(prefaceStrategy);
             if (preface is not null)
             {
                 break;
             }
-            title = parser.Match(GenericBillTitle.Parse) ?? title;
+            if (parser.Match(GenericBillTitle.Parse) is WLine latestTitle)
+            {
+                title = latestTitle;
+            }
             // TODO: handle title in running header
-            stageVersion = parser.Match(BracketedStageVersion.Parse) ?? stageVersion;
+            else if (parser.Match(BracketedStageVersion.Parse) is BracketedStageVersion newStageVersion)
+            {
+                stageVersion = newStageVersion;
+            } else
+            {
+                // skip the unknown element
+                var _ = parser.Advance();
+            }
 
-            // skip the unknown element
-            var _ = parser.Advance();
         }
 
         var preamble = parser.Match(preambleStrategy);
@@ -39,9 +53,9 @@ partial record UKHeader(UKPreface? Preface, Preamble? Preamble, WLine? Title, Br
         {
             return null;
         }
-        if (preface is not null && preface.StageVersion is null)
+        if (preface is UKPreface ukPreface && ukPreface.StageVersion is null)
         {
-            preface = preface with { StageVersion = stageVersion };
+            preface = ukPreface with { StageVersion = stageVersion };
         }
         return new UKHeader(preface, preamble, title, stageVersion);
     };

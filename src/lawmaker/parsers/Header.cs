@@ -51,9 +51,10 @@ public interface IHeader {}
             {
                 DocName.NIPUBB => Match(NIHeader.Parse),
                 DocName.SPPUBB or DocName.SPPRIB or DocName.SPHYBB => Match(SPHeader.Parse),
-                DocName.UKPUBB or DocName.UKHYBB => Match(UKHeader.Parse(Preamble.BeItEnacted)),
-                DocName.UKPRIB => Match(UKHeader.Parse(Preamble.MayItTherefore)),
+                DocName.UKPUBB or DocName.UKHYBB => Match(UKHeader.Parse(Preamble.BeItEnacted, UKPreface.Parse)),
+                DocName.UKPRIB => Match(UKHeader.Parse(Preamble.MayItTherefore, UKPreface.Parse)),
                 DocName.UKCM or DocName.UKDCM => Match(CMHeader.Parse),
+                DocName.SCPUBB or DocName.SCPRIB or DocName.SCHYBB => Match(UKHeader.Parse(Preamble.HavingPassedSeneddCymru, SCPreface.Parse)),
 
                 _ => throw new NotImplementedException(),
             };

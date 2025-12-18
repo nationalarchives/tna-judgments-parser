@@ -79,3 +79,42 @@ partial record CMLongTitle(
         new XElement(akn + "longTitle",
             new XElement(akn + "p", Line.TextContent));
 }
+
+partial record SCLongTitle(
+    WLine Line
+) : IBuildable<XNode> {
+    internal static SCLongTitle? Parse(IParser<IBlock> parser)
+    {
+        if (parser.Advance() is not WLine line)
+        {
+            return null;
+        }
+        if (parser.LanguageService.IsMatch(
+            Space().Replace(line.NormalizedContent, @"").Trim(),
+            LongTitleStartPatterns
+            )?.Count >= 1)
+        {
+            return new SCLongTitle(line);
+        }
+        return null;
+
+    }
+
+    [GeneratedRegex(@"\s+")]
+    private static partial Regex Space();
+
+    [GeneratedRegex(@"^AnActofSeneddCymru")]
+    private static partial Regex LongTitleStartEnglish();
+
+    [GeneratedRegex(@"^DeddfganSeneddCymru")]
+    private static partial Regex LongTitleStartWelsh();
+
+    private static readonly Dictionary<LanguageService.Lang, IEnumerable<Regex>> LongTitleStartPatterns = new()
+    {
+        [LanguageService.Lang.EN] = [ LongTitleStartEnglish() ],
+        [LanguageService.Lang.CY] = [ LongTitleStartWelsh() ]
+    };
+    public XNode? Build(Document Document) =>
+        new XElement(akn + "longTitle",
+            new XElement(akn + "p", Line.TextContent));
+}
