@@ -141,11 +141,9 @@ Contains metadata extracted from tribunal-specific spreadsheets about courts and
 - Document metadata from the source tribunal system
 - Any tribunal-specific metadata fields
 
-The current implementation is tailored to one specific tribunal's metadata format, but the structure allows for expansion to handle different metadata schemas from other tribunals.
-
 #### Required Columns
 
-The CSV file must contain the following columns (case-sensitive) for each judgment:
+The CSV file must contain the following columns for each judgment:
 
 - `id` - Unique identifier for each judgment record
 - `court` - Court code that maps to a Court object (e.g., "EWHC-QBD-Admin", "UKFTT-GRC"). Must match a valid court code defined in the Courts.ByCode dictionary
@@ -169,7 +167,7 @@ The following columns are optional:
 - `Jurisdictions` - Jurisdictions to be added as `uk:jurisdiction` elements in the xml. This can be blank, a single item or a comma seperated list in quotes (e.g. `"jurisdiction1,jurisdiction2"`)
 - `webarchiving` - Link to the webarchive for this judgment
 
-**Note**: Column names are case-sensitive. If required columns are missing, the system will throw a validation error listing the missing columns.
+**Note**: If required columns are missing, the system will throw a validation error listing the missing columns.
 
 #### CSV Line Example
 

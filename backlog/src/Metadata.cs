@@ -184,7 +184,8 @@ namespace Backlog.Src
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 ShouldSkipRecord = args => false,
-                IgnoreBlankLines = true
+                IgnoreBlankLines = true,
+                PrepareHeaderForMatch = args => args.Header.ToLower()
             };
             using var csv = new CsvReader(textReader, config);
             
