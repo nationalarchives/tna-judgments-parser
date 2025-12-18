@@ -41,6 +41,13 @@ public abstract class BaseEndToEndTests : IDisposable
 
     private static void CleanEnvironmentVariables()
     {
+        // Remove any .env files from test assembly folder - these are copied to the build folder via backlog
+        var assemblyPathDir = Path.GetDirectoryName(TestContext.Current.TestAssembly!.AssemblyPath)!;
+        var envFile = Path.Combine(assemblyPathDir, ".env");
+        if (File.Exists(envFile))
+            File.Delete(envFile);
+        
+        
         // Clean up environment variables
         Environment.SetEnvironmentVariable("COURT_METADATA_PATH", null);
         Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", null);
