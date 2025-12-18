@@ -76,7 +76,7 @@ public class Program
         Directory.CreateDirectory(pathToOutputFolder);
         var trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
 
-        var serviceProvider = ConfigureDependencyInjection(pathToDataFolder, trackerPath);
+        var serviceProvider = ConfigureDependencyInjection(pathToDataFolder, trackerPath, judgmentsFilePath, hmctsFilePath);
 
         var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
 
@@ -85,7 +85,6 @@ public class Program
             var csvMetadataReader = serviceProvider.GetRequiredService<Metadata>();
             var helper = serviceProvider.GetRequiredService<Helper>();
             helper.PathToCourtMetadataFile = pathToCourtMetadataFile;
-            helper.PathToDataFolder = pathToDataFolder;
 
             var tracker =  serviceProvider.GetRequiredService<Tracker>();
 
@@ -136,7 +135,7 @@ public class Program
                     }
 
                     logger.LogInformation("Processing file: {FilePath}", line.FilePath);
-                    var bundle = helper.GenerateBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
+                    var bundle = helper.GenerateBundle(line, autoPublish);
 
                     var bundleFileName = bundle.Uuid + ".tar.gz";
                     var output = Path.Combine(pathToOutputFolder, bundleFileName);
@@ -255,7 +254,8 @@ public class Program
         }
     }
 
-    private static ServiceProvider ConfigureDependencyInjection(string pathToDataFolder, string trackerPath)
+    private static ServiceProvider ConfigureDependencyInjection(string pathToDataFolder, string trackerPath,
+        string judgmentsFilePath, string hmctsFilePath)
     {
         var services = new ServiceCollection();
 
@@ -273,6 +273,8 @@ public class Program
         services.AddSingleton<Parser>();
         services.AddSingleton<Helper>();
         services.AddSingleton<Metadata>();
+        services.AddSingleton<BacklogFiles>(serviceProvider => new BacklogFiles(serviceProvider.GetRequiredService<ILogger<BacklogFiles>>(), pathToDataFolder,
+            judgmentsFilePath, hmctsFilePath));
         services.AddSingleton<Tracker>(_ => new Tracker(trackerPath));
 
         return services.BuildServiceProvider();
