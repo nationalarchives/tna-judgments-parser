@@ -27,10 +27,9 @@ record BracketedStageVersion(Reference Stage) : IBlock, IBuildable<XNode>
                 CultureInfo.CurrentCulture.TextInfo.ToTitleCase(line.NormalizedContent[1..^1].ToLower())));
         }
         return null;
-
-
-
     }
+
+    internal static BracketedStageVersion Default() => new BracketedStageVersion(new Reference(ReferenceKey.varStageVersion, ""));
 
     public XNode? Build(Document Document) =>
     new XElement(akn + "block",
@@ -39,7 +38,7 @@ record BracketedStageVersion(Reference Stage) : IBlock, IBuildable<XNode>
         new XElement(akn + "docStage",
             new XElement(akn + "ref",
                 new XAttribute(akn + "class", "placeholder"),
-                new XAttribute("href", $"{Document.Metadata.Register(Stage)?.EId ?? ""}")
+                new XAttribute("href", $"#{Document.Metadata.Register(Stage)?.EId ?? ""}")
             )),
         new XText("]"));
 }

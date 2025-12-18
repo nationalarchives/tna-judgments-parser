@@ -7,12 +7,14 @@
         <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="As Amended At Stage 3" />
       </references>
     </meta>
-    <preface>
+    <preface eId="preface">
+      <block name="title"><docTitle><ref href="#varBillTitle" class="placeholder" /></docTitle></block>
+      <block name="stageVersion">[<docStage><ref href="#varStageVersion" class="placeholder" /></docStage>]</block>
       <longTitle>
         <p>An Act of Senedd Cymru to establish a register of persons that provide visitor accommodation at premises in Wales; to grant principal councils the power to introduce a levy on overnight stays in visitor accommodation in their areas; to make miscellaneous amendments to the Tax Collection and Management (Wales) Act 2016; and for connected purposes.</p>
       </longTitle>
     </preface>
-    <preamble>
+    <preamble eId="preamble">
       <formula name="enactingText">
         <p>Having been passed by Senedd Cymru and having received the assent of His Majesty, it is enacted as follows:</p>
       </formula>

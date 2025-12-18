@@ -111,6 +111,7 @@ partial record Preamble(IEnumerable<IBlock> Blocks) : IBuildable<XNode>
     {
         PreambleType.BeItEnacted =>
         new XElement(akn + "preamble",
+            new XAttribute("eId", "preamble"),
             new XElement(akn + "formula",
                 new XAttribute("name", "enactingText"),
                 new XElement(akn + "p",
@@ -123,6 +124,7 @@ partial record Preamble(IEnumerable<IBlock> Blocks) : IBuildable<XNode>
                     EnactingTextStart().Replace(string.Join(" ", Blocks.OfType<WLine>().Select(l => l.NormalizedContent)), "")))),
         PreambleType.MayItTherefore =>
         new XElement(akn + "preamble",
+            new XAttribute("eId", "preamble"),
             new XElement(akn + "formula",
                 new XAttribute("name", "enactingText"),
                 new XElement(akn + "p",
@@ -137,6 +139,7 @@ partial record Preamble(IEnumerable<IBlock> Blocks) : IBuildable<XNode>
                 )),
         PreambleType.HavingPassedSeneddCymru =>
         new XElement(akn + "preamble",
+            new XAttribute("eId", "preamble"),
             new XElement(akn + "formula",
                 new XAttribute("name", "enactingText"),
                 new XElement(akn + "p",

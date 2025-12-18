@@ -54,6 +54,10 @@ public class Metadata : IBuildable<XNode>
         {
             return null;
         }
+        if (string.IsNullOrEmpty(reference.ShowAs))
+        {
+            return null;
+        }
 
         uint i = 0;
         while (References.ContainsKey((reference.Key, i)))

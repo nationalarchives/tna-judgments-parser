@@ -45,6 +45,7 @@ partial record UKPreface(
 
     public XNode? Build(Document Document) =>
         new XElement(akn + "preface",
-            StageVersion?.Build(Document),
+            new XAttribute("eId", "preface"),
+            (StageVersion ?? BracketedStageVersion.Default()).Build(Document),
             LongTitle?.Build(Document));
 }

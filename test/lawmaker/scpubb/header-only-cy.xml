@@ -7,12 +7,14 @@
         <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Fel Y’I Diwygiwyd Yng Nghyfnod 3" />
       </references>
     </meta>
-    <preface>
+    <preface eId="preface">
+      <block name="title"><docTitle><ref href="#varBillTitle" class="placeholder" /></docTitle></block>
+      <block name="stageVersion">[<docStage><ref href="#varStageVersion" class="placeholder" /></docStage>]</block>
       <longTitle>
         <p>Deddf gan Senedd Cymru i sefydlu cofrestr o bersonau sy’n darparu llety ymwelwyr mewn mangre yng Nghymru; i roi’r pŵer i brif gynghorau i gyflwyno ardoll ar arosiadau dros nos mewn llety ymwelwyr yn eu hardaloedd; i wneud diwygiadau amrywiol i Ddeddf Casglu a Rheoli Trethi (Cymru) 2016; ac at ddibenion cysylltiedig.</p>
       </longTitle>
     </preface>
-    <preamble>
+    <preamble eId="preamble">
       <formula name="enactingText">
         <p>Gan ei fod wedi ei basio gan Senedd Cymru ac wedi derbyn cydsyniad Ei Fawrhydi, deddfir fel a ganlyn:</p>
       </formula>

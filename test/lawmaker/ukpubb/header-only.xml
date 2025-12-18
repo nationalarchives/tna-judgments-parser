@@ -7,8 +7,8 @@
         <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
       </references>
     </meta>
-    <preface>
-      <block name="stageVersion">[<docStage><ref href="varStageVersion" class="placeholder" /></docStage>]</block>
+    <preface eId="preface">
+      <block name="stageVersion">[<docStage><ref href="#varStageVersion" class="placeholder" /></docStage>]</block>
       <longTitle>
         <p>A</p>
         <p>bill</p>
@@ -16,7 +16,7 @@
         <p>Make provision to do stuff. </p>
       </longTitle>
     </preface>
-    <preamble>
+    <preamble eId="preamble">
       <formula name="enactingText">
         <p><inline name="dropCap">B</inline><inline name="smallCaps">e it enacted</inline> the King’s most Excellent Majesty, by and with the advice and consent of the Lords Spiritual and Temporal, and Commons, in this present</p>
       </formula>

@@ -34,5 +34,6 @@ partial record CMPreface(
 
     public XNode? Build(Document Document) =>
         new XElement(akn + "preface",
+            new XAttribute("eId", "preface"),
             LongTitle?.Build(Document));
 }

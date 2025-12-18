@@ -81,6 +81,7 @@ partial record SPPreface(
 
     public XNode? Build(Document Document) =>
     new XElement(akn + "preface",
+        new XAttribute("eId", "preface"),
         // new XElement(akn + "tblock",
         //     new XAttribute(akn + "class", "explanatoryNotesStatement"),
         //     AccompanyingDocumentsStatementHeading is not null

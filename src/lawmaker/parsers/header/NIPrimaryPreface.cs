@@ -25,5 +25,6 @@ record NIPrimaryPreface(BillLongTitle LongTitle) : IBuildable<XNode>
 
     public XNode? Build(Document Document) =>
         new XElement(akn + "preface",
+            new XAttribute("eId", "preface"),
             LongTitle.Build(Document));
 }
