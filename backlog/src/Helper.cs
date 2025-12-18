@@ -13,10 +13,10 @@ namespace Backlog.Src
 
         internal string PathToDataFolder { get; init; }
 
-        internal List<Metadata.Line> FindLines(uint id)
+        internal List<CsvMetadata.Line> FindLines(uint id)
         {
-            List<Metadata.Line> lines = Metadata.Read(PathToCourtMetadataFile);
-            return Metadata.FindLines(lines, id);
+            List<CsvMetadata.Line> lines = CsvMetadata.Read(PathToCourtMetadataFile);
+            return CsvMetadata.FindLines(lines, id);
         }
 
         private Api.Response CreateResponse(ExtendedMetadata meta, byte[] content)
@@ -69,7 +69,7 @@ namespace Backlog.Src
         }
 
 
-        private List<Bundle.CustomField> CreateCustomFields(Metadata.Line line, string courtCode)
+        private List<Bundle.CustomField> CreateCustomFields(CsvMetadata.Line line, string courtCode)
         {
             List<Bundle.CustomField> customFields = [];
             if (!string.IsNullOrWhiteSpace(line.headnote_summary))
@@ -84,7 +84,7 @@ namespace Backlog.Src
             return customFields;
         }
 
-        internal Bundle GenerateBundle(Metadata.Line line, string judgmentsFilePath, string hmctsFilePath, bool autoPublish = false)
+        internal Bundle GenerateBundle(CsvMetadata.Line line, string judgmentsFilePath, string hmctsFilePath, bool autoPublish = false)
         {
             if (line == null)
                 throw new ArgumentNullException(nameof(line));
@@ -95,7 +95,7 @@ namespace Backlog.Src
             if (string.IsNullOrWhiteSpace(line.Extension))
                 throw new ArgumentException("Extension cannot be empty", nameof(line));
 
-            var meta = Metadata.MakeMetadata(line);
+            var meta = ExtendedMetadataFactory.MakeMetadata(line);
 
             var content = BacklogFiles.ReadFile(PathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
 

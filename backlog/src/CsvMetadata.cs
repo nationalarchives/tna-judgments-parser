@@ -11,7 +11,6 @@ using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 
 using UK.Gov.Legislation.Judgments;
-using UK.Gov.Legislation.Judgments.Parse;
 
 namespace Backlog.Src
 {
@@ -22,7 +21,7 @@ namespace Backlog.Src
     {
         public override bool IsValid(object value)
         {
-            if (value is Metadata.Line line)
+            if (value is CsvMetadata.Line line)
             {
                 try
                 {
@@ -43,9 +42,9 @@ namespace Backlog.Src
         }
     }
 
-    class Metadata
+    class CsvMetadata
     {
-        internal class LineMap : ClassMap<Line>
+        private class LineMap : ClassMap<Line>
         {
             public LineMap()
             {
@@ -228,71 +227,6 @@ namespace Backlog.Src
         {
             return lines.Where(line => line.id == id.ToString()).ToList();
         }
-
-        internal static ExtendedMetadata MakeMetadata(Line line) {
-            // Validation is now handled during CSV reading
-            List<ExtendedMetadata.Category> categories = [];
-            
-            // Only add categories if they exist and are not empty
-            if (!string.IsNullOrWhiteSpace(line.main_category)) {
-                categories.Add(new ExtendedMetadata.Category { Name = line.main_category });
-                
-                if (!string.IsNullOrWhiteSpace(line.main_subcategory)) {
-                    categories.Add(new ExtendedMetadata.Category { Name = line.main_subcategory, Parent = line.main_category });
-                }
-            }
-            
-            if (!string.IsNullOrWhiteSpace(line.sec_category)) {
-                categories.Add(new ExtendedMetadata.Category { Name = line.sec_category });
-                
-                if (!string.IsNullOrWhiteSpace(line.sec_subcategory)) {
-                    categories.Add(new ExtendedMetadata.Category { Name = line.sec_subcategory, Parent = line.sec_category });
-                }
-            }
-            string sourceFormat;
-            if (line.Extension == ".doc" || line.Extension == ".docx")
-                sourceFormat = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-            else if (line.Extension == ".pdf")
-                sourceFormat = "application/pdf";
-            else
-                throw new Exception($"Unexpected extension {line.Extension}");
-
-            Court court = Courts.ByCode[line.court];
-
-            var jurisdictions = line.Jurisdictions
-                .Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction))
-                .Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction });
-
-            string webArchivingLink;
-            if (!string.IsNullOrWhiteSpace(line.webarchiving))
-            {
-                webArchivingLink = line.webarchiving;
-            }
-            else
-            {
-                webArchivingLink = null;
-            }
-
-            ExtendedMetadata meta = new()
-            {
-                Type = JudgmentType.Decision,
-                Court = court,
-                Jurisdictions = jurisdictions,
-                Date = new WNamedDate { Date = line.DecisionDate, Name = "decision" },
-                Name = line.FirstPartyName + " v " + line.respondent,
-                CaseNumbers = [line.CaseNo],
-                Parties = [
-                    new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.FirstPartyName, Role = line.FirstPartyRole },
-                    new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.respondent, Role = PartyRole.Respondent }
-                ],
-                SourceFormat = sourceFormat,
-                Categories = [.. categories],
-                NCN = line.ncn,
-                WebArchivingLink = webArchivingLink
-            };
-            return meta;
-        }
-
     }
 
 }

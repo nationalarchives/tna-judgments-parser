@@ -10,7 +10,6 @@ using UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 using Xunit;
 
-using Metadata = Backlog.Src.Metadata;
 using Parser = UK.Gov.NationalArchives.Judgments.Api.Parser;
 
 namespace test.backlog
@@ -269,7 +268,7 @@ namespace test.backlog
             Assert.Single(lines);
             
             // Verify the metadata can be created successfully
-            var metadata = Metadata.MakeMetadata(lines.First());
+            var metadata = ExtendedMetadataFactory.MakeMetadata(lines.First());
             Assert.NotNull(metadata.Categories);
             Assert.Equal(4, metadata.Categories.Count); // main, main_sub, sec, sec_sub
         }

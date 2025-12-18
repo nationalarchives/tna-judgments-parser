@@ -8,7 +8,7 @@ using Xunit;
 
 namespace test.backlog.MetadataTests;
 
-public class TestRead
+public class TestCsvMetadataRead
 {
     [Fact]
     public void Read_WithOnlyRequiredColumnsAndClaimants_ParsesCsvIntoLines()
@@ -19,11 +19,11 @@ public class TestRead
 124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC"
         );
 
-        var result = Backlog.Src.Metadata.Read(csvStream);
+        var result = Backlog.Src.CsvMetadata.Read(csvStream);
 
         Assert.Collection(result,
             line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                new Backlog.Src.CsvMetadata.Line
                 {
                     id = "123",
                     court = "UKUT-IAC",
@@ -43,7 +43,7 @@ public class TestRead
                     headnote_summary = null
                 }, line),
             line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                new Backlog.Src.CsvMetadata.Line
                 {
                     id = "124",
                     court = "UKFTT-TC",
@@ -82,7 +82,7 @@ public class TestRead
 130,/test/data/test-case9.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With UUID,,,,ba2c15ca-6d3d-4550-8975-b516e3c0ed2d";
 
         // Arrange - Double check that csv input has all columns in case new ones are added
-        var publicPropertiesInLineClass = typeof(Backlog.Src.Metadata.Line).GetProperties().Select(p => p.Name);
+        var publicPropertiesInLineClass = typeof(Backlog.Src.CsvMetadata.Line).GetProperties().Select(p => p.Name);
         var csvHeaderParts = csvContent.Split(Environment.NewLine)[0].Split(",");
         foreach (var publicProperty in publicPropertiesInLineClass)
         {
@@ -93,11 +93,11 @@ public class TestRead
         using var csvStream = new StringReader(csvContent);
 
         //Act
-        var result = Backlog.Src.Metadata.Read(csvStream);
+        var result = Backlog.Src.CsvMetadata.Read(csvStream);
 
         Assert.Collection(result,
             line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                new Backlog.Src.CsvMetadata.Line
                 {
                     id = "123",
                     court = "UKUT-IAC",
@@ -119,7 +119,7 @@ public class TestRead
                     Uuid = ""
                 }, line),
             line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                new Backlog.Src.CsvMetadata.Line
                 {
                     id = "124",
                     court = "UKFTT-TC",
@@ -141,7 +141,7 @@ public class TestRead
                     Uuid = ""
                 }, line),
             line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                new Backlog.Src.CsvMetadata.Line
                 {
                     id = "125",
                     court = "UKFTT-GRC",
@@ -163,7 +163,7 @@ public class TestRead
                     Uuid = ""
                 }, line),
             line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                new Backlog.Src.CsvMetadata.Line
                 {
                     id = "123",
                     court = "UKUT-IAC",
@@ -185,7 +185,7 @@ public class TestRead
                     Uuid = ""
                 }, line),
             line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                new Backlog.Src.CsvMetadata.Line
                 {
                     id = "126",
                     court = "UKUT-IAC",
@@ -207,7 +207,7 @@ public class TestRead
                     Uuid = ""
                 }, line),
             line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                new Backlog.Src.CsvMetadata.Line
                 {
                     id = "127",
                     court = "UKUT-IAC",
@@ -229,7 +229,7 @@ public class TestRead
                     Uuid = ""
                 }, line),
             line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                new Backlog.Src.CsvMetadata.Line
                 {
                     id = "128",
                     court = "UKUT-IAC",
@@ -251,7 +251,7 @@ public class TestRead
                     Uuid = ""
                 }, line),
             line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                new Backlog.Src.CsvMetadata.Line
                 {
                     id = "129",
                     court = "UKUT-IAC",
@@ -273,7 +273,7 @@ public class TestRead
                     Uuid = ""
                 }, line),
             line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                new Backlog.Src.CsvMetadata.Line
                 {
                     id = "130",
                     court = "UKUT-IAC",

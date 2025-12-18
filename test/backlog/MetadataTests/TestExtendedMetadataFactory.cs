@@ -10,13 +10,13 @@ using Xunit;
 
 namespace test.backlog.MetadataTests;
 
-public class TestMakeMetadata
+public class TestExtendedMetadataFactory
 {
     [Fact]
     public void MakeMetadata_WithBasicLine_CreatesCorrectMetadata()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -34,7 +34,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -62,7 +62,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithAppellants_CreatesCorrectMetadata()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "124",
             court = "UKFTT-GRC",
@@ -76,7 +76,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -104,7 +104,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithDocxFile_SetsCorrectSourceFormat()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             court = "UKFTT-GRC",
             decision_datetime = "2023-01-14 14:30:00",
@@ -117,7 +117,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.Equal("application/vnd.openxmlformats-officedocument.wordprocessingml.document", result.SourceFormat);
@@ -127,7 +127,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithDocFile_SetsCorrectSourceFormat()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             court = "UKFTT-GRC",
             decision_datetime = "2023-01-14 14:30:00",
@@ -140,7 +140,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.Equal("application/vnd.openxmlformats-officedocument.wordprocessingml.document", result.SourceFormat);
@@ -150,7 +150,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithUnsupportedExtension_ThrowsException()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             court = "UKFTT-GRC",
             decision_datetime = "2023-01-14 14:30:00",
@@ -163,7 +163,7 @@ public class TestMakeMetadata
         };
 
         // Act & Assert
-        var ex = Assert.Throws<Exception>(() => Metadata.MakeMetadata(line));
+        var ex = Assert.Throws<Exception>(() => ExtendedMetadataFactory.MakeMetadata(line));
         Assert.Equal("Unexpected extension .txt", ex.Message);
     }
 
@@ -171,7 +171,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithNewDate_UsesFirstTierTribunal()
     {
         // Arrange - Date on or after 2010-01-18
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             court = "UKFTT-GRC",
             decision_datetime = "2010-01-18 14:30:00",
@@ -184,7 +184,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.Equal(Courts.FirstTierTribunal_GRC, result.Court);
@@ -194,7 +194,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithPartiesData_CreatesCorrectParties()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             court = "UKFTT-GRC",
             decision_datetime = "2023-01-14 14:30:00",
@@ -207,7 +207,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result.Parties);
@@ -227,7 +227,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithAppellantPartiesData_CreatesCorrectParties()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             court = "UKFTT-GRC",
             decision_datetime = "2023-01-14 14:30:00",
@@ -240,7 +240,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result.Parties);
@@ -260,7 +260,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithCategoriesData_CreatesCorrectCategories()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             court = "UKFTT-GRC",
             decision_datetime = "2023-01-14 14:30:00",
@@ -275,7 +275,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result.Categories);
@@ -300,7 +300,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithoutSecondaryCategory_CreatesOnlyMainCategories()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             court = "UKFTT-GRC",
             decision_datetime = "2023-01-14 14:30:00",
@@ -315,7 +315,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result.Categories);
@@ -333,7 +333,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithWhitespaceSecondaryCategory_CreatesOnlyMainCategories()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             court = "UKFTT-GRC",
             decision_datetime = "2023-01-14 14:30:00",
@@ -348,7 +348,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result.Categories);
@@ -366,7 +366,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithComplexFileNumbers_CreatesCorrectCaseNumber()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             court = "UKFTT-GRC",
             decision_datetime = "2023-01-14 14:30:00",
@@ -379,7 +379,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.Equal("IA/12345/2023", result.CaseNumbers[0]);
@@ -389,7 +389,7 @@ public class TestMakeMetadata
     public void MakeMetadata_DecisionDate_ParsesCorrectly()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             court = "UKFTT-GRC",
             decision_datetime = "2023-12-25 15:45:30",
@@ -402,7 +402,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.Equal("2023-12-25", result.Date.Date);
@@ -413,7 +413,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithNCN_SetsNCNProperty()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -427,7 +427,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -438,7 +438,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithoutNCN_NCNPropertyIsNull()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -452,7 +452,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -463,7 +463,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithEmptyNCN_NCNPropertyIsEmpty()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -477,7 +477,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -488,7 +488,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithWhitespaceNCN_NCNPropertyIsWhitespace()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -502,16 +502,16 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
         Assert.Equal("   ", result.NCN);
     }
 
-    private static Metadata.Line GetNewMetadataLineWithSampleValues()
+    private static CsvMetadata.Line GetNewMetadataLineWithSampleValues()
     {
-        return new Metadata.Line
+        return new CsvMetadata.Line
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -533,7 +533,7 @@ public class TestMakeMetadata
         line.webarchiving = "http://webarchivelink";
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.Equal("http://webarchivelink", result.WebArchivingLink);
@@ -547,7 +547,7 @@ public class TestMakeMetadata
         line.webarchiving = "";
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.Null(result.WebArchivingLink);
@@ -561,7 +561,7 @@ public class TestMakeMetadata
         line.Jurisdictions = ["Transport"];
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         var actualJurisdiction = Assert.Single(result.Jurisdictions);
@@ -576,7 +576,7 @@ public class TestMakeMetadata
         line.Jurisdictions = [];
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.Empty(result.Jurisdictions);
@@ -590,7 +590,7 @@ public class TestMakeMetadata
         line.Jurisdictions = ["   "];
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         Assert.Empty(result.Jurisdictions);
@@ -604,7 +604,7 @@ public class TestMakeMetadata
         line.Jurisdictions = ["   ", "Transport", ""];
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = ExtendedMetadataFactory.MakeMetadata(line);
 
         // Assert
         var actualJurisdiction = Assert.Single(result.Jurisdictions);

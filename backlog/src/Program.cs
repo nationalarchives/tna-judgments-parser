@@ -86,7 +86,7 @@ public static class Program
         Log($"Using data folder: {pathToDataFolder}");
         Log($"Using court metadata from: {pathToCourtMetadataFile}");
 
-        List<Metadata.Line> lines;
+        List<CsvMetadata.Line> lines;
         if (id.HasValue)
         {
             // Process only the specific ID
@@ -100,7 +100,7 @@ public static class Program
         else
         {
             // Process all lines from the document
-            lines = Metadata.Read(helper.PathToCourtMetadataFile);
+            lines = CsvMetadata.Read(helper.PathToCourtMetadataFile);
             if (!lines.Any())
             {
                 Log("No records found in the metadata file");
@@ -108,9 +108,9 @@ public static class Program
             }
         }
 
-        var alreadyDoneLines = new List<Metadata.Line>();
-        var successfulLines = new List<Metadata.Line>();
-        var failedLines = new List<(Metadata.Line line, Exception exception)>();
+        var alreadyDoneLines = new List<CsvMetadata.Line>();
+        var successfulLines = new List<CsvMetadata.Line>();
+        var failedLines = new List<(CsvMetadata.Line line, Exception exception)>();
 
         foreach (var line in lines)
         {
