@@ -17,7 +17,7 @@ namespace UK.Gov.Legislation.Lawmaker
         public static bool IsValidNumber(string num, DocName currentDocName)
         {
             // Found that Prov1 nums where the heading precedes the num must end with a "."
-            string dot = currentDocName.Prov1HeadingPrecedesNumber() ? "." : ".?";
+            string dot = !currentDocName.RequireNumberedProv1Headings() ? "." : ".?";
             string pattern = $@"^[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*{dot}$";
             return Regex.IsMatch(num, pattern);
         }
