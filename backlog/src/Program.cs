@@ -8,9 +8,9 @@ using System.Linq;
 
 using DotNetEnv;
 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-using UK.Gov.Legislation.Judgments;
 using UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src;
@@ -74,21 +74,17 @@ public class Program
         var pathToDataFolder = Environment.GetEnvironmentVariable("DATA_FOLDER_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
         var pathToOutputFolder = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
         Directory.CreateDirectory(pathToOutputFolder);
-        
-        Helper helper = new(new Parser(Logging.Factory.CreateLogger<Parser>(), new UK.Gov.Legislation.Judgments.AkomaNtoso.Validator()))
-        {
-            PathToCourtMetadataFile = pathToCourtMetadataFile,
-            PathToDataFolder = pathToDataFolder
-        };
         var trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
-        var tracker = new Tracker(trackerPath);
 
-        var logFilePath = Path.Combine(pathToDataFolder, $"log_{DateTime.Now:yy-MM-dd_HH-mm}.txt");
-        var loggerFactory = LoggerFactory.Create(x =>
-            x.AddConsole()
-             .AddFile(logFilePath,
-                 outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message}{NewLine}{Exception}"));
-        var logger = loggerFactory.CreateLogger<Program>();
+        var serviceProvider = ConfigureDependencyInjection(pathToDataFolder, trackerPath);
+
+        var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+
+        var helper = serviceProvider.GetRequiredService<Helper>();
+        helper.PathToCourtMetadataFile = pathToCourtMetadataFile;
+        helper.PathToDataFolder = pathToDataFolder;
+
+        var tracker =  serviceProvider.GetRequiredService<Tracker>();
 
         logger.LogInformation("Using Parser version: {ParserVersion}",
             UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.GetParserVersion());
@@ -226,5 +222,27 @@ public class Program
         {
             logger.LogInformation("No failed lines");
         }
+    }
+
+    private static ServiceProvider ConfigureDependencyInjection(string pathToDataFolder, string trackerPath)
+    {
+        var services = new ServiceCollection();
+
+        services.AddLogging(loggingBuilder =>
+        {
+            var logFilePath = Path.Combine(pathToDataFolder, $"log_{DateTime.Now:yy-MM-dd_HH-mm}.txt");
+            loggingBuilder.AddConsole()
+                          .AddFile(logFilePath,
+                              outputTemplate:
+                              "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message}{NewLine}{Exception}");
+        });
+        services
+            .AddSingleton<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator,
+                UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
+        services.AddSingleton<Parser>();
+        services.AddSingleton<Helper>();
+        services.AddSingleton<Tracker>(_ => new Tracker(trackerPath));
+
+        return services.BuildServiceProvider();
     }
 }

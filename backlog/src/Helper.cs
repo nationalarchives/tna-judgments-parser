@@ -9,9 +9,9 @@ namespace Backlog.Src
 {
     class Helper(Api.Parser parser)
     {
-        internal string PathToCourtMetadataFile { get; init; }
+        internal string PathToCourtMetadataFile { get; set; }
 
-        internal string PathToDataFolder { get; init; }
+        internal string PathToDataFolder { get; set; }
 
         internal List<Metadata.Line> FindLines(uint id)
         {
