@@ -19,6 +19,7 @@ namespace test.backlog
     {
         private readonly Helper helper;
         private readonly Parser parser = new(new MockLogger<Parser>().Object, new Validator());
+        private readonly Metadata csvMetadataReader = new(new MockLogger<Metadata>().Object);
         private string testDataDirectory;
         private string validCsvPath;
 
@@ -32,7 +33,7 @@ namespace test.backlog
             validCsvPath = Path.Combine(testDataDirectory, "valid-metadata.csv");
             CreateValidCsvFile(validCsvPath);
             
-            helper = new Helper(parser)
+            helper = new Helper(parser, csvMetadataReader)
             {
                 PathToCourtMetadataFile = validCsvPath,
                 PathToDataFolder = testDataDirectory
@@ -124,14 +125,10 @@ namespace test.backlog
         {
             // Arrange - Create helper with non-existent CSV path
             var nonExistentPath = Path.Combine(testDataDirectory, "does-not-exist.csv");
-            var invalidHelper = new Helper(parser)
-            {
-                PathToCourtMetadataFile = nonExistentPath,
-                PathToDataFolder = testDataDirectory
-            };
+            helper.PathToCourtMetadataFile = nonExistentPath;
 
             // Act & Assert
-            Assert.Throws<FileNotFoundException>(() => invalidHelper.FindLines(123));
+            Assert.Throws<FileNotFoundException>(() => helper.FindLines(123));
         }
 
         [Fact]
@@ -142,14 +139,10 @@ namespace test.backlog
             var emptyContent = "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary";
             File.WriteAllText(emptyCsvPath, emptyContent);
             
-            var emptyHelper = new Helper(parser)
-            {
-                PathToCourtMetadataFile = emptyCsvPath,
-                PathToDataFolder = testDataDirectory
-            };
+            helper.PathToCourtMetadataFile = emptyCsvPath;
 
             // Act
-            var result = emptyHelper.FindLines(123);
+            var result = helper.FindLines(123);
 
             // Assert
             Assert.NotNull(result);
@@ -166,14 +159,10 @@ namespace test.backlog
 124,2025-01-16 10:00:00,Jones,HMRC";
             File.WriteAllText(malformedCsvPath, malformedContent);
             
-            var malformedHelper = new Helper(parser)
-            {
-                PathToCourtMetadataFile = malformedCsvPath,
-                PathToDataFolder = testDataDirectory
-            };
+            helper.PathToCourtMetadataFile = malformedCsvPath;
 
             // Act & Assert - CsvHelper will throw when required headers are missing
-            var ex = Assert.Throws<CsvHelper.MissingFieldException>(() => malformedHelper.FindLines(123));
+            var ex = Assert.Throws<CsvHelper.MissingFieldException>(() => helper.FindLines(123));
                 
             // Verify the exception message contains information about first missing header
             Assert.Contains("court", ex.Message);
@@ -188,14 +177,10 @@ namespace test.backlog
 123,.pdf,2025-01-15 09:00:00,IA/2025/001,Smith,Secretary of State for the Home Department,UKUT-IAC";
             File.WriteAllText(partialCsvPath, partialContent);
             
-            var partialHelper = new Helper(parser)
-            {
-                PathToCourtMetadataFile = partialCsvPath,
-                PathToDataFolder = testDataDirectory
-            };
+            helper.PathToCourtMetadataFile = partialCsvPath;
 
             // Act & Assert - CsvHelper will throw when required columns are missing
-            var ex = Assert.Throws<CsvHelper.MissingFieldException>(() => partialHelper.FindLines(123));
+            var ex = Assert.Throws<CsvHelper.MissingFieldException>(() => helper.FindLines(123));
                 
             // Verify the exception message contains information about the missing FilePath column
             Assert.Contains("FilePath", ex.Message);
@@ -210,14 +195,10 @@ namespace test.backlog
 126,/test/data/test-case-invalid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State,,Appeals,Tax,VAT,Test case with orphaned main_subcategory";
             File.WriteAllText(invalidCategoryCsvPath, invalidCategoryContent);
             
-            var invalidCategoryHelper = new Helper(parser)
-            {
-                PathToCourtMetadataFile = invalidCategoryCsvPath,
-                PathToDataFolder = testDataDirectory
-            };
+            helper.PathToCourtMetadataFile = invalidCategoryCsvPath;
 
             // Act & Assert - Should throw CsvHelperException during CSV reading
-            var ex = Assert.Throws<CsvHelper.CsvHelperException>(() => invalidCategoryHelper.FindLines(126));
+            var ex = Assert.Throws<CsvHelper.CsvHelperException>(() => helper.FindLines(126));
                 
             // Verify the exception message contains information about the validation rule
             Assert.Contains("main_subcategory", ex.Message);
@@ -233,14 +214,10 @@ namespace test.backlog
 127,/test/data/test-case-invalid2.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State,Immigration,Appeals,,VAT,Test case with orphaned sec_subcategory";
             File.WriteAllText(invalidSecCategoryCsvPath, invalidSecCategoryContent);
             
-            var invalidSecCategoryHelper = new Helper(parser)
-            {
-                PathToCourtMetadataFile = invalidSecCategoryCsvPath,
-                PathToDataFolder = testDataDirectory
-            };
+            helper.PathToCourtMetadataFile = invalidSecCategoryCsvPath;
 
             // Act & Assert - Should throw CsvHelperException during CSV reading
-            var ex = Assert.Throws<CsvHelper.CsvHelperException>(() => invalidSecCategoryHelper.FindLines(127));
+            var ex = Assert.Throws<CsvHelper.CsvHelperException>(() => helper.FindLines(127));
                 
             // Verify the exception message contains information about the validation rule
             Assert.Contains("sec_subcategory", ex.Message);
@@ -256,14 +233,10 @@ namespace test.backlog
 128,/test/data/test-case-valid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State,Immigration,Appeals,Tax,VAT,Test case with valid category hierarchy";
             File.WriteAllText(validCategoryCsvPath, validCategoryContent);
             
-            var validCategoryHelper = new Helper(parser)
-            {
-                PathToCourtMetadataFile = validCategoryCsvPath,
-                PathToDataFolder = testDataDirectory
-            };
+            helper.PathToCourtMetadataFile = validCategoryCsvPath;
 
             // Act - Should process successfully without throwing (validation happens during CSV reading)
-            var lines = validCategoryHelper.FindLines(128);
+            var lines = helper.FindLines(128);
             
             // Assert
             Assert.Single(lines);

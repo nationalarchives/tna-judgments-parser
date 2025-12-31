@@ -10,6 +10,8 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 
+using Microsoft.Extensions.Logging;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -43,7 +45,7 @@ namespace Backlog.Src
         }
     }
 
-    class Metadata
+    class Metadata(ILogger<Metadata> logger)
     {
         internal class LineMap : ClassMap<Line>
         {
@@ -171,13 +173,13 @@ namespace Backlog.Src
             }
         }
 
-        internal static List<Line> Read(string csvPath)
+        internal List<Line> Read(string csvPath)
         {
             using var streamReader = new StreamReader(csvPath);
             return Read(streamReader);
         }
 
-        internal static List<Line> Read(TextReader textReader)
+        internal List<Line> Read(TextReader textReader)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
@@ -214,7 +216,13 @@ namespace Backlog.Src
                 }
                 catch (ArgumentException ex)
                 {
-                    throw new CsvHelper.CsvHelperException(csv.Context, $"CSV validation error at row {csv.Context.Parser.Row}: {ex.Message}", ex);
+                   logger.LogError(ex, "CSV validation error at row {ParserRow}", csv.Context.Parser?.Row);
+                   throw new CsvHelper.CsvHelperException(csv.Context, $"CSV validation error at row {csv.Context.Parser.Row}: {ex.Message}", ex);
+                }
+                catch (Exception ex)
+                {
+                   logger.LogError(ex, "Error parsing row {ParserRow}", csv.Context.Parser?.Row);
+                   throw;
                 }
             }
             

@@ -4,12 +4,18 @@ using System;
 using System.IO;
 using System.Linq;
 
+using Backlog.Src;
+
+using test.Mocks;
+
 using Xunit;
 
 namespace test.backlog.MetadataTests;
 
 public class TestRead
 {
+    private readonly Metadata csvMetadataReader = new(new MockLogger<Metadata>().Object);
+
     [Fact]
     public void Read_WithOnlyRequiredColumnsAndClaimants_ParsesCsvIntoLines()
     {
@@ -19,7 +25,7 @@ public class TestRead
 124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC"
         );
 
-        var result = Backlog.Src.Metadata.Read(csvStream);
+        var result = csvMetadataReader.Read(csvStream);
 
         Assert.Collection(result,
             line => Assert.Equivalent(
@@ -92,7 +98,7 @@ public class TestRead
         using var csvStream = new StringReader(csvContent);
 
         //Act
-        var result = Backlog.Src.Metadata.Read(csvStream);
+        var result = csvMetadataReader.Read(csvStream);
 
         Assert.Collection(result,
             line => Assert.Equivalent(

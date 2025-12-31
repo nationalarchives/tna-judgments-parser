@@ -82,6 +82,7 @@ public class Program
 
         try
         {
+            var csvMetadataReader = serviceProvider.GetRequiredService<Metadata>();
             var helper = serviceProvider.GetRequiredService<Helper>();
             helper.PathToCourtMetadataFile = pathToCourtMetadataFile;
             helper.PathToDataFolder = pathToDataFolder;
@@ -107,7 +108,7 @@ public class Program
             else
             {
                 // Process all lines from the document
-                lines = Metadata.Read(helper.PathToCourtMetadataFile);
+                lines = csvMetadataReader.Read(helper.PathToCourtMetadataFile);
                 if (!lines.Any())
                 {
                     logger.LogCritical("No records found in the metadata file");
@@ -249,6 +250,7 @@ public class Program
                 UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
         services.AddSingleton<Parser>();
         services.AddSingleton<Helper>();
+        services.AddSingleton<Metadata>();
         services.AddSingleton<Tracker>(_ => new Tracker(trackerPath));
 
         return services.BuildServiceProvider();
