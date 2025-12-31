@@ -18,8 +18,8 @@ public class TestAppellantsOrClaimantsPresentValidationAttribute
     [InlineData(null, "Jane Doe", true, null)]
     [InlineData("John Smith", null, true, null)]
     [InlineData("John Smith", "Jane Doe", false,
-        "Line 125: Cannot have both claimants and appellants. Please provide only one.")]
-    [InlineData(null, null, false, "Line 125: Must have either claimants or appellants. At least one is required.")]
+        "Id 125 - Cannot have both claimants and appellants. Please provide only one.")]
+    [InlineData(null, null, false, "Id 125 - Must have either claimants or appellants. At least one is required.")]
     public void IsValid_WithLine_ValidatesThatClaimantsOrAppellantsArePresent(string? claimants, string? appellants,
         bool expectedResult, string? expectedErrorMessage)
     {

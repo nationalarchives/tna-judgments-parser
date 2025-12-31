@@ -15,7 +15,7 @@ namespace Backlog.Src
 
         internal List<Metadata.Line> FindLines(uint id)
         {
-            List<Metadata.Line> lines = csvMetadataReader.Read(PathToCourtMetadataFile);
+            List<Metadata.Line> lines = csvMetadataReader.Read(PathToCourtMetadataFile, out _);
             return Metadata.FindLines(lines, id);
         }
 

@@ -17,12 +17,12 @@ public class TestCategoryValidationAttribute
     [InlineData("Equal Pay Act", "Equal value", null, null, true, null)]
     [InlineData("Equal Pay Act", null, null, null, true, null)]
     [InlineData(null, "Equal value", null, null, false,
-        "Line 125: main_subcategory 'Equal value' cannot exist without main_category being defined")]
+        "Id 125 - main_subcategory 'Equal value' cannot exist without main_category being defined")]
     [InlineData(null, null, null, null, true, null)]
     [InlineData(null, null, "Equal Pay Act", "Equal value", true, null)]
     [InlineData(null, null, "Equal Pay Act", null, true, null)]
     [InlineData(null, null, null, "Equal value", false,
-        "Line 125: sec_subcategory 'Equal value' cannot exist without sec_category being defined")]
+        "Id 125 - sec_subcategory 'Equal value' cannot exist without sec_category being defined")]
     [InlineData("Equal Pay Act", "Equal value", "Practice and Procedure", "Costs", true, null)]
     [InlineData("Equal Pay Act", "Equal value", "Practice and Procedure", null, true, null)]
     [InlineData("Equal Pay Act", null, "Practice and Procedure", "Costs", true, null)]

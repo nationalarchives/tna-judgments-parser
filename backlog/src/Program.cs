@@ -95,30 +95,32 @@ public class Program
             logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}", pathToCourtMetadataFile);
 
             List<Metadata.Line> lines;
+            List<string> csvParseErrors = [];
+
             if (id.HasValue)
             {
                 // Process only the specific ID
                 lines = helper.FindLines(id.Value);
                 if (!lines.Any())
                 {
-                    logger.LogCritical("No records found for id {SuppliedId}", id.Value);
+                    logger.LogCritical("No valid records found for id {SuppliedId}", id.Value);
                     return 1;
                 }
             }
             else
             {
                 // Process all lines from the document
-                lines = csvMetadataReader.Read(helper.PathToCourtMetadataFile);
+                lines = csvMetadataReader.Read(helper.PathToCourtMetadataFile, out csvParseErrors);
                 if (!lines.Any())
                 {
-                    logger.LogCritical("No records found in the metadata file");
+                    logger.LogCritical("No valid records found in the metadata file");
                     return 1;
                 }
             }
 
             var alreadyDoneLines = new List<Metadata.Line>();
             var successfulNewLines = new List<Metadata.Line>();
-            var failedLines = new List<(Metadata.Line line, Exception exception)>();
+            var failedToProcessLines = new List<(Metadata.Line line, Exception exception)>();
 
             for (var i = 0; i < lines.Count; i++)
             {
@@ -159,7 +161,7 @@ public class Program
                 catch (Exception ex)
                 {
                     logger.LogError(ex, "Error processing line {LineId}:", line.id);
-                    failedLines.Add((line, ex));
+                    failedToProcessLines.Add((line, ex));
                 }
                 finally
                 {
@@ -167,9 +169,9 @@ public class Program
                 }
             }
 
-            LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, lines, failedLines);
+            LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, lines, failedToProcessLines, csvParseErrors);
 
-            if (failedLines.Count > 0)
+            if (failedToProcessLines.Count > 0 || csvParseErrors.Count > 0)
             {
                 return 1;
             }
@@ -184,26 +186,37 @@ public class Program
     }
 
     private static void LogFinalStatistics(ILogger logger, List<Metadata.Line> alreadyDoneLines,
-        List<Metadata.Line> successfulNewLines, List<Metadata.Line> lines,
-        List<(Metadata.Line line, Exception exception)> failedLines)
+        List<Metadata.Line> successfulNewLines, List<Metadata.Line> parsedLinesFromCsv,
+        List<(Metadata.Line line, Exception exception)> failedToProcessLines,
+        List<string> csvParseErrors)
     {
         logger.LogInformation("""
                               ---------------------------
-                              Successfully processed {SuccessfulLinesCount} of {CsvLinesCount} parsed csv lines, of which:
+                              Successfully processed {SuccessfulLinesCount} of {CsvLinesCount} csv lines, of which:
                                 - {NewLinesCount} lines were new
                                 - {AlreadyDoneLineCount} lines were skipped (because they had been processed in a previous run)
                               """,
             alreadyDoneLines.Count + successfulNewLines.Count,
-            lines.Count,
+            parsedLinesFromCsv.Count + csvParseErrors.Count,
             successfulNewLines.Count,
             alreadyDoneLines.Count
         );
 
-        if (failedLines.Count > 0)
+        if (csvParseErrors.Count > 0)
         {
-            logger.LogError("Failed to process {FailedLineCount} lines, of which:", failedLines.Count);
+            logger.LogError("""
+                            ---------------------------
+                            Failed to read {FailedLineCount} lines from the csv:
+                            {FailedLineDetails}
+                            """,
+                csvParseErrors.Count,
+                string.Join(Environment.NewLine, csvParseErrors.Select(error => $"  - {error}"))
+            );
+        }
 
-            var failedIdsGroupedByErrorMessage = failedLines
+        if (failedToProcessLines.Count > 0)
+        {
+            var failedIdsGroupedByErrorMessage = failedToProcessLines
                 .GroupBy(f =>
                     {
                         return f.exception.Message switch
@@ -217,17 +230,26 @@ public class Program
                         };
                     },
                     f => f.line.id);
-            foreach (var groupOfErrors in failedIdsGroupedByErrorMessage)
+
+            var groupedErrorDescriptions = failedIdsGroupedByErrorMessage.Select(groupOfErrors =>
             {
                 var affectedIds = groupOfErrors.Count() <= 5
                     ? string.Join(", ", groupOfErrors)
                     : string.Join(", ", groupOfErrors.Take(5)) + "...";
-                logger.LogError(
-                    "  - {Count} lines failed with exception message \"{Message}\". Ids affected were: ({AffectedIds})",
-                    groupOfErrors.Count(), groupOfErrors.Key, affectedIds);
-            }
+                return
+                    $"  - {groupOfErrors.Count()} lines failed with exception message \"{groupOfErrors.Key}\". Ids affected were: ({affectedIds})";
+            });
+
+
+            logger.LogError("""
+                            ---------------------------
+                            Failed to process {FailedLineCount} lines, of which:
+                            {GroupedErrorDescriptions}
+                            """,
+                failedToProcessLines.Count, string.Join(Environment.NewLine, groupedErrorDescriptions));
         }
-        else
+
+        if (failedToProcessLines.Count == 0 && csvParseErrors.Count == 0)
         {
             logger.LogInformation("No failed lines");
         }

@@ -35,14 +35,14 @@ namespace Backlog.Src
             if (!string.IsNullOrWhiteSpace(line.main_subcategory) && string.IsNullOrWhiteSpace(line.main_category))
             {
                 return new ValidationResult(
-                    $"Line {line.id}: main_subcategory '{line.main_subcategory}' cannot exist without main_category being defined");
+                    $"Id {line.id} - main_subcategory '{line.main_subcategory}' cannot exist without main_category being defined");
             }
 
             // Check if sec_subcategory exists without sec_category
             if (!string.IsNullOrWhiteSpace(line.sec_subcategory) && string.IsNullOrWhiteSpace(line.sec_category))
             {
                 return new ValidationResult(
-                    $"Line {line.id}: sec_subcategory '{line.sec_subcategory}' cannot exist without sec_category being defined");
+                    $"Id {line.id} - sec_subcategory '{line.sec_subcategory}' cannot exist without sec_category being defined");
             }
 
             return ValidationResult.Success;
@@ -70,9 +70,9 @@ namespace Backlog.Src
             return (hasClaimants, hasAppellants) switch
             {
                 { hasClaimants: true, hasAppellants: true } => new ValidationResult(
-                    $"Line {line.id}: Cannot have both claimants and appellants. Please provide only one."),
+                    $"Id {line.id} - Cannot have both claimants and appellants. Please provide only one."),
                 { hasClaimants: false, hasAppellants: false } => new ValidationResult(
-                    $"Line {line.id}: Must have either claimants or appellants. At least one is required."),
+                    $"Id {line.id} - Must have either claimants or appellants. At least one is required."),
                 _ => ValidationResult.Success
             };
         }
@@ -173,59 +173,68 @@ namespace Backlog.Src
             }
         }
 
-        internal List<Line> Read(string csvPath)
+        internal List<Line> Read(string csvPath, out List<string> csvParseErrors)
         {
             using var streamReader = new StreamReader(csvPath);
-            return Read(streamReader);
+            return Read(streamReader, out csvParseErrors);
         }
 
-        internal List<Line> Read(TextReader textReader)
+        internal List<Line> Read(TextReader textReader, out List<string> csvParseErrors)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
-                ShouldSkipRecord = args => false
+                ShouldSkipRecord = args => false,
+                IgnoreBlankLines = true
             };
             using var csv = new CsvReader(textReader, config);
             
             csv.Context.RegisterClassMap<LineMap>();
             
             var records = new List<Line>();
+            csvParseErrors = [];
             
             // Read the header first
             csv.Read();
             csv.ReadHeader();
-            
+
             // Now read data rows
             while (csv.Read())
             {
                 try
                 {
                     var record = csv.GetRecord<Line>();
-                    
+
                     // Use DataAnnotations validation
                     var validationContext = new ValidationContext(record);
                     var validationResults = new List<ValidationResult>();
-                    
-                    if (!Validator.TryValidateObject(record, validationContext, validationResults, true))
+
+                    if (Validator.TryValidateObject(record, validationContext, validationResults, true))
                     {
-                        var errors = string.Join(", ", validationResults.Select(r => r.ErrorMessage));
-                        throw new ArgumentException($"Validation failed: {errors}");
+                        records.Add(record);
                     }
-                    
-                    records.Add(record);
-                }
-                catch (ArgumentException ex)
-                {
-                   logger.LogError(ex, "CSV validation error at row {ParserRow}", csv.Context.Parser?.Row);
-                   throw new CsvHelper.CsvHelperException(csv.Context, $"CSV validation error at row {csv.Context.Parser.Row}: {ex.Message}", ex);
+                    else
+                    {
+                        var errors = string.Join(", ", validationResults.Where(r => r != ValidationResult.Success)
+                                                                        .Select(r => r.ErrorMessage));
+
+                        csvParseErrors.Add($"Line {csv.Context.Parser!.Row}: {errors}");
+                        logger.LogError("CSV validation errors [{Errors}] at row {ParserRow}", errors,
+                            csv.Context.Parser?.Row);
+                    }
                 }
                 catch (Exception ex)
                 {
-                   logger.LogError(ex, "Error parsing row {ParserRow}", csv.Context.Parser?.Row);
-                   throw;
+                    var exceptionMessage = ex is CsvHelperException
+                        ? ex.Message.Substring(0, ex.Message.IndexOf(Environment.NewLine, StringComparison.Ordinal))
+                        : ex.Message;
+
+                    var rawLine = csv.Context!.Parser!.RawRecord.ReplaceLineEndings(string.Empty);
+                    csvParseErrors.Add(
+                        $"Line {csv.Context.Parser!.Row}: {exceptionMessage} [{rawLine}]");
+                    logger.LogError(ex, "Error parsing row {ParserRow}", csv.Context.Parser?.Row);
                 }
             }
-            
+
             return records;
         }
 
