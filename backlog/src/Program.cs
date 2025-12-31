@@ -80,98 +80,106 @@ public class Program
 
         var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
 
-        var helper = serviceProvider.GetRequiredService<Helper>();
-        helper.PathToCourtMetadataFile = pathToCourtMetadataFile;
-        helper.PathToDataFolder = pathToDataFolder;
-
-        var tracker =  serviceProvider.GetRequiredService<Tracker>();
-
-        logger.LogInformation("Using Parser version: {ParserVersion}",
-            UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.GetParserVersion());
-        logger.LogInformation("Using data folder: {PathToDataFolder}", pathToDataFolder);
-        logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}", pathToCourtMetadataFile);
-
-        List<Metadata.Line> lines;
-        if (id.HasValue)
+        try
         {
-            // Process only the specific ID
-            lines = helper.FindLines(id.Value);
-            if (!lines.Any())
+            var helper = serviceProvider.GetRequiredService<Helper>();
+            helper.PathToCourtMetadataFile = pathToCourtMetadataFile;
+            helper.PathToDataFolder = pathToDataFolder;
+
+            var tracker =  serviceProvider.GetRequiredService<Tracker>();
+
+            logger.LogInformation("Using Parser version: {ParserVersion}",
+                UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.GetParserVersion());
+            logger.LogInformation("Using data folder: {PathToDataFolder}", pathToDataFolder);
+            logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}", pathToCourtMetadataFile);
+
+            List<Metadata.Line> lines;
+            if (id.HasValue)
             {
-                logger.LogCritical("No records found for id {SuppliedId}", id.Value);
+                // Process only the specific ID
+                lines = helper.FindLines(id.Value);
+                if (!lines.Any())
+                {
+                    logger.LogCritical("No records found for id {SuppliedId}", id.Value);
+                    return 1;
+                }
+            }
+            else
+            {
+                // Process all lines from the document
+                lines = Metadata.Read(helper.PathToCourtMetadataFile);
+                if (!lines.Any())
+                {
+                    logger.LogCritical("No records found in the metadata file");
+                    return 1;
+                }
+            }
+
+            var alreadyDoneLines = new List<Metadata.Line>();
+            var successfulNewLines = new List<Metadata.Line>();
+            var failedLines = new List<(Metadata.Line line, Exception exception)>();
+
+            for (var i = 0; i < lines.Count; i++)
+            {
+                var line = lines[i];
+
+                try
+                {
+                    if (tracker.WasDone(line))
+                    {
+                        logger.LogWarning("skipping {LineId}", line.id);
+                        alreadyDoneLines.Add(line);
+                        continue;
+                    }
+
+                    logger.LogInformation("Processing file: {FilePath}", line.FilePath);
+                    var bundle = helper.GenerateBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
+
+                    var bundleFileName = bundle.Uuid + ".tar.gz";
+                    var output = Path.Combine(pathToOutputFolder, bundleFileName);
+                    logger.LogInformation("  Writing to output: {Output}", output);
+                    File.WriteAllBytes(output, bundle.TarGz);
+
+                    if (isDryRun)
+                    {
+                        logger.LogInformation("  This is a dry run - not uploading to S3");
+                    }
+                    else
+                    {
+                        logger.LogInformation("  Uploading {BundleFileName} to S3", bundleFileName);
+                        Bucket.UploadBundle(bundleFileName, bundle.TarGz).Wait();
+                    }
+
+                    tracker.MarkDone(line, bundle.Uuid);
+                    successfulNewLines.Add(line);
+
+                    logger.LogInformation("  success");
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "Error processing line {LineId}:", line.id);
+                    failedLines.Add((line, ex));
+                }
+                finally
+                {
+                    logger.LogInformation("{Percent}% done", 100 * (i + 1) / lines.Count);
+                }
+            }
+
+            LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, lines, failedLines);
+
+            if (failedLines.Count > 0)
+            {
                 return 1;
             }
+
+            return 0;
         }
-        else
+        catch (Exception e)
         {
-            // Process all lines from the document
-            lines = Metadata.Read(helper.PathToCourtMetadataFile);
-            if (!lines.Any())
-            {
-                logger.LogCritical("No records found in the metadata file");
-                return 1;
-            }
-        }
-
-        var alreadyDoneLines = new List<Metadata.Line>();
-        var successfulNewLines = new List<Metadata.Line>();
-        var failedLines = new List<(Metadata.Line line, Exception exception)>();
-
-        for (var i = 0; i < lines.Count; i++)
-        {
-            var line = lines[i];
-
-            try
-            {
-                if (tracker.WasDone(line))
-                {
-                    logger.LogWarning("skipping {LineId}", line.id);
-                    alreadyDoneLines.Add(line);
-                    continue;
-                }
-
-                logger.LogInformation("Processing file: {FilePath}", line.FilePath);
-                var bundle = helper.GenerateBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
-
-                var bundleFileName = bundle.Uuid + ".tar.gz";
-                var output = Path.Combine(pathToOutputFolder, bundleFileName);
-                logger.LogInformation("  Writing to output: {Output}", output);
-                File.WriteAllBytes(output, bundle.TarGz);
-
-                if (isDryRun)
-                {
-                    logger.LogInformation("  This is a dry run - not uploading to S3");
-                }
-                else
-                {
-                    logger.LogInformation("  Uploading {BundleFileName} to S3", bundleFileName);
-                    Bucket.UploadBundle(bundleFileName, bundle.TarGz).Wait();
-                }
-
-                tracker.MarkDone(line, bundle.Uuid);
-                successfulNewLines.Add(line);
-
-                logger.LogInformation("  success");
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, "Error processing line {LineId}:", line.id);
-                failedLines.Add((line, ex));
-            }
-            finally
-            {
-                logger.LogInformation("{Percent}% done", 100 * (i + 1) / lines.Count);
-            }
-        }
-
-        LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, lines, failedLines);
-
-        if (failedLines.Count > 0)
-        {
+            logger.LogCritical(e, "Backlog Parser fell over");
             return 1;
         }
-
-        return 0;
     }
 
     private static void LogFinalStatistics(ILogger logger, List<Metadata.Line> alreadyDoneLines,
