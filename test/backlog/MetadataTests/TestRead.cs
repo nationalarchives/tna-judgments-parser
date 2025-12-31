@@ -6,6 +6,8 @@ using System.Linq;
 
 using Backlog.Src;
 
+using CsvHelper;
+
 using test.Mocks;
 
 using Xunit;
@@ -271,4 +273,17 @@ public class TestRead
                 }, line)
         );
     }
+
+    [Fact]
+    public void Read_WithInvalidLines_ReturnsValidationErrors()
+    {
+        using var csvStream = new StringReader(
+            @"id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent
+123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Secretary of State for the Home Department
+124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC"
+        );
+
+        Assert.Throws<CsvHelperException>(() => csvMetadataReader.Read(csvStream));
+    }
+
 }
