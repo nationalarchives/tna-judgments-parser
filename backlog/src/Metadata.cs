@@ -109,7 +109,7 @@ namespace Backlog.Src
 
         [AppellantsOrClaimantsPresentValidation]
         [CategoryValidation]
-        internal class Line
+        internal record Line
         {
             public string id { get; set; }
             public string court { get; set; }

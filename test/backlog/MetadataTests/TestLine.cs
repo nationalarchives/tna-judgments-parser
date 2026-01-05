@@ -14,7 +14,7 @@ public class TestLine
     public void Line_DecisionDate_Property_ParsesCorrectly()
     {
         // Arrange
-        var line = new Metadata.Line { court = "UKFTT-GRC", decision_datetime = "2023-07-04 09:15:22" };
+        var line = CsvMetadataLineHelper.DummyLine with { decision_datetime = "2023-07-04 09:15:22" };
 
         // Act
         var decisionDate = line.DecisionDate;
@@ -28,7 +28,7 @@ public class TestLine
     public void Line_DecisionDate_Property_WithInvalidDate_ThrowsException()
     {
         // Arrange
-        var line = new Metadata.Line { court = "UKFTT-GRC", decision_datetime = "invalid-date" };
+        var line = CsvMetadataLineHelper.DummyLine with { decision_datetime = "invalid-date" };
 
         // Act & Assert
         Assert.Throws<FormatException>(() => _ = line.DecisionDate);
@@ -38,7 +38,7 @@ public class TestLine
     public void Line_FirstPartyName_WithClaimants_ReturnsClaimants()
     {
         // Arrange
-        var line = new Metadata.Line { court = "UKFTT-GRC", claimants = "John Smith", respondent = "HMRC" };
+        var line = CsvMetadataLineHelper.DummyLine with { claimants = "John Smith", respondent = "HMRC" };
 
         // Act
         var result = line.FirstPartyName;
@@ -51,7 +51,7 @@ public class TestLine
     public void Line_FirstPartyName_WithAppellants_ReturnsAppellants()
     {
         // Arrange
-        var line = new Metadata.Line { court = "UKFTT-GRC", appellants = "Jane Doe", respondent = "HMRC" };
+        var line = CsvMetadataLineHelper.DummyLine with { appellants = "Jane Doe", respondent = "HMRC" };
 
         // Act
         var result = line.FirstPartyName;
@@ -64,7 +64,7 @@ public class TestLine
     public void Line_FirstPartyRole_WithClaimants_ReturnsClaimant()
     {
         // Arrange
-        var line = new Metadata.Line { court = "UKFTT-GRC", claimants = "John Smith", respondent = "HMRC" };
+        var line = CsvMetadataLineHelper.DummyLine with { claimants = "John Smith", respondent = "HMRC" };
 
         // Act
         var result = line.FirstPartyRole;
@@ -77,7 +77,7 @@ public class TestLine
     public void Line_FirstPartyRole_WithAppellants_ReturnsAppellant()
     {
         // Arrange
-        var line = new Metadata.Line { court = "UKFTT-GRC", appellants = "Jane Doe", respondent = "HMRC" };
+        var line = CsvMetadataLineHelper.DummyLine with { appellants = "Jane Doe", respondent = "HMRC" };
 
         // Act
         var result = line.FirstPartyRole;

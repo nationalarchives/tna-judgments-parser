@@ -26,12 +26,12 @@ public class TestCategoryValidationAttribute
     [InlineData("Equal Pay Act", "Equal value", "Practice and Procedure", "Costs", true, null)]
     [InlineData("Equal Pay Act", "Equal value", "Practice and Procedure", null, true, null)]
     [InlineData("Equal Pay Act", null, "Practice and Procedure", "Costs", true, null)]
-    public void IsValid_WithLine_ValidatesThatClaimantsOrAppellantsArePresent(string? mainCategory,
+    public void IsValid_WithLine_ValidatesThatCategoriesAreValid(string? mainCategory,
         string? mainSubcategory, string? secondaryCategory, string? secondarySubcategory,
         bool expectedResult, string? expectedErrorMessage)
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
             id = "125",
             main_category = mainCategory,
