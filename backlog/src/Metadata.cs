@@ -93,6 +93,17 @@ namespace Backlog.Src
                         convertFromStringArgs.Row.TryGetField<string>("jurisdictions", out var field);
                         return field?.Split(',').Select(item => item.Trim()) ?? [];
                     });
+                Map(l => l.Skip)
+                    .Optional()
+                    .Convert(convertFromStringArgs =>
+                    {
+                        convertFromStringArgs.Row.TryGetField<string>(nameof(Line.Skip), out var field);
+                        return field?.Trim().ToLower() switch
+                        {
+                            null or "" or "n" or "no" or "f" or "false" or "0" => false,
+                            _ => true // return true when there is any value that is not explicitly negative
+                        };
+                    });
             }
         }
 
@@ -141,7 +152,11 @@ namespace Backlog.Src
             
             [Optional]
             public string Uuid { get; set; }
-            
+
+            [Optional]
+            [Default(false)]
+            public bool Skip { get; set; }
+
             private readonly string DateFormat = "yyyy-MM-dd HH:mm:ss";
             internal string DecisionDate { get => System.DateTime.ParseExact(decision_datetime, DateFormat, CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"); }
 

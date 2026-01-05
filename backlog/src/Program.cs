@@ -118,6 +118,7 @@ public class Program
             }
 
             var alreadyDoneLines = new List<Metadata.Line>();
+            var markedAsSkipLines = new List<Metadata.Line>();
             var successfulNewLines = new List<Metadata.Line>();
             var failedToProcessLines = new List<(Metadata.Line line, Exception exception)>();
 
@@ -127,9 +128,16 @@ public class Program
 
                 try
                 {
+                    if (line.Skip)
+                    {
+                        logger.LogWarning("Skipping {LineId} because it was marked to skip in the csv", line.id);
+                        markedAsSkipLines.Add(line);
+                        continue;
+                    }
+                    
                     if (tracker.WasDone(line))
                     {
-                        logger.LogWarning("skipping {LineId}", line.id);
+                        logger.LogWarning("Skipping {LineId} because it was previously processed", line.id);
                         alreadyDoneLines.Add(line);
                         continue;
                     }
@@ -168,7 +176,7 @@ public class Program
                 }
             }
 
-            LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, lines, failedToProcessLines, csvParseErrors);
+            LogFinalStatistics(logger, markedAsSkipLines, alreadyDoneLines, successfulNewLines, lines, failedToProcessLines, csvParseErrors);
 
             if (failedToProcessLines.Count > 0 || csvParseErrors.Count > 0)
             {
@@ -184,20 +192,27 @@ public class Program
         }
     }
 
-    private static void LogFinalStatistics(ILogger logger, List<Metadata.Line> alreadyDoneLines,
+    private static void LogFinalStatistics(ILogger logger, List<Metadata.Line> markedAsSkipLines,
+        List<Metadata.Line> alreadyDoneLines,
         List<Metadata.Line> successfulNewLines, List<Metadata.Line> parsedLinesFromCsv,
         List<(Metadata.Line line, Exception exception)> failedToProcessLines,
         List<string> csvParseErrors)
     {
+        var markedAsSkipIds = markedAsSkipLines.Any()
+            ? $"[{string.Join(", ", markedAsSkipLines.Select(l => l.id))}]"
+            : string.Empty;
+
         logger.LogInformation("""
                               ---------------------------
                               Successfully processed {SuccessfulLinesCount} of {CsvLinesCount} csv lines, of which:
                                 - {NewLinesCount} lines were new
-                                - {AlreadyDoneLineCount} lines were skipped (because they had been processed in a previous run)
+                                - {MarkedToSkipLineCount} lines were marked in the csv to skip {MarkedToSkipIds} 
+                                - {AlreadyDoneLineCount} lines were skipped because they had been processed in a previous run
                               """,
-            alreadyDoneLines.Count + successfulNewLines.Count,
+            markedAsSkipLines.Count + alreadyDoneLines.Count + successfulNewLines.Count,
             parsedLinesFromCsv.Count + csvParseErrors.Count,
             successfulNewLines.Count,
+            markedAsSkipLines.Count, markedAsSkipIds,
             alreadyDoneLines.Count
         );
 
