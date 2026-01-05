@@ -84,8 +84,6 @@ public class Program
         {
             var csvMetadataReader = serviceProvider.GetRequiredService<Metadata>();
             var helper = serviceProvider.GetRequiredService<Helper>();
-            helper.PathToCourtMetadataFile = pathToCourtMetadataFile;
-
             var tracker =  serviceProvider.GetRequiredService<Tracker>();
 
             logger.LogInformation("Using Parser version: {ParserVersion}",
@@ -93,26 +91,20 @@ public class Program
             logger.LogInformation("Using data folder: {PathToDataFolder}", pathToDataFolder);
             logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}", pathToCourtMetadataFile);
 
-            List<Metadata.Line> lines;
-            List<string> csvParseErrors = [];
+            var lines = csvMetadataReader.Read(pathToCourtMetadataFile, out List<string> csvParseErrors);
+            if (lines.Count == 0)
+            {
+                logger.LogCritical("No valid records found in the metadata file");
+                return 1;
+            }
 
             if (id.HasValue)
             {
                 // Process only the specific ID
-                lines = helper.FindLines(id.Value);
+                lines = lines.Where(line => line.id == id.Value.ToString()).ToList();
                 if (!lines.Any())
                 {
                     logger.LogCritical("No valid records found for id {SuppliedId}", id.Value);
-                    return 1;
-                }
-            }
-            else
-            {
-                // Process all lines from the document
-                lines = csvMetadataReader.Read(helper.PathToCourtMetadataFile, out csvParseErrors);
-                if (!lines.Any())
-                {
-                    logger.LogCritical("No valid records found in the metadata file");
                     return 1;
                 }
             }
