@@ -1,7 +1,21 @@
 Judgments parser
 ================
 
-This parser converts UK judgments from .docx format to XML. It is written in C# and requires .NET 5.0.
+This parser converts UK judgments from .docx format to XML. It is written in C# and requires .NET 8.0.
+
+## Making a FCL release
+
+1. Update the code
+    - Make a branch
+    - Update `version.targets` in the root of the repo with the new version number - this is used by the parser code to add `<uk:parser>x.x.x</uk:parser>` to the parsed xml outputs
+    - Merge to main
+2. Create a GitHub Release
+    - Create a new Tag with the same version number as `version.targets`
+    - Generate release notes
+    - Publish release
+3. Wait for the next day
+    - A [workflow in da-tre-terraform-environments](https://github.com/nationalarchives/da-tre-terraform-environments/actions/workflows/parser_cd.yml) is scheduled to run each night and deploy the latest release
+    - Go to [Find Case Law](https://caselaw.nationalarchives.gov.uk/) and check that a new judgment has the new `<uk:parser>` in it
 
 C# API
 ------
