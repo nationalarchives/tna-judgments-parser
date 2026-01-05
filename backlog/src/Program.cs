@@ -4,6 +4,8 @@ using System;
 using System.CommandLine;
 using System.IO;
 
+using Backlog.Utilities;
+
 using DotNetEnv;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,55 @@ namespace Backlog.Src;
 
 public class Program
 {
+    static Program()
+    {
+        SplitFilesByExtension.SetAction(parseResult =>
+        {
+            var originalPath = parseResult.GetValue(SplitFilesOriginalPathArgument)!; // Argument is required
+            var destinationPath = parseResult.GetValue(SplitFilesDestinationPathOption)!; // Option is required
+
+            var services = new ServiceCollection();
+            services.AddLogging(loggingBuilder => { loggingBuilder.AddConsole(); });
+            services.AddSingleton<SplitTdrFilesByExtensionWorker>();
+
+            var splitFilesWorker = services.BuildServiceProvider().GetRequiredService<SplitTdrFilesByExtensionWorker>();
+
+            return splitFilesWorker.Run(originalPath, destinationPath);
+        });
+
+        RootCommand.SetAction(parseResult => RunBacklogParser(
+            parseResult.GetValue(DryRunOption),
+            parseResult.GetValue(FileIdOption))
+        );
+    }
+
+    #region SplitCommand
+
+    private static readonly Argument<DirectoryInfo> SplitFilesOriginalPathArgument = new("originalPath")
+    {
+        Arity = ArgumentArity.ExactlyOne,
+        Description =
+            "The original path containing TDR folders to split. This can be a single TDR folder or a folder containing multiple TDR folders"
+    };
+
+    private static readonly Option<DirectoryInfo> SplitFilesDestinationPathOption = new("--destination")
+    {
+        Arity = ArgumentArity.ExactlyOne,
+        Description =
+            "The destination path for the split files. A new folder will be created here with the time of the run which contains the split file results",
+        Required = true
+    };
+
+    private static readonly Command SplitFilesByExtension = new("split",
+        "Copies files in TDR folders into destination folders named by extension. Useful for collating files for file conversion")
+    {
+        Arguments = { SplitFilesOriginalPathArgument }, Options = { SplitFilesDestinationPathOption }
+    };
+
+    #endregion
+
+    #region RootCommand
+
     private static readonly Option<bool> DryRunOption = new("--dry-run")
     {
         Description = "Use the dry run flag to run the parser without sending to AWS"
@@ -26,20 +77,24 @@ public class Program
             "The id of a single file in the batch to parse. If not supplied then all records will be processed"
     };
 
-    public static int Main(string[] args)
+
+    private static readonly RootCommand RootCommand = new("Backlog parser used to bulk parse imported files")
+    {
+        Options = { DryRunOption, FileIdOption }, Subcommands = { SplitFilesByExtension }
+    };
+
+    #endregion
+    
+    /// <summary>
+    /// This is the entry point method that is triggered by running the backlog parser on commandline
+    /// </summary>
+    /// <param name="args">The arguments specified on the commandline</param>
+    /// <returns></returns>
+    public static int Main(params string[] args)
     {
         try
         {
-            RootCommand rootCommand = new("Backlog parser used to bulk parse imported files")
-            {
-                Options = { DryRunOption, FileIdOption }
-            };
-            rootCommand.SetAction(parseResult => RunBacklogParser(
-                parseResult.GetValue(DryRunOption),
-                parseResult.GetValue(FileIdOption))
-            );
-
-            var parseResult = rootCommand.Parse(args);
+            var parseResult = RootCommand.Parse(args);
             if (parseResult.Errors.Count > 0)
             {
                 foreach (var parseError in parseResult.Errors)
