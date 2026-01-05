@@ -83,6 +83,9 @@ public static class Program
         var trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
         var tracker = new Tracker(trackerPath);
 
+        Log($"Using data folder: {pathToDataFolder}");
+        Log($"Using court metadata from: {pathToCourtMetadataFile}");
+
         List<Metadata.Line> lines;
         if (id.HasValue)
         {
@@ -90,7 +93,7 @@ public static class Program
             lines = helper.FindLines(id.Value);
             if (!lines.Any())
             {
-                Console.WriteLine($"No records found for id {id.Value}");
+                Log($"No records found for id {id.Value}");
                 return 1;
             }
         }
@@ -100,55 +103,91 @@ public static class Program
             lines = Metadata.Read(helper.PathToCourtMetadataFile);
             if (!lines.Any())
             {
-                Console.WriteLine("No records found in the metadata file");
+                Log("No records found in the metadata file");
                 return 1;
             }
         }
+
+        var alreadyDoneLines = new List<Metadata.Line>();
+        var successfulLines = new List<Metadata.Line>();
+        var failedLines = new List<(Metadata.Line line, Exception exception)>();
 
         foreach (var line in lines)
         {
             if (tracker.WasDone(line))
             {
-                Console.WriteLine("skipping " + line.id);
+                Log("skipping " + line.id);
+                alreadyDoneLines.Add(line);
                 continue;
             }
 
             try
             {
-                Console.WriteLine(DateTime.Now);
-                Console.WriteLine($"Processing file: {line.FilePath}");
-                Console.WriteLine($"Using court metadata from: {pathToCourtMetadataFile}");
-                Console.WriteLine($"Using data folder: {pathToDataFolder}");
-
+                Log($"Processing file: {line.FilePath}");
                 var bundle = helper.GenerateBundle(line, judgmentsFilePath, hmctsFilePath, autoPublish);
 
                 var output = Path.Combine(pathToOutputFolder, bundle.Uuid + ".tar.gz");
-                Console.WriteLine($"Writing to output: {output}");
+                Log($"  Writing to output: {output}");
                 File.WriteAllBytes(output, bundle.TarGz);
 
 
                 if (isDryRun)
                 {
-                    Console.WriteLine("This is a dry run - not uploading to S3");
+                    Log("  This is a dry run - not uploading to S3");
                 }
                 else
                 {
-                    Console.WriteLine("Uploading to S3");
+                    Log("  Uploading to S3");
                     Bucket.UploadBundle(bundle.Uuid + ".tar.gz", bundle.TarGz).Wait();
                 }
 
                 tracker.MarkDone(line, bundle.Uuid);
+                successfulLines.Add(line);
 
-                Console.WriteLine("success");
+                Log("  success");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error processing line {line.id}:");
-                Console.WriteLine(ex.ToString());
-                return 1;
+                Log($"Error processing line {line.id}:");
+                Log(ex.ToString());
+                failedLines.Add((line, ex));
             }
         }
 
+        Log("---------------------------", false);
+
+        Log($"Processed {alreadyDoneLines.Count + successfulLines.Count + failedLines.Count} of {lines.Count} lines");
+        Log($"Successfully processed {successfulLines.Count} lines");
+        Log($"Skipped {alreadyDoneLines.Count} lines that had previously been processed");
+
+        if (failedLines.Count > 0)
+        {
+            Log($"Failed to process {failedLines.Count} lines");
+
+            var failedIdsGroupedByErrorMessage = failedLines.GroupBy(f => f.exception.Message, f => f.line.id);
+            foreach (var thing in failedIdsGroupedByErrorMessage)
+            {
+                Log($"  {thing.Count()} lines failed with exception message {thing.Key}");
+                Log($"    Ids affected were: ({string.Join(" ,", thing)})");
+            }
+
+            return 1;
+        }
+
+        Log("No failed lines");
+
         return 0;
+    }
+
+    private static void Log(string message, bool includeTimestamp = true)
+    {
+        if (includeTimestamp)
+        {
+            Console.WriteLine("{0:G}: {1}", DateTime.Now, message);
+        }
+        else
+        {
+            Console.WriteLine(message);
+        }
     }
 }

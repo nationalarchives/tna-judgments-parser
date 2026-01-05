@@ -9,7 +9,7 @@ namespace Backlog.Src
     /// Provides file operations for processing backlog documents, including UUID lookup,
     /// file reading, and copying operations between tribunal and transfer metadata systems.
     /// </summary>
-    class Files
+    class BacklogFiles
     {
         // Directory structure constants
         private const string TDR_METADATA_DIR = "tdr_metadata";
