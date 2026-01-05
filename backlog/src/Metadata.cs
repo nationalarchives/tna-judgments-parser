@@ -139,6 +139,9 @@ namespace Backlog.Src
             [Optional]
             public string webarchiving { get; set; }
             
+            [Optional]
+            public string Uuid { get; set; }
+            
             private readonly string DateFormat = "yyyy-MM-dd HH:mm:ss";
             internal string DecisionDate { get => System.DateTime.ParseExact(decision_datetime, DateFormat, CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"); }
 
@@ -184,7 +187,8 @@ namespace Backlog.Src
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 ShouldSkipRecord = args => false,
-                IgnoreBlankLines = true
+                IgnoreBlankLines = true,
+                PrepareHeaderForMatch = args => args.Header.ToLower()
             };
             using var csv = new CsvReader(textReader, config);
             

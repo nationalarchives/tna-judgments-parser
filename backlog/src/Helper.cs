@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using Microsoft.Extensions.Logging;
+
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src
 {
-    class Helper(Api.Parser parser, Metadata csvMetadataReader)
+    class Helper(ILogger<Helper> logger, Api.Parser parser, Metadata csvMetadataReader, BacklogFiles backlogFiles)
     {
         internal string PathToCourtMetadataFile { get; set; }
-
-        internal string PathToDataFolder { get; set; }
 
         internal List<Metadata.Line> FindLines(uint id)
         {
@@ -84,7 +84,7 @@ namespace Backlog.Src
             return customFields;
         }
 
-        internal Bundle GenerateBundle(Metadata.Line line, string judgmentsFilePath, string hmctsFilePath, bool autoPublish = false)
+        internal Bundle GenerateBundle(Metadata.Line line, bool autoPublish)
         {
             if (line == null)
                 throw new ArgumentNullException(nameof(line));
@@ -97,7 +97,8 @@ namespace Backlog.Src
 
             var meta = Metadata.MakeMetadata(line);
 
-            var content = BacklogFiles.ReadFile(PathToDataFolder, line, judgmentsFilePath, hmctsFilePath);
+            var uuid = !string.IsNullOrWhiteSpace(line.Uuid) ? line.Uuid : backlogFiles.FindUuidInTransferMetadata(line.FilePath);
+            var content = backlogFiles.ReadFile(uuid, line.Extension);
 
             var response = CreateResponse(meta, content);
 
@@ -108,8 +109,8 @@ namespace Backlog.Src
                 MimeType = meta.SourceFormat
             };
             var customFields = CreateCustomFields(line, meta.Court?.Code);
-            System.Console.WriteLine($"Creating bundle with source: {source.Filename}");
-            System.Console.WriteLine($"Creating bundle with content: {source.Content.Length} bytes");
+            logger.LogInformation("Creating bundle with source: {SourceFilename}", source.Filename);
+            logger.LogInformation("Creating bundle with content: {ContentLength} bytes", source.Content.Length);
             return Bundle.Make(source, response, customFields, autoPublish);
         }
     }

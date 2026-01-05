@@ -117,11 +117,11 @@ The expected directory structure for data processing is:
 ```plaintext
 data/
 ├── tdr_metadata/
-│   └── file-metadata.csv              # Maps original judgment filenames to UUIDs
+│   └── file-metadata.csv              # Maps original judgment filenames to UUIDs (only required if UUID isn't provided in the Court Metadata CSV)
 └── court_documents/                   # Contains the actual judgment documents
-    ├── {uuid}                        # UUID-named files without extensions
-    ├── {uuid}                        # (e.g., a1b2c3d4-e5f6-7890-abcd-ef1234567890)
-    └── {uuid}                        # All files stored using UUID as filename
+    ├── {uuid}                         # UUID-named files without extensions
+    ├── {uuid}                         # (e.g., a1b2c3d4-e5f6-7890-abcd-ef1234567890)
+    └── {uuid}                         # All files stored using UUID as filename
 ```
 
 **Important Notes on File Naming:**
@@ -141,11 +141,9 @@ Contains metadata extracted from tribunal-specific spreadsheets about courts and
 - Document metadata from the source tribunal system
 - Any tribunal-specific metadata fields
 
-The current implementation is tailored to one specific tribunal's metadata format, but the structure allows for expansion to handle different metadata schemas from other tribunals.
-
 #### Required Columns
 
-The CSV file must contain the following columns (case-sensitive) for each judgment:
+The CSV file must contain the following columns for each judgment:
 
 - `id` - Unique identifier for each judgment record
 - `court` - Court code that maps to a Court object (e.g., "EWHC-QBD-Admin", "UKFTT-GRC"). Must match a valid court code defined in the Courts.ByCode dictionary
@@ -167,9 +165,10 @@ The following columns are optional:
 - `ncn` - Neutral Citation Number (NCN) for the judgment, when available. If provided, this appears as `uk:cite` in the generated AkomaNtoso XML
 - `headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
 - `Jurisdictions` - Jurisdictions to be added as `uk:jurisdiction` elements in the xml. This can be blank, a single item or a comma seperated list in quotes (e.g. `"jurisdiction1,jurisdiction2"`)
+- `uuid` - The TDR-cleansed filenames. If not provided then it will be derived from `tdr_metadata/file-metadata.csv`
 - `webarchiving` - Link to the webarchive for this judgment
 
-**Note**: Column names are case-sensitive. If required columns are missing, the system will throw a validation error listing the missing columns.
+**Note**: If required columns are missing, the system will throw a validation error listing the missing columns.
 
 #### CSV Line Example
 

@@ -32,11 +32,12 @@ namespace test.backlog
             // Create valid CSV file with required columns
             validCsvPath = Path.Combine(testDataDirectory, "valid-metadata.csv");
             CreateValidCsvFile(validCsvPath);
-            
-            helper = new Helper(parser, csvMetadataReader)
+
+            var backlogFiles = new BacklogFiles(new MockLogger<BacklogFiles>().Object, testDataDirectory, "", "");
+             
+            helper = new Helper(new MockLogger<Helper>().Object, parser, csvMetadataReader, backlogFiles)
             {
-                PathToCourtMetadataFile = validCsvPath,
-                PathToDataFolder = testDataDirectory
+                PathToCourtMetadataFile = validCsvPath
             };
         }
 
