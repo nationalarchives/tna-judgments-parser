@@ -1,3 +1,5 @@
+using System;
+
 using Backlog.Src;
 
 namespace test.backlog;
@@ -13,7 +15,7 @@ public static class CsvMetadataLineHelper
         court = "UKFTT-GRC",
         FilePath = "",
         Extension = ".pdf",
-        decision_datetime = "1900-01-01 01:01:01",
+        decision_datetime = DateTime.MinValue,
         CaseNo = "ABC/2023/001",
         respondent = "The respondent"
     };

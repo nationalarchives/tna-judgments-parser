@@ -1,6 +1,4 @@
-using System;
-
-using Backlog.Src;
+#nullable enable
 
 using UK.Gov.Legislation.Judgments;
 
@@ -10,29 +8,6 @@ namespace test.backlog.MetadataTests;
 
 public class TestLine
 {
-    [Fact]
-    public void Line_DecisionDate_Property_ParsesCorrectly()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLine with { decision_datetime = "2023-07-04 09:15:22" };
-
-        // Act
-        var decisionDate = line.DecisionDate;
-
-        // Assert
-        Assert.Equal("2023-07-04", decisionDate);
-    }
-
-
-    [Fact]
-    public void Line_DecisionDate_Property_WithInvalidDate_ThrowsException()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLine with { decision_datetime = "invalid-date" };
-
-        // Act & Assert
-        Assert.Throws<FormatException>(() => _ = line.DecisionDate);
-    }
 
     [Fact]
     public void Line_FirstPartyName_WithClaimants_ReturnsClaimants()

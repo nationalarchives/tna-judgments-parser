@@ -20,7 +20,7 @@ public class TestMakeMetadata
         {
             id = "123",
             court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
+            decision_datetime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
             CaseNo = "ABC/2023/001",
             claimants = "John Smith",
             respondent = "HMRC",
@@ -66,7 +66,7 @@ public class TestMakeMetadata
         {
             id = "124",
             court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
+            decision_datetime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
             CaseNo = "ABC/2023/002",
             appellants = "Jane Doe",
             respondent = "Home Office",
@@ -153,7 +153,7 @@ public class TestMakeMetadata
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
             court = "UKFTT-GRC",
-            decision_datetime = "2010-01-18 14:30:00"
+            decision_datetime = new DateTime(2010, 01, 10,  14, 30, 00, DateTimeKind.Utc)
         };
 
         // Act
@@ -327,7 +327,7 @@ public class TestMakeMetadata
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            decision_datetime = "2023-12-25 15:45:30"
+            decision_datetime = new DateTime(2023, 12, 25,  15, 45, 30, DateTimeKind.Utc),
         };
 
         // Act

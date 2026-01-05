@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -85,6 +86,9 @@ namespace Backlog.Src
             public LineMap()
             {
                 AutoMap(CultureInfo.InvariantCulture);
+                Map(l => l.decision_datetime)
+                    .TypeConverterOption.DateTimeStyles(DateTimeStyles.AllowWhiteSpaces & DateTimeStyles.AssumeUniversal)
+                    .Validate(v => Regex.IsMatch(v.Field.Trim(), @"^\d\d\d\d")); // Ensure dates start with the year
                 Map(l => l.Jurisdictions)
                     .Optional()
                     .Convert(convertFromStringArgs =>
@@ -115,7 +119,7 @@ namespace Backlog.Src
             public string court { get; set; }
             public string FilePath { get; set; }
             public string Extension { get; set; }
-            public string decision_datetime { get; set; }
+            public DateTime decision_datetime { get; set; }
             public string CaseNo { get; set; }
 
             [Optional]
@@ -156,9 +160,6 @@ namespace Backlog.Src
             [Optional]
             [Default(false)]
             public bool Skip { get; set; }
-
-            private readonly string DateFormat = "yyyy-MM-dd HH:mm:ss";
-            internal string DecisionDate { get => System.DateTime.ParseExact(decision_datetime, DateFormat, CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"); }
 
             /// <summary>
             /// Gets the name of the first party (either claimants or appellants)
@@ -311,7 +312,7 @@ namespace Backlog.Src
                 Type = JudgmentType.Decision,
                 Court = court,
                 Jurisdictions = jurisdictions,
-                Date = new WNamedDate { Date = line.DecisionDate, Name = "decision" },
+                Date = new WNamedDate { Date = line.decision_datetime.ToString("yyyy-MM-dd"), Name = "decision" },
                 Name = line.FirstPartyName + " v " + line.respondent,
                 CaseNumbers = [line.CaseNo],
                 Parties = [
