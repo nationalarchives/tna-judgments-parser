@@ -77,16 +77,17 @@ public class TestRead
     {
         // Arrange - This CSV content should have ALL possible columns in it
         const string csvContent =
-            @"id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary,jurisdictions,ncn,webarchiving,uuid
-123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,
-124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,,,,
-125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC/2025/003,UKFTT-GRC,,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case,,[2023] EWCA Civ 123 & 124,,
-123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA/2025/004,UKUT-IAC,Brown,,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case,,,,
-126,/test/data/test-case5.docx,.docx,2025-01-19 13:00:00,IA/2025/005,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions,""Community,Environment"",,,
-127,/test/data/test-case6.docx,.docx,2025-01-19 13:00:00,IA/2025/006,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions with spaces,""Community, Environment,Other , Another ,"",,,
-128,/test/data/test-case7.docx,.docx,2025-01-19 13:00:00,IA/2025/007,UKUT-IAC,,Davies,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,One Jurisdiction,Environment,,,
-129,/test/data/test-case8.pdf,.pdf,2025-01-20 14:00:00,IA/2025/008,UKUT-IAC,,Berry,Home Office,,,,,With web archiving link,,,http://webarchivinglink,
-130,/test/data/test-case9.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With UUID,,,,ba2c15ca-6d3d-4550-8975-b516e3c0ed2d";
+            @"id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary,jurisdictions,ncn,webarchiving,uuid,skip
+123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,,
+124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,,,,,
+125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC/2025/003,UKFTT-GRC,,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case,,[2023] EWCA Civ 123 & 124,,,
+123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA/2025/004,UKUT-IAC,Brown,,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case,,,,,
+126,/test/data/test-case5.docx,.docx,2025-01-19 13:00:00,IA/2025/005,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions,""Community,Environment"",,,,
+127,/test/data/test-case6.docx,.docx,2025-01-19 13:00:00,IA/2025/006,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions with spaces,""Community, Environment,Other , Another ,"",,,,
+128,/test/data/test-case7.docx,.docx,2025-01-19 13:00:00,IA/2025/007,UKUT-IAC,,Davies,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,One Jurisdiction,Environment,,,,
+129,/test/data/test-case8.pdf,.pdf,2025-01-20 14:00:00,IA/2025/008,UKUT-IAC,,Berry,Home Office,,,,,With web archiving link,,,http://webarchivinglink,,
+130,/test/data/test-case9.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With UUID,,,,ba2c15ca-6d3d-4550-8975-b516e3c0ed2d,n
+131,/test/data/test-case10.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With Skip,,,,,skip me";
 
         // Arrange - Double check that csv input has all columns in case new ones are added
         var publicPropertiesInLineClass = typeof(Backlog.Src.Metadata.Line).GetProperties().Select(p => p.Name);
@@ -123,7 +124,8 @@ public class TestRead
                     ncn = "",
                     webarchiving = "",
                     headnote_summary = "This is a test headnote summary",
-                    Uuid = ""
+                    Uuid = "",
+                    Skip = false
                 }, line),
             line => Assert.Equivalent(
                 new Backlog.Src.Metadata.Line
@@ -145,7 +147,8 @@ public class TestRead
                     ncn = "",
                     webarchiving = "",
                     headnote_summary = "Another test case",
-                    Uuid = ""
+                    Uuid = "",
+                    Skip = false
                 }, line),
             line => Assert.Equivalent(
                 new Backlog.Src.Metadata.Line
@@ -167,7 +170,8 @@ public class TestRead
                     ncn = "[2023] EWCA Civ 123 & 124",
                     webarchiving = "",
                     headnote_summary = "Benefits case",
-                    Uuid = ""
+                    Uuid = "",
+                    Skip = false
                 }, line),
             line => Assert.Equivalent(
                 new Backlog.Src.Metadata.Line
@@ -189,7 +193,8 @@ public class TestRead
                     ncn = "",
                     webarchiving = "",
                     headnote_summary = "Duplicate ID case",
-                    Uuid = ""
+                    Uuid = "",
+                    Skip = false
                 }, line),
             line => Assert.Equivalent(
                 new Backlog.Src.Metadata.Line
@@ -211,7 +216,8 @@ public class TestRead
                     ncn = "",
                     webarchiving = "",
                     headnote_summary = "Multiple Jurisdictions",
-                    Uuid = ""
+                    Uuid = "",
+                    Skip = false
                 }, line),
             line => Assert.Equivalent(
                 new Backlog.Src.Metadata.Line
@@ -233,7 +239,8 @@ public class TestRead
                     ncn = "",
                     webarchiving = "",
                     headnote_summary = "Multiple Jurisdictions with spaces",
-                    Uuid = ""
+                    Uuid = "",
+                    Skip = false
                 }, line),
             line => Assert.Equivalent(
                 new Backlog.Src.Metadata.Line
@@ -277,7 +284,8 @@ public class TestRead
                     ncn = "",
                     webarchiving = "http://webarchivinglink",
                     headnote_summary = "With web archiving link",
-                    Uuid = ""
+                    Uuid = "",
+                    Skip = false
                 }, line),
             line => Assert.Equivalent(
                 new Backlog.Src.Metadata.Line
@@ -299,7 +307,31 @@ public class TestRead
                     ncn = "",
                     webarchiving = "",
                     headnote_summary = "With UUID",
-                    Uuid = "ba2c15ca-6d3d-4550-8975-b516e3c0ed2d"
+                    Uuid = "ba2c15ca-6d3d-4550-8975-b516e3c0ed2d",
+                    Skip = false
+                }, line),
+            line => Assert.Equivalent(
+                new Backlog.Src.Metadata.Line
+                {
+                    id = "131",
+                    court = "UKUT-IAC",
+                    FilePath = "/test/data/test-case10.pdf",
+                    Extension = ".pdf",
+                    decision_datetime = "2025-01-20 14:00:00",
+                    CaseNo = "IA/2025/009",
+                    Jurisdictions = [],
+                    claimants = "Berry",
+                    appellants = "",
+                    respondent = "Home Office",
+                    main_category = "",
+                    main_subcategory = "",
+                    sec_category = "",
+                    sec_subcategory = "",
+                    ncn = "",
+                    webarchiving = "",
+                    headnote_summary = "With Skip",
+                    Uuid = "",
+                    Skip = true
                 }, line)
         );
     }
