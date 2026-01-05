@@ -20,6 +20,7 @@ namespace test.backlog.EndToEndTests
 
         private string outputDir;
         private string trackerPath;
+        private string dataDir;
 
         public EndToEndTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
@@ -45,6 +46,14 @@ namespace test.backlog.EndToEndTests
             {
                 Directory.Delete(outputDir, true);
             }
+
+            if (Directory.Exists(dataDir))
+            {
+                foreach (var logFile in Directory.GetFiles(dataDir, "log*.txt"))
+                {
+                    File.Delete(logFile);
+                }
+            }
         }
 
         private void ConfigureTestEnvironment(string testCaseName)
@@ -60,8 +69,8 @@ namespace test.backlog.EndToEndTests
             var testDataDirectory = backlogDirectory.GetDirectories("test-data").SingleOrDefault()
                                     ?? throw new DirectoryNotFoundException("Could not find test-data directory");
 
-            var dataDir = testDataDirectory.GetDirectories(testCaseName).SingleOrDefault()?.FullName
-                          ?? throw new DirectoryNotFoundException($"Could not find {testCaseName} directory");
+            dataDir = testDataDirectory.GetDirectories(testCaseName).SingleOrDefault()?.FullName
+                       ?? throw new DirectoryNotFoundException($"Could not find {testCaseName} directory");
 
             // Create the output directory - input directories should already exist with test data
             outputDir = Path.Combine(dataDir, "output");

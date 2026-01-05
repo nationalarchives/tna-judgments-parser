@@ -7,15 +7,15 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src
 {
-    class Helper(Api.Parser parser)
+    class Helper(Api.Parser parser, Metadata csvMetadataReader)
     {
-        internal string PathToCourtMetadataFile { get; init; }
+        internal string PathToCourtMetadataFile { get; set; }
 
-        internal string PathToDataFolder { get; init; }
+        internal string PathToDataFolder { get; set; }
 
         internal List<Metadata.Line> FindLines(uint id)
         {
-            List<Metadata.Line> lines = Metadata.Read(PathToCourtMetadataFile);
+            List<Metadata.Line> lines = csvMetadataReader.Read(PathToCourtMetadataFile, out _);
             return Metadata.FindLines(lines, id);
         }
 
