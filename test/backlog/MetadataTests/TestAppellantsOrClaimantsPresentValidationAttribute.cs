@@ -24,7 +24,7 @@ public class TestAppellantsOrClaimantsPresentValidationAttribute
         bool expectedResult, string? expectedErrorMessage)
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLine with
         {
             id = "125",
             claimants = claimants,

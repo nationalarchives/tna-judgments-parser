@@ -36,7 +36,7 @@ public class TestRead
                     court = "UKUT-IAC",
                     FilePath = "/test/data/test-case.pdf",
                     Extension = ".pdf",
-                    decision_datetime = "2025-01-15 09:00:00",
+                    decision_datetime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/001",
                     Jurisdictions = [],
                     claimants = "Smith",
@@ -56,7 +56,7 @@ public class TestRead
                     court = "UKFTT-TC",
                     FilePath = "/test/data/test-case2.docx",
                     Extension = ".docx",
-                    decision_datetime = "2025-01-16 10:00:00",
+                    decision_datetime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/002",
                     Jurisdictions = [],
                     claimants = "Jones",
@@ -111,7 +111,7 @@ public class TestRead
                     court = "UKUT-IAC",
                     FilePath = "/test/data/test-case.pdf",
                     Extension = ".pdf",
-                    decision_datetime = "2025-01-15 09:00:00",
+                    decision_datetime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/001",
                     Jurisdictions = [],
                     claimants = "Smith",
@@ -134,7 +134,7 @@ public class TestRead
                     court = "UKFTT-TC",
                     FilePath = "/test/data/test-case2.docx",
                     Extension = ".docx",
-                    decision_datetime = "2025-01-16 10:00:00",
+                    decision_datetime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/002",
                     Jurisdictions = [],
                     claimants = "",
@@ -157,7 +157,7 @@ public class TestRead
                     court = "UKFTT-GRC",
                     FilePath = "/test/data/test-case3.pdf",
                     Extension = ".pdf",
-                    decision_datetime = "2025-01-17 11:00:00",
+                    decision_datetime = new DateTime(2025, 01, 17, 11, 00, 00, DateTimeKind.Utc),
                     CaseNo = "GRC/2025/003",
                     Jurisdictions = [],
                     claimants = "Williams",
@@ -180,7 +180,7 @@ public class TestRead
                     court = "UKUT-IAC",
                     FilePath = "/test/data/test-case4.pdf",
                     Extension = ".pdf",
-                    decision_datetime = "2025-01-18 12:00:00",
+                    decision_datetime = new DateTime(2025, 01, 18, 12, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/004",
                     Jurisdictions = [],
                     claimants = "",
@@ -203,7 +203,7 @@ public class TestRead
                     court = "UKUT-IAC",
                     FilePath = "/test/data/test-case5.docx",
                     Extension = ".docx",
-                    decision_datetime = "2025-01-19 13:00:00",
+                    decision_datetime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/005",
                     Jurisdictions = ["Community", "Environment"],
                     claimants = "Taylor",
@@ -226,7 +226,7 @@ public class TestRead
                     court = "UKUT-IAC",
                     FilePath = "/test/data/test-case6.docx",
                     Extension = ".docx",
-                    decision_datetime = "2025-01-19 13:00:00",
+                    decision_datetime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/006",
                     Jurisdictions = ["Community", "Environment", "Other", "Another"],
                     claimants = "Taylor",
@@ -249,7 +249,7 @@ public class TestRead
                     court = "UKUT-IAC",
                     FilePath = "/test/data/test-case7.docx",
                     Extension = ".docx",
-                    decision_datetime = "2025-01-19 13:00:00",
+                    decision_datetime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/007",
                     Jurisdictions = ["Environment"],
                     claimants = "Davies",
@@ -271,7 +271,7 @@ public class TestRead
                     court = "UKUT-IAC",
                     FilePath = "/test/data/test-case8.pdf",
                     Extension = ".pdf",
-                    decision_datetime = "2025-01-20 14:00:00",
+                    decision_datetime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/008",
                     Jurisdictions = [],
                     claimants = "Berry",
@@ -294,7 +294,7 @@ public class TestRead
                     court = "UKUT-IAC",
                     FilePath = "/test/data/test-case9.pdf",
                     Extension = ".pdf",
-                    decision_datetime = "2025-01-20 14:00:00",
+                    decision_datetime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/009",
                     Jurisdictions = [],
                     claimants = "Berry",
@@ -317,7 +317,7 @@ public class TestRead
                     court = "UKUT-IAC",
                     FilePath = "/test/data/test-case10.pdf",
                     Extension = ".pdf",
-                    decision_datetime = "2025-01-20 14:00:00",
+                    decision_datetime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/009",
                     Jurisdictions = [],
                     claimants = "Berry",
@@ -392,7 +392,7 @@ public class TestRead
                     court = "UKUT-IAC",
                     FilePath = "/test/data/test-case.pdf",
                     Extension = ".pdf",
-                    decision_datetime = "2025-01-15 09:00:00",
+                    decision_datetime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/001",
                     Jurisdictions = [],
                     claimants = "Smith",
@@ -414,7 +414,7 @@ public class TestRead
                     court = "UKFTT-TC",
                     FilePath = "/test/data/test-case2.docx",
                     Extension = ".docx",
-                    decision_datetime = "2025-01-16 10:00:00",
+                    decision_datetime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/002",
                     Jurisdictions = [],
                     claimants = "",
@@ -430,5 +430,42 @@ public class TestRead
                     Uuid = ""
                 }, line)
         );
+    }
+    
+    [Fact]
+    public void Read_WithMixedDateFormats_ParsesValidLines()
+    {
+        const string csvContent =
+            """
+            id,filepath,extension,decision_datetime,caseno,court,appellants,claimants,respondent
+            123,good.pdf,.pdf,  2025-01-15  ,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department
+            123,good.pdf,.pdf,  2025/01/15  ,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department
+            123,good.pdf,.pdf,  2025 01 15  ,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department
+            
+            125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC
+            125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC
+            
+            124,good_with_time.docx,.docx,  2025-01-16 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC
+            """;
+
+        // Arrange - set up stream reader
+        using var csvStream = new StringReader(csvContent);
+
+        //Act
+        var result = csvMetadataReader.Read(csvStream, out var csvParseErrors);
+
+        Assert.Collection(result,
+            line => Assert.Equal(new DateTime(2025, 01, 15, 0, 0, 0, DateTimeKind.Utc), line.decision_datetime),
+            line => Assert.Equal(new DateTime(2025, 01, 15, 0, 0, 0, DateTimeKind.Utc), line.decision_datetime),
+            line => Assert.Equal(new DateTime(2025, 01, 15, 0, 0, 0, DateTimeKind.Utc), line.decision_datetime),
+            line => Assert.Equal(new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc), line.decision_datetime)
+        );
+        
+        Assert.Equivalent( new List<string>
+            {
+                "Line 6: Field '  01/16/2025 10:00:00  ' is not valid. [125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]",
+                "Line 7: Field '  31/01/2025 10:00:00  ' is not valid. [125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]"
+            },
+            csvParseErrors);
     }
 }
