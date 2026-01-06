@@ -167,6 +167,45 @@ class Builder : AkN.Builder {
             legislation.AppendChild(doc.CreateTextNode(data.LegislationUri));
         }
 
+        // Add additional IA metadata from CSV mapping (for Impact Assessments)
+        if (data is ImpactAssessments.IAMetadata iaMetadata) {
+            if (!string.IsNullOrEmpty(iaMetadata.DocumentStage)) {
+                XmlElement documentStage = doc.CreateElement("uk", "documentStage", UKNS);
+                proprietary.AppendChild(documentStage);
+                documentStage.AppendChild(doc.CreateTextNode(iaMetadata.DocumentStage));
+            }
+            
+            if (!string.IsNullOrEmpty(iaMetadata.DocumentMainType)) {
+                XmlElement documentMainType = doc.CreateElement("uk", "documentMainType", UKNS);
+                proprietary.AppendChild(documentMainType);
+                documentMainType.AppendChild(doc.CreateTextNode(iaMetadata.DocumentMainType));
+            }
+            
+            if (!string.IsNullOrEmpty(iaMetadata.Department)) {
+                XmlElement department = doc.CreateElement("uk", "department", UKNS);
+                proprietary.AppendChild(department);
+                department.AppendChild(doc.CreateTextNode(iaMetadata.Department));
+            }
+            
+            if (!string.IsNullOrEmpty(iaMetadata.IADate)) {
+                XmlElement iaDate = doc.CreateElement("uk", "iaDate", UKNS);
+                proprietary.AppendChild(iaDate);
+                iaDate.AppendChild(doc.CreateTextNode(iaMetadata.IADate));
+            }
+            
+            if (!string.IsNullOrEmpty(iaMetadata.PDFDate)) {
+                XmlElement pdfDate = doc.CreateElement("uk", "pdfDate", UKNS);
+                proprietary.AppendChild(pdfDate);
+                pdfDate.AppendChild(doc.CreateTextNode(iaMetadata.PDFDate));
+            }
+            
+            if (!string.IsNullOrEmpty(iaMetadata.LegislationClass)) {
+                XmlElement legislationClass = doc.CreateElement("uk", "legislationClass", UKNS);
+                proprietary.AppendChild(legislationClass);
+                legislationClass.AppendChild(doc.CreateTextNode(iaMetadata.LegislationClass));
+            }
+        }
+
         if (data.CSS is not null) {
             XmlElement presentation = CreateAndAppend("presentation", meta);
             presentation.SetAttribute("source", "#");

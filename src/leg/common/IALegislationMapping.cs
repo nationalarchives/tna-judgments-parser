@@ -18,6 +18,7 @@ internal static partial class IALegislationMapping {
 
     private static readonly ILogger logger = Logging.Factory.CreateLogger(typeof(IALegislationMapping));
     private static readonly Dictionary<string, string> _mapping = LoadMapping();
+    private static readonly Dictionary<(int year, int number), IAMappingRecord> _records = LoadRecords();
 
     /// <summary>
     /// Loads the IA to legislation mapping from the embedded CSV resource.
@@ -48,14 +49,15 @@ internal static partial class IALegislationMapping {
             if (string.IsNullOrWhiteSpace(line))
                 continue;
 
-            string[] parts = line.Split(',');
-            if (parts.Length < 4) {
-                logger.LogTrace("Skipping malformed line {LineNumber} in IA mapping CSV", lineNumber);
+            // Parse CSV line - handle quoted fields
+            var parts = ParseCsvLine(line);
+            if (parts.Length < 11) {
+                logger.LogTrace("Skipping malformed line {LineNumber} in IA mapping CSV (expected at least 11 columns, got {Count})", lineNumber, parts.Length);
                 continue;
             }
 
-            string ukiaUri = parts[0].Trim();
-            string legislationUri = parts[3].Trim();
+            string ukiaUri = parts[0]?.Trim() ?? "";
+            string legislationUri = parts[10]?.Trim() ?? ""; // Column 10 is legislation_uri
 
             if (!string.IsNullOrEmpty(ukiaUri) && !string.IsNullOrEmpty(legislationUri)) {
                 mapping[ukiaUri] = legislationUri;
@@ -192,6 +194,144 @@ internal static partial class IALegislationMapping {
 
     [GeneratedRegex(@"^ukia_(\d+)_en$", RegexOptions.IgnoreCase)]
     private static partial Regex FilenameRegex();
+
+    /// <summary>
+    /// Loads full IA mapping records from the embedded CSV resource.
+    /// </summary>
+    private static Dictionary<(int year, int number), IAMappingRecord> LoadRecords() {
+        var records = new Dictionary<(int year, int number), IAMappingRecord>();
+        
+        Assembly assembly = Assembly.GetExecutingAssembly();
+        using Stream stream = assembly.GetManifestResourceStream("leg.ia_to_legislation_mapping.csv");
+        
+        if (stream is null) {
+            logger.LogWarning("Could not load IA to legislation mapping CSV resource");
+            return records;
+        }
+
+        using StreamReader reader = new(stream);
+        
+        // Skip header line
+        string header = reader.ReadLine();
+        if (header is null) {
+            logger.LogWarning("IA to legislation mapping CSV is empty");
+            return records;
+        }
+
+        int lineNumber = 1;
+        while (reader.ReadLine() is string line) {
+            lineNumber++;
+            if (string.IsNullOrWhiteSpace(line))
+                continue;
+
+            // Parse CSV line - handle quoted fields
+            var parts = ParseCsvLine(line);
+            if (parts.Length < 14) {
+                logger.LogTrace("Skipping malformed line {LineNumber} in IA mapping CSV (expected 14 columns, got {Count})", lineNumber, parts.Length);
+                continue;
+            }
+
+            // Parse year and number
+            if (!int.TryParse(parts[1]?.Trim() ?? "", out int year) || 
+                !int.TryParse(parts[2]?.Trim() ?? "", out int number)) {
+                logger.LogTrace("Skipping line {LineNumber} with invalid year/number", lineNumber);
+                continue;
+            }
+
+            // Parse legislation year and number (may be empty or decimal)
+            int? legYear = null;
+            string legNumber = null;
+            if (!string.IsNullOrWhiteSpace(parts[12])) {
+                if (double.TryParse(parts[12].Trim(), out double legYearDouble)) {
+                    legYear = (int)legYearDouble;
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(parts[13])) {
+                legNumber = parts[13].Trim();
+            }
+
+            var record = new IAMappingRecord {
+                UkiaUri = parts[0]?.Trim() ?? "",
+                UkiaYear = year,
+                UkiaNumber = number,
+                Title = Unquote(parts[3]?.Trim() ?? ""),
+                IADate = parts[4]?.Trim() ?? "",
+                DocumentStage = parts[5]?.Trim() ?? "",
+                DocumentMainType = parts[6]?.Trim() ?? "",
+                Department = Unquote(parts[7]?.Trim() ?? ""),
+                ModifiedDate = parts[8]?.Trim() ?? "",
+                PDFDate = parts[9]?.Trim() ?? "",
+                LegislationUri = parts[10]?.Trim() ?? "",
+                LegislationClass = parts[11]?.Trim() ?? "",
+                LegislationYear = legYear,
+                LegislationNumber = legNumber
+            };
+
+            records[(year, number)] = record;
+        }
+
+        logger.LogInformation("Loaded {Count} IA mapping records", records.Count);
+        return records;
+    }
+
+    /// <summary>
+    /// Parses a CSV line, handling quoted fields that may contain commas.
+    /// </summary>
+    private static string[] ParseCsvLine(string line) {
+        var parts = new List<string>();
+        bool inQuotes = false;
+        string currentField = "";
+
+        for (int i = 0; i < line.Length; i++) {
+            char c = line[i];
+            
+            if (c == '"') {
+                if (inQuotes && i + 1 < line.Length && line[i + 1] == '"') {
+                    // Escaped quote
+                    currentField += '"';
+                    i++; // Skip next quote
+                } else {
+                    // Toggle quote state
+                    inQuotes = !inQuotes;
+                }
+            } else if (c == ',' && !inQuotes) {
+                // Field separator
+                parts.Add(currentField);
+                currentField = "";
+            } else {
+                currentField += c;
+            }
+        }
+        
+        // Add last field
+        parts.Add(currentField);
+        
+        return parts.ToArray();
+    }
+
+    /// <summary>
+    /// Removes surrounding quotes from a string if present.
+    /// </summary>
+    private static string Unquote(string value) {
+        if (string.IsNullOrEmpty(value))
+            return value;
+        
+        if (value.Length >= 2 && value[0] == '"' && value[^1] == '"') {
+            return value[1..^1].Replace("\"\"", "\"");
+        }
+        
+        return value;
+    }
+
+    /// <summary>
+    /// Gets the full mapping record for a given year and number.
+    /// </summary>
+    /// <param name="year">The UKIA year</param>
+    /// <param name="number">The UKIA number</param>
+    /// <returns>The mapping record if found, otherwise null</returns>
+    public static IAMappingRecord GetMappingRecord(int year, int number) {
+        return _records.TryGetValue((year, number), out IAMappingRecord record) ? record : null;
+    }
 
 }
 

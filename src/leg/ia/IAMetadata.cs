@@ -17,6 +17,14 @@ namespace UK.Gov.Legislation.ImpactAssessments {
 class IAMetadata : DocumentMetadata {
 
     public DateTime? LastModified { get; init; }
+    
+    // Additional metadata from CSV mapping (derived from XML metadata files)
+    public string DocumentStage { get; init; }
+    public string DocumentMainType { get; init; }
+    public string Department { get; init; }
+    public string IADate { get; init; }
+    public string PDFDate { get; init; }
+    public string LegislationClass { get; init; }
 
     internal static IAMetadata Make(List<IBlock> header, WordprocessingDocument doc, LegislativeDocumentConfig config, string filename) {
         string name = BaseHeaderSplitter.GetDocumentType(header, config);
@@ -27,15 +35,19 @@ class IAMetadata : DocumentMetadata {
         DateTime? modified = doc.PackageProperties.Modified;
         Dictionary<string, Dictionary<string, string>> css = DOCX.CSS.Extract(doc.MainDocumentPart, "#doc");
 
-        // Parse filename to get year/number for URI construction
+        // Parse filename to get year/number for URI construction and metadata lookup
         string shortUri = null;
         string legislationUri = null;
+        IAMappingRecord mappingRecord = null;
 
         var parsed = IALegislationMapping.ParseFilename(filename);
         if (parsed.HasValue) {
             var (year, number) = parsed.Value;
             shortUri = IALegislationMapping.BuildShortUriComponent(year, number);
             legislationUri = IALegislationMapping.GetLegislationUri(year, number);
+            
+            // Look up full mapping record for additional metadata
+            mappingRecord = IALegislationMapping.GetMappingRecord(year, number);
         }
 
         return new IAMetadata {
@@ -45,7 +57,14 @@ class IAMetadata : DocumentMetadata {
             LastModified = modified,
             Name = name,
             CSS = css,
-            LegislationUri = legislationUri
+            LegislationUri = legislationUri,
+            // Populate additional metadata from CSV mapping
+            DocumentStage = mappingRecord?.DocumentStage,
+            DocumentMainType = mappingRecord?.DocumentMainType,
+            Department = mappingRecord?.Department,
+            IADate = mappingRecord?.IADate,
+            PDFDate = mappingRecord?.PDFDate,
+            LegislationClass = mappingRecord?.LegislationClass
         };
     }
 
