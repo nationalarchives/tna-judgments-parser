@@ -93,6 +93,12 @@ public class TestIA {
   <xsl:template match='akn:FRBRdate/@date'/>
   <xsl:template match='uk:parser/text()'/>
   <xsl:template match='uk:hash/text()'/>
+  <xsl:template match='uk:documentStage'/>
+  <xsl:template match='uk:documentMainType'/>
+  <xsl:template match='uk:department'/>
+  <xsl:template match='uk:iaDate'/>
+  <xsl:template match='uk:pdfDate'/>
+  <xsl:template match='uk:legislationClass'/>
   <xsl:template match='@*|node()'>
     <xsl:copy>
       <xsl:apply-templates select='@*|node()'/>

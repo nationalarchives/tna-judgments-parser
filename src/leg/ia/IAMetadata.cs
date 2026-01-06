@@ -43,11 +43,13 @@ class IAMetadata : DocumentMetadata {
         var parsed = IALegislationMapping.ParseFilename(filename);
         if (parsed.HasValue) {
             var (year, number) = parsed.Value;
-            shortUri = IALegislationMapping.BuildShortUriComponent(year, number);
             legislationUri = IALegislationMapping.GetLegislationUri(year, number);
             
             // Look up full mapping record for additional metadata
             mappingRecord = IALegislationMapping.GetMappingRecord(year, number);
+            
+            // Build URI with stage component if available
+            shortUri = IALegislationMapping.BuildShortUriComponent(year, number, mappingRecord?.DocumentStage);
         }
 
         return new IAMetadata {

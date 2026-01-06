@@ -99,27 +99,67 @@ internal static partial class IALegislationMapping {
     }
 
     /// <summary>
+    /// Normalizes a document stage value to URL-safe lowercase format.
+    /// Maps CSV values (e.g., "Final", "Enactment") to spec-compliant values (e.g., "final", "enactment").
+    /// </summary>
+    /// <param name="stage">The stage value from CSV (e.g., "Final", "Enactment")</param>
+    /// <returns>Normalized stage value in lowercase, or null if stage is invalid/empty</returns>
+    public static string NormalizeStage(string stage) {
+        if (string.IsNullOrWhiteSpace(stage))
+            return null;
+        
+        // Normalize to lowercase and handle common variations
+        string normalized = stage.Trim().ToLowerInvariant();
+        
+        // Map common variations to spec-compliant values
+        return normalized switch {
+            "final" => "final",
+            "enactment" => "enactment",
+            "consultation" => "consultation",
+            "development" => "development",
+            "implementation" => "implementation",
+            "options" => "options",
+            "post-implementation" or "postimplementation" or "post implementation" => "post-implementation",
+            _ => null // Unknown stage value
+        };
+    }
+
+    /// <summary>
     /// Builds the short URI component for an Impact Assessment based on its linked legislation.
-    /// Format: {legislation-type}/{year}/{number}/impact-assessment
-    /// Falls back to ukia/{year}/{number}/impact-assessment if no legislation mapping exists.
+    /// Format: {legislation-type}/{year}/{number}/impact-assessment[/{stage}]
+    /// Falls back to ukia/{year}/{number}/impact-assessment[/{stage}] if no legislation mapping exists.
     /// </summary>
     /// <param name="year">The UKIA year</param>
     /// <param name="number">The UKIA number</param>
-    /// <returns>The short URI component (e.g., 'uksi/2018/1149/impact-assessment')</returns>
-    public static string BuildShortUriComponent(int year, int number) {
+    /// <param name="stage">Optional stage value (e.g., "Final", "Enactment") - will be normalized to lowercase</param>
+    /// <returns>The short URI component (e.g., 'uksi/2018/1149/impact-assessment/final')</returns>
+    public static string BuildShortUriComponent(int year, int number, string stage = null) {
         string legislationUri = GetLegislationUri(year, number);
+        string normalizedStage = NormalizeStage(stage);
         
+        string baseUri;
         if (!string.IsNullOrEmpty(legislationUri)) {
             var components = ParseLegislationUri(legislationUri);
             if (components.HasValue) {
                 var (type, legYear, legNumber) = components.Value;
-                return $"{type}/{legYear}/{legNumber}/impact-assessment";
+                baseUri = $"{type}/{legYear}/{legNumber}/impact-assessment";
+            } else {
+                // Fallback: use ukia-based URI if legislation parsing fails
+                logger.LogWarning("Failed to parse legislation URI for UKIA {Year}/{Number}, using fallback URI", year, number);
+                baseUri = $"ukia/{year}/{number}/impact-assessment";
             }
+        } else {
+            // Fallback: use ukia-based URI if no legislation mapping exists
+            logger.LogWarning("No legislation mapping found for UKIA {Year}/{Number}, using fallback URI", year, number);
+            baseUri = $"ukia/{year}/{number}/impact-assessment";
         }
         
-        // Fallback: use ukia-based URI if no legislation mapping exists
-        logger.LogWarning("No legislation mapping found for UKIA {Year}/{Number}, using fallback URI", year, number);
-        return $"ukia/{year}/{number}/impact-assessment";
+        // Append stage if available and valid
+        if (!string.IsNullOrEmpty(normalizedStage)) {
+            return $"{baseUri}/{normalizedStage}";
+        }
+        
+        return baseUri;
     }
 
     /// <summary>
