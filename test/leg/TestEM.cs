@@ -1,4 +1,4 @@
-
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -56,13 +56,12 @@ public class TestEM {
         return sWriter.ToString();
     }
 
-    [Fact]
+    [Fact(Skip = "Manual regeneration only - remove Skip attribute to run")]
     public void RegenerateAllEMTestFiles() {
         var assembly = System.Reflection.Assembly.GetExecutingAssembly();
         var assemblyDir = System.IO.Path.GetDirectoryName(assembly.Location);
         var projectRoot = assemblyDir;
         
-        // Look for either .sln file or .git directory to find project root
         while (projectRoot != null && 
                !System.IO.File.Exists(System.IO.Path.Combine(projectRoot, "tna-judgments-parser.sln")) &&
                !System.IO.Directory.Exists(System.IO.Path.Combine(projectRoot, ".git"))) {

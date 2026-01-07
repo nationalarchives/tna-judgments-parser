@@ -9,7 +9,6 @@ using System.Xml.Xsl;
 using Xunit;
 
 using test;
-using UK.Gov.Legislation.ImpactAssessments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation.ImpactAssessments.Test {
@@ -49,13 +48,11 @@ public class TestIA {
         var resourceName = $"test.leg.ia.original_filenames.{filename}.docx";
         var docx = DocumentHelpers.ReadDocx(resourceName);
         
-        // Pass the filename to enable metadata lookup
         var actual = Helper.Parse(docx, filename + ".docx").Serialize();
         
         var expectedResourceName = $"test.leg.ia.original_filenames.{filename}.akn";
         var assembly = System.Reflection.Assembly.GetExecutingAssembly();
         if (!assembly.GetManifestResourceNames().Contains(expectedResourceName)) {
-            // If no expected file exists yet, just validate the output
             var doc = new XmlDocument();
             doc.LoadXml(actual);
             var validator = new Validator();
@@ -70,9 +67,8 @@ public class TestIA {
         Assert.Equal(expected, actual);
     }
 
-    [Fact(Skip = "Manual regeneration only")]
+    [Fact(Skip = "Manual regeneration only - remove Skip attribute to run")]
     public void RegenerateAllTestFiles() {
-        // Navigate from bin/Debug/net8.0 back to project root
         var projectRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(
             System.AppDomain.CurrentDomain.BaseDirectory,
             "..", "..", "..", ".."
@@ -121,7 +117,6 @@ public class TestIA {
         var resourceName = $"test.leg.ia.original_filenames.{filename}.docx";
         var docx = DocumentHelpers.ReadDocx(resourceName);
         
-        // Parse with filename for proper metadata
         var akn = Helper.Parse(docx, filename + ".docx").Serialize();
         
         var doc = new XmlDocument();

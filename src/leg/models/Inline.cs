@@ -44,10 +44,14 @@ interface IDocTitle : Judgments.IInlineContainer { }
 interface IDocStage : Judgments.IInlineContainer { }
 interface IDocDate : Judgments.IInlineContainer { }
 interface IDocDepartment : Judgments.IInlineContainer { }
+interface ILeadDepartment : Judgments.IInlineContainer { }
+interface IOtherDepartments : Judgments.IInlineContainer { }
 
 internal class DocTitle : InlineContainer, IDocTitle { }
 internal class DocStage : InlineContainer, IDocStage { }
 internal class DocDate : InlineContainer, IDocDate { }
 internal class DocDepartment : InlineContainer, IDocDepartment { }
+internal class LeadDepartment : InlineContainer, ILeadDepartment { }
+internal class OtherDepartments : InlineContainer, IOtherDepartments { }
 
 }

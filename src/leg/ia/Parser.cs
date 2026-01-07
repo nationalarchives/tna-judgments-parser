@@ -32,15 +32,35 @@ partial class Parser : BaseLegislativeDocumentParser {
         _filename = filename;
     }
 
-    // All parsing logic is now inherited from BaseLegislativeDocumentParser
-    
     protected override List<IBlock> Header() {
         List<IBlock> header = BaseHeaderSplitter.Split(PreParsed.Body, Config);
         i = header.Count;
+        
+        SemanticEnricher enricher = new SemanticEnricher();
+        header = enricher.Enrich(header).ToList();
+        
         return header;
     }
 
-    // Override to use IA-specific metadata that includes filename for URI lookup
+    protected override IDocument Parse() {
+        var result = base.Parse();
+        
+        if (result is DividedDocument dividedDoc) {
+            SemanticEnricher enricher = new SemanticEnricher();
+            var enrichedBody = enricher.Enrich(dividedDoc.Body).ToList();
+            
+            return new DividedDocument {
+                Header = dividedDoc.Header,
+                Body = enrichedBody,
+                Annexes = dividedDoc.Annexes,
+                Images = dividedDoc.Images,
+                Meta = dividedDoc.Meta
+            };
+        }
+        
+        return result;
+    }
+
     protected override DocumentMetadata MakeMetadata(List<IBlock> header) {
         return IAMetadata.Make(header, doc, Config, _filename);
     }

@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Xml;
 using System.Linq;
 
@@ -245,7 +246,21 @@ class Builder : AkN.Builder {
                 base.AddInline(e, child);
         } else if (model is DocDate docDate) {
             XmlElement e = CreateAndAppend("docDate", parent);
+            string dateValue = ExtractDateFromContent(docDate.Contents);
+            if (!string.IsNullOrEmpty(dateValue)) {
+                e.SetAttribute("date", dateValue);
+            }
             foreach (Judgments.IInline child in docDate.Contents)
+                base.AddInline(e, child);
+        } else if (model is LeadDepartment leadDept) {
+            XmlElement e = CreateAndAppend("inline", parent);
+            e.SetAttribute("name", "leadDepartment");
+            foreach (Judgments.IInline child in leadDept.Contents)
+                base.AddInline(e, child);
+        } else if (model is OtherDepartments otherDept) {
+            XmlElement e = CreateAndAppend("inline", parent);
+            e.SetAttribute("name", "otherDepartments");
+            foreach (Judgments.IInline child in otherDept.Contents)
                 base.AddInline(e, child);
         } else if (model is DocDepartment docDept) {
             XmlElement e = CreateAndAppend("docProponent", parent);
@@ -254,6 +269,10 @@ class Builder : AkN.Builder {
         } else {
             base.AddInline(parent, model);
         }
+    }
+
+    private string ExtractDateFromContent(IEnumerable<Judgments.IInline> contents) {
+        return null;
     }
 
     protected override string MakeDivisionId(IDivision div) {

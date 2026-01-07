@@ -19,18 +19,6 @@ class Helper : BaseHelper {
 
     // Constants
     private const string AKN_NAMESPACE = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
-    
-    // Semantic element mappings
-    // Note: docNumber is not included because it's not allowed as a child of <p> in AKN 3.0 schema
-    // Tuple structure: (elementName, attributeValue) - attributeValue is used for 'name' attribute on inline elements
-    private static readonly Dictionary<string, (string elementName, string attributeValue)> SemanticMappings = new() {
-        { "Title:", ("docTitle", null) },
-        // { "IA No:", ("docNumber", null) },  // Commented out: not valid in AKN 3.0 schema for <p> elements
-        { "Stage:", ("docStage", null) },
-        { "Date:", ("docDate", null) },
-        { "Lead department or agency:", ("inline", "leadDepartment") },
-        { "Other departments or agencies", ("inline", "otherDepartments") }
-    };
 
     private static readonly Helper Instance = new Helper();
     
@@ -85,10 +73,8 @@ class Helper : BaseHelper {
         // Phase 1: Move tables from preface to mainBody (tables not allowed in preface)
         MovePrefaceTablesToMainBody(xml);
         
-        // Phase 2: Apply IA-specific style mappings
         ApplyIAStyleMappings(xml);
-        
-        // Extract docDate and update FRBR metadata (must be after semantic elements are created)
+        AddDateAttributesToDocDate(xml);
         UpdateFRBRDatesFromDocDate(xml);
         
         // Phase 3: Header Structure Enhancement
@@ -126,43 +112,29 @@ class Helper : BaseHelper {
     
         var paragraphs = xml.SelectNodes("//akn:p", nsmgr);
         int classified = 0;
-        int semanticElements = 0;
         
         XmlNode previousParagraph = null;
         
         foreach (XmlNode p in paragraphs) {
             string cleanContent = CleanContent(p.InnerText?.Trim() ?? "");
             
-            // Try to transform to semantic element first
-            bool transformed = TryTransformToSemanticElement(xml, p, cleanContent);
-            if (transformed) {
-                semanticElements++;
-            } else {
-                // Apply CSS class if not transformed
-                string cssClass = DetermineCssClass(cleanContent, p, previousParagraph);
-                if (cssClass != null) {
-                    ApplyCssClass(p, cssClass);
-                    classified++;
-                }
+            // Apply CSS class (semantic elements are now created at model level)
+            string cssClass = DetermineCssClass(cleanContent, p, previousParagraph);
+            if (cssClass != null) {
+                ApplyCssClass(p, cssClass);
+                classified++;
             }
             
             previousParagraph = p;
         }
         
-        LogProcessingResults(logger, classified, semanticElements);
+        if (classified > 0) {
+            logger.LogInformation("Applied IA CSS classes to {ClassCount} paragraphs", classified);
+        }
     }
     
     private static string CleanContent(string content) {
         return content.Replace("<b>", "").Replace("</b>", "");
-    }
-    
-    private static bool TryTransformToSemanticElement(XmlDocument xml, XmlNode paragraph, string cleanContent) {
-        foreach (var mapping in SemanticMappings) {
-            if (cleanContent.StartsWith(mapping.Key)) {
-                return TransformToSemanticElement(xml, paragraph, mapping.Key, mapping.Value.elementName, mapping.Value.attributeValue);
-            }
-        }
-        return false;
     }
     
     private static string DetermineCssClass(string cleanContent, XmlNode paragraph, XmlNode previousParagraph) {
@@ -174,22 +146,49 @@ class Helper : BaseHelper {
             return "ia-head-label";
         }
         
-        if (IsInHeaderTable(paragraph)) {
-            return DetermineTableCssClass(cleanContent, previousParagraph);
+        bool inHeader = IsInPreface(paragraph);
+        bool inTable = IsInHeaderTable(paragraph);
+        
+        if (inHeader || inTable) {
+            return DetermineTableCssClass(cleanContent, previousParagraph, inHeader, inTable);
+        }
+        
+        if (inTable) {
+            return "ia-table-text";
         }
         
         return null;
     }
     
-    private static string DetermineTableCssClass(string cleanContent, XmlNode previousParagraph) {
-        if (previousParagraph != null && IsInHeaderTable(previousParagraph)) {
+    private static string DetermineTableCssClass(string cleanContent, XmlNode previousParagraph, bool inHeader, bool inTable) {
+        if (previousParagraph != null && (inHeader || IsInHeaderTable(previousParagraph))) {
             string prevContent = CleanContent(previousParagraph.InnerText?.Trim() ?? "");
             if ((prevContent.StartsWith("Lead department") || prevContent.StartsWith("Other departments")) && 
                 cleanContent.Length < 100 && !cleanContent.Contains(":")) {
                 return "ia-header-text";
             }
         }
-        return "ia-table-text";
+        if (inTable) {
+            return "ia-table-text";
+        }
+        if (inHeader) {
+            string trimmed = cleanContent.Trim();
+            if (trimmed.Length > 0 && !trimmed.Contains(":") && trimmed.Length < 200) {
+                return "ia-table-text";
+            }
+        }
+        return null;
+    }
+    
+    private static bool IsInPreface(XmlNode paragraph) {
+        var parent = paragraph.ParentNode;
+        while (parent != null) {
+            if (parent.Name == "preface") {
+                return true;
+            }
+            parent = parent.ParentNode;
+        }
+        return false;
     }
     
     private static void ApplyCssClass(XmlNode paragraph, string cssClass) {
@@ -198,73 +197,34 @@ class Helper : BaseHelper {
         paragraph.Attributes.Append(classAttr);
     }
     
-    private static void LogProcessingResults(ILogger logger, int classified, int semanticElements) {
-        if (classified > 0 || semanticElements > 0) {
-            logger.LogInformation("Applied IA CSS classes to {ClassCount} paragraphs and created {SemanticCount} semantic elements", 
-                classified, semanticElements);
-        }
-    }
-    
-    private static bool TransformToSemanticElement(XmlDocument xml, XmlNode paragraph, string labelText, string semanticElementName, string nameAttribute) {
-        try {
-            string content = paragraph.InnerText?.Trim() ?? "";
+    private static void AddDateAttributesToDocDate(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        
+        var docDateNodes = xml.SelectNodes("//akn:docDate[not(@date)]", nsmgr);
+        
+        foreach (XmlElement docDateNode in docDateNodes) {
+            string dateText = docDateNode.InnerText?.Trim() ?? "";
             
-            // Extract the value part after the label
-            string valueText = ExtractValueText(content, labelText);
-            
-            // For docDate elements, validate date parsing before creating the element
-            // If we can't parse the date, don't create docDate at all (date attribute is required)
-            if (semanticElementName == "docDate") {
-                if (!TryParseDateFromValue(valueText, out _)) {
-                    return false; // Fall back to CSS-only approach
-                }
-            }
-            
-            // Clear existing content and rebuild with semantic structure
-            paragraph.RemoveAll();
-            
-            // Create semantic structure: <b>Title:</b> <docTitle>content</docTitle>
-            var boldElement = xml.CreateElement("b", AKN_NAMESPACE);
-            boldElement.InnerText = labelText;
-            paragraph.AppendChild(boldElement);
-            
-            // Add space
-            paragraph.AppendChild(xml.CreateTextNode(" "));
-            
-            // Add the semantic element with the value content
-            if (!string.IsNullOrEmpty(valueText)) {
-                var semanticElement = xml.CreateElement(semanticElementName, AKN_NAMESPACE);
-                
-                // For docDate elements, add the required 'date' attribute
-                if (semanticElementName == "docDate") {
-                    if (TryParseDateFromValue(valueText, out string normalizedDate)) {
-                        semanticElement.SetAttribute("date", normalizedDate);
+            if (string.IsNullOrEmpty(dateText)) {
+                var parent = docDateNode.ParentNode as XmlElement;
+                if (parent != null) {
+                    string parentText = parent.InnerText?.Trim() ?? "";
+                    int dateIndex = parentText.IndexOf("Date:", StringComparison.InvariantCultureIgnoreCase);
+                    if (dateIndex >= 0) {
+                        dateText = parentText.Substring(dateIndex + 5).Trim();
+                        if (dateText.StartsWith(":"))
+                            dateText = dateText.Substring(1).Trim();
                     }
                 }
-                
-                // For inline elements with a name attribute, add it
-                if (semanticElementName == "inline" && !string.IsNullOrEmpty(nameAttribute)) {
-                    semanticElement.SetAttribute("name", nameAttribute);
-                }
-                
-                semanticElement.InnerText = valueText;
-                paragraph.AppendChild(semanticElement);
             }
             
-            return true;
+            if (TryParseDateFromValue(dateText, out string normalizedDate)) {
+                docDateNode.SetAttribute("date", normalizedDate);
+            } else if (string.IsNullOrEmpty(dateText)) {
+                docDateNode.ParentNode?.RemoveChild(docDateNode);
+            }
         }
-        catch (Exception) {
-            // If transformation fails, return false to fall back to CSS-only approach
-            return false;
-        }
-    }
-    
-    private static string ExtractValueText(string content, string labelText) {
-        string valueText = content.Substring(labelText.Length).Trim();
-        if (valueText.StartsWith(":")) {
-            valueText = valueText.Substring(1).Trim();
-        }
-        return valueText;
     }
     
     private static bool TryParseDateFromValue(string dateValue, out string isoDate) {
@@ -367,37 +327,104 @@ class Helper : BaseHelper {
 
     /// <summary>
     /// Phase 2: Transform header structure for Impact Assessments
-    /// Replace generic level elements with semantic hcontainer elements
+    /// Wrap header metadata in hcontainer with name="summary" containing a table structure
     /// </summary>
     private static void TransformHeaderStructure(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         var logger = Logging.Factory.CreateLogger<Helper>();
 
-        // Find the first level element (IA header table)
-        var firstLevel = xml.SelectSingleNode("//akn:mainBody/akn:level[1]", nsmgr);
-        if (firstLevel == null) return;
+        var mainBody = xml.SelectSingleNode("//akn:mainBody", nsmgr);
+        if (mainBody == null) return;
 
-        // Check if this level contains IA header metadata (docTitle, docStage, docDate, etc.)
-        var hasHeaderMetadata = firstLevel.SelectNodes(".//akn:docTitle | .//akn:docStage | .//akn:docDate | .//akn:inline[@name='leadDepartment'] | .//akn:inline[@name='otherDepartments']", nsmgr).Count > 0;
+        // Collect header level elements (metadata table rows)
+        var headerLevels = new List<XmlNode>();
+        var levels = mainBody.SelectNodes("akn:level", nsmgr);
         
-        if (hasHeaderMetadata) {
-            // Transform to section element
-            var section = xml.CreateElement("section", AKN_NAMESPACE);
+        foreach (XmlNode level in levels) {
+            // Check if this level contains header metadata or is part of the header structure
+            var content = level.SelectSingleNode("akn:content", nsmgr);
+            if (content == null) break;
             
-            // Add eId attribute for proper identification
-            section.SetAttribute("eId", "section_1");
+            var paragraphs = content.SelectNodes("akn:p", nsmgr);
+            if (paragraphs.Count == 0) break;
             
-            // Copy all child nodes from level to section
-            while (firstLevel.HasChildNodes) {
-                section.AppendChild(firstLevel.FirstChild);
+            var firstPara = paragraphs[0];
+            string firstParaText = CleanContent(firstPara.InnerText?.Trim() ?? "");
+            
+            // Check if this looks like header metadata (starts with common IA header labels)
+            bool isHeaderRow = firstParaText.StartsWith("Impact Assessment") ||
+                              firstParaText.StartsWith("Title:") ||
+                              firstParaText.StartsWith("Type of measure:") ||
+                              firstParaText.StartsWith("Department or agency:") ||
+                              firstParaText.StartsWith("IA number:") ||
+                              firstParaText.StartsWith("Type of Impact Assessment") ||
+                              firstParaText.StartsWith("RPC reference number:") ||
+                              firstParaText.StartsWith("Contact for enquiries:") ||
+                              firstParaText.StartsWith("Date:") ||
+                              firstParaText.Contains("Lead department") ||
+                              firstParaText.Contains("Other departments");
+            
+            if (isHeaderRow) {
+                headerLevels.Add(level);
+            } else {
+                // Stop at first non-header level
+                break;
             }
-            
-            // Replace the level element with section
-            firstLevel.ParentNode.ReplaceChild(section, firstLevel);
-            
-            logger.LogInformation("Transformed IA header from <level> to <section>");
         }
+
+        if (headerLevels.Count == 0) return;
+
+        // Create hcontainer with name="summary"
+        var hcontainer = xml.CreateElement("hcontainer", AKN_NAMESPACE);
+        hcontainer.SetAttribute("name", "summary");
+        
+        // Create content element
+        var hcontainerContent = xml.CreateElement("content", AKN_NAMESPACE);
+        hcontainer.AppendChild(hcontainerContent);
+        
+        // Create table element
+        var table = xml.CreateElement("table", AKN_NAMESPACE);
+        table.SetAttribute("class", "ia-table");
+        hcontainerContent.AppendChild(table);
+        
+        // Create tbody
+        var tbody = xml.CreateElement("tbody", AKN_NAMESPACE);
+        table.AppendChild(tbody);
+        
+        // Convert each level to a table row
+        foreach (XmlNode level in headerLevels) {
+            var tr = xml.CreateElement("tr", AKN_NAMESPACE);
+            tbody.AppendChild(tr);
+            
+            var levelContent = level.SelectSingleNode("akn:content", nsmgr);
+            if (levelContent != null) {
+                var td = xml.CreateElement("td", AKN_NAMESPACE);
+                tr.AppendChild(td);
+                
+                // Copy all paragraphs from level content to table cell
+                var paragraphs = levelContent.SelectNodes("akn:p", nsmgr);
+                foreach (XmlNode para in paragraphs) {
+                    var importedPara = xml.ImportNode(para, true);
+                    td.AppendChild(importedPara);
+                }
+            }
+        }
+        
+        // Insert hcontainer at the beginning of mainBody
+        var firstChild = mainBody.FirstChild;
+        if (firstChild != null) {
+            mainBody.InsertBefore(hcontainer, firstChild);
+        } else {
+            mainBody.AppendChild(hcontainer);
+        }
+        
+        // Remove the original level elements
+        foreach (XmlNode level in headerLevels) {
+            mainBody.RemoveChild(level);
+        }
+        
+        logger.LogInformation("Transformed {Count} IA header levels into hcontainer.summary with table structure", headerLevels.Count);
     }
 
     /// <summary>
@@ -852,3 +879,4 @@ class Helper : BaseHelper {
 }
 
 }
+
