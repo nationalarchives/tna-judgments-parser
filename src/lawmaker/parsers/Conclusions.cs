@@ -1,8 +1,10 @@
 #nullable enable
 
 using System.Collections.Generic;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+
 using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
 namespace UK.Gov.Legislation.Lawmaker
@@ -15,66 +17,13 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private void ParseConclusions()
         {
-            ExplanatoryNote? explanatoryNote = ParseExplanatoryNote();
+            ExplanatoryNote? explanatoryNote = Match(ExplanatoryNote.Parse);
             if (explanatoryNote is not null)
                 conclusions.Add(explanatoryNote);
 
             CommencementHistory? commencementHistory = ParseCommencementHistory();
             if (commencementHistory is not null)
                 conclusions.Add(commencementHistory);
-        }
-
-        private ExplanatoryNote? ParseExplanatoryNote()
-        {
-            if (i >= Body.Count)
-                return null;
-
-            // Handle heading and subheading
-            if (!ExplanatoryNote.IsHeading(LanguageService, Current()))
-                return null;
-            WLine heading = (Current() as WLine)!;
-
-            int save = i;
-            i += 1;
-
-            WLine? subheading = null;
-            if (ExplanatoryNote.IsSubheading(Current()))
-            {
-                subheading = Current() as WLine;
-                i += 1;
-            }
-
-            List<IBlock> content = [];
-            while (i < Body.Count)
-            {
-                IBlock? currentBlock = Current();
-                if (currentBlock is null)
-                    break;
-
-                // If we hit the the start of the Commencement History table,
-                // then the Explanatory Note must have ended.
-                if (CommencementHistory.IsHeading(LanguageService, currentBlock))
-                    break;
-
-                if (currentBlock is WLine line && IsCenterAligned(line))
-                    break;
-
-                if (ParseHeadingTblock() is HeadingTblock headingTblock)
-                    content.Add(headingTblock);
-                else
-                {
-                    content.Add(currentBlock);
-                    i += 1;
-                }
-            }
-            if (content.Count == 0)
-            {
-                i = save;
-                return null;
-            }
-            BlockParser parser = new(content) { LanguageService = LanguageService };
-            IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(parser);
-            return new ExplanatoryNote { Heading = heading, Subheading = subheading, Content = structuredContent };
         }
 
         private HeadingTblock? ParseHeadingTblock()
@@ -141,7 +90,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 block = Body[i];
 
-                if (block is WLine line && IsCenterAligned(line))
+                if (block is WLine line && line.IsCenterAligned())
                     break;
 
                 if (Match(LdappTableBlock.Parse) is LdappTableBlock tableBlock)
@@ -155,44 +104,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
             return new CommencementHistory { Heading = heading, Subheading = subheading, Content = blocks };
         }
-
-    }
-
-    internal class ExplanatoryNote : BlockContainer
-    {
-
-        public override string Name { get; internal init; } = "blockContainer";
-
-        public override string Class { get; internal init; } = "explanatoryNote";
-
-        private static readonly LanguagePatterns HeadingPatterns = new()
-        {
-            [Lang.EN] = [@"^EXPLANATORY +NOTE$"],
-            [Lang.CY] = [@"^NODYN +ESBONIADOL"]
-        };
-
-        public static bool IsHeading(LanguageService langService, IBlock? block)
-        {
-            if (block is not WLine line)
-                return false;
-            return langService.IsMatch(line.NormalizedContent, HeadingPatterns);
-        }
-
-        public static bool IsSubheading(IBlock? block)
-        {
-            if (block is not WLine line)
-                return false;
-            string text = line.NormalizedContent;
-            return text.StartsWith('(') && text.EndsWith(')');
-        }
-
-        public static bool IsTblockHeading(IBlock? block)
-        {
-            if (block is not WLine line)
-                return false;
-            return line.IsAllBold();
-        }
-
 
     }
 

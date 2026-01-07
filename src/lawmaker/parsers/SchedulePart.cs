@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private HContainer ParseSchedulePart(WLine line)
         {
             var save = i;
-            
+
             if (!PeekSchedulePartHeading(line))
                 return null;
 
@@ -30,17 +30,17 @@ namespace UK.Gov.Legislation.Lawmaker
             // Current line may be a WLine or WTable
             if (line2 is not WLine && line2 is not WTable)
                 return null;
-            
+
             // Schedule parts may have no heading
             ILine heading = null;
             if (line2 is WLine)
-                if (!(!IsCenterAligned((WLine) line2) || LanguageService.IsMatch(((WLine) line2).TextContent, ScheduleChapter.NumberPatterns)))
+                if (!(!((WLine) line2).IsCenterAligned() || LanguageService.IsMatch(((WLine) line2).TextContent, ScheduleChapter.NumberPatterns)))
                     heading = (WLine) line2;
             i += heading is null ? 1 : 2;
-            
+
             if (line2 is WLine && IsEndOfQuotedStructure(((WLine) line2).NormalizedContent))
                 return new SchedulePartLeaf { Number = number, Heading = heading };
-                
+
             WLine partBodyStartLine = (WLine) Body[i-1];
             List<IBlock> contents = ParseLeafContents(partBodyStartLine);
             HContainer part;
@@ -57,7 +57,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 part = new SchedulePartBranch { Number = number, Heading = heading, Children = children };
             }
-            
+
             return part;
         }
 
@@ -65,7 +65,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph np)
                 return false;
-            if (!IsCenterAligned(line))
+            if (!line.IsCenterAligned())
                 return false;
             if (i > Body.Count - 2)
                 return false;

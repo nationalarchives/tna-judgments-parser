@@ -14,7 +14,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private HContainer ParseChapter(WLine line)
         {
             var save1 = i;
-            
+
             if (!PeekChapterHeading(line))
                 return null;
 
@@ -28,11 +28,11 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (Body[i + 1] is not WLine line2)
                 return null;
-                
+
             // Chapters may have no heading
             ILine heading = null;
             // If line2 is center aligned, parse as the heading
-            if (IsCenterAligned(line2))
+            if (line2.IsCenterAligned())
                 heading = line2;
             i += heading is null ? 1 : 2;
 

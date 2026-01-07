@@ -19,7 +19,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (line is WOldNumberedParagraph)
                 return false;
             DocName docname = frames.CurrentDocName;
-            if (!docname.IsWelshSecondary() && !IsCenterAligned(line))
+            if (!docname.IsWelshSecondary() && !line.IsCenterAligned())
                 return false;
             if (i > Body.Count - 2)
                 return false;
@@ -63,10 +63,23 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             frames.Pop();
 
-            // If we encounter a non-quoted Schedule outside of a Schedules container, it must be wrapped.
-            if (frames.IsScheduleContext() || quoteDepth > 0)
-                return schedule;
-            return new Schedules { Number = null, Children = [schedule] };
+            // If not in a quoted structure and not in Schedule context,
+            // we need to wrap the parsed Schedule and any additional ones in a 'Schedules' hContainer with no heading
+            if (quoteDepth == 0 && !frames.IsScheduleContext())
+            {
+                var save1 = i;
+                List<IDivision> children = ParseSchedulesChildren();
+                if (children.Count > 0)
+                    children = children.Prepend(schedule).ToList();
+                else
+                {
+                    i = save1;
+                    children = [schedule];
+                }
+
+                return new Schedules { Number = null, Heading = null, Children = children };
+            }
+            return schedule;
         }
 
         /// <summary>
@@ -111,16 +124,16 @@ namespace UK.Gov.Legislation.Lawmaker
 
             // There might not be a Schedule heading
             // If the line isn't center aligned or it matches a Part's num then this Schedule does not have a heading
-            if (heading is not null && (!IsCenterAligned(heading) || LanguageService.IsMatch(heading.TextContent, SchedulePart.NumberPatterns)))
+            if (heading is not null && (!heading.IsCenterAligned() || LanguageService.IsMatch(heading.TextContent, SchedulePart.NumberPatterns)))
             {
                 heading = null;
                 i -= 1;
             }
 
-            // SI documents occasionally have schedule reference notes on the same line as the schedule number
+            // SI and UK bill documents occasionally have schedule reference notes on the same line as the schedule number
             // (separated by one or more tab characters) as opposed to having their own distinct line.
             string referenceNoteText;
-            if (referenceNoteLine is null && frames.IsSecondaryDocName())
+            if (referenceNoteLine is null && (frames.IsSecondaryDocName() || frames.CurrentDocName.IsUKPrimary()))
                 referenceNoteText = GetRightTabbedText(numberLine);
             else
                 referenceNoteText = referenceNoteLine?.NormalizedContent ?? "";
@@ -181,11 +194,12 @@ namespace UK.Gov.Legislation.Lawmaker
         /// <returns>Whether <paramref name="line"/> represents a <c>Schedule</c> reference note.</returns>
         private bool IsScheduleReferenceNote(WLine line)
         {
-            if (docName.IsScottishPrimary())
+            if (docName.IsScottishPrimary() || docName.IsWelshPrimary())
             {
-                // Reference notes in SP Bills/Acts are formatted differently
-                if (IsCenterAligned(line) && line.IsAllItalicized())
+                // Reference notes in SP and SC Bills/Acts are centre aligned and italic
+                if (line.IsCenterAligned() && line.IsAllItalicized())
                     return true;
+                // or begin with "(introduced by"
                 StringComparison ignoreCase = StringComparison.CurrentCultureIgnoreCase;
                 if (line.NormalizedContent.StartsWith("(introduced by", ignoreCase))
                     return true;

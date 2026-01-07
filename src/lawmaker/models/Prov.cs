@@ -14,9 +14,11 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface Prov1
     {
 
-        public static bool IsValidNumber(string num)
+        public static bool IsValidNumber(string num, DocName currentDocName)
         {
-            string pattern = @"^[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\.$";
+            // Found that Prov1 nums where the heading precedes the num must end with a "."
+            string dot = !currentDocName.RequireNumberedProv1Headings() ? "." : ".?";
+            string pattern = $@"^[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*{dot}$";
             return Regex.IsMatch(num, pattern);
         }
 
@@ -48,8 +50,6 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class => "prov1";
 
-        public override bool HeadingPrecedesNumber => true;
-
     }
 
     internal class Prov1Leaf : Leaf, Prov1
@@ -64,8 +64,6 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         public override string Class => "prov1";
-
-        public override bool HeadingPrecedesNumber => true;
 
     }
 

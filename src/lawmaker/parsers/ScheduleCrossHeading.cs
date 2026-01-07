@@ -62,7 +62,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
             {
-                if (!IsCenterAligned(line))
+                if (!line.IsCenterAligned())
                     return false;
                 return line.IsPartiallyItalicized();
             }

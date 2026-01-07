@@ -27,7 +27,7 @@ public record DatesContainer(IEnumerable<DateBlock> DateBlocks) : IBlock, IBuild
     public static DatesContainer? Parse(IParser<IBlock> parser) =>
         parser.MatchWhile(
             l => l is not WLine line || !TableOfContents.IsTableOfContentsHeading(line, parser.LanguageService)
-                && !Preamble.IsStart(line),
+                && !Headers.Preamble.IsStart(line),
 
             DateBlock.Parse
             ) is IEnumerable<DateBlock> dates
