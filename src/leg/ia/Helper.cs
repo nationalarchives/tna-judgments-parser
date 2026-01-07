@@ -430,14 +430,14 @@ class Helper : BaseHelper {
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         var logger = Logging.Factory.CreateLogger<Helper>();
 
-        // Define major IA sections with their identifying content patterns
-        var sectionMappings = new Dictionary<string, string> {
-            { "Cost of Preferred", "cost-analysis" },
-            { "What are the policy objectives", "policy-objectives" },
-            { "What policy options have been considered", "policy-options" },
-            { "Will the policy be reviewed", "policy-review" },
-            { "FULL ECONOMIC ASSESSMENT", "economic-assessment" },
-            { "BUSINESS ASSESSMENT", "business-assessment" }
+        // Define major IA sections by their identifying content patterns
+        var sectionPatterns = new[] {
+            "Cost of Preferred",
+            "What are the policy objectives",
+            "What policy options have been considered",
+            "Will the policy be reviewed",
+            "FULL ECONOMIC ASSESSMENT",
+            "BUSINESS ASSESSMENT"
         };
 
         int sectionCounter = 2; // Start from 2 since header is section 1
@@ -446,8 +446,8 @@ class Helper : BaseHelper {
         var levels = xml.SelectNodes("//akn:level", nsmgr);
         
         foreach (XmlNode level in levels) {
-            foreach (var mapping in sectionMappings) {
-                if (ContainsSectionContent(level, mapping.Key)) {
+            foreach (var pattern in sectionPatterns) {
+                if (ContainsSectionContent(level, pattern)) {
                     TransformToSemanticSection(xml, level, sectionCounter);
                     logger.LogInformation($"Transformed level to section with eId: section_{sectionCounter}");
                     sectionCounter++;
