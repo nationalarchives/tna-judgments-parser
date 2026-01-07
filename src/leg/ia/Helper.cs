@@ -17,7 +17,6 @@ namespace UK.Gov.Legislation.ImpactAssessments {
 
 class Helper : BaseHelper {
 
-    // Constants
     private const string AKN_NAMESPACE = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
 
     private static readonly Helper Instance = new Helper();
@@ -70,38 +69,17 @@ class Helper : BaseHelper {
     }
 
     protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
-        // Phase 1: Move tables from preface to mainBody (tables not allowed in preface)
         MovePrefaceTablesToMainBody(xml);
-        
         ApplyIAStyleMappings(xml);
         AddDateAttributesToDocDate(xml);
         UpdateFRBRDatesFromDocDate(xml);
-        
-        // Phase 3: Header Structure Enhancement
         TransformHeaderStructure(xml);
-        
-        // Phase 4: Section-Based Organization
         TransformContentSections(xml);
-        
-        // Phase 5: Clean up empty heading elements
         RemoveEmptyHeadings(xml);
-        
-        // Phase 6: Replace th with td (th not supported in IA subschema)
         ReplaceThWithTd(xml);
-        
-        // Phase 7: Remove unsupported elements (img, subFlow/math, TOC, marker/tab)
         RemoveUnsupportedElements(xml);
-        
-        // Phase 8: Convert blockContainer to p in table cells
-        ConvertBlockContainerInTables(xml);
-        
-        // Phase 9: Fix heading position in sections (must come before content)
         FixSectionHeadingPosition(xml);
-        
-        // Phase 10: Fix nested anchor elements (not allowed in AKN 3.0)
         FixNestedAnchors(xml);
-        
-        // Phase 11: Generate table of contents from sections
         GenerateTableOfContents(xml);
     }
 
@@ -117,8 +95,6 @@ class Helper : BaseHelper {
         
         foreach (XmlNode p in paragraphs) {
             string cleanContent = CleanContent(p.InnerText?.Trim() ?? "");
-            
-            // Apply CSS class (semantic elements are now created at model level)
             string cssClass = DetermineCssClass(cleanContent, p, previousParagraph);
             if (cssClass != null) {
                 ApplyCssClass(p, cssClass);
@@ -151,10 +127,6 @@ class Helper : BaseHelper {
         
         if (inHeader || inTable) {
             return DetermineTableCssClass(cleanContent, previousParagraph, inHeader, inTable);
-        }
-        
-        if (inTable) {
-            return "ia-table-text";
         }
         
         return null;
@@ -234,14 +206,12 @@ class Helper : BaseHelper {
             return false;
         }
         
-        // Handle malformed dates with extra leading zeros like "030/9/2015"
         var match = System.Text.RegularExpressions.Regex.Match(dateValue, @"^(\d{2,3})/(\d{1,2})/(\d{4})$");
         if (match.Success) {
             if (int.TryParse(match.Groups[1].Value, out int day) && 
                 int.TryParse(match.Groups[2].Value, out int month) && 
                 int.TryParse(match.Groups[3].Value, out int year)) {
                 
-                // Handle extra leading zero (e.g., "030" → 30)
                 if (day > 31) {
                     day = day % 100;
                 }
@@ -252,27 +222,22 @@ class Helper : BaseHelper {
                     return true;
                 }
                 catch {
-                    // Fall through to other parsers
                 }
             }
         }
         
-        // Try UK date format culture first (DD/MM/YYYY) as this is the expected format for UK IA documents
         if (DateTime.TryParse(dateValue, new System.Globalization.CultureInfo("en-GB"), 
             System.Globalization.DateTimeStyles.None, out DateTime parsedDate)) {
             isoDate = parsedDate.ToString("yyyy-MM-dd");
             return true;
         }
         
-        // Try to parse using DateTime.TryParse which handles many formats
         if (DateTime.TryParse(dateValue, System.Globalization.CultureInfo.InvariantCulture, 
             System.Globalization.DateTimeStyles.None, out parsedDate)) {
             isoDate = parsedDate.ToString("yyyy-MM-dd");
             return true;
         }
         
-        // Try parsing month-year formats like "Aug 2022" or "July 2022"
-        // Default to first day of the month
         if (System.Text.RegularExpressions.Regex.IsMatch(dateValue, @"^[A-Za-z]+\s+\d{4}$")) {
             if (DateTime.TryParseExact(dateValue, new[] { "MMMM yyyy", "MMM yyyy" }, 
                 System.Globalization.CultureInfo.InvariantCulture, 
@@ -286,7 +251,6 @@ class Helper : BaseHelper {
     }
     
     private static bool IsInHeaderTable(XmlNode paragraph) {
-        // Check if this paragraph is inside a table (likely the IA header table)
         var parent = paragraph.ParentNode;
         while (parent != null) {
             if (parent.Name == "table" || parent.Name == "td" || parent.Name == "tr") {
@@ -304,19 +268,16 @@ class Helper : BaseHelper {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         
-        // Find the first docDate element with a date attribute
         var docDateNode = xml.SelectSingleNode("//akn:docDate[@date]", nsmgr) as XmlElement;
         if (docDateNode != null) {
             string docDate = docDateNode.GetAttribute("date");
             
-            // Update FRBRWork date
             var workDate = xml.SelectSingleNode("//akn:FRBRWork/akn:FRBRdate", nsmgr) as XmlElement;
             if (workDate != null) {
                 workDate.SetAttribute("date", docDate);
                 workDate.SetAttribute("name", "document");
             }
             
-            // Update FRBRExpression date
             var expDate = xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRdate", nsmgr) as XmlElement;
             if (expDate != null) {
                 expDate.SetAttribute("date", docDate);
@@ -326,7 +287,7 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Phase 2: Transform header structure for Impact Assessments
+    /// Transform header structure for Impact Assessments
     /// Wrap header metadata in hcontainer with name="summary" containing a table structure
     /// </summary>
     private static void TransformHeaderStructure(XmlDocument xml) {
@@ -337,12 +298,10 @@ class Helper : BaseHelper {
         var mainBody = xml.SelectSingleNode("//akn:mainBody", nsmgr);
         if (mainBody == null) return;
 
-        // Collect header level elements (metadata table rows)
         var headerLevels = new List<XmlNode>();
         var levels = mainBody.SelectNodes("akn:level", nsmgr);
         
         foreach (XmlNode level in levels) {
-            // Check if this level contains header metadata or is part of the header structure
             var content = level.SelectSingleNode("akn:content", nsmgr);
             if (content == null) break;
             
@@ -352,7 +311,6 @@ class Helper : BaseHelper {
             var firstPara = paragraphs[0];
             string firstParaText = CleanContent(firstPara.InnerText?.Trim() ?? "");
             
-            // Check if this looks like header metadata (starts with common IA header labels)
             bool isHeaderRow = firstParaText.StartsWith("Impact Assessment") ||
                               firstParaText.StartsWith("Title:") ||
                               firstParaText.StartsWith("Type of measure:") ||
@@ -368,26 +326,21 @@ class Helper : BaseHelper {
             if (isHeaderRow) {
                 headerLevels.Add(level);
             } else {
-                // Stop at first non-header level
                 break;
             }
         }
 
         if (headerLevels.Count == 0) return;
 
-        // Create hcontainer with name="summary"
         var hcontainer = xml.CreateElement("hcontainer", AKN_NAMESPACE);
         hcontainer.SetAttribute("name", "summary");
         
-        // Create content element
         var hcontainerContent = xml.CreateElement("content", AKN_NAMESPACE);
         hcontainer.AppendChild(hcontainerContent);
         
-        // Create table element
         var table = xml.CreateElement("table", AKN_NAMESPACE);
         hcontainerContent.AppendChild(table);
         
-        // Convert each level to a table row
         foreach (XmlNode level in headerLevels) {
             var tr = xml.CreateElement("tr", AKN_NAMESPACE);
             table.AppendChild(tr);
@@ -397,7 +350,6 @@ class Helper : BaseHelper {
                 var td = xml.CreateElement("td", AKN_NAMESPACE);
                 tr.AppendChild(td);
                 
-                // Copy all paragraphs from level content to table cell
                 var paragraphs = levelContent.SelectNodes("akn:p", nsmgr);
                 foreach (XmlNode para in paragraphs) {
                     var importedPara = xml.ImportNode(para, true);
@@ -406,7 +358,6 @@ class Helper : BaseHelper {
             }
         }
         
-        // Insert hcontainer at the beginning of mainBody
         var firstChild = mainBody.FirstChild;
         if (firstChild != null) {
             mainBody.InsertBefore(hcontainer, firstChild);
@@ -414,7 +365,6 @@ class Helper : BaseHelper {
             mainBody.AppendChild(hcontainer);
         }
         
-        // Remove the original level elements
         foreach (XmlNode level in headerLevels) {
             mainBody.RemoveChild(level);
         }
@@ -423,14 +373,13 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Phase 3: Transform major IA content areas into proper section elements
+    /// Transform major IA content areas into proper section elements
     /// </summary>
     private static void TransformContentSections(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         var logger = Logging.Factory.CreateLogger<Helper>();
 
-        // Define major IA sections by their identifying content patterns
         var sectionPatterns = new[] {
             "Cost of Preferred",
             "What are the policy objectives",
@@ -440,9 +389,8 @@ class Helper : BaseHelper {
             "BUSINESS ASSESSMENT"
         };
 
-        int sectionCounter = 2; // Start from 2 since header is section 1
+        int sectionCounter = 2;
 
-        // Find level elements that contain major section content
         var levels = xml.SelectNodes("//akn:level", nsmgr);
         
         foreach (XmlNode level in levels) {
@@ -463,11 +411,9 @@ class Helper : BaseHelper {
     }
 
     private static void TransformToSemanticSection(XmlDocument xml, XmlNode level, int sectionNumber) {
-        // Create new section element
         var section = xml.CreateElement("section", AKN_NAMESPACE);
         section.SetAttribute("eId", $"section_{sectionNumber}");
 
-        // Add heading if we can identify one
         var headingText = ExtractSectionHeading(level);
         if (!string.IsNullOrEmpty(headingText)) {
             var heading = xml.CreateElement("heading", AKN_NAMESPACE);
@@ -475,17 +421,14 @@ class Helper : BaseHelper {
             section.AppendChild(heading);
         }
 
-        // Copy all child nodes from level to section
         while (level.HasChildNodes) {
             section.AppendChild(level.FirstChild);
         }
 
-        // Replace the level element with section
         level.ParentNode.ReplaceChild(section, level);
     }
 
     private static string ExtractSectionHeading(XmlNode level) {
-        // Look for bold text that could serve as a heading
         var nsmgr = new XmlNamespaceManager(level.OwnerDocument.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         
@@ -493,7 +436,6 @@ class Helper : BaseHelper {
         foreach (XmlNode bold in boldElements) {
             var text = bold.InnerText?.Trim();
             if (!string.IsNullOrEmpty(text) && text.Length > 10 && text.Length < 100) {
-                // Clean up common patterns
                 text = text.Replace(":", "").Trim();
                 if (text.EndsWith("?")) return text;
                 if (text.Contains("ASSESSMENT")) return text;
@@ -505,13 +447,12 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Phase 4: Remove empty heading elements that violate AKN 3.0 schema
+    /// Remove empty heading elements that violate AKN 3.0 schema
     /// </summary>
     private static void RemoveEmptyHeadings(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         
-        // Find all empty heading elements
         var emptyHeadings = xml.SelectNodes("//akn:heading[not(normalize-space())]", nsmgr);
         
         foreach (XmlNode heading in emptyHeadings) {
@@ -520,60 +461,51 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Phase 5: Replace th with td (th not supported in IA subschema)
+    /// Replace th with td (th not supported in IA subschema)
     /// </summary>
     private static void ReplaceThWithTd(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         
-        // Find all th elements
         var thElements = xml.SelectNodes("//akn:th", nsmgr);
         
         foreach (XmlElement th in thElements) {
-            // Create new td element
             var td = xml.CreateElement("td", AKN_NAMESPACE);
             
-            // Copy all attributes
             foreach (XmlAttribute attr in th.Attributes) {
                 td.SetAttribute(attr.Name, attr.Value);
             }
             
-            // Copy all child nodes
             while (th.HasChildNodes) {
                 td.AppendChild(th.FirstChild);
             }
             
-            // Replace th with td
             th.ParentNode.ReplaceChild(td, th);
         }
     }
 
     /// <summary>
-    /// Phase 6: Remove elements not supported in strict AKN 3.0 for doc elements
+    /// Remove elements not supported in strict AKN 3.0 for doc elements
     /// </summary>
     private static void RemoveUnsupportedElements(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         
-        // Remove img elements
         var imgs = xml.SelectNodes("//akn:img", nsmgr);
         foreach (XmlElement img in imgs) {
             img.ParentNode.RemoveChild(img);
         }
         
-        // Remove subFlow elements (used for math)
         var subFlows = xml.SelectNodes("//akn:subFlow", nsmgr);
         foreach (XmlElement subFlow in subFlows) {
             subFlow.ParentNode.RemoveChild(subFlow);
         }
         
-        // Remove toc elements
         var tocs = xml.SelectNodes("//akn:toc", nsmgr);
         foreach (XmlElement toc in tocs) {
             toc.ParentNode.RemoveChild(toc);
         }
         
-        // Remove marker elements (used for tabs)
         var markers = xml.SelectNodes("//akn:marker", nsmgr);
         foreach (XmlElement marker in markers) {
             marker.ParentNode.RemoveChild(marker);
@@ -581,44 +513,7 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Phase 7: Convert blockContainer in table cells to inline p elements
-    /// </summary>
-    private static void ConvertBlockContainerInTables(XmlDocument xml) {
-        var nsmgr = new XmlNamespaceManager(xml.NameTable);
-        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
-        
-        // Find all blockContainer elements within td elements
-        var blockContainers = xml.SelectNodes("//akn:td/akn:blockContainer", nsmgr);
-        
-        foreach (XmlElement container in blockContainers) {
-            var parent = container.ParentNode;
-            
-            // Create a new p element
-            var p = xml.CreateElement("p", AKN_NAMESPACE);
-            
-            // Extract the num element if present
-            var num = container.SelectSingleNode("akn:num", nsmgr);
-            if (num != null) {
-                // Add the number as text
-                p.AppendChild(xml.CreateTextNode(num.InnerText + " "));
-            }
-            
-            // Extract content from the inner p element
-            var innerP = container.SelectSingleNode("akn:p", nsmgr);
-            if (innerP != null) {
-                // Copy all child nodes from inner p
-                while (innerP.HasChildNodes) {
-                    p.AppendChild(innerP.FirstChild);
-                }
-            }
-            
-            // Replace blockContainer with the new p
-            parent.ReplaceChild(p, container);
-        }
-    }
-
-    /// <summary>
-    /// Phase 1: Move tables from preface to mainBody
+    /// Move tables from preface to mainBody
     /// The IA schema only allows p elements in preface, not tables.
     /// </summary>
     private static void MovePrefaceTablesToMainBody(XmlDocument xml) {
@@ -633,7 +528,6 @@ class Helper : BaseHelper {
             return;
         }
 
-        // Find all tables in preface
         var tables = preface.SelectNodes("akn:table", nsmgr);
         if (tables.Count == 0) {
             return;
@@ -641,7 +535,6 @@ class Helper : BaseHelper {
 
         logger.LogInformation("Moving {Count} table(s) from preface to mainBody", tables.Count);
 
-        // Move tables to the beginning of mainBody
         var firstChild = mainBody.FirstChild;
         foreach (XmlNode table in tables) {
             preface.RemoveChild(table);
@@ -652,7 +545,6 @@ class Helper : BaseHelper {
             }
         }
 
-        // If preface is now empty, remove it
         if (!preface.HasChildNodes) {
             preface.ParentNode.RemoveChild(preface);
             logger.LogInformation("Removed empty preface element");
@@ -660,7 +552,7 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Phase 9: Fix heading issues in sections
+    /// Fix heading issues in sections
     /// In AKN 3.0:
     /// - Only one heading is allowed per section
     /// - Heading must come before content elements (after optional num)
@@ -680,8 +572,6 @@ class Helper : BaseHelper {
                 continue;
             }
 
-            // If there are multiple headings, keep only the first one
-            // Remove the others (they shouldn't be headings anyway)
             if (headings.Count > 1) {
                 logger.LogInformation("Section {EId} has {Count} headings, keeping only the first", 
                     section.GetAttribute("eId"), headings.Count);
@@ -692,7 +582,6 @@ class Helper : BaseHelper {
                 }
             }
 
-            // Now ensure the remaining heading is in the right position
             var heading = section.SelectSingleNode("akn:heading", nsmgr);
             if (heading == null) {
                 continue;
@@ -700,23 +589,19 @@ class Helper : BaseHelper {
 
             var num = section.SelectSingleNode("akn:num", nsmgr);
             
-            // Get the first non-text child
             XmlNode firstElement = section.FirstChild;
             while (firstElement != null && firstElement.NodeType == XmlNodeType.Text) {
                 firstElement = firstElement.NextSibling;
             }
 
-            // Heading should be the first element (or after num if present)
             bool needsMove = false;
             if (num != null) {
-                // heading should be immediately after num
                 var afterNum = num.NextSibling;
                 while (afterNum != null && afterNum.NodeType == XmlNodeType.Text) {
                     afterNum = afterNum.NextSibling;
                 }
                 needsMove = afterNum != heading;
             } else {
-                // heading should be first element
                 needsMove = firstElement != heading;
             }
 
@@ -733,7 +618,7 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Phase 10: Fix nested anchor elements
+    /// Fix nested anchor elements
     /// AKN 3.0 does not allow nested &lt;a&gt; elements.
     /// This flattens nested anchors by unwrapping inner anchors.
     /// </summary>
@@ -742,7 +627,6 @@ class Helper : BaseHelper {
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         var logger = Logging.Factory.CreateLogger<Helper>();
 
-        // Find all anchor elements that contain other anchor elements
         var nestedAnchors = xml.SelectNodes("//akn:a//akn:a", nsmgr);
         
         if (nestedAnchors.Count == 0) {
@@ -751,14 +635,9 @@ class Helper : BaseHelper {
 
         logger.LogInformation("Found {Count} nested anchor elements to fix", nestedAnchors.Count);
 
-        // Process from innermost to outermost to avoid issues with node removal
-        var anchorsToFix = new List<XmlElement>();
-        foreach (XmlElement anchor in nestedAnchors) {
-            anchorsToFix.Add(anchor);
-        }
+        var anchorsToFix = nestedAnchors.Cast<XmlElement>().ToList();
 
         foreach (var innerAnchor in anchorsToFix) {
-            // Check if still nested (might have been fixed by previous iteration)
             var parent = innerAnchor.ParentNode;
             bool isStillNested = false;
             while (parent != null) {
@@ -773,7 +652,6 @@ class Helper : BaseHelper {
                 continue;
             }
 
-            // Unwrap the inner anchor - replace it with its contents
             var parentNode = innerAnchor.ParentNode;
             while (innerAnchor.HasChildNodes) {
                 parentNode.InsertBefore(innerAnchor.FirstChild, innerAnchor);
@@ -783,7 +661,7 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Phase 11: Generate table of contents from sections with headings
+    /// Generate table of contents from sections with headings
     /// Creates a toc element with tocItem entries linking to each section using full URLs
     /// </summary>
     private static void GenerateTableOfContents(XmlDocument xml) {
@@ -796,20 +674,17 @@ class Helper : BaseHelper {
             return;
         }
 
-        // Get base URI from FRBRExpression for constructing full URLs
         var expressionUri = xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRuri/@value", nsmgr)?.Value;
         if (string.IsNullOrEmpty(expressionUri)) {
             logger.LogWarning("No FRBRExpression URI found, using fragment references for TOC");
         }
 
-        // Find all sections with headings (skip section_1 which is typically the header table)
         var sectionsWithHeadings = xml.SelectNodes("//akn:mainBody/akn:section[akn:heading and @eId!='section_1']", nsmgr);
         if (sectionsWithHeadings == null || sectionsWithHeadings.Count == 0) {
             logger.LogDebug("No sections with headings found, skipping TOC generation");
             return;
         }
 
-        // Create toc element
         var toc = xml.CreateElement("toc", AKN_NAMESPACE);
         
         foreach (XmlElement section in sectionsWithHeadings) {
@@ -820,21 +695,17 @@ class Helper : BaseHelper {
                 continue;
             }
 
-            // Get heading text (may contain inline elements, so use InnerText)
             string headingText = heading.InnerText?.Trim();
             if (string.IsNullOrEmpty(headingText)) {
                 continue;
             }
 
-            // Truncate very long headings for TOC display
             if (headingText.Length > 100) {
                 headingText = headingText.Substring(0, 97) + "...";
             }
 
-            // Extract section number from eId (e.g., "section_2" -> "2")
             string sectionNumber = eId.Replace("section_", "");
 
-            // Build full URL for href
             string href;
             if (!string.IsNullOrEmpty(expressionUri)) {
                 href = $"{expressionUri}/section/{sectionNumber}";
@@ -842,13 +713,10 @@ class Helper : BaseHelper {
                 href = "#" + eId;
             }
 
-            // Create tocItem with required attributes
             var tocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
             tocItem.SetAttribute("href", href);
             tocItem.SetAttribute("level", "1");
             
-            // Add inline element with tocHeading (matches legislation.gov.uk format)
-            // Note: IAs don't have meaningful section numbers, so we skip tocNum
             var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
             inlineHeading.SetAttribute("name", "tocHeading");
             inlineHeading.InnerText = headingText;
@@ -857,9 +725,7 @@ class Helper : BaseHelper {
             toc.AppendChild(tocItem);
         }
 
-        // Only add TOC if we have entries
         if (toc.HasChildNodes) {
-            // Insert TOC after the first section (which is typically the header)
             var firstSection = mainBody.SelectSingleNode("akn:section[1]", nsmgr);
             if (firstSection != null && firstSection.NextSibling != null) {
                 mainBody.InsertBefore(toc, firstSection.NextSibling);

@@ -279,6 +279,20 @@ class Builder : AkN.Builder {
         return null;
     }
 
+    protected override void Block(XmlElement parent, IBlock block) {
+        if (block is IOldNumberedParagraph np && 
+            (parent.LocalName == "td" || parent.LocalName == "th")) {
+            XmlElement p = doc.CreateElement("p", ns);
+            parent.AppendChild(p);
+            if (np.Number is not null && !string.IsNullOrWhiteSpace(np.Number.Text)) {
+                p.AppendChild(doc.CreateTextNode(np.Number.Text + " "));
+            }
+            foreach (IInline inline in np.Contents)
+                AddInline(p, inline);
+        } else {
+            base.Block(parent, block);
+        }
+    }
 
     /* annexes */
 
