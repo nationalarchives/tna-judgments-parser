@@ -167,8 +167,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static readonly LanguagePatterns HeadingPatterns = new()
         {
-            [Lang.ENG] = [@"^EXPLANATORY +NOTE$"],
-            [Lang.CYM] = [@"^NODYN +ESBONIADOL"]
+            [Lang.EN] = [@"^EXPLANATORY +NOTE$"],
+            [Lang.CY] = [@"^NODYN +ESBONIADOL"]
         };
 
         public static bool IsHeading(LanguageService langService, IBlock? block)
@@ -205,8 +205,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private static readonly LanguagePatterns HeadingPatterns = new()
         {
-            [Lang.ENG] = [@"^NOTE +AS +TO +EARLIER +COMMENCEMENT.*$"],
-            [Lang.CYM] = [@"^NODYN +AM +Y +(RHEOLIADAU|GORCHMYNION|GORCHYMYN) +CYCHWYN +(CYNHARACH|BLAENOROL)$"]
+            [Lang.EN] = [@"^NOTE +AS +TO +EARLIER +COMMENCEMENT.*$"],
+            [Lang.CY] = [@"^NODYN +AM +Y +(RHEOLIADAU|GORCHMYNION|GORCHYMYN) +CYCHWYN +(CYNHARACH|BLAENOROL)$"]
         };
 
         public static bool IsHeading(LanguageService langService, IBlock? block)

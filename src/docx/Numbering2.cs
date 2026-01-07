@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
@@ -20,6 +21,116 @@ readonly struct NumberInfo {
 class Numbering2 {
 
     private static ILogger logger = Logging.Factory.CreateLogger<DOCX.Numbering2>();
+
+    private sealed class ParagraphOrderCacheEntry {
+        internal Paragraph[] Paragraphs { get; }
+        internal Dictionary<Paragraph, int> Indices { get; }
+
+        internal ParagraphOrderCacheEntry(MainDocumentPart main) {
+            Paragraphs = main.Document?.Descendants<Paragraph>().ToArray() ?? Array.Empty<Paragraph>();
+            Indices = new Dictionary<Paragraph, int>(ReferenceEqualityComparer<Paragraph>.Instance);
+            for (int i = 0; i < Paragraphs.Length; i++)
+                Indices[Paragraphs[i]] = i;
+        }
+    }
+
+    private sealed class ParagraphMetadata {
+        internal bool NumberingCached;
+        internal int? NumberingId;
+        internal int Ilvl;
+
+        internal bool StyleCached;
+        internal Style? Style;
+
+        internal bool StyleNumberingCached;
+        internal int? StyleNumberingId;
+
+        internal bool SkipFlagsCached;
+        internal bool ShouldSkip;
+    }
+
+    private static readonly ConditionalWeakTable<MainDocumentPart, ParagraphOrderCacheEntry> ParagraphOrderCache = new();
+    private static readonly ConditionalWeakTable<Paragraph, ParagraphMetadata> ParagraphMetadataCache = new();
+
+    private sealed class ReferenceEqualityComparer<T> : IEqualityComparer<T>
+        where T : class {
+        internal static readonly ReferenceEqualityComparer<T> Instance = new ReferenceEqualityComparer<T>();
+
+        public bool Equals(T? x, T? y) => ReferenceEquals(x, y);
+
+        public int GetHashCode(T obj) => RuntimeHelpers.GetHashCode(obj);
+    }
+
+    private static IEnumerable<Paragraph> EnumeratePreviousParagraphs(MainDocumentPart main, Paragraph paragraph) {
+        if (TryGetParagraphSequence(main, paragraph, out Paragraph[] paragraphs, out int stopExclusive)) {
+            for (int i = 0; i < stopExclusive; i++)
+                yield return paragraphs[i];
+            yield break;
+        }
+
+        foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>()) {
+            if (ReferenceEquals(prev, paragraph))
+                yield break;
+            yield return prev;
+        }
+    }
+
+    private static bool TryGetParagraphSequence(MainDocumentPart main, Paragraph paragraph, out Paragraph[] paragraphs, out int stopExclusive) {
+        ParagraphOrderCacheEntry entry = ParagraphOrderCache.GetValue(main, static part => new ParagraphOrderCacheEntry(part));
+        if (entry.Indices.TryGetValue(paragraph, out int idx)) {
+            paragraphs = entry.Paragraphs;
+            stopExclusive = idx;
+            return true;
+        }
+        paragraphs = Array.Empty<Paragraph>();
+        stopExclusive = 0;
+        return false;
+    }
+
+    private static ParagraphMetadata GetParagraphMetadata(Paragraph paragraph) {
+        return ParagraphMetadataCache.GetValue(paragraph, static _ => new ParagraphMetadata());
+    }
+
+    private static (int? numId, int ilvl) GetCachedNumbering(MainDocumentPart main, Paragraph paragraph) {
+        ParagraphMetadata metadata = GetParagraphMetadata(paragraph);
+        if (!metadata.NumberingCached) {
+            (metadata.NumberingId, metadata.Ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
+            metadata.NumberingCached = true;
+        }
+        return (metadata.NumberingId, metadata.Ilvl);
+    }
+
+    private static Style? GetCachedStyle(MainDocumentPart main, Paragraph paragraph) {
+        ParagraphMetadata metadata = GetParagraphMetadata(paragraph);
+        if (!metadata.StyleCached) {
+            metadata.Style = Styles.GetStyle(main, paragraph);
+            metadata.StyleCached = true;
+        }
+        return metadata.Style;
+    }
+
+    private static int? GetCachedStyleNumberingId(MainDocumentPart main, Paragraph paragraph) {
+        ParagraphMetadata metadata = GetParagraphMetadata(paragraph);
+        if (!metadata.StyleNumberingCached) {
+            metadata.StyleNumberingId = Styles.GetStyleProperty(
+                GetCachedStyle(main, paragraph),
+                s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
+            metadata.StyleNumberingCached = true;
+        }
+        return metadata.StyleNumberingId;
+    }
+
+    private static bool ShouldSkipHistoryParagraph(Paragraph paragraph) {
+        ParagraphMetadata metadata = GetParagraphMetadata(paragraph);
+        if (!metadata.SkipFlagsCached) {
+            bool skip = Paragraphs.IsDeleted(paragraph)
+                || Paragraphs.IsEmptySectionBreak(paragraph)
+                || Paragraphs.IsMergedWithFollowing(paragraph);
+            metadata.ShouldSkip = skip;
+            metadata.SkipFlagsCached = true;
+        }
+        return metadata.ShouldSkip;
+    }
 
     public static bool HasOwnNumber(Paragraph paragraph) {
         MainDocumentPart main = Main.Get(paragraph);
@@ -44,7 +155,7 @@ class Numbering2 {
         if (numId.HasValue && numId.Value == 0)
             return false;
         var main = Main.Get(paragraph);
-        Style style = Styles.GetStyle(main, paragraph);
+        Style style = GetCachedStyle(main, paragraph);
         if (style is null)
             style = Styles.GetDefaultParagraphStyle(main);
         if (style is null)
@@ -53,48 +164,17 @@ class Numbering2 {
         return numId.HasValue && numId.Value != 0;
     }
 
-    private static readonly string AttrPrefix = "uk";
-    private static readonly string AttrLocalName = "number";
-    private static readonly string AttrNamespace = "https://caselaw.nationalarchives.gov.uk/";
-
-    private static string GetCachedNumberQuietly(Paragraph paragraph) {
-        foreach (OpenXmlAttribute attr in paragraph.GetAttributes()) {
-            if (attr.LocalName != AttrLocalName)
-                continue;
-            if (attr.NamespaceUri != AttrNamespace)
-                continue;
-            return attr.Value;
-        }
-        return null;
-    }
-    private static void SetCachedNumber(Paragraph paragraph, string number) {
-        OpenXmlAttribute attr = new (AttrPrefix, AttrLocalName, AttrNamespace, number ?? "");
-        paragraph.SetAttribute(attr);
-    }
-
     public static NumberInfo? GetFormattedNumber(MainDocumentPart main, Paragraph paragraph) {
 
-        string cached = GetCachedNumberQuietly(paragraph);
-        if (cached is not null && cached == "")
-            return null;
-
         (int? numId, int ilvl) = Numbering.GetNumberingIdAndIlvl(main, paragraph);
-        if (!numId.HasValue) {
-            SetCachedNumber(paragraph, "");
+        if (!numId.HasValue)
             return null;
-        }
 
         Level level = Numbering.GetLevel(main, numId.Value, ilvl);
 
-        string formatted;
-        if (cached is null) {
-            formatted = Magic2(main, paragraph, numId.Value, ilvl);
-            SetCachedNumber(paragraph, formatted);
-            if (string.IsNullOrEmpty(formatted))
-                return null;
-        } else {
-            formatted = cached;
-        }
+        string formatted = Magic2(main, paragraph, numId.Value, ilvl);
+        if (string.IsNullOrEmpty(formatted))
+            return null;
 
         return new NumberInfo() { Number = formatted, Props = level.NumberingSymbolRunProperties };
     }
@@ -194,59 +274,59 @@ class Numbering2 {
         Match match = Regex.Match(format.Val.Value, "^%(\\d)$");
         if (match.Success) {
             OneCombinator combine = num => num;
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return One(main, paragraph, numberingId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.$");
         if (match.Success) {
             OneCombinator combine = num => num + ".";
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return One(main, paragraph, numberingId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\. $");   // EWHC/Comm/2012/1065
         if (match.Success) {
             OneCombinator combine = num => num + ". ";
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return One(main, paragraph, numberingId, match, combine);
         }
         match = Regex.Match(format.Val.Value, "^\\(%(\\d)\\)$");
         if (match.Success) {
             OneCombinator combine = num => "(" + num + ")";
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return One(main, paragraph, numberingId, match, combine);
         }
         match = Regex.Match(format.Val.Value, "^%(\\d)\\)$");
         if (match.Success) {
             OneCombinator combine = num => num + ")";
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return One(main, paragraph, numberingId, match, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.\)$");   // EWCA/Civ/2013/1686
         if (match.Success) {
             OneCombinator combine = num => num + ".)";
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return One(main, paragraph, numberingId, match, combine);
         }
         match = Regex.Match(format.Val.Value, "^\"%(\\d)\\)$");   // EWCA/Civ/2006/939
         if (match.Success) {
             OneCombinator combine = num => "\"" + num + ")";
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return One(main, paragraph, numberingId, match, combine);
         }
         match = Regex.Match(format.Val.Value, "^\\(%(\\d)\\)\\.$"); // EWCA/Civ/2012/1411
         if (match.Success) {
             OneCombinator combine = num => "(" + num + ").";
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return One(main, paragraph, numberingId, match, combine);
         }
         match = Regex.Match(format.Val.Value, "^\\(%(\\d)\\.\\)$"); // EWCA/Crim/2005/1986
         if (match.Success) {
             OneCombinator combine = num => "(" + num + ".)";
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return One(main, paragraph, numberingId, match, combine);
         }
         match = Regex.Match(format.Val.Value, "^\\(%(\\d)a\\)$");
         if (match.Success) {
             OneCombinator combine = num => "(" + num + "a)";
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return One(main, paragraph, numberingId, match, combine);
         }
         
         match = Regex.Match(format.Val.Value, @"^%(\d+)([^%]+)$");   // EWHC/Ch/2017/3634
         if (match.Success) {
             string suffix = match.Groups[2].Value;
             OneCombinator combine = num => num + suffix;
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return One(main, paragraph, numberingId, match, combine);
         }
         // match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)$");   // EWHC/Admin/2015/3437
         // if (match.Success) {
@@ -271,43 +351,43 @@ class Numbering2 {
             int ilvl2 = int.Parse(match.Groups[4].Value) - 1;
             string suffix = match.Groups[5].Value;
             TwoCombinator combine = (num1, num2) => { return prefix + num1 + middle + num2 + suffix; };
-            return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl1, ilvl2, combine);
+            return Two(main, paragraph, numberingId, ilvl1, ilvl2, combine);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)$");
         if (match.Success) {
             ThreeCombinator three = (num1, num2, num3) => { return num1 + "." + num2 + "." + num3; };
-            return Three(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, three);
+            return Three(main, paragraph, numberingId, match, three);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)[\.)]$");
         if (match.Success) {
             char last = format.Val.Value[^1];
             string three(string num1, string num2, string num3) { return num1 + "." + num2 + "." + num3 + last; }
-            return Three(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, three);
+            return Three(main, paragraph, numberingId, match, three);
         }
         match = Regex.Match(format.Val.Value, @"^\(%(\d)\.%(\d)\.%(\d)$");  // EWHC/Admin/2010/3192
         if (match.Success) {
             ThreeCombinator three = (num1, num2, num3) => "(" + num1 + "." + num2 + "." + num3;
-            return Three(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, three);
+            return Three(main, paragraph, numberingId, match, three);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)\.%(\d)$");
         if (match.Success) {
             FourCombinator four = (num1, num2, num3, num4) => { return num1 + "." + num2 + "." + num3 + "." + num4; };
-            return Four(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, four);
+            return Four(main, paragraph, numberingId,  match, four);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)-%(\d)-%(\d)-%(\d)$");
         if (match.Success) {
             FourCombinator four = (num1, num2, num3, num4) => { return num1 + "-" + num2 + "-" + num3 + "-" + num4; };
-            return Four(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, four);
+            return Four(main, paragraph, numberingId, match, four);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)\.%(\d)\.$");
         if (match.Success) {
             FourCombinator four = (num1, num2, num3, num4) => { return num1 + "." + num2 + "." + num3 + "." + num4 + "."; };
-            return Four(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, four);
+            return Four(main, paragraph, numberingId, match, four);
         }
         match = Regex.Match(format.Val.Value, @"^%(\d)\.%(\d)\.%(\d)\.%(\d)\.%(\d)(\.)?$");
         if (match.Success) {
             FiveCombinator combine = (num1, num2, num3, num4, num5) => { return num1 + "." + num2 + "." + num3 + "." + num4 + "." + num5 + match.Groups[6].Value; };
-            return Five(main, paragraph, numberingId, baseIlvl, abstractNumberId, match, combine);
+            return Five(main, paragraph, numberingId, match, combine);
         }
 
         match = Regex.Match(format.Val.Value, @"^([^%]+)%(\d)$");    // EWHC/Comm/2015/150
@@ -315,7 +395,7 @@ class Numbering2 {
             string prefix = match.Groups[1].Value;
             int ilvl = int.Parse(match.Groups[2].Value) - 1;
             OneCombinator combine = (num) => { return prefix + num; };
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl, combine);
+            return One(main, paragraph, numberingId, ilvl, combine);
         }
         match = Regex.Match(format.Val.Value, @"^([^%]+)%(\d+)([^%]+)$");    // EWHC/Ch/2012/1411
         if (match.Success) {
@@ -323,13 +403,13 @@ class Numbering2 {
             int ilvl = int.Parse(match.Groups[2].Value) - 1;
             string suffix = match.Groups[3].Value;
             OneCombinator combine = num => prefix + num + suffix;
-            return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl, combine);
+            return One(main, paragraph, numberingId, ilvl, combine);
         }
 
         throw new Exception("unsupported level text: " + format.Val.Value);
     }
 
-    private static int GetAbstractStart(MainDocumentPart main, int absNumId, int ilvl) {
+    internal static int GetAbstractStart(MainDocumentPart main, int absNumId, int ilvl) {
         AbstractNum abs = main.NumberingDefinitionsPart.Numbering.ChildElements
             .OfType<AbstractNum>()
             .Where(a => a.AbstractNumberId.Value == absNumId)
@@ -341,7 +421,7 @@ class Numbering2 {
         return level?.StartNumberingValue?.Val ?? 1;
     }
 
-    private static int GetStart(MainDocumentPart main, int numberingId, int ilvl) {
+    internal static int GetStart(MainDocumentPart main, int numberingId, int ilvl) {
         NumberingInstance numbering = Numbering.GetNumbering(main, numberingId);
         int? start = numbering.Descendants<Level>()
             .Where(l => l.LevelIndex.Value == ilvl)
@@ -356,41 +436,30 @@ class Numbering2 {
 
     private delegate string OneCombinator(string num1);
 
-    private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, OneCombinator combine) {
+    private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, Match match, OneCombinator combine) {
         int ilvl = int.Parse(match.Groups[1].Value) - 1;
-        return One(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl, combine);
+        return One(main, paragraph, numberingId, ilvl, combine);
     }
-    private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, int ilvl, OneCombinator combine) {
+    private static string One(MainDocumentPart main, Paragraph paragraph, int numberingId, int ilvl, OneCombinator combine) {
         Level lvl = Numbering.GetLevel(main, numberingId, ilvl);
-        int n = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl);
-        n += Fields.CountPrecedingParagraphsWithListNum(numberingId, ilvl, paragraph);
+        int n = CalculateN(main, paragraph, ilvl);
         string num = FormatN(n, lvl.NumberingFormat);
         return combine(num);
     }
 
     private delegate string TwoCombinator(string num1, string num2);
 
-    private static string Two(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, TwoCombinator combine) {
+    private static string Two(MainDocumentPart main, Paragraph paragraph, int numberingId, Match match, TwoCombinator combine) {
         int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
         int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
-        return Two(main, paragraph, numberingId, baseIlvl, abstractNumberId, ilvl1, ilvl2, combine);
+        return Two(main, paragraph, numberingId, ilvl1, ilvl2, combine);
     }
 
-    private static string Two(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, int ilvl1, int ilvl2, TwoCombinator combine) {
+    private static string Two(MainDocumentPart main, Paragraph paragraph, int numberingId, int ilvl1, int ilvl2, TwoCombinator combine) {
         Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
-        int start1 = GetStart(main, numberingId, ilvl1);
-        int start2 = GetStart(main, numberingId, ilvl2);
-        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
-        if (ilvl1 < baseIlvl && n1 > start1)
-            n1 -= 1;
-        else if (ilvl1 > baseIlvl)
-            throw new Exception();
-        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2);
-        if (ilvl2 < baseIlvl && n2 > start2)
-            n2 -= 1;
-        else if (ilvl2 > baseIlvl)
-            throw new Exception();
+        int n1 = CalculateN(main, paragraph, ilvl1);
+        int n2 = CalculateN(main, paragraph, ilvl2);
         string num1 = FormatN(n1, lvl1.NumberingFormat);
         string num2 = FormatN(n2, lvl2.NumberingFormat);
         return combine(num1, num2);
@@ -398,31 +467,16 @@ class Numbering2 {
 
     private delegate string ThreeCombinator(string num1, string num2, string num3);
 
-    private static string Three(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, ThreeCombinator combine) {
+    private static string Three(MainDocumentPart main, Paragraph paragraph, int numberingId, Match match, ThreeCombinator combine) {
         int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
         int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
         int ilvl3 = int.Parse(match.Groups[3].Value) - 1;
         Level lvl1 = Numbering.GetLevel(main, numberingId, ilvl1);
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
         Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
-        int start1 = GetStart(main, numberingId, ilvl1);
-        int start2 = GetStart(main, numberingId, ilvl2);
-        int start3 = GetStart(main, numberingId, ilvl3);
-        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
-        if (ilvl1 < baseIlvl && n1 > start1)
-            n1 -= 1;
-        else if (ilvl1 > baseIlvl)
-            throw new Exception();
-        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2, true);
-        if (ilvl2 < baseIlvl && n2 > start2)
-            n2 -= 1;
-        else if (ilvl2 > baseIlvl)
-            throw new Exception();
-        int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3);
-        if (ilvl3 < baseIlvl && n3 > start3)
-            n3 -= 1;
-        else if (ilvl3 > baseIlvl)
-            throw new Exception();
+        int n1 = CalculateN(main, paragraph, ilvl1);
+        int n2 = CalculateN(main, paragraph, ilvl2);
+        int n3 = CalculateN(main, paragraph, ilvl3);
         string num1 = FormatN(n1, lvl1.NumberingFormat);
         string num2 = FormatN(n2, lvl2.NumberingFormat);
         string num3 = FormatN(n3, lvl3.NumberingFormat);
@@ -431,7 +485,7 @@ class Numbering2 {
 
     private delegate string FourCombinator(string num1, string num2, string num3, string num4);
 
-    private static string Four(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, FourCombinator combine) {
+    private static string Four(MainDocumentPart main, Paragraph paragraph, int numberingId, Match match, FourCombinator combine) {
         int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
         int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
         int ilvl3 = int.Parse(match.Groups[3].Value) - 1;
@@ -440,30 +494,10 @@ class Numbering2 {
         Level lvl2 = Numbering.GetLevel(main, numberingId, ilvl2);
         Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
         Level lvl4 = Numbering.GetLevel(main, numberingId, ilvl4);
-        int start1 = GetStart(main, numberingId, ilvl1);
-        int start2 = GetStart(main, numberingId, ilvl2);
-        int start3 = GetStart(main, numberingId, ilvl3);
-        int start4 = GetStart(main, numberingId, ilvl4);
-        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
-        if (ilvl1 < baseIlvl && n1 > start1)
-            n1 -= 1;
-        else if (ilvl1 > baseIlvl)
-            throw new Exception();
-        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2, true);
-        if (ilvl2 < baseIlvl && n2 > start2)
-            n2 -= 1;
-        else if (ilvl2 > baseIlvl)
-            throw new Exception();
-        int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3, true);
-        if (ilvl3 < baseIlvl && n3 > start3)
-            n3 -= 1;
-        else if (ilvl3 > baseIlvl)
-            throw new Exception();
-        int n4 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl4);
-        if (ilvl4 < baseIlvl && n4 > start4)
-            n4 -= 1;
-        else if (ilvl4 > baseIlvl)
-            throw new Exception();
+        int n1 = CalculateN(main, paragraph, ilvl1);
+        int n2 = CalculateN(main, paragraph, ilvl2);
+        int n3 = CalculateN(main, paragraph, ilvl3);
+        int n4 = CalculateN(main, paragraph, ilvl4);
         string num1 = FormatN(n1, lvl1.NumberingFormat);
         string num2 = FormatN(n2, lvl2.NumberingFormat);
         string num3 = FormatN(n3, lvl3.NumberingFormat);
@@ -473,7 +507,7 @@ class Numbering2 {
 
     private delegate string FiveCombinator(string num1, string num2, string num3, string num4, string num5);
 
-    private static string Five(MainDocumentPart main, Paragraph paragraph, int numberingId, int baseIlvl, Int32Value abstractNumberId, Match match, FiveCombinator combine) {
+    private static string Five(MainDocumentPart main, Paragraph paragraph, int numberingId, Match match, FiveCombinator combine) {
         int ilvl1 = int.Parse(match.Groups[1].Value) - 1;
         int ilvl2 = int.Parse(match.Groups[2].Value) - 1;
         int ilvl3 = int.Parse(match.Groups[3].Value) - 1;
@@ -484,36 +518,11 @@ class Numbering2 {
         Level lvl3 = Numbering.GetLevel(main, numberingId, ilvl3);
         Level lvl4 = Numbering.GetLevel(main, numberingId, ilvl4);
         Level lvl5 = Numbering.GetLevel(main, numberingId, ilvl5);
-        int start1 = GetStart(main, numberingId, ilvl1);
-        int start2 = GetStart(main, numberingId, ilvl2);
-        int start3 = GetStart(main, numberingId, ilvl3);
-        int start4 = GetStart(main, numberingId, ilvl4);
-        int start5 = GetStart(main, numberingId, ilvl5);
-        int n1 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl1, true);
-        if (ilvl1 < baseIlvl && n1 > start1)
-            n1 -= 1;
-        else if (ilvl1 > baseIlvl)
-            throw new Exception();
-        int n2 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl2, true);
-        if (ilvl2 < baseIlvl && n2 > start2)
-            n2 -= 1;
-        else if (ilvl2 > baseIlvl)
-            throw new Exception();
-        int n3 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl3, true);
-        if (ilvl3 < baseIlvl && n3 > start3)
-            n3 -= 1;
-        else if (ilvl3 > baseIlvl)
-            throw new Exception();
-        int n4 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl4);
-        if (ilvl4 < baseIlvl && n4 > start4)
-            n4 -= 1;
-        else if (ilvl4 > baseIlvl)
-            throw new Exception();
-        int n5 = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl5);
-        if (ilvl5 < baseIlvl && n5 > start5)
-            n5 -= 1;
-        else if (ilvl5 > baseIlvl)
-            throw new Exception();
+        int n1 = CalculateN(main, paragraph, ilvl1);
+        int n2 = CalculateN(main, paragraph, ilvl2);
+        int n3 = CalculateN(main, paragraph, ilvl3);
+        int n4 = CalculateN(main, paragraph, ilvl4);
+        int n5 = CalculateN(main, paragraph, ilvl5);
         string num1 = FormatN(n1, lvl1.NumberingFormat);
         string num2 = FormatN(n2, lvl2.NumberingFormat);
         string num3 = FormatN(n3, lvl3.NumberingFormat);
@@ -582,7 +591,7 @@ class Numbering2 {
         throw new Exception("unsupported level text: " + lvlText);
     }
 
-    private static int? GetStartOverride(MainDocumentPart main, int numberingId, int ilvl) {
+    internal static int? GetStartOverride(MainDocumentPart main, int numberingId, int ilvl) {
         NumberingInstance numbering = Numbering.GetNumbering(main, numberingId);
         return GetStartOverride(numbering, ilvl);
     }
@@ -593,6 +602,7 @@ class Numbering2 {
         return over?.StartOverrideNumberingValue?.Val?.Value;
     }
 
+    [Obsolete]
     private static bool StartOverrideIsOperative(MainDocumentPart main, Paragraph target, int ilvl) {
         (int? targetNumId, int targetIlvl) = Numbering.GetNumberingIdAndIlvl(main, target);
         if (!targetNumId.HasValue)
@@ -606,7 +616,7 @@ class Numbering2 {
         foreach (Paragraph prev in allPrev) {
             // if (Paragraphs.IsEmptySectionBreak(prev))
             //     continue;
-            (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
+            (int? prevNumId, int prevIlvl) = GetCachedNumbering(main, prev);
             if (!prevNumId.HasValue)
                 continue;
             NumberingInstance prevNumbering = Numbering.GetNumbering(main, prevNumId.Value);
@@ -635,6 +645,7 @@ class Numbering2 {
         return true;
     }
 
+    [Obsolete]
     class StartAccumulator {
 
         private readonly Dictionary<int, Dictionary<int, int>> Map = new();
@@ -656,12 +667,17 @@ class Numbering2 {
 
     }
 
+    internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int ilvl) {
+        return Numbering3.CalculateN(main, paragraph, ilvl);
+    }
+
+    [Obsolete]
     /// <param name="isHigher">whether the number to be calculated is a higher-level component, such as the 1 in 1.2</param>
-    internal static int CalculateN(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher = false) {
+    internal static int LegacyCalculateN_KeptForDocumentationPurposesOnly(MainDocumentPart main, Paragraph paragraph, int numberingId, int abstractNumId, int ilvl, bool isHigher = false) {
 
         int? thisNumIdWithoutStyle = paragraph.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
-        int? thisNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, paragraph), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
-        Style thisStyle = Styles.GetStyle(main, paragraph);
+        int? thisNumIdOfStyle = GetCachedStyleNumberingId(main, paragraph);
+        Style thisStyle = GetCachedStyle(main, paragraph);
 
         int? start = null;
         int numIdOfStartOverride = -1;
@@ -682,13 +698,9 @@ class Numbering2 {
         var prevStarts = new StartAccumulator();
         int count = 0;
 
-        foreach (Paragraph prev in paragraph.Root().Descendants<Paragraph>().TakeWhile(p => !object.ReferenceEquals(p, paragraph))) {
+        foreach (Paragraph prev in EnumeratePreviousParagraphs(main, paragraph)) {
 
-            if (Paragraphs.IsDeleted(prev))
-                continue;
-            if (Paragraphs.IsEmptySectionBreak(prev))
-                continue;
-            if (Paragraphs.IsMergedWithFollowing(prev))
+            if (ShouldSkipHistoryParagraph(prev))
                 continue;
             (int? prevNumId, int prevIlvl) = Numbering.GetNumberingIdAndIlvl(main, prev);
             if (!prevNumId.HasValue)
@@ -714,8 +726,8 @@ class Numbering2 {
                 continue;
 
             int? prevNumIdWithoutStyle = prev.ParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value;
-            int? prevNumIdOfStyle = Styles.GetStyleProperty(Styles.GetStyle(main, prev), s => s.StyleParagraphProperties?.NumberingProperties?.NumberingId?.Val?.Value);
-            Style prevStyle =  Styles.GetStyle(main, prev);
+            int? prevNumIdOfStyle = GetCachedStyleNumberingId(main, prev);
+            Style prevStyle =  GetCachedStyle(main, prev);
 
             if (prevIlvl < ilvl) {
                 if (numIdOfStartOverride == -2) {
@@ -901,7 +913,7 @@ class Numbering2 {
             if (ilvl != baseIlvl)
                 throw new Exception();
             Level lvl = Numbering.GetLevel(main, numberingId, ilvl);    // this is redundant
-            int n = CalculateN(main, paragraph, numberingId, abstractNumberId, ilvl);
+            int n = CalculateN(main, paragraph, ilvl);
             n -= 1;
             string num = FormatN(n, lvl.NumberingFormat);
             return num + ".";

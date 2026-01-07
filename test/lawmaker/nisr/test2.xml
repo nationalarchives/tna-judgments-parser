@@ -8,7 +8,7 @@
       </references>
     </meta>
     <coverPage />
-    <preface>
+    <preface eId="fnt">
       <block name="proceduralRubric">Draft Regulations laid before the Assembly under sections 21(2) and 40(2) of the Legal Complaints and Regulation Act (Northern Ireland) 2016 for approval</block>
       <block name="banner">DRAFT STATUTORY RULES OF NORTHERN IRELAND</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
@@ -18,6 +18,10 @@
         </container>
       </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="9999-01-01" /></block>
+        <block eId="fnt__dates___commenceDateDescription" name="commenceDate"><span>Coming into operation xxxx 2025</span><docDate date="9999-01-01" /></block>
+      </container>
     </preface>
     <preamble eId="preamble">
       <formula name="enactingText">

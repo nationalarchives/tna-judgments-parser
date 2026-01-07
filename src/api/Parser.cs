@@ -22,25 +22,22 @@ using AttachmentPair1 = System.Tuple<DocumentFormat.OpenXml.Packaging.Wordproces
 using OptimizedParseFunction = System.Func<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.Parse.Judgment>;
 using UK.Gov.Legislation.Judgments.Parse;
 
-namespace UK.Gov.NationalArchives.Judgments.Api {
+namespace UK.Gov.NationalArchives.Judgments.Api;
 
 public enum Hint { UKSC, EWCA, EWHC, UKUT, Judgment, PressSummary }
 
-public class InvalidAkNException : System.Exception {
+public class InvalidAkNException : Exception {
 
     public InvalidAkNException(ValidationEventArgs cause) : base(cause.Message, cause.Exception) { }
 }
 
-public class Parser {
-
-    private static ILogger Logger = Logging.Factory.CreateLogger<Parser>();
-    private static AkN.Validator validator = new AkN.Validator();
-
+public class Parser(ILogger<Parser> logger, AkN.IValidator validator)
+{
     /// <exception cref="InvalidAkNException"></exception>
-    public static Response Parse(Request request) {
+    public Response Parse(Request request) {
 
         if (request.Filename is not null)
-            Logger.LogInformation($"parsing { request.Filename }");
+            logger.LogInformation($"parsing { request.Filename }");
 
         ParseFunction parse = GetParser(request.Hint);
 
@@ -68,7 +65,7 @@ public class Parser {
         };
     }
 
-    private static ParseFunction GetParser(Hint? hint) {
+    private ParseFunction GetParser(Hint? hint) {
         if (!hint.HasValue)
             return JudgmentOrPressSummary;
         if (hint.Value == Hint.Judgment)
@@ -85,7 +82,7 @@ public class Parser {
     }
 
     private static ParseFunction Wrap(OptimizedParseFunction f) {
-        return (byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) => {
+        return (docx, meta, attachments) => {
             WordprocessingDocument doc = AkN.Parser.Read(docx);
             WordDocument preParsed = new PreParser().Parse(doc);
             IEnumerable<AttachmentPair1> attach2 = AkN.Parser.ConvertAttachments(attachments);
@@ -94,14 +91,14 @@ public class Parser {
         };
     }
 
-    private static AkN.ILazyBundle ParseAnyJudgment(byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
+    private AkN.ILazyBundle ParseAnyJudgment(byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
         WordprocessingDocument doc = AkN.Parser.Read(docx);
         WordDocument preParsed = new PreParser().Parse(doc);
         IJudgment judgment = BestJudgment(preParsed, meta, attachments);
         return new AkN.Bundle(doc, judgment);
     }
 
-    private static Judgment BestJudgment(WordDocument preParsed, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
+    private Judgment BestJudgment(WordDocument preParsed, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
         IEnumerable<AttachmentPair1> attach2 = AkN.Parser.ConvertAttachments(attachments);
         OptimizedParseFunction first = OptimizedEWHCParser.Parse;
         List<OptimizedParseFunction> others = new List<OptimizedParseFunction>(2) {
@@ -125,7 +122,7 @@ public class Parser {
         return judgment1;
     }
 
-    private static AkN.ILazyBundle JudgmentOrPressSummary(byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
+    private AkN.ILazyBundle JudgmentOrPressSummary(byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
         WordprocessingDocument doc = AkN.Parser.Read(docx);
         WordDocument preParsed = new PreParser().Parse(doc);
 
@@ -159,7 +156,7 @@ public class Parser {
         return score;
     }
 
-    private static AkN.ILazyBundle ParsePressSummary(byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
+    private AkN.ILazyBundle ParsePressSummary(byte[] docx, IOutsideMetadata meta, IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>> attachments) {
         WordprocessingDocument doc = AkN.Parser.Read(docx);
         PS.PressSummary ps = PS.Parser.Parse(doc, meta);
         return new AkN.PSBundle(doc, ps);
@@ -206,33 +203,31 @@ public class Parser {
         return new System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>(content, type2);
     }
 
-    internal static void Log(Api.Meta meta) {
+    internal void Log(Api.Meta meta) {
         if (string.IsNullOrEmpty(meta.DocumentType))
-            Logger.LogWarning("The document type is null");
+            logger.LogWarning("The document type is null");
         else
-            Logger.LogInformation("The document type is {}", meta.DocumentType);
+            logger.LogInformation("The document type is {}", meta.DocumentType);
         if (string.IsNullOrEmpty(URI.ExtractShortURIComponent(meta.Uri)))
-            Logger.LogWarning("The {} uri is null", meta.DocumentType);
+            logger.LogWarning("The {} uri is null", meta.DocumentType);
         else
-            Logger.LogInformation("The {} uri is {}", meta.DocumentType, meta.Uri);
+            logger.LogInformation("The {} uri is {}", meta.DocumentType, meta.Uri);
         if (meta.Court is null)
-            Logger.LogWarning("The court is null");
+            logger.LogWarning("The court is null");
         else
-            Logger.LogInformation("The court is {}", meta.Court);
+            logger.LogInformation("The court is {}", meta.Court);
         if (meta.Cite is null)
-            Logger.LogWarning("The case citation is null");
+            logger.LogWarning("The case citation is null");
         else
-            Logger.LogInformation("The case citation is {}", meta.Cite);
+            logger.LogInformation("The case citation is {}", meta.Cite);
         if (meta.Date is null)
-            Logger.LogWarning("The {} date is null", meta.DocumentType);
+            logger.LogWarning("The {} date is null", meta.DocumentType);
         else
-            Logger.LogInformation("The {} date is {}", meta.DocumentType, meta.Date);
+            logger.LogInformation("The {} date is {}", meta.DocumentType, meta.Date);
         if (meta.Name is null)
-            Logger.LogWarning("The {} name is null", meta.DocumentType);
+            logger.LogWarning("The {} name is null", meta.DocumentType);
         else
-            Logger.LogInformation("The {} name is {}", meta.DocumentType, meta.Name);
+            logger.LogInformation("The {} name is {}", meta.DocumentType, meta.Name);
     }
-
-}
 
 }

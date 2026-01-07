@@ -60,7 +60,7 @@ internal class Fields2 {
     }
 
     internal static Func<MainDocumentPart, Run, string, List<IInline>, List<IInline>>[] FieldHandlers = {
-        AutoNum, Date, FormDropdown, Hyperlink, IncludePicture, ListNum, Page, Ref, Symbol, Time
+        AutoNum, Date, FormDropdown, Hyperlink, IncludePicture, ListNum, NoteRef, Page, Ref, Symbol, Time
     };
 
     private static ILogger Logger = Logging.Factory.CreateLogger<Fields2>();

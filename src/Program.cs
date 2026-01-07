@@ -5,12 +5,12 @@ using System.Text;
 using System.Text.Json;
 
 using System.CommandLine;
-using System.CommandLine.NamingConventionBinder;
 
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation;
 using UK.Gov.Legislation.Judgments;
+using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using EM = UK.Gov.Legislation.ExplanatoryMemoranda;
 using IA = UK.Gov.Legislation.ImpactAssessments;
@@ -19,75 +19,74 @@ using UK.Gov.Legislation.Lawmaker;
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("backlog")]
 
-class Program {
+public class Program {
+    private const int Success = 0;
 
-    static RootCommand command;
+    private static readonly RootCommand Command;
+    private static readonly Option<FileInfo> InputOption = new("--input"){ Description = "the .docx file", Required = true };
+    private static readonly Option<FileInfo> OutputOption = new("--output"){ Description = "the .xml file"};
+    private static readonly Option<FileInfo> OutputZipOption = new("--output-zip"){ Description = "the .zip file"};
+    private static readonly Option<FileInfo> LogOption = new("--log"){ Description = "the log file"};
+    private static readonly Option<bool> TestOption = new("--test"){ Description = "whether to test the result"};
+    private static readonly Option<FileInfo> AttachmentOption = new("--attachment"){ Description = "an associated file to include"};
+    private static readonly Option<string> HintOption = new("--hint"){ Description = "the type of document: 'em', 'ia' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"};
+    private static readonly Option<string> SubtypeOption = new("--subtype"){ Description = "the subtype of the document e.g. 'order'. Only applicable if --hint is a secondary type"};
+    private static readonly Option<string> ProcedureOption = new("--procedure"){ Description = "the procedure of the document e.g. 'made', 'draftaffirm'. Only applicable if --hint is a secondary type"};
+    private static readonly Option<string[]> LanguageOption = new("--language"){ Description = "the language(s) of the document - the default is English", AllowMultipleArgumentsPerToken = true};
 
     static Program() {
-        command = new RootCommand {
-            new Option<FileInfo>("--input", description: "the .docx file") { ArgumentHelpName = "file",  IsRequired = true },
-            new Option<FileInfo>("--output", description: "the .xml file") { ArgumentHelpName = "file" },
-            new Option<FileInfo>("--output-zip", description: "the .zip file") { ArgumentHelpName = "file" },
-            new Option<FileInfo>("--log", description: "the log file") { ArgumentHelpName = "file" },
-            new Option<bool>("--console-log", description: "enable logging to console"),
-            new Option<bool>("--test", description: "whether to test the result"),
-            new Option<FileInfo>("--attachment", description: "an associated file to include") { ArgumentHelpName = "file" },
-            new Option<string>("--hint", description: "the type of document: 'em', 'ia' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"),
-            new Option<string>("--subtype", description: "the subtype of the document e.g. 'order'. Only applicable if --hint is a secondary type"),
-            new Option<string>("--procedure", description: "the procedure of the document e.g. 'made', 'draftaffirm'. Only applicable if --hint is a secondary type"),
-            new Option<string[]>("--language", description: "the language(s) of the document - the default is English") { AllowMultipleArgumentsPerToken = true}
+        Command = new RootCommand {
+            InputOption,
+            OutputOption,
+            OutputZipOption,
+            LogOption,
+            TestOption,
+            AttachmentOption,
+            HintOption,
+            SubtypeOption,
+            ProcedureOption,
+            LanguageOption,
         };
-        command.Handler = CommandHandler.Create<
-            FileInfo,
-            FileInfo,
-            FileInfo,
-            FileInfo,
-            bool,
-            bool,
-            FileInfo,
-            string,
-            string,
-            string,
-            string[]
-        >(Transform);
+        Command.SetAction(Transform);
     }
 
-    static int Main(string[] args) {
-        return command.InvokeAsync(args).Result;
+    public static int Main(string[] args) {
+        return Command.Parse(args).Invoke();
     }
 
-    static void Transform(
-        FileInfo input,
-        FileInfo output,
-        FileInfo outputZip,
-        FileInfo log,
-        bool consoleLog,
-        bool test,
-        FileInfo attachment,
-        string hint,
-        string subType,
-        string procedure,
-        string[] language
-    ) {
+    private static (FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment,
+        string hint, string subType, string procedure, string[] language) GetParsedArgs(ParseResult parseResult)
+    {
+        return (input: parseResult.GetValue(InputOption),
+            output: parseResult.GetValue(OutputOption),
+            outputZip: parseResult.GetValue(OutputZipOption),
+            log: parseResult.GetValue(LogOption),
+            test: parseResult.GetValue(TestOption),
+            attachment: parseResult.GetValue(AttachmentOption),
+            hint: parseResult.GetValue(HintOption),
+            subType: parseResult.GetValue(SubtypeOption),
+            procedure: parseResult.GetValue(ProcedureOption),
+            language: parseResult.GetValue(LanguageOption));
+    }
+    
+    static int Transform(ParseResult parseResult)
+    {
+        var (input, output, outputZip, log, test, attachment, hint, subType, procedure, language) = GetParsedArgs(parseResult);
+
         ILogger logger = null;
         if (log is not null) {
             Logging.SetConsoleAndFile(log, LogLevel.Debug);
             logger = Logging.Factory.CreateLogger<Program>();
             logger.LogInformation("parsing " + input.FullName);
-        } else if (consoleLog) {
-            Logging.SetConsole(LogLevel.Debug);
-            logger = Logging.Factory.CreateLogger<Program>();
-            logger.LogInformation("parsing " + input.FullName);
         }
-
         if ("em".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformEM(input, output, outputZip, log, consoleLog, test, attachment);
-            return;
+            TransformEM(input, output, outputZip, log, test, attachment);
+            return Success;
         }
 
         if ("ia".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
-            TransformIA(input, output, outputZip, log, consoleLog, test, attachment);
-            return;
+            TransformIA(input, output, outputZip, log, test, attachment);
+            return Success;
         }
 
         DocName? docName = DocNames.GetDocName(hint);
@@ -99,14 +98,11 @@ class Program {
                 File.WriteAllText(output.FullName, xml);
             else
                 Console.WriteLine(xml);
-            return;
-        }
-
-        if (!string.IsNullOrEmpty(hint)) {
+            return Success;
+        } else {
             logger?.LogCritical("unrecognized document type: {}", hint);
             Console.Error.WriteLine($"Error: Invalid hint '{hint}'. Supported values: 'em', 'ia', or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'.");
             Environment.Exit(1);
-            return;
         }
         byte[] docx = File.ReadAllBytes(input.FullName);
         Api.Request request;
@@ -117,7 +113,9 @@ class Program {
             Api.Attachment a = new Api.Attachment { Content = docxA, Filename = attachment.Name };
             request = new Api.Request { Content = docx, Attachments = new Api.Attachment[] { a } };
         }
-        Api.Response response = Api.Parser.Parse(request);
+
+        var parser = new Api.Parser(Logging.Factory.CreateLogger<Api.Parser>(), new AkN.Validator());
+        Api.Response response = parser.Parse(request);
         if (outputZip is not null)
             SaveZip(response, outputZip);
         else if (output is not null)
@@ -126,19 +124,13 @@ class Program {
             Console.WriteLine(response.Xml);
         if (test)
             Print(response.Meta);
+
+        return Success;
     }
 
-    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool consoleLog, bool test, FileInfo attachment) {
+    static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
         if (attachment is not null)
             throw new Exception();
-            
-        // Set up logging for EM parsing
-        if (log is not null) {
-            Logging.SetConsoleAndFile(log, LogLevel.Debug);
-        } else if (consoleLog) {
-            Logging.SetConsole(LogLevel.Debug);
-        }
-        
         byte[] docx = File.ReadAllBytes(input.FullName);
         var parsed = EM.Helper.Parse(docx);
         if (outputZip is not null)
@@ -149,15 +141,13 @@ class Program {
             Console.WriteLine(parsed.Serialize());
     }
 
-    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool consoleLog, bool test, FileInfo attachment) {
+    static void TransformIA(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
         if (attachment is not null)
             throw new Exception();
             
         // Set up logging for IA parsing
         if (log is not null) {
             Logging.SetConsoleAndFile(log, LogLevel.Debug);
-        } else if (consoleLog) {
-            Logging.SetConsole(LogLevel.Debug);
         }
         
         byte[] docx = File.ReadAllBytes(input.FullName);

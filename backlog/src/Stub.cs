@@ -163,6 +163,14 @@ namespace Backlog.Src
                 proprietary.AppendChild(court);
                 court.AppendChild(Document.CreateTextNode(Data.Court.Value.Code.ToString()));
             }
+
+            foreach (var jurisdiction in Data.Jurisdictions)
+            {
+                XmlElement jurisdictionNode = CreateAndAppendUK("jurisdiction", proprietary);
+                proprietary.AppendChild(jurisdictionNode);
+                jurisdictionNode.AppendChild(Document.CreateTextNode(jurisdiction.ShortName));
+            }
+            
             XmlElement year = CreateAndAppendUK("year", proprietary);
             proprietary.AppendChild(year);
             year.AppendChild(Document.CreateTextNode(Data.Date.Date[..4]));
@@ -189,6 +197,12 @@ namespace Backlog.Src
                 XmlElement cite = CreateAndAppendUK("cite", proprietary);
                 proprietary.AppendChild(cite);
                 cite.AppendChild(Document.CreateTextNode(Data.NCN));
+            }
+            if (!string.IsNullOrWhiteSpace(Data.WebArchivingLink))
+            {
+                XmlElement webarchivingNode = CreateAndAppendUK("webarchiving", proprietary);
+                proprietary.AppendChild(webarchivingNode);
+                webarchivingNode.AppendChild(Document.CreateTextNode(Data.WebArchivingLink));
             }
             XmlElement sourceFormat = CreateAndAppendUK("sourceFormat", proprietary);
             proprietary.AppendChild(sourceFormat);

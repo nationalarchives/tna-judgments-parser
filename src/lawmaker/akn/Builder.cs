@@ -36,14 +36,14 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
             main.SetAttribute("name", this.bill.Type.ToString().ToLower());
 
-            XmlNode meta = Metadata.Extract(bill, logger).Build().ToXmlNode(main.OwnerDocument);
-            main.AppendChild(meta);
-
             AddCoverPage(main, bill.CoverPage);
             AddPreface(main, bill.Preface);
             AddPreamble(main, bill.Preamble);
             AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
             AddConclusions(main, bill.Conclusions);
+
+            Metadata.ExtractTitle(bill, logger, bill.Metadata);
+            main.PrependChild(bill.Metadata.Build(bill).ToXmlNode(main.OwnerDocument));
 
             return doc;
         }
@@ -65,7 +65,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 foreach (XmlNode node in prefaceElements
                     .OfType<IBuildable<XNode>>()
-                    .Select(e => e.Build().ToXmlNode(bill.OwnerDocument)))
+                    .Select(e => e.Build(this.bill).ToXmlNode(bill.OwnerDocument)))
                 {
                     bill.AppendChild(node);
                 }

@@ -1,23 +1,25 @@
+using System.Linq;
 
-using System.Xml.Xsl;
-using System.IO;
-using System.Xml;
+using test.ApiTests;
+
+using UK.Gov.NationalArchives.CaseLaw.TRE;
+
 using Xunit;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
-namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
+namespace test.TRE
 {
     public class TestNoChange
     {
+        private static readonly int[] FailingTestsToSkip = [6, 8, 31, 32];
+        public static readonly TheoryData<int> PassingTests = new(Tests.Indices.Except(FailingTestsToSkip));
 
-        public static readonly System.Collections.Generic.IEnumerable<object[]> Indices = Tests.indices;
-
-        // [Theory]
-        // [MemberData(nameof(Indices))]
-        public static void TestJudgments(int i)
+        [Theory]
+        [MemberData(nameof(PassingTests))]
+        public void TestJudgments_WithMetadataFromOutputOfCleanRun_AreTheSameAsOutputFromCleanRun(int i)
         {
-            byte[] docx = Tests.ReadDocx(i);
+            byte[] docx = DocumentHelpers.ReadDocx(i);
             Api.Response response1 = TestInputInjection.LambdaTest(docx, null);
             ParserInputs inputs = new()
             {
@@ -37,30 +39,15 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
             Assert.Equal(response1.Meta.Court, response2.Meta.Court);
             Assert.Equal(response1.Meta.Date, response2.Meta.Date);
             Assert.Equal(response1.Meta.Name, response2.Meta.Name);
-            string actual = FixMetadata(response1.Xml);
-            string expected = FixMetadata(response2.Xml);
+            string actual = DocumentHelpers.RemoveNonDeterministicMetadata(response1.Xml, Xslt);
+            string expected = DocumentHelpers.RemoveNonDeterministicMetadata(response2.Xml, Xslt);
             Assert.Equal(expected, actual);
         }
 
-        /* if the parser is given a date, it can't tell whether it's a 'decision' or a 'hearing' date */
-
-        private static string FixMetadata(string akn) {
-            using XmlReader reader = XmlReader.Create(new StringReader(akn));
-            using StringWriter sWriter = new StringWriter();
-            using XmlWriter xWriter = XmlWriter.Create(sWriter);
-            Transform.Transform(reader, xWriter);
-            return sWriter.ToString();
-        }
-
-        private static readonly XslCompiledTransform Transform = new();
-
-        static TestNoChange() {
-            using var stringReader = new StringReader(XSLT);
-            using var xsltReader = XmlReader.Create(stringReader);
-            Transform.Load(xsltReader);
-        }
-
-        private static readonly string XSLT = @"<?xml version='1.0'?>
+        /// <summary>
+        /// if the parser is given a date, it can't tell whether it's a 'decision' or a 'hearing' date
+        /// </summary>
+        private const string Xslt = @"<?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' xmlns:uk='https://caselaw.nationalarchives.gov.uk/akn'>
   <xsl:template match='akn:FRBRManifestation/akn:FRBRdate/@date'/>
   <xsl:template match=""akn:FRBRdate/@name[.='hearing']"">

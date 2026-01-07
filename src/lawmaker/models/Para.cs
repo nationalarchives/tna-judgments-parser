@@ -65,9 +65,9 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             return child switch {
             Para3
-            or Definition
-            or UnnumberedParagraph
             or WDummyDivision
+            or UnnumberedParagraph
+            //or Definition
                 => true,
             _   => false,
             };

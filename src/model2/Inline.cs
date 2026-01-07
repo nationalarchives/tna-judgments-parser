@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml;
+
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -34,9 +34,11 @@ internal class WText : IFormattedText {
         return new WText("-", properties);
     }
 
-    public string Style {
+    #nullable enable
+    public string? Style {
         get => properties?.RunStyle?.Val;
     }
+    #nullable disable
 
     public bool? Italic {
         get {
@@ -384,7 +386,7 @@ internal class WRole : IRole {
 internal class WSignatureBlock : ISignatureBlock {
 
     public string Name { get; init; }
-    
+
     public IEnumerable<IInline> Content { get; init; }
 
 }
@@ -441,6 +443,7 @@ internal class WDocJurisdiction : WInlineContainer, IDocJurisdiction {
 
     public string ShortName { get; internal init; }
 
+    public bool Overridden => false;
 }
 
 

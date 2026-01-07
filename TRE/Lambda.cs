@@ -5,7 +5,6 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 using Microsoft.Extensions.Logging;
 
@@ -13,11 +12,14 @@ using Amazon.Lambda.Core;
 using Amazon.S3;
 using Amazon.S3.Model;
 
+using UK.Gov.Legislation.Judgments.AkomaNtoso;
+
 using Api = UK.Gov.NationalArchives.Judgments.Api;
+using Logging = UK.Gov.Legislation.Judgments.Logging;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
-namespace UK.Gov.NationalArchives.CaseLaw.TRE {
+namespace UK.Gov.NationalArchives.CaseLaw.TRE;
 
 public class Lambda {
 
@@ -25,11 +27,13 @@ public class Lambda {
     private readonly ILogger logger;
 
     private readonly string logFilename = "parser.log";
+    private readonly Api.Parser parser;
 
     public Lambda() {
         loggerProvider = new UK.Gov.Legislation.Judgments.CustomLoggerProvider();
-        UK.Gov.Legislation.Judgments.Logging.Factory.AddProvider(loggerProvider);
-        logger = UK.Gov.Legislation.Judgments.Logging.Factory.CreateLogger<Lambda>();
+        Logging.Factory.AddProvider(loggerProvider);
+        logger = Logging.Factory.CreateLogger<Lambda>();
+        parser = new Api.Parser(Logging.Factory.CreateLogger<Api.Parser>(), new Validator());
     }
 
     public Stream FunctionHandler(Stream input) {
@@ -93,8 +97,9 @@ public class Lambda {
         }
 
         Api.Response response;
-        try {
-            response = Api.Parser.Parse(new Api.Request { Content = docx, Attachments = attachments, Hint = hint, Meta = meta });
+        try
+        {
+            response = parser.Parse(new Api.Request { Content = docx, Attachments = attachments, Hint = hint, Meta = meta });
         } catch (Exception e) {
             logger.LogError(e, "parse error: {}", e.Message);
             errors.Add("error parsing document");
@@ -195,5 +200,4 @@ public class Lambda {
         }
     }
 
-}
 }

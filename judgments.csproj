@@ -17,6 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="**" />
     <Compile Include="src/**/*.cs" />
     <EmbeddedResource Include="src/akn/akomantoso30.xsd">
       <LogicalName>akn.akomantoso30.xsd</LogicalName>
@@ -43,7 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0" />
     <PackageReference Include="System.CommandLine.NamingConventionBinder" Version="2.0.0-beta4.22272.1" />
   </ItemGroup>
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
-using UK.Gov.Legislation.Judgments.Parse;
+
 using Imaging = UK.Gov.NationalArchives.Imaging;
 
 namespace UK.Gov.Legislation.Judgments {
@@ -37,7 +37,7 @@ interface IInline {
         if (i is IFormattedText t)
             return t.Text;
         if (i is ITab)
-            return " ";
+            return "\t";
         if (i is ILineBreak)
             return "";
         if (i is IInlineContainer container)
@@ -169,9 +169,9 @@ interface IFootnote : IInline {
 
 interface ISignatureBlock : IBlock
 {
-    
+
     public string Name { get; internal init; }
-    
+
     IEnumerable<IInline> Content { get; }
 
 }
@@ -334,6 +334,7 @@ interface IDocJurisdiction : IInlineContainer {
 
     string ShortName { get; }
 
+    bool Overridden { get; }
 }
 
 

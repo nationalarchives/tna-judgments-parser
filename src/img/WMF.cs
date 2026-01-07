@@ -219,16 +219,6 @@ internal struct BitmapInfoHeader : DIBHeaderInfo {
     internal UInt32 ColorImportant => BitConverter.ToUInt32(Data, Offset + 36);
 
 }
-
-// internal struct RectL {
-//
-//     internal Int32 Left;
-//     internal Int32 Top;
-//     internal Int32 Right;
-//     internal Int32 Bottom;
-//
-// }
-
 }
 
 }

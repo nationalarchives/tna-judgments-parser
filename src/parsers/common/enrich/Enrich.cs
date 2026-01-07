@@ -122,34 +122,6 @@ abstract class Enricher {
     internal IEnumerable<IAnnex> Enrich(IEnumerable<IAnnex> annexes) {
         return annexes.Select(a => new Annex { Number = a.Number, Contents = Enrich(a.Contents) });
     }
-
-    // protected string NormalizeInnerText(OpenXmlElement e) {
-    //     IEnumerable<string> texts = e.Descendants()
-    //         .Where(e => e is Text || e is TabChar)
-    //         .Select(e => { if (e is Text) return e.InnerText; if (e is TabChar) return " "; return ""; });
-    //     return string.Join("", texts).Trim();
-    // }
-
-    // [Obsolete]
-    // internal static string NormalizeInlines(IEnumerable<IInline> line) {
-    //     IEnumerable<string> texts = line
-    //         .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
-    //     return string.Join("", texts).Trim();
-    // }
-
-    // protected string NormalizeLine(IEnumerable<IInline> line) {
-    //     IEnumerable<string> texts = line
-    //         .Select(i => { if (i is IFormattedText t) return t.Text; if (i is ITab) return " "; return ""; });
-    //     return string.Join("", texts).Trim();
-    // }
-    // [Obsolete]
-    // internal static string NormalizeLine(ILine line) {
-    //     return NormalizeInlines(line.Contents);
-    // }
-    // public static string NormalizeContent(this ILine line) {
-    //     return NormalizeInlines(line.Contents);
-    // }
-
 }
 
 abstract class Enricher2 : Enricher {

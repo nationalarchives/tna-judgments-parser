@@ -1,19 +1,20 @@
+using Microsoft.Extensions.Logging;
+
+using test.Mocks;
+
+using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.AkomaNtoso;
+using UK.Gov.NationalArchives.CaseLaw.TRE;
 
 using Xunit;
 
-using Microsoft.Extensions.Logging;
-
-using UK.Gov.Legislation.Judgments;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
-namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
+namespace test.TRE
 {
     public class TestInputInjection
     {
-
-        private readonly Lambda Lambda = new();
-
-        private readonly byte[] Docx1 = Tests.ReadDocx(1);
+        private readonly byte[] Docx1 = DocumentHelpers.ReadDocx(1);
 
         [Fact]
         public void TestUri()
@@ -124,7 +125,8 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test
                 Hint = hint,
                 Meta = meta
             };
-            return Api.Parser.Parse(apiRequest);
+            var parser = new Api.Parser(new MockLogger<Api.Parser>().Object, new Validator());
+            return parser.Parse(apiRequest);
         }
 
         [Fact]

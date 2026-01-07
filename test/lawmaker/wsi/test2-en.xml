@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="wsi">
+    <meta>
+      <references source="#author">
+        <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Joint Committees (Amendment to the Local Government Act 2003) (Wales) Regulations 2025" />
+        <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2025" />
+        <TLCConcept eId="varMadeDate" href="#varOntologies" showAs="2025-10-15T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2025-10-20T00:00:00.0000000" />
+        <TLCConcept eId="varSISubsidiaryNos" href="#varOntologies" showAs="(W. )" />
+      </references>
+    </meta>
+    <coverPage>
+      <blockContainer class="explanatoryNote">
+        <heading>EXPLANATORY NOTE</heading>
+        <subheading>(This note is not part of the Regulations)</subheading>
+        <p>Section 31 of the Local Government Act 2003 (“the Act”) enables the Welsh Ministers to pay grants to local authorities towards expenditure incurred, or to be incurred, by them.</p>
+        <p>The list of bodies included as a local authority for the purposes of that section is set out in section 33 of the Act.</p>
+        <p>These Regulations amend section 33 to add corporate joint committees established under Part 5 of the Local Government and Elections (Wales) Act 2021 to the list of local authorities to which the Welsh Ministers can pay grants under section 31 of the Act.</p>
+        <p>The Welsh Ministers’ Code of Practice on the carrying out of Regulatory Impact Assessments was considered in relation to these Regulations. As a result, a regulatory impact assessment has been prepared as to the likely costs and benefits of complying with these Regulations. A copy can be obtained from the Local Government Policy Division, Welsh Government, Cathays Park, Cardiff CF10 3NQ.</p>
+      </blockContainer>
+    </coverPage>
+    <preface eId="fnt">
+      <block name="banner">WELSH STATUTORY INSTRUMENTS</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+      <container name="subjects">
+        <container name="subject">
+          <block name="subject"><concept refersTo="" class="title">LOCAL GOVERNMENT, WALES</concept></block>
+        </container>
+      </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="2025-10-15"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varMadeDate" class="#placeholder" /></docDate></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="2025-10-20"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder" /></docDate></block>
+      </container>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Welsh Ministers, in exercise of the powers conferred on them by section 84(2)(a) of the Local Government and Elections (Wales) Act 2021<authorialNote marker="1" class="footnote"><p>2021 asc 1.</p></authorialNote>, make the following Regulations.</p>
+        <p>In accordance with section 174(4) and (5)(l) of that Act, a draft of this instrument has been laid before and approved by resolution of Senedd Cymru.</p>
+      </formula>
+    </preamble>
+    <body>
+      <article eId="sec_1" class="prov1">
+        <heading>Title and coming into force</heading>
+        <num>1.</num>
+        <content>
+          <p>The title of these Regulations is the Corporate Joint Committees (Amendment to the Local Government Act 2003) (Wales) Regulations 2025 and they come into force on 20 October 2025.</p>
+        </content>
+      </article>
+      <article eId="sec_2" class="prov1">
+        <heading>Amendment to the Local Government Act 2003</heading>
+        <num>2.</num>
+        <content>
+          <p><mod> In section 33(1) of the Local Government Act 2003<authorialNote marker="2" class="footnote"><p>2003 c. 26. Section 33 was amended by paragraph 101 of Schedule 1 to the Fire and Rescue Services Act 2004 (c. 21), section 27(4) of the Police Reform and Social Responsibility Act 2011 (c. 13) and paragraph 151 of Schedule 4 to the Levelling-up and Regeneration Act 2023 (c. 55). There are other amendments not relevant to this instrument.</p></authorialNote>, after paragraph (jd) insert—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="wsi"><level class="para1"><num>(je)</num><content><p>a corporate joint committee established by regulations made under Part 5 of the Local Government and Elections (Wales) Act 2021;</p></content></level></quotedStructure><inline name="AppendText" /></mod></p>
+        </content>
+      </article>
+      <hcontainer name="signatures">
+        <hcontainer name="signatureBlock">
+          <content>
+            <block name="signature">Jayne Bryant</block>
+            <block name="role">Cabinet Secretary for Housing and Local Government, one of the Welsh Ministers</block>
+            <block name="date"><date date="2025-10-15">15 October 2025</date></block>
+          </content>
+        </hcontainer>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>

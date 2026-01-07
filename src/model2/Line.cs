@@ -26,13 +26,6 @@ class WLine : ILine, ILineable {
     internal bool IsFirstLineOfNumberedParagraph { get; set; }
     private Paragraph Paragraph { get; init; }
 
-    [Obsolete]
-    internal WLine(MainDocumentPart main, ParagraphProperties properties, IEnumerable<IInline> contents) {
-        this.main = main;
-        this.properties = properties;
-        this.contents = contents.ToList();
-        Paragraph = null;
-    }
     internal WLine(MainDocumentPart main, Paragraph paragraph) {
         this.main = main;
         this.properties = paragraph.ParagraphProperties;
@@ -68,13 +61,24 @@ class WLine : ILine, ILineable {
             return new WUnknownLine(line, contents);
         return new WLine(prototype, contents);
     }
+
+    /// <summary>
+    /// Override to give more useful information in the debugger
+    /// </summary>
+    public override string ToString()
+    {
+        return TextContent ?? base.ToString();
+    }
+
     public static WLine RemoveNumber(WOldNumberedParagraph np) {
         return new WLine(np, np.Contents);
     }
 
-    public string Style {
+#nullable enable
+    public string? Style {
         get => properties?.ParagraphStyleId?.Val;
     }
+#nullable disable
 
     public AlignmentValues? Alignment {
         get {
@@ -230,7 +234,7 @@ class WLine : ILine, ILineable {
     }
 
     /// <summary>
-    /// The value of the <c>NumberingLevelReference</c> of this <c>WLine</c>, if present, 
+    /// The value of the <c>NumberingLevelReference</c> of this <c>WLine</c>, if present,
     /// as defined in the <c>Style</c>. Otherwise defaults to <c>-1</c>.
     /// </summary>
     public int NumberingLevel
