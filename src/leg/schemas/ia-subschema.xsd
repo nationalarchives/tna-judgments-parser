@@ -273,6 +273,7 @@
         <xs:element ref="table"  />
         <xs:element ref="block"  />
         <xs:element ref="blockContainer"  />
+        <xs:element ref="subFlow" />
     </xs:choice>
 </xs:complexType>
 
@@ -332,6 +333,7 @@
         <xs:element ref="ref" />
         <xs:element ref="marker" />
         <xs:element ref="authorialNote" />
+        <xs:element ref="img" />
     </xs:choice>
 </xs:complexType>
 
@@ -348,6 +350,8 @@
             <xs:element ref="marker" />
             <xs:element ref="authorialNote" />
             <xs:element ref="br" />
+            <xs:element ref="img" />
+            <xs:element ref="subFlow" />
             <xs:element ref="docTitle" />
             <xs:element ref="docStage" />
             <xs:element ref="docDate" />
@@ -554,5 +558,35 @@
         </xs:choice>
     </xs:complexType>
 </xs:element>
+
+<!-- Image element -->
+<xs:element name="img">
+    <xs:complexType>
+        <xs:attribute name="src" type="xs:string" use="required" />
+        <xs:attribute name="width" type="xs:integer" />
+        <xs:attribute name="height" type="xs:integer" />
+        <xs:attribute name="style" type="xs:string" />
+        <xs:attribute name="alt" type="xs:string" />
+    </xs:complexType>
+</xs:element>
+
+<!-- SubFlow element for math and other embedded content -->
+<xs:element name="subFlow">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="foreign" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+</xs:element>
+
+<!-- Foreign element for non-AKN content (e.g., MathML) -->
+<xs:complexType name="anyOtherType">
+    <xs:choice>
+        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+    </xs:choice>
+</xs:complexType>
+
+<xs:element name="foreign" type="anyOtherType" />
 
 </xs:schema>

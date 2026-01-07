@@ -485,21 +485,11 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Remove elements not supported in strict AKN 3.0 for doc elements
+    /// Remove elements not supported in the IA subschema
     /// </summary>
     private static void RemoveUnsupportedElements(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
-        
-        var imgs = xml.SelectNodes("//akn:img", nsmgr);
-        foreach (XmlElement img in imgs) {
-            img.ParentNode.RemoveChild(img);
-        }
-        
-        var subFlows = xml.SelectNodes("//akn:subFlow", nsmgr);
-        foreach (XmlElement subFlow in subFlows) {
-            subFlow.ParentNode.RemoveChild(subFlow);
-        }
         
         var tocs = xml.SelectNodes("//akn:toc", nsmgr);
         foreach (XmlElement toc in tocs) {
