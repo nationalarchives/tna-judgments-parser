@@ -11,8 +11,8 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src
 {
-    internal class Helper(
-        ILogger<Helper> logger,
+    internal class BacklogParserWorker(
+        ILogger<BacklogParserWorker> logger,
         Api.Parser parser,
         BacklogFiles backlogFiles,
         Metadata csvMetadataReader,

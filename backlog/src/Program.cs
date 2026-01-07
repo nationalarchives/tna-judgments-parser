@@ -138,7 +138,7 @@ public class Program
             logger.LogInformation("Using data folder: {PathToDataFolder}", pathToDataFolder);
             logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}", pathToCourtMetadataFile);
 
-            var backlogParserWorker = serviceProvider.GetRequiredService<Helper>();
+            var backlogParserWorker = serviceProvider.GetRequiredService<BacklogParserWorker>();
             
             return backlogParserWorker.Run(isDryRun, id, pathToCourtMetadataFile, autoPublish, pathToOutputFolder);
         }
@@ -166,7 +166,7 @@ public class Program
             .AddSingleton<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator,
                 UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
         services.AddSingleton<Parser>();
-        services.AddSingleton<Helper>();
+        services.AddSingleton<BacklogParserWorker>();
         services.AddSingleton<Metadata>();
         services.AddSingleton<BacklogFiles>(serviceProvider => new BacklogFiles(serviceProvider.GetRequiredService<ILogger<BacklogFiles>>(), pathToDataFolder,
             judgmentsFilePath, hmctsFilePath));
