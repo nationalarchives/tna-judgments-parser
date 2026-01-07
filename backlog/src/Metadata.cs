@@ -258,11 +258,6 @@ namespace Backlog.Src
             return records;
         }
 
-        internal static List<Line> FindLines(List<Line> lines, uint id)
-        {
-            return lines.Where(line => line.id == id.ToString()).ToList();
-        }
-
         internal static ExtendedMetadata MakeMetadata(Line line) {
             // Validation is now handled during CSV reading
             List<ExtendedMetadata.Category> categories = [];

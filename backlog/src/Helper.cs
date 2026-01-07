@@ -9,16 +9,8 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src
 {
-    class Helper(ILogger<Helper> logger, Api.Parser parser, Metadata csvMetadataReader, BacklogFiles backlogFiles)
+    class Helper(ILogger<Helper> logger, Api.Parser parser, BacklogFiles backlogFiles)
     {
-        internal string PathToCourtMetadataFile { get; set; }
-
-        internal List<Metadata.Line> FindLines(uint id)
-        {
-            List<Metadata.Line> lines = csvMetadataReader.Read(PathToCourtMetadataFile, out _);
-            return Metadata.FindLines(lines, id);
-        }
-
         private Api.Response CreateResponse(ExtendedMetadata meta, byte[] content)
         {
             var isPdf = meta.SourceFormat.ToLower() == "application/pdf";
