@@ -99,17 +99,17 @@ data/
 ├── tdr_metadata/
 │   └── file-metadata.csv              # Maps original judgment filenames to UUIDs (only required if UUID isn't provided in the Court Metadata CSV)
 └── court_documents/                   # Contains the actual judgment documents
-    ├── {uuid}                         # UUID-named files without extensions
     ├── {uuid}                         # (e.g., a1b2c3d4-e5f6-7890-abcd-ef1234567890)
-    └── {uuid}                         # All files stored using UUID as filename
+    ├── {uuid}
+    └── {uuid}
+└── {court_metadata.csv}               # Metadata extracted from tribunal-specific spreadsheets about courts and their judgments
 ```
 
 **Important Notes on File Naming:**
 
-- All files in `court_documents/` are named using only their UUID (no file extension)
-- The file extension information is stored in the court metadata CSV for reference
+- All files in `court_documents/` are named using their UUID
+- File extensions are optional but will be ignored during processing
 - The parser determines file type processing based on the `Extension` field in the metadata, not from the actual filename
-
 
 ### Court Metadata CSV
 
