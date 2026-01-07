@@ -385,17 +385,12 @@ class Helper : BaseHelper {
         
         // Create table element
         var table = xml.CreateElement("table", AKN_NAMESPACE);
-        table.SetAttribute("class", "ia-table");
         hcontainerContent.AppendChild(table);
-        
-        // Create tbody
-        var tbody = xml.CreateElement("tbody", AKN_NAMESPACE);
-        table.AppendChild(tbody);
         
         // Convert each level to a table row
         foreach (XmlNode level in headerLevels) {
             var tr = xml.CreateElement("tr", AKN_NAMESPACE);
-            tbody.AppendChild(tr);
+            table.AppendChild(tr);
             
             var levelContent = level.SelectSingleNode("akn:content", nsmgr);
             if (levelContent != null) {
