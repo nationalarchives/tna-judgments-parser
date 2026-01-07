@@ -75,7 +75,7 @@ public class TestEM {
         
         foreach (var testData in Indices) {
             int i = (int)testData[0];
-            var docx = CaseLaw.Tests.ReadDocx($"test.leg.em.test{i}.docx");
+            var docx = DocumentHelpers.ReadDocx($"test.leg.em.test{i}.docx");
             var akn = Helper.Parse(docx).Serialize();
             var outputPath = System.IO.Path.Combine(projectRoot, "test", "leg", "em", $"test{i}.akn");
             System.IO.File.WriteAllText(outputPath, akn);

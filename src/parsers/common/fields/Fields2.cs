@@ -123,16 +123,30 @@ internal class Fields2 {
             var dropdownData = formFieldData.ChildElements.FirstOrDefault(e => e.LocalName == "ddList");
             if (dropdownData == null) return null;
 
-            var resultElement = dropdownData.ChildElements.FirstOrDefault(e => e.LocalName == "result");
-            if (resultElement == null) return null;
-
-            string selectedIndexText = resultElement.GetAttribute("val", wordNamespace).Value;
-            if (!int.TryParse(selectedIndexText, out int selectedIndex)) return null;
-
             var listItems = dropdownData.ChildElements.Where(e => e.LocalName == "listEntry").ToList();
-            if (selectedIndex < 0 || selectedIndex >= listItems.Count) return null;
+            if (listItems.Count == 0) return null;
 
-            return listItems[selectedIndex].GetAttribute("val", wordNamespace).Value;
+            // Check for explicit selection (result element in ddList is 0-based)
+            var resultElement = dropdownData.ChildElements.FirstOrDefault(e => e.LocalName == "result");
+            if (resultElement != null) {
+                var valAttr = resultElement.GetAttribute("val", wordNamespace);
+                if (valAttr != null && int.TryParse(valAttr.Value, out int selectedIndex)) {
+                    if (selectedIndex >= 0 && selectedIndex < listItems.Count) {
+                        var itemValAttr = listItems[selectedIndex].GetAttribute("val", wordNamespace);
+                        if (itemValAttr != null) {
+                            return itemValAttr.Value;
+                        }
+                    }
+                }
+            }
+
+            // No explicit selection found - use first item as default
+            var firstItemValAttr = listItems[0].GetAttribute("val", wordNamespace);
+            if (firstItemValAttr != null) {
+                return firstItemValAttr.Value;
+            }
+
+            return null;
         } catch (Exception ex) {
             Logger.LogWarning(ex, "Error extracting dropdown value");
             return null;

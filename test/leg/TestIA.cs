@@ -8,7 +8,8 @@ using System.Xml.Xsl;
 
 using Xunit;
 
-using CaseLaw = UK.Gov.NationalArchives.CaseLaw;
+using test;
+using UK.Gov.Legislation.ImpactAssessments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation.ImpactAssessments.Test {
@@ -46,7 +47,7 @@ public class TestIA {
     [MemberData(nameof(TestFiles))]
     public void Test(string filename) {
         var resourceName = $"test.leg.ia.original_filenames.{filename}.docx";
-        var docx = CaseLaw.Tests.ReadDocx(resourceName);
+        var docx = DocumentHelpers.ReadDocx(resourceName);
         
         // Pass the filename to enable metadata lookup
         var actual = Helper.Parse(docx, filename + ".docx").Serialize();
@@ -63,7 +64,7 @@ public class TestIA {
             return;
         }
         
-        var expected = CaseLaw.Tests.ReadXml(expectedResourceName);
+        var expected = DocumentHelpers.ReadXml(expectedResourceName);
         actual = RemoveSomeMetadata(actual);
         expected = RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
@@ -80,7 +81,7 @@ public class TestIA {
         foreach (var testData in TestFiles) {
             string filename = (string)testData[0];
             var resourceName = $"test.leg.ia.original_filenames.{filename}.docx";
-            var docx = CaseLaw.Tests.ReadDocx(resourceName);
+            var docx = DocumentHelpers.ReadDocx(resourceName);
             var akn = Helper.Parse(docx, filename + ".docx").Serialize();
             var outputPath = System.IO.Path.Combine(projectRoot, "test", "leg", "ia", "original filenames", $"{filename}.akn");
             System.IO.File.WriteAllText(outputPath, akn);
@@ -118,7 +119,7 @@ public class TestIA {
     [MemberData(nameof(TestFiles))]
     public void ValidateParsedOutput(string filename) {
         var resourceName = $"test.leg.ia.original_filenames.{filename}.docx";
-        var docx = CaseLaw.Tests.ReadDocx(resourceName);
+        var docx = DocumentHelpers.ReadDocx(resourceName);
         
         // Parse with filename for proper metadata
         var akn = Helper.Parse(docx, filename + ".docx").Serialize();
