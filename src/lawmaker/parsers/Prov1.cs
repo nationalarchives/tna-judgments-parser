@@ -66,7 +66,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (quoteDepth == 0 && !headingLine.IsFlushLeft())
                 return false;
 
-            if (frames.CurrentDocName.RequireNumberedProv1Headings())
+            if (frames.CurrentDocName.RequireNumberedProv1Heading())
             {
                 // Heading line must begin with a valid Prov1 number 
                 if (headingLine is not WOldNumberedParagraph np)
@@ -103,7 +103,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!line.IsLeftAligned())
                 return false;
 
-            if (!frames.CurrentDocName.RequireNumberedProv1Headings())
+            if (!frames.CurrentDocName.RequireNumberedProv1Heading())
             {
                 if (line is not WOldNumberedParagraph np)
                     return false;
@@ -129,7 +129,7 @@ namespace UK.Gov.Legislation.Lawmaker
             // Skip over and cache the heading for now (if present).
             if (!PeekProv1(line))
             {
-                if (frames.CurrentDocName.RequireNumberedProv1Headings())
+                if (frames.CurrentDocName.RequireNumberedProv1Heading())
                     return null;
                 // With UNNUMBERED Prov1 headings, it's possible to have no heading at all (see scenarios [E] & [F]).
                 // So we re-peek without expecting a heading. But, we enforce that such a Prov1 must be numbered
@@ -183,7 +183,7 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> wrapUp = [];
             Prov1Name tagName = GetProv1Name();
 
-            bool headingPrecedesNumber = !frames.CurrentDocName.RequireNumberedProv1Headings();
+            bool headingPrecedesNumber = !frames.CurrentDocName.RequireNumberedProv1Heading();
             if (headingPrecedesNumber)
             {
                 // Must strip the Prov1 number from the beginning of the line (see scenarios [C] through [F])

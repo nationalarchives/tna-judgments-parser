@@ -17,7 +17,7 @@ namespace UK.Gov.Legislation.Lawmaker
         public static bool IsValidNumber(string num, DocName currentDocName)
         {
             // Found that Prov1 nums where the heading precedes the num must end with a "."
-            string dot = !currentDocName.RequireNumberedProv1Headings() ? "." : ".?";
+            string dot = currentDocName.RequireNumberedProv1Heading() ? ".?" : ".";
             string pattern = $@"^[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*{dot}$";
             return Regex.IsMatch(num, pattern);
         }
@@ -73,9 +73,11 @@ namespace UK.Gov.Legislation.Lawmaker
     internal interface SchProv1
     {
 
-        public static bool IsValidNumber(string num)
+        public static bool IsValidNumber(string num, DocName currentDocName)
         {
-            string pattern = @"^[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\.$";
+            // For certain doc names, the num must end with a "."
+            string dot = currentDocName.RequireNumberedProv1Heading() ? ".?" : ".";
+            string pattern = $@"^[A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*{dot}$";
             return Regex.IsMatch(num, pattern);
         }
 

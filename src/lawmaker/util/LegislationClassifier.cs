@@ -162,9 +162,9 @@ public static class DocNames
         return docName.ToEnacted().Equals(DocName.WSI);
     }
     
-    public static bool RequireNumberedProv1Headings(this DocName docName)
+    public static bool RequireNumberedProv1Heading(this DocName docName)
     {
-        return (docName.IsScottishPrimary() || docName.IsUKPrimary() || docName.IsWelshPrimary());
+        return docName.IsScottishPrimary() || docName.IsUKPrimary() || docName.IsWelshPrimary();
     }
 }
 
