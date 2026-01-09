@@ -150,8 +150,15 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 block = Body[i];
 
-                if (block is WLine line && IsCenterAligned(line))
-                    break;
+                if (block is WLine line)
+                {
+                    if (IsCenterAligned(line))
+                        break;
+                    // If we hit a rubric, the Commencement History must have ended. Relevant for WSI,
+                    // where the Commencement History is in the Header rather than in the Conclusions.
+                    if (line.Style is not null && rubricStyles.Contains(line.Style))
+                        break;
+                }
 
                 if (Match(LdappTableBlock.Parse) is LdappTableBlock tableBlock)
                     blocks.Add(tableBlock);
