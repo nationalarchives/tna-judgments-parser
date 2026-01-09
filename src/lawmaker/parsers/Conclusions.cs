@@ -13,6 +13,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private readonly List<BlockContainer> conclusions = [];
 
+        private static readonly HashSet<string> rubricStyles = ["Draft", "Correction", "Approval", "LaidDraft"];
+
         private void ParseConclusions()
         {
             ExplanatoryNote? explanatoryNote = ParseExplanatoryNote();
@@ -51,13 +53,20 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (currentBlock is null)
                     break;
 
-                // If we hit the the start of the Commencement History table,
+                // If we hit the start of the Commencement History table,
                 // then the Explanatory Note must have ended.
                 if (CommencementHistory.IsHeading(LanguageService, currentBlock))
                     break;
 
-                if (currentBlock is WLine line && IsCenterAligned(line))
-                    break;
+                if (currentBlock is WLine line)
+                {
+                    if (IsCenterAligned(line))
+                        break;
+                    // If we hit a rubric, the Explanatory Note must have ended. Relevant for WSI,
+                    // where the Explanatory Note is in the Header rather than in the Conclusions.
+                    if (line.Style is not null && rubricStyles.Contains(line.Style))
+                        break;
+                }
 
                 if (ParseHeadingTblock() is HeadingTblock headingTblock)
                     content.Add(headingTblock);
