@@ -15,6 +15,8 @@ internal class ExplanatoryNote : BlockContainer
 
     public override string Class { get; internal init; } = "explanatoryNote";
 
+    private static readonly HashSet<string> rubricStyles = ["Draft", "Correction", "Approval", "LaidDraft"];
+
     private static readonly LanguagePatterns HeadingPatterns = new()
     {
         [Lang.EN] = [@"^EXPLANATORY +NOTE$"],
@@ -55,10 +57,7 @@ internal class ExplanatoryNote : BlockContainer
         WLine? subheading = parser.Match(Parsers.WLine(IsSubheading));
 
         List<IBlock>? content = parser.MatchWhile(
-            // If we hit the the start of the Commencement History table,
-            // then the Explanatory Note must have ended.
-            block => !CommencementHistory.IsHeading(parser.LanguageService, block)
-                && !(block is WLine line && line.IsCenterAligned()),
+            block => IsExplanatoryNoteChild(parser, block),
             p =>
             {
                 if (p.Match(ParseHeadingTblock) is HeadingTblock tblock)
@@ -78,6 +77,26 @@ internal class ExplanatoryNote : BlockContainer
         IEnumerable<IBlock> structuredContent = BlockList.ParseFrom(blockParser);
         return new ExplanatoryNote { Heading = heading, Subheading = subheading, Content = structuredContent };
 
+    }
+
+    private static bool IsExplanatoryNoteChild(IParser<IBlock> parser, IBlock block)
+    {
+        // If we hit the the start of the Commencement History table,
+        // then the Explanatory Note must have ended.
+        if (CommencementHistory.IsHeading(parser.LanguageService, block))
+            return false;
+
+        if (block is WLine line)
+        {
+            // A centre-aligned line typically indicates that the preface has been reached.
+            if (line.IsCenterAligned())
+                return false;
+            // If we hit a rubric, the Explanatory Note must have ended. Relevant for WSI,
+            // where the Explanatory Note is in the Header rather than in the Conclusions.
+            if (line.Style is not null && rubricStyles.Contains(line.Style))
+                return false;
+        }
+        return true;
     }
 
     private static HeadingTblock? ParseHeadingTblock(IParser<IBlock> parser)

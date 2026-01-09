@@ -15,6 +15,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private readonly List<BlockContainer> conclusions = [];
 
+        private static readonly HashSet<string> rubricStyles = ["Draft", "Correction", "Approval", "LaidDraft"];
+
         private void ParseConclusions()
         {
             ExplanatoryNote? explanatoryNote = Match(ExplanatoryNote.Parse);
@@ -90,8 +92,16 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 block = Body[i];
 
-                if (block is WLine line && line.IsCenterAligned())
-                    break;
+                if (block is WLine line)
+                {
+                    // A centre-aligned line typically indicates that the preface has been reached.
+                    if (line.IsCenterAligned())
+                        break;
+                    // If we hit a rubric, the Commencement History must have ended. Relevant for WSI,
+                    // where the Commencement History is in the Header rather than in the Conclusions.
+                    if (line.Style is not null && rubricStyles.Contains(line.Style))
+                        break;
+                }
 
                 if (Match(LdappTableBlock.Parse) is LdappTableBlock tableBlock)
                     blocks.Add(tableBlock);
