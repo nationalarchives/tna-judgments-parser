@@ -103,7 +103,7 @@ class Builder : AkN.Builder {
         XmlElement expAuthor = CreateAndAppend("FRBRauthor", expression);
         expAuthor.SetAttribute("href", "#");
         XmlElement expLanguage = CreateAndAppend("FRBRlanguage", expression);
-        expLanguage.SetAttribute("language", "eng");
+        expLanguage.SetAttribute("language", "en");
 
         XmlElement manifestation = CreateAndAppend("FRBRManifestation", identification);
         XmlElement maniThis = CreateAndAppend("FRBRthis", manifestation);
