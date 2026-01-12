@@ -111,7 +111,7 @@ class Builder : AkN.Builder {
         XmlElement maniURI = CreateAndAppend("FRBRuri", manifestation);
         maniURI.SetAttribute("value",  data.ExpressionUri + "/data.akn");
         XmlElement maniDate = CreateAndAppend("FRBRdate", manifestation);
-        maniDate.SetAttribute("date", FormatDateAndTime(DateTime.UtcNow));
+        maniDate.SetAttribute("date", FormatDateOnly(DateTime.UtcNow));
         maniDate.SetAttribute("name", "transform");
         XmlElement maniAuthor = CreateAndAppend("FRBRauthor", manifestation);
         maniAuthor.SetAttribute("href", "#tna");
@@ -148,11 +148,12 @@ class Builder : AkN.Builder {
         
         // For IA documents, use the LastModified property
         if (data is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) {
-            modifiedValue = FormatDateAndTime(iaData.LastModified);
+            modifiedValue = FormatDateOnly(iaData.LastModified);
         }
         // For other documents (like EMs), use ExpressionDate if it's a lastModified timestamp
         else if (data.ExpressionDateName == "lastModified" && data.ExpressionDate != null) {
-            modifiedValue = data.ExpressionDate;
+            // Extract date portion only (first 10 characters: yyyy-MM-dd)
+            modifiedValue = data.ExpressionDate.Length >= 10 ? data.ExpressionDate[..10] : data.ExpressionDate;
         }
         
         if (modifiedValue != null) {
