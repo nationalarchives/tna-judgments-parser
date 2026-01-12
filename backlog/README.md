@@ -4,13 +4,10 @@ This module provides a specialized entry point to the parser specifically design
 
 <!-- TOC -->
 * [TNA Judgments Parser - Backlog Module](#tna-judgments-parser---backlog-module)
-  * [Overview](#overview)
-    * [Purpose](#purpose)
-    * [Metadata Handling](#metadata-handling)
-    * [Future Development](#future-development)
-  * [Get Started](#get-started)
+  * [How to use the Backlog Parser](#how-to-use-the-backlog-parser)
     * [Pre-requisites](#pre-requisites)
-    * [Setup and Execution](#setup-and-execution)
+    * [File Splitter (tool to assist with preparing for file conversions)](#file-splitter-tool-to-assist-with-preparing-for-file-conversions)
+    * [Backlog Parser](#backlog-parser)
     * [Processing Modes](#processing-modes)
   * [Configuration](#configuration)
     * [File Formats](#file-formats)
@@ -28,42 +25,25 @@ This module provides a specialized entry point to the parser specifically design
     * [Development Guidelines](#development-guidelines)
 <!-- TOC -->
 
-## Overview
+## How to use the Backlog Parser
 
-### Purpose
-
-This module processes historic tribunal judgments that are being migrated from various legacy systems. These judgments come with their own unique characteristics:
-
-- **Mixed Source Formats**:
-  - PDF-only documents (where XML conversion isn't attempted due to complexity)
-  - DOC files (requiring preprocessing to convert to DOCX)
-  - DOCX files (ready for direct processing)
-
-### Metadata Handling
-
-- Judgment metadata comes from accompanying spreadsheets specific to each tribunal
-- Current implementation focuses on processing one specific tribunal batch
-- The module will be expanded to handle other tribunal batches, each with potentially different metadata structures
-- Metadata mapping is handled through structured CSV files that maintain consistency in the import process
-
-### Future Development
-
-While the current implementation is focused on a single tribunal's batch processing requirements, the module is being designed to be extensible for:
-
-- Different tribunal-specific metadata formats
-- Various source document types
-- Custom preprocessing requirements per tribunal
-- Batch-specific validation rules
-
-## Get Started
-
-The backlog parser must be run locally to process a new batch.
+Please refer to the [internal documentation](https://national-archives.atlassian.net/wiki/spaces/DFCL/pages/1437794305/) for details on the full process including retrieving and validating inputs, performing file conversions and what to look for when doing a dry run.
 
 ### Pre-requisites
 
 - .NET 8 SDK
 
-### Setup and Execution
+### File Splitter (tool to assist with preparing for file conversions)
+
+Use this to split TDR processed files into files grouped by extension to prepare for file conversions. It can be run against a single TDR folder or a folder containing multiple TDR folders.
+
+Each run will generate a new output folder containing copied files with extensions as specified in the TDR metadata.
+
+```bash
+dotnet run split <source folder> --destination <destination folder>
+```
+
+### Backlog Parser
 
 1. **Prepare data directory structure** as shown in the [Directory Structure](#directory-structure) section.
 2. **Set environment variables** shown in [Environment Variables](#environment-variables) section by either:
