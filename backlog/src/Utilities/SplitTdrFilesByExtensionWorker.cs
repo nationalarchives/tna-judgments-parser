@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 using CsvHelper;
 
@@ -20,14 +21,27 @@ namespace Backlog.Utilities;
 /// </summary>
 internal class SplitTdrFilesByExtensionWorker(ILogger<SplitTdrFilesByExtensionWorker> logger)
 {
+    private readonly List<string> failedTdrBucketLogPaths = new();
+
     public int Run(DirectoryInfo pathWithDirectoriesToSplit, DirectoryInfo destinationPath)
     {
-        var destinationFolder = destinationPath.CreateSubdirectory(DateTime.Now.ToString("yyyyMMdd_hhmmss"));
+        var destinationFolder = destinationPath.CreateSubdirectory(DateTime.Now.ToString("yyyyMMdd_HHmmss"));
 
         FindAndProcessTdrBuckets(pathWithDirectoriesToSplit.FullName, pathWithDirectoriesToSplit.FullName,
             destinationFolder.FullName);
 
         logger.LogInformation("------------------------------");
+
+        if (failedTdrBucketLogPaths.Count != 0)
+        {
+            logger.LogError("""
+                            Some TDR buckets encountered errors when copying files.
+                            See the failure logs here:
+                             - {FailureLogPaths}
+                            """, string.Join($"{Environment.NewLine} - ", failedTdrBucketLogPaths));
+            return 1;
+        }
+
         return 0;
     }
 
@@ -110,12 +124,13 @@ internal class SplitTdrFilesByExtensionWorker(ILogger<SplitTdrFilesByExtensionWo
             }
         }
 
-        WriteReport(destinationFolder, extensionDictionary.Values);
+        LogFileCopySummaryAndWriteFailureReport(destinationFolder, extensionDictionary.Values);
     }
 
-    private void WriteReport(string destinationFolder, IEnumerable<ExtensionFolderManager> extensionDictionary)
+    private void LogFileCopySummaryAndWriteFailureReport(string destinationFolder,
+        IEnumerable<ExtensionFolderManager> extensionDictionary)
     {
-        var report = new List<string>();
+        var reportBuilder = new StringBuilder();
         var anyFailures = false;
 
         var orderedExtensionFolderManagers =
@@ -124,36 +139,45 @@ internal class SplitTdrFilesByExtensionWorker(ILogger<SplitTdrFilesByExtensionWo
         //Log success/failure to console
         foreach (var extensionFolderManager in orderedExtensionFolderManagers)
         {
-            report.Add($"--- {extensionFolderManager.ExtensionFolderName} ---");
-            report.Add($"  Total number of expected files: {extensionFolderManager.FileCopyAttempts.Count}");
-            report.Add(
+            reportBuilder.AppendLine($"--- {extensionFolderManager.ExtensionFolderName} ---");
+            reportBuilder.AppendLine(
+                $"  Total number of expected files: {extensionFolderManager.FileCopyAttempts.Count}");
+            reportBuilder.AppendLine(
                 $"  Successfully copied {extensionFolderManager.FileCopyAttempts.FindAll(x => x.success).Count} of {extensionFolderManager.FileCopyAttempts.Count}");
 
             if (extensionFolderManager.FileCopyAttempts.Any(x => !x.success))
             {
                 var unsuccessfulCopyAttempts = extensionFolderManager.FileCopyAttempts.FindAll(x => !x.success);
-                report.Add(
+                reportBuilder.AppendLine(
                     $"  Failed to copy {unsuccessfulCopyAttempts.Count} of {extensionFolderManager.FileCopyAttempts.Count}");
                 foreach (var (fileName, uuid, _) in unsuccessfulCopyAttempts)
                 {
-                    report.Add($"  - Name: {fileName}   UUID: {uuid}");
+                    reportBuilder.AppendLine($"  - Name: {fileName}   UUID: {uuid}");
                 }
 
                 anyFailures = true;
             }
             else
             {
-                report.Add("  No failed copy attempts");
+                reportBuilder.AppendLine("  No failed copy attempts");
             }
         }
 
-        //Log to console
-        logger.LogInformation(string.Join(Environment.NewLine, report));
-
-        //Record failures in a file log
-        if (anyFailures)
+        //Log report        
+        var report = reportBuilder.ToString();
+        if (!anyFailures)
         {
-            File.WriteAllLines(Path.Join(destinationFolder, "Failed.txt"), report);
+            logger.LogInformation(report);
+        }
+        else
+        {
+            logger.LogError(report);
+
+            // Also record failures in a file log in the destination bucket
+            var failureLogPath = Path.Join(destinationFolder, "Failed.txt");
+
+            File.WriteAllText(failureLogPath, report);
+            failedTdrBucketLogPaths.Add(failureLogPath);
         }
     }
 
