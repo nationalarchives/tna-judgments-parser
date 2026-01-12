@@ -19,10 +19,10 @@ public class Program
 {
     static Program()
     {
-        SplitFilesByExtension.SetAction(parseResult =>
+        SplitFilesByExtension.SetAction(validatedCommandInputs =>
         {
-            var originalPath = parseResult.GetValue(SplitFilesOriginalPathArgument)!; // Argument is required
-            var destinationPath = parseResult.GetValue(SplitFilesDestinationPathOption)!; // Option is required
+            var originalPath = validatedCommandInputs.GetValue(SplitFilesOriginalPathArgument)!; // Argument is required
+            var destinationPath = validatedCommandInputs.GetValue(SplitFilesDestinationPathOption)!; // Option is required
 
             var services = new ServiceCollection();
             services.AddLogging(loggingBuilder => { loggingBuilder.AddConsole(); });
@@ -33,9 +33,8 @@ public class Program
             return splitFilesWorker.Run(originalPath, destinationPath);
         });
 
-        RootCommand.SetAction(parseResult => RunBacklogParser(
-            parseResult.GetValue(DryRunOption),
-            parseResult.GetValue(FileIdOption))
+        RootCommand.SetAction(validatedCommandInputs =>
+            RunBacklogParser(validatedCommandInputs.GetValue(DryRunOption), validatedCommandInputs.GetValue(FileIdOption))
         );
     }
 
