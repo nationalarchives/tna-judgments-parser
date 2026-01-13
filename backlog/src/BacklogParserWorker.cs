@@ -11,6 +11,9 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src;
 
+/// <summary>
+/// This is the main entry point to the bulk backlog parsing process
+/// </summary>
 internal class BacklogParserWorker(
     ILogger<BacklogParserWorker> logger,
     Api.Parser parser,
