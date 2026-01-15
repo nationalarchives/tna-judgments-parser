@@ -66,11 +66,40 @@ namespace UK.Gov.Legislation.Lawmaker
             if (quoteDepth == 0 && !headingLine.IsFlushLeft())
                 return false;
 
-            if (frames.CurrentDocName.RequireNumberedProv1Headings())
+            if (frames.CurrentDocName.RequireNumberedProv1Heading())
             {
                 // Heading line must begin with a valid Prov1 number 
                 if (headingLine is not WOldNumberedParagraph np)
-                    return false;
+                {
+                    // If the line is not a WOldNumberedParagraph check if it is all bold and the text before the first space is a valid prov1 number
+                    // This check is required because the logic for parsing a line as a WOldNumberedParagraph doesn't work for numbered lines which only contain space(s) between the num and heading
+                    string numString = headingLine.NormalizedContent.Split(' ', 2).First();
+                    string numCleaned = IgnoreQuotedStructureStart(numString, quoteDepth);
+                    if (headingLine.IsAllBold() && Prov1.IsValidNumber(numCleaned, frames.CurrentDocName))
+                    {
+                        // Recreate the current line as a WOldNumberedParagraph
+                        List<IInline> contents = headingLine.Contents.ToList();
+                        WText? firstContent = contents.First() as WText;
+                        if (firstContent is not null)
+                        {
+                            // Remove num from content of line
+                            string firstContentWithoutNum = firstContent.Text.Substring(numString.Length).TrimStart();
+                            WText newFirstContent = new WText(firstContentWithoutNum, firstContent.properties);
+                            contents = contents.Skip(1).ToList();
+                            contents.Insert(0, newFirstContent);
+                            
+                            // Assign the new WOldNumberedParagraph to the various variables
+                            headingLine = new WOldNumberedParagraph(new WText(numString, null), new WLine(headingLine, contents));
+                            np = (WOldNumberedParagraph) headingLine;
+                            Body[i] = headingLine;
+                        }
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
+                
                 if (!Prov1.IsValidNumber(GetNumString(np.Number), frames.CurrentDocName))
                     return false;
             }
@@ -103,7 +132,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (!line.IsLeftAligned())
                 return false;
 
-            if (!frames.CurrentDocName.RequireNumberedProv1Headings())
+            if (!frames.CurrentDocName.RequireNumberedProv1Heading())
             {
                 if (line is not WOldNumberedParagraph np)
                     return false;
@@ -129,7 +158,7 @@ namespace UK.Gov.Legislation.Lawmaker
             // Skip over and cache the heading for now (if present).
             if (!PeekProv1(line))
             {
-                if (frames.CurrentDocName.RequireNumberedProv1Headings())
+                if (frames.CurrentDocName.RequireNumberedProv1Heading())
                     return null;
                 // With UNNUMBERED Prov1 headings, it's possible to have no heading at all (see scenarios [E] & [F]).
                 // So we re-peek without expecting a heading. But, we enforce that such a Prov1 must be numbered
@@ -140,7 +169,7 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
             {
-                headingLine = line;
+                headingLine = Current() as WLine;
                 i += 1;
             }
 
@@ -183,12 +212,13 @@ namespace UK.Gov.Legislation.Lawmaker
             List<IBlock> wrapUp = [];
             Prov1Name tagName = GetProv1Name();
 
-            bool headingPrecedesNumber = !frames.CurrentDocName.RequireNumberedProv1Headings();
+            if (line is WOldNumberedParagraph np)
+                number = np.Number;
+                
+            bool headingPrecedesNumber = !frames.CurrentDocName.RequireNumberedProv1Heading();
             if (headingPrecedesNumber)
             {
                 // Must strip the Prov1 number from the beginning of the line (see scenarios [C] through [F])
-                if (line is WOldNumberedParagraph np)
-                    number = np.Number;
                 WOldNumberedParagraph? fixedProv2Line = FixFirstProv2(line);
                 if (fixedProv2Line is not null)
                     line = fixedProv2Line;
