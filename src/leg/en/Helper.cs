@@ -1,0 +1,34 @@
+
+using System.IO;
+using System.Xml;
+
+using DocumentFormat.OpenXml.Packaging;
+
+using UK.Gov.NationalArchives.AkomaNtoso;
+using UK.Gov.Legislation.Common;
+using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Models;
+
+namespace UK.Gov.Legislation.ExplanatoryNotes {
+
+class Helper : BaseHelper {
+
+    private static readonly Helper Instance = new Helper();
+
+    private Helper() : base(LegislativeDocumentConfig.ForExplanatoryNotes()) { }
+
+    public static new IXmlDocument Parse(Stream docx, bool simplify = true) {
+        return ((BaseHelper)Instance).Parse(docx, simplify);
+    }
+
+    public static new IXmlDocument Parse(byte[] docx, bool simplify = true) {
+        return ((BaseHelper)Instance).Parse(docx, simplify);
+    }
+
+    protected override IDocument ParseDocument(WordprocessingDocument docx) {
+        return ExplanatoryNotes.Parser.Parse(docx);
+    }
+
+}
+
+}

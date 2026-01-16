@@ -75,6 +75,24 @@ public class LegislativeDocumentConfig {
             }
         };
     }
+
+    /// <summary>
+    /// Creates configuration for Explanatory Notes
+    /// </summary>
+    public static LegislativeDocumentConfig ForExplanatoryNotes() {
+        return new LegislativeDocumentConfig {
+            DocumentTitles = new[] { "EXPLANATORY NOTES", "Explanatory Notes" },
+            SectionTitleStyle = "Heading1",
+            Level1SubheadingStyle = "HSubheading2",
+            Level2SubheadingStyle = "HSubheading3",
+            UriSuffix = "/notes",
+            DefaultDocumentType = "ExplanatoryNotes",
+            DocumentTypeMapping = new System.Collections.Generic.Dictionary<string, string> {
+                { "EXPLANATORY NOTES", "ExplanatoryNotes" },
+                { "Explanatory Notes", "ExplanatoryNotes" }
+            }
+        };
+    }
 }
 
 }
