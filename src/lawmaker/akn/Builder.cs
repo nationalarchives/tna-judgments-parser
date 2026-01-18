@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
+
+using DocumentFormat.OpenXml.Wordprocessing;
+
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.DOCX;
@@ -285,6 +288,16 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 else if (block is ILine line)
                 {
+                    // If line contains image, wrap with tblock first
+                    foreach (IInline inline in line.Contents)
+                        if (inline is WImageRef wimageRef)
+                        {
+                            XmlElement tblock = doc.CreateElement("tblock", ns);
+                            parent.AppendChild(tblock);
+                            tblock.SetAttribute("class", ns, "image centre");
+                            parent = tblock;
+                            break;
+                        }
                     this.p(parent, line);
                 }
                 else if (block is Mod mod)
@@ -463,10 +476,26 @@ namespace UK.Gov.Legislation.Lawmaker
             IEnumerable<IBlock> content = FootnoteEnricher.EnrichInside(fn.Content);
             blocks(authorialNote, content);
         }
+        private double PtToMM(float pt)
+        {
+            return Math.Floor(pt * 25.4/300*1.44;
+        }
+
+        private void ExtractDimensions(XmlElement img, IImageRef model)
+        {
+            foreach (string style in model.Style.Split(";"))
+            {
+                img.SetAttribute(
+                    style.Split(":")[0], 
+                    PtToMM(float.Parse(Regex.Replace(style, @"[^0-9.-]", ""))).ToString());
+            }
+        }
+
         protected override void AddImageRef(XmlElement parent, IImageRef model) {
             XmlElement img = doc.CreateElement("img", ns);
             img.SetAttribute("src", "/document/image?filename="+model.Src+"&ds=LEGI_DRAFTING");
             img.SetAttribute("alt", model.Src);
+            ExtractDimensions(img, model);
             if (model.Style is not null)
                 img.SetAttribute("style", model.Style);
             parent.AppendChild(img);
