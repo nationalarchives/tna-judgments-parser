@@ -740,7 +740,7 @@ abstract class Builder {
         blocks(authorialNote, fn.Content);
     }
 
-    private void AddImageRef(XmlElement parent, IImageRef model) {
+    protected virtual void AddImageRef(XmlElement parent, IImageRef model) {
         XmlElement img = doc.CreateElement("img", ns);
         img.SetAttribute("src", model.Src);
         if (model.Style is not null)
