@@ -9,6 +9,7 @@ using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using CaseLaw = UK.Gov.NationalArchives.CaseLaw.Parse;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 using UK.Gov.Legislation.Lawmaker.Headers;
+using UK.Gov.Legislation.Judgments.Parse;
 
 
 namespace UK.Gov.Legislation.Lawmaker;
@@ -33,6 +34,14 @@ public partial class LegislationParser
     {
         WordprocessingDocument doc = AkN.Parser.Read(docx);
         CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
+        WImage.Get(doc);
+        return new LegislationParser(simple, classifier, languageService) { LanguageService = languageService }.Parse();
+    }
+
+        public static Document Parse(WordprocessingDocument doc, LegislationClassifier classifier, LanguageService languageService)
+    {
+        CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
+        WImage.Get(doc);
         return new LegislationParser(simple, classifier, languageService) { LanguageService = languageService }.Parse();
     }
 
