@@ -269,7 +269,7 @@ internal class BacklogParserWorker(
         var uuid = !string.IsNullOrWhiteSpace(line.Uuid)
             ? line.Uuid
             : backlogFiles.FindUuidInTransferMetadata(line.FilePath);
-        var content = backlogFiles.ReadFile(uuid, line.Extension);
+        var content = backlogFiles.ReadFile(uuid);
 
         var response = CreateResponse(meta, content);
 
