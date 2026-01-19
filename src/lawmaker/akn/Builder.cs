@@ -464,6 +464,16 @@ namespace UK.Gov.Legislation.Lawmaker
             blocks(authorialNote, content);
         }
 
+        protected override void AddImageRef(XmlElement parent, IImageRef model)
+        {
+            XmlElement img = doc.CreateElement("img", ns);
+            img.SetAttribute("src", "/document/image?filename=" + model.Src + "&ds=LEGI_DRAFTING");
+            img.SetAttribute("alt", model.Src);
+            if (model.Style is not null)
+                img.SetAttribute("style", model.Style);
+            parent.AppendChild(img);
+        }
+
         protected void AddBlockList(XmlElement parent, BlockList blockList)
         {
             XmlElement bl = CreateAndAppend("blockList", parent);

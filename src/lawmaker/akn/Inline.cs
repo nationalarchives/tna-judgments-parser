@@ -38,6 +38,11 @@ namespace UK.Gov.Legislation.Lawmaker
                 AddAppendText(parent, at);
                 return;
             }
+            if (model is IImageRef imageRef)
+            {
+                AddImageRef(parent, imageRef);
+                return;
+            }
             if (model is ITab)
             {
                 return;
