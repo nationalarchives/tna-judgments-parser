@@ -9,6 +9,7 @@ using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using CaseLaw = UK.Gov.NationalArchives.CaseLaw.Parse;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
 using UK.Gov.Legislation.Lawmaker.Headers;
+using UK.Gov.Legislation.Judgments.Parse;
 
 
 namespace UK.Gov.Legislation.Lawmaker;
@@ -33,6 +34,14 @@ public partial class LegislationParser
     {
         WordprocessingDocument doc = AkN.Parser.Read(docx);
         CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
+        WImage.Get(doc);
+        return new LegislationParser(simple, classifier, languageService) { LanguageService = languageService }.Parse();
+    }
+
+    public static Document Parse(WordprocessingDocument doc, LegislationClassifier classifier, LanguageService languageService)
+    {
+        CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
+        WImage.Get(doc);
         return new LegislationParser(simple, classifier, languageService) { LanguageService = languageService }.Parse();
     }
 
@@ -57,7 +66,7 @@ public partial class LegislationParser
     private readonly ILogger Logger = Logging.Factory.CreateLogger<LegislationParser>();
     private ProvisionRecords provisionRecords;
     private readonly Frames frames;
-    private Dictionary<string, Dictionary<string, string>>? Styles { get;  init; }
+    private Dictionary<string, Dictionary<string, string>>? Styles { get; init; }
 
 
     int parseDepth = 0;
@@ -90,7 +99,8 @@ public partial class LegislationParser
             if (preamble is not null)
             {
                 footnoteEnricher.EnrichBlocks(preamble);
-                header = niHeader with {
+                header = niHeader with
+                {
                     Preamble = new Headers.Preamble(preamble)
                 };
             }
