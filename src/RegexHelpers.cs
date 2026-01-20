@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments;
 
-public static class RegexHelpers
+public static partial class RegexHelpers
 {
     public static Match GetFirstMatch(string input, params string[] orderedRegexPatterns)
     {
@@ -24,4 +24,14 @@ public static class RegexHelpers
 
         return match;
     }
+
+    /// <summary>
+    /// Returns a string with only single spaces instead of arbitrary whitespace, and no spaces at the start or end
+    /// </summary>
+    public static string CleanWhitespace(this string input)
+    {
+        return WhitespaceRegex().Replace(input, " ").Trim();
+    }
+
+    [GeneratedRegex(@"\s+")] private static partial Regex WhitespaceRegex();
 }

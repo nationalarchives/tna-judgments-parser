@@ -44,4 +44,9 @@ public class CourtStore
 
         throw new CourtNotFoundException($"Couldn't find court with code {courtCode}");
     }
+
+    public IEnumerable<Court> Where(Func<Court, bool> predicate)
+    {
+        return allCourts.Where(predicate);
+    }
 }
