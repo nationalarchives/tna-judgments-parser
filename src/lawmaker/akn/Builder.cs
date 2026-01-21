@@ -478,7 +478,7 @@ namespace UK.Gov.Legislation.Lawmaker
         }
         private double PtToMM(float pt)
         {
-            return Math.Floor(pt * 25.4/300*1.44;
+            return Math.Floor(pt * 25.4/300*1.44);
         }
 
         private void ExtractDimensions(XmlElement img, IImageRef model)
