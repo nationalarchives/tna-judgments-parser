@@ -86,7 +86,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             }
 
             return
-                $"{lineId},{judgmentsFilePath}{originalFileName},{metadataLine.Extension},{metadataLine.decision_datetime},{metadataLine.CaseNo},{metadataLine.court},{metadataLine.appellants},{metadataLine.claimants},{metadataLine.respondent},{jurisdictions},{metadataLine.webarchiving}";
+                $"{lineId},{judgmentsFilePath}{originalFileName},{metadataLine.Extension},{metadataLine.decision_datetime:yyyy-MM-dd},{metadataLine.CaseNo},{metadataLine.court},{metadataLine.appellants},{metadataLine.claimants},{metadataLine.respondent},{jurisdictions},{metadataLine.webarchiving}";
         }));
 
         var metadataPath = courtMetadataPath ??
@@ -106,7 +106,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         var metadataLine = new Metadata.Line
         {
             Extension = ".docx",
-            decision_datetime = "2099-01-31 00:00:00",
+            decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = "new case number",
             court = "UKUT-LC",
             claimants = "new claimants",
@@ -156,7 +156,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         var metadataLine = new Metadata.Line
         {
             Extension = ".pdf",
-            decision_datetime = "2099-01-31 00:00:00",
+            decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = "new case number",
             court = "UKUT-LC",
             claimants = "new claimants",
@@ -203,7 +203,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         var metadataLine = new Metadata.Line
         {
             Extension = ".docx",
-            decision_datetime = "2099-01-31 00:00:00",
+            decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = "new case number",
             court = "UKFTT-GRC",
             appellants = "new appellants",
@@ -233,7 +233,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         var metadataLine = new Metadata.Line
         {
             Extension = ".docx",
-            decision_datetime = "2023-11-01 00:00:00",
+            decision_datetime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = "EA/2023/0132",
             court = "UKFTT-GRC",
             appellants = "NIGEL RAWLINS",
@@ -309,7 +309,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         var metadataLine = new Metadata.Line
         {
             Extension = ".docx",
-            decision_datetime = "2023-11-01 00:00:00",
+            decision_datetime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = "EA/2023/0132",
             court = "UKFTT-GRC",
             appellants = "NIGEL RAWLINS",

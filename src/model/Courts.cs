@@ -382,7 +382,7 @@ public readonly partial struct Courts {
     };
 
     public static readonly Court FirstTierTribunal_PropertyChamber = new() {
-        Code = "UKFTT-PC",
+        Code = "FTT-PC",
         LongName = "United Kingdom First-tier Tribunal (Property Chamber)",
         URL = "https://www.gov.uk/courts-tribunals/first-tier-tribunal-property-chamber",
         CitationPattern = new Regex(@"^\[\d{4}\] UKFTT \d+ \(PC\)$")

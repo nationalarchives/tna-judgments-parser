@@ -1,4 +1,5 @@
-id,court,decision_datetime,CaseNo,claimants,respondent,main_category,main_subcategory,Name,FilePath,Extension
-100,UKIST,2002-12-20 00:00:00,2002/10/RTR,Test Claimant 1,Test Respondent 1,Appeals,Refusal to register,Test Case 1,JudgmentFiles\j100\test1.doc,.doc
-101,UKIST,2003-01-15 00:00:00,2003/11/RTR,Test Claimant 2,Test Respondent 2,Appeals,License application,Test Case 2,JudgmentFiles\j101\test2.docx,.docx
-102,UKIST,2003-02-10 00:00:00,2003/12/RTR,Test Claimant 3,Test Respondent 3,Tax,VAT disputes,Test Case 3,JudgmentFiles\j102\test3.pdf,.pdf
+id,court,decision_datetime,CaseNo,claimants,respondent,main_category,main_subcategory,Name,FilePath,Extension,Skip
+100,UKIST,2002-12-20 00:00:00,2002/10/RTR,Test Claimant 1,Test Respondent 1,Appeals,Refusal to register,Test Case 1,JudgmentFiles\j100\test1.doc,.doc,n
+101,UKIST,2003-01-15 00:00:00,2003/11/RTR,Test Claimant 2,Test Respondent 2,Appeals,License application,Test Case 2,JudgmentFiles\j101\test2.docx,.docx,
+102,UKIST,2003-02-10 00:00:00,2003/12/RTR,Test Claimant 3,Test Respondent 3,Tax,VAT disputes,Test Case 3,JudgmentFiles\j102\test3.pdf,.pdf,
+103,UKIST,2003-02-10 00:00:00,2003/12/RTR,Test Claimant 4,Test Respondent 4,Tax,VAT disputes,Test Case 4,JudgmentFiles\j102\no_file_here,.pdf,skip me

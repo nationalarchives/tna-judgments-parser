@@ -116,7 +116,7 @@ namespace UK.Gov.NationalArchives.CaseLaw.TRE
                 return Api.Hint.EWHC;
             if (court.StartsWith("UKUT"))
                 return Api.Hint.UKUT;
-            if (court.StartsWith("UKFTT"))
+            if (court.StartsWith("UKFTT") || court.StartsWith("FTT"))
                 return Api.Hint.UKUT;
             return Api.Hint.Judgment;
         }
