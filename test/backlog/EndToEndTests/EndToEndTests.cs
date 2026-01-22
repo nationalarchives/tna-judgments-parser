@@ -20,6 +20,7 @@ namespace test.backlog.EndToEndTests
 
         private string outputDir;
         private string trackerPath;
+        private string dataDir;
 
         public EndToEndTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
@@ -45,6 +46,14 @@ namespace test.backlog.EndToEndTests
             {
                 Directory.Delete(outputDir, true);
             }
+
+            if (Directory.Exists(dataDir))
+            {
+                foreach (var logFile in Directory.GetFiles(dataDir, "log*.txt"))
+                {
+                    File.Delete(logFile);
+                }
+            }
         }
 
         private void ConfigureTestEnvironment(string testCaseName)
@@ -60,8 +69,8 @@ namespace test.backlog.EndToEndTests
             var testDataDirectory = backlogDirectory.GetDirectories("test-data").SingleOrDefault()
                                     ?? throw new DirectoryNotFoundException("Could not find test-data directory");
 
-            var dataDir = testDataDirectory.GetDirectories(testCaseName).SingleOrDefault()?.FullName
-                          ?? throw new DirectoryNotFoundException($"Could not find {testCaseName} directory");
+            dataDir = testDataDirectory.GetDirectories(testCaseName).SingleOrDefault()?.FullName
+                       ?? throw new DirectoryNotFoundException($"Could not find {testCaseName} directory");
 
             // Create the output directory - input directories should already exist with test data
             outputDir = Path.Combine(dataDir, "output");
@@ -219,6 +228,25 @@ namespace test.backlog.EndToEndTests
             // Should have the original entry plus new entries
             Assert.True(trackerLines.Length > 1, "Tracker should have original entry plus new entries");
             Assert.True(trackerLines[0].Contains("some-uuid-1"), "First line should be the pre-existing entry");
+        }
+
+        [Fact]
+        public async Task ProcessBacklogJudgment_WithId_OnlyProcessesSpecifiedId()
+        {
+            // Setup test environment
+            ConfigureTestEnvironment("MultiLineTest");
+            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
+            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
+
+            // Act
+            var exitCode = Backlog.Src.Program.Main(["--id", "102"]);
+
+            // Assert
+            AssertProgramExitedSuccessfully(exitCode);
+
+            var trackerLines = await File.ReadAllLinesAsync(trackerPath, TestContext.Current.CancellationToken);
+            var singleLine = Assert.Single(trackerLines);
+            Assert.StartsWith("102/JudgmentFiles\\j102\\test3.pdf,", singleLine);
         }
 
         [Fact]

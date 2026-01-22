@@ -46,7 +46,7 @@ class WMetadata2 : WMetadata {
             return "judgment";
         if (court.Value.Code.StartsWith("UKUT"))
             return "decision";
-        if (court.Value.Code.StartsWith("UKFTT"))
+        if (court.Value.Code.StartsWith("UKFTT") || court.Value.Code.StartsWith("FTT"))
             return "decision";
         return "judgment";
     }
