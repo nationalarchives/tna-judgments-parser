@@ -33,8 +33,8 @@ class Resource : IResource {
 class Metadata : IAknMetadata {
 
     private IResource TNA = new Resource { ID = "tna", URI = "https://www.nationalarchives.gov.uk", ShowAs = "The National Archives" };
-    private IResource UKSC = new Resource { ID = "uksc", URI = Courts.SupremeCourt.URL, ShowAs = Courts.SupremeCourt.LongName };
-    private IResource UKPC = new Resource { ID = "ukpc", URI = Courts.PrivyCouncil.URL, ShowAs = Courts.PrivyCouncil.LongName };
+    private IResource UKSC = new Resource { ID = "uksc", URI = Courts.SupremeCourt.URL, ShowAs = Courts.SupremeCourt.Name };
+    private IResource UKPC = new Resource { ID = "ukpc", URI = Courts.PrivyCouncil.URL, ShowAs = Courts.PrivyCouncil.Name };
 
     public IResource Source { get => TNA; }
 
