@@ -30,6 +30,10 @@ jobs:
       - name: Install dependencies
         run: dotnet restore tna-judgments-parser.sln
 
+      # Build
+      - name: Build
+        run: dotnet build tna-judgments-parser.sln --no-restore --configuration release
+
       # Run tests
       - name: Run tests
-        run: dotnet test test --verbosity normal
+        run: dotnet test tna-judgments-parser.sln --no-build --configuration release
