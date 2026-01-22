@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2024/1094/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2024/1094/data.xml" />
-          <FRBRdate date="2024-08-13T18:31:31" name="transform" />
+          <FRBRdate date="2026-01-22T09:58:21" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -30,7 +30,7 @@
         <eventRef date="2024-05-09" refersTo="#judgment" source="#" />
       </lifecycle>
       <references source="#tna">
-        <TLCOrganization eId="ewhc-kbd-admin" href="https://www.gov.uk/courts-tribunals/administrative-court" showAs="The Administrative Court (King's Bench Division)" shortForm="The Administrative Court" />
+        <TLCOrganization eId="ewhc-kbd-admin" href="https://www.gov.uk/courts-tribunals/administrative-court" showAs="The Administrative Court (King's Bench Division)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="the-king" href="" showAs="THE KING" />
@@ -45,7 +45,7 @@
         <uk:number>1094</uk:number>
         <uk:cite>[2024] EWHC 1094 (Admin)</uk:cite>
         <uk:caseNumber>AC-2023-LON-002285</uk:caseNumber>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>1.4.0</uk:parser>
         <uk:hash>c606bf07e81eb0066f5c7522fd00f56c299299aca6d1dd8aa152363be59b4595</uk:hash>
       </proprietary>
       <presentation source="#">
