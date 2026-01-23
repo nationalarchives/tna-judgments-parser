@@ -17,7 +17,7 @@ namespace test.TRE
 
         [Theory]
         [MemberData(nameof(PassingTests))]
-        public void TestJudgments(int i)
+        public void TestJudgments_WithMetadataFromOutputOfCleanRun_AreTheSameAsOutputFromCleanRun(int i)
         {
             byte[] docx = DocumentHelpers.ReadDocx(i);
             Api.Response response1 = TestInputInjection.LambdaTest(docx, null);

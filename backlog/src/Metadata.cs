@@ -5,10 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
+
+using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -16,40 +19,76 @@ using UK.Gov.Legislation.Judgments.Parse;
 namespace Backlog.Src
 {
     /// <summary>
-    /// Custom validation attribute to ensure subcategories can only exist if their parent category is defined
+    ///     Custom validation attribute to ensure subcategories can only exist if their parent category is defined
     /// </summary>
-    public class CategoryValidationAttribute : ValidationAttribute
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class CategoryValidationAttribute : ValidationAttribute
     {
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (value is Metadata.Line line)
+            if (value is not Metadata.Line line)
             {
-                try
-                {
-                    line.ValidateCategoryRules();
-                    return true;
-                }
-                catch (ArgumentException)
-                {
-                    return false;
-                }
+                throw new InvalidOperationException(
+                    $"{nameof(CategoryValidationAttribute)} can only be used on a {nameof(Metadata.Line)}");
             }
-            return true;
-        }
 
-        public override string FormatErrorMessage(string name)
-        {
-            return "Subcategory columns can only exist if their main category is defined, and exactly one of claimants or appellants must be provided";
+            // Check if main_subcategory exists without main_category
+            if (!string.IsNullOrWhiteSpace(line.main_subcategory) && string.IsNullOrWhiteSpace(line.main_category))
+            {
+                return new ValidationResult(
+                    $"Id {line.id} - main_subcategory '{line.main_subcategory}' cannot exist without main_category being defined");
+            }
+
+            // Check if sec_subcategory exists without sec_category
+            if (!string.IsNullOrWhiteSpace(line.sec_subcategory) && string.IsNullOrWhiteSpace(line.sec_category))
+            {
+                return new ValidationResult(
+                    $"Id {line.id} - sec_subcategory '{line.sec_subcategory}' cannot exist without sec_category being defined");
+            }
+
+            return ValidationResult.Success;
         }
     }
 
-    class Metadata
+    /// <summary>
+    ///     Custom validation attribute to ensure one of appellants or claimants are provided
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class AppellantsOrClaimantsPresentValidationAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value is not Metadata.Line line)
+            {
+                throw new InvalidOperationException(
+                    $"{nameof(AppellantsOrClaimantsPresentValidationAttribute)} can only be used on a {nameof(Metadata.Line)}");
+            }
+
+            // Check that exactly one of claimants or appellants is provided
+            var hasClaimants = !string.IsNullOrWhiteSpace(line.claimants);
+            var hasAppellants = !string.IsNullOrWhiteSpace(line.appellants);
+
+            return (hasClaimants, hasAppellants) switch
+            {
+                { hasClaimants: true, hasAppellants: true } => new ValidationResult(
+                    $"Id {line.id} - Cannot have both claimants and appellants. Please provide only one."),
+                { hasClaimants: false, hasAppellants: false } => new ValidationResult(
+                    $"Id {line.id} - Must have either claimants or appellants. At least one is required."),
+                _ => ValidationResult.Success
+            };
+        }
+    }
+
+    class Metadata(ILogger<Metadata> logger)
     {
         internal class LineMap : ClassMap<Line>
         {
             public LineMap()
             {
                 AutoMap(CultureInfo.InvariantCulture);
+                Map(l => l.decision_datetime)
+                    .TypeConverterOption.DateTimeStyles(DateTimeStyles.AllowWhiteSpaces & DateTimeStyles.AssumeUniversal)
+                    .Validate(v => Regex.IsMatch(v.Field.Trim(), @"^\d\d\d\d")); // Ensure dates start with the year
                 Map(l => l.Jurisdictions)
                     .Optional()
                     .Convert(convertFromStringArgs =>
@@ -58,17 +97,29 @@ namespace Backlog.Src
                         convertFromStringArgs.Row.TryGetField<string>("jurisdictions", out var field);
                         return field?.Split(',').Select(item => item.Trim()) ?? [];
                     });
+                Map(l => l.Skip)
+                    .Optional()
+                    .Convert(convertFromStringArgs =>
+                    {
+                        convertFromStringArgs.Row.TryGetField<string>(nameof(Line.Skip), out var field);
+                        return field?.Trim().ToLower() switch
+                        {
+                            null or "" or "n" or "no" or "f" or "false" or "0" => false,
+                            _ => true // return true when there is any value that is not explicitly negative
+                        };
+                    });
             }
         }
 
+        [AppellantsOrClaimantsPresentValidation]
         [CategoryValidation]
-        internal class Line
+        internal record Line
         {
             public string id { get; set; }
             public string court { get; set; }
             public string FilePath { get; set; }
             public string Extension { get; set; }
-            public string decision_datetime { get; set; }
+            public DateTime decision_datetime { get; set; }
             public string CaseNo { get; set; }
 
             [Optional]
@@ -103,42 +154,12 @@ namespace Backlog.Src
             [Optional]
             public string webarchiving { get; set; }
             
-            private readonly string DateFormat = "yyyy-MM-dd HH:mm:ss";
-            internal string DecisionDate { get => System.DateTime.ParseExact(decision_datetime, DateFormat, CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"); }
+            [Optional]
+            public string Uuid { get; set; }
 
-            /// <summary>
-            /// Validates that subcategory columns can only exist if their main category is defined.
-            /// Also validates that only one of claimants or appellants is provided, but not both.
-            /// </summary>
-            /// <exception cref="ArgumentException">Thrown when a subcategory exists without its parent category or when both claimants and appellants are provided</exception>
-            internal void ValidateCategoryRules()
-            {
-                // Check if main_subcategory exists without main_category
-                if (!string.IsNullOrWhiteSpace(main_subcategory) && string.IsNullOrWhiteSpace(main_category))
-                {
-                    throw new ArgumentException($"Line {id}: main_subcategory '{main_subcategory}' cannot exist without main_category being defined");
-                }
-
-                // Check if sec_subcategory exists without sec_category
-                if (!string.IsNullOrWhiteSpace(sec_subcategory) && string.IsNullOrWhiteSpace(sec_category))
-                {
-                    throw new ArgumentException($"Line {id}: sec_subcategory '{sec_subcategory}' cannot exist without sec_category being defined");
-                }
-
-                // Check that exactly one of claimants or appellants is provided
-                bool hasClaimants = !string.IsNullOrWhiteSpace(claimants);
-                bool hasAppellants = !string.IsNullOrWhiteSpace(appellants);
-
-                if (hasClaimants && hasAppellants)
-                {
-                    throw new ArgumentException($"Line {id}: Cannot have both claimants and appellants. Please provide only one.");
-                }
-
-                if (!hasClaimants && !hasAppellants)
-                {
-                    throw new ArgumentException($"Line {id}: Must have either claimants or appellants. At least one is required.");
-                }
-            }
+            [Optional]
+            [Default(false)]
+            public bool Skip { get; set; }
 
             /// <summary>
             /// Gets the name of the first party (either claimants or appellants)
@@ -171,59 +192,70 @@ namespace Backlog.Src
             }
         }
 
-        internal static List<Line> Read(string csvPath)
+        internal List<Line> Read(string csvPath, out List<string> csvParseErrors)
         {
             using var streamReader = new StreamReader(csvPath);
-            return Read(streamReader);
+            return Read(streamReader, out csvParseErrors);
         }
 
-        internal static List<Line> Read(TextReader textReader)
+        internal List<Line> Read(TextReader textReader, out List<string> csvParseErrors)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
-                ShouldSkipRecord = args => false
+                ShouldSkipRecord = args => false,
+                IgnoreBlankLines = true,
+                PrepareHeaderForMatch = args => args.Header.ToLower()
             };
             using var csv = new CsvReader(textReader, config);
             
             csv.Context.RegisterClassMap<LineMap>();
             
             var records = new List<Line>();
+            csvParseErrors = [];
             
             // Read the header first
             csv.Read();
             csv.ReadHeader();
-            
+
             // Now read data rows
             while (csv.Read())
             {
                 try
                 {
                     var record = csv.GetRecord<Line>();
-                    
+
                     // Use DataAnnotations validation
                     var validationContext = new ValidationContext(record);
                     var validationResults = new List<ValidationResult>();
-                    
-                    if (!Validator.TryValidateObject(record, validationContext, validationResults, true))
+
+                    if (Validator.TryValidateObject(record, validationContext, validationResults, true))
                     {
-                        var errors = string.Join(", ", validationResults.Select(r => r.ErrorMessage));
-                        throw new ArgumentException($"Validation failed: {errors}");
+                        records.Add(record);
                     }
-                    
-                    records.Add(record);
+                    else
+                    {
+                        var errors = string.Join(", ", validationResults.Where(r => r != ValidationResult.Success)
+                                                                        .Select(r => r.ErrorMessage));
+
+                        csvParseErrors.Add($"Line {csv.Context.Parser!.Row}: {errors}");
+                        logger.LogError("CSV validation errors [{Errors}] at row {ParserRow}", errors,
+                            csv.Context.Parser?.Row);
+                    }
                 }
-                catch (ArgumentException ex)
+                catch (Exception ex)
                 {
-                    throw new CsvHelper.CsvHelperException(csv.Context, $"CSV validation error at row {csv.Context.Parser.Row}: {ex.Message}", ex);
+                    var exceptionMessage = ex is CsvHelperException
+                        ? ex.Message.Substring(0, ex.Message.IndexOf(Environment.NewLine, StringComparison.Ordinal))
+                        : ex.Message;
+
+                    var rawLine = csv.Context!.Parser!.RawRecord.ReplaceLineEndings(string.Empty);
+                    csvParseErrors.Add(
+                        $"Line {csv.Context.Parser!.Row}: {exceptionMessage} [{rawLine}]");
+                    logger.LogError(ex, "Error parsing row {ParserRow}", csv.Context.Parser?.Row);
                 }
             }
-            
-            return records;
-        }
 
-        internal static List<Line> FindLines(List<Line> lines, uint id)
-        {
-            return lines.Where(line => line.id == id.ToString()).ToList();
+            return records;
         }
 
         internal static ExtendedMetadata MakeMetadata(Line line) {
@@ -275,7 +307,7 @@ namespace Backlog.Src
                 Type = JudgmentType.Decision,
                 Court = court,
                 Jurisdictions = jurisdictions,
-                Date = new WNamedDate { Date = line.DecisionDate, Name = "decision" },
+                Date = new WNamedDate { Date = line.decision_datetime.ToString("yyyy-MM-dd"), Name = "decision" },
                 Name = line.FirstPartyName + " v " + line.respondent,
                 CaseNumbers = [line.CaseNo],
                 Parties = [

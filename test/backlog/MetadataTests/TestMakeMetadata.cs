@@ -20,7 +20,7 @@ public class TestMakeMetadata
         {
             id = "123",
             court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
+            decision_datetime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
             CaseNo = "ABC/2023/001",
             claimants = "John Smith",
             respondent = "HMRC",
@@ -66,7 +66,7 @@ public class TestMakeMetadata
         {
             id = "124",
             court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
+            decision_datetime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
             CaseNo = "ABC/2023/002",
             appellants = "Jane Doe",
             respondent = "Home Office",
@@ -104,15 +104,8 @@ public class TestMakeMetadata
     public void MakeMetadata_WithDocxFile_SetsCorrectSourceFormat()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
             Extension = ".docx"
         };
 
@@ -127,15 +120,8 @@ public class TestMakeMetadata
     public void MakeMetadata_WithDocFile_SetsCorrectSourceFormat()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
             Extension = ".doc"
         };
 
@@ -150,15 +136,8 @@ public class TestMakeMetadata
     public void MakeMetadata_WithUnsupportedExtension_ThrowsException()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
             Extension = ".txt"
         };
 
@@ -171,16 +150,10 @@ public class TestMakeMetadata
     public void MakeMetadata_WithNewDate_UsesFirstTierTribunal()
     {
         // Arrange - Date on or after 2010-01-18
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
             court = "UKFTT-GRC",
-            decision_datetime = "2010-01-18 14:30:00",
-            CaseNo = "ABC/2010/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            Extension = ".pdf"
+            decision_datetime = new DateTime(2010, 01, 10,  14, 30, 00, DateTimeKind.Utc)
         };
 
         // Act
@@ -194,16 +167,10 @@ public class TestMakeMetadata
     public void MakeMetadata_WithPartiesData_CreatesCorrectParties()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLine with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
             claimants = "Jane Doe & John Smith",
-            respondent = "Home Office",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            Extension = ".pdf"
+            respondent = "Home Office"
         };
 
         // Act
@@ -227,16 +194,10 @@ public class TestMakeMetadata
     public void MakeMetadata_WithAppellantPartiesData_CreatesCorrectParties()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLine with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
             appellants = "Jane Doe & John Smith",
-            respondent = "Home Office",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            Extension = ".pdf"
+            respondent = "Home Office"
         };
 
         // Act
@@ -260,18 +221,12 @@ public class TestMakeMetadata
     public void MakeMetadata_WithCategoriesData_CreatesCorrectCategories()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
             main_category = "Immigration",
             main_subcategory = "Asylum",
             sec_category = "Human Rights",
-            sec_subcategory = "Article 8",
-            Extension = ".pdf"
+            sec_subcategory = "Article 8"
         };
 
         // Act
@@ -300,18 +255,12 @@ public class TestMakeMetadata
     public void MakeMetadata_WithoutSecondaryCategory_CreatesOnlyMainCategories()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
             main_category = "Immigration",
             main_subcategory = "Asylum",
             sec_category = null, // No secondary category
-            sec_subcategory = null,
-            Extension = ".pdf"
+            sec_subcategory = null
         };
 
         // Act
@@ -333,18 +282,12 @@ public class TestMakeMetadata
     public void MakeMetadata_WithWhitespaceSecondaryCategory_CreatesOnlyMainCategories()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
             main_category = "Immigration",
             main_subcategory = "Asylum",
             sec_category = "   ", // Whitespace only
             sec_subcategory = "Article 8",
-            Extension = ".pdf"
         };
 
         // Act
@@ -366,16 +309,9 @@ public class TestMakeMetadata
     public void MakeMetadata_WithComplexFileNumbers_CreatesCorrectCaseNumber()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
             CaseNo = "IA/12345/2023",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            Extension = ".pdf"
         };
 
         // Act
@@ -389,16 +325,9 @@ public class TestMakeMetadata
     public void MakeMetadata_DecisionDate_ParsesCorrectly()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-12-25 15:45:30",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            Extension = ".pdf"
+            decision_datetime = new DateTime(2023, 12, 25,  15, 45, 30, DateTimeKind.Utc),
         };
 
         // Act
@@ -413,16 +342,8 @@ public class TestMakeMetadata
     public void MakeMetadata_WithNCN_SetsNCNProperty()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            id = "123",
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            main_category = "Immigration",
-            Extension = ".pdf",
             ncn = "[2023] UKUT 123 (IAC)"
         };
 
@@ -438,16 +359,8 @@ public class TestMakeMetadata
     public void MakeMetadata_WithoutNCN_NCNPropertyIsNull()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            id = "123",
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            main_category = "Immigration",
-            Extension = ".pdf"
             // ncn is not set
         };
 
@@ -463,16 +376,8 @@ public class TestMakeMetadata
     public void MakeMetadata_WithEmptyNCN_NCNPropertyIsEmpty()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            id = "123",
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            main_category = "Immigration",
-            Extension = ".pdf",
             ncn = ""
         };
 
@@ -488,16 +393,8 @@ public class TestMakeMetadata
     public void MakeMetadata_WithWhitespaceNCN_NCNPropertyIsWhitespace()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            id = "123",
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-01-14 14:30:00",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            main_category = "Immigration",
-            Extension = ".pdf",
             ncn = "   "
         };
 
@@ -509,28 +406,14 @@ public class TestMakeMetadata
         Assert.Equal("   ", result.NCN);
     }
 
-    private static Metadata.Line GetNewMetadataLineWithSampleValues()
-    {
-        return new Metadata.Line
-        {
-            id = "123",
-            court = "UKFTT-GRC",
-            decision_datetime = "2023-12-25 15:45:30",
-            CaseNo = "ABC/2023/001",
-            claimants = "John Smith",
-            respondent = "HMRC",
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            Extension = ".pdf"
-        };
-    }
-
     [Fact]
     public void MakeMetadata_WithWebArchiving_SetsWebArchivingLinkProperty()
     {
         // Arrange
-        var line = GetNewMetadataLineWithSampleValues();
-        line.webarchiving = "http://webarchivelink";
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            webarchiving = "http://webarchivelink"
+        };
 
         // Act
         var result = Metadata.MakeMetadata(line);
@@ -543,8 +426,10 @@ public class TestMakeMetadata
     public void MakeMetadata_WithoutWebArchiving_WebArchivingLinkIsNull()
     {
         // Arrange
-        var line = GetNewMetadataLineWithSampleValues();
-        line.webarchiving = "";
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            webarchiving = ""
+        };
 
         // Act
         var result = Metadata.MakeMetadata(line);
@@ -557,8 +442,10 @@ public class TestMakeMetadata
     public void MakeMetadata_WithJurisdiction_SetsJurisdictionProperty()
     {
         // Arrange
-        var line = GetNewMetadataLineWithSampleValues();
-        line.Jurisdictions = ["Transport"];
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+           Jurisdictions = ["Transport"]
+        };
 
         // Act
         var result = Metadata.MakeMetadata(line);
@@ -572,8 +459,10 @@ public class TestMakeMetadata
     public void MakeMetadata_WithoutJurisdiction_JurisdictionPropertyIsEmpty()
     {
         // Arrange
-        var line = GetNewMetadataLineWithSampleValues();
-        line.Jurisdictions = [];
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            Jurisdictions = []
+        };
 
         // Act
         var result = Metadata.MakeMetadata(line);
@@ -586,8 +475,10 @@ public class TestMakeMetadata
     public void MakeMetadata_WithWhitespaceJurisdiction_JurisdictionPropertyIsEmpty()
     {
         // Arrange
-        var line = GetNewMetadataLineWithSampleValues();
-        line.Jurisdictions = ["   "];
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            Jurisdictions = ["   "]
+        };
 
         // Act
         var result = Metadata.MakeMetadata(line);
@@ -600,8 +491,10 @@ public class TestMakeMetadata
     public void MakeMetadata_WithWhitespaceAndNonWhitespaceJurisdictions_IgnoresBlankJurisdictions()
     {
         // Arrange
-        var line = GetNewMetadataLineWithSampleValues();
-        line.Jurisdictions = ["   ", "Transport", ""];
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            Jurisdictions = ["   ", "Transport", ""]
+        };
 
         // Act
         var result = Metadata.MakeMetadata(line);
