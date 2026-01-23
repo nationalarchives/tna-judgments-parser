@@ -16,6 +16,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.Legislation.Lawmaker.Headers;
 
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
+using CSS = UK.Gov.Legislation.Judgments.DOCX.CSS;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -288,16 +289,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 else if (block is ILine line)
                 {
-                    // If line contains image, wrap with tblock first
-                    foreach (IInline inline in line.Contents)
-                        if (inline is WImageRef wimageRef)
-                        {
-                            XmlElement tblock = doc.CreateElement("tblock", ns);
-                            parent.AppendChild(tblock);
-                            tblock.SetAttribute("class", ns, "image centre");
-                            parent = tblock;
-                            break;
-                        }
                     this.p(parent, line);
                 }
                 else if (block is Mod mod)
@@ -378,7 +369,28 @@ namespace UK.Gov.Legislation.Lawmaker
         protected override XmlElement Block(XmlElement parent, ILine line, string name)
         {
             ILine stripped = TrimLine(line);
-            return base.Block(parent, stripped, name);
+            XmlElement block = doc.CreateElement(name, ns);
+            parent.AppendChild(block);
+            if (stripped.Style is not null)
+                block.SetAttribute("class", stripped.Style);
+            Dictionary<string, string> styles = stripped.GetCSSStyles();
+            if (styles.Count > 0)
+                block.SetAttribute("style", CSS.SerializeInline(styles));
+            ContainingParagraphStyle = stripped.Style;
+            foreach (IInline inline in stripped.Contents)
+                // If line contains image, wrap with tblock first
+                if (inline is WImageRef wimageRef)
+                {
+                    XmlElement tblock = doc.CreateElement("tblock", ns);
+                    parent.AppendChild(tblock);
+                    tblock.SetAttribute("class", ns, "image centre");
+                    tblock.AppendChild(block);
+                    AddInline(block, inline);
+                } else {
+                    AddInline(block, inline);
+                }
+            ContainingParagraphStyle = null;
+            return block;
         }
 
         /// <summary>
