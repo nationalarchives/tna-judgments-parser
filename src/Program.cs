@@ -23,6 +23,7 @@ using UK.Gov.Legislation.Lawmaker.Api;
 
 public class Program {
     private const int Success = 0;
+    private const int Failure = 1;
 
     private static readonly RootCommand Command;
     private static readonly Option<FileInfo> InputOption = new("--input"){ Description = "the .docx file", Required = true };
@@ -88,7 +89,7 @@ public class Program {
         DocName? docName = DocNames.GetDocName(hint);
         if (docName == null) {
             logger?.LogCritical("unrecognized document type: {}", hint);
-            return;
+            return Failure;
         }
         LegislationClassifier classifier = new LegislationClassifier((DocName) docName, subType, procedure);
         LanguageService languageService = new LanguageService(language);
@@ -100,6 +101,8 @@ public class Program {
 
         if (outputZip is not null)
             SaveImagesToZip(response.Images, outputZip);
+
+        return Success;
 
         /*
         byte[] docx = File.ReadAllBytes(input.FullName);
