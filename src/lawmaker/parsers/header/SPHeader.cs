@@ -35,4 +35,9 @@ record SPHeader(SPCoverPage? CoverPage, SPPreface Preface) : IHeader
         // we didn't find a preface (specifically a long title) so we assume no header.
         return null;
     }
+
+    public IHeader? Visit(IHeaderVisitor visitor, HeaderVisitorContext _)
+    {
+        return visitor.VisitSP(this);
+    }
 }
