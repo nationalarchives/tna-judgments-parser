@@ -352,7 +352,7 @@ abstract class Builder {
         }
     }
 
-    private string ContainingParagraphStyle;
+    protected string ContainingParagraphStyle;
 
     protected virtual XmlElement Block(XmlElement parent, ILine line, string name) {
         XmlElement block = doc.CreateElement(name, ns);
