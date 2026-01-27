@@ -92,7 +92,7 @@ function Test {
     }
 
     $File = Get-Item "$TestFile.docx"
-    $OutFile = $OutDir + "\" + $File.BaseName + ".out.xml"
+    $OutFile = $OutDir + $File.BaseName + ".out.xml"
     if (-not(Test-Path -Path $OutFile)) {
         New-Item -Force $OutFile
     }
@@ -106,8 +106,8 @@ function Test {
     }
 }
 
+$OutDir = ".ignore\"
 if ($all) {
-    $OutDir = ".ignore\"
     $hash = Get-ChildItem -Path "test/lawmaker" -Recurse  -Include "*.xml","*.docx" -Exclude "_*" |
         Group-Object -Property {$_.DirectoryName + "\" + $_.BaseName}
     $hash |
