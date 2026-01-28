@@ -32,7 +32,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph np)
                 return false;
-            if (!IsCenterAligned(line))
+            if (!line.IsCenterAligned())
                 return false;
             if (i > Body.Count - 3)
                 return false;
@@ -44,7 +44,7 @@ namespace UK.Gov.Legislation.Lawmaker
             if (Body[i + 1] is not WLine line2)
                 return false;
             DocName docname = frames.CurrentDocName;
-            if (!docname.IsWelshSecondary() && !IsCenterAligned(line))
+            if (!docname.IsWelshSecondary() && !line.IsCenterAligned())
                 return false;
             return true;
         }

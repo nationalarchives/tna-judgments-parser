@@ -4,35 +4,27 @@
     <meta>
       <references source="#author" />
     </meta>
-    <coverPage />
     <body>
       <hcontainer name="schedules" class="schs">
         <heading>SCHEDULES</heading>
-        <level>
-          <content>
-            <p class="unknownImport">SCHEDULE 1</p>
-          </content>
-        </level>
-        <level>
-          <content>
-            <p class="unknownImport">Section 1.</p>
-          </content>
-        </level>
-        <paragraph class="schProv1">
-          <num>4.</num>
-          <subparagraph class="schProv2">
-            <num>(1)</num>
-            <content>
-              <p><mod>The following line is the start of a quoted structure with a nested quoted structure—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nia"><subsection class="prov2"><num>(3A)</num><content><p><mod>This is the first line of the outer Q.S—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nia"><subsection class="prov2"><num>(3B)</num><content><p>This is the first line of the nested Q.S.</p></content></subsection><subsection class="prov2"><num>(3C)</num><content><p>This is the last line of the nested quoted structure.</p></content></subsection></quotedStructure><inline name="AppendText">.</inline></mod></p></content></subsection></quotedStructure><inline name="AppendText">.</inline></mod></p>
-            </content>
-          </subparagraph>
-          <subparagraph class="schProv2">
-            <num>(5)</num>
-            <content>
-              <p>Another one</p>
-            </content>
-          </subparagraph>
-        </paragraph>
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 1<authorialNote class="referenceNote"><p>Section 1.</p></authorialNote></num>
+          <paragraph class="schProv1">
+            <num>4.</num>
+            <subparagraph class="schProv2">
+              <num>(1)</num>
+              <content>
+                <p><mod>The following line is the start of a quoted structure with a nested quoted structure—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nia"><subsection class="prov2"><num>(3A)</num><content><p><mod>This is the first line of the outer Q.S—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="nia"><subsection class="prov2"><num>(3B)</num><content><p>This is the first line of the nested Q.S.</p></content></subsection><subsection class="prov2"><num>(3C)</num><content><p>This is the last line of the nested quoted structure.</p></content></subsection></quotedStructure><inline name="AppendText">.</inline></mod></p></content></subsection></quotedStructure><inline name="AppendText">.</inline></mod></p>
+              </content>
+            </subparagraph>
+            <subparagraph class="schProv2">
+              <num>(5)</num>
+              <content>
+                <p>Another one</p>
+              </content>
+            </subparagraph>
+          </paragraph>
+        </hcontainer>
       </hcontainer>
     </body>
   </bill>

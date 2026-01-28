@@ -16,7 +16,7 @@ public abstract partial record DocDate() : IBuildable<XNode>
     // or just a year "yyyy"
     // e.g. "17th June 2025", "9 October 2021", "2025"
     // Any other format will result in the date attribute being set to "9999-01-01"
-    private static readonly string[] locales = ["en-GB", "cy-GB"];
+    private static readonly CultureInfo[] cultures = [CultureInfo.GetCultureInfo("en-GB"), CultureInfo.GetCultureInfo("cy-GB")];
     private static readonly Dictionary<string, string> formats = new() {
             { "d MMMM yyyy", "d'th' MMMM yyyy" },
             { "yyyy", "yyyy"},
@@ -39,18 +39,18 @@ public abstract partial record DocDate() : IBuildable<XNode>
             return new PlaceholderDate();
         }
 
-        foreach (string locale in locales)
+        foreach (CultureInfo culture in cultures)
         {
             foreach (string format in formats.Keys)
             {
                 if (DateTime.TryParseExact(
                     text,
                     format,
-                    CultureInfo.GetCultureInfo(locale),
+                    culture,
                     DateTimeStyles.None,
                     out DateTime dateTime))
                 {
-                    return new ValidDate(dateTime, formats[format], key);
+                    return new ValidDate(dateTime, text, formats[format], key);
                 }
             }
         }
@@ -80,18 +80,15 @@ record PlaceholderDate() : DocDate
         );
 };
 
-record ValidDate(DateTime Date, string Format, ReferenceKey Key) : DocDate
+record ValidDate(DateTime Date, string DateText, string Format, ReferenceKey Key) : DocDate
 {
     public override XNode Build(Document document)
     {
-        Reference dateRef = document.Metadata
+        Reference _ = document.Metadata
             .Register(new Reference(Key, Date.ToString("o", System.Globalization.CultureInfo.InvariantCulture)));
         return new XElement(akn + "docDate",
             new XAttribute("date", Date.ToString("yyyy-MM-dd")),
-            new XElement(akn + "ref",
-                new XAttribute(ukl + "dateFormat", Format),
-                new XAttribute(akn + "class", "#placeholder"),
-                new XAttribute("href", $"#{dateRef.EId}")));
+            new XText(DateText));
     }
 
 };
@@ -108,6 +105,7 @@ record UnknownDate(string Text) : DocDate
 {
     public override XNode Build(Document _) =>
         new XElement(akn + "docDate",
-            new XAttribute("date", "9999-01-01")
+            new XAttribute("date", "9999-01-01"),
+            new XText(Text)
         );
 }

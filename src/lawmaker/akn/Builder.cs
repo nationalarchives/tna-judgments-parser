@@ -10,19 +10,21 @@ using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.DOCX;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Lawmaker.Headers;
+
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
 
-    partial class Builder(Document bill) : AkN.Builder
+    partial class Builder(Document bill, LanguageService languageService) : AkN.Builder
     {
 
         override protected string UKNS => "https://www.legislation.gov.uk/namespaces/UK-AKN";
 
-        public static XmlDocument Build(Document bill)
+        public static XmlDocument Build(Document bill, LanguageService languageService)
         {
-            return new Builder(bill).Build();
+            return new Builder(bill, languageService).Build();
         }
 
         private readonly Document bill = bill;
@@ -35,10 +37,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             XmlElement main = CreateAndAppend("bill", akomaNtoso);
             main.SetAttribute("name", this.bill.Type.ToString().ToLower());
-
-            AddCoverPage(main, bill.CoverPage);
-            AddPreface(main, bill.Preface);
-            AddPreamble(main, bill.Preamble);
+            AddHeader(main, bill.Header);
             AddBody(main, bill.Body, bill.Schedules); // bill.Schedules will always be empty here as they are part of bill.Body
             AddConclusions(main, bill.Conclusions);
 
@@ -46,6 +45,64 @@ namespace UK.Gov.Legislation.Lawmaker
             main.PrependChild(bill.Metadata.Build(bill).ToXmlNode(main.OwnerDocument));
 
             return doc;
+        }
+
+        private void AddHeader(XmlElement main, IHeader header)
+        {
+            if (header is NIHeader niHeader)
+            {
+                if (niHeader?.CoverPage?.Blocks?.ToList() is not null)
+                {
+                    AddCoverPage(main, niHeader?.CoverPage?.Blocks?.ToList());
+                }
+                if (niHeader?.Preface?.Blocks?.ToList() is not null)
+                {
+                    AddPreface(main, niHeader?.Preface?.Blocks?.ToList());
+                }
+                if (niHeader?.Preamble?.Blocks?.ToList() is not null)
+                {
+                    AddPreamble(main, niHeader?.Preamble?.Blocks?.ToList());
+                }
+            } else if (header is SPHeader spHeader)
+            {
+                // ignore building the cover page for now
+                if (spHeader.Preface is IBuildable<XNode> preface)
+                {
+                    main.AppendChild(preface.Build(this.bill).ToXmlNode(main.OwnerDocument));
+                }
+
+            } else if (header is UKHeader ukHeader)
+            {
+                if (ukHeader.Preface is IBuildable<XNode> preface)
+                {
+                    main.AppendChild(preface.Build(this.bill).ToXmlNode(main.OwnerDocument));
+                }
+                if (ukHeader.Preamble is IBuildable<XNode> preamble)
+                {
+                    main.AppendChild(preamble.Build(this.bill).ToXmlNode(main.OwnerDocument));
+                }
+                // ensure our metadata is registered
+                if (ukHeader.Title is not null)
+                {
+                    this.bill.Metadata.Register(new Reference(ReferenceKey.varBillTitle, ukHeader.Title.NormalizedContent));
+                }
+                if (ukHeader.StageVersion is not null)
+                {
+                    this.bill.Metadata.Register(new Reference(ReferenceKey.varStageVersion, ukHeader.StageVersion.Stage.ShowAs));
+                }
+
+            } else if (header is CMHeader cmHeader)
+            {
+                if (cmHeader.Preface is IBuildable<XNode> preface)
+                {
+                    main.AppendChild(preface.Build(this.bill).ToXmlNode(main.OwnerDocument));
+                }
+                if (cmHeader.Title is not null)
+                {
+                    this.bill.Metadata.Register(new Reference(ReferenceKey.varBillTitle, cmHeader.Title.NormalizedContent));
+                }
+            }
+
         }
 
         private void AddCoverPage(XmlElement bill, IList<IBlock> coverPage)
@@ -128,7 +185,6 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (preamble.Count <= 0)
             {
-                logger.LogWarning("The parsed Preamble elements were empty!");
                 return;
             }
             XmlElement e = CreateAndAppend("preamble", bill);
@@ -207,8 +263,17 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private void AddBlocks(XmlElement parent, IEnumerable<IBlock> blocks)
         {
+            if (blocks is null)
+            {
+                return;
+            }
             foreach (IBlock block in blocks)
             {
+                if (block is IBuildable<XNode> buildable)
+                {
+                    parent.AppendChild(buildable.Build(this.bill).ToXmlNode(parent.OwnerDocument));
+                    continue;
+                }
                 if (block is WOldNumberedParagraph np)
                 {
                     // In Lawmaker, by default, all numbered paragraphs should be marked up
@@ -477,12 +542,21 @@ namespace UK.Gov.Legislation.Lawmaker
                     // Extract the numeric day and remove the suffix from the original string
                     text = text.Replace(match.Value, match.Groups[1].Value);
 
-                bool parsedDate = DateTime.TryParseExact(text, "d MMMM yyyy", CultureInfo.GetCultureInfo("en-GB"), DateTimeStyles.None, out DateTime dateTime);
-                if (parsedDate)
-                    dateString = dateTime.ToString("yyyy-MM-dd");
-                // Date was not parsed so set to dummy value
-                else
-                    dateString = "9999-01-01";
+                foreach (CultureInfo culture in languageService.Cultures)
+                {
+                    // this DateTime parsing should really be done in the parsing stage, not the building stage
+                    bool parsedDate = DateTime.TryParseExact(text, "d MMMM yyyy", culture, DateTimeStyles.None, out DateTime dateTime);
+                    if (parsedDate)
+                    {
+                        dateString = dateTime.ToString("yyyy-MM-dd");
+                        break;
+                    }
+                    // Date was not parsed so set to dummy value
+                    else
+                    {
+                        dateString = "9999-01-01";
+                    }
+                }
             }
             if (dateString is not null)
             {
