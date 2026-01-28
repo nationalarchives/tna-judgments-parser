@@ -174,24 +174,12 @@ namespace UK.Gov.Legislation.Lawmaker
             }
 
             // Parse Prov1 contents/children
-            IFormattedText? number = line is WOldNumberedParagraph np ? np.Number : null;
-            HContainer parsedProv1 = ParseBareProv1(Current() as WLine, number);
+            HContainer parsedProv1 = ParseBareProv1(Current() as WLine, headingLine);
             provisionRecords.Pop();
             if (parsedProv1 is null)
             {
                 i = save;
                 return null;
-            }
-
-            // Handle Prov1 heading
-            if (headingLine is WOldNumberedParagraph numberedHeadingLine)
-            {
-                parsedProv1.Number = numberedHeadingLine.Number;
-                parsedProv1.Heading = numberedHeadingLine;
-            }
-            else if (headingLine is not null)
-            {
-                parsedProv1.Heading = headingLine;
             }
             return parsedProv1;
         }
@@ -200,31 +188,38 @@ namespace UK.Gov.Legislation.Lawmaker
         /// Attempts to parse a <c>Prov1</c> element without the heading.
         /// </summary>
         /// <param name="line">The line from which to begin parsing.</param>
-        /// <param name="number">An override for the <c>Prov1</c> element's number.</param>
+        /// <param name="headingLine">The immediately preceding heading line, if present.</param>
         /// <returns>
         /// An <c>HContainer</c> representing the parsed <c>Prov1</c> element, if successful. 
         /// Otherwise <c>null</c>.
         /// </returns>
-        private HContainer ParseBareProv1(WLine line, IFormattedText? number)
+        private HContainer ParseBareProv1(WLine line, WLine? headingLine)
         {
+            Prov1Name tagName = GetProv1Name();
+            ILine? heading = headingLine;
+            IFormattedText? number = null;
             List<IBlock> intro = [];
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];
-            Prov1Name tagName = GetProv1Name();
-
-            if (line is WOldNumberedParagraph np)
-                number = np.Number;
                 
             bool headingPrecedesNumber = !frames.CurrentDocName.RequireNumberedProv1Heading();
-            if (headingPrecedesNumber)
+            if (headingPrecedesNumber && headingLine is not WOldNumberedParagraph)
             {
-                // Must strip the Prov1 number from the beginning of the line (see scenarios [C] through [F])
+                // Scenarios [C] through [F].
+                // Must strip the Prov1 number from the beginning of Line.
+                number = line is WOldNumberedParagraph np ? np.Number : null;
                 WOldNumberedParagraph? fixedProv2Line = FixFirstProv2(line);
                 if (fixedProv2Line is not null)
                     line = fixedProv2Line;
             }
-
-            provisionRecords.Push(typeof(Prov1), number!, quoteDepth);
+            else
+            {
+                // Scenarios [A] and [B].
+                // Prov1 number comes from HeadingLine.
+                number = headingLine is WOldNumberedParagraph np ? np.Number : null;
+            }
+            
+            provisionRecords.Push(typeof(Prov1), number, quoteDepth);
 
             // Attempt to parse the first child as a Prov2
             HContainer prov2 = ParseAndMemoize(line, "Prov2", ParseProv2);
@@ -232,7 +227,16 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 children.Add(prov2);
                 if (IsEndOfQuotedStructure(prov2))
-                    return new Prov1Branch { TagName = tagName, Number = number, Intro = intro, Children = children, WrapUp = wrapUp, HeadingPrecedesNumber = headingPrecedesNumber };
+                    return new Prov1Branch 
+                    { 
+                        TagName = tagName, 
+                        Number = number,
+                        Heading = heading,
+                        Intro = intro, 
+                        Children = children, 
+                        WrapUp = wrapUp, 
+                        HeadingPrecedesNumber = headingPrecedesNumber 
+                    };
             }
             // If unsuccessful, parse as unstructured content
             else
@@ -240,7 +244,14 @@ namespace UK.Gov.Legislation.Lawmaker
                 i += 1;
                 intro = HandleParagraphs(line);
                 if (IsEndOfQuotedStructure(intro))
-                    return new Prov1Leaf { TagName = tagName, Number = number, Contents = intro, HeadingPrecedesNumber = headingPrecedesNumber };
+                    return new Prov1Leaf 
+                    { 
+                        TagName = tagName, 
+                        Number = number, 
+                        Heading = heading,
+                        Contents = intro, 
+                        HeadingPrecedesNumber = headingPrecedesNumber 
+                    };
             }
 
             // Handle additional children
@@ -264,9 +275,25 @@ namespace UK.Gov.Legislation.Lawmaker
             wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
 
             if (children.Count == 0)
-                return new Prov1Leaf { TagName = tagName, Number = number, Contents = intro, HeadingPrecedesNumber = headingPrecedesNumber };
+                return new Prov1Leaf 
+                { 
+                    TagName = tagName, 
+                    Number = number, 
+                    Heading = heading,
+                    Contents = intro, 
+                    HeadingPrecedesNumber = headingPrecedesNumber 
+                };
 
-            return new Prov1Branch { TagName = tagName, Number = number, Intro = intro, Children = children, WrapUp = wrapUp, HeadingPrecedesNumber = headingPrecedesNumber };
+            return new Prov1Branch 
+            { 
+                TagName = tagName, 
+                Number = number, 
+                Heading = heading,
+                Intro = intro, 
+                Children = children, 
+                WrapUp = wrapUp, 
+                HeadingPrecedesNumber = headingPrecedesNumber 
+            };
         }
 
 
