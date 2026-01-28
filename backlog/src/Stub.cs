@@ -142,9 +142,7 @@ namespace Backlog.Src
                 XmlElement tldOrg = CreateAndAppend("TLCOrganization", references);
                 tldOrg.SetAttribute("eId", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeCourtId(Data.Court));
                 tldOrg.SetAttribute("href", Data.Court.Value.URL);
-                tldOrg.SetAttribute("showAs", Data.Court.Value.LongName);
-                if (Data.Court.Value.ShortName is not null)
-                    tldOrg.SetAttribute("shortForm", Data.Court.Value.ShortName);
+                tldOrg.SetAttribute("showAs", Data.Court.Value.Name);
             }
             XmlElement tlcEvent = CreateAndAppend("TLCEvent", references);
             tlcEvent.SetAttribute("eId", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeDateId(Data.Date));
