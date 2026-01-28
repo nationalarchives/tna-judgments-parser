@@ -207,7 +207,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 // Scenarios [C] through [F].
                 // Must strip the Prov1 number from the beginning of Line.
-                number = line is WOldNumberedParagraph np ? np.Number : null;
+                number = ((WOldNumberedParagraph)line).Number;
                 WOldNumberedParagraph? fixedProv2Line = FixFirstProv2(line);
                 if (fixedProv2Line is not null)
                     line = fixedProv2Line;
@@ -216,7 +216,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 // Scenarios [A] and [B].
                 // Prov1 number comes from HeadingLine.
-                number = headingLine is WOldNumberedParagraph np ? np.Number : null;
+                number =  ((WOldNumberedParagraph)headingLine!).Number;
             }
             
             provisionRecords.Push(typeof(Prov1), number, quoteDepth);
