@@ -66,4 +66,13 @@ partial record UKHeader(IPreface? Preface, Preamble? Preamble, WLine? Title, Bra
 
     [GeneratedRegex(@"\s*\[[\w\s]*\]\s*")]
     private static partial Regex NoteRegex();
+
+    public IHeader? Visit(IHeaderVisitor visitor, HeaderVisitorContext Context)
+    {
+        if (Context.DocName.IsWelshPrimary() || Context.DocName.IsWelshSecondary())
+        {
+            return visitor.VisitSC(this);
+        }
+        return visitor.VisitUK(this);
+    }
 }

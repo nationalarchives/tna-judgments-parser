@@ -23,7 +23,7 @@ partial record Preamble(IEnumerable<IBlock?> Blocks) : IBuildable<XNode>
         HavingPassedSeneddCymru,
     }
 
-    private PreambleType? Type { get; init; }
+    private PreambleType Type { get; init; }
     internal static Preamble? BeItEnacted(IParser<IBlock> parser)
     {
         if (parser.Advance() is not WLine line)

@@ -31,4 +31,9 @@ partial record CMHeader(CMPreface? Preface, WLine? Title) : IHeader
 
         return new CMHeader(preface, title);
     }
+
+    public IHeader? Visit(IHeaderVisitor visitor, HeaderVisitorContext _)
+    {
+        return visitor.VisitCM(this);
+    }
 }
