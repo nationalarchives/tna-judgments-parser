@@ -22,27 +22,25 @@ class FootnoteHeaderVisitor : IHeaderVisitor
     public NIHeader? VisitNI(NIHeader? niHeader)
     {
         if (niHeader is null) return null;
-        List<IBlock?>? preamble = niHeader.Preamble?.Blocks?.ToList();
-        if (preamble is null) return niHeader;
-        EnrichPreamble(preamble);
+        if (niHeader.Preamble is not Preamble preamble) return null;
+        List<IBlock?>? preambleContents = preamble.Blocks?.ToList();
+        if (preambleContents is null) return niHeader;
+        EnrichPreamble(preambleContents);
         return niHeader with {
-            Preamble = new Headers.Preamble(preamble),
+            Preamble = preamble with { Blocks = preambleContents },
         };
     }
 
     public UKHeader? VisitSC(UKHeader? scHeader)
     {
-        // Not enriching SC headers yet, but would be something like the below when we do:
-        /*
         if (scHeader is null) return null;
-        List<IBlock?>? preamble = scHeader.Preamble?.Blocks?.ToList();
-        if (preamble is null) return scHeader;
-        EnrichPreamble(preamble);
+        if (scHeader.Preamble is not Preamble preamble) return null;
+        List<IBlock?>? preambleContents = preamble.Blocks?.ToList();
+        if (preambleContents is null) return scHeader;
+        EnrichPreamble(preambleContents);
         return scHeader with {
-            Preamble = new Headers.Preamble(preamble),
+            Preamble = preamble with { Blocks = preambleContents },
         };
-        */
-        return scHeader;
     }
 
     public SPHeader? VisitSP(SPHeader? spHeader)
@@ -53,17 +51,14 @@ class FootnoteHeaderVisitor : IHeaderVisitor
 
     public UKHeader? VisitUK(UKHeader? ukHeader)
     {
-        // Not enriching UK headers yet, but would be something like the below when we do:
-        /*
         if (ukHeader is null) return null;
-        List<IBlock?>? preamble = ukHeader.Preamble?.Blocks?.ToList();
-        if (preamble == null) return ukHeader;
-        EnrichPreamble(preamble);
+        if (ukHeader.Preamble is not Preamble preamble) return null;
+        List<IBlock?>? preambleContents = preamble.Blocks?.ToList();
+        if (preambleContents is null) return ukHeader;
+        EnrichPreamble(preambleContents);
         return ukHeader with {
-            Preamble = new Headers.Preamble(preamble),
+            Preamble = preamble with { Blocks = preambleContents },
         };
-        */
-        return ukHeader;
     }
 
     public CMHeader? VisitCM(CMHeader? cmHeader)
