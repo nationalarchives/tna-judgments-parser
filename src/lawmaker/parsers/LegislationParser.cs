@@ -92,18 +92,12 @@ public partial class LegislationParser
         QuotationEnricher quotationEnricher = new(LanguageService, $"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
         quotationEnricher.EnrichDivisions(body);
 
-        FootnoteEnricher footnoteEnricher = new FootnoteEnricher();
-        if (header is NIHeader niHeader)
-        {
-            List<IBlock>? preamble = niHeader.Preamble?.Blocks?.ToList();
-            if (preamble is not null)
-            {
-                footnoteEnricher.EnrichBlocks(preamble);
-                header = niHeader with {
-                    Preamble = new Headers.Preamble(preamble)
-                };
-            }
-        }
+        FootnoteEnricher footnoteEnricher = new();
+        FootnoteHeaderVisitor footnoteHeaderVisitor = new() {
+            FootnoteEnricher = footnoteEnricher,
+        };
+
+        header = header?.Visit(footnoteHeaderVisitor, new HeaderVisitorContext(docName));
         footnoteEnricher.EnrichDivisions(body);
 
 

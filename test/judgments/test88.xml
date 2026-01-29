@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2024/1680/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2024/1680/data.xml" />
-          <FRBRdate date="2024-07-19T14:14:38" name="transform" />
+          <FRBRdate date="2026-01-22T09:58:38" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -30,7 +30,7 @@
         <eventRef date="2024-07-09" refersTo="#judgment" source="#" />
       </lifecycle>
       <references source="#tna">
-        <TLCOrganization eId="ewhc-kbd" href="https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court" showAs="The King's Bench Division of the High Court" shortForm="The King's Bench Division" />
+        <TLCOrganization eId="ewhc-kbd" href="https://www.gov.uk/courts-tribunals/queens-bench-division-of-the-high-court" showAs="The King's Bench Division of the High Court" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
       </references>
@@ -40,7 +40,7 @@
         <uk:number>1680</uk:number>
         <uk:cite>[2024] EWHC 1680 (KB)</uk:cite>
         <uk:caseNumber>2023/2/YOR</uk:caseNumber>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>1.4.0</uk:parser>
         <uk:hash>bfcc8d852aea830e65c5c94f30b9355c178f0bfd956f92df86957f034d033d4a</uk:hash>
       </proprietary>
       <presentation source="#">

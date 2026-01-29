@@ -236,7 +236,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return true;
             if (child is SchProv1)
                 return true;
-            if (child is WDummyDivision) // Tables are a valid immeidate child
+            if (child is WDummyDivision) // Tables are a valid immediate child
                 return true;
             return false;
 
@@ -278,7 +278,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return true;
             if (child is SchProv1)
                 return true;
-            if (child is WDummyDivision) // Tables are a valid immeidate child
+            if (child is WDummyDivision) // Tables are a valid immediate child
                 return true;
             return false;
         }

@@ -14,8 +14,6 @@ using UK.Gov.Legislation.Lawmaker.Headers;
 
 namespace UK.Gov.Legislation.Lawmaker;
 
-public interface IHeader {}
-
     public partial class LegislationParser
     {
 

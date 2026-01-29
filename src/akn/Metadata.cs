@@ -141,9 +141,7 @@ class Metadata {
                 XmlElement tldOrg = append(doc, references, "TLCOrganization");
                 tldOrg.SetAttribute("eId", MakeCourtId(court));
                 tldOrg.SetAttribute("href", court.Value.URL);
-                tldOrg.SetAttribute("showAs", court.Value.LongName);
-                if (court.Value.ShortName is not null)
-                    tldOrg.SetAttribute("shortForm", court.Value.ShortName);
+                tldOrg.SetAttribute("showAs", court.Value.Name);
             }
 
             XmlElement tna = append(doc, references, "TLCOrganization");

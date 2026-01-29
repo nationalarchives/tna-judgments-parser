@@ -15,4 +15,9 @@ record NIHeader(NICoverPage? CoverPage, NIPreface? Preface, Preamble? Preamble) 
         Preamble? preamble = parser.Match(Preamble.BeItEnacted);
         return new NIHeader(coverPage, preface, preamble);
     }
+
+    public IHeader? Visit(IHeaderVisitor visitor, HeaderVisitorContext _)
+    {
+        return visitor.VisitNI(this);
+    }
 }
