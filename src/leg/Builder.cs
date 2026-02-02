@@ -171,6 +171,13 @@ class Builder : AkN.Builder {
 
         // Add additional IA metadata from CSV mapping (for Impact Assessments)
         if (data is ImpactAssessments.IAMetadata iaMetadata) {
+            // Add UKIA URI (e.g., http://www.legislation.gov.uk/id/ukia/2025/17)
+            if (!string.IsNullOrEmpty(iaMetadata.UkiaUri)) {
+                XmlElement ia = doc.CreateElement("uk", "IA", UKNS);
+                proprietary.AppendChild(ia);
+                ia.AppendChild(doc.CreateTextNode(iaMetadata.UkiaUri));
+            }
+            
             if (!string.IsNullOrEmpty(iaMetadata.DocumentStage)) {
                 XmlElement documentStage = doc.CreateElement("uk", "documentStage", UKNS);
                 proprietary.AppendChild(documentStage);
@@ -205,6 +212,31 @@ class Builder : AkN.Builder {
                 XmlElement legislationClass = doc.CreateElement("uk", "legislationClass", UKNS);
                 proprietary.AppendChild(legislationClass);
                 legislationClass.AppendChild(doc.CreateTextNode(iaMetadata.LegislationClass));
+            }
+            
+            // Year and number values (explicit for easier MarkLogic loading)
+            if (iaMetadata.UkiaYear.HasValue) {
+                XmlElement ukiaYear = doc.CreateElement("uk", "ukiaYear", UKNS);
+                proprietary.AppendChild(ukiaYear);
+                ukiaYear.AppendChild(doc.CreateTextNode(iaMetadata.UkiaYear.Value.ToString()));
+            }
+            
+            if (iaMetadata.UkiaNumber.HasValue) {
+                XmlElement ukiaNumber = doc.CreateElement("uk", "ukiaNumber", UKNS);
+                proprietary.AppendChild(ukiaNumber);
+                ukiaNumber.AppendChild(doc.CreateTextNode(iaMetadata.UkiaNumber.Value.ToString()));
+            }
+            
+            if (iaMetadata.LegislationYear.HasValue) {
+                XmlElement legislationYear = doc.CreateElement("uk", "legislationYear", UKNS);
+                proprietary.AppendChild(legislationYear);
+                legislationYear.AppendChild(doc.CreateTextNode(iaMetadata.LegislationYear.Value.ToString()));
+            }
+            
+            if (!string.IsNullOrEmpty(iaMetadata.LegislationNumber)) {
+                XmlElement legislationNumber = doc.CreateElement("uk", "legislationNumber", UKNS);
+                proprietary.AppendChild(legislationNumber);
+                legislationNumber.AppendChild(doc.CreateTextNode(iaMetadata.LegislationNumber));
             }
         }
 

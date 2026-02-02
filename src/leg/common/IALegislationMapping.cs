@@ -287,7 +287,12 @@ internal static partial class IALegislationMapping {
                 }
             }
             if (!string.IsNullOrWhiteSpace(parts[13])) {
-                legNumber = parts[13].Trim();
+                // Parse as double and convert to clean string (removes .0 from CSV export)
+                if (double.TryParse(parts[13].Trim(), out double legNumberDouble)) {
+                    legNumber = ((long)legNumberDouble).ToString();
+                } else {
+                    legNumber = parts[13].Trim();
+                }
             }
 
             var record = new IAMappingRecord {

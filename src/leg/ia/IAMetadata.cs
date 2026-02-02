@@ -25,6 +25,15 @@ class IAMetadata : DocumentMetadata {
     public string IADate { get; init; }
     public string PDFDate { get; init; }
     public string LegislationClass { get; init; }
+    
+    // Year and number values (for explicit metadata in proprietary section)
+    public int? UkiaYear { get; init; }
+    public int? UkiaNumber { get; init; }
+    public int? LegislationYear { get; init; }
+    public string LegislationNumber { get; init; }
+    
+    // Full UKIA URI (e.g., http://www.legislation.gov.uk/id/ukia/2025/17)
+    public string UkiaUri { get; init; }
 
     internal static IAMetadata Make(List<IBlock> header, WordprocessingDocument doc, LegislativeDocumentConfig config, string filename) {
         string name = BaseHeaderSplitter.GetDocumentType(header, config);
@@ -66,7 +75,14 @@ class IAMetadata : DocumentMetadata {
             Department = mappingRecord?.Department,
             IADate = mappingRecord?.IADate,
             PDFDate = mappingRecord?.PDFDate,
-            LegislationClass = mappingRecord?.LegislationClass
+            LegislationClass = mappingRecord?.LegislationClass,
+            // Year and number values
+            UkiaYear = mappingRecord?.UkiaYear,
+            UkiaNumber = mappingRecord?.UkiaNumber,
+            LegislationYear = mappingRecord?.LegislationYear,
+            LegislationNumber = mappingRecord?.LegislationNumber,
+            // Full UKIA URI
+            UkiaUri = mappingRecord?.UkiaUri
         };
     }
 

@@ -206,7 +206,10 @@ class Helper : BaseHelper {
             return false;
         }
         
-        var match = System.Text.RegularExpressions.Regex.Match(dateValue, @"^(\d{2,3})/(\d{1,2})/(\d{4})$");
+        // Clean the date value - remove trailing asterisks, parenthetical notes, etc.
+        string cleanedValue = CleanDateValue(dateValue);
+        
+        var match = System.Text.RegularExpressions.Regex.Match(cleanedValue, @"^(\d{2,3})/(\d{1,2})/(\d{4})$");
         if (match.Success) {
             if (int.TryParse(match.Groups[1].Value, out int day) && 
                 int.TryParse(match.Groups[2].Value, out int month) && 
@@ -226,20 +229,23 @@ class Helper : BaseHelper {
             }
         }
         
-        if (DateTime.TryParse(dateValue, new System.Globalization.CultureInfo("en-GB"), 
+        if (DateTime.TryParse(cleanedValue, new System.Globalization.CultureInfo("en-GB"), 
             System.Globalization.DateTimeStyles.None, out DateTime parsedDate)) {
             isoDate = parsedDate.ToString("yyyy-MM-dd");
             return true;
         }
         
-        if (DateTime.TryParse(dateValue, System.Globalization.CultureInfo.InvariantCulture, 
+        if (DateTime.TryParse(cleanedValue, System.Globalization.CultureInfo.InvariantCulture, 
             System.Globalization.DateTimeStyles.None, out parsedDate)) {
             isoDate = parsedDate.ToString("yyyy-MM-dd");
             return true;
         }
         
-        if (System.Text.RegularExpressions.Regex.IsMatch(dateValue, @"^[A-Za-z]+\s+\d{4}$")) {
-            if (DateTime.TryParseExact(dateValue, new[] { "MMMM yyyy", "MMM yyyy" }, 
+        // Try "Month Year" format (e.g., "May 2017", "December 2014")
+        var monthYearMatch = System.Text.RegularExpressions.Regex.Match(cleanedValue, @"^([A-Za-z]+)\s+(\d{4})");
+        if (monthYearMatch.Success) {
+            string monthYearStr = monthYearMatch.Groups[1].Value + " " + monthYearMatch.Groups[2].Value;
+            if (DateTime.TryParseExact(monthYearStr, new[] { "MMMM yyyy", "MMM yyyy" }, 
                 System.Globalization.CultureInfo.InvariantCulture, 
                 System.Globalization.DateTimeStyles.None, out parsedDate)) {
                 isoDate = parsedDate.ToString("yyyy-MM-dd");
@@ -248,6 +254,28 @@ class Helper : BaseHelper {
         }
         
         return false;
+    }
+    
+    /// <summary>
+    /// Clean date value by removing trailing asterisks, parenthetical notes, and other noise.
+    /// </summary>
+    private static string CleanDateValue(string dateValue) {
+        if (string.IsNullOrWhiteSpace(dateValue)) {
+            return dateValue;
+        }
+        
+        string cleaned = dateValue.Trim();
+        
+        // Remove trailing asterisks (e.g., "13/12/2012*" -> "13/12/2012")
+        cleaned = System.Text.RegularExpressions.Regex.Replace(cleaned, @"\*+$", "");
+        
+        // Remove parenthetical notes (e.g., "May 2017 (updated June 2017...)" -> "May 2017")
+        cleaned = System.Text.RegularExpressions.Regex.Replace(cleaned, @"\s*\(.*\)\s*$", "");
+        
+        // Remove any remaining trailing punctuation
+        cleaned = cleaned.TrimEnd('.', ',', ';', ':');
+        
+        return cleaned.Trim();
     }
     
     private static bool IsInHeaderTable(XmlNode paragraph) {
