@@ -737,7 +737,8 @@ class Helper : BaseHelper {
             
             var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
             inlineHeading.SetAttribute("name", "tocHeading");
-            inlineHeading.InnerText = headingText;
+            // Include section number in heading text
+            inlineHeading.InnerText = $"{sectionNumber}. {headingText}";
             tocItem.AppendChild(inlineHeading);
             
             toc.AppendChild(tocItem);
