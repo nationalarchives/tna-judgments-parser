@@ -126,13 +126,13 @@ internal static partial class IALegislationMapping {
 
     /// <summary>
     /// Builds the short URI component for an Impact Assessment based on its linked legislation.
-    /// Format: {legislation-type}/{year}/{number}/impact-assessment[/{stage}]
-    /// Falls back to ukia/{year}/{number}/impact-assessment[/{stage}] if no legislation mapping exists.
+    /// Format: {legislation-type}/{year}/{number}/impacts[/{stage}]
+    /// Falls back to ukia/{year}/{number}/impacts[/{stage}] if no legislation mapping exists.
     /// </summary>
     /// <param name="year">The UKIA year</param>
     /// <param name="number">The UKIA number</param>
     /// <param name="stage">Optional stage value (e.g., "Final", "Enactment") - will be normalized to lowercase</param>
-    /// <returns>The short URI component (e.g., 'uksi/2018/1149/impact-assessment/final')</returns>
+    /// <returns>The short URI component (e.g., 'uksi/2018/1149/impacts/final')</returns>
     public static string BuildShortUriComponent(int year, int number, string stage = null) {
         string legislationUri = GetLegislationUri(year, number);
         string normalizedStage = NormalizeStage(stage);
@@ -142,16 +142,16 @@ internal static partial class IALegislationMapping {
             var components = ParseLegislationUri(legislationUri);
             if (components.HasValue) {
                 var (type, legYear, legNumber) = components.Value;
-                baseUri = $"{type}/{legYear}/{legNumber}/impact-assessment";
+                baseUri = $"{type}/{legYear}/{legNumber}/impacts";
             } else {
                 // Fallback: use ukia-based URI if legislation parsing fails
                 logger.LogWarning("Failed to parse legislation URI for UKIA {Year}/{Number}, using fallback URI", year, number);
-                baseUri = $"ukia/{year}/{number}/impact-assessment";
+                baseUri = $"ukia/{year}/{number}/impacts";
             }
         } else {
             // Fallback: use ukia-based URI if no legislation mapping exists
             logger.LogWarning("No legislation mapping found for UKIA {Year}/{Number}, using fallback URI", year, number);
-            baseUri = $"ukia/{year}/{number}/impact-assessment";
+            baseUri = $"ukia/{year}/{number}/impacts";
         }
         
         // Append stage if available and valid
