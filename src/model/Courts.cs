@@ -47,17 +47,12 @@ public static class Courts
             return null;
         }
 
-        FclCourt? fclCourt = CourtStore.Where(c => c.NcnPattern is not null && Regex.IsMatch(cleanedCite, c.NcnPattern))
+        FclCourt? fclCourt = CourtStore.Where(c => c.NcnPattern is not null
+                                                   && Regex.IsMatch(cleanedCite, RegexHelpers.AddAnchors(c.NcnPattern)))
                                        .FirstOrDefault();
 
-        if (fclCourt is null)
-        {
-            return null;
-        }
-
-        return new Court(fclCourt.Value);
+        return fclCourt is null ? null : new Court(fclCourt.Value);
     }
-
 
     public static readonly Court SupremeCourt = GetByCode("UKSC");
 

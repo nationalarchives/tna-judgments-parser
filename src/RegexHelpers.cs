@@ -34,4 +34,21 @@ public static partial class RegexHelpers
     }
 
     [GeneratedRegex(@"\s+")] private static partial Regex WhitespaceRegex();
+    
+    /// <summary>
+    /// Returns the regex pattern with '^' at the start and '$' at the end
+    /// </summary>
+    public static string AddAnchors(string pattern)
+    {
+        var anchoredPattern = pattern;
+        
+        if (!anchoredPattern.StartsWith('^'))
+            anchoredPattern = $"^{anchoredPattern}";
+        
+        if (!anchoredPattern.EndsWith('$'))
+            anchoredPattern += "$";
+        
+        return anchoredPattern;
+    }
+
 }
