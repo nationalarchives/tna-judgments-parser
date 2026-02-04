@@ -698,14 +698,10 @@ class Helper : BaseHelper {
         }
 
         var sectionsWithHeadings = xml.SelectNodes("//akn:mainBody/akn:section[akn:heading and @eId!='section_1']", nsmgr);
-        if (sectionsWithHeadings == null || sectionsWithHeadings.Count == 0) {
-            logger.LogDebug("No sections with headings found, skipping TOC generation");
-            return;
-        }
-
+        
         var toc = xml.CreateElement("toc", AKN_NAMESPACE);
         
-        // Add "whole document" link first
+        // Add "whole document" link first (always present)
         var wholeDocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
         wholeDocItem.SetAttribute("href", expressionUri ?? "#doc");
         wholeDocItem.SetAttribute("level", "1");
@@ -715,7 +711,9 @@ class Helper : BaseHelper {
         wholeDocItem.AppendChild(wholeDocHeading);
         toc.AppendChild(wholeDocItem);
         
-        foreach (XmlElement section in sectionsWithHeadings) {
+        // Add section entries if they exist
+        if (sectionsWithHeadings != null && sectionsWithHeadings.Count > 0) {
+            foreach (XmlElement section in sectionsWithHeadings) {
             var eId = section.GetAttribute("eId");
             var heading = section.SelectSingleNode("akn:heading", nsmgr);
             
@@ -743,7 +741,7 @@ class Helper : BaseHelper {
 
             var tocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
             tocItem.SetAttribute("href", href);
-            tocItem.SetAttribute("level", "1");
+            tocItem.SetAttribute("level", "2");
             
             var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
             inlineHeading.SetAttribute("name", "tocHeading");
@@ -752,6 +750,7 @@ class Helper : BaseHelper {
             tocItem.AppendChild(inlineHeading);
             
             toc.AppendChild(tocItem);
+            }
         }
 
         if (toc.HasChildNodes) {
