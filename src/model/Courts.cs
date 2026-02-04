@@ -47,11 +47,22 @@ public static class Courts
             return null;
         }
 
-        FclCourt? fclCourt = CourtStore.Where(c => c.NcnPattern is not null
-                                                   && Regex.IsMatch(cleanedCite, RegexHelpers.AddAnchors(c.NcnPattern)))
-                                       .FirstOrDefault();
+        var fclCourtMatchingCites = CourtStore
+                                    .Where(c => c.NcnPattern is not null
+                                                && Regex.IsMatch(cleanedCite, RegexHelpers.AddAnchors(c.NcnPattern)))
+                                    .ToArray();
 
-        return fclCourt is null ? null : new Court(fclCourt.Value);
+        return fclCourtMatchingCites switch
+        {
+            { Length: 0 } => null,
+            { Length: 1 } => new Court(fclCourtMatchingCites[0]),
+
+            // If there are more than one match then we'll return our best guess
+            // It's most likely to be a kings vs queens scenario then favour kings as new courts going through the parser
+            // are kings and historic tribunals going through backlog parser will have the court specified
+            // To do this we'll sort by code and return the first match because KBD > QBD
+            _ => new Court(fclCourtMatchingCites.OrderBy(c => c.Code).First())
+        };
     }
 
     public static readonly Court SupremeCourt = GetByCode("UKSC");
