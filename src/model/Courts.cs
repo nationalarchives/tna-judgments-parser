@@ -9,24 +9,19 @@ using FclCourt = NationalArchives.FindCaseLaw.Utils.Court;
 
 namespace UK.Gov.Legislation.Judgments;
 
-public readonly record struct Court()
+public record Court
 {
-    internal Court(FclCourt fclCourt) : this()
-    {
-        Code = fclCourt.Code;
-        URL = fclCourt.IdentifierIri;
-        Name = fclCourt.LongName ?? fclCourt.Name;
+    private readonly FclCourt fclCourt;
 
-        if (fclCourt.NcnPattern is not null)
-        {
-            CitationPattern = new Regex(fclCourt.NcnPattern);
-        }
+    internal Court(FclCourt fclCourt)
+    {
+        this.fclCourt = fclCourt;
     }
 
-    public string Code { get; }
-    public string Name { get; }
-    public string URL { get; }
-    public Regex? CitationPattern { get; }
+    public string Code => fclCourt.Code;
+    public string Name => fclCourt.LongName ?? fclCourt.Name;
+    public string URL => fclCourt.IdentifierIri;
+    public Regex? CitationPattern => fclCourt.NcnPattern is not null ? new Regex(fclCourt.NcnPattern) : null;
 }
 
 public static class Courts
