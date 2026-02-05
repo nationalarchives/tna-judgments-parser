@@ -286,7 +286,7 @@ namespace Backlog.Src
             else
                 throw new Exception($"Unexpected extension {line.Extension}");
 
-            Court court = Courts.ByCode[line.court];
+            Court court = Courts.GetByCode(line.court);
 
             var jurisdictions = line.Jurisdictions
                 .Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction))
