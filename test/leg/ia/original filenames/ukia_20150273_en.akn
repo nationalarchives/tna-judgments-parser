@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/data.akn" />
-          <FRBRdate date="2026-02-04" name="transform" />
+          <FRBRdate date="2026-02-05" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -47,8 +47,24 @@
       </proprietary>
     </meta>
     <mainBody>
-      <section eId="section_2">
-        <heading>Cost of Preferred Option</heading>
+      <toc>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/2" level="2"><inline name="tocHeading">1. Summary Analysis &amp; Evidence</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/3" level="2"><inline name="tocHeading">2. Description</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/4" level="2"><inline name="tocHeading">3. Evidence Base (for summary sheets)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/5" level="2"><inline name="tocHeading">4. Background</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/6" level="2"><inline name="tocHeading">5. What is the problem under consideration?</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/7" level="2"><inline name="tocHeading">6. What is the Case for Change?</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/8" level="2"><inline name="tocHeading">7. Policy Options</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/9" level="2"><inline name="tocHeading">8. Option 0 Baseline scenario – Do nothing</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/10" level="2"><inline name="tocHeading">9. Option 1 – Preferred measure</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/11" level="2"><inline name="tocHeading">10. Costs</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/12" level="2"><inline name="tocHeading">11. Benefits</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/13" level="2"><inline name="tocHeading">12. One in Two Out Regulatory Costs</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/14" level="2"><inline name="tocHeading">13. Equalities Impact</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/15" level="2"><inline name="tocHeading">14. Impact on small firms and micro-business</inline></tocItem>
+      </toc>
+      <level>
         <content>
           <table uk:widths="1.4in 1.14in 1.78in 1.4in 1.49in 0.01in">
             <tr>
@@ -197,15 +213,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <toc>
-        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/2" level="2"><inline name="tocHeading">2. Cost of Preferred Option</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/3" level="2"><inline name="tocHeading">3. What are the policy objectives and the intended effects?</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/section/5" level="2"><inline name="tocHeading">5. Will the policy be reviewed?  If applicable, set review date</inline></tocItem>
-      </toc>
-      <section eId="section_3">
-        <heading>What are the policy objectives and the intended effects?</heading>
+      </level>
+      <level>
         <content>
           <table uk:widths="7.18in">
             <tr>
@@ -216,8 +225,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section eId="section_4">
+      </level>
+      <level>
         <content>
           <table uk:widths="7.19in">
             <tr>
@@ -229,9 +238,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section eId="section_5">
-        <heading>Will the policy be reviewed?  If applicable, set review date</heading>
+      </level>
+      <level>
         <content>
           <table uk:widths="3.67in 0.68in 0.68in 0.68in 0.24in 0.44in 0.78in">
             <tr>
@@ -284,7 +292,7 @@
             </tr>
           </table>
         </content>
-      </section>
+      </level>
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></p>
@@ -306,16 +314,18 @@
           </table>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_2">
+        <heading>Summary Analysis &amp; Evidence</heading>
         <content>
           <p><b>Summary: Analysis &amp; Evidence</b>Policy Option 1</p>
         </content>
-      </level>
-      <level>
+      </section>
+      <section eId="section_3">
+        <heading>Description</heading>
         <content>
           <p><b>Description</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <content>
           <p><b>FULL ECONOMIC ASSESSMENT</b></p>
@@ -553,16 +563,18 @@
           </table>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_4">
+        <heading>Evidence Base (for summary sheets)</heading>
         <content>
           <p><b>Evidence Base (for summary sheets)</b></p>
         </content>
-      </level>
-      <level>
+      </section>
+      <section eId="section_5">
+        <heading>Background</heading>
         <content>
           <p><b>Background</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>1.</num>
         <content>
@@ -688,11 +700,12 @@
           </content>
         </subparagraph>
       </paragraph>
-      <level>
+      <section eId="section_6">
+        <heading>What is the problem under consideration?</heading>
         <content>
           <p><b>What is the problem under consideration?</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>14.</num>
         <content>
@@ -771,11 +784,12 @@
           <p>Therefore the current system does not offer a level playing field for lenders to compete. Lenders that do not offer current accounts, for example, are not able to access the same level of data on current accounts that is available through CRAs to those that do offer current accounts. This puts new entrants or smaller participants in credit markets at a disadvantage in taking well-informed credit decisions. This is why the Breedon Review recommended that the British Banker’s Association (BBA) should explore greater credit data sharing with non-bank providers.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_7">
+        <heading>What is the Case for Change?</heading>
         <content>
           <p><b>What is the Case for Change?</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>23.</num>
         <content>
@@ -818,27 +832,30 @@
           <p><b>Lack of finance for newer or smaller SMEs</b> – SMEs are disproportionately reliant on bank finance and so are adversely affected by impairments in credit markets. Non-bank finance providers often have a different risk appetite to banks, and so may be willing to lend to SMEs that banks may no longer be willing to lend during periods of heightened stress in credit markets. A lack of data allowing lenders to differentiate between high- and low-credit risk borrowers can therefore lead to a lack of finance for creditworthy SMEs, or credit that is not optimally priced.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_8">
+        <heading>Policy Options</heading>
         <content>
           <p><b>Policy Options</b></p>
         </content>
-      </level>
-      <level>
+      </section>
+      <section eId="section_9">
+        <heading>Option 0  Baseline scenario – Do nothing</heading>
         <content>
           <p><b>Option 0:  Baseline scenario – Do nothing</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>30.</num>
         <content>
           <p>In the baseline scenario the Government would take no action. The baseline is used to measure the costs and benefits of taking the action described in the Government’s preferred option (option 1). The costs and benefits of the option to take no action are zero as nothing will change. </p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_10">
+        <heading>Option 1  – Preferred measure</heading>
         <content>
           <p><b>Option 1:  – Preferred measure</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>31.</num>
         <content>
@@ -863,11 +880,12 @@
           <p>There will also be a requirement on CRAs to provide a level playing field in terms of access to that data. The proposed legislation would therefore require that non-bank finance providers will be able to access credit data on a level basis with lenders where the SME in question had given permission.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_11">
+        <heading>Costs</heading>
         <content>
           <p><b>Costs</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>35.</num>
         <content>
@@ -1006,11 +1024,12 @@
           <p>Moreover any increased cost to banks of obtaining the data will be significantly outweighed by the reduced risk cost to banks, as better information on SMEs will lead to fewer loan impairments and reduced capital requirements for banks. We therefore think that the proposal will lead to much more accurate pricing of loans, with many businesses seeing the cost of borrowing fall.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_12">
+        <heading>Benefits</heading>
         <content>
           <p><b>Benefits</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>47.</num>
         <content>
@@ -1065,11 +1084,12 @@
           <p><b>Benefits to Credit Reference Agencies</b> – The additional data that CRAs receive will likely lead to a significant increase in new business due to a higher demand for credit scores as well as the underlying data. These benefits will comfortably outweigh the initial IT set up costs explained above. Ensuring that the data is shared with a wide number of CRAs will stimulate competition in the CRA market for SMEs which is currently dominated by one or two players.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_13">
+        <heading>One in Two Out Regulatory Costs</heading>
         <content>
           <p><b>One in Two Out Regulatory Costs</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>56.</num>
         <content>
@@ -1136,22 +1156,24 @@
           <p>It would be reasonable to expect a significant net social benefit from the policy, even where all the impacts may not be monetised. SMEs are disproportionately reliant on bank finance in a highly concentrated market. The financial crisis has both increased this concentration yet at the same time impaired the ability of those incumbent banks to lend to SMEs. Improved SME credit scoring, by better enabling alternative lenders to differentiate good and bad credit risks at the smaller end of the market can translate into a more efficient allocation of credit among those businesses most in need of it. The data would help CRAs make more reliable judgements about an SMEs creditworthiness. This could have a significant effect on credit scores and therefore on the availability and pricing of credit. This effect is likely to be most pronounced for unincorporated or newly incorporated businesses which have no credit footprint, and thus are potentially denied access to trade credit. This could have an impact on economic growth by materially increasing access to credit, especially for non-incorporated SMEs, as a result of improved credit scoring.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_14">
+        <heading>Equalities Impact</heading>
         <content>
           <p><b>Equalities Impact</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>63.</num>
         <content>
           <p>The Government expects the equalities impact of this measure to be neutral. Age, religion, gender, pregnancy and maternity, race and sexual orientation do not generate significant issues in terms of the availability of SME credit data. Credit scoring is by its nature blind to these considerations so to the extent that credit scoring is made more effective the result could be marginally positive. </p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_15">
+        <heading>Impact on small firms and micro-business</heading>
         <content>
           <p><b>Impact on small firms and micro-business</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>64.</num>
         <content>

@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/data.akn" />
-          <FRBRdate date="2026-02-04" name="transform" />
+          <FRBRdate date="2026-02-05" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -47,8 +47,16 @@
       </proprietary>
     </meta>
     <mainBody>
-      <section eId="section_2">
-        <heading>Cost of Preferred (or more likely) Option (£m) (in 2016 prices)</heading>
+      <toc>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/2" level="2"><inline name="tocHeading">1. Summary Analysis &amp; Evidence</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/3" level="2"><inline name="tocHeading">2. Evidence Base (for summary sheets)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/4" level="2"><inline name="tocHeading">3. Interdependencies with other financial services EU Exit SIs</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/5" level="2"><inline name="tocHeading">4. Method</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/6" level="2"><inline name="tocHeading">5. Assumptions and evidence base</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/7" level="2"><inline name="tocHeading">6. Assumed reading speed (wpm) by Flesch Reading Score</inline></tocItem>
+      </toc>
+      <level>
         <content>
           <table uk:widths="1.21in 1.11in 1.81in 0.21in 0.89in 2.01in 0.01in">
             <tr>
@@ -189,15 +197,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <toc>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/2" level="2"><inline name="tocHeading">2. Cost of Preferred (or more likely) Option (£m) (in 2016 prices)</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/3" level="2"><inline name="tocHeading">3. What are the policy objectives and the intended effects?</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/5" level="2"><inline name="tocHeading">5. Will the policy be reviewed?</inline></tocItem>
-      </toc>
-      <section eId="section_3">
-        <heading>What are the policy objectives and the intended effects?</heading>
+      </level>
+      <level>
         <content>
           <table uk:widths="7.26in">
             <tr>
@@ -212,8 +213,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section eId="section_4">
+      </level>
+      <level>
         <content>
           <table uk:widths="7.26in">
             <tr>
@@ -226,9 +227,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section eId="section_5">
-        <heading>Will the policy be reviewed?</heading>
+      </level>
+      <level>
         <content>
           <table uk:widths="7.26in">
             <tr>
@@ -238,7 +238,7 @@
             </tr>
           </table>
         </content>
-      </section>
+      </level>
       <level>
         <content>
           <table uk:widths="4.42in 0.69in 0.69in 0.25in 0.45in 0.69in">
@@ -306,11 +306,12 @@
           </table>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_2">
+        <heading>Summary Analysis &amp; Evidence</heading>
         <content>
           <p><b>Summary: Analysis &amp; Evidence</b>Policy Option 1</p>
         </content>
-      </level>
+      </section>
       <level>
         <content>
           <p><b>Description:  </b>Proceed with secondary legislation to fix deficiencies in retained EU law relating to financial services.</p>
@@ -553,11 +554,12 @@
           </table>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_3">
+        <heading>Evidence Base (for summary sheets)</heading>
         <content>
           <p><b>Evidence Base (for summary sheets)</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <content>
           <p class="ia-title">Impact Assessment of Financial Services Statutory Instruments – European Union (Withdrawal) Act 2018</p>
@@ -1985,11 +1987,12 @@
           </content>
         </subparagraph>
       </paragraph>
-      <level>
+      <section eId="section_4">
+        <heading>Interdependencies with other financial services EU Exit SIs</heading>
         <content>
           <p><b>Interdependencies with other financial services EU Exit SIs</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>119.</num>
         <content>
@@ -3123,11 +3126,12 @@
           <p>Familiarisation Costs</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_5">
+        <heading>Method</heading>
         <content>
           <p><b>Method:</b></p>
         </content>
-      </level>
+      </section>
       <level>
         <content>
           <p>The following formulae are used to estimate familiarisation costs consistently across all SIs:</p>
@@ -3143,11 +3147,12 @@
           <p><subFlow name="math"><foreign><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"><mml:mi mathvariant="bold-italic">F</mml:mi><mml:mi mathvariant="bold-italic">a</mml:mi><mml:mi mathvariant="bold-italic">m</mml:mi><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mi mathvariant="bold-italic">l</mml:mi><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mi mathvariant="bold-italic">a</mml:mi><mml:mi mathvariant="bold-italic">r</mml:mi><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mi mathvariant="bold-italic">s</mml:mi><mml:mi mathvariant="bold-italic">a</mml:mi><mml:mi mathvariant="bold-italic">t</mml:mi><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mi mathvariant="bold-italic">o</mml:mi><mml:mi mathvariant="bold-italic">n</mml:mi><mml:mi mathvariant="bold-italic"> </mml:mi><mml:mi mathvariant="bold-italic">c</mml:mi><mml:mi mathvariant="bold-italic">o</mml:mi><mml:mi mathvariant="bold-italic">s</mml:mi><mml:mi mathvariant="bold-italic">t</mml:mi><mml:mi mathvariant="bold-italic"> </mml:mi><mml:mi mathvariant="bold-italic">o</mml:mi><mml:mi mathvariant="bold-italic">f</mml:mi><mml:mi mathvariant="bold-italic"> </mml:mi><mml:mi mathvariant="bold-italic">S</mml:mi><mml:mi mathvariant="bold-italic">I</mml:mi><mml:mi mathvariant="bold-italic"> </mml:mi><mml:mi mathvariant="bold-italic">f</mml:mi><mml:mi mathvariant="bold-italic">o</mml:mi><mml:mi mathvariant="bold-italic">r</mml:mi><mml:mi mathvariant="bold-italic"> </mml:mi><mml:mi mathvariant="bold-italic">a</mml:mi><mml:mi mathvariant="bold-italic">l</mml:mi><mml:mi mathvariant="bold-italic">l</mml:mi><mml:mi mathvariant="bold-italic"> </mml:mi><mml:mi mathvariant="bold-italic">f</mml:mi><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mi mathvariant="bold-italic">r</mml:mi><mml:mi mathvariant="bold-italic">m</mml:mi><mml:mi mathvariant="bold-italic">s</mml:mi><mml:mo>=</mml:mo><mml:mi> </mml:mi><mml:mfrac><mml:mrow><mml:msup><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>o</mml:mi></mml:mrow></mml:msup><mml:mi> </mml:mi><mml:mi>o</mml:mi><mml:mi>f</mml:mi><mml:mi> </mml:mi><mml:mi>w</mml:mi><mml:mi>o</mml:mi><mml:mi>r</mml:mi><mml:mi>d</mml:mi><mml:mi>s</mml:mi><mml:mi> </mml:mi><mml:mi>i</mml:mi><mml:mi>n</mml:mi><mml:mi> </mml:mi><mml:mi>S</mml:mi><mml:mi>I</mml:mi></mml:mrow><mml:mrow><mml:mi>w</mml:mi><mml:mi>o</mml:mi><mml:mi>r</mml:mi><mml:mi>d</mml:mi><mml:mi>s</mml:mi><mml:mi> </mml:mi><mml:mi>r</mml:mi><mml:mi>e</mml:mi><mml:mi>a</mml:mi><mml:mi>d</mml:mi><mml:mi> </mml:mi><mml:mi>p</mml:mi><mml:mi>e</mml:mi><mml:mi>r</mml:mi><mml:mi> </mml:mi><mml:mi>m</mml:mi><mml:mi>i</mml:mi><mml:mi>n</mml:mi><mml:mi>u</mml:mi><mml:mi>t</mml:mi><mml:mi>e</mml:mi></mml:mrow></mml:mfrac><mml:mi> </mml:mi><mml:mo>×</mml:mo><mml:mi> </mml:mi><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mn>60</mml:mn></mml:mrow></mml:mfrac><mml:mi> </mml:mi><mml:mo>×</mml:mo><mml:mi> </mml:mi><mml:mi>h</mml:mi><mml:mi>o</mml:mi><mml:mi>u</mml:mi><mml:mi>r</mml:mi><mml:mi>l</mml:mi><mml:mi>y</mml:mi><mml:mi> </mml:mi><mml:mi>w</mml:mi><mml:mi>a</mml:mi><mml:mi>g</mml:mi><mml:mi>e</mml:mi><mml:mi> </mml:mi><mml:mi>r</mml:mi><mml:mi>a</mml:mi><mml:mi>t</mml:mi><mml:mi>e</mml:mi><mml:mi> </mml:mi><mml:mo>×</mml:mo><mml:mi> </mml:mi><mml:msup><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>o</mml:mi></mml:mrow></mml:msup><mml:mi>o</mml:mi><mml:mi>f</mml:mi><mml:mi> </mml:mi><mml:mi>b</mml:mi><mml:mi>u</mml:mi><mml:mi>s</mml:mi><mml:mi>i</mml:mi><mml:mi>n</mml:mi><mml:mi>e</mml:mi><mml:mi>s</mml:mi><mml:mi>s</mml:mi><mml:mi>e</mml:mi><mml:mi>s</mml:mi><mml:mi> </mml:mi></mml:math></foreign></subFlow></p>
         </content>
       </level>
-      <level>
+      <section eId="section_6">
+        <heading>Assumptions and evidence base</heading>
         <content>
           <p><b>Assumptions and evidence base: </b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>1.</num>
         <content>
@@ -3215,11 +3220,12 @@
           <p>It is assumed that, as legal experts, readers will generally be familiar with this type of literature so we have taken the upper bound of the reading speed of difficult text, i.e. 100 words per minute. Furthermore, it is assumed that this form of familiarisation will be undertaken on a one-off basis.</p>
         </content>
       </level>
-      <level>
+      <section eId="section_7">
+        <heading>Assumed reading speed (wpm) by Flesch Reading Score</heading>
         <content>
           <p><img src="image2.png" /><b>Assumed reading speed (wpm) by Flesch Reading Score:</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <content>
           <p><b>Breakdown of Familiarisation Costs:</b></p>

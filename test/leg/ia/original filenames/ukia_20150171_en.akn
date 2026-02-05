@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/data.akn" />
-          <FRBRdate date="2026-02-04" name="transform" />
+          <FRBRdate date="2026-02-05" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -47,6 +47,25 @@
       </proprietary>
     </meta>
     <mainBody>
+      <toc>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/2" level="2"><inline name="tocHeading">1. Summary Analysis &amp; Evidence</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/3" level="2"><inline name="tocHeading">2. Introduction</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/4" level="2"><inline name="tocHeading">3. Problem under consideration</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/5" level="2"><inline name="tocHeading">4. Rationale for intervention</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/6" level="2"><inline name="tocHeading">5. Policy objectives</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/7" level="2"><inline name="tocHeading">6. Description of options considered</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/8" level="2"><inline name="tocHeading">7. Option 1 Transposition</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/9" level="2"><inline name="tocHeading">8. Option 2 Transposition, deregulation and reworking of whole system</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/10" level="2"><inline name="tocHeading">9. Option 3 (Preferred option) Transposition and deregulation</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/11" level="2"><inline name="tocHeading">10. Impact on business monetised and non-monetised costs and benefits</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/12" level="2"><inline name="tocHeading">11. Figure 2. Number of sites controlled under domestic regulations in addition to Seveso III require...</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/13" level="2"><inline name="tocHeading">12. Rationale and evidence</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/14" level="2"><inline name="tocHeading">13. Risks and assumptions</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/15" level="2"><inline name="tocHeading">14. Direct costs and benefits to business calculations (following One In Two Out methodology)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/16" level="2"><inline name="tocHeading">15. Wider impacts</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/17" level="2"><inline name="tocHeading">16. Summary and implementation plan</inline></tocItem>
+      </toc>
       <level>
         <content>
           <table uk:widths="4.25in 2.85in">
@@ -142,8 +161,7 @@
           </table>
         </content>
       </level>
-      <section eId="section_2">
-        <heading>Cost of Preferred (or more likely) Option</heading>
+      <level>
         <content>
           <table uk:widths="1.38in 1.12in 1.75in 1.38in 1.46in">
             <tr>
@@ -194,15 +212,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <toc>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/2" level="2"><inline name="tocHeading">2. Cost of Preferred (or more likely) Option</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/3" level="2"><inline name="tocHeading">3. What are the policy objectives and the intended effects?</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/section/5" level="2"><inline name="tocHeading">5. Will the policy be reviewed?</inline></tocItem>
-      </toc>
-      <section eId="section_3">
-        <heading>What are the policy objectives and the intended effects?</heading>
+      </level>
+      <level>
         <content>
           <table uk:widths="7.09in">
             <tr>
@@ -213,8 +224,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section eId="section_4">
+      </level>
+      <level>
         <content>
           <table uk:widths="7.09in">
             <tr>
@@ -227,9 +238,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <section eId="section_5">
-        <heading>Will the policy be reviewed?</heading>
+      </level>
+      <level>
         <content>
           <table uk:widths="7.09in">
             <tr>
@@ -239,7 +249,7 @@
             </tr>
           </table>
         </content>
-      </section>
+      </level>
       <level>
         <content>
           <table uk:widths="3.67in 0.68in 0.68in 0.68in 0.24in 0.44in 0.68in">
@@ -307,11 +317,12 @@
           </table>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_2">
+        <heading>Summary Analysis &amp; Evidence</heading>
         <content>
           <p><b>Summary: Analysis &amp; Evidence</b>Policy Option 3</p>
         </content>
-      </level>
+      </section>
       <level>
         <content>
           <p><b>Description:  </b><b>Policy Option 3 - Transposition and Deregulation (Preferred Option) </b></p>
@@ -549,11 +560,12 @@
           </table>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_3">
+        <heading>Introduction</heading>
         <content>
           <p><b>Introduction</b></p>
         </content>
-      </level>
+      </section>
       <level>
         <heading><b>Please note: </b>We have one proposal with two regulatory elements. This proposal is being taken forward through the introduction of new ‘Planning (Hazardous Substances) Regulations 2015’ and the wider planning regime, together delivering: </heading>
         <paragraph>
@@ -579,12 +591,13 @@
           <p>This assessment deals with only the effects of (b) deregulation of domestic measures that are more onerous than the Seveso directive.</p>
         </content>
       </level>
-      <paragraph>
+      <section eId="section_4">
         <num><b>1.</b></num>
+        <heading>Problem under consideration</heading>
         <content>
           <p><b>Problem under consideration</b></p>
         </content>
-      </paragraph>
+      </section>
       <paragraph>
         <num><b>1.1</b></num>
         <content>
@@ -651,24 +664,26 @@
           <p>In line with the Government’s commitment to avoid ‘gold-plating’ of EU directives we are therefore proposing, at the same time as implementing the transposition of Seveso III, to bring forward changes in a number of areas where without good reason domestic controls exceed the directive’s requirements. This impact assessment is concerned with these proposed deregulatory changes. A separate and complementary impact assessment has been prepared to consider the costs and benefits of the changes solely required to implement the directive.</p>
         </content>
       </paragraph>
-      <paragraph>
+      <section eId="section_5">
         <num><b>2.</b></num>
+        <heading>Rationale for intervention</heading>
         <content>
           <p><b>Rationale for intervention </b></p>
         </content>
-      </paragraph>
+      </section>
       <paragraph>
         <num>8.</num>
         <content>
           <p>Changes to land-use planning regulations in England are necessary in order to fully transpose the requirements of the Seveso III directive by 31 May 2015. In developing our proposals to transpose the directive, opportunities to remove existing domestic gold-plating<authorialNote marker="5"><p> The ‘Better Regulation Framework Manual’ 2013 - <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/211981/bis-13-1038-better-regulation-framework-manual-guidance-for-officials.pdf</u></a></p></authorialNote> have been identified. In particular, substances controlled through the hazardous substances consent regime have not been overhauled since 1992 and are out of step with the new directive. The proposed deregulatory measures would remove burdens on business and bring competitive gain as the better alignment with EU and international standards levels the playing field for English business. </p>
         </content>
       </paragraph>
-      <paragraph>
+      <section eId="section_6">
         <num><b>3.</b></num>
+        <heading>Policy objectives</heading>
         <content>
           <p><b>Policy objectives</b></p>
         </content>
-      </paragraph>
+      </section>
       <paragraph>
         <num>9.</num>
         <intro>
@@ -705,12 +720,13 @@
           <p>The Department has worked with the Health and Safety Executive to ensure that the proposed deregulatory measures will not impact on the high levels of protection which the public and environment currently benefit from. The Executive has informed and supported the proposals.</p>
         </content>
       </paragraph>
-      <paragraph>
+      <section eId="section_7">
         <num><b>4.</b></num>
+        <heading>Description of options considered</heading>
         <content>
           <p><b>Description of options considered </b></p>
         </content>
-      </paragraph>
+      </section>
       <paragraph>
         <num>12.</num>
         <intro>
@@ -735,11 +751,12 @@
           </content>
         </subparagraph>
       </paragraph>
-      <level>
+      <section eId="section_8">
+        <heading>Option 1 Transposition</heading>
         <content>
           <p><b><u>Option 1: Transposition</u></b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>13.</num>
         <content>
@@ -752,11 +769,12 @@
           <p>This option is not suitable as our analysis of the hazardous substance consent regime shows that the current domestic requirements are more onerous than the directive (current and new). Option 1 would therefore result in additional domestic burdens on industry being retained. This option also fails to deliver our Red Tape Challenge commitment to consolidate existing regulations. </p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_9">
+        <heading>Option 2 Transposition, deregulation and reworking of whole system</heading>
         <content>
           <p><b><u>Option 2: Transposition, deregulation and reworking of whole system</u></b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>15.</num>
         <content>
@@ -775,11 +793,12 @@
           <p>As part of the consultation, we consulted on the scope for further reform. The responses received provide useful evidence and will be taken into account in considering the scope and shape of any future reform. </p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_10">
+        <heading>Option 3 (Preferred option) Transposition and deregulation</heading>
         <content>
           <p><b><u>Option 3 (Preferred option): Transposition and deregulation</u></b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>18.</num>
         <content>
@@ -792,12 +811,13 @@
           <p>Option 3 is the best option for transposing the directive to the EU deadline, whilst meeting agreed actions for the Government’s Red Tape Challenge. As part of this approach, accompanying guidance is also being published alongside new regulations. We will also seek opportunities in future for greater streamlining and further integration of the land-use planning regime with the Control of Major Accident Hazards regime.</p>
         </content>
       </paragraph>
-      <paragraph>
+      <section eId="section_11">
         <num><b>5.</b></num>
+        <heading>Impact on business monetised and non-monetised costs and benefits</heading>
         <content>
           <p><b>Impact on business: monetised and non-monetised costs and benefits</b></p>
         </content>
-      </paragraph>
+      </section>
       <paragraph>
         <num>20.</num>
         <content>
@@ -921,11 +941,12 @@
           <p><b>Figure 2</b> below is a summary of Health and Safety Executive data which shows the number of sites in England (numbered and in red) which are in scope of regulation as a result of holding the main substances where the control arises from a domestic and not an EU requirement. The information relates to those sites where consent has been granted for a single substance, not those where these substances might be present together with other substances.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_12">
+        <heading>Figure 2. Number of sites controlled under domestic regulations in addition to Seveso III requirements  (2014)</heading>
         <content>
           <p> <b>Figure 2. Number of sites controlled under domestic regulations in addition to Seveso III requirements  (2014)</b></p>
         </content>
-      </level>
+      </section>
       <level>
         <content>
           <p><img src="" /></p>
@@ -1009,12 +1030,13 @@
           <p>When preparing local plans, local planning authorities must have regard to the prevention of major accidents, and limiting their consequences. They must also consider the long-term need for appropriate distances between establishments holding hazardous substances and population centres or environmentally sensitive areas. The proposed measure to deregulate the existing controls will remove a number of sites from scope and, in so doing, may reduce the area of land that might otherwise be ruled out for development. This provides greater flexibility for other businesses that may want to develop in these areas, without compromising public safety.</p>
         </content>
       </paragraph>
-      <paragraph>
+      <section eId="section_13">
         <num><b>6.</b></num>
+        <heading>Rationale and evidence</heading>
         <content>
           <p><b>Rationale and evidence</b></p>
         </content>
-      </paragraph>
+      </section>
       <paragraph>
         <num><b>6.1</b></num>
         <content>
@@ -1087,12 +1109,13 @@
           <p>The Department is acting on industry concerns relating to risks of delay and complications in the hazardous substances consent regime, and has sought to streamline the application process to increase efficiency in line with the directive’s requirements, as detailed in the impact assessment relating to the transposition of the directive.</p>
         </content>
       </paragraph>
-      <paragraph>
+      <section eId="section_14">
         <num><b>7.</b></num>
+        <heading>Risks and assumptions</heading>
         <content>
           <p><b>Risks and assumptions</b></p>
         </content>
-      </paragraph>
+      </section>
       <paragraph>
         <num>51.</num>
         <content>
@@ -1117,12 +1140,13 @@
           <p>Further to this, it is conceivable that some businesses would seek to take advantage of changes by adapting their operations in future so as to fall out of scope and lessen their administrative burden. Business representatives have indicated this is unlikely. We have therefore assumed that this is not a very probable eventuality, but the result would be an increase in overall administrative savings to business. </p>
         </content>
       </paragraph>
-      <paragraph>
+      <section eId="section_15">
         <num><b>8.</b></num>
+        <heading>Direct costs and benefits to business calculations (following One In Two Out methodology)</heading>
         <content>
           <p><b>Direct costs and benefits to business calculations (following One In Two Out methodology)</b></p>
         </content>
-      </paragraph>
+      </section>
       <paragraph>
         <num>55.</num>
         <content>
@@ -1141,24 +1165,26 @@
           <p>These measures are therefore classified as an ‘OUT’.</p>
         </content>
       </paragraph>
-      <paragraph>
+      <section eId="section_16">
         <num><b>9.</b></num>
+        <heading>Wider impacts</heading>
         <content>
           <p><b>Wider impacts</b></p>
         </content>
-      </paragraph>
+      </section>
       <paragraph>
         <num>58.</num>
         <content>
           <p>We have considered the potential impacts of the proposed project in the context of the general equality duty and concluded that they are not likely to result in any significant differential impacts on any of the protected characteristics.  </p>
         </content>
       </paragraph>
-      <paragraph>
+      <section eId="section_17">
         <num><b>10.</b></num>
+        <heading>Summary and implementation plan</heading>
         <content>
           <p><b>Summary and implementation plan</b></p>
         </content>
-      </paragraph>
+      </section>
       <paragraph>
         <num>59.</num>
         <content>

@@ -388,77 +388,139 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Transform major IA content areas into proper section elements
+    /// Transform major IA content areas into proper section elements.
+    /// Uses structural patterns (bold numbered paragraphs, bold levels) instead of content matching.
     /// </summary>
     private static void TransformContentSections(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         var logger = Logging.Factory.CreateLogger<Helper>();
 
-        var sectionPatterns = new[] {
-            "Cost of Preferred",
-            "What are the policy objectives",
-            "What policy options have been considered",
-            "Will the policy be reviewed",
-            "FULL ECONOMIC ASSESSMENT",
-            "BUSINESS ASSESSMENT"
-        };
+        var mainBody = xml.SelectSingleNode("//akn:mainBody", nsmgr);
+        if (mainBody == null) return;
 
         int sectionCounter = 2;
+        var elementsToTransform = new List<(XmlNode element, string headingText)>();
 
-        var levels = xml.SelectNodes("//akn:level", nsmgr);
-        
-        foreach (XmlNode level in levels) {
-            foreach (var pattern in sectionPatterns) {
-                if (ContainsSectionContent(level, pattern)) {
-                    TransformToSemanticSection(xml, level, sectionCounter);
-                    logger.LogInformation($"Transformed level to section with eId: section_{sectionCounter}");
-                    sectionCounter++;
-                    break;
+        // Find all direct children of mainBody that could be section headers
+        foreach (XmlNode child in mainBody.ChildNodes) {
+            if (child.NodeType != XmlNodeType.Element) continue;
+
+            string headingText = null;
+
+            if (child.LocalName == "paragraph" && child.NamespaceURI == AKN_NAMESPACE) {
+                if (IsSectionHeaderParagraph(child, nsmgr, out headingText)) {
+                    elementsToTransform.Add((child, headingText));
+                }
+            } else if (child.LocalName == "level" && child.NamespaceURI == AKN_NAMESPACE) {
+                if (IsSectionHeaderLevel(child, nsmgr, out headingText)) {
+                    elementsToTransform.Add((child, headingText));
                 }
             }
         }
+
+        // Transform identified section headers to section elements
+        foreach (var (element, headingText) in elementsToTransform) {
+            TransformToSemanticSection(xml, element, sectionCounter, headingText);
+            logger.LogInformation("Transformed {ElementType} to section_{Number}: {Heading}", 
+                element.LocalName, sectionCounter, headingText);
+            sectionCounter++;
+        }
+
+        if (elementsToTransform.Count > 0) {
+            logger.LogInformation("Transformed {Count} section headers using structural patterns", 
+                elementsToTransform.Count);
+        }
     }
 
-    private static bool ContainsSectionContent(XmlNode level, string contentPattern) {
-        var textContent = level.InnerText ?? "";
-        return textContent.Contains(contentPattern, StringComparison.OrdinalIgnoreCase);
+    /// <summary>
+    /// Check if a paragraph element is a section header based on structural patterns.
+    /// Pattern: Bold numbered/lettered paragraph with bold content
+    /// </summary>
+    private static bool IsSectionHeaderParagraph(XmlNode paragraph, XmlNamespaceManager nsmgr, out string headingText) {
+        headingText = null;
+
+        // Check if <num> contains <b>
+        var num = paragraph.SelectSingleNode("akn:num", nsmgr);
+        if (num == null) return false;
+
+        var numBold = num.SelectSingleNode("akn:b", nsmgr);
+        if (numBold == null) return false;
+
+        string numText = numBold.InnerText?.Trim() ?? "";
+        
+        // Check if it's a numbered (1., 2., etc.) or lettered (A., B., etc.) section
+        bool isNumberedOrLettered = System.Text.RegularExpressions.Regex.IsMatch(numText, @"^([0-9]+|[A-Z])\.$");
+        if (!isNumberedOrLettered) return false;
+
+        // Check if first <p> in <content> is predominantly bold
+        var content = paragraph.SelectSingleNode("akn:content", nsmgr);
+        if (content == null) return false;
+
+        var firstP = content.SelectSingleNode("akn:p", nsmgr);
+        if (firstP == null) return false;
+
+        var firstPBold = firstP.SelectSingleNode("akn:b", nsmgr);
+        if (firstPBold == null) return false;
+
+        string boldText = firstPBold.InnerText?.Trim() ?? "";
+        
+        // Must be substantive but heading-like (not too long)
+        if (boldText.Length < 5 || boldText.Length > 200) return false;
+
+        // Extract heading (remove trailing colons)
+        headingText = boldText.Replace(":", "").Trim();
+        return true;
     }
 
-    private static void TransformToSemanticSection(XmlDocument xml, XmlNode level, int sectionNumber) {
+    /// <summary>
+    /// Check if a level element is a section header based on structural patterns.
+    /// Pattern: Level with single bold paragraph that looks like a heading
+    /// </summary>
+    private static bool IsSectionHeaderLevel(XmlNode level, XmlNamespaceManager nsmgr, out string headingText) {
+        headingText = null;
+
+        var content = level.SelectSingleNode("akn:content", nsmgr);
+        if (content == null) return false;
+
+        // Should have a single paragraph with bold text
+        var paragraphs = content.SelectNodes("akn:p", nsmgr);
+        if (paragraphs.Count != 1) return false;
+
+        var firstP = paragraphs[0];
+        var boldElement = firstP.SelectSingleNode("akn:b", nsmgr);
+        if (boldElement == null) return false;
+
+        string boldText = boldElement.InnerText?.Trim() ?? "";
+        
+        // Must be heading-like: substantive but short
+        if (boldText.Length < 5 || boldText.Length > 150) return false;
+
+        // Check if the bold text is the primary content (not just a small part)
+        string totalText = firstP.InnerText?.Trim() ?? "";
+        if (boldText.Length < totalText.Length * 0.5) return false;
+
+        headingText = boldText.Replace(":", "").Trim();
+        return true;
+    }
+
+    private static void TransformToSemanticSection(XmlDocument xml, XmlNode element, int sectionNumber, string headingText) {
         var section = xml.CreateElement("section", AKN_NAMESPACE);
         section.SetAttribute("eId", $"section_{sectionNumber}");
 
-        var headingText = ExtractSectionHeading(level);
+        // Add heading if we have one
         if (!string.IsNullOrEmpty(headingText)) {
             var heading = xml.CreateElement("heading", AKN_NAMESPACE);
             heading.InnerText = headingText;
             section.AppendChild(heading);
         }
 
-        while (level.HasChildNodes) {
-            section.AppendChild(level.FirstChild);
+        // Move all child nodes into the section
+        while (element.HasChildNodes) {
+            section.AppendChild(element.FirstChild);
         }
 
-        level.ParentNode.ReplaceChild(section, level);
-    }
-
-    private static string ExtractSectionHeading(XmlNode level) {
-        var nsmgr = new XmlNamespaceManager(level.OwnerDocument.NameTable);
-        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
-        
-        var boldElements = level.SelectNodes(".//akn:b", nsmgr);
-        foreach (XmlNode bold in boldElements) {
-            var text = bold.InnerText?.Trim();
-            if (!string.IsNullOrEmpty(text) && text.Length > 10 && text.Length < 100) {
-                text = text.Replace(":", "").Trim();
-                if (text.EndsWith("?")) return text;
-                if (text.Contains("ASSESSMENT")) return text;
-                if (text.Contains("Cost of")) return text;
-                if (text.Contains("policy")) return text;
-            }
-        }
-        return "";
+        element.ParentNode.ReplaceChild(section, element);
     }
 
     /// <summary>
@@ -666,8 +728,9 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Generate table of contents from sections with headings
-    /// Creates a toc element with tocItem entries linking to each section using full URLs
+    /// Generate table of contents from ALL structural elements in the document.
+    /// Includes sections, hcontainers, and other major structural elements.
+    /// Extracts headings flexibly - from explicit heading elements, bold text, or content.
     /// </summary>
     private static void GenerateTableOfContents(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
@@ -684,7 +747,11 @@ class Helper : BaseHelper {
             logger.LogWarning("No FRBRExpression URI found, using fragment references for TOC");
         }
 
-        var sectionsWithHeadings = xml.SelectNodes("//akn:mainBody/akn:section[akn:heading and @eId!='section_1']", nsmgr);
+        // Get ALL sections (not just those with headings)
+        var allSections = xml.SelectNodes("//akn:mainBody/akn:section", nsmgr);
+        
+        // Also get hcontainers (like summary sections)
+        var hcontainers = xml.SelectNodes("//akn:mainBody/akn:hcontainer[@name]", nsmgr);
         
         var toc = xml.CreateElement("toc", AKN_NAMESPACE);
         
@@ -698,58 +765,194 @@ class Helper : BaseHelper {
         wholeDocItem.AppendChild(wholeDocHeading);
         toc.AppendChild(wholeDocItem);
         
-        // Add section entries if they exist
-        if (sectionsWithHeadings != null && sectionsWithHeadings.Count > 0) {
-            foreach (XmlElement section in sectionsWithHeadings) {
-            var eId = section.GetAttribute("eId");
-            var heading = section.SelectSingleNode("akn:heading", nsmgr);
-            
-            if (string.IsNullOrEmpty(eId) || heading == null) {
-                continue;
+        int tocNumber = 1;
+        
+        // Add hcontainer entries first (usually summary at the top)
+        if (hcontainers != null && hcontainers.Count > 0) {
+            foreach (XmlElement hcontainer in hcontainers) {
+                var name = hcontainer.GetAttribute("name");
+                var eId = hcontainer.GetAttribute("eId");
+                
+                // For hcontainers, prioritize the name attribute over content extraction
+                string headingText = null;
+                if (!string.IsNullOrEmpty(name)) {
+                    headingText = char.ToUpper(name[0]) + name.Substring(1);
+                }
+                
+                // Only extract from content if name is missing or generic
+                if (string.IsNullOrEmpty(headingText) || headingText == "Container" || headingText == "Section") {
+                    headingText = ExtractHeadingForToc(hcontainer, nsmgr);
+                }
+                
+                // Final fallback
+                if (string.IsNullOrEmpty(headingText)) {
+                    headingText = "Untitled Section";
+                }
+                
+                string href;
+                if (!string.IsNullOrEmpty(expressionUri) && !string.IsNullOrEmpty(eId)) {
+                    href = $"{expressionUri}#{eId}";
+                } else if (!string.IsNullOrEmpty(eId)) {
+                    href = "#" + eId;
+                } else {
+                    href = $"{expressionUri}#{name}";
+                }
+
+                AddTocItem(xml, toc, href, tocNumber, headingText);
+                tocNumber++;
             }
+        }
+        
+        // Add ALL section entries
+        if (allSections != null && allSections.Count > 0) {
+            foreach (XmlElement section in allSections) {
+                var eId = section.GetAttribute("eId");
+                
+                // Extract heading using flexible approach
+                string headingText = ExtractHeadingForToc(section, nsmgr);
+                
+                // Generate eId if missing
+                if (string.IsNullOrEmpty(eId)) {
+                    eId = $"section_{tocNumber + 1}";
+                    section.SetAttribute("eId", eId);
+                }
+                
+                string sectionNumber = eId.Replace("section_", "");
 
-            string headingText = heading.InnerText?.Trim();
-            if (string.IsNullOrEmpty(headingText)) {
-                continue;
-            }
+                string href;
+                if (!string.IsNullOrEmpty(expressionUri)) {
+                    href = $"{expressionUri}/section/{sectionNumber}";
+                } else {
+                    href = "#" + eId;
+                }
 
-            if (headingText.Length > 100) {
-                headingText = headingText.Substring(0, 97) + "...";
-            }
-
-            string sectionNumber = eId.Replace("section_", "");
-
-            string href;
-            if (!string.IsNullOrEmpty(expressionUri)) {
-                href = $"{expressionUri}/section/{sectionNumber}";
-            } else {
-                href = "#" + eId;
-            }
-
-            var tocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
-            tocItem.SetAttribute("href", href);
-            tocItem.SetAttribute("level", "2");
-            
-            var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
-            inlineHeading.SetAttribute("name", "tocHeading");
-            // Include section number in heading text
-            inlineHeading.InnerText = $"{sectionNumber}. {headingText}";
-            tocItem.AppendChild(inlineHeading);
-            
-            toc.AppendChild(tocItem);
+                AddTocItem(xml, toc, href, tocNumber, headingText);
+                tocNumber++;
             }
         }
 
+        // Insert TOC at the beginning of mainBody
         if (toc.HasChildNodes) {
-            var firstSection = mainBody.SelectSingleNode("akn:section[1]", nsmgr);
-            if (firstSection != null && firstSection.NextSibling != null) {
-                mainBody.InsertBefore(toc, firstSection.NextSibling);
-            } else {
-                mainBody.InsertBefore(toc, mainBody.FirstChild);
-            }
-            
+            mainBody.InsertBefore(toc, mainBody.FirstChild);
             logger.LogInformation("Generated TOC with {Count} entries", toc.ChildNodes.Count);
         }
+    }
+
+    /// <summary>
+    /// Add a TOC item to the TOC element
+    /// </summary>
+    private static void AddTocItem(XmlDocument xml, XmlElement toc, string href, int tocNumber, string headingText) {
+        var tocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
+        tocItem.SetAttribute("href", href);
+        tocItem.SetAttribute("level", "2");
+        
+        var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
+        inlineHeading.SetAttribute("name", "tocHeading");
+        inlineHeading.InnerText = $"{tocNumber}. {headingText}";
+        tocItem.AppendChild(inlineHeading);
+        
+        toc.AppendChild(tocItem);
+    }
+
+    /// <summary>
+    /// Extract a heading for TOC using a cascade of strategies:
+    /// 1. Explicit heading element
+    /// 2. First bold text in content (questions, titles)
+    /// 3. First paragraph text (truncated)
+    /// 4. Fallback based on element type
+    /// </summary>
+    private static string ExtractHeadingForToc(XmlElement element, XmlNamespaceManager nsmgr) {
+        // Strategy 1: Try explicit heading element
+        var heading = element.SelectSingleNode("akn:heading", nsmgr);
+        if (heading != null) {
+            string text = heading.InnerText?.Trim();
+            if (!string.IsNullOrEmpty(text)) {
+                return TruncateHeading(text);
+            }
+        }
+        
+        // Strategy 2: Try first bold text in content (common for IA questions/titles)
+        var boldElements = element.SelectNodes(".//akn:b", nsmgr);
+        if (boldElements != null) {
+            foreach (XmlNode bold in boldElements) {
+                string text = bold.InnerText?.Trim();
+                if (!string.IsNullOrEmpty(text) && text.Length > 5) {
+                    // Clean up the text
+                    text = text.Replace(":", "").Trim();
+                    
+                    // Prefer question-style headings (very common in IAs)
+                    if (text.EndsWith("?") || 
+                        text.StartsWith("What", StringComparison.OrdinalIgnoreCase) ||
+                        text.StartsWith("Will", StringComparison.OrdinalIgnoreCase) ||
+                        text.StartsWith("Are", StringComparison.OrdinalIgnoreCase) ||
+                        text.StartsWith("Is", StringComparison.OrdinalIgnoreCase) ||
+                        text.StartsWith("How", StringComparison.OrdinalIgnoreCase)) {
+                        return TruncateHeading(text);
+                    }
+                    
+                    // Accept other substantive bold text
+                    if (text.Length > 10 && text.Length < 200) {
+                        return TruncateHeading(text);
+                    }
+                }
+            }
+        }
+        
+        // Strategy 3: Try first table cell with substantive bold content
+        var tableCells = element.SelectNodes(".//akn:td//akn:b", nsmgr);
+        if (tableCells != null) {
+            foreach (XmlNode cell in tableCells) {
+                string text = cell.InnerText?.Trim();
+                if (!string.IsNullOrEmpty(text) && text.Length > 10 && text.Length < 200) {
+                    text = text.Replace(":", "").Trim();
+                    if (!string.IsNullOrEmpty(text)) {
+                        return TruncateHeading(text);
+                    }
+                }
+            }
+        }
+        
+        // Strategy 4: Try first paragraph text
+        var firstPara = element.SelectSingleNode(".//akn:p[normalize-space()]", nsmgr);
+        if (firstPara != null) {
+            string text = firstPara.InnerText?.Trim();
+            if (!string.IsNullOrEmpty(text) && text.Length > 5) {
+                return TruncateHeading(text);
+            }
+        }
+        
+        // Strategy 5: Fallback - use element type and eId
+        var eId = element.GetAttribute("eId");
+        if (!string.IsNullOrEmpty(eId)) {
+            // Extract number from eId like "section_4"
+            var match = System.Text.RegularExpressions.Regex.Match(eId, @"_(\d+)$");
+            if (match.Success) {
+                return $"Section {match.Groups[1].Value}";
+            }
+            return eId;
+        }
+        
+        var name = element.GetAttribute("name");
+        if (!string.IsNullOrEmpty(name)) {
+            return char.ToUpper(name[0]) + name.Substring(1);
+        }
+        
+        return "Untitled Section";
+    }
+
+    /// <summary>
+    /// Truncate heading text to reasonable length for TOC display
+    /// </summary>
+    private static string TruncateHeading(string text) {
+        if (string.IsNullOrEmpty(text)) return text;
+        
+        // Remove excessive whitespace
+        text = System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ").Trim();
+        
+        if (text.Length > 100) {
+            return text.Substring(0, 97) + "...";
+        }
+        return text;
     }
 
 }

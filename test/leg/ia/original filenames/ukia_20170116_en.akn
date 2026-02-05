@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/data.akn" />
-          <FRBRdate date="2026-02-04" name="transform" />
+          <FRBRdate date="2026-02-05" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -47,8 +47,24 @@
       </proprietary>
     </meta>
     <mainBody>
-      <section eId="section_2">
-        <heading>Cost of Preferred (or more likely) Option</heading>
+      <toc>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/2" level="2"><inline name="tocHeading">1. Summary Analysis &amp; Evidence</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/3" level="2"><inline name="tocHeading">2. Summary Analysis &amp; Evidence</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/4" level="2"><inline name="tocHeading">3. Evidence Base (for summary sheets)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/5" level="2"><inline name="tocHeading">4. Problem under consideration</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/6" level="2"><inline name="tocHeading">5. Rationale for intervention</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/7" level="2"><inline name="tocHeading">6. Policy objectives</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/8" level="2"><inline name="tocHeading">7. Description of options considered</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/9" level="2"><inline name="tocHeading">8. Monetised and non-monetised costs and benefits</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/10" level="2"><inline name="tocHeading">9. Summary of monetised costs and benefits</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/11" level="2"><inline name="tocHeading">10. Risks and Assumptions</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/12" level="2"><inline name="tocHeading">11. Direct costs and benefits to Business</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/13" level="2"><inline name="tocHeading">12. Wider impacts</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/14" level="2"><inline name="tocHeading">13. Small and Micro Business Assessment</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/15" level="2"><inline name="tocHeading">14. Implementation of preferred options</inline></tocItem>
+      </toc>
+      <level>
         <content>
           <table uk:widths="1.38in 1.28in 0.88in 1.08in 1.25in 1.22in 0.01in">
             <tr>
@@ -242,14 +258,8 @@
             </tr>
           </table>
         </content>
-      </section>
-      <toc>
-        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/2" level="2"><inline name="tocHeading">2. Cost of Preferred (or more likely) Option</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukdsi/2017/9780111158739/impacts/2017/116/section/3" level="2"><inline name="tocHeading">3. Will the policy be reviewed?</inline></tocItem>
-      </toc>
-      <section eId="section_3">
-        <heading>Will the policy be reviewed?</heading>
+      </level>
+      <level>
         <content>
           <table uk:widths="3.68in 0.68in 0.68in 0.68in 0.24in 0.44in 0.68in">
             <tr>
@@ -303,7 +313,7 @@
             </tr>
           </table>
         </content>
-      </section>
+      </level>
       <level>
         <heading><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></heading>
         <paragraph>
@@ -328,11 +338,12 @@
           </content>
         </paragraph>
       </level>
-      <level>
+      <section eId="section_2">
+        <heading>Summary Analysis &amp; Evidence</heading>
         <content>
           <p><b>Summary: Analysis &amp; Evidence</b>Policy Option 1</p>
         </content>
-      </level>
+      </section>
       <level>
         <content>
           <p><b>Description: </b>Do Nothing (baseline)</p>
@@ -565,11 +576,12 @@
           </table>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_3">
+        <heading>Summary Analysis &amp; Evidence</heading>
         <content>
           <p><b>Summary: Analysis &amp; Evidence</b>Policy Option 2</p>
         </content>
-      </level>
+      </section>
       <level>
         <content>
           <p><b>Description: </b>Simplify advice requirement and introduce tailored risk warnings</p>
@@ -803,16 +815,18 @@
           </table>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_4">
+        <heading>Evidence Base (for summary sheets)</heading>
         <content>
           <p><b>Evidence Base (for summary sheets)</b></p>
         </content>
-      </level>
-      <level>
+      </section>
+      <section eId="section_5">
+        <heading>Problem under consideration</heading>
         <content>
           <p><b>Problem under consideration</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>1.</num>
         <content>
@@ -922,11 +936,12 @@
           <p>Finally, the government’s Call for Evidence on the valuation of pensions with a Guaranteed Annuity Rate<authorialNote marker="9"><p> <a href="https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016"><u>https://www.gov.uk/government/consultations/occupational-and-personal-pension-schemes-miscellaneous-amendments-regulations-2016</u></a> </p></authorialNote> revealed that many members were not fully aware of the potential value of GARs. In addition, recent Pensions Ombudsman Service cases<authorialNote marker="10"><p> PO 563 and 569  <a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf"><u>https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-563.pdf</u></a>, <a href="https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf"><u>https://www.pensions-ombudsman.org.uk/wp-content/uploads/PO-569.pdf</u></a></p></authorialNote> indicate that some members are unaware of the existence of a GAR.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_6">
+        <heading>Rationale for intervention</heading>
         <content>
           <p><b>Rationale for intervention</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>10.</num>
         <content>
@@ -951,11 +966,12 @@
           <p>However, not all members with pension benefits that contain a GAR will be covered by the advice requirement; those with a GAR valued at less than £30,000 are exempt as it would be disproportionate for those with very small pots to be required to seek and pay for FCA regulated financial advice. This means that, despite the advice requirement, there is still an on-going information failure whereby some individuals may not understand their GAR and the value it represents when making a decision about whether to make use of the pension freedoms<authorialNote marker="12"><p> Responses to the government’s Call for Evidence on the Valuation of Pensions with a Guaranteed Annuity Rate<b> </b>raised concerns that members are often not fully aware of the potential value of GARs attached to their pension benefits. <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf"><u>https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/505678/government-response-misc-regs-consultation-23-nov-2015-and-call-for-evidence-on-gar-valuation.pdf</u></a>. Similarly, cases brought to the attention of the Financial Ombudsman have shown that individuals do not always have complete information about their GAR – e.g. <a href="http://www.financial-ombudsman.org.uk/publications/ombudsman-news/115/115-annuities.html"><u>http://www.financial-ombudsman.org.uk/publications/ombudsman-news/115/115-annuities.html</u></a></p></authorialNote>. Furthermore, the proposed simplification of the valuation process for pensions with GARs for the purpose of the advice requirement will mean that some members with GARs who previously would have received the protection of being required to take FCA regulated financial advice will no longer have to seek financial advice. Therefore, additional government intervention is required in order to make sure that all individuals understand the value of their GAR and can make an informed decision, even if they are not required to seek FCA regulated financial advice.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_7">
+        <heading>Policy objectives</heading>
         <content>
           <p><b>Policy objectives</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>14.</num>
         <content>
@@ -968,11 +984,12 @@
           <p>The policy to simplify the advice requirement will remove the requirement for some individuals to take financial advice. However, it remains important that these individuals and all other individuals with GARs are informed that their pension contains valuable guarantees before they give them up.  Therefore, the policy should also ensure that all individuals with GARs are informed both that their pension contains potentially valuable guarantees, and of the value of those guarantees, before they proceed with any decision to transfer, convert or otherwise flexibly access their pension pot, and thereby give up their GAR.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_8">
+        <heading>Description of options considered</heading>
         <content>
           <p><b>Description of options considered</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>16.</num>
         <content>
@@ -1151,11 +1168,12 @@
           </table>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_9">
+        <heading>Monetised and non-monetised costs and benefits</heading>
         <content>
           <p><b>Monetised and non-monetised costs and benefits</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>26.</num>
         <content>
@@ -1902,11 +1920,12 @@
           <p>These benefits have not been monetised.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_10">
+        <heading>Summary of monetised costs and benefits</heading>
         <content>
           <p><b>Summary of monetised costs and benefits</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>67.</num>
         <content>
@@ -2124,11 +2143,12 @@
           </table>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_11">
+        <heading>Risks and Assumptions</heading>
         <content>
           <p><b>Risks and Assumptions</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>70.</num>
         <content>
@@ -2570,29 +2590,32 @@
           <p>The assumptions relating to trust-based schemes have the least evidence behind them but, as the results in Table 7 show, these assumptions do not have a significant impact on our overall estimate of the net costs to business and therefore do not represent a significant risk in our analysis.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_12">
+        <heading>Direct costs and benefits to Business</heading>
         <content>
           <p><b>Direct costs and benefits to Business </b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>96.</num>
         <content>
           <p>The proposal imposes a burden on businesses and is within the scope for one-in, three-out and the Business Impact Target (BIT). For the purposes of the BIT, net costs to business are to be presented in 2014 prices and discounted to 2015, in order for all policies to be compared using consistent pricing and discounting. Using a one year appraisal period from October 2017 and 3.5 per cent discount rate in line with the Treasury’s Green Book, we estimate that as a result of the increase in these direct costs to providers there is an Equivalent Annual Net Direct Cost to Business (EANDCB) worth -£1.6 million<b> </b>(2014/15 prices).</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_13">
+        <heading>Wider impacts</heading>
         <content>
           <p><b>Wider impacts</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>97.</num>
         <content>
           <p>N/A</p>
         </content>
       </paragraph>
-      <section eId="section_4">
+      <section eId="section_14">
+        <heading>Small and Micro Business Assessment</heading>
         <content>
           <p><b>Small and Micro Business Assessment </b></p>
         </content>
@@ -2615,11 +2638,12 @@
           <p>The consultation did not provide any evidence that this policy would have a disproportionate impact on small and micro-businesses.</p>
         </content>
       </paragraph>
-      <level>
+      <section eId="section_15">
+        <heading>Implementation of preferred options</heading>
         <content>
           <p><b>Implementation of preferred options</b></p>
         </content>
-      </level>
+      </section>
       <paragraph>
         <num>101.</num>
         <content>
