@@ -237,22 +237,6 @@ internal class BacklogParserWorker(
         }
     }
 
-    private List<Bundle.CustomField> CreateCustomFields(Metadata.Line line, string? courtCode)
-    {
-        List<Bundle.CustomField> customFields = [];
-        if (!string.IsNullOrWhiteSpace(line.headnote_summary))
-        {
-            customFields.Add(new Bundle.CustomField
-            {
-                Name = "headnote_summary",
-                Source = courtCode,
-                Value = line.headnote_summary
-            });
-        }
-
-        return customFields;
-    }
-
     private Bundle GenerateBundle(Metadata.Line line, bool autoPublish)
     {
         if (line == null)
@@ -279,9 +263,9 @@ internal class BacklogParserWorker(
             Content = content,
             MimeType = meta.SourceFormat
         };
-        var customFields = CreateCustomFields(line, meta.Court?.Code);
+
         logger.LogInformation("Creating bundle with source: {SourceFilename}", source.Filename);
         logger.LogInformation("Creating bundle with content: {ContentLength} bytes", source.Content.Length);
-        return Bundle.Make(source, response, customFields, autoPublish);
+        return Bundle.Make(source, response, autoPublish);
     }
 }
