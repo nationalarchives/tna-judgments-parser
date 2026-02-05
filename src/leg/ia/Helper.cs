@@ -20,9 +20,6 @@ class Helper : BaseHelper {
     private const string AKN_NAMESPACE = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
 
     private static readonly Helper Instance = new Helper();
-    
-    [ThreadStatic]
-    private static string _currentFilename;
 
     private Helper() : base(LegislativeDocumentConfig.ForImpactAssessments()) { }
 
@@ -41,12 +38,7 @@ class Helper : BaseHelper {
     /// <param name="filename">The filename (e.g., ukia_20250001_en.docx) used for URI and legislation lookup</param>
     /// <param name="simplify">Whether to simplify the output XML</param>
     public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true) {
-        _currentFilename = filename;
-        try {
-            return ((BaseHelper)Instance).Parse(docx, simplify);
-        } finally {
-            _currentFilename = null;
-        }
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
     }
 
     /// <summary>
@@ -56,16 +48,11 @@ class Helper : BaseHelper {
     /// <param name="filename">The filename (e.g., ukia_20250001_en.docx) used for URI and legislation lookup</param>
     /// <param name="simplify">Whether to simplify the output XML</param>
     public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true) {
-        _currentFilename = filename;
-        try {
-            return ((BaseHelper)Instance).Parse(docx, simplify);
-        } finally {
-            _currentFilename = null;
-        }
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
     }
 
-    protected override IDocument ParseDocument(WordprocessingDocument docx) {
-        return ImpactAssessments.Parser.Parse(docx, _currentFilename);
+    protected override IDocument ParseDocument(WordprocessingDocument docx, string filename = null) {
+        return ImpactAssessments.Parser.Parse(docx, filename);
     }
 
     protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {

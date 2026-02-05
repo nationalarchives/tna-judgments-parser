@@ -16,18 +16,18 @@ abstract class BaseHelper {
         Config = config;
     }
 
-    public IXmlDocument Parse(Stream docx, bool simplify = true) {
+    public IXmlDocument Parse(Stream docx, bool simplify = true, string filename = null) {
         WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify);
+        return Parse(word, simplify, filename);
     }
 
-    public IXmlDocument Parse(byte[] docx, bool simplify = true) {
+    public IXmlDocument Parse(byte[] docx, bool simplify = true, string filename = null) {
         WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify);
+        return Parse(word, simplify, filename);
     }
 
-    private IXmlDocument Parse(WordprocessingDocument docx, bool simplify) {
-        IDocument doc = ParseDocument(docx);
+    private IXmlDocument Parse(WordprocessingDocument docx, bool simplify, string filename = null) {
+        IDocument doc = ParseDocument(docx, filename);
         XmlDocument xml = Builder.Build(doc);
         docx.Dispose();
         if (simplify)
@@ -43,7 +43,7 @@ abstract class BaseHelper {
     /// Parse the document using the appropriate parser for this document type.
     /// Must be implemented by derived classes.
     /// </summary>
-    protected abstract IDocument ParseDocument(WordprocessingDocument docx);
+    protected abstract IDocument ParseDocument(WordprocessingDocument docx, string filename = null);
 
     /// <summary>
     /// Apply document-specific processing to the XML.

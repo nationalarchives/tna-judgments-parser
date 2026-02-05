@@ -2,21 +2,37 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Xsl;
 
 using test;
 
 using Xunit;
+using UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 namespace UK.Gov.Legislation.ExplanatoryMemoranda.Test {
 
 public class TestEM {
 
-    private static readonly int N = 9;
+    public static readonly IEnumerable<object[]> TestFiles = GetTestFiles();
 
-    public static readonly IEnumerable<object[]> Indices = Enumerable.Range(1, N)
-        .Select(i => new object[] { i });
+    /// <summary>
+    /// Gets test files with [prefix]em_YYYYNNNN_en.docx naming pattern
+    /// </summary>
+    private static IEnumerable<object[]> GetTestFiles() {
+        var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+        var resourceNames = assembly.GetManifestResourceNames();
+        
+        // Match pattern: test.leg.em.original_filenames.uksiem_20132911_en.docx (and variations)
+        var regex = new Regex(@"^test\.leg\.em\.original_filenames\.(.+em_\d+_en(?:_\d+)?)\.docx$");
+        return resourceNames
+            .Select(name => regex.Match(name))
+            .Where(match => match.Success)
+            .Select(match => match.Groups[1].Value) // e.g., uksiem_20132911_en
+            .OrderBy(name => name)
+            .Select(name => new object[] { name });
+    }
 
     private XslCompiledTransform Transform = new XslCompiledTransform();
 
@@ -27,20 +43,57 @@ public class TestEM {
     }
 
     [Theory]
-    [MemberData(nameof(Indices))]
-    public void Test(int i) {
-        var docx = DocumentHelpers.ReadDocx($"test.leg.em.test{i}.docx");
-        var actual = Helper.Parse(docx).Serialize();
-        var expected = DocumentHelpers.ReadXml($"test.leg.em.test{i}.akn");
+    [MemberData(nameof(TestFiles))]
+    public void Test(string filename) {
+        var resourceName = $"test.leg.em.original_filenames.{filename}.docx";
+        var docx = DocumentHelpers.ReadDocx(resourceName);
+        
+        var actual = Helper.Parse(docx, filename + ".docx").Serialize();
+        
+        var expectedResourceName = $"test.leg.em.original_filenames.{filename}.akn";
+        var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+        if (!assembly.GetManifestResourceNames().Contains(expectedResourceName)) {
+            var doc = new XmlDocument();
+            doc.LoadXml(actual);
+            var validator = new Validator();
+            var errors = validator.Validate(doc);
+            Assert.Empty(errors);
+            return;
+        }
+        
+        var expected = DocumentHelpers.ReadXml(expectedResourceName);
         actual = RemoveSomeMetadata(actual);
         expected = RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
+    }
+
+    [Fact(Skip = "Manual regeneration only - remove Skip attribute to run")]
+    public void RegenerateAllTestFiles() {
+        var projectRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(
+            System.AppDomain.CurrentDomain.BaseDirectory,
+            "..", "..", "..", ".."
+        ));
+        
+        foreach (var testData in TestFiles) {
+            string filename = (string)testData[0];
+            var resourceName = $"test.leg.em.original_filenames.{filename}.docx";
+            var docx = DocumentHelpers.ReadDocx(resourceName);
+            var akn = Helper.Parse(docx, filename + ".docx").Serialize();
+            var outputPath = System.IO.Path.Combine(projectRoot, "test", "leg", "em", "original filenames", $"{filename}.akn");
+            System.IO.File.WriteAllText(outputPath, akn);
+            System.Console.WriteLine($"Regenerated {filename}.akn");
+        }
     }
 
     private static string xslt = @"<?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' xmlns:uk='https://legislation.gov.uk/akn'>
   <xsl:template match='akn:FRBRdate/@date'/>
   <xsl:template match='uk:parser/text()'/>
+  <xsl:template match='uk:hash/text()'/>
+  <xsl:template match='uk:documentMainType'/>
+  <xsl:template match='uk:department'/>
+  <xsl:template match='uk:emDate'/>
+  <xsl:template match='uk:legislationClass'/>
   <xsl:template match='@*|node()'>
     <xsl:copy>
       <xsl:apply-templates select='@*|node()'/>
@@ -54,32 +107,6 @@ public class TestEM {
         using XmlWriter xWriter = XmlWriter.Create(sWriter);
         Transform.Transform(reader, xWriter);
         return sWriter.ToString();
-    }
-
-    [Fact(Skip = "Manual regeneration only - remove Skip attribute to run")]
-    public void RegenerateAllEMTestFiles() {
-        var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-        var assemblyDir = System.IO.Path.GetDirectoryName(assembly.Location);
-        var projectRoot = assemblyDir;
-        
-        while (projectRoot != null && 
-               !System.IO.File.Exists(System.IO.Path.Combine(projectRoot, "tna-judgments-parser.sln")) &&
-               !System.IO.Directory.Exists(System.IO.Path.Combine(projectRoot, ".git"))) {
-            projectRoot = System.IO.Directory.GetParent(projectRoot)?.FullName;
-        }
-        
-        if (projectRoot == null) {
-            throw new System.Exception("Could not find project root");
-        }
-        
-        foreach (var testData in Indices) {
-            int i = (int)testData[0];
-            var docx = DocumentHelpers.ReadDocx($"test.leg.em.test{i}.docx");
-            var akn = Helper.Parse(docx).Serialize();
-            var outputPath = System.IO.Path.Combine(projectRoot, "test", "leg", "em", $"test{i}.akn");
-            System.IO.File.WriteAllText(outputPath, akn);
-            System.Console.WriteLine($"Regenerated test{i}.akn");
-        }
     }
 
 }

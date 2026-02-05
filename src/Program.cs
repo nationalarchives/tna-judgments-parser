@@ -132,7 +132,8 @@ public class Program {
         if (attachment is not null)
             throw new Exception();
         byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = EM.Helper.Parse(docx);
+        string filename = input.Name;
+        var parsed = EM.Helper.Parse(docx, filename);
         if (outputZip is not null)
             SaveZip(parsed, outputZip);
         else if (output is not null)
