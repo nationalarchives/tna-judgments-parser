@@ -92,7 +92,9 @@ public class TestEM {
   <xsl:template match='uk:hash/text()'/>
   <xsl:template match='uk:documentMainType'/>
   <xsl:template match='uk:department'/>
-  <xsl:template match='uk:emDate'/>
+  <xsl:template match='uk:date'/>
+  <xsl:template match='uk:year'/>
+  <xsl:template match='uk:version'/>
   <xsl:template match='uk:legislationClass'/>
   <xsl:template match='@*|node()'>
     <xsl:copy>

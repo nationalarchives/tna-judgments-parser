@@ -17,13 +17,23 @@ namespace UK.Gov.Legislation.Common {
 internal static partial class EMLegislationMapping {
 
     private static readonly ILogger logger = Logging.Factory.CreateLogger(typeof(EMLegislationMapping));
-    private static readonly Dictionary<(int year, int number), EMMappingRecord> _records = LoadRecords();
+    private static readonly Dictionary<string, EMMappingRecord> _records = LoadRecords();
+
+    /// <summary>
+    /// Normalizes a filename for lookup: strip extension and trim.
+    /// </summary>
+    private static string NormalizeFilename(string filename) {
+        if (string.IsNullOrWhiteSpace(filename)) return filename ?? "";
+        string name = Path.GetFileNameWithoutExtension(filename.Trim());
+        return name.Trim();
+    }
 
     /// <summary>
     /// Loads full EM mapping records from the embedded CSV resource.
+    /// Key is the filename column (without extension) for direct lookup.
     /// </summary>
-    private static Dictionary<(int year, int number), EMMappingRecord> LoadRecords() {
-        var records = new Dictionary<(int year, int number), EMMappingRecord>();
+    private static Dictionary<string, EMMappingRecord> LoadRecords() {
+        var records = new Dictionary<string, EMMappingRecord>(StringComparer.OrdinalIgnoreCase);
         
         Assembly assembly = Assembly.GetExecutingAssembly();
         using Stream stream = assembly.GetManifestResourceStream("leg.em_to_legislation_mapping.csv");
@@ -35,7 +45,7 @@ internal static partial class EMLegislationMapping {
 
         using StreamReader reader = new(stream);
         
-        // Skip header line: em_uri,em_type,em_title,em_date,legislation_uri,legislation_class,legislation_year,legislation_number,legislation_title,department,modified_date,version,em_year
+        // Header: em_uri,filename,em_type,em_title,em_date,legislation_uri,legislation_class,legislation_year,legislation_number,legislation_title,department,modified_date,version,em_year
         string header = reader.ReadLine();
         if (header is null) {
             logger.LogWarning("EM to legislation mapping CSV is empty");
@@ -48,112 +58,71 @@ internal static partial class EMLegislationMapping {
             if (string.IsNullOrWhiteSpace(line))
                 continue;
 
-            // Parse CSV line - handle quoted fields
             var parts = ParseCsvLine(line);
-            if (parts.Length < 13) {
-                logger.LogTrace("Skipping malformed line {LineNumber} in EM mapping CSV (expected 13 columns, got {Count})", lineNumber, parts.Length);
+            if (parts.Length < 14) {
+                logger.LogTrace("Skipping malformed line {LineNumber} in EM mapping CSV (expected 14 columns, got {Count})", lineNumber, parts.Length);
                 continue;
             }
 
-            // Extract year and number from em_uri (PDF filename)
-            // Example: http://www.legislation.gov.uk/uksi/2013/2911/pdfs/uksiem_20132911_en.pdf
-            // Or with version suffix: http://www.legislation.gov.uk/uksi/2023/532/pdfs/uksiem_20230532_en_001.pdf
+            string filename = NormalizeFilename(parts[1]?.Trim() ?? "");
+            if (string.IsNullOrEmpty(filename)) {
+                logger.LogTrace("Skipping line {LineNumber} - empty filename", lineNumber);
+                continue;
+            }
+
             string emUri = parts[0]?.Trim() ?? "";
-            var parsed = ExtractYearNumberFromUri(emUri);
-            if (!parsed.HasValue) {
-                logger.LogTrace("Skipping line {LineNumber} - could not extract year/number from em_uri: {Uri}", lineNumber, emUri);
-                continue;
-            }
 
-            var (year, number) = parsed.Value;
-
-            // Parse version from column 11
             int version = 1;
-            if (!string.IsNullOrWhiteSpace(parts[11])) {
-                if (int.TryParse(parts[11].Trim(), out int parsedVersion)) {
-                    version = parsedVersion;
-                }
+            if (!string.IsNullOrWhiteSpace(parts[12])) {
+                int.TryParse(parts[12].Trim(), out version);
             }
 
-            // Parse em_year from column 12
             int? emYear = null;
-            if (!string.IsNullOrWhiteSpace(parts[12])) {
-                if (int.TryParse(parts[12].Trim(), out int parsedEmYear)) {
+            if (!string.IsNullOrWhiteSpace(parts[13])) {
+                if (int.TryParse(parts[13].Trim(), out int parsedEmYear)) {
                     emYear = parsedEmYear;
                 }
             }
 
-            string emDate = parts[3]?.Trim() ?? "";
+            string emDate = parts[4]?.Trim() ?? "";
 
-            // Parse legislation year and number (may be empty or decimal)
             int? legYear = null;
             string legNumber = null;
-            if (!string.IsNullOrWhiteSpace(parts[6])) {
-                if (double.TryParse(parts[6].Trim(), out double legYearDouble)) {
+            if (!string.IsNullOrWhiteSpace(parts[7])) {
+                if (double.TryParse(parts[7].Trim(), out double legYearDouble)) {
                     legYear = (int)legYearDouble;
                 }
             }
-            if (!string.IsNullOrWhiteSpace(parts[7])) {
-                // Parse as double and convert to clean string (removes .0 from CSV export)
-                if (double.TryParse(parts[7].Trim(), out double legNumberDouble)) {
+            if (!string.IsNullOrWhiteSpace(parts[8])) {
+                if (double.TryParse(parts[8].Trim(), out double legNumberDouble)) {
                     legNumber = ((long)legNumberDouble).ToString();
                 } else {
-                    legNumber = parts[7].Trim();
+                    legNumber = parts[8].Trim();
                 }
             }
 
             var record = new EMMappingRecord {
                 EmUri = emUri,
-                EmType = parts[1]?.Trim() ?? "",
-                EmTitle = Unquote(parts[2]?.Trim() ?? ""),
+                EmType = parts[2]?.Trim() ?? "",
+                EmTitle = Unquote(parts[3]?.Trim() ?? ""),
                 EmDate = emDate,
                 EmYear = emYear,
                 EmVersion = version,
-                LegislationUri = parts[4]?.Trim() ?? "",
-                LegislationClass = parts[5]?.Trim() ?? "",
+                LegislationUri = parts[5]?.Trim() ?? "",
+                LegislationClass = parts[6]?.Trim() ?? "",
                 LegislationYear = legYear,
                 LegislationNumber = legNumber,
-                LegislationTitle = Unquote(parts[8]?.Trim() ?? ""),
-                Department = Unquote(parts[9]?.Trim() ?? ""),
-                ModifiedDate = parts[10]?.Trim() ?? ""
+                LegislationTitle = Unquote(parts[9]?.Trim() ?? ""),
+                Department = Unquote(parts[10]?.Trim() ?? ""),
+                ModifiedDate = parts[11]?.Trim() ?? ""
             };
 
-            records[(year, number)] = record;
+            records[filename] = record;
         }
 
         logger.LogInformation("Loaded {Count} EM mapping records", records.Count);
         return records;
     }
-
-    /// <summary>
-    /// Extracts year and number from an EM URI.
-    /// Example: http://www.legislation.gov.uk/uksi/2013/2911/pdfs/uksiem_20132911_en.pdf
-    /// Or with version suffix: http://www.legislation.gov.uk/uksi/2023/532/pdfs/uksiem_20230532_en_001.pdf
-    /// Extracts: year=2013, number=2911
-    /// </summary>
-    private static (int year, int number)? ExtractYearNumberFromUri(string emUri) {
-        if (string.IsNullOrEmpty(emUri))
-            return null;
-
-        // Match pattern: [prefix]em_YYYYNNNN_en or [prefix]em_YYYYNNNN_en_NNN
-        // Handles variations like uksiem, ssipn, nisrem, etc.
-        Match match = EmUriRegex().Match(emUri);
-        if (!match.Success) {
-            return null;
-        }
-
-        string yearStr = match.Groups[1].Value;
-        string numberStr = match.Groups[2].Value;
-
-        if (!int.TryParse(yearStr, out int year) || !int.TryParse(numberStr, out int number)) {
-            return null;
-        }
-
-        return (year, number);
-    }
-
-    [GeneratedRegex(@"em_(\d{4})(\d+)_en(?:_\d+)?\.pdf", RegexOptions.IgnoreCase)]
-    private static partial Regex EmUriRegex();
 
     /// <summary>
     /// Parses a CSV line, handling quoted fields that may contain commas.
@@ -205,56 +174,19 @@ internal static partial class EMLegislationMapping {
     }
 
     /// <summary>
-    /// Gets the full mapping record for a given year and number.
-    /// Throws an exception if not found (EMs must have CSV entries).
+    /// Gets the full mapping record for the given filename.
+    /// The filename can include an extension (e.g. .docx); it is normalized for lookup against the CSV filename column.
     /// </summary>
-    /// <param name="year">The EM year (from filename)</param>
-    /// <param name="number">The EM number (from filename)</param>
+    /// <param name="filename">The EM filename (e.g. uksiem_20241017_en_002.docx)</param>
     /// <returns>The mapping record</returns>
-    /// <exception cref="KeyNotFoundException">Thrown when no mapping exists for the given year/number</exception>
-    public static EMMappingRecord GetMappingRecord(int year, int number) {
-        if (_records.TryGetValue((year, number), out EMMappingRecord record)) {
+    /// <exception cref="KeyNotFoundException">Thrown when no CSV row has a matching filename</exception>
+    public static EMMappingRecord GetMappingRecord(string filename) {
+        string key = NormalizeFilename(filename);
+        if (_records.TryGetValue(key, out EMMappingRecord record)) {
             return record;
         }
-        
-        throw new KeyNotFoundException($"No CSV mapping found for EM year={year}, number={number}. All EMs must have a CSV entry.");
+        throw new KeyNotFoundException($"No CSV mapping found for EM filename '{key}'. All EMs must have a CSV entry.");
     }
-
-    /// <summary>
-    /// Parses an EM filename to extract year and number.
-    /// Expected format: uksiem_YYYYNNNN_en or uksiem_YYYYNNNN_en_NNN (e.g., uksiem_20132911_en, uksiem_20230532_en_001)
-    /// The number part can be variable length (e.g., 2911, or 0198).
-    /// </summary>
-    /// <param name="filename">The filename (with or without extension)</param>
-    /// <returns>A tuple of (year, number) if parsing succeeds, otherwise null</returns>
-    public static (int year, int number)? ParseFilename(string filename) {
-        if (string.IsNullOrEmpty(filename))
-            return null;
-
-        // Remove extension if present
-        string name = Path.GetFileNameWithoutExtension(filename);
-
-        // Match pattern: [prefix]em_YYYYNNNN_en or [prefix]em_YYYYNNNN_en_NNN
-        // Prefix can be: uksi, ssi, nisr, ukdsi, sdsi, nidsr, etc.
-        Match match = FilenameRegex().Match(name);
-        if (!match.Success) {
-            logger.LogWarning("Filename '{Filename}' does not match expected pattern [prefix]em_YYYYNNNN_en[_NNN]", filename);
-            return null;
-        }
-
-        string yearStr = match.Groups[1].Value;
-        string numberStr = match.Groups[2].Value;
-
-        if (!int.TryParse(yearStr, out int year) || !int.TryParse(numberStr, out int number)) {
-            logger.LogWarning("Filename '{Filename}' has non-numeric year/number", filename);
-            return null;
-        }
-
-        return (year, number);
-    }
-
-    [GeneratedRegex(@"em_(\d{4})(\d+)_en(?:_\d+)?$", RegexOptions.IgnoreCase)]
-    private static partial Regex FilenameRegex();
 
     /// <summary>
     /// Determines the URI path segment based on the EM type.

@@ -189,9 +189,9 @@ class Builder : AkN.Builder {
             }
             
             if (!string.IsNullOrEmpty(emMetadata.EmDate)) {
-                XmlElement emDate = doc.CreateElement("uk", "emDate", UKNS);
-                proprietary.AppendChild(emDate);
-                emDate.AppendChild(doc.CreateTextNode(emMetadata.EmDate));
+                XmlElement date = doc.CreateElement("uk", "date", UKNS);
+                proprietary.AppendChild(date);
+                date.AppendChild(doc.CreateTextNode(emMetadata.EmDate));
             }
             
             if (!string.IsNullOrEmpty(emMetadata.LegislationClass)) {
@@ -200,16 +200,15 @@ class Builder : AkN.Builder {
                 legislationClass.AppendChild(doc.CreateTextNode(emMetadata.LegislationClass));
             }
             
-            // Year and version values (explicit for easier MarkLogic loading)
             if (emMetadata.EmYear.HasValue) {
-                XmlElement emYear = doc.CreateElement("uk", "emYear", UKNS);
-                proprietary.AppendChild(emYear);
-                emYear.AppendChild(doc.CreateTextNode(emMetadata.EmYear.Value.ToString()));
+                XmlElement year = doc.CreateElement("uk", "year", UKNS);
+                proprietary.AppendChild(year);
+                year.AppendChild(doc.CreateTextNode(emMetadata.EmYear.Value.ToString()));
             }
             
-            XmlElement emVersion = doc.CreateElement("uk", "emVersion", UKNS);
-            proprietary.AppendChild(emVersion);
-            emVersion.AppendChild(doc.CreateTextNode(emMetadata.EmVersion.ToString()));
+            XmlElement version = doc.CreateElement("uk", "version", UKNS);
+            proprietary.AppendChild(version);
+            version.AppendChild(doc.CreateTextNode(emMetadata.EmVersion.ToString()));
             
             if (emMetadata.LegislationYear.HasValue) {
                 XmlElement legislationYear = doc.CreateElement("uk", "legislationYear", UKNS);
@@ -251,9 +250,9 @@ class Builder : AkN.Builder {
             }
             
             if (!string.IsNullOrEmpty(iaMetadata.IADate)) {
-                XmlElement iaDate = doc.CreateElement("uk", "iaDate", UKNS);
-                proprietary.AppendChild(iaDate);
-                iaDate.AppendChild(doc.CreateTextNode(iaMetadata.IADate));
+                XmlElement date = doc.CreateElement("uk", "date", UKNS);
+                proprietary.AppendChild(date);
+                date.AppendChild(doc.CreateTextNode(iaMetadata.IADate));
             }
             
             if (!string.IsNullOrEmpty(iaMetadata.PDFDate)) {
@@ -268,17 +267,16 @@ class Builder : AkN.Builder {
                 legislationClass.AppendChild(doc.CreateTextNode(iaMetadata.LegislationClass));
             }
             
-            // Year and number values (explicit for easier MarkLogic loading)
             if (iaMetadata.UkiaYear.HasValue) {
-                XmlElement ukiaYear = doc.CreateElement("uk", "ukiaYear", UKNS);
-                proprietary.AppendChild(ukiaYear);
-                ukiaYear.AppendChild(doc.CreateTextNode(iaMetadata.UkiaYear.Value.ToString()));
+                XmlElement year = doc.CreateElement("uk", "year", UKNS);
+                proprietary.AppendChild(year);
+                year.AppendChild(doc.CreateTextNode(iaMetadata.UkiaYear.Value.ToString()));
             }
             
             if (iaMetadata.UkiaNumber.HasValue) {
-                XmlElement ukiaNumber = doc.CreateElement("uk", "ukiaNumber", UKNS);
-                proprietary.AppendChild(ukiaNumber);
-                ukiaNumber.AppendChild(doc.CreateTextNode(iaMetadata.UkiaNumber.Value.ToString()));
+                XmlElement number = doc.CreateElement("uk", "number", UKNS);
+                proprietary.AppendChild(number);
+                number.AppendChild(doc.CreateTextNode(iaMetadata.UkiaNumber.Value.ToString()));
             }
             
             if (iaMetadata.LegislationYear.HasValue) {

@@ -41,21 +41,13 @@ class EMMetadata : DocumentMetadata {
         DateTime? modified = doc.PackageProperties.Modified;
         Dictionary<string, Dictionary<string, string>> css = DOCX.CSS.Extract(doc.MainDocumentPart, "#doc");
 
-        // Parse filename to get year/number for metadata lookup
+        // Look up metadata by filename (CSV has a filename column)
         string shortUri = null;
         string legislationUri = null;
-        EMMappingRecord mappingRecord = null;
+        EMMappingRecord mappingRecord;
 
-        var parsed = EMLegislationMapping.ParseFilename(filename);
-        if (!parsed.HasValue) {
-            throw new ArgumentException($"Failed to parse EM filename: {filename}. Expected format: [prefix]em_YYYYNNNN_en");
-        }
-
-        var (year, number) = parsed.Value;
-        
-        // EMs MUST have a CSV mapping - throw if not found
         try {
-            mappingRecord = EMLegislationMapping.GetMappingRecord(year, number);
+            mappingRecord = EMLegislationMapping.GetMappingRecord(filename);
         } catch (KeyNotFoundException ex) {
             throw new InvalidOperationException($"Cannot process EM file '{filename}': {ex.Message}", ex);
         }

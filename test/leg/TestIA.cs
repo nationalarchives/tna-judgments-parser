@@ -93,7 +93,9 @@ public class TestIA {
   <xsl:template match='uk:documentStage'/>
   <xsl:template match='uk:documentMainType'/>
   <xsl:template match='uk:department'/>
-  <xsl:template match='uk:iaDate'/>
+  <xsl:template match='uk:date'/>
+  <xsl:template match='uk:year'/>
+  <xsl:template match='uk:number'/>
   <xsl:template match='uk:pdfDate'/>
   <xsl:template match='uk:legislationClass'/>
   <xsl:template match='@*|node()'>
