@@ -314,23 +314,31 @@ class Builder : AkN.Builder {
     //         base.AddDivision(parent, div);
     // }
 
+    /// <summary>Adds an inline to an AKN element that does not allow br (e.g. docTitle, inline). Line breaks are emitted as a space.</summary>
+    private void AddInlineNoBr(XmlElement parent, Judgments.IInline model) {
+        if (model is Judgments.ILineBreak)
+            parent.AppendChild(doc.CreateTextNode(" "));
+        else
+            base.AddInline(parent, model);
+    }
+
     protected override void AddInline(XmlElement parent, Judgments.IInline model) {
         if (model is DocType2 docType) {
             XmlElement e = CreateAndAppend("docType", parent);
             foreach (Judgments.IInline child in docType.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is DocNumber2 docNum) {
             XmlElement e = CreateAndAppend("docNumber", parent);
             foreach (Judgments.IInline child in docNum.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is DocTitle docTitle) {
             XmlElement e = CreateAndAppend("docTitle", parent);
             foreach (Judgments.IInline child in docTitle.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is DocStage docStage) {
             XmlElement e = CreateAndAppend("docStage", parent);
             foreach (Judgments.IInline child in docStage.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is DocDate docDate) {
             XmlElement e = CreateAndAppend("docDate", parent);
             string dateValue = ExtractDateFromContent(docDate.Contents);
@@ -338,21 +346,21 @@ class Builder : AkN.Builder {
                 e.SetAttribute("date", dateValue);
             }
             foreach (Judgments.IInline child in docDate.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is LeadDepartment leadDept) {
             XmlElement e = CreateAndAppend("inline", parent);
             e.SetAttribute("name", "leadDepartment");
             foreach (Judgments.IInline child in leadDept.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is OtherDepartments otherDept) {
             XmlElement e = CreateAndAppend("inline", parent);
             e.SetAttribute("name", "otherDepartments");
             foreach (Judgments.IInline child in otherDept.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is DocDepartment docDept) {
             XmlElement e = CreateAndAppend("docProponent", parent);
             foreach (Judgments.IInline child in docDept.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else {
             base.AddInline(parent, model);
         }
