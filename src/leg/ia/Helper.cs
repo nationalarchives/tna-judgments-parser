@@ -390,6 +390,7 @@ class Helper : BaseHelper {
     /// <summary>
     /// Transform major IA content areas into proper section elements.
     /// Uses structural patterns (bold numbered paragraphs, bold levels) instead of content matching.
+    /// Groups following siblings into each section until the next header (structured model: intro + hierElements + wrapUp).
     /// </summary>
     private static void TransformContentSections(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
@@ -419,17 +420,96 @@ class Helper : BaseHelper {
             }
         }
 
-        // Transform identified section headers to section elements
+        var headerSet = new HashSet<XmlNode>(elementsToTransform.Select(t => t.element));
+
+        // Transform identified section headers to section elements, grouping following content into each section
         foreach (var (element, headingText) in elementsToTransform) {
-            TransformToSemanticSection(xml, element, sectionCounter, headingText);
-            logger.LogInformation("Transformed {ElementType} to section_{Number}: {Heading}", 
-                element.LocalName, sectionCounter, headingText);
+            var following = CollectFollowingSiblings(element, headerSet);
+            TransformToSemanticSection(xml, element, sectionCounter, headingText, following);
+            logger.LogInformation("Transformed {ElementType} to section_{Number}: {Heading} ({FollowingCount} following nodes)",
+                element.LocalName, sectionCounter, headingText, following.Count);
             sectionCounter++;
         }
 
         if (elementsToTransform.Count > 0) {
-            logger.LogInformation("Transformed {Count} section headers using structural patterns", 
+            logger.LogInformation("Transformed {Count} section headers using structural patterns",
                 elementsToTransform.Count);
+        }
+    }
+
+    /// <summary>
+    /// Collect direct siblings after the given element until the next section header or end of parent.
+    /// </summary>
+    private static List<XmlNode> CollectFollowingSiblings(XmlNode element, HashSet<XmlNode> sectionHeaderElements) {
+        var list = new List<XmlNode>();
+        for (var n = element.NextSibling; n != null; n = n.NextSibling) {
+            if (n.NodeType != XmlNodeType.Element) continue;
+            if (sectionHeaderElements.Contains(n)) break;
+            list.Add(n);
+        }
+        return list;
+    }
+
+    /// <summary>
+    /// Whether the element is a hierarchical element (allowed as direct section child in structured model).
+    /// </summary>
+    private static bool IsHierElement(XmlNode node) {
+        if (node?.NamespaceURI != AKN_NAMESPACE) return false;
+        switch (node.LocalName) {
+            case "paragraph":
+            case "level":
+            case "section":
+            case "hcontainer":
+            case "clause":
+            case "part":
+            case "chapter":
+            case "title":
+            case "article":
+            case "book":
+            case "tome":
+            case "division":
+            case "list":
+            case "point":
+            case "indent":
+            case "alinea":
+            case "rule":
+            case "subrule":
+            case "proviso":
+            case "subsection":
+            case "subpart":
+            case "subparagraph":
+            case "subchapter":
+            case "subtitle":
+            case "subdivision":
+            case "subclause":
+            case "sublist":
+            case "transitional":
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    /// <summary>
+    /// Whether the element is a block element (must go inside intro or wrapUp in structured section).
+    /// </summary>
+    private static bool IsBlockElement(XmlNode node) {
+        if (node?.NamespaceURI != AKN_NAMESPACE) return false;
+        switch (node.LocalName) {
+            case "p":
+            case "table":
+            case "blockContainer":
+            case "block":
+            case "foreign":
+            case "figure":
+            case "formula":
+            case "list":
+            case "tblock":
+            case "recital":
+            case "citation":
+                return true;
+            default:
+                return false;
         }
     }
 
@@ -504,9 +584,15 @@ class Helper : BaseHelper {
         return true;
     }
 
-    private static void TransformToSemanticSection(XmlDocument xml, XmlNode element, int sectionNumber, string headingText) {
+    private static void TransformToSemanticSection(XmlDocument xml, XmlNode element, int sectionNumber, string headingText, List<XmlNode> following) {
         var section = xml.CreateElement("section", AKN_NAMESPACE);
         section.SetAttribute("eId", $"section_{sectionNumber}");
+
+        // Add num from header if present (paragraph has num, level might not)
+        var num = element.SelectSingleNode("akn:num", CreateNsMgr(xml));
+        if (num != null) {
+            section.AppendChild(num);
+        }
 
         // Add heading if we have one
         if (!string.IsNullOrEmpty(headingText)) {
@@ -515,12 +601,77 @@ class Helper : BaseHelper {
             section.AppendChild(heading);
         }
 
-        // Move all child nodes into the section
-        while (element.HasChildNodes) {
-            section.AppendChild(element.FirstChild);
+        if (following == null || following.Count == 0) {
+            // Simple content branch: section has num?, heading?, content (from header)
+            while (element.HasChildNodes) {
+                section.AppendChild(element.FirstChild);
+            }
+            element.ParentNode.ReplaceChild(section, element);
+            return;
+        }
+
+        // Structured branch: intro (blocks) + hierElements + wrapUp (blocks)
+        // 1) Build intro from header's content element (block children) and leading blocks from following
+        XmlElement intro = null;
+        var contentEl = element.SelectSingleNode("akn:content", CreateNsMgr(xml));
+        if (contentEl != null && contentEl.HasChildNodes) {
+            intro = xml.CreateElement("intro", AKN_NAMESPACE);
+            while (contentEl.HasChildNodes) {
+                intro.AppendChild(contentEl.FirstChild);
+            }
+            section.AppendChild(intro);
         }
 
         element.ParentNode.ReplaceChild(section, element);
+
+        // 2) Split following into leading blocks, hierElements, trailing blocks
+        var leadingBlocks = new List<XmlNode>();
+        var hierElements = new List<XmlNode>();
+        var trailingBlocks = new List<XmlNode>();
+        bool seenHier = false;
+        foreach (var n in following) {
+            if (IsHierElement(n)) {
+                hierElements.Add(n);
+                seenHier = true;
+            } else if (IsBlockElement(n)) {
+                if (!seenHier) leadingBlocks.Add(n);
+                else trailingBlocks.Add(n);
+            }
+            // Skip other types (e.g. toc) or treat as block if needed
+        }
+
+        // 3) Add leading blocks to intro (create intro if needed)
+        if (leadingBlocks.Count > 0) {
+            if (intro == null) {
+                intro = xml.CreateElement("intro", AKN_NAMESPACE);
+                section.InsertAfter(intro, section.SelectSingleNode("akn:heading", CreateNsMgr(xml)) ?? section.LastChild);
+            }
+            foreach (var n in leadingBlocks) {
+                intro.AppendChild(n);
+            }
+        }
+
+        // 4) Insert hierElements after intro (or after heading if no intro)
+        XmlNode insertAfter = intro ?? section.LastChild;
+        foreach (var hier in hierElements) {
+            section.InsertAfter(hier, insertAfter);
+            insertAfter = hier;
+        }
+
+        // 5) wrapUp for trailing blocks
+        if (trailingBlocks.Count > 0) {
+            var wrapUp = xml.CreateElement("wrapUp", AKN_NAMESPACE);
+            foreach (var n in trailingBlocks) {
+                wrapUp.AppendChild(n);
+            }
+            section.AppendChild(wrapUp);
+        }
+    }
+
+    private static XmlNamespaceManager CreateNsMgr(XmlDocument xml) {
+        var nsmgr = new XmlNamespaceManager(xml.NameTable);
+        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
+        return nsmgr;
     }
 
     /// <summary>
