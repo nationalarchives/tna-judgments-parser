@@ -49,6 +49,7 @@ class BlockList : IBlock
         {
             // Remove empty lines from the collection to ensure they
             // don't throw off the parsing of BlockLists.
+            IBlock current = parser.Current();
             if (parser.Current()?.IsEmptyLine() ?? false)
             {
                 parser.Advance();
@@ -237,6 +238,8 @@ internal class BlockListItem : IBlock
 
             if (parser.Match(BlockListItem.Parse) is BlockListItem blockListItem)
                 children.Add(blockListItem);
+            else
+                break;
         }
 
         if (intro.Count == 0)
