@@ -67,8 +67,13 @@ public partial class LegislationParser
 
     private Lawmaker.Document Parse()
     {
+        Logger.LogDebug($"Begin parse");
+
+        Logger.LogDebug($"Parsing header...");
         ParseAndEnrichHeader();
+        Logger.LogDebug($"Parsing body...");
         ParseBody();
+        Logger.LogDebug($"Parsing conclusions...");
         ParseConclusions();
 
         if (i != Body.Count)
