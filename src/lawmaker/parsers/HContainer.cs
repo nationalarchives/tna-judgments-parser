@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.VariantTypes;
+using DocumentFormat.OpenXml.Vml;
+
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -222,20 +224,21 @@ namespace UK.Gov.Legislation.Lawmaker
          * If the block is followed by one or more quoted structures,
          * it is wrapped in a Mod together with the quoted structures.
         */
-        private void HandleMod(IBlock block, List<IBlock> container)
+        private void HandleMod(IBlock block, List<IBlock> container, bool skipInitialLine = false)
         {
             if (block is not WLine line)
             {
-                container.Add(block);
+                if (!skipInitialLine) container.Add(block);
                 return;
             }
             List <IQuotedStructure> quotedStructures = HandleQuotedStructuresAfter(line);
             if (quotedStructures.Count == 0)
             {
-                container.Add(line);
+                if (!skipInitialLine) container.Add(line);
                 return;
             }
-            List<IBlock> contents = [line, .. quotedStructures];
+            List<IBlock> contents = [.. quotedStructures];
+            if (!skipInitialLine) contents.Insert(0, line);
             Mod mod = new() { Contents = contents };
             container.Add(mod);
         }
@@ -279,7 +282,12 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 if (!firstLine.IsLeftAligned())
                     return null;
-                if (LineIsIndentedLessThan(firstLine, leader))
+                // If the leader is left-aligned, we enforce that extra pargraphs be must indented further than the leader.
+                // Except when the leader is a Schedule number, which is potentially left-aligned if it has a reference 
+                // note on the same line, in which case we pretend it's center-aligned.
+                string numberText = GetScheduleNumber(leader, true);
+                bool isScheduleNumber = LanguageService.IsMatch(numberText, Schedule.NumberPatterns);
+                if (LineIsIndentedLessThan(firstLine, leader) && !isScheduleNumber)
                     return null;
             }
             return leaf.Contents;
@@ -321,7 +329,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
 
             // If centre-aligned, it must be the start of a new grouping provision
-            if (IsCenterAligned(line))
+            if (line.IsCenterAligned())
                 return true;
 
             // If we reach the heading of another Prov1, this Prov1 must be over
@@ -363,6 +371,9 @@ namespace UK.Gov.Legislation.Lawmaker
         /// <param name="hi">The second number</param>
         private static bool IsSubsequentNum(string lo, string hi)
         {
+            if (lo is null || hi is null)
+                return false;
+
             lo = lo.Replace(".", " ").Trim();
             hi = hi.Replace(".", " ").Trim();
 
@@ -474,7 +485,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (Current() is not WLine line)
                 return null;
-            if (!IsCenterAligned(line))
+            if (!line.IsCenterAligned())
                 return null;
             if (frames.IsScheduleContext())
             {
@@ -538,6 +549,31 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         internal bool IsStartOfBody() => PeekBodyStartProvision() is not null;
+
+        /// <summary>
+        /// Returns the <c>Leaf</c> content (if present) following the <paramref name="heading"/>
+        /// of a grouping provision. Otherwise, returns an empty list.
+        /// </summary>
+        /// <param name="heading">The line representing the schedule heading.</param>
+        /// <returns>A list of <c>Leaf</c> content.</returns>
+        private List<IBlock> ParseLeafContents(WLine heading)
+        {
+            int save = i;
+            List<IBlock> contents = [];
+
+            // Handle when schedule content begins immediately with one or more quoted structures.
+            HandleMod(heading, contents, true);
+            if (contents.Count > 0)
+                return contents;
+
+            // Handle all other schedule content.
+            // If the next line(s) do not constitute a division, handle them as paragraphs (or tables).
+            IDivision next = ParseNextBodyDivision();
+            i = save;
+            if (next is UnnumberedLeaf || next is UnknownLevel || next is WDummyDivision)
+                contents = HandleParagraphs(heading).Skip(1).ToList();
+            return contents;
+        }
 
     }
 }

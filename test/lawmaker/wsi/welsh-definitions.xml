@@ -34,9 +34,9 @@
       </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
       <container name="dates">
-        <block name="madeDate"><span>Gwnaed</span><docDate date="2025-03-06"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varMadeDate" class="#placeholder" /></docDate></block>
-        <block name="laidDate"><span>Gosodwyd gerbron Senedd Cymru</span><docDate date="2025-03-11"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varLaidDate" class="#placeholder" /></docDate></block>
-        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Yn dod i rym</span><docDate date="2025-04-01"><ref ukl:dateFormat="d'th' MMMM yyyy" href="#varCommenceDate" class="#placeholder" /></docDate></block>
+        <block name="madeDate"><span>Gwnaed</span><docDate date="2025-03-06">6 Mawrth 2025</docDate></block>
+        <block name="laidDate"><span>Gosodwyd gerbron Senedd Cymru</span><docDate date="2025-03-11">11 Mawrth 2025</docDate></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Yn dod i rym</span><docDate date="2025-04-01">1 Ebrill 2025</docDate></block>
       </container>
     </preface>
     <preamble eId="preamble">
@@ -1606,7 +1606,7 @@
           <content>
             <block name="signature">Huw Irranca-Davies</block>
             <block name="role">Y Dirprwy Brif Weinidog ac Ysgrifennydd y Cabinet dros Newid Hinsawdd a Materion Gwledig, un o Weinidogion Cymru</block>
-            <block name="date"><date date="9999-01-01">6 Mawrth 2025</date></block>
+            <block name="date"><date date="2025-03-06">6 Mawrth 2025</date></block>
           </content>
         </hcontainer>
       </hcontainer>
@@ -1740,8 +1740,6 @@
             </tblock>
           </content>
         </hcontainer>
-      </hcontainer>
-      <hcontainer name="schedules" class="schs">
         <hcontainer name="schedule" class="sch">
           <num>ATODLEN 2<authorialNote class="referenceNote"><p>Erthyglau 31, 32 a 33</p></authorialNote></num>
           <heading>HAWLIAU GWYLIAU BLYNYDDOL</heading>
@@ -1835,8 +1833,6 @@
             </tblock>
           </content>
         </hcontainer>
-      </hcontainer>
-      <hcontainer name="schedules" class="schs">
         <hcontainer name="schedule" class="sch">
           <num>ATODLEN 3<authorialNote class="referenceNote"><p>Erthygl 37</p></authorialNote></num>
           <heading>TALIAD YN LLE GWYLIAU BLYNYDDOL</heading>
@@ -1911,151 +1907,143 @@
             </tblock>
           </content>
         </hcontainer>
-      </hcontainer>
-      <hcontainer name="schedules" class="schs">
         <hcontainer name="schedule" class="sch">
           <num>ATODLEN 4<authorialNote class="referenceNote"><p>Erthyglau 5, 6, 7 ac 8</p></authorialNote></num>
           <heading>CYMWYSTERAU CYFATEBOL Y TU ALLAN I GYMRU</heading>
-          <level>
-            <content>
-              <tblock class="table">
-                <num>Tabl A</num>
-                <foreign>
-                  <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="5" class="allBorders tableleft width100">
-                    <thead class="bold centre">
-                      <tr>
-                        <th colspan="5">
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymwysterau cyfatebol yn Lloegr, Gogledd Iwerddon, Gweriniaeth Iwerddon a’r Alban</p>
-                        </th>
-                      </tr>
-                      <tr>
-                        <th>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymru</p>
-                        </th>
-                        <th>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Lloegr</p>
-                        </th>
-                        <th>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Gogledd Iwerddon</p>
-                        </th>
-                        <th>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Gweriniaeth Iwerddon</p>
-                        </th>
-                        <th>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Yr Alban</p>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody class="left">
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Sylfaen Lefel 2</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Ganolradd Lefel 2</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Hyfforddeiaethau Gogledd Iwerddon Lefel 2</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">-</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Fodern Lefel 5</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 3</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Uwch Brentisiaeth Lefel 3</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Gogledd Iwerddon Lefel 3</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 5</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Fodern Lefel 6, Prentisiaeth Sylfaen Lefel 6</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Uwch Lefel 4</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Uwch Lefel 4</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel Uwch Lefel 4</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 6</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Fodern Lefel 7</p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </foreign>
-              </tblock>
-            </content>
-          </level>
-          <level>
-            <content>
-              <tblock class="table">
-                <num>Tabl B</num>
-                <foreign>
-                  <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
-                    <thead class="bold centre">
-                      <tr>
-                        <th colspan="2">
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymwysterau cyfatebol o dan y Fframwaith Cymwysterau Ewropeaidd (‘FfCE’)</p>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody class="left">
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymru</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Sylfaen Lefel 2</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE Lefel 3</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 3</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE Lefel 4</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Uwch Lefel 4</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE Lefel 5</p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </foreign>
-              </tblock>
-            </content>
-          </level>
+          <content>
+            <tblock class="table">
+              <num>Tabl A</num>
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="5" class="allBorders tableleft width100">
+                  <thead class="bold centre">
+                    <tr>
+                      <th colspan="5">
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymwysterau cyfatebol yn Lloegr, Gogledd Iwerddon, Gweriniaeth Iwerddon a’r Alban</p>
+                      </th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymru</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Lloegr</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Gogledd Iwerddon</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Gweriniaeth Iwerddon</p>
+                      </th>
+                      <th>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Yr Alban</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Sylfaen Lefel 2</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Ganolradd Lefel 2</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Hyfforddeiaethau Gogledd Iwerddon Lefel 2</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">-</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Fodern Lefel 5</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 3</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Uwch Brentisiaeth Lefel 3</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Gogledd Iwerddon Lefel 3</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 5</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Fodern Lefel 6, Prentisiaeth Sylfaen Lefel 6</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Uwch Lefel 4</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Uwch Lefel 4</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel Uwch Lefel 4</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 6</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Fodern Lefel 7</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+            <tblock class="table">
+              <num>Tabl B</num>
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
+                  <thead class="bold centre">
+                    <tr>
+                      <th colspan="2">
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymwysterau cyfatebol o dan y Fframwaith Cymwysterau Ewropeaidd (‘FfCE’)</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Cymru</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Sylfaen Lefel 2</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE Lefel 3</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Lefel 3</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE Lefel 4</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Prentisiaeth Uwch Lefel 4</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">FfCE Lefel 5</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+          </content>
         </hcontainer>
       </hcontainer>
     </body>

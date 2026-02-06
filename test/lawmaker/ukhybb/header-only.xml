@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="ukhybb">
+    <meta>
+      <references source="#author">
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="Testing import from word Bill" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="Pre-Introduction" />
+      </references>
+    </meta>
+    <preface eId="preface">
+      <block name="stageVersion">[<docStage><ref href="#varStageVersion" class="placeholder" /></docStage>]</block>
+      <longTitle>
+        <p class="A">A</p>
+        <p class="Bill">bill</p>
+        <p class="To">to</p>
+        <p>Make provision to stuff</p>
+      </longTitle>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p><inline name="dropCap">B</inline><inline name="smallCaps">e it enacted</inline> the King’s most Excellent Majesty, by and with the advice and consent of the Lords Spiritual and Temporal, and Commons, in this present Parliament assembled, and by the authority of the same, as follows:—</p>
+      </formula>
+    </preamble>
+    <body />
+  </bill>
+</akomaNtoso>

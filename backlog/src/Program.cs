@@ -1,10 +1,10 @@
 #nullable enable
 
 using System;
-using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
-using System.Linq;
+
+using Backlog.Utilities;
 
 using DotNetEnv;
 
@@ -17,6 +17,54 @@ namespace Backlog.Src;
 
 public class Program
 {
+    static Program()
+    {
+        SplitFilesByExtension.SetAction(validatedCommandInputs =>
+        {
+            var originalPath = validatedCommandInputs.GetValue(SplitFilesOriginalPathArgument)!; // Argument is required
+            var destinationPath = validatedCommandInputs.GetValue(SplitFilesDestinationPathOption)!; // Option is required
+
+            var services = new ServiceCollection();
+            services.AddLogging(loggingBuilder => { loggingBuilder.AddConsole(); });
+            services.AddSingleton<SplitTdrFilesByExtensionWorker>();
+
+            var splitFilesWorker = services.BuildServiceProvider().GetRequiredService<SplitTdrFilesByExtensionWorker>();
+
+            return splitFilesWorker.Run(originalPath, destinationPath);
+        });
+
+        RootCommand.SetAction(validatedCommandInputs =>
+            RunBacklogParser(validatedCommandInputs.GetValue(DryRunOption), validatedCommandInputs.GetValue(FileIdOption))
+        );
+    }
+
+    #region SplitCommand
+
+    private static readonly Argument<DirectoryInfo> SplitFilesOriginalPathArgument = new("originalPath")
+    {
+        Arity = ArgumentArity.ExactlyOne,
+        Description =
+            "The original path containing TDR folders to split. This can be a single TDR folder or a folder containing multiple TDR folders"
+    };
+
+    private static readonly Option<DirectoryInfo> SplitFilesDestinationPathOption = new("--destination")
+    {
+        Arity = ArgumentArity.ExactlyOne,
+        Description =
+            "The destination path for the split files. A new folder will be created here with the time of the run which contains the split file results",
+        Required = true
+    };
+
+    private static readonly Command SplitFilesByExtension = new("split",
+        "Copies files in TDR folders into destination folders named by extension. Useful for collating files for file conversion")
+    {
+        Arguments = { SplitFilesOriginalPathArgument }, Options = { SplitFilesDestinationPathOption }
+    };
+
+    #endregion
+
+    #region RootCommand
+
     private static readonly Option<bool> DryRunOption = new("--dry-run")
     {
         Description = "Use the dry run flag to run the parser without sending to AWS"
@@ -28,20 +76,24 @@ public class Program
             "The id of a single file in the batch to parse. If not supplied then all records will be processed"
     };
 
-    public static int Main(string[] args)
+
+    private static readonly RootCommand RootCommand = new("Backlog parser used to bulk parse imported files")
+    {
+        Options = { DryRunOption, FileIdOption }, Subcommands = { SplitFilesByExtension }
+    };
+
+    #endregion
+    
+    /// <summary>
+    /// This is the entry point method that is triggered by running the backlog parser on commandline
+    /// </summary>
+    /// <param name="args">The arguments specified on the commandline</param>
+    /// <returns></returns>
+    public static int Main(params string[] args)
     {
         try
         {
-            RootCommand rootCommand = new("Backlog parser used to bulk parse imported files")
-            {
-                Options = { DryRunOption, FileIdOption }
-            };
-            rootCommand.SetAction(parseResult => RunBacklogParser(
-                parseResult.GetValue(DryRunOption),
-                parseResult.GetValue(FileIdOption))
-            );
-
-            var parseResult = rootCommand.Parse(args);
+            var parseResult = RootCommand.Parse(args);
             if (parseResult.Errors.Count > 0)
             {
                 foreach (var parseError in parseResult.Errors)
@@ -79,193 +131,21 @@ public class Program
         var serviceProvider = ConfigureDependencyInjection(pathToDataFolder, trackerPath, judgmentsFilePath, hmctsFilePath);
 
         var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
-
         try
         {
-            var csvMetadataReader = serviceProvider.GetRequiredService<Metadata>();
-            var helper = serviceProvider.GetRequiredService<Helper>();
-            helper.PathToCourtMetadataFile = pathToCourtMetadataFile;
-
-            var tracker =  serviceProvider.GetRequiredService<Tracker>();
-
             logger.LogInformation("Using Parser version: {ParserVersion}",
                 UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.GetParserVersion());
             logger.LogInformation("Using data folder: {PathToDataFolder}", pathToDataFolder);
             logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}", pathToCourtMetadataFile);
 
-            List<Metadata.Line> lines;
-            List<string> csvParseErrors = [];
-
-            if (id.HasValue)
-            {
-                // Process only the specific ID
-                lines = helper.FindLines(id.Value);
-                if (!lines.Any())
-                {
-                    logger.LogCritical("No valid records found for id {SuppliedId}", id.Value);
-                    return 1;
-                }
-            }
-            else
-            {
-                // Process all lines from the document
-                lines = csvMetadataReader.Read(helper.PathToCourtMetadataFile, out csvParseErrors);
-                if (!lines.Any())
-                {
-                    logger.LogCritical("No valid records found in the metadata file");
-                    return 1;
-                }
-            }
-
-            var alreadyDoneLines = new List<Metadata.Line>();
-            var markedAsSkipLines = new List<Metadata.Line>();
-            var successfulNewLines = new List<Metadata.Line>();
-            var failedToProcessLines = new List<(Metadata.Line line, Exception exception)>();
-
-            for (var i = 0; i < lines.Count; i++)
-            {
-                var line = lines[i];
-
-                try
-                {
-                    if (line.Skip)
-                    {
-                        logger.LogWarning("Skipping {LineId} because it was marked to skip in the csv", line.id);
-                        markedAsSkipLines.Add(line);
-                        continue;
-                    }
-                    
-                    if (tracker.WasDone(line))
-                    {
-                        logger.LogWarning("Skipping {LineId} because it was previously processed", line.id);
-                        alreadyDoneLines.Add(line);
-                        continue;
-                    }
-
-                    logger.LogInformation("Processing file: {FilePath}", line.FilePath);
-                    var bundle = helper.GenerateBundle(line, autoPublish);
-
-                    var bundleFileName = bundle.Uuid + ".tar.gz";
-                    var output = Path.Combine(pathToOutputFolder, bundleFileName);
-                    logger.LogInformation("  Writing to output: {Output}", output);
-                    File.WriteAllBytes(output, bundle.TarGz);
-
-                    if (isDryRun)
-                    {
-                        logger.LogInformation("  This is a dry run - not uploading to S3");
-                    }
-                    else
-                    {
-                        logger.LogInformation("  Uploading {BundleFileName} to S3", bundleFileName);
-                        Bucket.UploadBundle(bundleFileName, bundle.TarGz).Wait();
-                    }
-
-                    tracker.MarkDone(line, bundle.Uuid);
-                    successfulNewLines.Add(line);
-
-                    logger.LogInformation("  success");
-                }
-                catch (Exception ex)
-                {
-                    logger.LogError(ex, "Error processing line {LineId}:", line.id);
-                    failedToProcessLines.Add((line, ex));
-                }
-                finally
-                {
-                    logger.LogInformation("{Percent}% done", 100 * (i + 1) / lines.Count);
-                }
-            }
-
-            LogFinalStatistics(logger, markedAsSkipLines, alreadyDoneLines, successfulNewLines, lines, failedToProcessLines, csvParseErrors);
-
-            if (failedToProcessLines.Count > 0 || csvParseErrors.Count > 0)
-            {
-                return 1;
-            }
-
-            return 0;
+            var backlogParserWorker = serviceProvider.GetRequiredService<BacklogParserWorker>();
+            
+            return backlogParserWorker.Run(isDryRun, id, pathToCourtMetadataFile, autoPublish, pathToOutputFolder);
         }
         catch (Exception e)
         {
             logger.LogCritical(e, "Backlog Parser fell over");
             return 1;
-        }
-    }
-
-    private static void LogFinalStatistics(ILogger logger, List<Metadata.Line> markedAsSkipLines,
-        List<Metadata.Line> alreadyDoneLines,
-        List<Metadata.Line> successfulNewLines, List<Metadata.Line> parsedLinesFromCsv,
-        List<(Metadata.Line line, Exception exception)> failedToProcessLines,
-        List<string> csvParseErrors)
-    {
-        var markedAsSkipIds = markedAsSkipLines.Any()
-            ? $"[{string.Join(", ", markedAsSkipLines.Select(l => l.id))}]"
-            : string.Empty;
-
-        logger.LogInformation("""
-                              ---------------------------
-                              Successfully processed {SuccessfulLinesCount} of {CsvLinesCount} csv lines, of which:
-                                - {NewLinesCount} lines were new
-                                - {MarkedToSkipLineCount} lines were marked in the csv to skip {MarkedToSkipIds} 
-                                - {AlreadyDoneLineCount} lines were skipped because they had been processed in a previous run
-                              """,
-            markedAsSkipLines.Count + alreadyDoneLines.Count + successfulNewLines.Count,
-            parsedLinesFromCsv.Count + csvParseErrors.Count,
-            successfulNewLines.Count,
-            markedAsSkipLines.Count, markedAsSkipIds,
-            alreadyDoneLines.Count
-        );
-
-        if (csvParseErrors.Count > 0)
-        {
-            logger.LogError("""
-                            ---------------------------
-                            Failed to read {FailedLineCount} lines from the csv:
-                            {FailedLineDetails}
-                            """,
-                csvParseErrors.Count,
-                string.Join(Environment.NewLine, csvParseErrors.Select(error => $"  - {error}"))
-            );
-        }
-
-        if (failedToProcessLines.Count > 0)
-        {
-            var failedIdsGroupedByErrorMessage = failedToProcessLines
-                .GroupBy(f =>
-                    {
-                        return f.exception.Message switch
-                        {
-                            _ when f.exception.Message.StartsWith("Could not find file") => "Could not find file",
-                            _ when f.exception.Message.StartsWith("Couldn't find file with UUID") =>
-                                "Couldn't find file with UUID",
-                            _ when f.exception.Message.EndsWith("was not recognized as a valid DateTime.") =>
-                                "String was not recognized as a valid DateTime",
-                            _ => f.exception.Message
-                        };
-                    },
-                    f => f.line.id);
-
-            var groupedErrorDescriptions = failedIdsGroupedByErrorMessage.Select(groupOfErrors =>
-            {
-                var affectedIds = groupOfErrors.Count() <= 5
-                    ? string.Join(", ", groupOfErrors)
-                    : string.Join(", ", groupOfErrors.Take(5)) + "...";
-                return
-                    $"  - {groupOfErrors.Count()} lines failed with exception message \"{groupOfErrors.Key}\". Ids affected were: ({affectedIds})";
-            });
-
-
-            logger.LogError("""
-                            ---------------------------
-                            Failed to process {FailedLineCount} lines, of which:
-                            {GroupedErrorDescriptions}
-                            """,
-                failedToProcessLines.Count, string.Join(Environment.NewLine, groupedErrorDescriptions));
-        }
-
-        if (failedToProcessLines.Count == 0 && csvParseErrors.Count == 0)
-        {
-            logger.LogInformation("No failed lines");
         }
     }
 
@@ -286,7 +166,7 @@ public class Program
             .AddSingleton<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator,
                 UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
         services.AddSingleton<Parser>();
-        services.AddSingleton<Helper>();
+        services.AddSingleton<BacklogParserWorker>();
         services.AddSingleton<Metadata>();
         services.AddSingleton<BacklogFiles>(serviceProvider => new BacklogFiles(serviceProvider.GetRequiredService<ILogger<BacklogFiles>>(), pathToDataFolder,
             judgmentsFilePath, hmctsFilePath));

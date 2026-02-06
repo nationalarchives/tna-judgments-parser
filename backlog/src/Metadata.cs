@@ -258,11 +258,6 @@ namespace Backlog.Src
             return records;
         }
 
-        internal static List<Line> FindLines(List<Line> lines, uint id)
-        {
-            return lines.Where(line => line.id == id.ToString()).ToList();
-        }
-
         internal static ExtendedMetadata MakeMetadata(Line line) {
             // Validation is now handled during CSV reading
             List<ExtendedMetadata.Category> categories = [];
@@ -291,7 +286,7 @@ namespace Backlog.Src
             else
                 throw new Exception($"Unexpected extension {line.Extension}");
 
-            Court court = Courts.ByCode[line.court];
+            Court court = Courts.GetByCode(line.court);
 
             var jurisdictions = line.Jurisdictions
                 .Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction))

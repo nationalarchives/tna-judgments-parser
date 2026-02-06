@@ -4,11 +4,12 @@
     <meta>
       <references source="#author">
         <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="Adoption and Children Bill" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="As Introduced" />
       </references>
     </meta>
     <coverPage>
       <p><shortTitle>Adoption and Children Bill</shortTitle></p>
-      <p>[AS INTRODUCED]</p>
+      <block name="stageVersion">[<docStage><ref href="#varStageVersion" class="placeholder" /></docStage>]</block>
       <p>CONTENTS</p>
       <p>PART 1</p>
       <p>Adoption</p>
@@ -12295,343 +12296,341 @@
         <hcontainer name="schedule" class="sch">
           <num>Schedule 5<authorialNote class="referenceNote"><p>Section 154(3)</p></authorialNote></num>
           <heading>Repeals</heading>
-          <level>
-            <content>
-              <tblock class="table">
-                <foreign>
-                  <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
-                    <tbody class="left">
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Short Title</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Extent of Repeal</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Child Abduction and Custody Act 1985</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 3, paragraph (8)(c)(v).</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Child Abduction (Northern Ireland) Order 1985</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 3(3A)(a), the word “or” at the end of head (i).</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Adoption (Northern Ireland) Order 1987</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Parts 2 to 4.</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Part 6.</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Articles 57 to 71.</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 72(3).</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Schedule 2.</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Schedule 5.</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Social Security Contributions and Benefits (Northern Ireland) Act 1992</p>
-                        </td>
-                        <td>
-                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-                            <listIntroduction>In section 167ZBA⁠—</listIntroduction>
-                            <item>
-                              <num>(a)</num>
-                              <blockList>
-                                <listIntroduction>in subsection (1)⁠—</listIntroduction>
-                                <item>
-                                  <num>(i)</num>
-                                  <p>the words “who is looked after by an authority and”;</p>
-                                </item>
-                                <item>
-                                  <num>(ii)</num>
-                                  <p>the words “, in the circumstances mentioned in paragraph (2),”;</p>
-                                </item>
-                              </blockList>
-                            </item>
-                            <item>
-                              <num>(b)</num>
-                              <p>subsection (2);</p>
-                            </item>
-                            <item>
-                              <num>(c)</num>
-                              <p>in subsection (5) the definition of “child who is looked after by an authority”;</p>
-                            </item>
-                            <item>
-                              <num>(d)</num>
-                              <p>subsection (6).</p>
-                            </item>
-                          </blockList>
-                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-                            <listIntroduction>In section 167ZLA⁠—</listIntroduction>
-                            <item>
-                              <num>(a)</num>
-                              <blockList>
-                                <listIntroduction>in subsection (1)⁠—</listIntroduction>
-                                <item>
-                                  <num>(i)</num>
-                                  <p>the words “who is looked after by an authority and”;</p>
-                                </item>
-                                <item>
-                                  <num>(ii)</num>
-                                  <p>the words “, in the circumstances mentioned in paragraph (2),”;</p>
-                                </item>
-                              </blockList>
-                            </item>
-                            <item>
-                              <num>(b)</num>
-                              <p>subsection (2);</p>
-                            </item>
-                            <item>
-                              <num>(c)</num>
-                              <p>in subsection (5) the definition of “child who is looked after by an authority”.</p>
-                            </item>
-                          </blockList>
-                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-                            <listIntroduction>In section 167ZY⁠—</listIntroduction>
-                            <item>
-                              <num>(a)</num>
-                              <blockList>
-                                <listIntroduction>in subsection (1)⁠—</listIntroduction>
-                                <item>
-                                  <num>(i)</num>
-                                  <p>the words “who is looked after by an authority and”;</p>
-                                </item>
-                                <item>
-                                  <num>(ii)</num>
-                                  <p>the words “, in the circumstances mentioned in paragraph (2),”;</p>
-                                </item>
-                              </blockList>
-                            </item>
-                            <item>
-                              <num>(b)</num>
-                              <p>subsection (2);</p>
-                            </item>
-                            <item>
-                              <num>(c)</num>
-                              <p>in subsection (5) the definition of “child who is looked after by an authority”.</p>
-                            </item>
-                          </blockList>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Health and Personal Social Services (Northern Ireland) Order 1994</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 1, the amendments of the Adoption (Northern Ireland) Order 1987.</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Children (Northern Ireland) Order 1995</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 2, the definitions of “Adoption Order” and “protected child”.</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 9(4).</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 22(3), the word “or” at the end of sub-paragraph (a).</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 27(8), the word “and” at the end of sub-paragraph (a).</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 28(1)(d).</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 34E(1), the word “or” at the end of sub-paragraph (b).</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 45, in paragraph (2)(e) and (f) the words “to consider”.</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 60(9)(b).</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 107(7)(b).</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 108(3), the word “or” at the end of sub-paragraph (b).</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 178(6)(c).</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 181.</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 9, paragraphs 140 to 166.</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Employment Rights (Northern Ireland) Order 1996</p>
-                        </td>
-                        <td>
-                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-                            <listIntroduction>In Article 85ZS⁠—</listIntroduction>
-                            <item>
-                              <num>(a)</num>
-                              <blockList>
-                                <listIntroduction>in paragraph (1)⁠—</listIntroduction>
-                                <item>
-                                  <num>(i)</num>
-                                  <p>the words “who is looked after by it”;</p>
-                                </item>
-                                <item>
-                                  <num>(ii)</num>
-                                  <p>the words “, in the circumstances mentioned in paragraph (2),”;</p>
-                                </item>
-                              </blockList>
-                            </item>
-                            <item>
-                              <num>(b)</num>
-                              <p>paragraph (2);</p>
-                            </item>
-                            <item>
-                              <num>(c)</num>
-                              <p>in paragraph (5) the definition of “child who is looked after by an authority”;</p>
-                            </item>
-                            <item>
-                              <num>(d)</num>
-                              <p>paragraph (6).</p>
-                            </item>
-                          </blockList>
-                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-                            <listIntroduction>In Article 107AB⁠—</listIntroduction>
-                            <item>
-                              <num>(a)</num>
-                              <blockList>
-                                <listIntroduction>in paragraph (1)(c)⁠—</listIntroduction>
-                                <item>
-                                  <num>(i)</num>
-                                  <p>the words “who is looked after by it”;</p>
-                                </item>
-                                <item>
-                                  <num>(ii)</num>
-                                  <p>the words “, in the circumstances mentioned in paragraph (2),”;</p>
-                                </item>
-                              </blockList>
-                            </item>
-                            <item>
-                              <num>(b)</num>
-                              <p>paragraph (2);</p>
-                            </item>
-                            <item>
-                              <num>(c)</num>
-                              <p>in paragraph (3) the definition of “child who is looked after by an authority”;</p>
-                            </item>
-                            <item>
-                              <num>(d)</num>
-                              <p>paragraph (4).</p>
-                            </item>
-                          </blockList>
-                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-                            <listIntroduction>In Article 107H⁠—</listIntroduction>
-                            <item>
-                              <num>(a)</num>
-                              <blockList>
-                                <listIntroduction>in paragraph (1)⁠—</listIntroduction>
-                                <item>
-                                  <num>(i)</num>
-                                  <p>the words “who is looked after by an authority and”;</p>
-                                </item>
-                                <item>
-                                  <num>(ii)</num>
-                                  <p>“, in the circumstances mentioned in paragraph (2),”;</p>
-                                </item>
-                              </blockList>
-                            </item>
-                            <item>
-                              <num>(b)</num>
-                              <p>paragraph (2);</p>
-                            </item>
-                            <item>
-                              <num>(c)</num>
-                              <p>in paragraph (4) the words “child who is looked after by an authority”.</p>
-                            </item>
-                          </blockList>
-                          <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-                            <listIntroduction>In Article 112BA⁠—</listIntroduction>
-                            <item>
-                              <num>(a)</num>
-                              <blockList>
-                                <listIntroduction>in paragraph (1)⁠—</listIntroduction>
-                                <item>
-                                  <num>(i)</num>
-                                  <p>the words “who is looked after by an authority and”;</p>
-                                </item>
-                                <item>
-                                  <num>(ii)</num>
-                                  <p>“, in the circumstances mentioned in paragraph (2),”;</p>
-                                </item>
-                              </blockList>
-                            </item>
-                            <item>
-                              <num>(b)</num>
-                              <p>paragraph (2);</p>
-                            </item>
-                            <item>
-                              <num>(c)</num>
-                              <p>in paragraph (4) the words “child who is looked after by an authority”.</p>
-                            </item>
-                          </blockList>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Adoption (Intercountry Aspects) Act (Northern Ireland) 2001</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Sections 3, 5, 7, 9, 10, 12 and 13.</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Justice (Northern Ireland) Act 2002</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 1, each of the entries relating to a Chairman of an Appeal Tribunal for the purposes of the Adoption (Northern Ireland) Order 1987.</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 6, the entry relating to a Chairman of an Appeal Tribunal for the purposes of the Adoption (Northern Ireland) Order 1987.</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Civil Partnership Act 2004</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In section 203, subsections (3) to (5), (7) and (8).</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Children and Adoption Act 2006</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Sections 9 to 12.</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In section 17, subsections (5) and (8)(a) and (b).</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Human Fertilisation and Embryology Act 2008</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In section 55(3), the word “and” at the end of paragraph (c).</p>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 6, paragraph 68.</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Civil Registration Act (Northern Ireland) 2011</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Section 25(3).</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">This Act</p>
-                        </td>
-                        <td>
-                          <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 4, paragraph 1.</p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </foreign>
-              </tblock>
-            </content>
-          </level>
+          <content>
+            <tblock class="table">
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Short Title</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Extent of Repeal</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Child Abduction and Custody Act 1985</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 3, paragraph (8)(c)(v).</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Child Abduction (Northern Ireland) Order 1985</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 3(3A)(a), the word “or” at the end of head (i).</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Adoption (Northern Ireland) Order 1987</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Parts 2 to 4.</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Part 6.</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Articles 57 to 71.</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 72(3).</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Schedule 2.</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Schedule 5.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Social Security Contributions and Benefits (Northern Ireland) Act 1992</p>
+                      </td>
+                      <td>
+                        <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                          <listIntroduction>In section 167ZBA⁠—</listIntroduction>
+                          <item>
+                            <num>(a)</num>
+                            <blockList>
+                              <listIntroduction>in subsection (1)⁠—</listIntroduction>
+                              <item>
+                                <num>(i)</num>
+                                <p>the words “who is looked after by an authority and”;</p>
+                              </item>
+                              <item>
+                                <num>(ii)</num>
+                                <p>the words “, in the circumstances mentioned in paragraph (2),”;</p>
+                              </item>
+                            </blockList>
+                          </item>
+                          <item>
+                            <num>(b)</num>
+                            <p>subsection (2);</p>
+                          </item>
+                          <item>
+                            <num>(c)</num>
+                            <p>in subsection (5) the definition of “child who is looked after by an authority”;</p>
+                          </item>
+                          <item>
+                            <num>(d)</num>
+                            <p>subsection (6).</p>
+                          </item>
+                        </blockList>
+                        <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                          <listIntroduction>In section 167ZLA⁠—</listIntroduction>
+                          <item>
+                            <num>(a)</num>
+                            <blockList>
+                              <listIntroduction>in subsection (1)⁠—</listIntroduction>
+                              <item>
+                                <num>(i)</num>
+                                <p>the words “who is looked after by an authority and”;</p>
+                              </item>
+                              <item>
+                                <num>(ii)</num>
+                                <p>the words “, in the circumstances mentioned in paragraph (2),”;</p>
+                              </item>
+                            </blockList>
+                          </item>
+                          <item>
+                            <num>(b)</num>
+                            <p>subsection (2);</p>
+                          </item>
+                          <item>
+                            <num>(c)</num>
+                            <p>in subsection (5) the definition of “child who is looked after by an authority”.</p>
+                          </item>
+                        </blockList>
+                        <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                          <listIntroduction>In section 167ZY⁠—</listIntroduction>
+                          <item>
+                            <num>(a)</num>
+                            <blockList>
+                              <listIntroduction>in subsection (1)⁠—</listIntroduction>
+                              <item>
+                                <num>(i)</num>
+                                <p>the words “who is looked after by an authority and”;</p>
+                              </item>
+                              <item>
+                                <num>(ii)</num>
+                                <p>the words “, in the circumstances mentioned in paragraph (2),”;</p>
+                              </item>
+                            </blockList>
+                          </item>
+                          <item>
+                            <num>(b)</num>
+                            <p>subsection (2);</p>
+                          </item>
+                          <item>
+                            <num>(c)</num>
+                            <p>in subsection (5) the definition of “child who is looked after by an authority”.</p>
+                          </item>
+                        </blockList>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Health and Personal Social Services (Northern Ireland) Order 1994</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 1, the amendments of the Adoption (Northern Ireland) Order 1987.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Children (Northern Ireland) Order 1995</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 2, the definitions of “Adoption Order” and “protected child”.</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 9(4).</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 22(3), the word “or” at the end of sub-paragraph (a).</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 27(8), the word “and” at the end of sub-paragraph (a).</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 28(1)(d).</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 34E(1), the word “or” at the end of sub-paragraph (b).</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 45, in paragraph (2)(e) and (f) the words “to consider”.</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 60(9)(b).</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 107(7)(b).</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Article 108(3), the word “or” at the end of sub-paragraph (b).</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 178(6)(c).</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Article 181.</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 9, paragraphs 140 to 166.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Employment Rights (Northern Ireland) Order 1996</p>
+                      </td>
+                      <td>
+                        <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                          <listIntroduction>In Article 85ZS⁠—</listIntroduction>
+                          <item>
+                            <num>(a)</num>
+                            <blockList>
+                              <listIntroduction>in paragraph (1)⁠—</listIntroduction>
+                              <item>
+                                <num>(i)</num>
+                                <p>the words “who is looked after by it”;</p>
+                              </item>
+                              <item>
+                                <num>(ii)</num>
+                                <p>the words “, in the circumstances mentioned in paragraph (2),”;</p>
+                              </item>
+                            </blockList>
+                          </item>
+                          <item>
+                            <num>(b)</num>
+                            <p>paragraph (2);</p>
+                          </item>
+                          <item>
+                            <num>(c)</num>
+                            <p>in paragraph (5) the definition of “child who is looked after by an authority”;</p>
+                          </item>
+                          <item>
+                            <num>(d)</num>
+                            <p>paragraph (6).</p>
+                          </item>
+                        </blockList>
+                        <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                          <listIntroduction>In Article 107AB⁠—</listIntroduction>
+                          <item>
+                            <num>(a)</num>
+                            <blockList>
+                              <listIntroduction>in paragraph (1)(c)⁠—</listIntroduction>
+                              <item>
+                                <num>(i)</num>
+                                <p>the words “who is looked after by it”;</p>
+                              </item>
+                              <item>
+                                <num>(ii)</num>
+                                <p>the words “, in the circumstances mentioned in paragraph (2),”;</p>
+                              </item>
+                            </blockList>
+                          </item>
+                          <item>
+                            <num>(b)</num>
+                            <p>paragraph (2);</p>
+                          </item>
+                          <item>
+                            <num>(c)</num>
+                            <p>in paragraph (3) the definition of “child who is looked after by an authority”;</p>
+                          </item>
+                          <item>
+                            <num>(d)</num>
+                            <p>paragraph (4).</p>
+                          </item>
+                        </blockList>
+                        <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                          <listIntroduction>In Article 107H⁠—</listIntroduction>
+                          <item>
+                            <num>(a)</num>
+                            <blockList>
+                              <listIntroduction>in paragraph (1)⁠—</listIntroduction>
+                              <item>
+                                <num>(i)</num>
+                                <p>the words “who is looked after by an authority and”;</p>
+                              </item>
+                              <item>
+                                <num>(ii)</num>
+                                <p>“, in the circumstances mentioned in paragraph (2),”;</p>
+                              </item>
+                            </blockList>
+                          </item>
+                          <item>
+                            <num>(b)</num>
+                            <p>paragraph (2);</p>
+                          </item>
+                          <item>
+                            <num>(c)</num>
+                            <p>in paragraph (4) the words “child who is looked after by an authority”.</p>
+                          </item>
+                        </blockList>
+                        <blockList xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                          <listIntroduction>In Article 112BA⁠—</listIntroduction>
+                          <item>
+                            <num>(a)</num>
+                            <blockList>
+                              <listIntroduction>in paragraph (1)⁠—</listIntroduction>
+                              <item>
+                                <num>(i)</num>
+                                <p>the words “who is looked after by an authority and”;</p>
+                              </item>
+                              <item>
+                                <num>(ii)</num>
+                                <p>“, in the circumstances mentioned in paragraph (2),”;</p>
+                              </item>
+                            </blockList>
+                          </item>
+                          <item>
+                            <num>(b)</num>
+                            <p>paragraph (2);</p>
+                          </item>
+                          <item>
+                            <num>(c)</num>
+                            <p>in paragraph (4) the words “child who is looked after by an authority”.</p>
+                          </item>
+                        </blockList>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Adoption (Intercountry Aspects) Act (Northern Ireland) 2001</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Sections 3, 5, 7, 9, 10, 12 and 13.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Justice (Northern Ireland) Act 2002</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 1, each of the entries relating to a Chairman of an Appeal Tribunal for the purposes of the Adoption (Northern Ireland) Order 1987.</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 6, the entry relating to a Chairman of an Appeal Tribunal for the purposes of the Adoption (Northern Ireland) Order 1987.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Civil Partnership Act 2004</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In section 203, subsections (3) to (5), (7) and (8).</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Children and Adoption Act 2006</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Sections 9 to 12.</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In section 17, subsections (5) and (8)(a) and (b).</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Human Fertilisation and Embryology Act 2008</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In section 55(3), the word “and” at the end of paragraph (c).</p>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 6, paragraph 68.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">The Civil Registration Act (Northern Ireland) 2011</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Section 25(3).</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">This Act</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">In Schedule 4, paragraph 1.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+          </content>
         </hcontainer>
       </hcontainer>
     </body>

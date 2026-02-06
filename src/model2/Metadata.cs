@@ -37,11 +37,11 @@ class WMetadata : IMetadata {
             return _court;
         WCourtType courtType1 = Util.Descendants<WCourtType>(judgment.Header).FirstOrDefault();
         if (courtType1?.Code is not null)
-            _court = Courts.ByCode[courtType1.Code];
+            _court = Courts.GetByCode(courtType1.Code);
         if (_court is null) {
             WCourtType2 courtType2 = Util.Descendants<WCourtType2>(judgment.Header).FirstOrDefault();
             if (courtType2?.Code is not null)
-                _court = Courts.ByCode[courtType2.Code];
+                _court = Courts.GetByCode(courtType2.Code);
         }
         if (_court?.Code == Courts.EWFC.Code && Cite is not null && Courts.EWFC_B.CitationPattern.IsMatch(Cite))
             _court = Courts.EWFC_B;

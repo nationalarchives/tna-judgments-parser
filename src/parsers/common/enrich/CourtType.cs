@@ -146,7 +146,7 @@ abstract class Combo {
     }
     protected static Court ConvertQueensToKings(Court court) {
         string code = court.Code.Replace("-QBD", "-KBD");
-        return Courts.ByCode[code];
+        return Courts.GetByCode(code);
     }
 
     protected abstract Combo ConvertQueensToKings();

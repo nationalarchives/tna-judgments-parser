@@ -28,7 +28,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public virtual ILine Heading { get; internal set; }
 
-        public virtual bool HeadingPrecedesNumber { get; } = false;
+        public virtual bool HeadingPrecedesNumber { get; internal set; } = false;
 
     }
 

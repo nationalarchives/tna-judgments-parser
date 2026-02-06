@@ -1,0 +1,484 @@
+ignore:
+  sensitive_data:
+    ALL:
+      /test/judgments/test1.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test1.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test2.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test2.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test3.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test3.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test4.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test4.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test5.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test5.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test6.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test6.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test7.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test7.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test8.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test8.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test9.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test9.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test10.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test10.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test11-main.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test11-order.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test11.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test12.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test12.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test13.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test13.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test14.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test14.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test15.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test15.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test16.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test16.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test17.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test17.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test18.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test18.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test19.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test19.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test20.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test20.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test21.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test21.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test22.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test22.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test23.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test23.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test24.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test24.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test25.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test25.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test26.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test26.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test27.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test27.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test28.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test28.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test29.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test29.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test30.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test30.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test31.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test31.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test32.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test32.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test33.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test33.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test34.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test34.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test35.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test35.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test36.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test36.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test37.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test37.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test38.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test38.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test39.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test39.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test40.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test40.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test41.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test41.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test42.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test42.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test43.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test43.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test44.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test44.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test45.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test45.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test46.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test46.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test47.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test47.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test48.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test48.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test49.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test49.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test50.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test50.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test51.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test51.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test52.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test52.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test53.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test53.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test54.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test54.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test55.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test55.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test56.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test56.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test57.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test57.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test58.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test58.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test59.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test59.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test60.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test60.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test61.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test61.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test62.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test62.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test63.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test63.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test64.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test64.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test65.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test65.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test66.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test66.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test67.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test67.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test68.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test68.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test69.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test69.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test70.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test70.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test71.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test71.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test72.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test72.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test73.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test73.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test74.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test74.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test75.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test75.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test76.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test76.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test77.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test77.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test78.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test78.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test79.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test79.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test80.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test80.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test81.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test81.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test82.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test82.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test83.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test83.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test84.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test84.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test85.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test85.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test86.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test86.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test87.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test87.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test88.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test88.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test89.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test89.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test90.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test90.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test91.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test91.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test92.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test92.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test93.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test93.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test94.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test94.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test95.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test95.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test96.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test96.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test97.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test97.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test98.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test98.xml:
+        reason: FALSE_POSITIVE
+      /test/judgments/test99.docx:
+        reason: FALSE_POSITIVE
+      /test/judgments/test99.xml:
+        reason: FALSE_POSITIVE
+
+      /test/ps/test1.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test1.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test2.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test2.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test3.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test3.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test4.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test4.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test5.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test5.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test6.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test6.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test7.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test7.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test8.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test8.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test9.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test9.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test10.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test10.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test11.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test11.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test12.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test12.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test13.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test13.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test14.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test14.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test15.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test15.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test16.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test16.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test17.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test17.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test18.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test18.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test19.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test19.xml:
+        reason: FALSE_POSITIVE
+      /test/ps/test20.docx:
+        reason: FALSE_POSITIVE
+      /test/ps/test20.xml:
+        reason: FALSE_POSITIVE
+    
+ 

@@ -141,10 +141,8 @@ namespace Backlog.Src
             {
                 XmlElement tldOrg = CreateAndAppend("TLCOrganization", references);
                 tldOrg.SetAttribute("eId", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeCourtId(Data.Court));
-                tldOrg.SetAttribute("href", Data.Court.Value.URL);
-                tldOrg.SetAttribute("showAs", Data.Court.Value.LongName);
-                if (Data.Court.Value.ShortName is not null)
-                    tldOrg.SetAttribute("shortForm", Data.Court.Value.ShortName);
+                tldOrg.SetAttribute("href", Data.Court.URL);
+                tldOrg.SetAttribute("showAs", Data.Court.Name);
             }
             XmlElement tlcEvent = CreateAndAppend("TLCEvent", references);
             tlcEvent.SetAttribute("eId", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeDateId(Data.Date));
@@ -161,7 +159,7 @@ namespace Backlog.Src
             {
                 XmlElement court = CreateAndAppendUK("court", proprietary);
                 proprietary.AppendChild(court);
-                court.AppendChild(Document.CreateTextNode(Data.Court.Value.Code.ToString()));
+                court.AppendChild(Document.CreateTextNode(Data.Court.Code));
             }
 
             foreach (var jurisdiction in Data.Jurisdictions)

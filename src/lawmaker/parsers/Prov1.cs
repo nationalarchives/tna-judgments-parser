@@ -1,9 +1,9 @@
 
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
-using DocumentFormat.OpenXml.Vml;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -13,105 +13,253 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class LegislationParser
     {
 
-        private HContainer ParseProv1(WLine line)
+        /* 
+         * There are 2 types of Prov1 element. 
+         * 
+         * Most jurisdictions (UK, SP, SC) use Prov1 elements with NUMBERED headings.
+         * The heading line is REQUIRED. It begins with the Prov1 number.
+         * The non-heading line is composed of an optional Prov2 number, and text content.
+         * 
+         * 1 Section heading                [A]
+         * (1) Subsection content
+         * 
+         * 2 Section heading                [B]
+         * Section content
+         * 
+         * But SI & NI use Prov1 elements with UNNUMBERED headings.
+         * The heading line is actually OPTIONAL.
+         * The non-heading line is composed of Prov1 number, optional Prov2 number, and text content.
+         * 
+         * Section heading                  [C]
+         * 1.—(1) Subsection content
+         * 
+         * Section heading                  [D]
+         * 2. Section content
+         * 
+         * 3.—(1) Subsection content        [E]
+         * 
+         * 4. Section content               [F]
+         * 
+         */
+
+        /// <summary>
+        /// Peeks at <paramref name="line"/> and its following sibling.
+        /// Returns <c>true</c> if the two lines appear to form the start of a <c>Prov1</c> element.
+        /// That is, <paramref name="line"/> is formatted like a <c>Prov1</c> heading, 
+        /// and the following line is formatted like the start of a valid <c>Prov1</c> child. 
+        /// </summary>
+        /// <param name="line">.</param>
+        /// <returns><c>true</c> if <paramref name="line"/> appears to be the start of a <c>Prov1</c>.</returns>
+        private bool PeekProv1(WLine line)
+        {
+            // We consider the first two lines
+            WLine headingLine = line;
+            if (i > Body.Count - 2)
+                return false;
+            if (Body[i + 1] is not WLine secondLine)
+                return false;
+
+            if (!line.IsLeftAligned())
+                return false;
+
+            // Unquoted Prov1 elements should have zero indentation
+            if (quoteDepth == 0 && !headingLine.IsFlushLeft())
+                return false;
+
+            if (frames.CurrentDocName.RequireNumberedProv1Heading())
+            {
+                // Heading line must begin with a valid Prov1 number 
+                if (headingLine is not WOldNumberedParagraph np)
+                {
+                    // If the line is not a WOldNumberedParagraph check if it is all bold and the text before the first space is a valid prov1 number
+                    // This check is required because the logic for parsing a line as a WOldNumberedParagraph doesn't work for numbered lines which only contain space(s) between the num and heading
+                    string numString = headingLine.NormalizedContent.Split(' ', 2).First();
+                    string numCleaned = IgnoreQuotedStructureStart(numString, quoteDepth);
+                    if (headingLine.IsAllBold() && Prov1.IsValidNumber(numCleaned, frames.CurrentDocName))
+                    {
+                        // Recreate the current line as a WOldNumberedParagraph
+                        List<IInline> contents = headingLine.Contents.ToList();
+                        WText? firstContent = contents.First() as WText;
+                        if (firstContent is not null)
+                        {
+                            // Remove num from content of line
+                            string firstContentWithoutNum = firstContent.Text.Substring(numString.Length).TrimStart();
+                            WText newFirstContent = new WText(firstContentWithoutNum, firstContent.properties);
+                            contents = contents.Skip(1).ToList();
+                            contents.Insert(0, newFirstContent);
+                            
+                            // Assign the new WOldNumberedParagraph to the various variables
+                            headingLine = new WOldNumberedParagraph(new WText(numString, null), new WLine(headingLine, contents));
+                            np = (WOldNumberedParagraph) headingLine;
+                            Body[i] = headingLine;
+                        }
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
+                
+                if (!Prov1.IsValidNumber(GetNumString(np.Number), frames.CurrentDocName))
+                    return false;
+            }
+            else
+            {
+                // Heading line must not be numbered
+                if (headingLine is WOldNumberedParagraph)
+                    return false;
+            }
+
+            // Both lines should have roughly the same indentation
+            if (LineIsIndentedMoreThan(headingLine, secondLine, 0.2f))
+                return false;
+
+            // Heading OK, now peek the second line
+            return PeekBareProv1(secondLine);
+        }
+
+        /// <summary>
+        /// Peeks at <paramref name="line"/>.
+        /// Returns <c>true</c> if it appears to be the start of a <c>Prov1</c> element, ignoring the heading.
+        /// That is, if <paramref name="line"/> is formatted like the start of a valid <c>Prov1</c> child.
+        /// </summary>
+        /// <param name="line">.</param>
+        /// <returns>
+        /// <c>true</c> if <paramref name="line"/> appears to be the start of a <c>Prov1</c> element, ignoring the heading.
+        /// </returns>
+        private bool PeekBareProv1(WLine line)
+        {
+            if (!line.IsLeftAligned())
+                return false;
+
+            if (!frames.CurrentDocName.RequireNumberedProv1Heading())
+            {
+                if (line is not WOldNumberedParagraph np)
+                    return false;
+                if (!Prov1.IsValidNumber(GetNumString(np.Number), frames.CurrentDocName))
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Attempts to parse a <c>Prov1</c> element starting from the given <paramref name="line"/>.
+        /// </summary>
+        /// <param name="line">The line from which to begin parsing.</param>
+        /// <returns>
+        /// An <c>HContainer</c> representing the parsed <c>Prov1</c> element, if successful. 
+        /// Otherwise <c>null</c>.
+        /// </returns>
+        private HContainer? ParseProv1(WLine line)
         {
             int save = i;
-            ILine heading = null;
+            WLine? headingLine;
 
-            // A Prov1 element may or may not have a heading
-            // If it does, we cache and skip over the heading for now
-            if (PeekProv1(line))
+            // Skip over and cache the heading for now (if present).
+            if (!PeekProv1(line))
             {
-                heading = line;
+                if (frames.CurrentDocName.RequireNumberedProv1Heading())
+                    return null;
+                // With UNNUMBERED Prov1 headings, it's possible to have no heading at all (see scenarios [E] & [F]).
+                // So we re-peek without expecting a heading. But, we enforce that such a Prov1 must be numbered
+                // sequentially from the previous Prov1.
+                else if (!PeekBareProv1(line) || !IsNextProv1InSequence(line))
+                    return null;
+                headingLine = null;
+            }
+            else
+            {
+                headingLine = Current() as WLine;
                 i += 1;
             }
-            // A heading-less Prov1 must numbered in sequence
-            else if (!PeekBareProv1(line) || !IsNextProv1InSequence(line))
-            {
-                return null;
-            }
 
-            WOldNumberedParagraph np = Current() as WOldNumberedParagraph;
-            HContainer next = ParseBareProv1(np, line);
-            if (next is null)
+            // Parse Prov1 contents/children
+            HContainer parsedProv1 = ParseBareProv1(Current() as WLine, headingLine);
+            provisionRecords.Pop();
+            if (parsedProv1 is null)
             {
                 i = save;
                 return null;
             }
-
-            if (heading is not null)
-                next.Heading = heading;
-            return next;
+            return parsedProv1;
         }
 
-        private bool PeekProv1(WLine line)
+        /// <summary>
+        /// Attempts to parse a <c>Prov1</c> element without the heading.
+        /// </summary>
+        /// <param name="line">The line from which to begin parsing.</param>
+        /// <param name="headingLine">The immediately preceding heading line, if present.</param>
+        /// <returns>
+        /// An <c>HContainer</c> representing the parsed <c>Prov1</c> element, if successful. 
+        /// Otherwise <c>null</c>.
+        /// </returns>
+        private HContainer ParseBareProv1(WLine line, WLine? headingLine)
         {
-            bool quoted = quoteDepth > 0;
-            if (line is WOldNumberedParagraph)
-                return false;  // could ParseBaseProv1(np);
-            if (!line.IsFlushLeft() && !quoted)
-                return false;
-            if (i > Body.Count - 2)
-                return false;
-            if (Body[i + 1] is not WLine nextLine)
-                return false;
-            // The heading and first line should have the same indentation
-            if (LineIsIndentedMoreThan(line, nextLine, 0.2f))
-                return false;
-            return PeekBareProv1(nextLine);
-        }
-
-        private bool PeekBareProv1(WLine line)
-        {
-            bool quoted = quoteDepth > 0;
-            if (!line.IsLeftAligned())
-                return false;
-            if (line is not WOldNumberedParagraph np)
-                return false;
-            if (!Prov1.IsValidNumber(GetNumString(np.Number)))
-                return false;
-            return true;
-        }
-
-        // matches only a numbered section without a heading
-        private HContainer ParseBareProv1(WOldNumberedParagraph np, WLine heading = null)
-        {
-            i += 1;
-
-            IFormattedText num = np.Number;
+            Prov1Name tagName = GetProv1Name();
+            ILine? heading = headingLine;
+            IFormattedText? number = null;
             List<IBlock> intro = [];
             List<IDivision> children = [];
             List<IBlock> wrapUp = [];
-
-            Prov1Name tagName = GetProv1Name();
-
-            provisionRecords.Push(typeof(Prov1), num, quoteDepth);
-
-            WOldNumberedParagraph firstProv2Line = FixFirstProv2(np);
-            bool hasProv2Child = (firstProv2Line != null);
-            if (hasProv2Child)
+                
+            bool headingPrecedesNumber = !frames.CurrentDocName.RequireNumberedProv1Heading();
+            if (headingPrecedesNumber && headingLine is not WOldNumberedParagraph)
             {
-                i -= 1;
-                HContainer prov2 = ParseAndMemoize(firstProv2Line, "Prov2", ParseProv2);
-                if (prov2 == null)
-                    return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro };
-                children.Add(prov2);
-                if (IsEndOfQuotedStructure(prov2))
-                    return new Prov1Branch { TagName = tagName, Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+                // Scenarios [C] through [F].
+                // Must strip the Prov1 number from the beginning of Line.
+                number = ((WOldNumberedParagraph)line).Number;
+                WOldNumberedParagraph? fixedProv2Line = FixFirstProv2(line);
+                if (fixedProv2Line is not null)
+                    line = fixedProv2Line;
             }
             else
             {
-                intro = HandleParagraphs(np);
+                // Scenarios [A] and [B].
+                // Prov1 number comes from HeadingLine.
+                number =  ((WOldNumberedParagraph)headingLine!).Number;
+            }
+            
+            provisionRecords.Push(typeof(Prov1), number, quoteDepth);
+
+            // Attempt to parse the first child as a Prov2
+            HContainer prov2 = ParseAndMemoize(line, "Prov2", ParseProv2);
+            if (prov2 != null)
+            {
+                children.Add(prov2);
+                if (IsEndOfQuotedStructure(prov2))
+                    return new Prov1Branch 
+                    { 
+                        TagName = tagName, 
+                        Number = number,
+                        Heading = heading,
+                        Intro = intro, 
+                        Children = children, 
+                        WrapUp = wrapUp, 
+                        HeadingPrecedesNumber = headingPrecedesNumber 
+                    };
+            }
+            // If unsuccessful, parse as unstructured content
+            else
+            {
+                i += 1;
+                intro = HandleParagraphs(line);
                 if (IsEndOfQuotedStructure(intro))
-                    return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro };
+                    return new Prov1Leaf 
+                    { 
+                        TagName = tagName, 
+                        Number = number, 
+                        Heading = heading,
+                        Contents = intro, 
+                        HeadingPrecedesNumber = headingPrecedesNumber 
+                    };
             }
 
+            // Handle additional children
             int finalChildStart = i;
             while (i < Body.Count)
             {
                 if (BreakFromProv1())
                     break;
-
                 int save = i;
                 IDivision next = ParseNextBodyDivision();
                 if (!Prov1.IsValidChild(next))
@@ -121,19 +269,33 @@ namespace UK.Gov.Legislation.Lawmaker
                 }
                 children.Add(next);
                 finalChildStart = save;
-
                 if (IsEndOfQuotedStructure(next))
                     break;
             }
             wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
 
-            provisionRecords.Pop();
-
             if (children.Count == 0)
-                return new Prov1Leaf { TagName = tagName, Number = num, Contents = intro };
+                return new Prov1Leaf 
+                { 
+                    TagName = tagName, 
+                    Number = number, 
+                    Heading = heading,
+                    Contents = intro, 
+                    HeadingPrecedesNumber = headingPrecedesNumber 
+                };
 
-            return new Prov1Branch { TagName = tagName, Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            return new Prov1Branch 
+            { 
+                TagName = tagName, 
+                Number = number, 
+                Heading = heading,
+                Intro = intro, 
+                Children = children, 
+                WrapUp = wrapUp, 
+                HeadingPrecedesNumber = headingPrecedesNumber 
+            };
         }
+
 
         private (WText, WLine) FixFirstProv2Num(WLine line)
         {
@@ -157,7 +319,8 @@ namespace UK.Gov.Legislation.Lawmaker
             return (num, rest);
         }
 
-        private WOldNumberedParagraph FixFirstProv2(WLine line)
+        // 
+        private WOldNumberedParagraph? FixFirstProv2(WLine line)
         {
             if (line.Contents.FirstOrDefault() is WText t && Prov2.IsFirstProv2Start(t.Text))
             {

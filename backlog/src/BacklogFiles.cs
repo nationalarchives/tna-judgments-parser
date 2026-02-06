@@ -1,5 +1,8 @@
+#nullable enable
+
 using System;
 using System.IO;
+using System.Linq;
 
 using Microsoft.Extensions.Logging;
 
@@ -9,9 +12,27 @@ namespace Backlog.Src
     /// Provides file operations for processing backlog documents, including UUID lookup,
     /// file reading, and copying operations between tribunal and transfer metadata systems.
     /// </summary>
-    class BacklogFiles(ILogger<BacklogFiles> logger, string pathToDataFolder, string judgmentsFilePath, string hmctsFilePath)
+    class BacklogFiles
     {
-        private readonly string transferMetadataPath = Path.Combine(pathToDataFolder, TDR_METADATA_DIR, METADATA_FILENAME);
+        private readonly string transferMetadataPath;
+        private readonly ILogger<BacklogFiles> logger;
+        private readonly string judgmentsFilePath;
+        private readonly string hmctsFilePath;
+        private readonly DirectoryInfo courtDocumentsDirectory;
+
+        public BacklogFiles(ILogger<BacklogFiles> logger, string pathToDataFolder, string judgmentsFilePath, string hmctsFilePath)
+        {
+            this.logger = logger;
+            this.judgmentsFilePath = judgmentsFilePath;
+            this.hmctsFilePath = hmctsFilePath;
+            transferMetadataPath = Path.Combine(pathToDataFolder, TDR_METADATA_DIR, METADATA_FILENAME);
+            
+            courtDocumentsDirectory = new DirectoryInfo(Path.Combine(pathToDataFolder, COURT_DOCUMENTS_DIR));
+            if (!courtDocumentsDirectory.Exists)
+            {
+                throw new DirectoryNotFoundException($"Couldn't find {courtDocumentsDirectory}");
+            }
+        }
 
         // Directory structure constants
         private const string TDR_METADATA_DIR = "tdr_metadata";
@@ -85,18 +106,22 @@ namespace Backlog.Src
         /// Handles special case for .doc files which are stored as .docx files.
         /// </summary>
         /// <param name="uuid"></param>
-        /// <param name="fileExtension"></param>
         /// <returns>File contents as a byte array</returns>
-        /// <exception cref="FileNotFoundException">Thrown when the file or its UUID cannot be found</exception>
-        /// <exception cref="ArgumentException">Thrown when path normalization fails</exception>
-        internal byte[] ReadFile(string uuid, string fileExtension)
+        internal byte[] ReadFile(string uuid)
         {
-            var path = Path.Combine(pathToDataFolder, COURT_DOCUMENTS_DIR, uuid);
-         
-            if (fileExtension.ToLower() == ".doc")
-                path += ".docx";
+            var filesWithUuid = courtDocumentsDirectory.GetFiles($"{uuid}*");
+            if (filesWithUuid.Length == 0)
+            {
+                throw new FileNotFoundException($"Couldn't find file with UUID: {uuid}. It must have been received through TDR in order to have been assigned a UUID so check the original TDR bucket and check any file conversion folders");
+            }
 
-            return File.ReadAllBytes(path);
+            if (filesWithUuid.Length > 1)
+            {
+                throw new MoreThanOneFileFoundException(
+                    $"There should only be one file in {COURT_DOCUMENTS_DIR} matching UUID {uuid} but found {filesWithUuid.Length}: [{string.Join(", ", filesWithUuid.Select(f => $"\"{f.Name}\""))}]");
+            }
+
+            return File.ReadAllBytes(filesWithUuid.Single().FullName);
         }
     }
 
