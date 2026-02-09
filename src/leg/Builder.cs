@@ -176,6 +176,12 @@ class Builder : AkN.Builder {
 
         // Add additional EM metadata from CSV mapping (for Explanatory Memoranda)
         if (data is ExplanatoryMemoranda.EMMetadata emMetadata) {
+            // Add EM document URI for contractor upload (e.g. http://www.legislation.gov.uk/id/uksi/2013/2911/memoranda/1)
+            if (!string.IsNullOrEmpty(emMetadata.ShortUriComponent)) {
+                XmlElement explanatoryMemoranda = doc.CreateElement("uk", "explanatoryMemoranda", UKNS);
+                proprietary.AppendChild(explanatoryMemoranda);
+                explanatoryMemoranda.AppendChild(doc.CreateTextNode(emMetadata.WorkUri));
+            }
             if (!string.IsNullOrEmpty(emMetadata.DocumentMainType)) {
                 XmlElement documentMainType = doc.CreateElement("uk", "documentMainType", UKNS);
                 proprietary.AppendChild(documentMainType);
@@ -226,9 +232,9 @@ class Builder : AkN.Builder {
         else if (data is ImpactAssessments.IAMetadata iaMetadata) {
             // Add UKIA URI (e.g., http://www.legislation.gov.uk/id/ukia/2025/17)
             if (!string.IsNullOrEmpty(iaMetadata.UkiaUri)) {
-                XmlElement ia = doc.CreateElement("uk", "IA", UKNS);
-                proprietary.AppendChild(ia);
-                ia.AppendChild(doc.CreateTextNode(iaMetadata.UkiaUri));
+                XmlElement impactAssessment = doc.CreateElement("uk", "impactAssessment", UKNS);
+                proprietary.AppendChild(impactAssessment);
+                impactAssessment.AppendChild(doc.CreateTextNode(iaMetadata.UkiaUri));
             }
             
             if (!string.IsNullOrEmpty(iaMetadata.DocumentStage)) {
