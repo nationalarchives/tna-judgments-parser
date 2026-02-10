@@ -176,11 +176,11 @@ class Builder : AkN.Builder {
 
         // Add additional EM metadata from CSV mapping (for Explanatory Memoranda)
         if (data is ExplanatoryMemoranda.EMMetadata emMetadata) {
-            // Add EM document URI for contractor upload (e.g. http://www.legislation.gov.uk/id/uksi/2013/2911/memoranda/1)
+            // Add associated document URI for contractor upload (e.g. http://www.legislation.gov.uk/id/uksi/2013/2911/memoranda/1)
             if (!string.IsNullOrEmpty(emMetadata.ShortUriComponent)) {
-                XmlElement explanatoryMemoranda = doc.CreateElement("uk", "explanatoryMemoranda", UKNS);
-                proprietary.AppendChild(explanatoryMemoranda);
-                explanatoryMemoranda.AppendChild(doc.CreateTextNode(emMetadata.WorkUri));
+                XmlElement associatedId = doc.CreateElement("uk", "associatedID", UKNS);
+                proprietary.AppendChild(associatedId);
+                associatedId.AppendChild(doc.CreateTextNode(emMetadata.WorkUri));
             }
             if (!string.IsNullOrEmpty(emMetadata.DocumentMainType)) {
                 XmlElement documentMainType = doc.CreateElement("uk", "documentMainType", UKNS);
@@ -230,11 +230,11 @@ class Builder : AkN.Builder {
         }
         // Add additional IA metadata from CSV mapping (for Impact Assessments)
         else if (data is ImpactAssessments.IAMetadata iaMetadata) {
-            // Add UKIA URI (e.g., http://www.legislation.gov.uk/id/ukia/2025/17)
+            // Add associated document URI for contractor upload (e.g. http://www.legislation.gov.uk/id/ukia/2025/17)
             if (!string.IsNullOrEmpty(iaMetadata.UkiaUri)) {
-                XmlElement impactAssessment = doc.CreateElement("uk", "impactAssessment", UKNS);
-                proprietary.AppendChild(impactAssessment);
-                impactAssessment.AppendChild(doc.CreateTextNode(iaMetadata.UkiaUri));
+                XmlElement associatedId = doc.CreateElement("uk", "associatedID", UKNS);
+                proprietary.AppendChild(associatedId);
+                associatedId.AppendChild(doc.CreateTextNode(iaMetadata.UkiaUri));
             }
             
             if (!string.IsNullOrEmpty(iaMetadata.DocumentStage)) {
