@@ -122,7 +122,9 @@ namespace Backlog.Src
         {
             public string id { get; set; }
             public string court { get; set; }
+            [Required(AllowEmptyStrings = false)]
             public string FilePath { get; set; }
+            [Required(AllowEmptyStrings = false)]
             public string Extension { get; set; }
             public DateTime decision_datetime { get; set; }
             public string CaseNo { get; set; }

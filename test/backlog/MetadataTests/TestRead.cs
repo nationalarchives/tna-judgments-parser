@@ -369,6 +369,10 @@ public class TestRead: IDisposable
             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory
             121,Valid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,,,,
             122,AlsoValid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,My category,,,
+            1221,,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,No filepath,My category,,,
+            1222,  	 ,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Still no filepath,My category,,,
+            1223,NoExtension,,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Still no filepath,My category,,,
+            1224,StillNoExtension, 	  ,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Still no filepath,My category,,,
             123,NoClaimants.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Secretary of State for the Home Department,,,,
             completely invalid line
             124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,
@@ -381,16 +385,20 @@ public class TestRead: IDisposable
         var validLines = csvMetadataReader.Read(csvStream, out var failedToParseLines);
 
         Assert.Equal(3, validLines.Count);
-        Assert.Equal(5, failedToParseLines.Count);
+        Assert.Equal(9, failedToParseLines.Count);
 
         Assert.Equivalent(
             new List<string>
             {
-                "Line 4: Id 123 - Must have either claimants or appellants. At least one is required.",
-                "Line 5: Field at index '5' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [completely invalid line]",
-                "Line 6: Field at index '11' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,]",
-                "Line 7: Id 125 - main_subcategory 'Bad main subcategory' cannot exist without main_category being defined",
-                "Line 8: Id 126 - sec_subcategory 'Bad secondary subcategory' cannot exist without sec_category being defined"
+                "Line 4: The FilePath field is required.",
+                "Line 5: The FilePath field is required.",
+                "Line 6: The Extension field is required.",
+                "Line 7: The Extension field is required.",
+                "Line 8: Id 123 - Must have either claimants or appellants. At least one is required.",
+                "Line 9: Field at index '5' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [completely invalid line]",
+                "Line 10: Field at index '11' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,]",
+                "Line 11: Id 125 - main_subcategory 'Bad main subcategory' cannot exist without main_category being defined",
+                "Line 12: Id 126 - sec_subcategory 'Bad secondary subcategory' cannot exist without sec_category being defined"
             },
             failedToParseLines);
     }
