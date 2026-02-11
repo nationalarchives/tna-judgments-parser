@@ -85,6 +85,11 @@ namespace Backlog.Src
         {
             public LineMap()
             {
+                Configure();
+            }
+
+            private void Configure()
+            {
                 AutoMap(CultureInfo.InvariantCulture);
                 Map(l => l.decision_datetime)
                     .TypeConverterOption.DateTimeStyles(DateTimeStyles.AllowWhiteSpaces & DateTimeStyles.AssumeUniversal)
