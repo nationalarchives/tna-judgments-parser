@@ -176,7 +176,7 @@ class Builder : AkN.Builder {
 
         // Add additional EM metadata from CSV mapping (for Explanatory Memoranda)
         if (data is ExplanatoryMemoranda.EMMetadata emMetadata) {
-            // Add associated document URI for contractor upload (e.g. http://www.legislation.gov.uk/id/uksi/2013/2911/memoranda/1)
+            // Add associated document URI for contractor upload (e.g. http://www.legislation.gov.uk/id/uksi/2013/2911/memorandum/1)
             if (!string.IsNullOrEmpty(emMetadata.ShortUriComponent)) {
                 XmlElement associatedId = doc.CreateElement("uk", "associatedID", UKNS);
                 proprietary.AppendChild(associatedId);

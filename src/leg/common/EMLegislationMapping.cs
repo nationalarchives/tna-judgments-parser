@@ -193,7 +193,7 @@ internal static partial class EMLegislationMapping {
     /// Maps document types to their corresponding URL segments.
     /// </summary>
     /// <param name="emType">The em_type value from CSV</param>
-    /// <returns>The URI path segment (e.g., 'memoranda', 'executive-note', 'policy-note')</returns>
+    /// <returns>The URI path segment (e.g., 'memorandum', 'executive-note', 'policy-note')</returns>
     /// <exception cref="ArgumentException">Thrown when the EM type is unrecognized</exception>
     public static string GetUriPathSegment(string emType) {
         if (string.IsNullOrEmpty(emType))
@@ -201,11 +201,11 @@ internal static partial class EMLegislationMapping {
         
         string typeLower = emType.ToLowerInvariant();
         
-        // Any type containing 'memorandum' uses 'memoranda' (plural)
+        // Any type containing 'memorandum' uses 'memorandum' (singular)
         // Includes: UK SI Explanatory Memorandum, UK Draft SI Explanatory Memorandum, 
         //          NI Statutory Rule Explanatory Memorandum, etc.
         if (typeLower.Contains("memorandum"))
-            return "memoranda";
+            return "memorandum";
         
         // Executive notes (Scottish)
         if (typeLower.Contains("executive note"))
@@ -221,7 +221,7 @@ internal static partial class EMLegislationMapping {
     /// <summary>
     /// Builds the short URI component for an Explanatory Memorandum based on its linked legislation.
     /// Format: {legislation-type}/{leg-year}/{leg-number}/{path-segment}/{version}
-    /// Example: uksi/2013/2911/memoranda/1
+    /// Example: uksi/2013/2911/memorandum/1
     /// </summary>
     /// <param name="record">The EM mapping record</param>
     /// <returns>The short URI component</returns>
