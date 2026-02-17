@@ -3,7 +3,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-using Backlog.Src;
+using Backlog.Csv;
 
 using Xunit;
 
@@ -50,8 +50,8 @@ public class TestCategoryValidationAttribute
     public void IsValid_WithOtherObject_throwsException()
     {
         var exception = Assert.Throws<InvalidOperationException>(() =>
-            categoryValidationAttribute.IsValid($"Not a {nameof(Metadata.Line)}"));
+            categoryValidationAttribute.IsValid($"Not a {nameof(CsvLine)}"));
 
-        Assert.Equal($"CategoryValidationAttribute can only be used on a {nameof(Metadata.Line)}", exception.Message);
+        Assert.Equal($"CategoryValidationAttribute can only be used on a {nameof(CsvLine)}", exception.Message);
     }
 }

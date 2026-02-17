@@ -1,37 +1,42 @@
+#nullable enable
 
 using System.IO;
 using System.Linq;
 
-namespace Backlog.Src
+using Backlog.Csv;
+
+namespace Backlog.Src;
+
+internal class Tracker
 {
+    private readonly string file;
 
-    class Tracker
+    internal Tracker(string file)
     {
-        private readonly string file;
-        internal Tracker(string file) {
-            this.file = file;
-            if (!File.Exists(file)) {
-                using var stream = File.Create(file);
-                stream.Close();
-            }
+        this.file = file;
+        if (!File.Exists(file))
+        {
+            using var stream = File.Create(file);
+            stream.Close();
         }
-
-        private string MakeKey(Metadata.Line line) {
-            return line.id + "/" + line.FilePath;
-        }
-
-        internal bool WasDone(Metadata.Line line) {
-            var key = MakeKey(line);
-            return File.ReadAllLines(file).Where(entry => entry.Contains(key)).Any();
-        }
-
-        internal void MarkDone(Metadata.Line line, string uuid) {
-            var key = MakeKey(line);
-            var timestamp = System.DateTime.Now.ToFileTime();
-            string next = key + "," + uuid + "," + timestamp;
-            File.AppendAllLines(file, [next]);
-        }
-
     }
 
+    private string MakeKey(CsvLine line)
+    {
+        return line.id + "/" + line.FilePath;
+    }
+
+    internal bool WasDone(CsvLine line)
+    {
+        var key = MakeKey(line);
+        return File.ReadAllLines(file).Any(entry => entry.Contains(key));
+    }
+
+    internal void MarkDone(CsvLine line, string uuid)
+    {
+        var key = MakeKey(line);
+        var timestamp = System.DateTime.Now.ToFileTime();
+        var next = key + "," + uuid + "," + timestamp;
+        File.AppendAllLines(file, [next]);
+    }
 }
