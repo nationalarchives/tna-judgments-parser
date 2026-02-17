@@ -1,6 +1,7 @@
 #nullable enable
 
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 using TRE.Metadata.Enums;
@@ -13,6 +14,13 @@ namespace TRE.Metadata;
 /// </summary>
 public partial record ParserProcessMetadata
 {
+    [JsonIgnore]
+    public static readonly JsonSerializerOptions JsonSerializerOptions = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.SnakeCaseLower, false), new MetadataFieldJsonConverter() }
+    };
+    
     [JsonPropertyName("documentType")] public DocumentType DocumentType { get; init; }
 
     /// <summary>
