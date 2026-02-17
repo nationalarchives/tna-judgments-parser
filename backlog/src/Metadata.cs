@@ -113,6 +113,14 @@ namespace Backlog.Src
                             _ => true // return true when there is any value that is not explicitly negative
                         };
                     });
+
+                Map(l => l.FullCsvLineContents)
+                    .Convert(convertFromStringArgs =>
+                    {
+                        var headerNames = convertFromStringArgs.Row.HeaderRecord!;
+                        return headerNames.ToDictionary(headerName => headerName.Trim(),
+                            headerName => convertFromStringArgs.Row[headerName]);
+                    });
             }
         }
 
@@ -120,6 +128,8 @@ namespace Backlog.Src
         [CategoryValidation]
         internal record Line
         {
+            public Dictionary<string, string> FullCsvLineContents { get; set; }
+
             public string id { get; set; }
             public string court { get; set; }
             [Required(AllowEmptyStrings = false)]
