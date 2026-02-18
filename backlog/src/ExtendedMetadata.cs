@@ -54,14 +54,5 @@ namespace Backlog.Src
         public string NCN { get; init; }
         
         public string WebArchivingLink { get; init; }
-
-        internal class Category : ICategory {
-
-            public string Name { get; init; }
-
-            public string Parent { get; init; }
-
-        }
     }
-
 }
