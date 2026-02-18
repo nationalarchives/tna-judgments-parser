@@ -5,6 +5,8 @@ using System.Linq;
 using Backlog.Csv;
 using Backlog.TreMetadata;
 
+using TRE.Metadata.MetadataFieldTypes;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Judgments.Api;
@@ -44,16 +46,16 @@ internal static class MetadataTransformer
     internal static ExtendedMetadata MakeMetadata(CsvLine line)
     {
         // Validation is now handled during CSV reading
-        List<ExtendedMetadata.Category> categories = [];
+        List<Category> categories = [];
 
         // Only add categories if they exist and are not empty
         if (!string.IsNullOrWhiteSpace(line.main_category))
         {
-            categories.Add(new ExtendedMetadata.Category { Name = line.main_category });
+            categories.Add(new Category { Name = line.main_category });
 
             if (!string.IsNullOrWhiteSpace(line.main_subcategory))
             {
-                categories.Add(new ExtendedMetadata.Category
+                categories.Add(new Category
                 {
                     Name = line.main_subcategory, Parent = line.main_category
                 });
@@ -62,12 +64,12 @@ internal static class MetadataTransformer
 
         if (!string.IsNullOrWhiteSpace(line.sec_category))
         {
-            categories.Add(new ExtendedMetadata.Category { Name = line.sec_category });
+            categories.Add(new Category { Name = line.sec_category });
 
             if (!string.IsNullOrWhiteSpace(line.sec_subcategory))
             {
                 categories.Add(
-                    new ExtendedMetadata.Category { Name = line.sec_subcategory, Parent = line.sec_category });
+                    new Category { Name = line.sec_subcategory, Parent = line.sec_category });
             }
         }
 
