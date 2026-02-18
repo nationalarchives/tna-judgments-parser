@@ -54,8 +54,8 @@ public class TestRead: IDisposable
         var result = csvMetadataReader.Read(csvStream, out _);
 
         Assert.Collection(result,
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "123",
                     court = "UKUT-IAC",
@@ -73,9 +73,9 @@ public class TestRead: IDisposable
                     sec_subcategory = null,
                     ncn = null,
                     headnote_summary = null
-                }, line),
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                }, line, l => l.FullCsvLineContents),
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "124",
                     court = "UKFTT-TC",
@@ -93,7 +93,62 @@ public class TestRead: IDisposable
                     sec_subcategory = null,
                     ncn = null,
                     headnote_summary = null
-                }, line)
+                }, line, l => l.FullCsvLineContents)
+        );
+    }
+
+    [Fact]
+    public void Read_WithExtraColumns_StoresAllCsvDataInFullCsvLineContents()
+    {
+        using var csvStream = new StringReader(
+            """
+            id,extra column,FilePath,Extension, Other extra Column,decision_datetime,CaseNo,court,claimants,respondent
+            123,with data,/test/data/test-case.pdf,.pdf,   ,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State for the Home Department
+            124,,/test/data/test-case2.docx,.docx,some data here,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC
+            125,data here,/test/data/test-case3.docx,.docx,and data here,2025-01-17 11:00:00,IA/2025/003,UKFTT-TC,Jones,HMRC
+            """
+        );
+
+        var result = csvMetadataReader.Read(csvStream, out _);
+
+        Assert.Collection(result,
+            line => Assert.Equivalent(new Dictionary<string, string>
+            {
+                { "id", "123" },
+                { "extra column", "with data" },
+                { "court", "UKUT-IAC" },
+                { "FilePath", "/test/data/test-case.pdf" },
+                { "Extension", ".pdf" },
+                { "decision_datetime", "2025-01-15 09:00:00" },
+                { "CaseNo", "IA/2025/001" },
+                { "claimants", "Smith" },
+                { "respondent", "Secretary of State for the Home Department" }
+            }, line.FullCsvLineContents),
+            line => Assert.Equivalent(new Dictionary<string, string>
+            {
+                { "id", "124" },
+                { "court", "UKFTT-TC" },
+                { "FilePath", "/test/data/test-case2.docx" },
+                { "Extension", ".docx" },
+                { "Other extra Column", "some data here" },
+                { "decision_datetime", "2025-01-16 10:00:00" },
+                { "CaseNo", "IA/2025/002" },
+                { "claimants", "Jones" },
+                { "respondent", "HMRC" }
+            }, line.FullCsvLineContents),
+            line => Assert.Equivalent(new Dictionary<string, string>
+            {
+                { "id", "125" },
+                { "court", "UKFTT-TC" },
+                { "FilePath", "/test/data/test-case3.docx" },
+                { "Extension", ".docx" },
+                { "decision_datetime", "2025-01-17 11:00:00" },
+                { "CaseNo", "IA/2025/003" },
+                { "claimants", "Jones" },
+                { "respondent", "HMRC" },
+                { "extra column", "data here" },
+                { "Other extra Column", "and data here" }
+            }, line.FullCsvLineContents)
         );
     }
 
@@ -115,7 +170,10 @@ public class TestRead: IDisposable
 131,/test/data/test-case10.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With Skip,,,,,skip me";
 
         // Arrange - Double check that csv input has all columns in case new ones are added
-        var publicPropertiesInLineClass = typeof(Backlog.Src.Metadata.Line).GetProperties().Select(p => p.Name);
+        var publicPropertiesInLineClass = typeof(Metadata.Line).GetProperties()
+                                                               .Select(p => p.Name)
+                                                               .Where(p => p is not nameof(Metadata.Line
+                                                                   .FullCsvLineContents)); //Ignore AllMetadataFields as it is a constructed property
         var csvHeaderParts = csvContent.Split(Environment.NewLine)[0].Split(",");
         foreach (var publicProperty in publicPropertiesInLineClass)
         {
@@ -129,8 +187,8 @@ public class TestRead: IDisposable
         var result = csvMetadataReader.Read(csvStream, out _);
 
         Assert.Collection(result,
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "123",
                     court = "UKUT-IAC",
@@ -151,9 +209,9 @@ public class TestRead: IDisposable
                     headnote_summary = "This is a test headnote summary",
                     Uuid = "",
                     Skip = false
-                }, line),
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                }, line, l => l.FullCsvLineContents),
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "124",
                     court = "UKFTT-TC",
@@ -174,9 +232,9 @@ public class TestRead: IDisposable
                     headnote_summary = "Another test case",
                     Uuid = "",
                     Skip = false
-                }, line),
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                }, line, l => l.FullCsvLineContents),
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "125",
                     court = "UKFTT-GRC",
@@ -197,9 +255,9 @@ public class TestRead: IDisposable
                     headnote_summary = "Benefits case",
                     Uuid = "",
                     Skip = false
-                }, line),
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                }, line, l => l.FullCsvLineContents),
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "123",
                     court = "UKUT-IAC",
@@ -220,9 +278,9 @@ public class TestRead: IDisposable
                     headnote_summary = "Duplicate ID case",
                     Uuid = "",
                     Skip = false
-                }, line),
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                }, line, l => l.FullCsvLineContents),
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "126",
                     court = "UKUT-IAC",
@@ -243,9 +301,9 @@ public class TestRead: IDisposable
                     headnote_summary = "Multiple Jurisdictions",
                     Uuid = "",
                     Skip = false
-                }, line),
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                }, line, l => l.FullCsvLineContents),
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "127",
                     court = "UKUT-IAC",
@@ -266,9 +324,9 @@ public class TestRead: IDisposable
                     headnote_summary = "Multiple Jurisdictions with spaces",
                     Uuid = "",
                     Skip = false
-                }, line),
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                }, line, l => l.FullCsvLineContents),
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "128",
                     court = "UKUT-IAC",
@@ -288,9 +346,9 @@ public class TestRead: IDisposable
                     webarchiving = "",
                     headnote_summary = "One Jurisdiction",
                     Uuid = ""
-                }, line),
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                }, line, l => l.FullCsvLineContents),
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "129",
                     court = "UKUT-IAC",
@@ -311,9 +369,9 @@ public class TestRead: IDisposable
                     headnote_summary = "With web archiving link",
                     Uuid = "",
                     Skip = false
-                }, line),
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                }, line, l => l.FullCsvLineContents),
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "130",
                     court = "UKUT-IAC",
@@ -334,9 +392,9 @@ public class TestRead: IDisposable
                     headnote_summary = "With UUID",
                     Uuid = "ba2c15ca-6d3d-4550-8975-b516e3c0ed2d",
                     Skip = false
-                }, line),
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                }, line, l => l.FullCsvLineContents),
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "131",
                     court = "UKUT-IAC",
@@ -357,7 +415,7 @@ public class TestRead: IDisposable
                     headnote_summary = "With Skip",
                     Uuid = "",
                     Skip = true
-                }, line)
+                }, line, l => l.FullCsvLineContents)
         );
     }
 
@@ -410,8 +468,8 @@ public class TestRead: IDisposable
         var result = csvMetadataReader.Read(csvStream, out _);
 
         Assert.Collection(result,
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "123",
                     court = "UKUT-IAC",
@@ -431,9 +489,9 @@ public class TestRead: IDisposable
                     webarchiving = "",
                     headnote_summary = "This is a test headnote summary",
                     Uuid = ""
-                }, line),
-            line => Assert.Equivalent(
-                new Backlog.Src.Metadata.Line
+                }, line, l => l.FullCsvLineContents),
+            line => Assert.EquivalentWithExclusions(
+                new Metadata.Line
                 {
                     id = "124",
                     court = "UKFTT-TC",
@@ -453,7 +511,7 @@ public class TestRead: IDisposable
                     webarchiving = "",
                     headnote_summary = "Another test case",
                     Uuid = ""
-                }, line)
+                }, line, l => l.FullCsvLineContents)
         );
     }
 

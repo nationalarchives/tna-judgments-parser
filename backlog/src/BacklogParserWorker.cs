@@ -239,15 +239,6 @@ internal class BacklogParserWorker(
 
     private Bundle GenerateBundle(Metadata.Line line, bool autoPublish)
     {
-        if (line == null)
-            throw new ArgumentNullException(nameof(line));
-
-        if (string.IsNullOrWhiteSpace(line.FilePath))
-            throw new ArgumentException("FilePath cannot be empty", nameof(line));
-
-        if (string.IsNullOrWhiteSpace(line.Extension))
-            throw new ArgumentException("Extension cannot be empty", nameof(line));
-
         var meta = Metadata.MakeMetadata(line);
 
         var uuid = !string.IsNullOrWhiteSpace(line.Uuid)
