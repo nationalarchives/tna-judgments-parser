@@ -145,8 +145,8 @@ public class TestMakeMetadata
         };
 
         // Act & Assert
-        var ex = Assert.Throws<Exception>(() => MetadataTransformer.MakeMetadata(line));
-        Assert.Equal("Unexpected extension .txt", ex.Message);
+        var ex = Assert.Throws<ArgumentOutOfRangeException>(() => MetadataTransformer.MakeMetadata(line));
+        Assert.Contains("Unexpected extension .txt", ex.Message);
     }
 
     [Fact]

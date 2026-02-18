@@ -73,20 +73,6 @@ internal static class MetadataTransformer
             }
         }
 
-        string sourceFormat;
-        if (line.Extension == ".doc" || line.Extension == ".docx")
-        {
-            sourceFormat = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-        }
-        else if (line.Extension == ".pdf")
-        {
-            sourceFormat = "application/pdf";
-        }
-        else
-        {
-            throw new Exception($"Unexpected extension {line.Extension}");
-        }
-
         var court = Courts.GetByCode(line.court);
 
         var jurisdictions = line.Jurisdictions
@@ -119,12 +105,22 @@ internal static class MetadataTransformer
                 },
                 new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.respondent, Role = PartyRole.Respondent }
             ],
-            SourceFormat = sourceFormat,
             Categories = [.. categories],
+            SourceFormat = GetMimeType(line.Extension),
             NCN = line.ncn,
             WebArchivingLink = webArchivingLink
         };
         return meta;
+    }
+
+    private static string GetMimeType(string fileExtension)
+    {
+        return fileExtension switch
+        {
+            ".doc" or ".docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            ".pdf" => "application/pdf",
+            _ => throw new ArgumentOutOfRangeException(nameof(fileExtension), $"Unexpected extension {fileExtension}")
+        };
     }
 
     public static List<IMetadataField> CsvLineToMetadataFields(CsvLine csvLine)
