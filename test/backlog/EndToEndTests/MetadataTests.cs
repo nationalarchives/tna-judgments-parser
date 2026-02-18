@@ -15,6 +15,7 @@ namespace test.backlog.EndToEndTests;
 public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
 {
     private const int DocIdWithJurisdiction = 70;
+    private const string JudgmentsFilePath = @"JudgmentFiles\";
     private string? courtMetadataPath;
     private string? tempDataDir;
 
@@ -68,11 +69,9 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         File.WriteAllText(transferMetadataPath, transferMetadataContent);
     }
 
-    private void WriteCourtMetadataCsv(int lineId, string originalFileName,
-        params CsvLine[] metadataLines)
+    private void WriteCourtMetadataCsv(params CsvLine[] metadataLines)
     {
-        const string judgmentsFilePath = @"JudgmentFiles\";
-        Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", judgmentsFilePath);
+        Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", JudgmentsFilePath);
 
         var headerLine =
             "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,jurisdictions,webarchiving";
@@ -86,7 +85,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             }
 
             return
-                $"{lineId},{judgmentsFilePath}{originalFileName},{metadataLine.Extension},{metadataLine.decision_datetime:yyyy-MM-dd},{metadataLine.CaseNo},{metadataLine.court},{metadataLine.appellants},{metadataLine.claimants},{metadataLine.respondent},{jurisdictions},{metadataLine.webarchiving}";
+                $"{metadataLine.id},{metadataLine.FilePath},{metadataLine.Extension},{metadataLine.decision_datetime:yyyy-MM-dd},{metadataLine.CaseNo},{metadataLine.court},{metadataLine.appellants},{metadataLine.claimants},{metadataLine.respondent},{jurisdictions},{metadataLine.webarchiving}";
         }));
 
         var metadataPath = courtMetadataPath ??
@@ -102,9 +101,11 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         var originalFileName = $"test{docWithoutJurisdictionsId}.docx";
 
         ConfigureTestEnvironment(originalFileName, docWithoutJurisdictionsId);
-        
+
         var metadataLine = new CsvLine
         {
+            id = docWithoutJurisdictionsId.ToString(),
+            FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
             decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = "new case number",
@@ -114,7 +115,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             Jurisdictions = ["new jurisdiction"],
             webarchiving = "my web archiving link"
         };
-        WriteCourtMetadataCsv(docWithoutJurisdictionsId, originalFileName, metadataLine);
+        WriteCourtMetadataCsv(metadataLine);
 
         // Act
         var exitCode = Backlog.Src.Program.Main([]);
@@ -145,16 +146,18 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         doc.HasSingleNodeWithName("references")
            .Which().DoesNotHaveChildWithName("docJurisdiction");
     }
-    
+
     [Fact]
     public void ProcessBacklogTribunal_PdfWithExternalMetaData_AddsMetadata()
     {
         var originalFileName = "test.pdf";
 
         ConfigureTestEnvironment(originalFileName, null);
-        
+
         var metadataLine = new CsvLine
         {
+            id = "42",
+            FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".pdf",
             decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = "new case number",
@@ -164,7 +167,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             Jurisdictions = ["new jurisdiction"],
             webarchiving = "my web archiving link"
         };
-        WriteCourtMetadataCsv(42, originalFileName, metadataLine);
+        WriteCourtMetadataCsv(metadataLine);
 
         // Act
         var exitCode = Backlog.Src.Program.Main([]);
@@ -191,7 +194,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         doc.HasSingleNodeWithName("references")
            .Which().DoesNotHaveChildWithName("docJurisdiction");
     }
-    
+
     [Fact]
     public void ProcessBacklogTribunal_WithConflictingJurisdictionMetaData_Fails()
     {
@@ -202,6 +205,8 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         // Metadata
         var metadataLine = new CsvLine
         {
+            id = DocIdWithJurisdiction.ToString(),
+            FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
             decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = "new case number",
@@ -210,7 +215,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             respondent = "new respondent",
             Jurisdictions = ["A jurisdiction which is not in the original document"]
         };
-        WriteCourtMetadataCsv(DocIdWithJurisdiction, originalFileName, metadataLine);
+        WriteCourtMetadataCsv(metadataLine);
 
         // Act
         var exitCode = Backlog.Src.Program.Main([]);
@@ -232,6 +237,8 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         // Metadata
         var metadataLine = new CsvLine
         {
+            id = DocIdWithJurisdiction.ToString(),
+            FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
             decision_datetime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = "EA/2023/0132",
@@ -240,7 +247,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             respondent = "THE INFORMATION COMMISSIONER",
             Jurisdictions = ["InformationRights", "new jurisdiction"]
         };
-        WriteCourtMetadataCsv(DocIdWithJurisdiction, originalFileName, metadataLine);
+        WriteCourtMetadataCsv(metadataLine);
 
         // Act
         var exitCode = Backlog.Src.Program.Main([]);
@@ -308,6 +315,8 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         // Metadata
         var metadataLine = new CsvLine
         {
+            id = DocIdWithJurisdiction.ToString(),
+            FilePath = $"{JudgmentsFilePath}{originalFileName}",
             Extension = ".docx",
             decision_datetime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = "EA/2023/0132",
@@ -316,7 +325,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             respondent = "THE INFORMATION COMMISSIONER",
             Jurisdictions = ["InformationRights"]
         };
-        WriteCourtMetadataCsv(DocIdWithJurisdiction, originalFileName, metadataLine);
+        WriteCourtMetadataCsv(metadataLine);
 
         // Act
         var exitCode = Backlog.Src.Program.Main([]);
