@@ -413,7 +413,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 .SkipWhile(IInline.IsEmpty).Reverse();
 
             // Trim start of first inline
-            IInline first = newContents.First();
+            IInline first = null;
+            if (newContents.Any())
+                first = newContents.First();
             if (first is WText text)
             {
                 // regex selects any leading whitespace and removes it

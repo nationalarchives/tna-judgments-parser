@@ -43,7 +43,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 AddImageRef(parent, imageRef);
                 return;
             }
-            if (model is ITab)
+            if (model is null || model is ITab)
             {
                 return;
             }
