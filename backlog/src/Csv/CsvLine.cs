@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,55 +14,27 @@ namespace Backlog.Csv;
 [CategoryValidation]
 internal record CsvLine
 {
-    public Dictionary<string, string> FullCsvLineContents { get; set; }
+    public Dictionary<string, string> FullCsvLineContents { get; set; } = [];
 
-    public string id { get; set; }
-    public string court { get; set; }
-    [Required(AllowEmptyStrings = false)]
-    public string FilePath { get; set; }
-    [Required(AllowEmptyStrings = false)]
-    public string Extension { get; set; }
-    public DateTime decision_datetime { get; set; }
-    public string CaseNo { get; set; }
-
-    [Optional]
-    public IEnumerable<string> Jurisdictions { get; set; } = [];
-            
-    [Optional]
-    public string claimants { get; set; }
-            
-    [Optional]
-    public string appellants { get; set; }
-            
-    public string respondent { get; set; }
-
-    [Optional]
-    public string main_category { get; set; }
-
-    [Optional]
-    public string main_subcategory { get; set; }
-
-    [Optional]
-    public string sec_category { get; set; }
-
-    [Optional]
-    public string sec_subcategory { get; set; }
-            
-    [Optional]
-    public string ncn { get; set; }
-            
-    [Optional]
-    public string headnote_summary { get; set; }
-
-    [Optional]
-    public string webarchiving { get; set; }
-            
-    [Optional]
-    public string Uuid { get; set; }
-
-    [Optional]
-    [Default(false)]
-    public bool Skip { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string id { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string court { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string FilePath { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string Extension { get; set; }
+    public required DateTime decision_datetime { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string CaseNo { get; set; }
+    [Optional] public IEnumerable<string> Jurisdictions { get; set; } = [];
+    [Optional] public string? claimants { get; set; }
+    [Optional] public string? appellants { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string respondent { get; set; }
+    [Optional] public string? main_category { get; set; }
+    [Optional] public string? main_subcategory { get; set; }
+    [Optional] public string? sec_category { get; set; }
+    [Optional] public string? sec_subcategory { get; set; }
+    [Optional] public string? ncn { get; set; }
+    [Optional] public string? headnote_summary { get; set; }
+    [Optional] public string? webarchiving { get; set; }
+    [Optional] public string? Uuid { get; set; }
+    [Optional] [Default(false)] public bool Skip { get; set; }
 
     /// <summary>
     /// Gets the name of the first party (either claimants or appellants)

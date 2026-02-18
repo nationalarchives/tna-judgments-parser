@@ -67,6 +67,7 @@ public class TestMakeMetadata
         var line = new CsvLine
         {
             id = "124",
+            FilePath = "/test/data/test.pdf",
             court = "UKFTT-GRC",
             decision_datetime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
             CaseNo = "ABC/2023/002",
