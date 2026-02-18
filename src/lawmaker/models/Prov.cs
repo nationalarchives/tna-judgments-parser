@@ -164,6 +164,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class => "prov2";
 
+        public override bool HeadingPrecedesNumber => true;
     }
 
     internal class Prov2Leaf : Leaf, Prov2
@@ -179,6 +180,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
         public override string Class => "prov2";
 
+        public override bool HeadingPrecedesNumber => true;
     }
 
 

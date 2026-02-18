@@ -1,5 +1,8 @@
 
+#nullable enable
+
 using System.Collections.Generic;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -9,9 +12,12 @@ namespace UK.Gov.Legislation.Lawmaker
     public partial class LegislationParser
     {
 
-        private HContainer ParseProv2(WLine line)
+        private HContainer? ParseProv2(WLine line)
         {
-            if (line is not WOldNumberedParagraph np)
+            WLine? heading = ConsumeProv2Heading(line);
+
+            IBlock current = heading is null ? line : Body[i];
+            if (current is not WOldNumberedParagraph np)
                 return null;
             string numText = IgnoreQuotedStructureStart(np.Number.Text, quoteDepth);
             if (!Prov2.IsValidNumber(numText))
@@ -35,6 +41,26 @@ namespace UK.Gov.Legislation.Lawmaker
                 return new Prov2Leaf { TagName = tagName, Number = num, Contents = intro };
             }
             return new Prov2Branch { TagName = tagName, Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+        }
+
+        /// <summary>
+        /// Attempts to consume an italicised unnumbered Prov2 heading at the current position.
+        /// </summary>
+        /// <remarks>
+        /// If these conditions are met, the parser advances the cursor and returns the heading line.
+        /// Otherwise, no state is changed and null is returned.
+        /// </remarks>
+        private WLine? ConsumeProv2Heading(WLine line)
+        {
+            if (line is WOldNumberedParagraph)
+                return null;
+            if (!line.IsAllItalicized())
+                return null;
+            if (IsAtEnd())
+                return null;
+
+            i += 1;
+            return line;
         }
 
         internal List<IDivision> ParseProv2Children(WLine leader, List<IBlock> intro, List<IBlock> wrapUp)
