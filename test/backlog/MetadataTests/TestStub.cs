@@ -16,7 +16,7 @@ public class TestStub
         {
             ncn = "[2023] UKUT 123 (IAC)"
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -34,7 +34,7 @@ public class TestStub
         {
             ncn = ""
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -54,7 +54,7 @@ public class TestStub
             // ncn is not set (null)
             ncn = null
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -73,7 +73,7 @@ public class TestStub
         {
             ncn = "   "
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -92,7 +92,7 @@ public class TestStub
         {
             ncn = "[2023] EWCA Civ 123 & 124"
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -112,7 +112,7 @@ public class TestStub
         {
             Jurisdictions = ["new jurisdiction"]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -132,7 +132,7 @@ public class TestStub
         {
             Jurisdictions = ["new jurisdiction", "other new jurisdiction"]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -154,7 +154,7 @@ public class TestStub
         {
             Jurisdictions = [""]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -174,7 +174,7 @@ public class TestStub
         {
             // Jurisdiction is not set (empty)
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -194,7 +194,7 @@ public class TestStub
         {
             Jurisdictions = ["   "]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -214,7 +214,7 @@ public class TestStub
         {
             Jurisdictions = ["   ", "", "  "]
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -234,7 +234,7 @@ public class TestStub
         {
             webarchiving = "a web archive link"
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -255,7 +255,7 @@ public class TestStub
         {
             webarchiving = ""
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);
@@ -275,7 +275,7 @@ public class TestStub
         {
             // WebArchiving is not set (empty)
         };
-        var metadata = Metadata.MakeMetadata(line);
+        var metadata = MetadataTransformer.MakeMetadata(line);
 
         // Act
         var stub = Stub.Make(metadata);

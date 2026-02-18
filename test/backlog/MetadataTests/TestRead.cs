@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-using Backlog.Src;
+using Backlog.Csv;
 
 using test.Mocks;
 
@@ -15,7 +15,7 @@ namespace test.backlog.MetadataTests;
 
 public class TestRead: IDisposable
 {
-    private readonly Metadata csvMetadataReader = new(new MockLogger<Metadata>().Object);
+    private readonly CsvMetadataReader csvMetadataReader = new(new MockLogger<CsvMetadataReader>().Object);
     private readonly string testDataDirectory;
 
     public TestRead()
@@ -55,7 +55,7 @@ public class TestRead: IDisposable
 
         Assert.Collection(result,
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "123",
                     court = "UKUT-IAC",
@@ -75,7 +75,7 @@ public class TestRead: IDisposable
                     headnote_summary = null
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "124",
                     court = "UKFTT-TC",
@@ -170,10 +170,10 @@ public class TestRead: IDisposable
 131,/test/data/test-case10.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With Skip,,,,,skip me";
 
         // Arrange - Double check that csv input has all columns in case new ones are added
-        var publicPropertiesInLineClass = typeof(Metadata.Line).GetProperties()
-                                                               .Select(p => p.Name)
-                                                               .Where(p => p is not nameof(Metadata.Line
-                                                                   .FullCsvLineContents)); //Ignore AllMetadataFields as it is a constructed property
+        var publicPropertiesInLineClass = typeof(CsvLine).GetProperties()
+                                                         .Select(p => p.Name)
+                                                         .Where(p => p is not nameof(CsvLine
+                                                             .FullCsvLineContents)); //Ignore AllMetadataFields as it is a constructed property
         var csvHeaderParts = csvContent.Split(Environment.NewLine)[0].Split(",");
         foreach (var publicProperty in publicPropertiesInLineClass)
         {
@@ -188,7 +188,7 @@ public class TestRead: IDisposable
 
         Assert.Collection(result,
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "123",
                     court = "UKUT-IAC",
@@ -211,7 +211,7 @@ public class TestRead: IDisposable
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "124",
                     court = "UKFTT-TC",
@@ -234,7 +234,7 @@ public class TestRead: IDisposable
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "125",
                     court = "UKFTT-GRC",
@@ -257,7 +257,7 @@ public class TestRead: IDisposable
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "123",
                     court = "UKUT-IAC",
@@ -280,7 +280,7 @@ public class TestRead: IDisposable
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "126",
                     court = "UKUT-IAC",
@@ -303,7 +303,7 @@ public class TestRead: IDisposable
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "127",
                     court = "UKUT-IAC",
@@ -326,7 +326,7 @@ public class TestRead: IDisposable
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "128",
                     court = "UKUT-IAC",
@@ -348,7 +348,7 @@ public class TestRead: IDisposable
                     Uuid = ""
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "129",
                     court = "UKUT-IAC",
@@ -371,7 +371,7 @@ public class TestRead: IDisposable
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "130",
                     court = "UKUT-IAC",
@@ -394,7 +394,7 @@ public class TestRead: IDisposable
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "131",
                     court = "UKUT-IAC",
@@ -469,7 +469,7 @@ public class TestRead: IDisposable
 
         Assert.Collection(result,
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "123",
                     court = "UKUT-IAC",
@@ -491,7 +491,7 @@ public class TestRead: IDisposable
                     Uuid = ""
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
-                new Metadata.Line
+                new CsvLine
                 {
                     id = "124",
                     court = "UKFTT-TC",
