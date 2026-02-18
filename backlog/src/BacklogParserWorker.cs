@@ -9,6 +9,8 @@ using Backlog.Csv;
 
 using Microsoft.Extensions.Logging;
 
+using TRE.Metadata;
+
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src;
@@ -241,6 +243,7 @@ internal class BacklogParserWorker(
 
     private Bundle GenerateBundle(CsvLine csvLine, bool autoPublish)
     {
+        List<IMetadataField> metadataFields = MetadataTransformer.ToMetadataFields(csvLine);
         var meta = MetadataTransformer.MakeMetadata(csvLine);
 
         var uuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)

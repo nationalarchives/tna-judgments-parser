@@ -2,5 +2,14 @@ namespace TRE.Metadata.Enums;
 
 public enum MetadataFieldName
 {
-    CsvMetadataFileContents
+    CaseNumber,
+    Category,
+    Court,
+    CsvMetadataFileContents,
+    Date,
+    Jurisdiction,
+    Name,
+    Ncn,
+    Party,
+    WebArchivingLink
 }
