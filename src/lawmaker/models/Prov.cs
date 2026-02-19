@@ -128,11 +128,22 @@ namespace UK.Gov.Legislation.Lawmaker
             return Regex.IsMatch(num, pattern);
         }
 
-        // Identifies when a Prov2 num starts with an em-dash and must therefore be the first child of a Prov1.
-        // Note that the num of the first Prov2 is not necessarily (1). It could be (A1), for example.
+        /// <summary>
+        /// Determines whether the specified text represents the start of the first Prov2 under a Prov1 section.
+        /// </summary>
+        /// <param name="text">
+        /// The input text to evaluate.
+        /// </param>
+        /// <returns>
+        /// <c>true</c> if the text begins with a parenthesized alphanumeric identifier (e.g., "(1)", "(A1)", "(AB12)"),
+        /// optionally after whitespace and/or an em dash.
+        /// </returns>
+        /// <remarks>
+        /// The em-dash is present in NI and SI jurisdictions and absent in UK, SP and SC jurisdictions.
+        /// </remarks>
         public static bool IsFirstProv2Start(string text)
         {
-            string pattern = @"^\s*\u2014\([A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\).*";
+            string pattern = @"^\s*\u2014?\([A-Z]*\d+(?:[A-Z]+\d+)*[A-Z]*\).*";
             return Regex.IsMatch(text, pattern);
         }
 
