@@ -59,21 +59,32 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 XmlElement num = CreateAndAppend("num", tblock);
                 num.InnerText = tableBlock.TableNumber.Number.TextContent;
+                AlignmentValues? numAlignment = tableBlock.TableNumber.Number.GetEffectiveAlignment();
+                if (numAlignment is not null)
+                {
+                    num.SetAttribute("class", AknNamespace, numAlignment.Value.ToXmlClassValue());
+
+                }
                 var captions = tableBlock.TableNumber.Captions;
                 if (captions != null && captions.Count > 0)
                 {
                     // first caption is inserted as heading
-                    // var first = captions.First();
                     XmlElement heading = CreateAndAppend("heading", tblock);
-                    heading.SetAttribute("class", AknNamespace, "left");
                     heading.InnerText = captions.First().TextContent;
+                    AlignmentValues? headingAlignment = captions.First().GetEffectiveAlignment();
+                    string headingAlignmentClass = headingAlignment?.ToXmlClassValue() ?? "left";
+                    heading.SetAttribute("class", AknNamespace, headingAlignmentClass);
+
+                    // others are inserted as subheading
                     foreach (WLine caption in captions.Skip(1))
                     {
                         XmlElement subheading = CreateAndAppend("subheading", tblock);
                         subheading.InnerText = caption.TextContent;
-                        subheading.SetAttribute("class", AknNamespace, "left");
-                    };
-                    // others are inserted as subheading
+                        AlignmentValues? subheadingAlignment = caption.GetEffectiveAlignment();
+                        string subheadingAlignmentClass = subheadingAlignment?.ToXmlClassValue() ?? "left";
+                        subheading.SetAttribute("class", AknNamespace, headingAlignmentClass);
+                    }
+                    ;
                 }
             }
             XmlElement foreign = CreateAndAppend("foreign", tblock);
