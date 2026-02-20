@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using Backlog.Csv;
+
 using Microsoft.Extensions.Logging;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
@@ -18,7 +20,7 @@ internal class BacklogParserWorker(
     ILogger<BacklogParserWorker> logger,
     Api.Parser parser,
     BacklogFiles backlogFiles,
-    Metadata csvMetadataReader,
+    CsvMetadataReader csvMetadataReader,
     Tracker tracker)
 {
     public int Run(bool isDryRun, uint? id, string pathToCourtMetadataFile, bool autoPublish, string pathToOutputFolder)
@@ -41,10 +43,10 @@ internal class BacklogParserWorker(
             }
         }
 
-        var alreadyDoneLines = new List<Metadata.Line>();
-        var markedAsSkipLines = new List<Metadata.Line>();
-        var successfulNewLines = new List<Metadata.Line>();
-        var failedToProcessLines = new List<(Metadata.Line line, Exception exception)>();
+        var alreadyDoneLines = new List<CsvLine>();
+        var markedAsSkipLines = new List<CsvLine>();
+        var successfulNewLines = new List<CsvLine>();
+        var failedToProcessLines = new List<(CsvLine line, Exception exception)>();
 
         for (var i = 0; i < lines.Count; i++)
         {
@@ -111,10 +113,10 @@ internal class BacklogParserWorker(
         return 0;
     }
 
-    private static void LogFinalStatistics(ILogger logger, List<Metadata.Line> markedAsSkipLines,
-        List<Metadata.Line> alreadyDoneLines,
-        List<Metadata.Line> successfulNewLines, List<Metadata.Line> parsedLinesFromCsv,
-        List<(Metadata.Line line, Exception exception)> failedToProcessLines,
+    private static void LogFinalStatistics(ILogger logger, List<CsvLine> markedAsSkipLines,
+        List<CsvLine> alreadyDoneLines,
+        List<CsvLine> successfulNewLines, List<CsvLine> parsedLinesFromCsv,
+        List<(CsvLine line, Exception exception)> failedToProcessLines,
         List<string> csvParseErrors)
     {
         var markedAsSkipIds = markedAsSkipLines.Any()
@@ -237,29 +239,20 @@ internal class BacklogParserWorker(
         }
     }
 
-    private Bundle GenerateBundle(Metadata.Line line, bool autoPublish)
+    private Bundle GenerateBundle(CsvLine csvLine, bool autoPublish)
     {
-        if (line == null)
-            throw new ArgumentNullException(nameof(line));
+        var meta = MetadataTransformer.MakeMetadata(csvLine);
 
-        if (string.IsNullOrWhiteSpace(line.FilePath))
-            throw new ArgumentException("FilePath cannot be empty", nameof(line));
-
-        if (string.IsNullOrWhiteSpace(line.Extension))
-            throw new ArgumentException("Extension cannot be empty", nameof(line));
-
-        var meta = Metadata.MakeMetadata(line);
-
-        var uuid = !string.IsNullOrWhiteSpace(line.Uuid)
-            ? line.Uuid
-            : backlogFiles.FindUuidInTransferMetadata(line.FilePath);
+        var uuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)
+            ? csvLine.Uuid
+            : backlogFiles.FindUuidInTransferMetadata(csvLine.FilePath);
         var content = backlogFiles.ReadFile(uuid);
 
         var response = CreateResponse(meta, content);
 
         var source = new Bundle.Source
         {
-            Filename = Path.GetFileName(line.FilePath),
+            Filename = Path.GetFileName(csvLine.FilePath),
             Content = content,
             MimeType = meta.SourceFormat
         };

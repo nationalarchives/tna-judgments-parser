@@ -2,6 +2,8 @@
 
 using System;
 
+using Backlog.Csv;
+
 using Backlog.Src;
 
 using UK.Gov.Legislation.Judgments;
@@ -16,7 +18,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithBasicLine_CreatesCorrectMetadata()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvLine
         {
             id = "123",
             court = "UKFTT-GRC",
@@ -34,7 +36,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -62,7 +64,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithAppellants_CreatesCorrectMetadata()
     {
         // Arrange
-        var line = new Metadata.Line
+        var line = new CsvLine
         {
             id = "124",
             court = "UKFTT-GRC",
@@ -76,7 +78,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -110,7 +112,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal("application/vnd.openxmlformats-officedocument.wordprocessingml.document", result.SourceFormat);
@@ -126,7 +128,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal("application/vnd.openxmlformats-officedocument.wordprocessingml.document", result.SourceFormat);
@@ -142,7 +144,7 @@ public class TestMakeMetadata
         };
 
         // Act & Assert
-        var ex = Assert.Throws<Exception>(() => Metadata.MakeMetadata(line));
+        var ex = Assert.Throws<Exception>(() => MetadataTransformer.MakeMetadata(line));
         Assert.Equal("Unexpected extension .txt", ex.Message);
     }
 
@@ -157,7 +159,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal(Courts.FirstTierTribunal_GRC, result.Court);
@@ -174,7 +176,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result.Parties);
@@ -201,7 +203,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result.Parties);
@@ -230,7 +232,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result.Categories);
@@ -264,7 +266,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result.Categories);
@@ -291,7 +293,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result.Categories);
@@ -315,7 +317,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal("IA/12345/2023", result.CaseNumbers[0]);
@@ -331,7 +333,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal("2023-12-25", result.Date.Date);
@@ -348,7 +350,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -365,7 +367,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -382,7 +384,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -399,7 +401,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.NotNull(result);
@@ -416,7 +418,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Equal("http://webarchivelink", result.WebArchivingLink);
@@ -432,7 +434,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Null(result.WebArchivingLink);
@@ -448,7 +450,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         var actualJurisdiction = Assert.Single(result.Jurisdictions);
@@ -465,7 +467,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Empty(result.Jurisdictions);
@@ -481,7 +483,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         Assert.Empty(result.Jurisdictions);
@@ -497,7 +499,7 @@ public class TestMakeMetadata
         };
 
         // Act
-        var result = Metadata.MakeMetadata(line);
+        var result = MetadataTransformer.MakeMetadata(line);
 
         // Assert
         var actualJurisdiction = Assert.Single(result.Jurisdictions);

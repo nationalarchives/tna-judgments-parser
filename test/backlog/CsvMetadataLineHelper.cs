@@ -1,6 +1,6 @@
 using System;
 
-using Backlog.Src;
+using Backlog.Csv;
 
 namespace test.backlog;
 
@@ -9,7 +9,7 @@ public static class CsvMetadataLineHelper
     /// <summary>
     /// Has a sample value in each required field
     /// </summary>
-    internal static Metadata.Line DummyLine = new()
+    internal static CsvLine DummyLine = new()
     {
         id = "007",
         court = "UKFTT-GRC",
@@ -20,5 +20,5 @@ public static class CsvMetadataLineHelper
         respondent = "The respondent"
     };
 
-    internal static Metadata.Line DummyLineWithClaimants = DummyLine with { claimants = "The claimants" };
+    internal static CsvLine DummyLineWithClaimants = DummyLine with { claimants = "The claimants" };
 }

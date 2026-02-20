@@ -4,6 +4,8 @@ using System;
 using System.CommandLine;
 using System.IO;
 
+using Backlog.Csv;
+
 using Backlog.Utilities;
 
 using DotNetEnv;
@@ -167,7 +169,7 @@ public class Program
                 UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
         services.AddSingleton<Parser>();
         services.AddSingleton<BacklogParserWorker>();
-        services.AddSingleton<Metadata>();
+        services.AddSingleton<CsvMetadataReader>();
         services.AddSingleton<BacklogFiles>(serviceProvider => new BacklogFiles(serviceProvider.GetRequiredService<ILogger<BacklogFiles>>(), pathToDataFolder,
             judgmentsFilePath, hmctsFilePath));
         services.AddSingleton<Tracker>(_ => new Tracker(trackerPath));
