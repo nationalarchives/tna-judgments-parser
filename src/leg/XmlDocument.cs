@@ -58,26 +58,32 @@ class XmlDocument_ : IXmlDocument {
 
         logger.LogInformation("Saving {Count} images to {Directory}", Images.Count(), outputDirectory);
 
+        string resolvedBase = Path.GetFullPath(outputDirectory) + Path.DirectorySeparatorChar;
+
         int savedCount = 0;
         foreach (var image in Images) {
-            // For RenamedImage instances, use the RelativePath property
-            if (image is RenamedImage renamedImage && !string.IsNullOrEmpty(renamedImage.RelativePath)) {
-                string fullPath = Path.Combine(outputDirectory, renamedImage.RelativePath);
-                
-                // Ensure directory exists
-                string directory = Path.GetDirectoryName(fullPath);
-                if (!Directory.Exists(directory)) {
-                    Directory.CreateDirectory(directory);
-                    logger.LogDebug("Created directory: {Directory}", directory);
-                }
-
-                // Write image data
-                File.WriteAllBytes(fullPath, image.Read());
-                logger.LogDebug("Saved image: {Path}", fullPath);
-                savedCount++;
-            } else {
+            if (image is not RenamedImage renamedImage || string.IsNullOrEmpty(renamedImage.RelativePath)) {
                 logger.LogWarning("Image {Name} does not have a relative path and cannot be saved", image.Name);
+                continue;
             }
+
+            string fullPath = Path.GetFullPath(Path.Combine(resolvedBase, renamedImage.RelativePath));
+
+            // Guard against path traversal: ensure the resolved path stays within outputDirectory
+            if (!fullPath.StartsWith(resolvedBase, StringComparison.OrdinalIgnoreCase)) {
+                logger.LogWarning("Skipping image {Name}: resolved path {Path} escapes output directory", image.Name, fullPath);
+                continue;
+            }
+
+            string directory = Path.GetDirectoryName(fullPath);
+            if (!Directory.Exists(directory)) {
+                Directory.CreateDirectory(directory);
+                logger.LogDebug("Created directory: {Directory}", directory);
+            }
+
+            File.WriteAllBytes(fullPath, image.Read());
+            logger.LogDebug("Saved image: {Path}", fullPath);
+            savedCount++;
         }
 
         logger.LogInformation("Saved {Count} images to {Directory}", savedCount, outputDirectory);
