@@ -36,6 +36,7 @@ internal static class LegWorkAuthorMapping {
             "UnitedKingdomMinisterialDirection"     => "government/uk",
             "UnitedKingdomStatutoryRuleOrOrder"     => "government/uk",
             "NorthernIrelandStatutoryRuleOrOrder"   => "government/northern-ireland",
+            "UnitedKingdomImpactAssessment"         => "government/uk",
             _                                       => null
         };
 
