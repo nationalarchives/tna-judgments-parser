@@ -85,6 +85,7 @@ internal class AnnexMetadata : DocumentMetadata {
     internal AnnexMetadata(DocumentMetadata main, int n) {
         Name = "Annex";
         ShortUriComponent = main.ShortUriComponent + "/annex/" + n;
+        WorkAuthor = main.WorkAuthor;
     }
 
 }
