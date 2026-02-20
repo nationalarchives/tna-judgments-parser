@@ -1,12 +1,16 @@
-
+﻿
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using DocumentFormat.OpenXml.VariantTypes;
 using DocumentFormat.OpenXml.Vml;
 
 using Microsoft.Extensions.Logging;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Imaging;
@@ -342,7 +346,7 @@ namespace UK.Gov.Legislation.Lawmaker
             {
                 string parentNum = GetNumString(provisionRecords.CurrentNumber(quoteDepth));
                 string childNum = GetNumString(line);
-                return IsSubsequentNum(parentNum, childNum);
+                return IsSubsequentAlphanumeric(parentNum, childNum);
             }
 
             return false;
@@ -365,11 +369,20 @@ namespace UK.Gov.Legislation.Lawmaker
         }
 
         /// <summary>
-        /// Returns <c>true</c> if <paramref name="lo"/> and <paramref name="hi"/> are numbered sequentially.
+        /// Returns <c>true</c> if <paramref name="hi"/> immediately follows
+        /// <paramref name="lo"/> in alphanumeric sequence.
         /// </summary>
-        /// <param name="lo">The first number</param>
-        /// <param name="hi">The second number</param>
-        private static bool IsSubsequentNum(string lo, string hi)
+        /// <param name="lo">
+        /// The lower (preceding) alphanumeric value.
+        /// </param>
+        /// <param name="hi">
+        /// The higher (succeeding) alphanumeric value.
+        /// </param>
+        /// <returns>
+        /// <c>true</c> if <paramref name="hi"/> represents the next value
+        /// in sequence after <paramref name="lo"/> otherwise, <c>false</c>.
+        /// </returns>
+        private static bool IsSubsequentAlphanumeric(string lo, string hi)
         {
             if (lo is null || hi is null)
                 return false;
@@ -379,12 +392,12 @@ namespace UK.Gov.Legislation.Lawmaker
 
             // Check direct increments
             // For example: 1 -> 2, 1A -> 1B, 1Z1D -> 1Z1E
-            if (GetNumIncrementOf(lo) == hi)
+            if (IncrementAlphanumeric(lo) == hi)
                 return true;
 
             // Check direct decrements
             // For example: A1 -> 1, AZ1 -> A1
-            if (GetNumDecrementOf(hi) == lo)
+            if (DecrementAlphanumeric(hi) == lo)
                 return true;
 
             // Check for the addition of any number of 'Z' followed by an 'A'
@@ -401,12 +414,12 @@ namespace UK.Gov.Legislation.Lawmaker
                 // Check for when a character is dropped, then the number incremented
                 // i.e. (1B -> 2, 1CA -> 1D)
                 string loTrimmed = string.Concat(lo.SkipLast(1));
-                if (GetNumIncrementOf(loTrimmed) == hi)
+                if (IncrementAlphanumeric(loTrimmed) == hi)
                     return true;
                 // Check for when every char after the final Z is dropped, then the number incremented
                 // i.e. (1Z1 -> 2, 3Z10 -> 4)
                 loTrimmed = Regex.Replace(lo, @"Z\d+$", "");
-                if (GetNumIncrementOf(loTrimmed) == hi)
+                if (IncrementAlphanumeric(loTrimmed) == hi)
                     return true;
                 // Check for when every char after the final Z is dropped, and an 'A' or '1' is added
                 // 5ZC -> 5A, AZ3 -> A1
@@ -418,10 +431,24 @@ namespace UK.Gov.Legislation.Lawmaker
             return false;
         }
 
-        /// <summary>Increments an alphanumeric number string.</summary>
-        /// <param name="numString">The alphanumeric number to increment (as a string).</param>
-        /// <returns>The incremented number (as a string).</returns>
-        private static string GetNumIncrementOf(string numString)
+        /// <summary>
+        /// Increments the given alphanumeric value by one step.
+        /// </summary>
+        /// <param name="numString">
+        /// The alphanumeric value to increment. This may contain digits, letters, or a combination thereof.
+        /// </param>
+        /// <returns>
+        /// A string representing the next value in the sequence after <paramref name="numString"/>.
+        /// </returns>
+        /// <remarks>
+        /// Examples:
+        /// <list type="bullet">
+        /// <item><c>"1"</c> → <c>"2"</c></item>
+        /// <item><c>"A3"</c> → <c>"A4"</c></item>
+        /// <item><c>"5B"</c> → <c>"5C"</c></item>
+        /// </list>
+        /// </remarks>
+        private static string IncrementAlphanumeric(string numString)
         {
             // If the num is entirely numeric, simply increment it
             // For example: 1 -> 2
@@ -452,14 +479,20 @@ namespace UK.Gov.Legislation.Lawmaker
             return new string(numString.SkipLast(1).Append(charIncrement).ToArray());
         }
 
-        /// <summary>Decrements an alphanumeric number string.</summary>
+        /// <summary>
+        /// Decrements the given alphanumeric value by one step.
+        /// </summary>
         /// <remarks>
         /// Note that this is special logic used only when a child element is inserted before an existing element
         /// with a number ending in a '1' or 'A'. For example, A1 comes before 1, and 3ZA comes before 3A.
         /// </remarks>
-        /// <param name="numString">The alphanumeric number to decrement (as a string).</param>
-        /// <returns>The decremented number (as a string).</returns>
-        private static string GetNumDecrementOf(string numString)
+        /// <param name="numString">
+        /// The alphanumeric number to decrement.
+        /// </param>
+        /// <returns>
+        /// A string representing the previous value in the sequence before <paramref name="numString"/>.
+        /// </returns>
+        private static string DecrementAlphanumeric(string numString)
         {
             bool isInt = int.TryParse(numString, out int numInt);
             // For purely numeric nums, 'A' is prepended to decrement
@@ -471,6 +504,58 @@ namespace UK.Gov.Legislation.Lawmaker
             // For example: AZ1 -> A1, 1ZA -> 1A
             return numString.Substring(0, numString.Length - 1) + "Z" + numString.Substring(numString.Length - 1);
         }
+
+        /// <summary>
+        /// Determines whether <paramref name="hi"/> is the immediate subsequent
+        /// alphabetical value after <paramref name="lo"/>.
+        /// </summary>
+        /// <param name="lo">The lower (preceding) alphanumeric string.</param>
+        /// <param name="hi">The higher (succeeding) alphanumeric string.</param>
+        /// <returns>
+        /// <c>true</c> if <paramref name="hi"/> immediately follows <paramref name="lo"/> 
+        /// alphabetically; otherwise <c>false</c>.
+        /// </returns>
+        /// <remarks>
+        /// Examples:
+        /// <list type="bullet">
+        /// <item><c>"A"</c> → <c>"B"</c></item>
+        /// <item><c>"AA"</c> → <c>"AB"</c></item>
+        /// <item><c>"AD"</c> → <c>"B"</c></item>
+        /// <item><c>"D"</c> → <c>"DA"</c></item>
+        /// </list>
+        /// </remarks>
+        private static bool IsSubsequentAlphabetic(string lo, string hi)
+        {
+            lo = lo.Trim('(', ')');
+            hi = hi.Trim('(', ')');
+
+            // Case 1: Strings are the same length, final character increments
+            // i.e. (A -> B, AA -> AB)
+            if (lo.Length == hi.Length)
+            {
+                char loFinalChar = char.ToUpperInvariant(lo.Last());
+                char hiFinalChar = char.ToUpperInvariant(hi.Last());
+                return hiFinalChar - loFinalChar == 1;
+            }
+            // Case 2: A character is dropped, then the prefix incremented
+            // i.e. (AD -> B)
+            if (lo.Length - hi.Length == 1)
+            {
+                return IsSubsequentAlphabetic(
+                    lo.Substring(0, lo.Length - 1),
+                    hi
+                );
+            }
+            // Case 3: A character is added, must be 'A'
+            // i.e. (D -> DA)
+            if (hi.Length - lo.Length == 1)
+            {
+                return char.ToUpperInvariant(hi.Last()) == 'A';
+            }
+
+            return false;
+        }
+
 
 
         /*

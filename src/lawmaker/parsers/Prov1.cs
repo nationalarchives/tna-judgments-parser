@@ -375,7 +375,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             string firstNum = GetNumString(currentNumber);
             string secondNum = GetNumString(line);
-            return IsSubsequentNum(firstNum, secondNum);
+            return IsSubsequentAlphanumeric(firstNum, secondNum);
         }
 
     }
