@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348267808/impacts/2025/6" />
+          <FRBRuri value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348267808/impacts/2025/6" />
+          <FRBRdate date="2024-12-03" name="document" />
+          <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
+          <FRBRcountry value="GB-UKM" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6" />
+          <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6" />
+          <FRBRdate date="2024-12-03" name="document" />
+          <FRBRauthor href="#" />
+          <FRBRlanguage language="en" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/data.akn" />
+          <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/data.akn" />
+          <FRBRdate date="2026-02-20" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#tna">
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+      </references>
+      <proprietary source="#">
+        <uk:parser>1.5.1</uk:parser>
+        <dc:modified>2025-01-09</dc:modified>
+        <uk:legislation>http://www.legislation.gov.uk/id/ukdsi/2025/9780348267808</uk:legislation>
+        <uk:associatedID>http://www.legislation.gov.uk/id/ukia/2025/6</uk:associatedID>
+        <uk:documentStage>Final</uk:documentStage>
+        <uk:documentMainType>UnitedKingdomImpactAssessment</uk:documentMainType>
+        <uk:department>Ministry of Housing, Communities and Local Government</uk:department>
+        <uk:date>2025-01-09</uk:date>
+        <uk:pdfDate>2025-01-13</uk:pdfDate>
+        <uk:legislationClass>UnitedKingdomDraftStatutoryInstrument</uk:legislationClass>
+        <uk:year>2025</uk:year>
+        <uk:number>6</uk:number>
+        <uk:legislationYear>2025</uk:legislationYear>
+        <uk:legislationNumber>9780348267808</uk:legislationNumber>
+        <uk:hash>95a18b19673451b4acbad66bcc5dd90e10c32c17b113165fca96f042f1eb2c23</uk:hash>
+      </proprietary>
+    </meta>
+    <mainBody>
+      <toc>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/2" level="2"><inline name="tocHeading">1. Summary Analysis &amp; Evidence</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/3" level="2"><inline name="tocHeading">2. Description</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/4" level="2"><inline name="tocHeading">3. Evidence Base</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/5" level="2"><inline name="tocHeading">4. Rationale and evidence to justify the level of analysis used in the IA (proportionality approach)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/6" level="2"><inline name="tocHeading">5. Description of options considered</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/7" level="2"><inline name="tocHeading">6. Option 1 – Do nothing</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/8" level="2"><inline name="tocHeading">7. Option 2 – Increase some fees (preferred)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/9" level="2"><inline name="tocHeading">8. Policy objective</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/10" level="2"><inline name="tocHeading">9. Summary and preferred option with description of implementation plan</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/11" level="2"><inline name="tocHeading">10. Monetised and non-monetised costs and benefits of each option (including administrative burden)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/12" level="2"><inline name="tocHeading">11. Direct costs and benefits to business calculations</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/13" level="2"><inline name="tocHeading">12. Risks and assumptions</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/14" level="2"><inline name="tocHeading">13. Impact on small and micro businesses</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/15" level="2"><inline name="tocHeading">14. Wider impacts (consider the impacts of your proposals)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/16" level="2"><inline name="tocHeading">15. A summary of the potential trade implications of measure</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267808/impacts/2025/6/section/17" level="2"><inline name="tocHeading">16. Monitoring and Evaluation</inline></tocItem>
+      </toc>
+      <level>
+        <content>
+          <table uk:widths="1.38in 1.58in 1.39in 0.58in 2.26in 0.01in">
+            <tr>
+              <td colspan="3">
+                <p class="ia-table-text"><b>Title:</b> <docTitle> The Town and Country Planning (Fees for Applications, Deemed Applications, Requests and Site Visits) (England) (Amendment and Transitional Provision) Regulations 2025         </docTitle></p>
+                <p class="ia-table-text"><b>IA No: </b>n/a <b>     </b></p>
+                <p class="ia-head-label"><b>RPC Reference No: </b>n/a<b>       </b></p>
+                <p class="ia-table-text"><b>Lead department or agency: </b> <inline name="leadDepartment">Ministry of Housing, Communities and Local Government                </inline></p>
+                <p class="ia-table-text"><b>Other departments or agencies: </b><b> </b><inline name="otherDepartments">n/a     </inline></p>
+              </td>
+              <td colspan="3">
+                <table uk:widths="2.84in">
+                  <tr>
+                    <td>
+                      <p class="ia-title">Impact Assessment (IA)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Date: </b><b> </b><docDate date="2024-12-03"><b>03/12/2024</b></docDate></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Stage: </b><b> </b><docStage>Final draft</docStage></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Source of intervention: </b><b>Domestic</b></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Type of measure: </b>Secondary legislation</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Contact for enquiries:</b>      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                </table>
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <p class="ia-table-text"><b>Summary: Intervention and Options </b></p>
+                <p class="ia-table-text" />
+              </td>
+              <td colspan="3">
+                <p class="ia-table-text"><b>RPC Opinion: </b>n/a</p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6">
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                <p class="ia-table-text"><b>Cost of Preferred (or more likely) Option </b>(in 2024 prices)</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>Total Net Present Social Value</b></p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Business Net Present Value</b></p>
+              </td>
+              <td colspan="2">
+                <p class="ia-table-text"><b>Net cost to business per year </b></p>
+              </td>
+              <td rowspan="2">
+                <p class="ia-table-text"><b>Business Impact Target Status</b></p>
+                <p class="ia-table-text">Qualifying provision</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="ia-table-text">£0m</p>
+              </td>
+              <td>
+                <p class="ia-table-text">-£101.3m</p>
+              </td>
+              <td colspan="2">
+                <p class="ia-table-text">£11.8m</p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                <p class="ia-table-text"><b>What is the problem under consideration? Why is government action or intervention necessary?</b></p>
+                <p class="ia-table-text">One of the reasons that the local authority planning application service is not consistently performing at the level it should be is a lack of resources because planning fees do not cover the cost of the service. This results in a funding shortfall for local authorities, of £362million in 2023-24, which local authorities have to fund from their general budgets. It is fair that service users bear a greater proportion of the costs of the service. Only Government has the power to increase planning fees. Fees will be increased where there is the greatest shortfall between the fee and cost of the service. In doing so, all local planning authorities will benefit from increased income and greater financial sustainability to support the delivery of an effective planning service.</p>
+                <p class="ia-table-text" />
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="7.18in">
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>What are the policy objectives of the action or intervention and the intended effects?</b></p>
+                <p class="ia-table-text">The policy objective is to improve the speed and quality of the planning application service provided by local planning authorities by generating a greater income for them through an increase in some of the fees with the greatest shortfall, which will enable them to secure more resources to deliver the service. It is fairer, as a greater proportion of the planning application service is funded, through fees, by those using the service. The intended effect can be measured by the local authority revenue and expenditure returns submitted by local authorities to Government<authorialNote marker="1"><p class="ia-table-text"> <a href="https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing"><u>Local authority revenue expenditure and financing - GOV.UK</u></a><u> - </u><u>https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing</u></p></authorialNote>. Key indicators of success will be an improvement in the speed and quality of decision making<authorialNote marker="2"><p class="ia-table-text"> <a href="https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation"><u>Improving planning performance: criteria for designation - GOV.UK</u></a><u> - </u><u>https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation</u></p></authorialNote>. </p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="7.18in">
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option (further details in Evidence Base)</b></p>
+                <p class="ia-table-text">If Government did not increase these planning application fees (do nothing option), the planning service would not improve, because the shortfall between the fee and the cost of providing the service would remain. Delays in making decisions on planning applications will mean delays in the delivery of housing and other development needed for economic growth. Planning fees can only be increased through regulations. Our preferred option is to increase householder fees for extending properties from £258 to £528; to double fees for prior approval applications, from £120 / £125 / £258 to £240 / £250 / £516; to increase fees for discharge of conditions from £43 to £86 for householders and £145 to £298 for all other applications; and, to change the fees for applications to vary or remove conditions, reducing those for householders from £293 to £86, and increasing fees for other non-major applications from £293 to £586, and for majors from £293 to £2,000. The new fees will more closely represent the cost to local planning authorities of deciding these applications.  </p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="7.18in">
+            <tr>
+              <td>
+                <table uk:widths="4.34in 0.76in 0.6in 0.24in 0.44in 0.82in">
+                  <tr>
+                    <td colspan="2">
+                      <p class="ia-table-text">Is this measure likely to impact on international trade and investment? </p>
+                    </td>
+                    <td colspan="4">
+                      <p class="ia-table-text">No</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text">Are any of these organisations in scope?</p>
+                    </td>
+                    <td>
+                      <p class="ia-table-text"><b>Micro</b></p>
+                      <p class="ia-table-text">Yes</p>
+                    </td>
+                    <td>
+                      <p class="ia-table-text"><b>Small</b></p>
+                      <p class="ia-table-text">Yes</p>
+                    </td>
+                    <td colspan="2">
+                      <p class="ia-table-text"><b>Medium</b></p>
+                      <p class="ia-table-text">Yes</p>
+                    </td>
+                    <td>
+                      <p class="ia-table-text"><b>Large</b></p>
+                      <p class="ia-table-text">Yes</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <p class="ia-table-text">What is the CO2 equivalent change in greenhouse gas emissions? <br />(Million tonnes CO2 equivalent)  </p>
+                    </td>
+                    <td colspan="2">
+                      <p class="ia-table-text"><b>Traded:  </b>N/A<b> </b><br /><b>     </b></p>
+                    </td>
+                    <td colspan="2">
+                      <p class="ia-table-text"><b>Non-traded:   </b><br /><b>N/A</b></p>
+                    </td>
+                  </tr>
+                </table>
+                <p class="ia-table-text"><b>Will the policy be reviewed?  </b>See ‘Monitoring and Evaluation’, page 8.<b> </b><b> If applicable, set review date:  </b>N/A</p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <paragraph>
+        <content>
+          <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></p>
+          <table uk:widths="4.62in 2.46in">
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>Signed by the responsible Minister:</b> Matthew Pennycook MP</p>
+                <p class="ia-table-text" />
+              </td>
+              <td>
+                <p class="ia-table-text"><b><i> Date: 6 January 2025</i></b></p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </paragraph>
+      <section eId="section_2">
+        <heading>Summary Analysis &amp; Evidence</heading>
+        <content>
+          <p><b>Summary: Analysis &amp; Evidence</b>Policy Option 1</p>
+        </content>
+      </section>
+      <section eId="section_3">
+        <heading>Description</heading>
+        <intro>
+          <p><b>Description: </b></p>
+        </intro>
+        <paragraph>
+          <content>
+            <p><b>FULL ECONOMIC ASSESSMENT</b></p>
+            <table uk:widths="0.97in 0.87in 1in 1.24in 1.26in 1.82in">
+              <tr>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Price Base Year  </b>2024</p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>PV Base Year  </b>2025</p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Time Period Years  </b>10</p>
+                </td>
+                <td colspan="3">
+                  <p class="ia-table-text"><b>Net Benefit (Present Value (PV)) (£m)</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low: </b><b>Optional</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>High: </b><b>Optional</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate: </b><b>0</b></p>
+                </td>
+              </tr>
+            </table>
+            <table uk:widths="1.46in 1.35in 0.55in 1.98in 1.23in 0.59in">
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>COSTS (£m)</b></p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Transition </b><br />(Constant Price)Years</p>
+                  <p class="ia-table-text"><br /></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Average Annual </b><br />(excl. Transition) (Constant Price)</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Cost</b> <br />(Present Value)</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td rowspan="3">
+                  <p class="ia-table-text">   </p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Optional</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>High </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">-</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">62.3</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>533.2</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">-</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">56.3</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>481.5</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Description and scale of key monetised costs by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">Businesses (including developers) and householders will face costs from higher application fees. These costs will also increase with inflation. Householders account for the majority (c. 76%) of the additional costs incurred during the appraisal period.</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Other key non-monetised costs by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">Public bodies would also be subject to higher fees, but as this represents an in government transfer the impact has not been monetised.</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>BENEFITS (£m)</b></p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Transition </b><br />(Constant Price)Years</p>
+                  <p class="ia-table-text"><br /></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Average Annual </b><br />(excl. Transition) (Constant Price)</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Benefit</b> <br />(Present Value)</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td rowspan="3">
+                  <p class="ia-table-text">   </p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Optional</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>High </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">-</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">62.3</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>533.2</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">-</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">56.3</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>481.5</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Description and scale of key monetised benefits by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">Local planning authorities will benefit from increased fee revenue paid by householders and businesses.</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Other key non-monetised benefits by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">Proper funding of Local Authority planning services should enable faster processing of applications, saving applicants time and reducing uncertainty.</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <p class="ia-table-text"><b>Key assumptions/sensitivities/risks</b><b>Discount rate (%)</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">3.5%     </p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text">There is no significant behaviour change from applicants because of the fee changes. The proper funding of planning services would result in a behaviour change from local planning authorities in terms of the speed and effectiveness of the processing of applications. The available data sources for number of applications and fees are representative.</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+        <paragraph>
+          <content>
+            <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
+            <table uk:widths="1.37in 1.27in 1.18in 3.34in">
+              <tr>
+                <td colspan="3">
+                  <p class="ia-table-text"><b>Direct impact on business (Equivalent Annual) £m: </b></p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Score for Business Impact Target (qualifying provisions only) £m: N/A</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Costs: </b><b>11.8</b></p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Benefits: </b><b>0</b></p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Net: </b><b>11.8</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">     -</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_4">
+        <heading>Evidence Base</heading>
+        <intro>
+          <p><b>Evidence Base</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>Problem under consideration and rationale for intervention</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>Planning fees make an important contribution to meeting the costs of a local planning authority’s planning application service but do not fully cover service costs. Any shortfall must be financed through additional paid-for discretionary services or through the local authority’s general budget, which in turn falls on the taxpayer. This is a challenge for local authorities currently facing significant budget pressures, resulting in the funding of planning services being reduced in real terms by 36% between 2010-11 and 2019-20<authorialNote marker="3"><p><b> </b><a href="https://www.nao.org.uk/wp-content/uploads/2021/11/The-local-government-finance-system-in-England-overview-and-challenges.pdf"><b><u>https://www.nao.org.uk/wp-content/uploads/2021/11/The-local-government-finance-system-in-England-overview-and-challenges.pdf</u></b></a></p></authorialNote>. The Government increased all planning application fees from 6 December 2023, by 35% for major applications and 25% for all other applications. The Government also introduced an annual indexation mechanism, from 1 April 2025, through which all fees will be increased annually by the rate of inflation in the preceding September, up to a maximum of 10%. So all fees will be increasing by 1.7% from 1 April 2025. Despite the 2023 fee increase, income from fees still falls short of the cost of dealing with the applications. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>There is a general imbalance within the current planning application fee structure. Nationally, 80% of planning applications provide only 20% of the fee income. The greatest imbalance is for householder applications, applications for prior approval, applications to discharge a condition and applications to vary or remove a condition. For example, it costs a local authority over twice as much to process a householder application than the fee received, £258 compared to £528.In 2023-24 there were 173,300] decisions on householder applications. Due to the high volume of householder applications, which account for over 50% of all planning applications, the low fee impacts the financial sustainability of local planning authorities, particularly in local authorities which do not receive many larger applications, the fees for which are more likely to cover the cost of deciding the applications.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>There are also some application types for which no fee is currently charged, such as listed buildings consent and works on protected trees, which add to the financial pressure on local planning authorities. In addition to applications for which fees are not currently charged, there are other planning services which local planning authorities carry out without a fee. These include enforcement activity and assessing potential local plan site allocations. Providing these statutory services is a cost burden on local authorities. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>According to the Local Government Revenue Outturn figures for 2023-24, the current planning system cost £1.27billion, of which the planning application service cost £819million. Income from planning application fees was £381million. When also including the fees income from other discretionary services, the overall funding shortfall for the planning application service was £362million (approximately 44%). </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>Whilst the income from planning fees can vary for individual local planning authorities from year to year depending on the numbers and types of applications, overall underfunding leads to a consequential under-resourcing of the planning application service, which in turn leads to a reduction in overall performance levels. This holds up development, including housing supply. The income from fees has fallen in recent years, largely due to the decrease in the number of planning applications. The fee increase from 6 December 2023 only took effect in the final few months of the last financial year, so its full impact has not been realised. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>The Government recognises that this resourcing deficit needs to be addressed so that local planning authorities have the resources they need to deliver a service that people expect as well as meeting our ambitions for planning reform. Local planning authorities need more resources, so that they can make good, timely decisions. Government also has the objective to reduce the burden on the taxpayer, and for the planning application service to be principally funded by those who use it. Well-resourced local planning authorities will be able to build their capability and capacity, and improve their performance. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>Increasing fees to a level closer to the cost to the local planning authority of processing the applications, means the fees are more cost reflective and closer to the true economic cost, which applicants will have to take into account when considering whether or not to take the development forward by submitting an application. The level of the proposed fee increases is considered to be modest, compared to the typical development costs, so we do not expect it to have any impact on the number of applications submitted. Greater resources will support the wider planning service and will benefit all users, including businesses.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>The only way to increase fee income is by raising planning application fees. Planning application fees are set nationally, through secondary legislation, therefore Government intervention is required. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>We consulted on our proposals to increase certain planning fees, for 8 weeks, from 30 July 2024, as part of the wider consultation on <i>Proposed reforms to the National Planning Policy Framework and other changes to the planning system</i>. We proposed that fees for householder planning applications should be increased to full cost recovery, estimated to be £528. We also sought views on other types of planning applications for which the fee was considered to be inadequate. We had 1,343 respondents to our question on increasing the householder fee to full cost recovery, from a wide range of respondents, with 72% supporting this proposal. The responses were generally supportive of our proposals. The government response to the consultation can be read here / will be published here - <a href="https://www.gov.uk/government/consultations/proposed-reforms-to-the-national-planning-policy-framework-and-other-changes-to-the-planning-system"><u>https://www.gov.uk/government/consultations/proposed-reforms-to-the-national-planning-policy-framework-and-other-changes-to-the-planning-system</u></a>. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>In the longer term, we intend to introduce a power for local planning authorities to be able to vary or set their own fees, so that local authorities can recover all their costs for the planning application service. </p>
+          </content>
+        </level>
+      </section>
+      <section eId="section_5">
+        <heading>Rationale and evidence to justify the level of analysis used in the IA (proportionality approach)</heading>
+        <intro>
+          <p><b>Rationale and evidence to justify the level of analysis used in the IA (proportionality approach)</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>The proposals were anticipated to have a business impact and therefore a detailed cost-benefit analysis approach is justified. To ensure analysis is proportionate, only the impacts from measures reasonably expected to have a significant economic impact on householders and businesses were monetised.</p>
+          </content>
+        </level>
+      </section>
+      <section eId="section_6">
+        <heading>Description of options considered</heading>
+        <intro>
+          <p><b>Description of options considered</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>We have considered two options for increasing planning fees:</p>
+          </content>
+        </level>
+        <paragraph>
+          <num>1.</num>
+          <content>
+            <p>Option 1 – Do nothing</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>2.</num>
+          <content>
+            <p>Option 2 – Increase fees for householder applications, prior approval applications, discharge of conditions and applications to vary or remove a condition</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_7">
+        <heading>Option 1 – Do nothing</heading>
+        <intro>
+          <p><b>Option 1 – Do nothing</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>Under this option there is no change to planning fees. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>Fees for submitting planning applications generally represent a fraction of overall application costs<authorialNote marker="4"><p><b> </b><b>Costs from a 2009 benchmarking exercise by Arup: </b><a href="https://www.thenbs.com/PublicationIndex/documents/details?Pub=DCLG&amp;DocID=290411"><b><u>https://www.thenbs.com/PublicationIndex/documents/details?Pub=DCLG&amp;DocID=290411</u></b></a></p></authorialNote> (including scheme development and application preparation), and an even smaller share of overall development costs. Although fees will increase, due to the annual inflation increase, as other development costs continue to increase, there will always be a deficit between the fee and the cost to the local planning authority of deciding the application because the fundamental, structural issue will not have been addressed.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>In 2023-24 there was a shortfall of £362million between the income for the planning application service and the cost to local authorities of processing these applications. If we do nothing, and despite the annual indexation of fees from 1 April 2025, this shortfall will remain, as both fees and costs increase. This will continue year on year. The continuing shortfall will continue to be met by the general taxpayer, which will put additional and increasing pressures on local authority budgets. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>To do nothing would result in a continued decline in local authority performance in relation to planning, as the income continues to drop in real terms, year on year, with a consequential increasing adverse impact on delivery of new development.</p>
+          </content>
+        </level>
+      </section>
+      <section eId="section_8">
+        <heading>Option 2 – Increase some fees (preferred)</heading>
+        <intro>
+          <p><b>Option 2 – Increase some fees (preferred)</b></p>
+        </intro>
+        <level>
+          <heading>This is the preferred option, and the option which we consulted on as part of the consultation: ‘<i>Proposed reforms to the National Planning Policy Framework and other changes to the planning system’</i>, from 30 July to 24 September 2024. The option increases fees for certain types of applications where there is an identified significant shortfall between the fee charged and the cost to the local planning authority of deciding the application. This option will increase fees, with one exception:</heading>
+          <paragraph>
+            <num>•</num>
+            <content>
+              <p>Fees for householder applications for the enlargement, improvement or other alteration of a single dwelling house, will increase from £258 to £528 (other householder applications, for small-scale operations within the curtilage of the dwellinghouse will remain unchanged at £258)</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>•</num>
+            <content>
+              <p>Fees for householder fees for the enlargement, improvement or other alteration of two or more dwelling houses, will increase from £509 to £1,043</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>•</num>
+            <content>
+              <p>Fees for applications for prior approval will be doubled from £120 and £258, where there are associated building operations, to £240 and £516 respectively. Similarly where prior approval is sought for a change of use, the current fee of £125 per dwellinghouse will be doubled to £250 per dwellinghouse (prior approval fees for the construction of new dwellinghouses, which are £418 per dwellinghouse, will remain the same)</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>•</num>
+            <content>
+              <p>Fees for applications to vary or remove a planning condition will change from the current flat fee of £293 to a three-tier band structure, reducing to £86 for householder applications, and increasing to £586 for other non-major development and £2,000 for major development</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num><b>•</b></num>
+            <content>
+              <p>Fees for applications for the approval of details reserved by condition, including approval of Biodiversity Gain Plans, increase from £43 for householders and £145 for all other development, to £86 and £298 respectively</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <content>
+            <p>By increasing these fees the shortfall between the fee and the cost to the local authority of deciding the application will be reduced, easing the pressure on local authority budgets and the general taxpayer. The increase in resources will benefit the wider planning application service allowing all users to benefit. </p>
+          </content>
+        </level>
+      </section>
+      <section eId="section_9">
+        <heading>Policy objective</heading>
+        <intro>
+          <p><b>Policy objective</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>The policy objective is to improve the speed and quality of the planning service provided by local planning authorities by generating a greater income for local authorities through an increase in fees which will enable them to secure more resources to deliver the service. This will alleviate delays and barriers to development. With the increased fees covering a larger proportion of the costs of processing planning applications local planning authorities will have a more sustainable income. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>The impact of the policy will be seen in the increased revenue generated from planning fees by local authorities. This is submitted in annual returns to government and collated in a table (RO5)<authorialNote marker="5"><p> <a href="https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing"><u>https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing</u></a></p></authorialNote>. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>We monitor the performance of local authorities in terms of speed and quality of decision-making. We would expect to see an improvement in these measures of performance<authorialNote marker="6"><p> <a href="https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation"><u>https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation</u></a></p></authorialNote>.</p>
+          </content>
+        </level>
+      </section>
+      <section eId="section_10">
+        <heading>Summary and preferred option with description of implementation plan</heading>
+        <intro>
+          <p><b>Summary and preferred option with description of implementation plan</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>The preferred option (Option 2) will be implemented through secondary legislation. We expect the secondary legislation to be introduced in the first quarter of 2025, and the fee increases to be implemented on 1 April 2025, subject to Parliamentary approval. As affirmative regulations, the regulations will be laid in draft and debated in both Houses of Parliament before they come into force. The regulations do not require applicants to change their processes: the only change for applicants is the cost of the fee.</p>
+          </content>
+        </level>
+      </section>
+      <section eId="section_11">
+        <heading>Monetised and non-monetised costs and benefits of each option (including administrative burden)</heading>
+        <intro>
+          <p><b>Monetised and non-monetised costs and benefits of each option (including administrative burden)</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>The analysis assumes that the changes in fees will have not change developer behaviour in terms of the number of applications submitted. Under all options, future application numbers are estimated for the following scenarios: </p>
+          </content>
+        </level>
+        <paragraph>
+          <num>i.</num>
+          <content>
+            <p>Central scenario: The increase in householder applications observed since the Covid-19 pandemic is assumed to be temporary and householder applications return to the pre-pandemic average and are static. All other application types change by the same proportion year-on-year as forecast private enterprise starts. This approach uses the latest OBR forecasts of private enterprise starts (October 2024). The OBR forecasts only reach 2029/30; application numbers beyond 2029/30 are assumed to be static. We assume the trajectory in net additions lags behind the trajectory in planning applications by two years.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>ii.</num>
+          <content>
+            <p>High scenario: The Government’s Plan for Change Milestone set out its ambition to deliver 1.5m homes this parliament. It has taken a significant step towards this through the reforms announced on 12th December 2024 to the NPPF. However, further reforms are needed and further detail will follow after the spending review and through the publication of its long-term housing strategy. The Government has set out that given the position it inherited it expects net additions to fall to under 200k per annum in England and then rise quickly from 2026/27. To reflect the greater flow of applications associated with the delivery of 1.5m, we consider a high side scenario using a stylised profile consistent with its delivery. This is not a future forecast or delivery plan. Delivery is assumed to be static after 2029. We assume the trajectory in net additions lags behind the trajectory in planning applications by two years.  This is applied as a growth rate to non-householder applications. The increase in householder applications remains the same as the central scenario.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p>Average fees data and increases were sourced from the Planning Advisory Service’s (PAS) project data. The data is considered reliable because it provides a representative mix of local authority and application types. The average number of applications was taken for the last 3 years from the PAS data (2022-24).</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>The costs and benefits are modelled by multiplying the expected numbers of applications by type by an estimate of the average fee increase by application type derived from the PAS data.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>To estimate costs from the policy options, we assumed a start date for the policy of Q2 2025, and evaluated the policy up until Q1 2035. All costs were discounted with a discount rate of 3.5% and were adjusted to 2025 prices using the OBR’s estimate of the GDP deflator. This is in line with guidance from the Treasury Green Book. The monetised impacts of each option relative to the counterfactual are presented below. Figures are presented for 2025 PV, and a 2024 price base year.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>Option 2: increase fees for householders, approval of details reserved, s73 applications and prior approvals</p>
+          </content>
+        </level>
+        <level>
+          <heading><i>Central scenario</i></heading>
+          <paragraph>
+            <num>-</num>
+            <content>
+              <p>A <b>transfer</b> from business and householders to local planning authorities via increased fee revenue of c.£56m per year. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>-</num>
+            <content>
+              <p><b>Unquantified benefits</b> to business and householders from an improved planning service.</p>
+              <table uk:widths="1.52in 1.78in">
+                <tr>
+                  <td>
+                    <p class="ia-table-text" />
+                  </td>
+                  <td>
+                    <p class="ia-table-text">Average annual impact <br />(£m, 2025 PV)</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">Benefit to LPAs</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">                                                56</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">Cost to businesses</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">                                                12</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">Cost to householders</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">                                                44 </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">NPSV</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">                                                 0</p>
+                  </td>
+                </tr>
+              </table>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><i>High scenario</i></heading>
+          <paragraph>
+            <num>-</num>
+            <content>
+              <p>A <b>transfer</b> from business and householders to local planning authorities via increased fee revenue of c.£62m per year. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>-</num>
+            <content>
+              <p><b>Unquantified benefits</b> to business and householders from an improved planning service.</p>
+              <table uk:widths="1.49in 0.96in 0.01in">
+                <tr>
+                  <td>
+                    <p class="ia-table-text" />
+                  </td>
+                  <td>
+                    <p class="ia-table-text">Average annual impact <br />(£m, 2025 PV)</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">Benefit to LPAs</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">                                                62</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">Cost to businesses</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">                                                18</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">Cost to householders</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">                                                44 </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text" />
+                    <p class="ia-table-text">NPSV</p>
+                  </td>
+                  <td colspan="2">
+                    <p class="ia-table-text">                                     0</p>
+                  </td>
+                </tr>
+              </table>
+            </content>
+          </paragraph>
+        </level>
+      </section>
+      <section eId="section_12">
+        <heading>Direct costs and benefits to business calculations</heading>
+        <intro>
+          <p><b>Direct costs and benefits to business calculations</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>The direct costs to business from increased applications fees can be found in the tables above. The estimated costs to business by year (between Q2 2025 and Q1 2035) is £12.8m. There are no direct benefits to business from these changes. However, there will be indirect benefits from having a better resourced planning system and more timely decision-making. </p>
+          </content>
+        </level>
+      </section>
+      <section eId="section_13">
+        <heading>Risks and assumptions</heading>
+        <intro>
+          <p><b>Risks and assumptions</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>The model assumptions, with justifications and risks are as follows: </p>
+          </content>
+        </level>
+        <paragraph>
+          <num>1.</num>
+          <intro>
+            <p>There is no behavioural change from raising fees. </p>
+          </intro>
+          <subparagraph>
+            <num>a.</num>
+            <content>
+              <p>We believe this is reasonable given the small cost of fees relative to construction in most cases. </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>b.</num>
+            <content>
+              <p>Any resulting reduction in applications is likely to be small compared to the reductions modelled in the alternative applications scenarios.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>2.</num>
+          <intro>
+            <p>Application numbers will follow changes in building starts, with uncertainty about numbers beyond 2029/30.</p>
+          </intro>
+          <subparagraph>
+            <num>a.</num>
+            <content>
+              <p>We assume that future application numbers will increase at the same rate as building starts, in line with OBR projections until 2029/30. Beyond 2029/30, application numbers are assumed to be constant. Householder applications are assumed to return to the pre-Covid-19 average (i.e. the increase after the outbreak of the pandemic was temporary) and are static.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>3.</num>
+          <content>
+            <p>Fees are assumed to increase in line with CPI inflation as forecast by the OBR (Oct 2024).</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_14">
+        <heading>Impact on small and micro businesses</heading>
+        <intro>
+          <p><b>Impact on small and micro businesses</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>Increasing fees will have an impact on those small and micro businesses who submit planning applications by increasing their costs when they make a planning application which requires a fee. However the increases are proportionally minor in the context of development costs, and as highlighted in the risks and assumptions section, we don’t expect any behavioural impacts from these fee increases. </p>
+          </content>
+        </level>
+      </section>
+      <section eId="section_15">
+        <heading>Wider impacts (consider the impacts of your proposals)</heading>
+        <intro>
+          <p><b>Wider impacts (consider the impacts of your proposals)</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>The wider impacts of this policy will be seen in a better resourced and better performing planning application service, which will be able to deliver better quality decisions more quickly. This will help the delivery of housing and allow businesses to adapt and develop more quickly.</p>
+          </content>
+        </level>
+      </section>
+      <section eId="section_16">
+        <heading>A summary of the potential trade implications of measure</heading>
+        <intro>
+          <p><b>A summary of the potential trade implications of measure</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>There are no trade implications.</p>
+          </content>
+        </level>
+      </section>
+      <section eId="section_17">
+        <heading>Monitoring and Evaluation</heading>
+        <intro>
+          <p><b>Monitoring and Evaluation</b></p>
+        </intro>
+        <level>
+          <content>
+            <p>If the policy is successful, local authorities will receive more income from planning application fees and invest this into their planning application service. We could monitor this through the collated annual returns to government which are published in a table (RO5<authorialNote marker="7"><p><b> </b><a href="https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing"><b><u>https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing</u></b></a></p></authorialNote>), which should show an increase in income and spend on development management (planning application service). However, if the number of applications reduces significantly as a result of general economic or housing market conditions, the impact of the policy in terms of increased income may be diminished. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>As a consequence of the increased income, we expect that, with the additional resources, the performance of local authorities in terms of speed and quality of decision-making will improve. Although it is recognised that performance can be influenced by other factors, for example staff recruitment and retention and demand for services which is expected to increase in order to meet government commitments for housing delivery and economic growth.  Planning performance is monitored through arrangements introduced by the Growth and Infrastructure Act 2013. Under-performing local planning authorities may be designated, if they fail to meet published speed and quality criteria.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>We intend to conduct a benchmarking exercise of planning fees in 2025 so that, if a separate measure to localise planning fees, i.e. to empower local planning authorities to set their own planning fees, one of the measures in the proposed Planning and Infrastructure Bill, secures Royal Assent, we will be ready to implement the localisation of fees through secondary legislation. One of the proposed fees localisation models was to continue to set a national fee, from which local authorities would be able to vary fees. The outcome of the benchmarking exercise will inform the setting of any future national fees, irrespective of whether or not some form of localisation of fees takes place.</p>
+          </content>
+        </level>
+      </section>
+    </mainBody>
+  </doc>
+</akomaNtoso>
