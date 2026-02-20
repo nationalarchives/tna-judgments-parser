@@ -78,9 +78,11 @@ public class TestIA {
             string filename = (string)testData[0];
             var resourceName = $"test.leg.ia.original_filenames.{filename}.docx";
             var docx = DocumentHelpers.ReadDocx(resourceName);
-            var akn = Helper.Parse(docx, filename + ".docx").Serialize();
-            var outputPath = System.IO.Path.Combine(projectRoot, "test", "leg", "ia", "original filenames", $"{filename}.akn");
-            System.IO.File.WriteAllText(outputPath, akn);
+            var result = Helper.Parse(docx, filename + ".docx");
+            var testFolder = System.IO.Path.Combine(projectRoot, "test", "leg", "ia", "original filenames");
+            var outputPath = System.IO.Path.Combine(testFolder, $"{filename}.akn");
+            System.IO.File.WriteAllText(outputPath, result.Serialize());
+            result.SaveImages(testFolder);
             System.Console.WriteLine($"Regenerated {filename}.akn");
         }
     }

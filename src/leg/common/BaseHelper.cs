@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
@@ -5,6 +6,7 @@ using DocumentFormat.OpenXml.Packaging;
 
 using UK.Gov.NationalArchives.AkomaNtoso;
 using UK.Gov.Legislation.Models;
+using UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Common {
 
@@ -28,6 +30,10 @@ abstract class BaseHelper {
 
     private IXmlDocument Parse(WordprocessingDocument docx, bool simplify, string filename = null) {
         IDocument doc = ParseDocument(docx, filename);
+        
+        // Process images: convert formats, rename to S3 convention, update references
+        IEnumerable<Judgments.IImage> processedImages = LegImageProcessor.ProcessImages(doc);
+        
         XmlDocument xml = Builder.Build(doc);
         docx.Dispose();
         if (simplify)
@@ -36,7 +42,7 @@ abstract class BaseHelper {
         // Apply document-specific processing
         ApplyDocumentSpecificProcessing(xml);
         
-        return new XmlDocument_ { Document = xml };
+        return new XmlDocument_ { Document = xml, Images = processedImages };
     }
 
     /// <summary>

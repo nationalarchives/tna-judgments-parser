@@ -134,6 +134,15 @@ public class Program {
         byte[] docx = File.ReadAllBytes(input.FullName);
         string filename = input.Name;
         var parsed = EM.Helper.Parse(docx, filename);
+        
+        // Save images alongside output if output path is specified
+        if (output is not null) {
+            string outputDir = Path.GetDirectoryName(output.FullName);
+            if (!string.IsNullOrEmpty(outputDir)) {
+                parsed.SaveImages(outputDir);
+            }
+        }
+        
         if (outputZip is not null)
             SaveZip(parsed, outputZip);
         else if (output is not null)
@@ -153,6 +162,15 @@ public class Program {
         
         byte[] docx = File.ReadAllBytes(input.FullName);
         var parsed = IA.Helper.Parse(docx, input.Name);
+        
+        // Save images alongside output if output path is specified
+        if (output is not null) {
+            string outputDir = Path.GetDirectoryName(output.FullName);
+            if (!string.IsNullOrEmpty(outputDir)) {
+                parsed.SaveImages(outputDir);
+            }
+        }
+        
         if (outputZip is not null)
             SaveZip(parsed, outputZip);
         else if (output is not null)

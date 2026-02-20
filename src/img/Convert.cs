@@ -28,6 +28,13 @@ class Convert {
         return stream.ToArray();
     }
 
+    internal static byte[] ConvertToGif(byte[] source) {
+        using var image = Image.Load(source);
+        using var stream = new MemoryStream();
+        image.SaveAsGif(stream);
+        return stream.ToArray();
+    }
+
 }
 
 }
