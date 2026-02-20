@@ -222,7 +222,7 @@ namespace UK.Gov.Legislation.Lawmaker
             provisionRecords.Push(typeof(Prov1), number, quoteDepth);
 
             // Attempt to parse the first child as a Prov2
-            HContainer prov2 = ParseAndMemoize(line, "Prov2", ParseProv2);
+            HContainer? prov2 = ParseAndMemoize(line, "Prov2", ParseProv2);
             if (prov2 != null)
             {
                 children.Add(prov2);
@@ -294,29 +294,6 @@ namespace UK.Gov.Legislation.Lawmaker
                 WrapUp = wrapUp, 
                 HeadingPrecedesNumber = headingPrecedesNumber 
             };
-        }
-
-
-        private (WText, WLine) FixFirstProv2Num(WLine line)
-        {
-            WText num = null;
-            WLine rest = null;
-            if (line.Contents.FirstOrDefault() is WText t && t.Text.StartsWith("—(1) "))
-            {
-                num = new("(1)", t.properties);
-                WText x = new(t.Text[5..], t.properties);
-                rest = WLine.Make(line, line.Contents.Skip(1).Prepend(x));
-            }
-            else if (line.Contents.FirstOrDefault() is WText t1 && line.Contents.Skip(1).FirstOrDefault() is WText t2)
-            {
-                string combined = t1.Text + t2.Text;
-                if (!combined.StartsWith("—(1) "))
-                    return (null, null);
-                num = new("(1)", t1.Text.Length > 2 ? t1.properties : t2.properties);
-                WText x = new(combined[5..], t2.properties);
-                rest = WLine.Make(line, line.Contents.Skip(2).Prepend(x));
-            }
-            return (num, rest);
         }
 
         /// <summary>

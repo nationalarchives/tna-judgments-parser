@@ -162,52 +162,48 @@
           <num>(3)</num>
           <content>
             <p>Example of a table in SC Bill (they like to add a table number that is centre aligned.  It would be ok to capture this as the table caption rather than table number if easier)—</p>
+            <tblock class="table">
+              <num>TABLE 1</num>
+              <foreign>
+                <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
+                  <tbody class="left">
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Column 1</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Column 2</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Stuff in the first cell</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Stuff in cell 2</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Stuff in cell 3</p>
+                      </td>
+                      <td>
+                        <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Stuff in cell 4</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </foreign>
+            </tblock>
+          </content>
+        </subsection>
+        <subsection class="prov2">
+          <num>(4)</num>
+          <content>
+            <p>The remaining sections come into force the day after this Act receives Royal Assent.</p>
           </content>
         </subsection>
       </section>
-      <level>
-        <content>
-          <tblock class="table">
-            <num>TABLE 1</num>
-            <foreign>
-              <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="2" class="allBorders tableleft width100">
-                <tbody class="left">
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Column 1</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Column 2</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Stuff in the first cell</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Stuff in cell 2</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Stuff in cell 3</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Stuff in cell 4</p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </foreign>
-          </tblock>
-        </content>
-      </level>
-      <subsection class="prov2">
-        <num>(4)</num>
-        <content>
-          <p>The remaining sections come into force the day after this Act receives Royal Assent.</p>
-        </content>
-      </subsection>
       <section eId="sec_4" class="prov1">
         <num>4</num>
         <heading>Short title</heading>
@@ -226,9 +222,6 @@
               <heading>Status</heading>
               <paragraph class="schProv1">
                 <num>1</num>
-					   
-																																												 
-						
                 <subparagraph class="schProv2">
                   <num>(1)</num>
                   <content>
@@ -358,9 +351,6 @@
           <num>Schedule 2<authorialNote class="referenceNote"><p>(introduced by section 3)</p></authorialNote></num>
           <paragraph class="schProv1">
             <num>1</num>
-				   
-																																											 
-					
             <subparagraph class="schProv2">
               <num>(1)</num>
               <content>
@@ -376,33 +366,6 @@
           </paragraph>
           <paragraph class="schProv1">
             <num>2</num>
-				   
-																		   
-					
-								 
-							
-					   
-																			  
-						
-					
-								 
-							
-					   
-																									 
-						
-					
-								 
-							
-					   
-															 
-						
-					
-								 
-							
-					   
-																																											 
-						
-					
             <subparagraph class="schProv2">
               <num>(1)</num>
               <intro>

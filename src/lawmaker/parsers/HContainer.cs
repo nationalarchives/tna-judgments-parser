@@ -329,7 +329,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
 
             // If centre-aligned, it must be the start of a new grouping provision
-            if (line.IsCenterAligned())
+            if (line.IsCenterAligned() && Peek(LdappTableNumber.Parse) is null)
                 return true;
 
             // If we reach the heading of another Prov1, this Prov1 must be over
