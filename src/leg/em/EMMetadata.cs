@@ -80,7 +80,8 @@ class EMMetadata : DocumentMetadata {
             EmYear = mappingRecord.EmYear,
             EmVersion = mappingRecord.EmVersion,
             LegislationYear = mappingRecord.LegislationYear,
-            LegislationNumber = mappingRecord.LegislationNumber
+            LegislationNumber = mappingRecord.LegislationNumber,
+            WorkAuthor = Common.LegWorkAuthorMapping.GetWorkAuthorUri(mappingRecord.LegislationClass)
         };
     }
 

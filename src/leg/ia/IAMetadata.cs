@@ -82,7 +82,8 @@ class IAMetadata : DocumentMetadata {
             LegislationYear = mappingRecord?.LegislationYear,
             LegislationNumber = mappingRecord?.LegislationNumber,
             // Full UKIA URI
-            UkiaUri = mappingRecord?.UkiaUri
+            UkiaUri = mappingRecord?.UkiaUri,
+            WorkAuthor = Common.LegWorkAuthorMapping.GetWorkAuthorUri(mappingRecord?.LegislationClass)
         };
     }
 

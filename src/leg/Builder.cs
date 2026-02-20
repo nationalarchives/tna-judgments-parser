@@ -82,7 +82,7 @@ class Builder : AkN.Builder {
         }
 
         XmlElement workAuthor = CreateAndAppend("FRBRauthor", work);
-        workAuthor.SetAttribute("href", "#");
+        workAuthor.SetAttribute("href", data.WorkAuthor ?? "#");
         XmlElement workCountry = CreateAndAppend("FRBRcountry", work);
         workCountry.SetAttribute("value", "GB-UKM");
 
