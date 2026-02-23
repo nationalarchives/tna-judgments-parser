@@ -8,6 +8,8 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+using Backlog.TreMetadata;
+
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 
@@ -21,7 +23,7 @@ namespace Backlog.Src
 
         internal string Uuid { get; init; }
 
-        internal Metadata Data { get; init; }
+        internal FullTreMetadata Data { get; init; }
 
         internal byte[] TarGz { get; init; }
 
@@ -39,7 +41,8 @@ namespace Backlog.Src
         internal static Bundle Make(Source source, Judgments.Api.Response response, bool autoPublish = false)
         {
             string uuid = Guid.NewGuid().ToString();
-            Metadata metadata = new()
+
+            FullTreMetadata fullTreMetadata = new()
             {
                 Parameters = new Parameters
                 {
@@ -64,19 +67,22 @@ namespace Backlog.Src
                     }
                 }
             };
+
             using var memStream = new MemoryStream();
             var gz = new GZipOutputStream(memStream);
             var tar = new TarOutputStream(gz, Encoding.UTF8);
             WriteSource(source.Content, uuid, source.Filename, tar);
-            WriteXml(response.Xml, uuid, metadata.Parameters.TRE.Payload.Xml, tar);
-            WriteMetadata(metadata, uuid, tar);
+            WriteXml(response.Xml, uuid, fullTreMetadata.Parameters.TRE.Payload.Xml, tar);
+            WriteMetadata(fullTreMetadata, uuid, tar);
             WriteImages(response.Images, uuid, tar);
+
             tar.Close();
             gz.Close();
             byte[] tarGz = memStream.ToArray();
             return new() {
+
                 Uuid = uuid,
-                Data = metadata,
+                Data = fullTreMetadata,
                 TarGz = tarGz
             };
         }
@@ -94,7 +100,7 @@ namespace Backlog.Src
             Write(bytes, name, tar);
         }
 
-        private static void WriteMetadata(Metadata metadata, string uuid, TarOutputStream tar)
+        private static void WriteMetadata(FullTreMetadata metadata, string uuid, TarOutputStream tar)
         {
             var json = JsonSerializer.SerializeToUtf8Bytes(metadata, metadata.Options);
             var name = uuid + "/" + metadata.Parameters.TRE.Payload.Metadata;
@@ -120,50 +126,5 @@ namespace Backlog.Src
             tar.Write(data, 0, data.Length);
             tar.CloseEntry();
         }
-
-        internal class Metadata
-        {
-
-            public readonly JsonSerializerOptions Options = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-
-            public Parameters Parameters { get; set; }
-
-        }
-
-        internal class Parameters
-        {
-
-            [JsonPropertyName("TRE")]
-            public TRE.Metadata TRE { get; set; }
-
-            [JsonPropertyName("PARSER")]
-            public UK.Gov.NationalArchives.Judgments.Api.Meta PARSER { get; set; }
-
-            [JsonPropertyName("INGESTER_OPTIONS")]
-            public IngestorOptions IngestorOptions { get; set; }
-        }
-
-        public class IngestorOptions
-        {
-
-            [JsonPropertyName("auto_publish")]
-            public bool AutoPublish { get; set; }
-
-
-            [JsonPropertyName("source_document")]
-            public SourceDocument Source { get; set; }
-
-            public class SourceDocument {
-
-                [JsonPropertyName("format")]
-                public string Format { get; set; }
-
-                [JsonPropertyName("file_hash")]
-                public string Hash { get; set; }
-
-            }
-
-        }
     }
-
 }
