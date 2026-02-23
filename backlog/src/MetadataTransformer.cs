@@ -126,4 +126,26 @@ internal static class MetadataTransformer
         };
         return meta;
     }
+
+    public static List<IMetadataField> CsvLineToMetadataFields(CsvLine csvLine)
+    {
+        List<IMetadataField> metadataFields =
+        [
+            CreateExternalMetadataField(MetadataFieldName.CsvMetadataFileContents, csvLine.FullCsvLineContents),
+        ];
+
+        return metadataFields;
+    }
+
+    private static MetadataField<T> CreateExternalMetadataField<T>(MetadataFieldName metadataFieldName, T value)
+    {
+        return new MetadataField<T>
+        {
+            Id = Guid.NewGuid(),
+            Name = metadataFieldName,
+            Value = value,
+            Source = MetadataSource.External,
+            Timestamp = DateTime.UtcNow
+        };
+    }
 }
