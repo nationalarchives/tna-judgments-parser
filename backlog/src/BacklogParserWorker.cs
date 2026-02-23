@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 
 using Backlog.Csv;
 
@@ -243,22 +244,26 @@ internal class BacklogParserWorker(
     {
         var meta = MetadataTransformer.MakeMetadata(csvLine);
 
-        var uuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)
+        var tdrUuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)
             ? csvLine.Uuid
             : backlogFiles.FindUuidInTransferMetadata(csvLine.FilePath);
-        var content = backlogFiles.ReadFile(uuid);
 
-        var response = CreateResponse(meta, content);
+        var sourceContent = backlogFiles.ReadFile(tdrUuid);
 
-        var source = new Bundle.Source
-        {
-            Filename = Path.GetFileName(csvLine.FilePath),
-            Content = content,
-            MimeType = meta.SourceFormat
-        };
+        var response = CreateResponse(meta, sourceContent);
 
-        logger.LogInformation("Creating bundle with source: {SourceFilename}", source.Filename);
-        logger.LogInformation("Creating bundle with content: {ContentLength} bytes", source.Content.Length);
-        return Bundle.Make(source, response, autoPublish);
+        var originalSourceFileName = Path.GetFileName(csvLine.FilePath);
+        var contentHash = Hash(sourceContent);
+        var images = response.Images?.ToArray() ?? [];
+        
+        var trePipelineMetadata = MetadataTransformer.CreateFullTreMetadata(originalSourceFileName, meta.SourceFormat, contentHash, autoPublish, images, response.Meta);
+
+        return Bundle.Make(response, trePipelineMetadata, sourceContent, originalSourceFileName, images);
+    }
+
+    private static string Hash(byte[] content)
+    {
+        var hash = SHA256.HashData(content);
+        return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
     }
 }
