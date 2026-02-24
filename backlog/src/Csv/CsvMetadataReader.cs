@@ -1,9 +1,13 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 
 using CsvHelper;
@@ -80,7 +84,7 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
 
         return records;
     }
-    
+
     private sealed class CsvLineMap : ClassMap<CsvLine>
     {
         public CsvLineMap()
@@ -100,7 +104,7 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
                 {	
                     // Get value
                     convertFromStringArgs.Row.TryGetField<string>("jurisdictions", out var field);
-                    return field?.Split(',').Select(item => item.Trim()) ?? [];
+                    return field?.Split(',').Select(item => item.Trim()).Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction)).ToArray() ?? [];
                 });
             Map(l => l.Skip)
                 .Optional()

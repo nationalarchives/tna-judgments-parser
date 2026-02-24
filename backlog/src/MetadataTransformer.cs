@@ -48,28 +48,23 @@ internal static class MetadataTransformer
         // Validation is now handled during CSV reading
         List<Category> categories = [];
 
-        // Only add categories if they exist and are not empty
-        if (!string.IsNullOrWhiteSpace(line.main_category))
+        if (line.main_category is not null)
         {
             categories.Add(new Category { Name = line.main_category });
 
-            if (!string.IsNullOrWhiteSpace(line.main_subcategory))
+            if (line.main_subcategory is not null)
             {
-                categories.Add(new Category
-                {
-                    Name = line.main_subcategory, Parent = line.main_category
-                });
+                categories.Add(new Category { Name = line.main_subcategory, Parent = line.main_category });
             }
         }
 
-        if (!string.IsNullOrWhiteSpace(line.sec_category))
+        if (line.sec_category is not null)
         {
             categories.Add(new Category { Name = line.sec_category });
 
-            if (!string.IsNullOrWhiteSpace(line.sec_subcategory))
+            if (line.sec_subcategory is not null)
             {
-                categories.Add(
-                    new Category { Name = line.sec_subcategory, Parent = line.sec_category });
+                categories.Add(new Category { Name = line.sec_subcategory, Parent = line.sec_category });
             }
         }
 
@@ -87,27 +82,11 @@ internal static class MetadataTransformer
             throw new Exception($"Unexpected extension {line.Extension}");
         }
 
-        var court = Courts.GetByCode(line.court);
-
-        var jurisdictions = line.Jurisdictions
-                                .Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction))
-                                .Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction });
-
-        string webArchivingLink;
-        if (!string.IsNullOrWhiteSpace(line.webarchiving))
-        {
-            webArchivingLink = line.webarchiving;
-        }
-        else
-        {
-            webArchivingLink = null;
-        }
-
         ExtendedMetadata meta = new()
         {
             Type = JudgmentType.Decision,
-            Court = court,
-            Jurisdictions = jurisdictions,
+            Court = Courts.GetByCode(line.court),
+            Jurisdictions = line.Jurisdictions.Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction }),
             Date = new WNamedDate { Date = line.decision_datetime.ToString("yyyy-MM-dd"), Name = "decision" },
             Name = line.FirstPartyName + " v " + line.respondent,
             CaseNumbers = [line.CaseNo],
@@ -122,7 +101,7 @@ internal static class MetadataTransformer
             SourceFormat = sourceFormat,
             Categories = [.. categories],
             NCN = line.ncn,
-            WebArchivingLink = webArchivingLink
+            WebArchivingLink = line.webarchiving
         };
         return meta;
     }
