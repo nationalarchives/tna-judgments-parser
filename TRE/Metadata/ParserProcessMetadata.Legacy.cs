@@ -10,7 +10,7 @@ namespace TRE.Metadata;
 /// </summary>
 public partial record ParserProcessMetadata
 {
-    [JsonPropertyName("uri")] public required string Uri { get; init; }
+    [JsonPropertyName("uri")] public string? Uri { get; init; }
     [JsonPropertyName("court")] public required string Court { get; init; }
     [JsonPropertyName("cite")] public required string Cite { get; init; }
     [JsonPropertyName("date")] public required string Date { get; init; }
