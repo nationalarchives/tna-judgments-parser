@@ -31,16 +31,16 @@ namespace UK.Gov.Legislation.Lawmaker
             Prov2Name tagName = GetProv2Name();
 
             if (IsEndOfQuotedStructure(intro))
-                return new Prov2Leaf { TagName = tagName, Number = num, Contents = intro };
+                return new Prov2Leaf { TagName = tagName, Number = num, Heading = heading, Contents = intro };
 
             List<IBlock> wrapUp = [];
             List<IDivision> children = ParseProv2Children(line, intro, wrapUp);
 
             if (children.Count == 0)
             {
-                return new Prov2Leaf { TagName = tagName, Number = num, Contents = intro };
+                return new Prov2Leaf { TagName = tagName, Number = num, Heading = heading, Contents = intro };
             }
-            return new Prov2Branch { TagName = tagName, Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            return new Prov2Branch { TagName = tagName, Number = num, Heading = heading, Intro = intro, Children = children, WrapUp = wrapUp };
         }
 
         /// <summary>
