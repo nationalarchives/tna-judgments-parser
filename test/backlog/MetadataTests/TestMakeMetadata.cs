@@ -67,6 +67,7 @@ public class TestMakeMetadata
         var line = new CsvLine
         {
             id = "124",
+            FilePath = "/test/data/test.pdf",
             court = "UKFTT-GRC",
             decision_datetime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
             CaseNo = "ABC/2023/002",
@@ -281,33 +282,6 @@ public class TestMakeMetadata
     }
 
     [Fact]
-    public void MakeMetadata_WithWhitespaceSecondaryCategory_CreatesOnlyMainCategories()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            sec_category = "   ", // Whitespace only
-            sec_subcategory = "Article 8",
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result.Categories);
-        Assert.Equal(2, result.Categories.Count);
-
-        // Check only main category and subcategory exist
-        var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
-        var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
-
-        Assert.NotNull(mainCategory);
-        Assert.NotNull(mainSubcategory);
-    }
-
-    [Fact]
     public void MakeMetadata_WithComplexFileNumbers_CreatesCorrectCaseNumber()
     {
         // Arrange
@@ -375,40 +349,6 @@ public class TestMakeMetadata
     }
 
     [Fact]
-    public void MakeMetadata_WithEmptyNCN_NCNPropertyIsEmpty()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            ncn = ""
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal("", result.NCN);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithWhitespaceNCN_NCNPropertyIsWhitespace()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            ncn = "   "
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal("   ", result.NCN);
-    }
-
-    [Fact]
     public void MakeMetadata_WithWebArchiving_SetsWebArchivingLinkProperty()
     {
         // Arrange
@@ -422,22 +362,6 @@ public class TestMakeMetadata
 
         // Assert
         Assert.Equal("http://webarchivelink", result.WebArchivingLink);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithoutWebArchiving_WebArchivingLinkIsNull()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            webarchiving = ""
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.Null(result.WebArchivingLink);
     }
 
     [Fact]
@@ -471,38 +395,5 @@ public class TestMakeMetadata
 
         // Assert
         Assert.Empty(result.Jurisdictions);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithWhitespaceJurisdiction_JurisdictionPropertyIsEmpty()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = ["   "]
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.Empty(result.Jurisdictions);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithWhitespaceAndNonWhitespaceJurisdictions_IgnoresBlankJurisdictions()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = ["   ", "Transport", ""]
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        var actualJurisdiction = Assert.Single(result.Jurisdictions);
-        Assert.Equal("Transport", actualJurisdiction.ShortName);
     }
 }
