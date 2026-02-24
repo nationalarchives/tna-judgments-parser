@@ -8,9 +8,9 @@ internal class IngestorOptions
 {
 
     [JsonPropertyName("auto_publish")]
-    public bool AutoPublish { get; set; }
+    public bool AutoPublish { get; init; }
 
 
     [JsonPropertyName("source_document")]
-    public SourceDocument Source { get; set; }
+    public required SourceDocument Source { get; init; }
 }

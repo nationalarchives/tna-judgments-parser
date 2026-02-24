@@ -20,10 +20,10 @@ internal static class MetadataTransformer
         {
             Parameters = new Parameters
             {
-                TRE = new TRE.Metadata
+                TRE = new Tre
                 {
                     Reference = Guid.NewGuid().ToString(),
-                    Payload = new TRE.Payload
+                    Payload = new Payload
                     {
                         Filename = sourceFilename,
                         Images = images.Select(i => i.Name).ToArray(),
