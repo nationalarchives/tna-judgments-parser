@@ -9,6 +9,6 @@ internal class FullTreMetadata
 
     public readonly JsonSerializerOptions Options = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
-    public Parameters Parameters { get; set; }
+    public required Parameters Parameters { get; init; }
 
 }

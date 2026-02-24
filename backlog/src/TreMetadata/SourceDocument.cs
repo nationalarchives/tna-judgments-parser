@@ -7,9 +7,9 @@ namespace Backlog.TreMetadata;
 internal class SourceDocument {
 
     [JsonPropertyName("format")]
-    public string Format { get; set; }
+    public required string Format { get; init; }
 
     [JsonPropertyName("file_hash")]
-    public string Hash { get; set; }
+    public required string Hash { get; init; }
 
 }

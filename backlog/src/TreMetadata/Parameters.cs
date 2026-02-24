@@ -8,11 +8,11 @@ internal class Parameters
 {
 
     [JsonPropertyName("TRE")]
-    public Backlog.Src.TRE.Metadata TRE { get; set; }
+    public required Tre TRE { get; init; }
 
     [JsonPropertyName("PARSER")]
-    public UK.Gov.NationalArchives.Judgments.Api.Meta PARSER { get; set; }
+    public required UK.Gov.NationalArchives.Judgments.Api.Meta PARSER { get; init; }
 
     [JsonPropertyName("INGESTER_OPTIONS")]
-    public IngestorOptions IngestorOptions { get; set; }
+    public required IngestorOptions IngestorOptions { get; init; }
 }
