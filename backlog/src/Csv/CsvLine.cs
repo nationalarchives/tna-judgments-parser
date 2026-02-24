@@ -6,7 +6,12 @@ using System.ComponentModel.DataAnnotations;
 
 using CsvHelper.Configuration.Attributes;
 
+using TRE.Metadata.MetadataFieldTypes;
+
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.NationalArchives.CaseLaw.Model;
+
+using Party = UK.Gov.NationalArchives.CaseLaw.Model.Party;
 
 namespace Backlog.Csv;
 
@@ -95,6 +100,47 @@ internal record CsvLine
             if (!string.IsNullOrWhiteSpace(appellants))
                 return PartyRole.Appellant;
             throw new InvalidOperationException("No first party (claimants or appellants) is defined");
+        }
+    }
+
+    public Party[] Parties =>
+    [
+        (appellants, claimants) switch
+        {
+            (appellants: null, claimants: not null) => new Party { Name = claimants, Role = PartyRole.Claimant },
+            (appellants: not null, claimants: null) => new Party { Name = appellants, Role = PartyRole.Appellant },
+            _ => throw new InvalidOperationException()
+        },
+        new() { Name = respondent, Role = PartyRole.Respondent }
+    ];
+
+    public ICategory[] Categories
+    {
+        get
+        {
+            List<ICategory> categories = [];
+
+            if (main_category is not null)
+            {
+                categories.Add(new Category { Name = main_category });
+
+                if (main_subcategory is not null)
+                {
+                    categories.Add(new Category { Name = main_subcategory, Parent = main_category });
+                }
+            }
+
+            if (sec_category is not null)
+            {
+                categories.Add(new Category { Name = sec_category });
+
+                if (sec_subcategory is not null)
+                {
+                    categories.Add(new Category { Name = sec_subcategory, Parent = sec_category });
+                }
+            }
+
+            return categories.ToArray();
         }
     }
 }

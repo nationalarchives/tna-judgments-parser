@@ -11,6 +11,8 @@ using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Judgments.Api;
 
+using Party = UK.Gov.NationalArchives.CaseLaw.Model.Party;
+
 namespace Backlog.Src;
 
 internal static class MetadataTransformer
@@ -45,29 +47,6 @@ internal static class MetadataTransformer
 
     internal static ExtendedMetadata MakeMetadata(CsvLine line)
     {
-        // Validation is now handled during CSV reading
-        List<Category> categories = [];
-
-        if (line.main_category is not null)
-        {
-            categories.Add(new Category { Name = line.main_category });
-
-            if (line.main_subcategory is not null)
-            {
-                categories.Add(new Category { Name = line.main_subcategory, Parent = line.main_category });
-            }
-        }
-
-        if (line.sec_category is not null)
-        {
-            categories.Add(new Category { Name = line.sec_category });
-
-            if (line.sec_subcategory is not null)
-            {
-                categories.Add(new Category { Name = line.sec_subcategory, Parent = line.sec_category });
-            }
-        }
-
         string sourceFormat;
         if (line.Extension == ".doc" || line.Extension == ".docx")
         {
@@ -90,16 +69,9 @@ internal static class MetadataTransformer
             Date = new WNamedDate { Date = line.decision_datetime.ToString("yyyy-MM-dd"), Name = "decision" },
             Name = line.FirstPartyName + " v " + line.respondent,
             CaseNumbers = [line.CaseNo],
-            Parties =
-            [
-                new UK.Gov.NationalArchives.CaseLaw.Model.Party
-                {
-                    Name = line.FirstPartyName, Role = line.FirstPartyRole
-                },
-                new UK.Gov.NationalArchives.CaseLaw.Model.Party { Name = line.respondent, Role = PartyRole.Respondent }
-            ],
+            Parties = line.Parties.ToList(),
+            Categories = line.Categories.ToList(),
             SourceFormat = sourceFormat,
-            Categories = [.. categories],
             NCN = line.ncn,
             WebArchivingLink = line.webarchiving
         };
