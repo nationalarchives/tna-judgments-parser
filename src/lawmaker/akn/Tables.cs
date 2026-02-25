@@ -82,7 +82,7 @@ namespace UK.Gov.Legislation.Lawmaker
                         subheading.InnerText = caption.TextContent;
                         AlignmentValues? subheadingAlignment = caption.GetEffectiveAlignment();
                         string subheadingAlignmentClass = subheadingAlignment?.ToXmlClassValue() ?? "left";
-                        subheading.SetAttribute("class", AknNamespace, headingAlignmentClass);
+                        subheading.SetAttribute("class", AknNamespace, subheadingAlignmentClass);
                     }
                     ;
                 }
