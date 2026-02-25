@@ -14,10 +14,10 @@
       <block name="banner">STATUTORY INSTRUMENTS</block>
       <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
       <container name="subjects">
-		<container name="subject">
-			<block name="subject"><concept refersTo="" class="title">INFRASTRUCTURE PLANNING</concept></block>
-		</container>
-	  </container>
+        <container name="subject">
+          <block name="subject"><concept refersTo="" class="title">INFRASTRUCTURE PLANNING</concept></block>
+        </container>
+      </container>
       <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
       <container name="dates">
         <block name="madeDate"><span>Made</span><docDate date="2024-01-16">16 January 2024</docDate></block>
@@ -34,7 +34,7 @@
             <num class="left">Table 1</num>
             <heading class="left">Operational Rating Noise Limits</heading>
             <subheading class="left">With some additional paragraphs that should</subheading>
-            <subheading class="left">Be inserted as subheadings</subheading>
+            <subheading class="justify">Be inserted as subheadings</subheading>
             <foreign>
               <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="4" class="allBorders tableleft width100">
                 <thead class="bold centre">
@@ -86,172 +86,138 @@
                       <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">25</p>
                     </td>
                   </tr>
+                </tbody>
+              </table>
+            </foreign>
+          </tblock>
+        </content>
+      </article>
+      <article eId="sec_2" class="prov1">
+        <heading>Citation and commencement</heading>
+        <num>2.</num>
+        <content>
+          <p>This Order may be cited as the Drax Power Station Bioenergy with Carbon Capture and Storage Extension Order 2024 and comes into force on 7th February 2024.</p>
+          <tblock class="table">
+            <num class="left">Table 1</num>
+            <heading class="centre">Operational Rating Noise Limits</heading>
+            <subheading class="right">With some additional paragraphs that should</subheading>
+            <subheading class="centre">Be inserted as subheadings</subheading>
+            <foreign>
+              <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="4" class="allBorders tableleft width100">
+                <thead class="bold centre">
+                  <tr>
+                    <th>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(1)</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Receptor</p>
+                    </th>
+                    <th>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(2)</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Easting</p>
+                    </th>
+                    <th>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(3)</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Northing</p>
+                    </th>
+                    <th>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(3)</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Rating Level, LAR,Tr dB</p>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="left">
                   <tr>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R3, Old Lodge</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R1, Wren Hall</p>
                     </td>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">467515.8</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">467273.9</p>
                     </td>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">428113.3</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">427168.2</p>
                     </td>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">24</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">30</p>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R4, Drax Abbey Farm</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R2, Long Drax</p>
                     </td>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">467042.9</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">468163.8</p>
                     </td>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">428281.2</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">428107.5</p>
                     </td>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">26</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">25</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </foreign>
+          </tblock>
+        </content>
+      </article>
+      <article eId="sec_3" class="prov1">
+        <heading>Citation and commencement</heading>
+        <num>3.</num>
+        <content>
+          <p>This Order may be cited as the Drax Power Station Bioenergy with Carbon Capture and Storage Extension Order 2024 and comes into force on 7th February 2024.</p>
+          <tblock class="table">
+            <num class="left">Table 1</num>
+            <heading class="right">Operational Rating Noise Limits</heading>
+            <subheading class="centre">With some additional paragraphs that should</subheading>
+            <subheading class="right">Be inserted as subheadings</subheading>
+            <foreign>
+              <table xmlns="http://www.w3.org/1999/xhtml" xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" cols="4" class="allBorders tableleft width100">
+                <thead class="bold centre">
+                  <tr>
+                    <th>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(1)</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Receptor</p>
+                    </th>
+                    <th>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(2)</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Easting</p>
+                    </th>
+                    <th>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(3)</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Northing</p>
+                    </th>
+                    <th>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">(3)</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">Rating Level, LAR,Tr dB</p>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="left">
+                  <tr>
+                    <td>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R1, Wren Hall</p>
+                    </td>
+                    <td>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">467273.9</p>
+                    </td>
+                    <td>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">427168.2</p>
+                    </td>
+                    <td>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">30</p>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R5, Foreman’s Cottage</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R2, Long Drax</p>
                     </td>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">466842.8</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">468163.8</p>
                     </td>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">428479.7</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">428107.5</p>
                     </td>
                     <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">26</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R6, 2 Forest Grove Barlow</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">465213.8</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">428417.7</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">34</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R7, Brigg Lane</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">465054.1</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">426248.0</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">33</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R8, Station Cottage</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">466671.9</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">426399.0</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">23</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R9, Briden Bungalow</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">467759.4</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">426857.7</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">27</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R10, Weston House</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">466922.8</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">426331.1</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">24</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R11, Rose Cottage</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">468427.5</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">426135.4</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">24</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R12, Brigg Farm Court</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">465207.2</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">426066.8</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">24</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R13, Camela House</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">464868.2</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">426604.7</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">36</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">R14, Low Farm</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">464211.5</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">427351.1</p>
-                    </td>
-                    <td>
-                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">35</p>
+                      <p xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">25</p>
                     </td>
                   </tr>
                 </tbody>
