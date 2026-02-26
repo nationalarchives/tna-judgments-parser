@@ -35,6 +35,16 @@ class IAMetadata : DocumentMetadata {
     // Full UKIA URI (e.g., http://www.legislation.gov.uk/id/ukia/2025/17)
     public string UkiaUri { get; init; }
 
+    /// <summary>
+    /// Image filenames use the IA's own identifier (ukia/year/number) rather than the
+    /// parent legislation path, so images from different IAs under the same legislation
+    /// are always distinguishable.
+    /// </summary>
+    public override string ImageFileIdentifier =>
+        UkiaYear.HasValue && UkiaNumber.HasValue
+            ? $"ukia/{UkiaYear.Value}/{UkiaNumber.Value}"
+            : base.ImageFileIdentifier;
+
     internal static IAMetadata Make(List<IBlock> header, WordprocessingDocument doc, LegislativeDocumentConfig config, string filename) {
         string name = BaseHeaderSplitter.GetDocumentType(header, config);
         if (string.IsNullOrEmpty(name)) {

@@ -76,6 +76,14 @@ internal class DocumentMetadata {
     /// </summary>
     public string LegislationUri { get; init; }
 
+    /// <summary>
+    /// The identifier used to derive image filenames for this document.
+    /// Defaults to <see cref="ShortUriComponent"/>. Override in subtypes where the document
+    /// has its own identifier separate from the legislation path
+    /// (e.g. IAs use 'ukia/{year}/{number}' rather than 'uksi/{year}/{number}/impacts/{year}/{number}').
+    /// </summary>
+    public virtual string ImageFileIdentifier => ShortUriComponent;
+
     public Dictionary<string, Dictionary<string, string>> CSS { get; init; }
 
 }
