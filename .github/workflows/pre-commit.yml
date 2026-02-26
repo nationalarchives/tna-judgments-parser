@@ -1,0 +1,30 @@
+name: Husky pre-commit checks
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  precommit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
+
+      - name: Install Husky.Net
+        run: dotnet tool install Husky
+
+      - name: Install hooks with Husky.Net
+        run: dotnet husky install
+      
+      - name: Run Husky.Net pre-commit hook
+        run: .husky/pre-commit
