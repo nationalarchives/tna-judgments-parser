@@ -40,9 +40,9 @@ internal static class MetadataTransformer
         return metadata;
     }
 
-    internal static ExtendedMetadata MakeMetadata(CsvLine line)
+    internal static StubMetadata MakeMetadata(CsvLine line)
     {
-        ExtendedMetadata meta = new()
+        StubMetadata meta = new()
         {
             Type = JudgmentType.Decision,
             Court = Courts.GetByCode(line.court),

@@ -14,7 +14,7 @@ namespace Backlog.Src
 
     internal class Stub
     {
-        internal static Stub Make(ExtendedMetadata data)
+        internal static Stub Make(StubMetadata data)
         {
             return new(data);
         }
@@ -38,7 +38,7 @@ namespace Backlog.Src
             parent.AppendChild(e);
             return e;
         }
-        private Stub(ExtendedMetadata data)
+        private Stub(StubMetadata data)
         {
             Data = data;
             XmlElement root = CreateAndAppend("akomaNtoso", Document);
