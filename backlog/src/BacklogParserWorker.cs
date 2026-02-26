@@ -216,7 +216,6 @@ internal class BacklogParserWorker(
                 DocumentType = "decision",
                 Court = meta.Court?.Code,
                 Date = meta.Date?.Date,
-                Name = meta.Name,
                 JurisdictionShortNames = meta.Jurisdictions.Select(j => j.ShortName).ToList(),
                 Extensions = new Api.Extensions
                 {
