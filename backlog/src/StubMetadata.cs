@@ -5,7 +5,7 @@ using UK.Gov.NationalArchives.CaseLaw.Model;
 
 namespace Backlog.Src
 {
-    internal class ExtendedMetadata : IMetadataExtended
+    internal class StubMetadata : IMetadataExtended
     {
         internal JudgmentType Type { get; init; }
 
