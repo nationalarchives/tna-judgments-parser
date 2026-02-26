@@ -147,4 +147,171 @@ public class TestMetadataTransformer
         Assert.EquivalentWithExclusions(firstFullTreMetadata, secondFullTreMetadata,
             fullTreMetadata => fullTreMetadata.Parameters.TRE.Reference);
     }
+
+
+    [Fact]
+    public void CsvLineToMetadataFields_AllFields_HaveExternalSource()
+    {
+        var metadataLine = CsvMetadataLineHelper.DummyLineWithClaimants;
+
+        var result = MetadataTransformer.CsvLineToMetadataFields(metadataLine);
+
+        Assert.All(result, field => Assert.Equal(MetadataSource.External, field.Source));
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_AllFields_HaveCurrentTimestamp()
+    {
+        var metadataLine = CsvMetadataLineHelper.DummyLineWithClaimants;
+
+        var beforeCall = DateTime.UtcNow;
+        var result = MetadataTransformer.CsvLineToMetadataFields(metadataLine);
+        var afterCall = DateTime.UtcNow;
+
+        Assert.All(result, field => Assert.InRange(field.Timestamp, beforeCall, afterCall));
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_CaseNumber_IsMapped()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { CaseNo = "XYZ/123" };
+
+        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue("XYZ/123", MetadataFieldName.CaseNumber, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Court_IsMapped()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { court = "UKFTT-GRC" };
+
+        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue("UKFTT-GRC", MetadataFieldName.Court, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Date_IsMapped()
+    {
+        var decisionDatetime = new DateTime(2024, 2, 1, 10, 30, 0, DateTimeKind.Utc);
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { decision_datetime = decisionDatetime };
+
+        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue(decisionDatetime, MetadataFieldName.Date, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Jurisdictions_AreMapped()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Jurisdictions = ["Transport", "Tax"] };
+
+        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasMetadataFieldsWithValues(["Transport", "Tax"], MetadataFieldName.Jurisdiction, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Parties_AreMapped()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLine with { appellants = "Alice", respondent = "HMRC" };
+
+        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasMetadataFieldsWithValues(csvLine.Parties, MetadataFieldName.Party, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Categories_AreMapped()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            main_category = "CatA",
+            main_subcategory = "SubA",
+            sec_category = "CatB"
+        };
+
+        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasMetadataFieldsWithValues(csvLine.Categories, MetadataFieldName.Category, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_CsvMetadataFileContents_IsMapped()
+    {
+        var fullCsvLineContents = new Dictionary<string, string> { { "a", "1" }, { "b", "2" } };
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { FullCsvLineContents = fullCsvLineContents };
+
+        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue(fullCsvLineContents, MetadataFieldName.CsvMetadataFileContents, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_Ncn_IsIncludedWhenPresent()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { ncn = "NCN123" };
+
+        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue("NCN123", MetadataFieldName.Ncn, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_HeadnoteSummary_IsIncludedWhenPresent()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { headnote_summary = "A summary" };
+
+        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue("A summary", MetadataFieldName.HeadnoteSummary, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_WebArchivingLink_IsIncludedWhenPresent()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { webarchiving = "http://example.com" };
+
+        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        AssertHasSingleMetadataFieldWithValue("http://example.com", MetadataFieldName.WebArchivingLink, fields);
+    }
+
+    [Fact]
+    public void CsvLineToMetadataFields_OptionalFields_AreExcludedWhenNull()
+    {
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            headnote_summary = null,
+            ncn = null,
+            webarchiving = null
+        };
+
+        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        Assert.DoesNotContain(fields, f => f.Name == MetadataFieldName.HeadnoteSummary);
+        Assert.DoesNotContain(fields, f => f.Name == MetadataFieldName.Ncn);
+        Assert.DoesNotContain(fields, f => f.Name == MetadataFieldName.WebArchivingLink);
+    }
+
+    private static void AssertHasSingleMetadataFieldWithValue<T>(T expectedValue, MetadataFieldName metadataFieldName,
+        List<IMetadataField> fields)
+    {
+        var metadataField = Assert.Single(fields, f => f.Name == metadataFieldName);
+        var typedMetadataField = Assert.IsType<MetadataField<T>>(metadataField);
+        Assert.Equal(expectedValue, typedMetadataField.Value);
+    }
+
+    private static void AssertHasMetadataFieldsWithValues<T>(T[] expectedValues, MetadataFieldName metadataFieldName,
+        List<IMetadataField> fields)
+    {
+        var metadataFields = fields.Where(f => f.Name == metadataFieldName);
+
+        Assert.Collection(metadataFields, expectedValues.Select<T, Action<IMetadataField>>(v => metadataField =>
+        {
+            var typedMetadataField = Assert.IsType<MetadataField<T>>(metadataField);
+            Assert.Equivalent(v, typedMetadataField.Value);
+        }).ToArray());
+    }
 }
