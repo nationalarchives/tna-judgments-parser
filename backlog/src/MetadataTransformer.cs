@@ -12,8 +12,9 @@ namespace Backlog.Src;
 
 internal static class MetadataTransformer
 {
-    internal static FullTreMetadata CreateFullTreMetadata(string sourceFilename, string sourceMimeType, 
-        string contentHash, bool autoPublish, Image[] images, Meta responseMeta)
+    internal static FullTreMetadata CreateFullTreMetadata(string sourceFilename, string sourceMimeType,
+        string contentHash, bool autoPublish, Image[] images, Meta responseMeta,
+        List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText)
     {
         var metadata = new FullTreMetadata
         {
@@ -29,7 +30,26 @@ internal static class MetadataTransformer
                         Log = null
                     }
                 },
-                PARSER = responseMeta,
+                PARSER = new ParserProcessMetadata
+                {
+                    Court = responseMeta.Court,
+                    Cite = responseMeta.Cite,
+                    Date = responseMeta.Date,
+                    Name = responseMeta.Name,
+                    Extensions = responseMeta.Extensions,
+                    Attachments = responseMeta.Attachments ?? [],
+                    DocumentType = Enum.Parse<DocumentType>(responseMeta.DocumentType, true),
+                    ErrorMessages = [],
+                    MetadataFields = externalMetadataFields,
+                    PrimarySource = new PrimarySourceFile
+                    {
+                        Filename = null,
+                        Mimetype = null,
+                        Route = Route.Bulk,
+                        Sha256 = null
+                    },
+                    XmlContainsDocumentText = xmlContainsDocumentText
+                },
                 IngestorOptions = new IngestorOptions
                 {
                     AutoPublish = autoPublish,

@@ -191,17 +191,17 @@ internal class BacklogParserWorker(
         }
     }
 
-    private Api.Response CreateResponse(CsvLine csvLine, string mimeType, byte[] sourceContent)
+    private Api.Response CreateResponse(CsvLine csvLine, string mimeType, byte[] sourceContent, bool isStub)
     {
         Api.Response response;
-        var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
         if (isStub)
         {
             var stubMetadata = MetadataTransformer.MakeMetadata(csvLine);
             var stub = Stub.Make(stubMetadata);
 
-            response = new Api.Response {
-                Xml = stub.Serialize(), 
+            response = new Api.Response
+            {
+                Xml = stub.Serialize(),
                 Meta = new Api.Meta
                 {
                     DocumentType = "decision",
@@ -249,13 +249,14 @@ internal class BacklogParserWorker(
         var sourceContent = backlogFiles.ReadFile(tdrUuid);
         var mimeType = MetadataTransformer.GetMimeType(csvLine.Extension);
 
-        var response = CreateResponse(csvLine, mimeType, sourceContent);
+        var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
+        var response = CreateResponse(csvLine, mimeType, sourceContent, isStub);
 
         var originalSourceFileName = Path.GetFileName(csvLine.FilePath);
         var contentHash = Hash(sourceContent);
         var images = response.Images?.ToArray() ?? [];
         
-        var trePipelineMetadata = MetadataTransformer.CreateFullTreMetadata(originalSourceFileName, mimeType, contentHash, autoPublish, images, response.Meta);
+        var trePipelineMetadata = MetadataTransformer.CreateFullTreMetadata(originalSourceFileName, mimeType, contentHash, autoPublish, images, response.Meta, [], !isStub);
 
         return Bundle.Make(response, trePipelineMetadata, sourceContent, originalSourceFileName, images);
     }
