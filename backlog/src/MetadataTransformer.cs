@@ -1,17 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 using Backlog.Csv;
 using Backlog.TreMetadata;
 
-using TRE.Metadata.MetadataFieldTypes;
-
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Judgments.Api;
-
-using Party = UK.Gov.NationalArchives.CaseLaw.Model.Party;
 
 namespace Backlog.Src;
 
@@ -47,20 +42,6 @@ internal static class MetadataTransformer
 
     internal static ExtendedMetadata MakeMetadata(CsvLine line)
     {
-        string sourceFormat;
-        if (line.Extension == ".doc" || line.Extension == ".docx")
-        {
-            sourceFormat = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-        }
-        else if (line.Extension == ".pdf")
-        {
-            sourceFormat = "application/pdf";
-        }
-        else
-        {
-            throw new Exception($"Unexpected extension {line.Extension}");
-        }
-
         ExtendedMetadata meta = new()
         {
             Type = JudgmentType.Decision,
@@ -71,10 +52,20 @@ internal static class MetadataTransformer
             CaseNumbers = [line.CaseNo],
             Parties = line.Parties.ToList(),
             Categories = line.Categories.ToList(),
-            SourceFormat = sourceFormat,
+            SourceFormat = GetMimeType(line.Extension),
             NCN = line.ncn,
             WebArchivingLink = line.webarchiving
         };
         return meta;
+    }
+
+    public static string GetMimeType(string fileExtension)
+    {
+        return fileExtension switch
+        {
+            ".doc" or ".docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            ".pdf" => "application/pdf",
+            _ => throw new ArgumentOutOfRangeException(nameof(fileExtension), $"Unexpected extension {fileExtension}")
+        };
     }
 }
