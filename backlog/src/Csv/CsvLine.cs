@@ -1,10 +1,17 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 using CsvHelper.Configuration.Attributes;
 
+using TRE.Metadata.MetadataFieldTypes;
+
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.NationalArchives.CaseLaw.Model;
+
+using Party = UK.Gov.NationalArchives.CaseLaw.Model.Party;
 
 namespace Backlog.Csv;
 
@@ -12,55 +19,59 @@ namespace Backlog.Csv;
 [CategoryValidation]
 internal record CsvLine
 {
-    public Dictionary<string, string> FullCsvLineContents { get; set; }
+    public Dictionary<string, string> FullCsvLineContents { get; set; } = [];
 
-    public string id { get; set; }
-    public string court { get; set; }
-    [Required(AllowEmptyStrings = false)]
-    public string FilePath { get; set; }
-    [Required(AllowEmptyStrings = false)]
-    public string Extension { get; set; }
-    public DateTime decision_datetime { get; set; }
-    public string CaseNo { get; set; }
-
-    [Optional]
-    public IEnumerable<string> Jurisdictions { get; set; } = [];
-            
-    [Optional]
-    public string claimants { get; set; }
-            
-    [Optional]
-    public string appellants { get; set; }
-            
-    public string respondent { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string id { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string court { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string FilePath { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string Extension { get; set; }
+    public required DateTime decision_datetime { get; set; }
+    [Required(AllowEmptyStrings = false)] public required string CaseNo { get; set; }
+    [Optional] public string[] Jurisdictions { get; set; } = [];
 
     [Optional]
-    public string main_category { get; set; }
+    [TypeConverter(typeof(TrimmedNullableStringConverter))]
+    public string? claimants { get; set; }
 
     [Optional]
-    public string main_subcategory { get; set; }
+    [TypeConverter(typeof(TrimmedNullableStringConverter))]
+    public string? appellants { get; set; }
+
+    [Required(AllowEmptyStrings = false)] public required string respondent { get; set; }
 
     [Optional]
-    public string sec_category { get; set; }
+    [TypeConverter(typeof(TrimmedNullableStringConverter))]
+    public string? main_category { get; set; }
 
     [Optional]
-    public string sec_subcategory { get; set; }
-            
-    [Optional]
-    public string ncn { get; set; }
-            
-    [Optional]
-    public string headnote_summary { get; set; }
+    [TypeConverter(typeof(TrimmedNullableStringConverter))]
+    public string? main_subcategory { get; set; }
 
     [Optional]
-    public string webarchiving { get; set; }
-            
-    [Optional]
-    public string Uuid { get; set; }
+    [TypeConverter(typeof(TrimmedNullableStringConverter))]
+    public string? sec_category { get; set; }
 
     [Optional]
-    [Default(false)]
-    public bool Skip { get; set; }
+    [TypeConverter(typeof(TrimmedNullableStringConverter))]
+    public string? sec_subcategory { get; set; }
+
+    [Optional]
+    [TypeConverter(typeof(TrimmedNullableStringConverter))]
+    public string? ncn { get; set; }
+
+    [Optional]
+    [TypeConverter(typeof(TrimmedNullableStringConverter))]
+    public string? headnote_summary { get; set; }
+
+    [Optional]
+    [TypeConverter(typeof(TrimmedNullableStringConverter))]
+    public string? webarchiving { get; set; }
+
+    [Optional]
+    [TypeConverter(typeof(TrimmedNullableStringConverter))]
+    public string? Uuid { get; set; }
+
+    [Optional] [Default(false)] public bool Skip { get; set; }
 
     /// <summary>
     /// Gets the name of the first party (either claimants or appellants)
@@ -89,6 +100,47 @@ internal record CsvLine
             if (!string.IsNullOrWhiteSpace(appellants))
                 return PartyRole.Appellant;
             throw new InvalidOperationException("No first party (claimants or appellants) is defined");
+        }
+    }
+
+    public Party[] Parties =>
+    [
+        (appellants, claimants) switch
+        {
+            (appellants: null, claimants: not null) => new Party { Name = claimants, Role = PartyRole.Claimant },
+            (appellants: not null, claimants: null) => new Party { Name = appellants, Role = PartyRole.Appellant },
+            _ => throw new InvalidOperationException()
+        },
+        new() { Name = respondent, Role = PartyRole.Respondent }
+    ];
+
+    public ICategory[] Categories
+    {
+        get
+        {
+            List<ICategory> categories = [];
+
+            if (main_category is not null)
+            {
+                categories.Add(new Category { Name = main_category });
+
+                if (main_subcategory is not null)
+                {
+                    categories.Add(new Category { Name = main_subcategory, Parent = main_category });
+                }
+            }
+
+            if (sec_category is not null)
+            {
+                categories.Add(new Category { Name = sec_category });
+
+                if (sec_subcategory is not null)
+                {
+                    categories.Add(new Category { Name = sec_subcategory, Parent = sec_category });
+                }
+            }
+
+            return categories.ToArray();
         }
     }
 }

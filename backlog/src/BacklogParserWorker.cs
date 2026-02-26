@@ -191,72 +191,71 @@ internal class BacklogParserWorker(
         }
     }
 
-    private Api.Response CreateResponse(ExtendedMetadata meta, byte[] content)
+    private Api.Response CreateResponse(CsvLine csvLine, string mimeType, byte[] sourceContent)
     {
-        var isPdf = meta.SourceFormat.ToLower() == "application/pdf";
-        if (isPdf)
+        Api.Response response;
+        var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
+        if (isStub)
         {
-            var metadata = new Api.Meta
-            {
-                DocumentType = "decision",
-                Court = meta.Court?.Code,
-                Date = meta.Date?.Date,
-                Name = meta.Name
+            var stubMetadata = MetadataTransformer.MakeMetadata(csvLine);
+            var stub = Stub.Make(stubMetadata);
+
+            response = new Api.Response {
+                Xml = stub.Serialize(), 
+                Meta = new Api.Meta
+                {
+                    DocumentType = "decision",
+                    Court = stubMetadata.Court?.Code,
+                    Date = stubMetadata.Date?.Date,
+                    Name = stubMetadata.Name
+                }
             };
-
-            var stub = Stub.Make(meta);
-
-            var response = new Api.Response { Xml = stub.Serialize(), Meta = metadata };
-            return response;
         }
         else
         {
-            var metadata = new Api.Meta
-            {
-                DocumentType = "decision",
-                Court = meta.Court?.Code,
-                Date = meta.Date?.Date,
-                Name = meta.Name,
-                JurisdictionShortNames = meta.Jurisdictions.Select(j => j.ShortName).ToList(),
-                Extensions = new Api.Extensions
-                {
-                    SourceFormat = meta.SourceFormat,
-                    CaseNumbers = meta.CaseNumbers,
-                    Parties = meta.Parties,
-                    Categories = meta.Categories,
-                    WebArchivingLink = meta.WebArchivingLink
-                }
-            };
-
             var request = new Api.Request
             {
-                Meta = metadata,
+                Meta = new Api.Meta
+                {
+                    DocumentType = "decision",
+                    Court = csvLine.court,
+                    Date = csvLine.decision_datetime.ToString("yyyy-MM-dd"),
+                    JurisdictionShortNames = csvLine.Jurisdictions.ToList(),
+                    Extensions = new Api.Extensions
+                    {
+                        SourceFormat = mimeType,
+                        CaseNumbers = [csvLine.CaseNo],
+                        Parties = csvLine.Parties.ToList(),
+                        Categories = csvLine.Categories.ToList(),
+                        WebArchivingLink = csvLine.webarchiving
+                    }
+                },
                 Hint = Api.Hint.UKUT,
-                Content = content
+                Content = sourceContent
             };
 
-            var response = parser.Parse(request);
-            return response;
+            response = parser.Parse(request);
         }
+
+        return response;
     }
 
     private Bundle GenerateBundle(CsvLine csvLine, bool autoPublish)
     {
-        var meta = MetadataTransformer.MakeMetadata(csvLine);
-
         var tdrUuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)
             ? csvLine.Uuid
             : backlogFiles.FindUuidInTransferMetadata(csvLine.FilePath);
 
         var sourceContent = backlogFiles.ReadFile(tdrUuid);
+        var mimeType = MetadataTransformer.GetMimeType(csvLine.Extension);
 
-        var response = CreateResponse(meta, sourceContent);
+        var response = CreateResponse(csvLine, mimeType, sourceContent);
 
         var originalSourceFileName = Path.GetFileName(csvLine.FilePath);
         var contentHash = Hash(sourceContent);
         var images = response.Images?.ToArray() ?? [];
         
-        var trePipelineMetadata = MetadataTransformer.CreateFullTreMetadata(originalSourceFileName, meta.SourceFormat, contentHash, autoPublish, images, response.Meta);
+        var trePipelineMetadata = MetadataTransformer.CreateFullTreMetadata(originalSourceFileName, mimeType, contentHash, autoPublish, images, response.Meta);
 
         return Bundle.Make(response, trePipelineMetadata, sourceContent, originalSourceFileName, images);
     }

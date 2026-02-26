@@ -97,6 +97,30 @@ public class TestRead: IDisposable
         );
     }
 
+    [Theory]
+    [InlineData("", new string[] { })]
+    [InlineData("     ", new string[] { })]
+    [InlineData(",   ,  ", new string[] { })]
+    [InlineData("\"Community,Environment\"", new[] { "Community", "Environment" })]
+    [InlineData("\"Community, Environment,Other , Another ,\"", new[] { "Community", "Environment", "Other", "Another" })]
+    [InlineData("\"Community, Environment,,  ,Other , Another ,\"", new[] { "Community", "Environment", "Other", "Another" })]
+    [InlineData("\"Environment\"", new[] { "Environment" })]
+    [InlineData("Environment", new[] { "Environment" })]
+    public void Read_WithJurisdictions_StoresTrimmedNonEmptyJurisdictions(string csvJurisdictions, string[] expectedJurisdictions)
+    {
+        using var csvStream = new StringReader(
+            $"""
+             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,jurisdictions
+             125,/test/data/test-case4.docx,.docx,2025-01-19 13:00:00,IA/2025/004,UKUT-IAC,Taylor,Home Office,{csvJurisdictions}
+             """
+        );
+
+        var result = csvMetadataReader.Read(csvStream, out _);
+
+        var line = Assert.Single(result);
+        Assert.Equal(expectedJurisdictions, line.Jurisdictions);
+    }
+
     [Fact]
     public void Read_WithExtraColumns_StoresAllCsvDataInFullCsvLineContents()
     {
@@ -157,25 +181,30 @@ public class TestRead: IDisposable
     {
         // Arrange - This CSV content should have ALL possible columns in it
         const string csvContent =
-            @"id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary,jurisdictions,ncn,webarchiving,uuid,skip
-123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,,
-124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,,,,,
-125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC/2025/003,UKFTT-GRC,,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case,,[2023] EWCA Civ 123 & 124,,,
-123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA/2025/004,UKUT-IAC,Brown,,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case,,,,,
-126,/test/data/test-case5.docx,.docx,2025-01-19 13:00:00,IA/2025/005,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions,""Community,Environment"",,,,
-127,/test/data/test-case6.docx,.docx,2025-01-19 13:00:00,IA/2025/006,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions with spaces,""Community, Environment,Other , Another ,"",,,,
-128,/test/data/test-case7.docx,.docx,2025-01-19 13:00:00,IA/2025/007,UKUT-IAC,,Davies,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,One Jurisdiction,Environment,,,,
-129,/test/data/test-case8.pdf,.pdf,2025-01-20 14:00:00,IA/2025/008,UKUT-IAC,,Berry,Home Office,,,,,With web archiving link,,,http://webarchivinglink,,
-130,/test/data/test-case9.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With UUID,,,,ba2c15ca-6d3d-4550-8975-b516e3c0ed2d,n
-131,/test/data/test-case10.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With Skip,,,,,skip me";
+            """
+            id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary,jurisdictions,ncn,webarchiving,uuid,skip
+            123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,,
+            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,,,,,
+            125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC/2025/003,UKFTT-GRC,,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case,,[2023] EWCA Civ 123 & 124,,,
+            123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA/2025/004,UKUT-IAC,Brown,,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case,,,,,
+            126,/test/data/test-case5.docx,.docx,2025-01-19 13:00:00,IA/2025/005,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions,"Community,Environment",,,,
+            127,/test/data/test-case6.docx,.docx,2025-01-19 13:00:00,IA/2025/006,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions with spaces,"Community, Environment,Other , Another ,",,,,
+            128,/test/data/test-case7.docx,.docx,2025-01-19 13:00:00,IA/2025/007,UKUT-IAC,,Davies,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,One Jurisdiction,Environment,,,,
+            129,/test/data/test-case8.pdf,.pdf,2025-01-20 14:00:00,IA/2025/008,UKUT-IAC,,Berry,Home Office,,,,,With web archiving link,,,http://webarchivinglink,,
+            130,/test/data/test-case9.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With UUID,,,,ba2c15ca-6d3d-4550-8975-b516e3c0ed2d,n
+            131,/test/data/test-case10.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With Skip,,,,,skip me
+            """;
 
         // Arrange - Double check that csv input has all columns in case new ones are added
-        var publicPropertiesInLineClass = typeof(CsvLine).GetProperties()
-                                                         .Select(p => p.Name)
-                                                         .Where(p => p is not nameof(CsvLine
-                                                             .FullCsvLineContents)); //Ignore AllMetadataFields as it is a constructed property
+        var publicPropertiesInCsvLineClass = typeof(CsvLine).GetProperties()
+                                                            .Select(p => p.Name)
+                                                            .Except([
+                                                                nameof(CsvLine.FullCsvLineContents),
+                                                                nameof(CsvLine.Categories),
+                                                                nameof(CsvLine.Parties)
+                                                            ]);
         var csvHeaderParts = csvContent.Split(Environment.NewLine)[0].Split(",");
-        foreach (var publicProperty in publicPropertiesInLineClass)
+        foreach (var publicProperty in publicPropertiesInCsvLineClass)
         {
             Assert.Contains(publicProperty, csvHeaderParts, StringComparer.InvariantCultureIgnoreCase);
         }
@@ -198,16 +227,16 @@ public class TestRead: IDisposable
                     CaseNo = "IA/2025/001",
                     Jurisdictions = [],
                     claimants = "Smith",
-                    appellants = "",
+                    appellants = null,
                     respondent = "Secretary of State for the Home Department",
                     main_category = "Immigration",
                     main_subcategory = "Appeal Rights",
                     sec_category = "Administrative Law",
                     sec_subcategory = "Judicial Review",
-                    ncn = "",
-                    webarchiving = "",
+                    ncn = null,
+                    webarchiving = null,
                     headnote_summary = "This is a test headnote summary",
-                    Uuid = "",
+                    Uuid = null,
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
@@ -220,17 +249,17 @@ public class TestRead: IDisposable
                     decision_datetime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/002",
                     Jurisdictions = [],
-                    claimants = "",
+                    claimants = null,
                     appellants = "Jones",
                     respondent = "HMRC",
                     main_category = "Tax",
                     main_subcategory = "VAT Appeals",
                     sec_category = "Employment",
                     sec_subcategory = "Tribunal Procedure",
-                    ncn = "",
-                    webarchiving = "",
+                    ncn = null,
+                    webarchiving = null,
                     headnote_summary = "Another test case",
-                    Uuid = "",
+                    Uuid = null,
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
@@ -244,16 +273,16 @@ public class TestRead: IDisposable
                     CaseNo = "GRC/2025/003",
                     Jurisdictions = [],
                     claimants = "Williams",
-                    appellants = "",
+                    appellants = null,
                     respondent = "DWP",
                     main_category = "Social Security",
                     main_subcategory = "Employment Support Allowance",
                     sec_category = "Benefits",
                     sec_subcategory = "Appeals Procedure",
                     ncn = "[2023] EWCA Civ 123 & 124",
-                    webarchiving = "",
+                    webarchiving = null,
                     headnote_summary = "Benefits case",
-                    Uuid = "",
+                    Uuid = null,
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
@@ -266,17 +295,17 @@ public class TestRead: IDisposable
                     decision_datetime = new DateTime(2025, 01, 18, 12, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/004",
                     Jurisdictions = [],
-                    claimants = "",
+                    claimants = null,
                     appellants = "Brown",
                     respondent = "Home Office",
                     main_category = "Immigration",
                     main_subcategory = "Entry Clearance",
                     sec_category = "Administrative Law",
                     sec_subcategory = "Case Management",
-                    ncn = "",
-                    webarchiving = "",
+                    ncn = null,
+                    webarchiving = null,
                     headnote_summary = "Duplicate ID case",
-                    Uuid = "",
+                    Uuid = null,
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
@@ -290,16 +319,16 @@ public class TestRead: IDisposable
                     CaseNo = "IA/2025/005",
                     Jurisdictions = ["Community", "Environment"],
                     claimants = "Taylor",
-                    appellants = "",
+                    appellants = null,
                     respondent = "Home Office",
                     main_category = "Immigration",
                     main_subcategory = "Entry Clearance",
                     sec_category = "Administrative Law",
                     sec_subcategory = "Case Management",
-                    ncn = "",
-                    webarchiving = "",
+                    ncn = null,
+                    webarchiving = null,
                     headnote_summary = "Multiple Jurisdictions",
-                    Uuid = "",
+                    Uuid = null,
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
@@ -313,16 +342,16 @@ public class TestRead: IDisposable
                     CaseNo = "IA/2025/006",
                     Jurisdictions = ["Community", "Environment", "Other", "Another"],
                     claimants = "Taylor",
-                    appellants = "",
+                    appellants = null,
                     respondent = "Home Office",
                     main_category = "Immigration",
                     main_subcategory = "Entry Clearance",
                     sec_category = "Administrative Law",
                     sec_subcategory = "Case Management",
-                    ncn = "",
-                    webarchiving = "",
+                    ncn = null,
+                    webarchiving = null,
                     headnote_summary = "Multiple Jurisdictions with spaces",
-                    Uuid = "",
+                    Uuid = null,
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
@@ -336,16 +365,16 @@ public class TestRead: IDisposable
                     CaseNo = "IA/2025/007",
                     Jurisdictions = ["Environment"],
                     claimants = "Davies",
-                    appellants = "",
+                    appellants = null,
                     respondent = "Home Office",
                     main_category = "Immigration",
                     main_subcategory = "Entry Clearance",
                     sec_category = "Administrative Law",
                     sec_subcategory = "Case Management",
-                    ncn = "",
-                    webarchiving = "",
+                    ncn = null,
+                    webarchiving = null,
                     headnote_summary = "One Jurisdiction",
-                    Uuid = ""
+                    Uuid = null
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
                 new CsvLine
@@ -358,16 +387,16 @@ public class TestRead: IDisposable
                     CaseNo = "IA/2025/008",
                     Jurisdictions = [],
                     claimants = "Berry",
-                    appellants = "",
+                    appellants = null,
                     respondent = "Home Office",
-                    main_category = "",
-                    main_subcategory = "",
-                    sec_category = "",
-                    sec_subcategory = "",
-                    ncn = "",
+                    main_category = null,
+                    main_subcategory = null,
+                    sec_category = null,
+                    sec_subcategory = null,
+                    ncn = null,
                     webarchiving = "http://webarchivinglink",
                     headnote_summary = "With web archiving link",
-                    Uuid = "",
+                    Uuid = null,
                     Skip = false
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
@@ -381,14 +410,14 @@ public class TestRead: IDisposable
                     CaseNo = "IA/2025/009",
                     Jurisdictions = [],
                     claimants = "Berry",
-                    appellants = "",
+                    appellants = null,
                     respondent = "Home Office",
-                    main_category = "",
-                    main_subcategory = "",
-                    sec_category = "",
-                    sec_subcategory = "",
-                    ncn = "",
-                    webarchiving = "",
+                    main_category = null,
+                    main_subcategory = null,
+                    sec_category = null,
+                    sec_subcategory = null,
+                    ncn = null,
+                    webarchiving = null,
                     headnote_summary = "With UUID",
                     Uuid = "ba2c15ca-6d3d-4550-8975-b516e3c0ed2d",
                     Skip = false
@@ -404,16 +433,16 @@ public class TestRead: IDisposable
                     CaseNo = "IA/2025/009",
                     Jurisdictions = [],
                     claimants = "Berry",
-                    appellants = "",
+                    appellants = null,
                     respondent = "Home Office",
-                    main_category = "",
-                    main_subcategory = "",
-                    sec_category = "",
-                    sec_subcategory = "",
-                    ncn = "",
-                    webarchiving = "",
+                    main_category = null,
+                    main_subcategory = null,
+                    sec_category = null,
+                    sec_subcategory = null,
+                    ncn = null,
+                    webarchiving = null,
                     headnote_summary = "With Skip",
-                    Uuid = "",
+                    Uuid = null,
                     Skip = true
                 }, line, l => l.FullCsvLineContents)
         );
@@ -479,16 +508,16 @@ public class TestRead: IDisposable
                     CaseNo = "IA/2025/001",
                     Jurisdictions = [],
                     claimants = "Smith",
-                    appellants = "",
+                    appellants = null,
                     respondent = "Secretary of State for the Home Department",
                     main_category = "Immigration",
                     main_subcategory = "Appeal Rights",
                     sec_category = "Administrative Law",
                     sec_subcategory = "Judicial Review",
-                    ncn = "",
-                    webarchiving = "",
+                    ncn = null,
+                    webarchiving = null,
                     headnote_summary = "This is a test headnote summary",
-                    Uuid = ""
+                    Uuid = null
                 }, line, l => l.FullCsvLineContents),
             line => Assert.EquivalentWithExclusions(
                 new CsvLine
@@ -500,17 +529,17 @@ public class TestRead: IDisposable
                     decision_datetime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
                     CaseNo = "IA/2025/002",
                     Jurisdictions = [],
-                    claimants = "",
+                    claimants = null,
                     appellants = "Jones",
                     respondent = "HMRC",
                     main_category = "Tax",
                     main_subcategory = "VAT Appeals",
                     sec_category = "Employment",
                     sec_subcategory = "Tribunal Procedure",
-                    ncn = "",
-                    webarchiving = "",
+                    ncn = null,
+                    webarchiving = null,
                     headnote_summary = "Another test case",
-                    Uuid = ""
+                    Uuid = null
                 }, line, l => l.FullCsvLineContents)
         );
     }

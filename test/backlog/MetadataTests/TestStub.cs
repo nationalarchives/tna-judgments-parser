@@ -147,72 +147,12 @@ public class TestStub
     }
 
     [Fact]
-    public void Stub_WithEmptyJurisdiction_DoesNotAppearInXml()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = [""]
-        };
-        var metadata = MetadataTransformer.MakeMetadata(line);
-
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
-
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.DoesNotHaveNodeWithName("uk:jurisdiction");
-    }
-
-    [Fact]
     public void Stub_WithNoJurisdiction_DoesNotAppearInXml()
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            // Jurisdiction is not set (empty)
-        };
-        var metadata = MetadataTransformer.MakeMetadata(line);
-
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
-
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.DoesNotHaveNodeWithName("uk:jurisdiction");
-    }
-
-    [Fact]
-    public void Stub_WithWhitespaceJurisdiction_DoesNotAppearInXml()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = ["   "]
-        };
-        var metadata = MetadataTransformer.MakeMetadata(line);
-
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
-
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.DoesNotHaveNodeWithName("uk:jurisdiction");
-    }
-
-    [Fact]
-    public void Stub_WithMultipleWhitespaceJurisdictions_DoesNotAppearInXml()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = ["   ", "", "  "]
+            Jurisdictions = []
         };
         var metadata = MetadataTransformer.MakeMetadata(line);
 
@@ -246,34 +186,13 @@ public class TestStub
         doc.HasSingleNodeWithName("proprietary").Which().HasChildMatching("uk:webarchiving", "a web archive link");
     }
 
-    
-        [Fact]
-    public void Stub_WithEmptyWebArchivingLink_DoesNotAppearInXml()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            webarchiving = ""
-        };
-        var metadata = MetadataTransformer.MakeMetadata(line);
-
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
-
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.DoesNotHaveNodeWithName("uk:webarchiving");
-    }
-
     [Fact]
     public void Stub_WithNoWebArchivingLink_DoesNotAppearInXml()
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            // WebArchiving is not set (empty)
+            webarchiving = null
         };
         var metadata = MetadataTransformer.MakeMetadata(line);
 
