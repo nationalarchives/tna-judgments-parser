@@ -1,115 +1,64 @@
+#nullable enable
 
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+
+using Backlog.TreMetadata;
 
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 
-using Judgments = UK.Gov.NationalArchives.Judgments;
+using UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src
 {
-
-    class Bundle
+    internal class Bundle
     {
-
         internal string Uuid { get; init; }
-
-        internal Metadata Data { get; init; }
-
         internal byte[] TarGz { get; init; }
 
-        internal class Source {
-            public string Filename { get; init; }
-            public byte[] Content { get; init; }
-            public string MimeType { get; init; }
-        }
-
-        private static string Hash(byte[] content) {
-            byte[] hash = SHA256.HashData(content);
-            return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
-        }
-
-        internal static Bundle Make(Source source, Judgments.Api.Response response, bool autoPublish = false)
+        internal static Bundle Make(Response response, FullTreMetadata fullTreMetadata, byte[] sourceContent,
+            string sourceFilename, IEnumerable<Image> images)
         {
-            string uuid = Guid.NewGuid().ToString();
-            Metadata metadata = new()
-            {
-                Parameters = new Parameters
-                {
-                    TRE = new TRE.Metadata
-                    {
-                        Reference = uuid,
-                        Payload = new TRE.Payload
-                        {
-                            Filename = source.Filename,
-                            Images = response.Images is null ? [] : [.. response.Images.Select(i => i.Name)],
-                            Log = null
-                        }
-                    },
-                    PARSER = response.Meta,
-                    IngestorOptions = new IngestorOptions()
-                    {
-                        AutoPublish = autoPublish,
-                        Source = new() {
-                            Format = source.MimeType,
-                            Hash = Hash(source.Content)
-                        }
-                    }
-                }
-            };
+            var treReference = fullTreMetadata.Parameters.TRE.Reference;
+
             using var memStream = new MemoryStream();
             var gz = new GZipOutputStream(memStream);
             var tar = new TarOutputStream(gz, Encoding.UTF8);
-            WriteSource(source.Content, uuid, source.Filename, tar);
-            WriteXml(response.Xml, uuid, metadata.Parameters.TRE.Payload.Xml, tar);
-            WriteMetadata(metadata, uuid, tar);
-            WriteImages(response.Images, uuid, tar);
+
+            Write(sourceContent, $"{treReference}/{sourceFilename}", tar);
+            WriteXml(response.Xml, $"{treReference}/{fullTreMetadata.Parameters.TRE.Payload.Xml}", tar);
+            WriteMetadata(fullTreMetadata, $"{treReference}/{fullTreMetadata.Parameters.TRE.Payload.Metadata}", tar);
+
+            foreach (var image in images)
+            {
+                Write(image.Content, $"{treReference}/{image.Name}", tar);
+            }
+
             tar.Close();
             gz.Close();
-            byte[] tarGz = memStream.ToArray();
-            return new() {
-                Uuid = uuid,
-                Data = metadata,
+
+            var tarGz = memStream.ToArray();
+
+            return new Bundle
+            {
+                Uuid = treReference,
                 TarGz = tarGz
             };
         }
 
-        private static void WriteSource(byte[] file, string uuid, string filename, TarOutputStream tar)
-        {
-            var name = uuid + "/" + filename;
-            Write(file, name, tar);
-        }
-
-        private static void WriteXml(string xml, string uuid, string filename, TarOutputStream tar)
+        private static void WriteXml(string xml, string name, TarOutputStream tar)
         {
             var bytes = Encoding.UTF8.GetBytes(xml);
-            var name = uuid + "/" + filename;
             Write(bytes, name, tar);
         }
 
-        private static void WriteMetadata(Metadata metadata, string uuid, TarOutputStream tar)
+        private static void WriteMetadata(FullTreMetadata metadata, string name, TarOutputStream tar)
         {
             var json = JsonSerializer.SerializeToUtf8Bytes(metadata, metadata.Options);
-            var name = uuid + "/" + metadata.Parameters.TRE.Payload.Metadata;
             Write(json, name, tar);
-        }
-
-        private static void WriteImages(IEnumerable<Judgments.Api.Image> images, string uuid, TarOutputStream tar)
-        {
-            if (images is null)
-                return;
-            foreach (var image in images)
-            {
-                var name = uuid + "/" + image.Name;
-                Write(image.Content, name, tar);
-            }
         }
 
         private static void Write(byte[] data, string name, TarOutputStream tar)
@@ -120,50 +69,5 @@ namespace Backlog.Src
             tar.Write(data, 0, data.Length);
             tar.CloseEntry();
         }
-
-        internal class Metadata
-        {
-
-            public readonly JsonSerializerOptions Options = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-
-            public Parameters Parameters { get; set; }
-
-        }
-
-        internal class Parameters
-        {
-
-            [JsonPropertyName("TRE")]
-            public TRE.Metadata TRE { get; set; }
-
-            [JsonPropertyName("PARSER")]
-            public UK.Gov.NationalArchives.Judgments.Api.Meta PARSER { get; set; }
-
-            [JsonPropertyName("INGESTER_OPTIONS")]
-            public IngestorOptions IngestorOptions { get; set; }
-        }
-
-        public class IngestorOptions
-        {
-
-            [JsonPropertyName("auto_publish")]
-            public bool AutoPublish { get; set; }
-
-
-            [JsonPropertyName("source_document")]
-            public SourceDocument Source { get; set; }
-
-            public class SourceDocument {
-
-                [JsonPropertyName("format")]
-                public string Format { get; set; }
-
-                [JsonPropertyName("file_hash")]
-                public string Hash { get; set; }
-
-            }
-
-        }
     }
-
 }
