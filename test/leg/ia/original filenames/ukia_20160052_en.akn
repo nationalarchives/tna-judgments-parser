@@ -1,0 +1,2406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2016/249/impacts/2016/52" />
+          <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2016/249/impacts/2016/52" />
+          <FRBRdate date="2016-02-26" name="document" />
+          <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
+          <FRBRcountry value="GB-UKM" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52" />
+          <FRBRuri value="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52" />
+          <FRBRdate date="2016-02-26" name="document" />
+          <FRBRauthor href="#" />
+          <FRBRlanguage language="en" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/data.akn" />
+          <FRBRuri value="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/data.akn" />
+          <FRBRdate date="2026-02-20" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#tna">
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+      </references>
+      <proprietary source="#">
+        <uk:parser>1.5.1</uk:parser>
+        <dc:modified>2016-02-26</dc:modified>
+        <uk:legislation>http://www.legislation.gov.uk/id/uksi/2016/249</uk:legislation>
+        <uk:associatedID>http://www.legislation.gov.uk/id/ukia/2016/52</uk:associatedID>
+        <uk:documentStage>Final</uk:documentStage>
+        <uk:documentMainType>UnitedKingdomImpactAssessment</uk:documentMainType>
+        <uk:department>Department of Health</uk:department>
+        <uk:date>2016-02-25</uk:date>
+        <uk:pdfDate>2016-03-01</uk:pdfDate>
+        <uk:legislationClass>UnitedKingdomStatutoryInstrument</uk:legislationClass>
+        <uk:year>2016</uk:year>
+        <uk:number>52</uk:number>
+        <uk:legislationYear>2016</uk:legislationYear>
+        <uk:legislationNumber>249</uk:legislationNumber>
+        <uk:hash>e949d2fd1ad7950a3b614ee2a7dbe638578364f2e3b33b6da66f74b81cc20f26</uk:hash>
+      </proprietary>
+    </meta>
+    <mainBody>
+      <toc>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/2" level="2"><inline name="tocHeading">1. Summary Analysis &amp; Evidence</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/3" level="2"><inline name="tocHeading">2. Description</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/4" level="2"><inline name="tocHeading">3. Summary Analysis &amp; Evidence</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/5" level="2"><inline name="tocHeading">4. Evidence Base (for summary sheets)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/6" level="2"><inline name="tocHeading">5. Policy Background</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/7" level="2"><inline name="tocHeading">6. Section A Definition of the underlying problem and rationale for government intervention</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/8" level="2"><inline name="tocHeading">7. Section B Policy objectives and intended effects</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/9" level="2"><inline name="tocHeading">8. Section C Description of the options</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/10" level="2"><inline name="tocHeading">9. Section D Costs and benefits assessment of the options (including specific impacts)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/11" level="2"><inline name="tocHeading">10. Section E Summary of specific impact tests</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/12" level="2"><inline name="tocHeading">11. Equality Impact Assessment</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/13" level="2"><inline name="tocHeading">12. Competition</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/14" level="2"><inline name="tocHeading">13. Small and Micro Business Assessment</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/15" level="2"><inline name="tocHeading">14. Legal Aid/ Justice Impact</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/16" level="2"><inline name="tocHeading">15. Sustainable Development</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/17" level="2"><inline name="tocHeading">16. Health Impact</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/18" level="2"><inline name="tocHeading">17. Rural Proofing</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/19" level="2"><inline name="tocHeading">18. Economic impacts</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/20" level="2"><inline name="tocHeading">19. Environmental impacts and sustainable development</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/21" level="2"><inline name="tocHeading">20. Section F Summary and Conclusions</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/22" level="2"><inline name="tocHeading">21. Social Care</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/23" level="2"><inline name="tocHeading">22. Independent Health Sector</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/section/24" level="2"><inline name="tocHeading">23. NHS trusts and GPs</inline></tocItem>
+      </toc>
+      <level>
+        <content>
+          <table uk:widths="4.25in 2.85in">
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>Title:</b></p>
+                <p class="ia-table-text">The Care Quality Commission's Fee Raising Powers</p>
+                <p class="ia-table-text"><b>IA No: </b><b>     </b></p>
+                <p class="ia-table-text"><b>Lead department or agency:</b></p>
+                <p class="ia-header-text">Department of Health</p>
+                <p class="ia-table-text"><b>Other departments or agencies: </b></p>
+                <p class="ia-header-text">The Care Quality Commission</p>
+              </td>
+              <td>
+                <table uk:widths="2.84in">
+                  <tr>
+                    <td>
+                      <p class="ia-title">Impact Assessment (IA)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Date: </b><b> </b><docDate date="2016-02-26"><b>26/02/2016 </b></docDate></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Stage: </b><b> </b><docStage><b>Final</b></docStage></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Source of intervention: </b><b>Domestic</b></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Type of measure: </b><b>Secondary legislation</b></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Contact for enquiries:</b> Alex Joiner </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                </table>
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>Summary: Intervention and Options </b></p>
+                <p class="ia-table-text" />
+              </td>
+              <td>
+                <p class="ia-table-text"><b>RPC Opinion: </b>GREEN</p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="1.28in 1.22in 1.75in 1.38in 1.46in">
+            <tr>
+              <td colspan="5">
+                <p class="ia-table-text"><b>Cost of Preferred (or more likely) Option</b></p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>Total Net Present Value</b></p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Business Net Present Value</b></p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Net cost to business per year </b>(EANCB on 2009 prices)</p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>In scope of BIT?</b></p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Measure qualifies as</b></p>
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="ia-table-text">£0m</p>
+              </td>
+              <td>
+                <p class="ia-table-text">£-319m </p>
+                <p class="ia-table-text">(£27m in scope)</p>
+              </td>
+              <td>
+                <p class="ia-table-text">£35.22m </p>
+                <p class="ia-table-text">(£3.0m in scope)</p>
+              </td>
+              <td>
+                <p class="ia-table-text">In Scope and Out of Scope</p>
+              </td>
+              <td>
+                <p class="ia-table-text">Both IN and Out of Scope</p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                <p class="ia-table-text"><b>What is the problem under consideration? Why is government intervention necessary?</b></p>
+                <p class="ia-table-text">The Care Quality Commission (CQC) is required to comply with the principles outlined in HM Treasury guidance Managing Public Money, which states that public sector bodies are expected to achieve full cost recovery against fees charged for the provision of services. However, the Department has received legal advice that the CQC's current fee raising powers under Section 85 of the Health and Social Care Act 2008 may not cover all aspects of the CQC's new comprehensive inspection and rating regime. It would not be practical for the CQC to try to separate out inspection costs into those they have power to charge for, and those they do not. Government intervention is required to amend the regulations to grant the CQC fee raising powers over the aspects of its inspection process that are not currently covered. </p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="7.09in">
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>What are the policy objectives and the intended effects?</b></p>
+                <p class="ia-table-text">The policy objective is not about extending the remit of the CQC's activity or about extending the scope of reviews of performance assessments. It is about giving the CQC a power to charge a fee in respect of all aspects of such reviews and assessments. The objective is to clarify that the CQC is able to charge a fee for these activities. This will allow the CQC to move to a position of full cost recovery through its fees in accordance with the principles outlined in the Managing Public Money guidance. </p>
+                <p class="ia-table-text">Ultimately, this will ensure that the CQC fees reflect the full cost of regulating quality in the health and social care sectors. </p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="7.09in">
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option (further details in Evidence Base)</b></p>
+                <p class="ia-table-text">Option 1 - do nothing. Under this option the CQC's fee raising powers would only cover inspection costs directly related to assessing compliance with the registration requirements. However, the CQC's new inspection methodology goes further than this to provide an in depth judgement about the overall quality of the service and to provide a rating for the organisation. It would be very difficult practically for the CQC to be able to separate out the costs of these two elements of their inspection, and this would result in increasing legal risk for the CQC as they move towards full cost recovery through fees. Ultimately, this would hinder the CQC's ability to meet their obligations under the Managing Public Money guidance.</p>
+                <p class="ia-table-text">Option 2 - amend the regulations to give the CQC the power to charge fees for the element of its comprehensive inspections that look beyond compliance with registration requirements. This will allow the CQC to move to a position of full cost recovery through its fees.</p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="7.09in">
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>Will the policy be reviewed?  </b>It <b>will not</b> be reviewed.<b> </b><b> If applicable, set review date:  </b><b>Month</b>/<b>Year</b></p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="3.67in 0.68in 0.68in 0.68in 0.24in 0.44in 0.68in">
+            <tr>
+              <td colspan="3">
+                <p class="ia-table-text">Does implementation go beyond minimum EU requirements?</p>
+              </td>
+              <td colspan="4">
+                <p class="ia-table-text">N/A</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="ia-table-text">Are any of these organisations in scope? If Micros not exempted set out reason in Evidence Base.</p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Micro</b>Yes</p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>&lt; 20</b></p>
+                <p class="ia-table-text"><b> </b>Yes</p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Small</b>Yes</p>
+              </td>
+              <td colspan="2">
+                <p class="ia-table-text"><b>Medium</b>Yes</p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Large</b>Yes</p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <p class="ia-table-text">What is the CO2 equivalent change in greenhouse gas emissions? <br />(Million tonnes CO2 equivalent)  </p>
+              </td>
+              <td colspan="2">
+                <p class="ia-table-text"><b>Traded:   </b><br /><b>NA</b></p>
+              </td>
+              <td colspan="2">
+                <p class="ia-table-text"><b>Non-traded:   </b><br /><b>NA</b></p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <paragraph>
+        <content>
+          <p><b><i>I have read the Impact Assessment and I am satisfied that (a) it represents a fair and reasonable view of the expected costs, benefits and impact of the policy, and (b) that the benefits justify the costs.</i></b></p>
+          <table uk:widths="2.95in 1.88in 0.59in 1.4in">
+            <tr>
+              <td>
+                <p class="ia-table-text">Signed by the responsible Minister:</p>
+              </td>
+              <td>
+                <p class="ia-table-text"><img src="images/uksi_2016249_en_002.gif" /></p>
+              </td>
+              <td>
+                <p class="ia-table-text"> Date:</p>
+              </td>
+              <td>
+                <p class="ia-table-text">25 February 2016</p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </paragraph>
+      <section eId="section_2">
+        <heading>Summary Analysis &amp; Evidence</heading>
+        <content>
+          <p><b>Summary: Analysis &amp; Evidence</b>Policy Option 1</p>
+        </content>
+      </section>
+      <section eId="section_3">
+        <heading>Description</heading>
+        <intro>
+          <p><b>Description:  </b><b>Do Nothing</b></p>
+        </intro>
+        <paragraph>
+          <content>
+            <p><b>FULL ECONOMIC ASSESSMENT</b></p>
+            <table uk:widths="0.88in 0.88in 1in 1.25in 1.27in 1.83in">
+              <tr>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Price Base Year  </b>NA</p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>PV Base Year  </b>NA</p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Time Period Years  </b>NA</p>
+                </td>
+                <td colspan="3">
+                  <p class="ia-table-text"><b>Net Benefit (Present Value (PV)) (£m)</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low: </b><b>Optional</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>High: </b><b>Optional</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate: </b><b>0</b></p>
+                </td>
+              </tr>
+            </table>
+            <table uk:widths="1.39in 1.35in 0.55in 1.99in 1.23in 0.6in">
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>COSTS (£m)</b></p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Transition </b><br />(Constant Price)Years</p>
+                  <p class="ia-table-text"><br /></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Average Annual </b><br />(excl. Transition) (Constant Price)</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Cost</b> <br />(Present Value)</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td rowspan="3">
+                  <p class="ia-table-text">   </p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Optional</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>High </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Optional</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">0</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">0</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>0</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Description and scale of key monetised costs by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">In line with impact assessment guidance the do nothing option has zero costs or benefits as impacts are assessed as marginal changes against the do nothing baseline</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Other key non-monetised costs by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">In line with impact assessment guidance the do nothing option has zero costs or benefits as impacts are assessed as marginal changes against the do nothing baseline</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>BENEFITS (£m)</b></p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Transition </b><br />(Constant Price)Years</p>
+                  <p class="ia-table-text"><br /></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Average Annual </b><br />(excl. Transition) (Constant Price)</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Benefit</b> <br />(Present Value)</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td rowspan="3">
+                  <p class="ia-table-text">   </p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Optional</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>High </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Optional</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">0</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">0</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>0</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Description and scale of key monetised benefits by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">In line with impact assessment guidance the do nothing option has zero costs or benefits as impacts are assessed as marginal changes against the do nothing baseline</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Other key non-monetised benefits by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">In line with impact assessment guidance the do nothing option has zero costs or benefits as impacts are assessed as marginal changes against the do nothing baseline</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <p class="ia-table-text"><b>Key assumptions/sensitivities/risks</b><b>Discount rate (%)</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">3.5</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text">NA</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+        <paragraph>
+          <content>
+            <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
+            <table uk:widths="1.38in 1.5in 1.38in 1.38in 1.47in">
+              <tr>
+                <td colspan="3">
+                  <p class="ia-table-text"><b>Direct impact on business (Equivalent Annual) £m: </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>In scope of OITO?</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>  Measure qualifies as</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Costs: </b><b>0</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Benefits: </b><b>0</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Net: </b><b>0</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">No</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">NA</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_4">
+        <heading>Summary Analysis &amp; Evidence</heading>
+        <intro>
+          <p><b>Summary: Analysis &amp; Evidence</b>Policy Option 2</p>
+        </intro>
+        <level>
+          <content>
+            <p><b>Description:  </b><b>Amend the CQC's fee raising powers</b></p>
+          </content>
+        </level>
+        <paragraph>
+          <content>
+            <p><b>FULL ECONOMIC ASSESSMENT</b></p>
+            <table uk:widths="0.88in 0.88in 1in 1.25in 1.27in 1.83in">
+              <tr>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Price Base Year  </b>2015</p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>PV Base Year  </b>2016</p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Time Period Years  </b>10</p>
+                </td>
+                <td colspan="3">
+                  <p class="ia-table-text"><b>Net Benefit (Present Value (PV)) (£m)</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low: </b><b>0</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>High: </b><b>1130</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate: </b><b>0</b></p>
+                </td>
+              </tr>
+            </table>
+            <table uk:widths="1.39in 1.35in 0.55in 1.99in 1.23in 0.6in">
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>COSTS (£m)</b></p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Transition </b><br />(Constant Price)Years</p>
+                  <p class="ia-table-text"><br /></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Average Annual </b><br />(excl. Transition) (Constant Price)</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Cost</b> <br />(Present Value)</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td rowspan="3">
+                  <p class="ia-table-text">   </p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Optional</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>High </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Optional</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">0</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">111.5</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>901.7</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Description and scale of key monetised costs by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">The cost would be the increased fees levied on providers in the health and social care sector who are regulated by the CQC. As the CQC already collect fees from all providers it regulates, there are no additional administrative costs anticipated with changing the fee level. </p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Other key non-monetised costs by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">None     </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>BENEFITS (£m)</b></p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Transition </b><br />(Constant Price)Years</p>
+                  <p class="ia-table-text"><br /></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Average Annual </b><br />(excl. Transition) (Constant Price)</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Benefit</b> <br />(Present Value)</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td rowspan="3">
+                  <p class="ia-table-text">   </p>
+                </td>
+                <td>
+                  <p class="ia-table-text">111.5</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>901.7</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>High </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Optional</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">237</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>2031.3</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">0</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">111.5</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>901.7</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Description and scale of key monetised benefits by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">Grant in Aid funding from the department would reduce, freeing up resources for other purposes. At a minimum, it is anticipated that this saving would be equal to the increase in fees for providers. However, there could be additional health benefits that result from this transfer of funds from the private to the public sector. Whilst the IA explores the potential size of these, we are unable to fully monetise this additional benefit.      </p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Other key non-monetised benefits by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">Where providers face the full cost of regulation, there may be more pressures on the CQC to ensure that their regulatory system is efficient and cost effective, compared to a system subsidised by the tax payer. The CQC will look at building efficiencies and economies into its programme for work to minimise fee increases.</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <p class="ia-table-text"><b>Key assumptions/sensitivities/risks</b><b>Discount rate (%)</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">3.5</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text">The costs and benefits figures are presented relative to a baseline of constant fees fixed at the 15/16 level. However it is likely that the CQC would continue to make some fee increases even in the absence of this additional fee raising power. The impact of the regulations on future fee levels is therefore likely to be an overestimate. The CQC are also considering a number of steps to improve its efficiency and reduce its cost base, which would also result in lower fee increases than projected here.</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+        <paragraph>
+          <content>
+            <p><b>BUSINESS ASSESSMENT (Option 2)</b></p>
+            <table uk:widths="1.38in 1.5in 1.38in 1.38in 1.47in">
+              <tr>
+                <td colspan="3">
+                  <p class="ia-table-text"><b>Direct impact on business (Equivalent Annual) £m: </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>In scope of OITO?</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>  Measure qualifies as</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Costs: </b><b>35.2 (3.0 in scope)</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Benefits: </b><b>0</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Net: -</b>35.2 (<b>-3.0 in scope)</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">In Scope and Out of Scope</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">IN and Out of Scope</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_5">
+        <heading>Evidence Base (for summary sheets)</heading>
+        <content>
+          <p><b>Evidence Base (for summary sheets)</b></p>
+        </content>
+      </section>
+      <section eId="section_6">
+        <heading>Policy Background</heading>
+        <intro>
+          <p><b>Policy Background</b></p>
+        </intro>
+        <paragraph>
+          <num>1.</num>
+          <content>
+            <p>The Care Quality Commission (CQC) is the independent regulator of health and adult social care providers in England and has a key responsibility in the overall assurance of safety and quality of health and adult social care services. Under the Health and Social Care Act 2008 all providers of regulated activities, including NHS and independent providers, have to register with the CQC and meet a set of requirements of safety and quality. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>2.</num>
+          <intro>
+            <p>The CQC forms part of the wider quality framework, having responsibility for:</p>
+          </intro>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>providing independent assurance and publishing information on the safety and quality of services; </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>registering providers of regulated activities (including NHS, adult social care and independent sector healthcare providers);</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>inspecting and monitoring services against the registration requirements; </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>using enforcement powers (including prosecution) to ensure service providers meet requirements or, where appropriate, to suspend or cancel registrations;</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>undertaking special reviews and investigations of particular services, looking across providers and commissioners of health and adult social care;</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>monitoring the use of the Mental Health Act; and</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>operating a proportionate regulatory system that avoids imposing unnecessary burdens on providers and on the regulator itself, and helping to manage the impact of regulation more generally on health and adult social care service providers and commissioners.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>3.</num>
+          <content>
+            <p>The CQC’s purpose is to improve care by regulating and monitoring services. The CQC ensures that only providers who have made a legal declaration that they meet the standards of quality and safety are allowed to provide care. Once services are registered, The CQC continues to monitor and inspect them against these standards. It acts quickly in response to any concerns and takes swift enforcement action where services are failing people. This can include issuing a warning notice that requires improvement within a specified time, prosecution, or cancelling a provider’s registration and removing its ability to provide regulated activities, or triggering Special Measures.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>4.</num>
+          <content>
+            <p>Following the publication of Robert Francis QC’s report on the Public Inquiry into Mid-Staffordshire NHS Foundation Trust in February 2013, the CQC have undergone a transformation programme to reform their regulatory model in response to the recommendations of the Francis Inquiry. This includes the appointment of Chief Inspectors of Hospitals, GPs and Adult Social Care, as well as making improvements in their processes for monitoring and inspecting providers. Inspections are now carried out be specialist inspection teams which are supported by clinical and other experts and people who have experience of the service that are being inspection – ‘experts by experience’. The CQC’s Intelligent Monitoring process draws together a range of data that both informs which providers should be inspected on the basis of risk and the key areas to consider during an inspection. These changes aim to improve the quality and robustness of the CQC’s judgements and improve their ability to detect incidents of poor quality care across the health and social care sector.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>5.</num>
+          <content>
+            <p>In addition, the Care Act 2014 put in place a duty for the CQC to carry out performance assessments of providers of health and adult social care services, which will be summarised in the form of a rating. The CQC’s new comprehensive style inspections support the production of this rating.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>6.</num>
+          <content>
+            <p>To support the CQC’s development, implementation and ongoing evaluation of its regulatory inspection model and internal transformation, Grant in Aid funding from the Department was increased for the 2014/15 financial year. This Impact Assessment now considers the regulatory changes required to allow the CQC to move towards full cost recovery through fees, as recommended in the HM Treasury Managing Public Money Guidance. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>7.</num>
+          <content>
+            <p>This impact assessment does not consider the impact of the new ratings regime or the CQC’s new inspection model. The impact of ratings was considered during the passage of the Care Bill through Parliament, and it was agreed with the Cabinet Office Economic &amp; Domestic Secretariat in April 2013 that there would be no direct impacts on businesses, as the information required to generate a rating could be gathered through the CQC’s existing inspection and monitoring regime. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>8.</num>
+          <content>
+            <p>Separately the CQC also published a series of Impact Assessments that examined the impact of their new inspection and registration processes<authorialNote marker="1"><p> For example, please see <a href="http://www.cqc.org.uk/sites/default/files/20141003_final_asc_ria_final_1.pdf"><u>http://www.cqc.org.uk/sites/default/files/20141003_final_asc_ria_final_1.pdf</u></a> </p></authorialNote>. The CQC have conducted new style inspections and issued performance ratings since the start of 2014 for NHS trusts, GPs and adult social care since October 2014, and progress to date as at  January 2016 is as follows:   </p>
+            <table uk:widths="2.14in 2.14in 2.14in">
+              <tr>
+                <td>
+                  <p class="ia-table-text">Sector</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Inspected and rated – as at January 2016</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Number of organisations in total</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">Acute NHS trusts</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">106</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">156</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">Adult social Care (residential and nursing homes)</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">10,100</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">17,200</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">GP Practices</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">2,400</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">8,400</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>9.</num>
+          <content>
+            <p>The CQC are continuing the roll out their programme of comprehensive inspections and performance ratings across the other sectors. In recognition of the more urgent need for improvements to inspection and regulation in NHS hospitals and mental health trusts, the CQC’s strategy committed to introducing the changes for these providers first., It started rolling out the methodology to the other sectors it regulates from 2014 completing in 2016, based on a judgement of their order of priority.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>10.</num>
+          <intro>
+            <p>The timetable for roll out was set out in the CQC’s 2015/16 business plan<authorialNote marker="2"><p> http://www.cqc.org.uk/content/business-plan-shaping-future</p></authorialNote>. As at the beginning of this Parliament<authorialNote marker="3"><p> This is the relevant period for the Business Impact Target (BIT) – see paragraph 43</p></authorialNote> (i.e. May 2015), new inspections had already been carried out or started for the large majority of sectors with only the following small, low risk, sectors remaining:</p>
+          </intro>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Urgent care services and mobile doctors</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Independent consulting doctors</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Ambulance service providers (independent)</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Acute single specialist providers (independent) </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Acute non hospital providers (independent)</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Community health providers (independent)</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Substance misuse (NHS &amp; independent)</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <level>
+          <heading><b>The evidence base of this impact assessment is structured as follows:</b></heading>
+          <paragraph>
+            <num>•</num>
+            <content>
+              <p>Section A: Definition of the underlying problem and rationale for government intervention</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>•</num>
+            <content>
+              <p>Section B: Policy objectives and intended effects</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>•</num>
+            <content>
+              <p>Section C: Description of the options</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>•</num>
+            <content>
+              <p>Section D: Costs and benefits assessment of the options (including specific impacts) </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>•</num>
+            <content>
+              <p>Section E: Summary of specific impact tests</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>•</num>
+            <content>
+              <p>Section F: Summary and conclusion</p>
+            </content>
+          </paragraph>
+        </level>
+      </section>
+      <section eId="section_7">
+        <heading>Section A Definition of the underlying problem and rationale for government intervention</heading>
+        <intro>
+          <p><b>Section A: Definition of the underlying problem and rationale for government intervention</b></p>
+        </intro>
+        <level>
+          <content>
+            <p><i>Background and current position</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>11.</num>
+          <content>
+            <p>The CQC’s budget is made up of a combination of grant-in-aid from the taxpayer and income from fees paid by providers. Like all public bodies with fee-setting powers, the CQC is required by government policy to set fees that, over time, cover the costs of the services the CQC provide. Recovery of costs by a public body must be based on the true economic costs of the service, and that the body should promote the principles of control of costs and the efficient and effective use of public money<authorialNote marker="4"><p> Managing Public Money, chapter 6, available at  <a href="https://www.gov.uk/government/publications/managing-public-money"><u>https://www.gov.uk/government/publications/managing-public-money</u></a> </p></authorialNote>.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>12.</num>
+          <content>
+            <p>Certain elements of the CQC’s functions are exempt from being included in fee charging. This means that the CQC will not be required to recover 100% of its costs through fees. The CQC is working on a fee policy that will move it to full cost recovery, for those elements it is able to charge a fee.  This will move it to a position where providers ultimately meet all the chargeable costs rather than the taxpayer.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>13.</num>
+          <content>
+            <p>The CQC’s budget history between 2013/14 and 2015/16, split between GIA and fee income, is summarised in the following table.</p>
+            <table uk:widths="2.5in 1.33in 1.33in 1.33in">
+              <tr>
+                <td>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>2013/14</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>2014/15</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>2015/16</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>£ms</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>£ms</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>£ms</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Recoverable costs </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">131</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">195</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">205</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Non-recoverable costs </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">29</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">29</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">29</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Total</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">160</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">224</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">233</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Funded by GIA (1)</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">59</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">120</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">120</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>% GIA of total</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">37%</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">54%</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">52%</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Funded from fees (2)</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">101</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">104</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">113</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>% fee income of total</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">63%</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">46%</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">48%</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>% of costs recovered by fees (3)</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">77%</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">53%</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">55%</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <p class="ia-table-text"><b>Notes</b></p>
+                  <p class="ia-table-text">(1) In 2013/14 an additional £20m GIA was provided non-recurrently to cover one-off transformation costs. In 2015/16 a drawdown facility of £16m non-recurrent has been identified to support the CQC in the recruitment of its inspector workforce. Both payments have been excluded from GIA for accounting purposes.</p>
+                  <p class="ia-table-text">(2) 2015/16 fee income reflects the 9% increase introduced across all sectors, except Dentists who are at full cost recovery.</p>
+                  <p class="ia-table-text">(3) Calculated as percentage of recoverable costs</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>14.</num>
+          <content>
+            <p>Following the introduction of the CQC’s new approach to inspections in 2014/15, Grant in Aid Funding from the Department has increased by £61m, causing the proportion of cost recovery through fees to fall from 77% in 2013/14 to 53% in 2014/15. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>The CQC’s current fee raising powers</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>15.</num>
+          <content>
+            <p>The CQC’s powers to charge fees are set out in The Health and Social Care Act 2008 (the 2008 Act).  Fee setting powers extend only to its registration functions under the 2008 Act. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>16.</num>
+          <intro>
+            <p>Section 85 of the 2008 Act gives the CQC the power, with the consent of the Secretary of State, to charge a fee for the registration of providers. Section 85(1)(a) states that the CQC has power to charge for: </p>
+          </intro>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>an application for registration;</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>the grant or subsistence of such registration; and </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>an application to vary the terms of registration.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>17.</num>
+          <content>
+            <p>However, as discussed above, the CQC have recently made changes to its inspection process to introduce a much more comprehensive set of inspections which seek to provide a more robust judgement of the quality of care provided and to support the CQC’s new duty to rate providers. The Department has received legal advice that the CQC’s powers in relation to its new type of comprehensive inspections and ratings may <b>not</b> be covered by the powers to charge under section 85(1)(a) of the Health and Social Care Act 2008. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>18.</num>
+          <content>
+            <p>The current power for the CQC to charge a fee relates to the registration of providers and therefore inspection against the registration requirements. It is arguable that this fee charging power may  not apply to the new model of comprehensive inspections since these inspections look beyond whether a provider is complying with the registration requirements.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>19.</num>
+          <content>
+            <p>The Department proposes to make regulations to clarify that comprehensive inspections are within scope of the CQC’s fee raising powers. This would be done through a regulation that enables the CQC to charge a fee for reviews and performance assessments under section 46 of the 2008 Act.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>20.</num>
+          <content>
+            <p>Without such regulations, the CQC would need to distinguish between its costs relating to registration and its costs relating to ratings, and ensure that the fees only applied to registration functions.  This would require the Department to continue providing grant-in-aid for some parts of the CQC’s inspection costs. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>21.</num>
+          <content>
+            <p>As the inspection process is not linear, it would be very difficult for the CQC to separate out its inspection costs associated with registration and assessing compliance against those related to providing a more rounded and comprehensive judgement of the quality of care provided, and generating a rating for the provider. Much of the evidence required to make a rounded judgement about the quality of care and generate the performance rating will be the same evidence required to make a judgement of compliance with the regulatory standards. Similarly, the move towards more specialist inspection teams improves both the effectiveness of the CQC’s judgements about a provider’s compliance as well as their overall performance. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>22.</num>
+          <content>
+            <p>This practical difficulty in apportioning costs may create the risk of further legal challenge for the CQC which could impact on their ability to move towards full cost recovery even on the areas they already have powers to charge for. There is a potential risk that providers would seek to oppose any future fee increase on the basis that the CQC do not have the legal power to charge for it.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>23.</num>
+          <content>
+            <p>Government intervention is required to grant the CQC powers to charge a fee in relation to all aspects of their inspection process.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_8">
+        <heading>Section B Policy objectives and intended effects</heading>
+        <intro>
+          <p><b>Section B: Policy objectives and intended effects</b></p>
+        </intro>
+        <paragraph>
+          <num>24.</num>
+          <content>
+            <p>The ultimate policy objective is to ensure that the CQC has the funding it requires to carry out its prescribed duties and that it acts as a responsible and efficient organisation, in accordance with the principles outlined in the HM Treasury Managing Public Money guidance. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>25.</num>
+          <content>
+            <p>Specifically, the aim of this particular policy is to enable the CQC to move to a position of full cost recovery through its fees (in accordance of Chapter 6 of Managing Public Money) by granting the CQC with fee raising powers over all aspects of their inspection process. This will ensure that the CQC fees reflect the full cost of regulating quality in the health and adult social care sectors.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_9">
+        <heading>Section C Description of the options</heading>
+        <intro>
+          <p><b>  Section C: Description of the options</b></p>
+        </intro>
+        <level>
+          <content>
+            <p><i>Option 1: Do nothing</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>26.</num>
+          <content>
+            <p>Under this option the CQC's fee raising powers would only cover inspection costs directly related to assessing compliance with the registration requirements. As discussed above, this would mean that the CQC would need to distinguish between its costs relating to registration and its costs relating to ratings, and ensure that the fees only applied to registration functions.  This would require the Department to continue providing grant-in-aid for some parts of the CQC’s inspection costs. There remains a risk of legal challenge on the basis of how the CQC apportion these costs, which may serve to hinder their ability to move to full cost recovery even on those elements of inspections they already have the power to charge for.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Option 2: amend the regulations to allow the CQC to charge for all aspects of its inspection process</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>27.</num>
+          <content>
+            <p>Section 46 of the 2008 Act places a duty on the CQC to carry out reviews and performance assessments of providers and services that are set out in regulations. However, since such inspections look beyond compliance with registration requirements, some components of the CQC’s comprehensive inspections may not be covered by the fee raising power. The Department propose to make regulations which will bring the comprehensive inspections within scope of the CQC’s fee raising powers. This would be achieved through a new regulation that enables the CQC to charge a fee for reviews and performance assessments under Chapter 3, section 46 of the 2008 Act. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>28.</num>
+          <content>
+            <p>This proposal is not about extending the remit of the CQC’s activity or about extending the scope of reviews of performance assessments to additional providers or services. It is purely about giving the CQC a power to charge a fee for such reviews and performance assessments.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>29.</num>
+          <content>
+            <p>Whilst this proposed regulation would give the CQC the power to charge a fee over all aspects of its inspection process, it will not prescribe any particular trajectory for changes to fees or the move towards full cost recovery. The proposed regulation would be an enabling power to allow the CQC to charge a fee in respect of its comprehensive inspection and ratings process. It will remain up to the CQC in conjunction with DH and HM Treasury to determine the CQC’s annual fee level. All proposed fee increases will continue to be subject to a public consultation, Managing Public Money requirements, and the agreement of the Secretary of State. The CQC are considering a number of options for the proposed fee trajectory, the implications of which are examined further in Section D of this Impact Assessment. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Alternatives to Regulation and Other Options</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>30.</num>
+          <content>
+            <p>The policy objective is to close a gap in the CQC’s fee raising powers to allow them to charge a fee in relation to all aspects of its inspection process. As regulation is the only way that this legislative gap can be closed, no alternatives to regulation were considered.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>31.</num>
+          <content>
+            <p>As previously discussed, the only alternative option would be for the CQC to distinguish between its costs relating to registration and its costs relating to inspection ratings, and ensure that the fees only applied to registration functions – something that would be very difficult in practice to achieve.  This would require the Department to continue providing grant-in-aid for some parts of the CQC’s inspection costs. There remains a risk of legal challenge on the basis of how the CQC apportion these costs, which may serve to hinder their ability to move to full cost recovery even on those elements of inspections they already have the power to charge for.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_10">
+        <heading>Section D Costs and benefits assessment of the options (including specific impacts)</heading>
+        <intro>
+          <p><b>Section D: Costs and benefits assessment of the options (including specific impacts)</b></p>
+        </intro>
+        <level>
+          <content>
+            <p><i>Proposed fee trajectory </i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>32.</num>
+          <content>
+            <p>The main costs associated with the proposal would be the increased fees providers would need to pay. As the CQC already charge fees to all their registered providers, we do not anticipate that there would be any additional administrative costs associated with the changes in fee levels. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>33.</num>
+          <content>
+            <p>As previously discussed, the proposed regulation would simply allow the CQC to charge a fee in relation to all of its inspection process, but it would be up to the CQC to determine the level of future fees. There is a set process by which the CQC sets its fees, which has been in place for several years and would remain unchanged. The CQC completed its consultation on proposals for its 2016-17 fee structure on 15 January 2016<authorialNote marker="5"><p> http://www.cqc.org.uk/content/health-and-social-care-fees-consultation</p></authorialNote>. Following consultation, the CQC’s Board will make a recommendation to the Secretary of State for his decision. The fees scheme will come into effect on 1 April 2016, subject to that decision. As such, the information presented below represents an estimate of what the trajectory to full cost recovery may look like, and we recognise that the final agreed position may differ to this.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>34.</num>
+          <content>
+            <p>Within its consultation, the CQC considered two possible options for increasing fees to reach full cost recovery – a two year trajectory and a four year trajectory. At the time of writing, no final decision has been made on which of these options will go ahead. Although in the Department’s consultation stage IA, costs were modelled based on the four year trajectory, these are now presented on a two year trajectory. The two year trajectory will  generate slightly higher cost estimates, and as such, are felt to provide a more prudent upper bound on our estimate of the potential costs.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>35.</num>
+          <content>
+            <p>Based on the two year trajectory set out in the consultation, and assuming that the CQC’s annual cost base remains at the 2015/16 level i.e. approx. £249.3m (this includes a £16m draw down facility which is discussed below), additional fee income of just over £110m is required to achieve full cost recovery, we have estimated that the total net present cost over a 10 year period of fee increases to be approximately £902m</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>36.</num>
+          <content>
+            <p>For the purpose of this Impact Assessment, the CQC budget value has included the non-recurrent £16m, as discussed in the table at paragraph 13. It is not clear at present the extent to which the CQC will utilise the £16m draw down facility. As a prudent assumption, we have included the £16m in the modelled fee increases and so they represent the maximum possible increase. The total fee increase required for each sector has changed slightly since the Consultation Stage IA to reflect the updated modelling conducted by the CQC.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>37.</num>
+          <content>
+            <p>It is important to note that these figures do not take into account the potential for additional efficiencies to be made to the CQC’s operating model, which would serve to reduce the amount required through fees. The CQC are currently working to determine how they will be able to build in further efficiencies and economies into its programme of work, and as a result, the current scope of these potential savings is not yet known. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>38.</num>
+          <content>
+            <p>In addition, it is unlikely that these required fee increases to reach full cost recovery would necessarily reflect the additional cost of the proposed new fee raising power. This is because it is likely that even in the absence of the additional power, the CQC would still be required to make some increases in its fee level to move towards full cost recovery in the areas it already has the power to charge fees for. It is important to note that in 13/14, prior to the introduction of the CQC’s new inspection model, cost recovery through fees was still only at 77%. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>39.</num>
+          <content>
+            <p>However, due to the difficulties discussed previously in attempting to apportion costs into those that the CQC have the power to charge for and those they have not, it is not possible to estimate what the trajectory of fee increases might look like in the absence of the proposed new fee raising power. As a result, the figures presented above should be considered the <u>upper bound</u> of the additional impact of proposed fee raising power over and above the do nothing option.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Impact on private sector and OITO status</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>40.</num>
+          <content>
+            <p>In terms of the impact of these fee rises on private and third sector organisations specifically, we use the following assumptions about the split of public and private organisations within each sector that the CQC regulates:</p>
+            <table uk:widths="1in 0.75in 5.43in">
+              <tr>
+                <td>
+                  <p class="ia-table-text"> <b>Sector</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>% Private</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Rationale</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">NHS Trusts</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">0%</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Entirely funded and operated by the NHS</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">IHC – Hospitals</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">100%</p>
+                </td>
+                <td rowspan="3">
+                  <p class="ia-table-text">In the absence of further information it is assumed that 100% of the independent healthcare and private ambulance market is privately run. </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">IHC – Single Specialty</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">100%</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">IHC – Community</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">100%</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">ASC Residential</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">90%</p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text">Data from 31st March 2010 (under CSA care sector) on providers by ownership type in the adult social suggests that approximately 90% of adult social care providers are voluntary or private organisations. Similarly the Laing and Buisson 2013/14 Healthcare Market Review estimated that between 6% and 13% of adult social care providers were Local Authority or NHS run organisations.</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">ASC Community</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">90%</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">GPs</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">6%</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Laing and Buisson 2013/14 Healthcare Market Review found 6% of GPs worked entirely outside of the NHS</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">Dentists</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">30%</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Analysis of Dental Contracts found that approximately 30% of dental practices did not contract with the NHS</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>41.</num>
+          <content>
+            <p>As is currently the case, the CQC are likely to charge a varying fee to providers depending on the size or number of locations of the provider. It is not possible to determine whether private sector providers are likely to be smaller or larger on average than public sector providers within the same sector. In the absence of other information, we therefore assume that there is no difference in the average size of these providers, and so the proportion of the total fee increase that will fall on private sector organisations is equivalent to the proportion of private sector organisations within the sector. This suggests a total net present cost to business of just over £319m over the assumed 10 year lifespan of the policy.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>42.</num>
+          <content>
+            <p>Using the May 2015 BIS Impact Assessment Calculator, the Equivalent Net Cost to Business is estimated to be £35.2m.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>43.</num>
+          <content>
+            <p>Under section 1.9.9 vii of the March 2015 Better Regulation Framework Manual, policies relating to fees and chargers are considered to be out of scope of OITO, unless the change in the level of fees and chargers relates to an expansion or reduction in the scope of regulatory activity. It has been agreed with the Regulatory Policy Committee that, for the most part, the potential fee increases outlined in this IA relate to an expansion of regulatory activity that took place prior to the relevant period of time for the Business Impact Target and so will be considered to be out of scope. Only elements of the fee changes relating to expansion of the inspection regime since May 2015 will be considered in scope of the Business Impact Target.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>44.</num>
+          <content>
+            <p>The CQC advise that all of providers who were not subject to new style inspections as at May 2015 (see paragraph 10)  would fit within the IHC – Single Specialty or IHC – Community category in their fees modelling. This would suggest that, <b>at most</b>, the proposed policy might generate an additional £27m NPV cost for these providers. Using the July 2015 BIS Impact Assessment Calculator, in EANCB terms this would equate to £3.0m being in scope of the Business Impact Target. This figure is higher than that estimated in the Consultation Stage IA due to the CQC revising its estimates of the required fee increases for each sector.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Benefits of the proposal</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>45.</num>
+          <content>
+            <p>The main benefit of the proposal would be the reduction in the level of Grant in Aid funding from the Department required by the CQC. As we do not anticipate there being any substantial administrative costs associated with any future changes in the fee level, this saving to the Department is anticipated to be equivalent to the increases in provider fees discussed above. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Other non-monetised benefits</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>46.</num>
+          <content>
+            <p>Shifting the cost of the CQC regulation onto providers may have additional benefits. For example, by making providers pay the full cost of the CQC regulation, this might serve to increase the pressure on the CQC to make efficiencies and economies to their regulatory process than a system subsidised by the taxpayer would have been able to. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>47.</num>
+          <content>
+            <p>It is not possible to quantify this particular benefit as we do not know the level of efficiencies that the CQC might have sought to make under the two different models of funding. However, the results of the CQC’s consultation for 15/16 fee levels demonstrate that providers are using this avenue to put pressure on the CQC on consider their own efficiencies as part of the fee setting process. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Potential wider societal impacts of the changes</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>48.</num>
+          <content>
+            <p>Where policies have impacts on DH budgets, this will in turn affect the amount of funding available elsewhere for DH programmes, which in turn may have further health impacts elsewhere in the NHS or health system. For example, it has been estimated that an additional £12,936 of funding to the NHS, denominated in 2008 prices, would generate an additional Quality Adjusted Life Year (QALY)<authorialNote marker="6"><p> Karl Claxton, Steve Martin, Marta Soares, Nigel Rice, Eldon Spackman, Sebastian Hinde, Nancy Devlin, Peter C Smith, Mark Sculpher, <i>Methods for the Estimation of the NICE Cost Effectiveness Threshold Revised Report Following Referees Comments, </i>10th June 2013 <a href="http://www.york.ac.uk/media/che/documents/reports/resubmitted_report.pdf"><u>http://www.york.ac.uk/media/che/documents/reports/resubmitted_report.pdf</u></a> </p></authorialNote>. Adjusting for inflation with the GDP deflator would give a value of approximately £15,000 additional funding to generate an additional Quality Adjusted Life Year in the NHS in 2015 prices.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>49.</num>
+          <intro>
+            <p>If we were to apply this estimate to the potential annual saving of £110m to the Department from reduced GIA funding to the CQC, this would imply that just over 7,300 additional Quality Adjusted Life Years could potentially be generated in the NHS every year. </p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p>However, this figure represents the potential gross annual health impact. To estimate the net annual health impact, we would also need to consider whether the increased fee costs for providers also result in any additional health or societal impacts. This in turn will depend on how providers respond to the fee increases as follows:</p>
+              <table uk:widths="2.33in 4.44in">
+                <tr>
+                  <td>
+                    <p class="ia-table-text"><b>Provider response</b></p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text"><b>Additional health impacts?</b></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">Pass on the increased fees to service users via higher prices</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">If purchasers choose to maintain the amount that they purchase, the societal impact is the increased cost of buying the same level of services. There are no additional health impacts as the level of services remains unchanged.</p>
+                    <p class="ia-table-text">However, if the result of higher prices is that purchasers choose to reduce the amount of health/social care services that they buy, there would be a health impact associated with this reduction.   </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">Absorb the costs of increased fees via acceptance of lower profits</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">Lower profits impact on shareholders. The societal impact of lower profits for shareholders is assumed to be equal to the monetary value of the reduction in profits and there is no impact on health</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">A combination of the above</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">The ultimate societal impact would also lie somewhere between the societal impacts estimated above. </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">Choosing to exit the market entirely if the increased costs are felt to be unsustainable</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">The ultimate impact would depend on the dynamics of the market. However this is not considered further as it is felt that the level of fee increases being discussed in this IA would make this an unlikely outcome. For example, a 28 bed care home is anticipated to see annual fee increases of between £250 and £350 over the four year period</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="ia-table-text">Demand increased funding from DH</p>
+                  </td>
+                  <td>
+                    <p class="ia-table-text">If providers are partially funded by the Department (e.g. dentists), they may attempt to recuperate their fee increases through demands for additional funding from DH. Depending on their likelihood of success, this would have an additional health impact as discussed above. </p>
+                  </td>
+                </tr>
+              </table>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>50.</num>
+          <content>
+            <p>The likelihood of providers taking each of these actions, and the subsequent impacts of these actions depends on the specifics of the sector being considered. Although it is not possible to fully quantify the net impacts, Annex A provides a fuller assessment of the likely impacts in each sector. By monetising the potential health impacts using a standard societal valuation of £60,000 per Quality Adjusted Life Year, we present below the potential rate of NPV estimates by sector, if these additional health impacts were also to be taken into consideration:</p>
+            <table uk:widths="3.47in 3.47in">
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Sector</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Estimated NPV</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">NHS Trusts</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">0</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">Independent Health Sector</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">£0-116m benefit</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">GPs</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">0</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">Social Care</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">£0-1,014m benefit</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">Total<authorialNote marker="7"><p class="ia-table-text"> Dentists are not considered in this analysis as they are anticipated to receive a net reduction in their fees. The health impact of such an effect is difficult to estimate as it is not clear which parties would ultimately be affected by this reduction in fee income. </p></authorialNote></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">£0-1130m benefit</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>51.</num>
+          <content>
+            <p>However, due to the difficulties in determining the likely behaviour of providers in response to fee increases, and the uncertainties of these potential health impacts, we do not seek to fully quantify these and include them in our final assessment of the monetised costs and benefits of the policy. Instead the potential ranges are simply presented for further information about the potential scale of additional impacts that might arise.    </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Risks and sensitivities</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>52.</num>
+          <content>
+            <p>As previously discussed, it is not possible to estimate the additional impact of the new fee raising power on the CQC fees as the CQC’s projected fee increases have been made under the assumption that they will be able to charge for all aspects of their inspection process. It is not clear what level of fee increases might be possible without this change. In addition, the estimated fee increases have been based on an assumption that the CQC’s costs will remain at their 15/16 levels. This does not take into account the potential for further efficiencies in their model, which will serve to reduce costs and therefore the level of fee increases. On this basis, the estimate of the additional costs in this Impact Assessment is likely to be the upper bound of the potential true costs.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>53.</num>
+          <content>
+            <p>In addition, there is a risk that any increases in fees could have a destabilising effect on providers, as many providers are facing a tough financial climate, with increased running costs and reductions in income. During the CQC’s consultation into their fee levels for 15/16, 80% of providers opposed the proposed 9% fee increases for this reason. Although this proposed policy will not prescribe or require the CQC to make any changes in its fee levels, the policy intention is that this will allow the CQC to move towards a position of full cost recovery. The key mitigation for this risk will therefore be for the CQC to work closely with its stakeholders to ensure that its planned trajectory to full cost recovery is able to balance the financial risks to the sector against the need to reach full cost recovery in accordance with HM Treasury guidance. In addition, the CQC will need to work to identify potential efficiencies in its operating model that can work to reduce its costs and thus, the level of fee increases required to reach full cost recovery.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_11">
+        <heading>Section E Summary of specific impact tests</heading>
+        <content>
+          <p><b>Section E: Summary of specific impact tests:</b></p>
+        </content>
+      </section>
+      <section eId="section_12">
+        <heading>Equality Impact Assessment</heading>
+        <intro>
+          <p><b>Equality Impact Assessment</b></p>
+        </intro>
+        <paragraph>
+          <num>54.</num>
+          <content>
+            <p>This policy proposal impacts all the CQC registered health and adult social care providers. The costs will not impact service users or any group of individuals. This policy will not disproportionately affect any one demographic or social group. In general, the users of healthcare services tend to be people from older age groups, lower income distribution and those with disabilities or long term conditions.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_13">
+        <heading>Competition</heading>
+        <intro>
+          <p><b>Competition</b></p>
+        </intro>
+        <level>
+          <content>
+            <p><i>In any affected market, would the proposal: </i></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p><i>Directly limit the number or range of suppliers? </i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>55.</num>
+          <content>
+            <p>No. The proposals do not involve the award of exclusive rights to supply services, procurement will not be from a single supplier or restricted group of suppliers. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Indirectly limit the number or range of suppliers? </i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>56.</num>
+          <content>
+            <p>The CQC already currently requires payment of an annual fee for all organisations that provide any of the regulated activities as defined in Schedule 1 of The Health and Social Care Act 2008 (Regulated Activities) Regulations 2014. Increases in fee levels may have some impact on the decision or ability of providers to enter or remain in the market. Overall this effect is anticipated to be small, relative to the other potential factors that might influence decisions on such factors </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Limit the ability of suppliers to compete? </i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>57.</num>
+          <content>
+            <p>This duty is not expected to have any impact on suppliers. All providers of health and adult social care registered with the CQC will be affected.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>58.</num>
+          <content>
+            <p>This duty does not limit the scope for innovation for the introduction of new products or supply existing products in new ways. It does not limit the sales channels a supplier can use, or the geographic area in which a supplier can operate. It does not limit the suppliers' freedoms to organise their own production processes or their choice of organisational form. It does not substantially restrict the ability of suppliers to advertise their products.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Reduce suppliers' incentives to compete vigorously? </i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>59.</num>
+          <content>
+            <p>No. The proposal will allow the CQC to charge a fee for all aspects of its inspection process, and so facilitate their movement towards full cost recover via fees.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_14">
+        <heading>Small and Micro Business Assessment</heading>
+        <intro>
+          <p><b>Small and Micro Business Assessment</b></p>
+        </intro>
+        <level>
+          <content>
+            <p><i>How does the proposal affect small businesses, their customers or competitors?</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>60.</num>
+          <intro>
+            <p>Although CQC do not collect information about the size of the organisations it regulations, it has been possible to gain a sense of the size distribution of providers it regulates from other sources. The 2013 Skills of Care report on the size and structure of the adult social care workforce<authorialNote marker="8"><p> Skills for Care, <i>The size and structure of the adult social care sector and workforce in England, </i>2013</p></authorialNote> used ONS data to estimate that there were a total of 17,100 adult social care providers, of which 86% would be considered small or micro businesses.</p>
+          </intro>
+          <subparagraph>
+            <content>
+              <p><img src="images/uksi_2016249_en_001.gif" /></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>61.</num>
+          <content>
+            <p>This estimate is similar to that obtained from the BIS Annual Business Population Survey, which found that in 2013, there were approximately 50,000 employers in England with the Standard Industrial Classification (SIC2007) Human Health and Social Work Activities, of which 94% would be considered a small or micro business.</p>
+            <table uk:widths="3.01in 1.56in">
+              <tr>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Count of number of private businesses within SIC2007 Q - Human Health and Social Work Activities in England</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">All employers</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">50,295</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">   1</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">5,285</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">   2-4</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">14,305</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">   5-9</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">10,025</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">   10-19</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">9,505</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">   20-49</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">8,115</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">   50-99</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">1,975</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">   100-199</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">650</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">   200-249</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">110</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">   250-499</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">175</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">   500 or more</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">150</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <p class="ia-table-text">Source 2013 BIS Business Population Survey</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>62.</num>
+          <content>
+            <p>Although not an exact indicator of the number of employees, from CQC’s directory of registered providers as at 1st January 2016, 85% of providers registered with CQC only had one registered location:</p>
+            <table uk:widths="1.4in 1.29in 0.67in">
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Number of locations</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Count of providers</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>%</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">1</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">26070</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">85%</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">2</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">2520</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">8%</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">3</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">792</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">3%</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">4</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">359</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">1%</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">   5+</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">1080</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">4%</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>63.</num>
+          <content>
+            <p>Thus, it is likely that the large majority of private providers registered with CQC will be small or micro businesses.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>64.</num>
+          <content>
+            <p>The proposed requirement would apply equally to providers of all sizes. The proposal would be to grant the CQC a fee raising power over all aspects of its inspection process. The regulations would not make any prescriptions over the CQC’s fees policy or its future fee levels.  The CQC already do take into account the size of the provider when setting fees, so that larger providers with more locations pay higher fees compared to smaller providers<authorialNote marker="9"><p> For example, for Dentists, fees are based on both the number of dental chairs and number of locations. Source: CQC’s 2015/16 Fees Scheme <a href="http://www.cqc.org.uk/sites/default/files/20150323_cqc_fees_scheme_2015-16.pdf"><u>http://www.cqc.org.uk/sites/default/files/20150323_cqc_fees_scheme_2015-16.pdf</u></a> </p></authorialNote>. The proposed regulation is not anticipated to change this policy. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>65.</num>
+          <content>
+            <p>In addition, the CQC are introducing other new measures which will further help to reduce the burden of fees on smaller providers. For example, the CQC has introduced the facility for registered providers to pay their fees in instalments. This facility commenced in June for all providers billed in June, and will be followed by a phased, monthly, roll-out. This means that by May 2016, all providers will have been offered the option to pay by this method. This may provide a buffer for smaller, private businesses, which may already be operating in financially challenging circumstances.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>66.</num>
+          <content>
+            <p>The CQC will also continue to review its inspection processes to ensure that additional efficiencies and economies can be built in, which will serve to reduce the burden of fees and the move to full cost recovery for providers of all sizes.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_15">
+        <heading>Legal Aid/ Justice Impact</heading>
+        <intro>
+          <p><b>Legal Aid/ Justice Impact</b></p>
+        </intro>
+        <paragraph>
+          <num>67.</num>
+          <intro>
+            <p>The following have been considered in the main impact assessment above and in the Ministry of Justice impact test provided alongside this document:</p>
+          </intro>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Will the proposals create new civil sanctions, fixed penalties or civil orders with criminal sanctions or creating or amending criminal offences? <b>No</b></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num><b>•</b></num>
+            <content>
+              <p>Any impact on HM Courts services or on Tribunals services through the creation of or an increase in application cases? <b>No</b></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Create a new right of appeal or route to judicial review? <b>No</b></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Enforcement mechanisms for civil debts, civil sanctions or criminal penalties? <b>No</b></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Amendment of Court and/or tribunal rules? <b>No</b></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Amendment of sentencing or penalty guidelines? <b>No</b></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Any impact (increase or reduction on costs) on Legal Aid fund? (criminal, civil and family, asylum) <b>No</b></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Any increase in the number of offenders being committed to custody (including on remand) or probation? <b>No</b></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Any increase in the length of custodial sentences? Will proposals create a new custodial sentence? <b>No</b></p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Any impact of the proposals on probation services? <b>No</b></p>
+            </content>
+          </subparagraph>
+        </paragraph>
+      </section>
+      <section eId="section_16">
+        <heading>Sustainable Development</heading>
+        <intro>
+          <p><b>Sustainable Development</b></p>
+        </intro>
+        <paragraph>
+          <num>68.</num>
+          <content>
+            <p>The proposals are not expected to have a wider impact on sustainable development. There will be no impact on climate change, waste management, air quality, landscape appearance, habitat, wildlife, levels of noise exposure or water pollution, abstraction or exposure to flood.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_17">
+        <heading>Health Impact</heading>
+        <intro>
+          <p><b>Health Impact </b></p>
+        </intro>
+        <level>
+          <content>
+            <p><i>Do the proposals have a significant effect on human health by virtue of their effects on certain determinants of health, or a significant demand on health service? (primary care, community services, hospital care, need for medicines, accident or emergency services, social services, health protection and preparedness response)</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>69.</num>
+          <content>
+            <p>The potential impacts on health have been considered above in the cost benefit analysis of this impact assessment, see Section D above</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>70.</num>
+          <content>
+            <p>There are no expected health risks in association with, diet, lifestyle, tobacco and alcohol consumption, psycho-social environment, housing conditions, accidents and safety, pollution, exposure to chemicals, infection, geophysical and economic factors, as a result of the proposals</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_18">
+        <heading>Rural Proofing</heading>
+        <intro>
+          <p><b>Rural Proofing</b></p>
+        </intro>
+        <level>
+          <content>
+            <p><i>Rural proofing is a commitment by Government to ensure domestic policies take account of rural circumstances and needs. It is a mandatory part of the policy process, which means as policies are developed, policy makers should: consider whether their policy is likely to have a different impact in rural areas because of particular circumstances or needs, make proper assessment of those impacts, if they’re likely to be significant, adjust the policy where appropriate, with solutions to meet rural needs and circumstances.</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>71.</num>
+          <content>
+            <p>The proposals will not lead to potentially different impacts for rural areas or people.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_19">
+        <heading>Economic impacts</heading>
+        <intro>
+          <p><b>Economic impacts</b></p>
+        </intro>
+        <paragraph>
+          <num>72.</num>
+          <content>
+            <p>The costs and benefits of the proposals on businesses have been considered in the main cost benefit analysis of this impact assessments, see Section D above. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_20">
+        <heading>Environmental impacts and sustainable development</heading>
+        <intro>
+          <p><b>Environmental impacts and sustainable development</b></p>
+        </intro>
+        <paragraph>
+          <num>73.</num>
+          <content>
+            <p>The proposals have not identified any wider effects on environmental issues including on carbon and greenhouse gas emissions. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_21">
+        <heading>Section F Summary and Conclusions</heading>
+        <intro>
+          <p><b>Section F: Summary and Conclusions</b></p>
+        </intro>
+        <paragraph>
+          <num>74.</num>
+          <content>
+            <p>This proposal is not about extending the remit of the CQC’s activity or about extending the scope of reviews or performance assessments to additional providers. It is purely about giving the CQC a power to charge a fee for such reviews and performance assessments. The Department proposes to make regulations to clarify that comprehensive inspections are within scope of the CQC’s fee raising powers. We would do this through a regulation that enables the CQC to charge a fee for reviews and performance assessments under section 46 of the Health and Social Care Act 2008.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>75.</num>
+          <content>
+            <p>The proposed policy is to introduce a new fee raising power that will allow the CQC to charge a fee in relation to all aspects of its inspection process. The main cost of this proposal will be the additional fees levied on providers by the CQC. It has been difficult to determine what the ultimate impact of the new fee raising power will have on fee levels as the CQC’s projected fee increases have been made under the assumption that they will be able to charge for all aspects of their inspection process. It is not clear what level of fee increases might be possible without this change. In addition, the estimated fee increases have been based on an assumption that the CQC’s costs will remain at their 15/16 levels. This does not take into account the potential for further efficiencies in their model, which will serve to reduce costs and therefore the level of fee increases. On this basis, the cost estimates presented in this Impact Assessment are likely to represent the upper bound of the potential true impacts.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>76.</num>
+          <content>
+            <p>The main benefit of the proposal will be the reduction in Grant in Aid funding required from the Department, and this will allow the CQC to meet its requirement for full cost recovery under the Managing Public Money Guidance. As a result the proposed policy is the preferred policy option. In addition, there may also be some non-monetised benefits in terms of additional health benefits for society arising from the changes in funding arrangements, and the potential for individual providers to better hold the CQC to account and put pressure on them to make greater efficiency savings.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p>Annex A</p>
+          </content>
+        </level>
+      </section>
+      <section eId="section_22">
+        <heading>Social Care</heading>
+        <intro>
+          <p><b>Social Care</b></p>
+        </intro>
+        <level>
+          <content>
+            <p><i>Impact of raising prices</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>77.</num>
+          <content>
+            <p>For social care providers, in the majority of cases the purchasers of social care services will be Local Authorities. If providers choose to put up the price of their services, this will reduce the amount of social care that Local Authorities are able to purchase (assuming that the budget for social care remains fixed and not affected by the policy under discussion). This reduction in social care provision ultimately has a health impact on service users, which must be compared against the potential health gains in the NHS discussed above. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>78.</num>
+          <content>
+            <p>The Department of Health has commissioned a research project to examine the marginal health impact of spending in social care. Although this project is not yet complete, early indications suggest that the cost effectiveness (and social value) of social care is equivalent to that of NHS spending. This would suggest that, if all of the increase in fees were passed through to social care commissioners via increased prices, the subsequent reduction in health gains in the social care sector would balance the health gains felt in the NHS from the reduction in Grant in Aid funding for the CQC, and the overall impact for this sector would be zero.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Impact of lower profits</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>79.</num>
+          <content>
+            <p>If instead, social care providers choose to absorb the costs of increased fees via lower profits, there would be no subsequent impact on health. The societal cost of lower profits for shareholders is assumed to be equal to the monetary value of the reduction in profits. When we compare this against the monetised value of the health gains felt in the NHS associated with the reduction in Grant in Aid funding for the CQC, this suggests an overall NPV of £1,014m net benefit.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Ultimate impact</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>80.</num>
+          <content>
+            <p>As previously discussed, the actual societal impact of increased fees in the social care sector is likely to lie between the two extremes outlined above, as providers are likely react through a combination of price increases and absorption of fee increases. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>81.</num>
+          <content>
+            <p>In addition, where purchasers of social care services are self-funders instead of local authorities, they may also react to any price increases by continuing to purchase the same services at a higher cost, rather than reducing the amount of services purchased, meaning that the societal impact should be measured in terms of increased costs, rather than health losses. This additional consideration further supports the argument that the ultimate societal impact of increased fees in the social care sector is likely to lie between the two extremes outlined above. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_23">
+        <heading>Independent Health Sector</heading>
+        <intro>
+          <p><b>Independent Health Sector</b></p>
+        </intro>
+        <level>
+          <content>
+            <p><i>Impact of raising prices</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>82.</num>
+          <content>
+            <p>In the independent healthcare sector, purchasers of health services could react to increased prices by either continuing to purchase the same level of health services at higher cost or by reducing the amount that they purchase.     </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>83.</num>
+          <content>
+            <p>As previously discussed, where there is no change in the level of health services purchased, there is no impact on health outcomes. However, the increased cost of purchasing these health outcomes must be considered. As above, when we compare this increased cost against the value of the health gains felt in the NHS associated with the reduction in Grant in Aid funding for the CQC, this suggests an overall NPV of £116m net benefit.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>84.</num>
+          <intro>
+            <p>On the other hand, if purchasers were all to reduce the amount of healthcare that they purchase in response to higher prices, there would be an impact on health outcomes that would need to be considered. Unfortunately, in the independent healthcare sector no evidence is available as to the health impact of marginal changes in funding/expenditure. This sector includes a large variety of different health services such as:</p>
+          </intro>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Independent (private) hospitals and clinics (including mental health)</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Independent diagnostic providers</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Some substance misuse services</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Private ambulance services</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Some Out of hours GP services</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Hospices</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <content>
+              <p>It is likely that the marginal cost effectiveness of each of these services relative to the NHS would be different. However, given the majority of these services are not offered on the NHS, it may be possible to argue that the marginal cost effectiveness of these services is therefore likely to be lower than that for the NHS (otherwise there would be a strong rationale for making them also available on the NHS). Standard economic theory predicts that a good or service will be demanded until the marginal benefit is equal to the marginal cost, and studies have shown that the societal valuation (i.e. marginal benefit) of a Quality Adjusted Life Year is approximately £60,000. This would in turn suggest that the marginal cost per QALY in the independent health sector might also be as high as £60,000 per QALY. Applying such an estimate is equivalent to the assumption that there is no additional opportunity cost of funds in the independent healthcare sector over and above the value of the fee increases, and as a result, the NPV estimates are equivalent to the above case, where we assumed that there would be no health impacts from the fee increases.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>85.</num>
+          <content>
+            <p>On the other hand, we could make the other extreme assumption that the marginal cost effectiveness of the independent health sector is equal to that in the NHS, which would result in a NPV of 0.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>86.</num>
+          <content>
+            <p>Due to the large variety of healthcare services covered under the heading of independent healthcare providers, it is likely that the average marginal cost effectiveness ratio lies somewhere between these two extremes, suggesting an overall NPV of between 0 and £116m. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Impact of lower profits </i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>87.</num>
+          <content>
+            <p>As previously discussed, if providers choose to absorb the costs of increased fees via lower profits, the overall societal impact would just be equivalent to the monetary value of the loss of profits. The estimated NPV figures would be also be approximately £116m, as estimated in the first scenario above (the only difference being that it is shareholders, rather than purchasers of healthcare that experience the loss).</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><i>Ultimate Impacts</i></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>88.</num>
+          <content>
+            <p>As is the case for social care providers, the discussion above suggests that the likely overall societal impact of fee increases in the independent healthcare sector would like somewhere between the extremes of a £0 and £116m net benefit over the lifetime of the policy.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_24">
+        <heading>NHS trusts and GPs</heading>
+        <intro>
+          <p><b>NHS trusts and GPs </b></p>
+        </intro>
+        <paragraph>
+          <num>89.</num>
+          <content>
+            <p>NHS trusts and GPs are considered to be part of the NHS. As a result, the effect of reducing GIA funding and increasing CQC fees for these providers is to shift the cost burden of CQC regulation (in respect of these providers) to a different area of the NHS. As the overall cost pressure on the NHS as a whole remains unchanged, there are no additional health impacts to be considered<authorialNote marker="10"><p> This assumes that the marginal health impact arising from changes in available funding are the same across the NHS. The reality is likely to be more complex; however as the £15,000 estimate in paragraph 49 is an average estimate across the NHS as a whole, this simplifying assumption is justified.</p></authorialNote>.</p>
+          </content>
+        </paragraph>
+      </section>
+    </mainBody>
+  </doc>
+</akomaNtoso>

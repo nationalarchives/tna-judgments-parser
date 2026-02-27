@@ -13,6 +13,7 @@
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <!-- https://learn.microsoft.com/en-us/dotnet/core/compatibility/sdk/8.0/source-link -->
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,8 +28,17 @@
     <EmbeddedResource Include="src/parsers/common/omml2mml.xsl">
       <LogicalName>math.omml2mml.xsl</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="src/leg/subschema.xsd">
-      <LogicalName>leg.subschema.xsd</LogicalName>
+    <EmbeddedResource Include="src/leg/schemas/em-subschema.xsd">
+      <LogicalName>leg.em-subschema.xsd</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src/leg/schemas/ia-subschema.xsd">
+      <LogicalName>leg.ia-subschema.xsd</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src/leg/source/ia_to_legislation_mapping.csv">
+      <LogicalName>leg.ia_to_legislation_mapping.csv</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src/leg/source/em_to_legislation_mapping.csv">
+      <LogicalName>leg.em_to_legislation_mapping.csv</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 

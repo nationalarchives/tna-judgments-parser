@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:uk="https://legislation.gov.uk/akn" targetNamespace="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" elementFormDefault="qualified">
+
+<xs:element name="akomaNtoso">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="doc" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="doc">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="meta" />
+            <xs:element ref="preface" minOccurs="0" />
+            <xs:element ref="mainBody" />
+            <xs:element ref="attachments" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="name" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ImpactAssessment" />
+                    <xs:enumeration value="annex" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="meta" />
+
+
+<!-- attachments -->
+
+<xs:element name="attachments">
+    <xs:complexType>
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="attachment" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="attachment">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="doc" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+
+<!-- preface -->
+
+<xs:element name="preface">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="p" type="header-paragraph" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:complexType name="header-paragraph" mixed="true">
+    <xs:complexContent>
+        <xs:extension base="inline-container">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="docType" />
+                <xs:element ref="docNumber" />
+                <xs:element ref="docTitle" />
+                <xs:element ref="docStage" />
+                <xs:element ref="docDate" />
+                <xs:element ref="docProponent" />
+                <xs:element ref="inline" />
+            </xs:choice>
+            <xs:attribute name="class" >
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="center" />
+                        <xs:enumeration value="right" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:extension>
+    </xs:complexContent>
+</xs:complexType>
+
+<xs:element name="docType" type="inline-container" />
+
+<xs:element name="docNumber" type="inline-container" />
+
+<!-- IA-specific semantic inline elements -->
+<xs:element name="docTitle" type="inline-container" />
+
+<xs:element name="docStage" type="inline-container" />
+
+<xs:element name="docDate">
+    <xs:complexType mixed="true">
+        <xs:complexContent>
+            <xs:extension base="inline-container">
+                <xs:attribute name="date" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="docProponent" type="inline-container" />
+
+<!-- Custom inline element for extensibility -->
+<xs:element name="inline">
+    <xs:complexType mixed="true">
+        <xs:complexContent>
+            <xs:extension base="inline-container">
+                <xs:attribute name="name" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:element>
+
+
+<!-- body -->
+
+<xs:element name="mainBody">
+    <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+            <xs:element ref="hcontainer" />
+            <xs:element ref="level" />
+            <xs:element ref="section" />
+            <xs:element ref="paragraph" />
+            <xs:element ref="p" />
+            <xs:element ref="table" />
+            <xs:element ref="blockContainer" />
+            <xs:element ref="toc" />
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+
+<!-- hcontainers -->
+
+<xs:element name="hcontainer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="heading" minOccurs="0" />
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="intro" minOccurs="0" />
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element ref="hcontainer" />
+                        <xs:element ref="level" />
+                        <xs:element ref="section" />
+                        <xs:element ref="paragraph" />
+                        <xs:element ref="subparagraph" />
+                        <xs:element ref="blockContainer" />
+                    </xs:choice>
+                    <xs:element ref="wrapUp" minOccurs="0" />
+                </xs:sequence>
+                <xs:element ref="content" />
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="eId" type="xs:string" />
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="level">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="heading" minOccurs="0" />
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="intro" minOccurs="0" />
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element ref="level" />
+                        <xs:element ref="section" />
+                        <xs:element ref="paragraph" />
+                    </xs:choice>
+                    <xs:element ref="wrapUp" minOccurs="0" />
+                </xs:sequence>
+                <xs:element ref="content" />
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="class" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="crossheading" />
+                    <xs:enumeration value="subheading1" />
+                    <xs:enumeration value="subheading2" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="section">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="num" minOccurs="0" />
+            <xs:element ref="heading" minOccurs="0" />
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="intro" minOccurs="0" />
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element ref="hcontainer" />
+                        <xs:element ref="level" />
+                        <xs:element ref="section" />
+                        <xs:element ref="paragraph" />
+                        <xs:element ref="subparagraph" />
+                        <xs:element ref="blockContainer" />
+                    </xs:choice>
+                    <xs:element ref="wrapUp" minOccurs="0" />
+                </xs:sequence>
+                <xs:element ref="content" />
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="eId" type="xs:string" />
+        <xs:attribute name="class" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="section" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="paragraph">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="num" minOccurs="0" />
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="intro" minOccurs="0" />
+                    <xs:element ref="subparagraph" maxOccurs="unbounded" />
+                    <xs:element ref="wrapUp" minOccurs="0" />
+                </xs:sequence>
+                <xs:element ref="content" />
+          </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="subparagraph">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="num" minOccurs="0" />
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element ref="intro" minOccurs="0" />
+                    <xs:element ref="subparagraph" maxOccurs="unbounded" />
+                    <xs:element ref="wrapUp" minOccurs="0" />
+                </xs:sequence>
+                <xs:element ref="content" />
+          </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="blockContainer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="num" />
+            <xs:element ref="p" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+
+<!-- block containers -->
+
+<xs:complexType name="block-container">
+    <xs:choice maxOccurs="unbounded">
+        <xs:element ref="p" />
+        <xs:element ref="table"  />
+        <xs:element ref="block"  />
+        <xs:element ref="blockContainer"  />
+        <xs:element ref="subFlow" />
+    </xs:choice>
+</xs:complexType>
+
+<xs:element name="intro" type="block-container" />
+
+<xs:element name="content" type="block-container" />
+
+<xs:element name="wrapUp" type="block-container" />
+
+
+<!-- embedded structures -->
+
+<xs:element name="block">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="embeddedStructure" />
+        </xs:sequence>
+        <xs:attribute name="name" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="embeddedStructure" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="embeddedStructure">
+    <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+            <xs:element ref="level" />
+            <xs:element ref="section" />
+            <xs:element ref="paragraph" />
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+
+<!-- blocks -->
+
+<xs:element name="num">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+<xs:complexType name="inline-container" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="b" />
+        <xs:element ref="i" />
+        <xs:element ref="u" />
+        <xs:element ref="a" />
+        <xs:element ref="ref" />
+        <xs:element ref="marker" />
+        <xs:element ref="authorialNote" />
+        <xs:element ref="img" />
+    </xs:choice>
+</xs:complexType>
+
+<xs:element name="heading" type="inline-container" />
+
+<xs:element name="p">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+            <xs:element ref="a" />
+            <xs:element ref="ref" />
+            <xs:element ref="marker" />
+            <xs:element ref="authorialNote" />
+            <xs:element ref="br" />
+            <xs:element ref="img" />
+            <xs:element ref="subFlow" />
+            <xs:element ref="docTitle" />
+            <xs:element ref="docStage" />
+            <xs:element ref="docDate" />
+            <xs:element ref="docProponent" />
+            <xs:element ref="inline" />
+        </xs:choice>
+        <xs:attribute name="class" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="center" />
+                    <xs:enumeration value="right" />
+                    <xs:enumeration value="ia-table-label" />
+                    <xs:enumeration value="ia-table-text" />
+                    <xs:enumeration value="ia-table-notes" />
+                    <xs:enumeration value="ia-head-label" />
+                    <xs:enumeration value="ia-head-title" />
+                    <xs:enumeration value="ia-head-dept" />
+                    <xs:enumeration value="ia-header-text" />
+                    <xs:enumeration value="ia-title" />
+                    <xs:enumeration value="ia-number" />
+                    <xs:enumeration value="ia-stage" />
+                    <xs:enumeration value="ia-soi" />
+                    <xs:enumeration value="ia-tom" />
+                    <xs:enumeration value="ia-sign-off" />
+                    <xs:enumeration value="ia-metadata" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="table">
+    <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+            <xs:element ref="tr" />
+        </xs:choice>
+        <xs:attribute name="class" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ia-heading" />
+                    <xs:enumeration value="ia-box" />
+                    <xs:enumeration value="ia-costs" />
+                    <xs:enumeration value="ia-benefits" />
+                    <xs:enumeration value="ia-policy-options" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:anyAttribute namespace="https://legislation.gov.uk/akn" processContents="lax" />
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="tr">
+    <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+            <xs:element ref="td" />
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="td">
+    <xs:complexType>
+        <xs:complexContent>
+            <xs:extension base="block-container">
+                <xs:attribute name="class" >
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="ia-label" />
+                            <xs:enumeration value="ia-data" />
+                            <xs:enumeration value="ia-costs-low" />
+                            <xs:enumeration value="ia-costs-high" />
+                            <xs:enumeration value="ia-costs-best" />
+                            <xs:enumeration value="ia-benefits-low" />
+                            <xs:enumeration value="ia-benefits-high" />
+                            <xs:enumeration value="ia-benefits-best" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="colspan" type="xs:positiveInteger" />
+                <xs:attribute name="rowspan" type="xs:positiveInteger" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:element>
+
+
+<!-- inline -->
+
+<xs:element name="b">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="i">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="u" />
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="u">
+    <xs:complexType mixed="true" />
+</xs:element>
+
+<xs:element name="a">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+        </xs:choice>
+        <xs:attribute name="href" type="xs:anyURI" />
+        <xs:attribute name="class" type="xs:string" />
+        <xs:attribute name="title" type="xs:string" />
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="marker">
+    <xs:complexType>
+        <xs:attribute name="name" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="tab" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="authorialNote">
+    <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+            <xs:element ref="p" />
+            <xs:element ref="blockContainer" />
+        </xs:choice>
+        <xs:attribute name="marker" use="required" type="xs:integer" />
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="br">
+    <xs:complexType />
+</xs:element>
+
+<xs:element name="ref">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+        </xs:choice>
+        <xs:attribute name="href" type="xs:anyURI" />
+        <xs:attribute name="class">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="legislation" />
+                    <xs:enumeration value="statutory-instrument" />
+                    <xs:enumeration value="regulation" />
+                    <xs:enumeration value="act" />
+                    <xs:enumeration value="legal-document" />
+                    <xs:enumeration value="government-document" />
+                    <xs:enumeration value="consultation" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="title" type="xs:string" />
+    </xs:complexType>
+</xs:element>
+
+
+<!-- Table of Contents -->
+
+<xs:element name="toc">
+    <xs:complexType>
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="tocItem" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="tocItem">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+            <xs:element ref="span" />
+            <xs:element ref="inline" />
+        </xs:choice>
+        <xs:attribute name="href" type="xs:string" use="required" />
+        <xs:attribute name="level" type="xs:integer" use="required" />
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="span">
+    <xs:complexType mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="b" />
+            <xs:element ref="i" />
+            <xs:element ref="u" />
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+<!-- Image element -->
+<xs:element name="img">
+    <xs:complexType>
+        <xs:attribute name="src" type="xs:string" use="required" />
+        <xs:attribute name="width" type="xs:integer" />
+        <xs:attribute name="height" type="xs:integer" />
+        <xs:attribute name="style" type="xs:string" />
+        <xs:attribute name="alt" type="xs:string" />
+    </xs:complexType>
+</xs:element>
+
+<!-- SubFlow element for math and other embedded content -->
+<xs:element name="subFlow">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="foreign" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+</xs:element>
+
+<!-- Foreign element for non-AKN content (e.g., MathML) -->
+<xs:complexType name="anyOtherType">
+    <xs:choice>
+        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+    </xs:choice>
+</xs:complexType>
+
+<xs:element name="foreign" type="anyOtherType" />
+
+</xs:schema>
