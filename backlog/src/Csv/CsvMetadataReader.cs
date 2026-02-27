@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
-using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
+
+using Backlog.Src;
 
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -19,8 +19,14 @@ namespace Backlog.Csv;
 
 class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
 {
+    private string csvName = "unknown.csv";
+    private string csvHash = "unknown";
+
     internal List<CsvLine> Read(string csvPath, out List<string> csvParseErrors)
     {
+        csvName = Path.GetFileName(csvPath);
+        csvHash = BacklogParserWorker.Hash(File.ReadAllBytes(csvPath));
+        
         using var streamReader = new StreamReader(csvPath);
         return Read(streamReader, out csvParseErrors);
     }
@@ -35,8 +41,8 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
         };
         using var csv = new CsvReader(textReader, config);
             
-        csv.Context.RegisterClassMap<CsvLineMap>();
-            
+        csv.Context.RegisterClassMap(new CsvLineMap(csvName, csvHash));
+
         var records = new List<CsvLine>();
         csvParseErrors = [];
             
@@ -75,7 +81,7 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
                     ? ex.Message.Substring(0, ex.Message.IndexOf(Environment.NewLine, StringComparison.Ordinal))
                     : ex.Message;
 
-                var rawLine = csv.Context!.Parser!.RawRecord.ReplaceLineEndings(string.Empty);
+                var rawLine = csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty);
                 csvParseErrors.Add(
                     $"Line {csv.Context.Parser!.Row}: {exceptionMessage} [{rawLine}]");
                 logger.LogError(ex, "Error parsing row {ParserRow}", csv.Context.Parser?.Row);
@@ -87,8 +93,13 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
 
     private sealed class CsvLineMap : ClassMap<CsvLine>
     {
-        public CsvLineMap()
+        private readonly string csvName;
+        private readonly string csvHash;
+
+        public CsvLineMap(string csvName, string csvHash)
         {
+            this.csvName = csvName;
+            this.csvHash = csvHash;
             Configure();
         }
 
@@ -125,6 +136,9 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
                     return headerNames.ToDictionary(headerName => headerName.Trim(),
                                           headerName => convertFromStringArgs.Row[headerName] ?? string.Empty);
                 });
+
+            Map(l => l.CsvProperties)
+                .Constant((Name: csvName, Hash: csvHash));
         }
     }
 }

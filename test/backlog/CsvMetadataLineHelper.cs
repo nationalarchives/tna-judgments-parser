@@ -36,6 +36,6 @@ public static class CsvMetadataLineHelper
     internal static Action<CsvLine> AssertCsvLineEquals(CsvLine expectedCsvLine)
     {
         return line =>
-            Assert.EquivalentWithExclusions(expectedCsvLine, line, l => l.FullCsvLineContents);
+            Assert.EquivalentWithExclusions(expectedCsvLine, line, l => l.FullCsvLineContents, l => l.CsvProperties);
     }
 }

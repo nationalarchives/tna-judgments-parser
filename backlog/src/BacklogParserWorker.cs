@@ -264,7 +264,7 @@ internal class BacklogParserWorker(
         return Bundle.Make(response, trePipelineMetadata, sourceContent, originalSourceFileName, images);
     }
 
-    private static string Hash(byte[] content)
+    public static string Hash(byte[] content)
     {
         var hash = SHA256.HashData(content);
         return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();

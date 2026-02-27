@@ -19,6 +19,7 @@ namespace Backlog.Csv;
 [CategoryValidation]
 internal record CsvLine
 {
+    public (string Name, string Hash) CsvProperties { get; set; }
     public Dictionary<string, string> FullCsvLineContents { get; set; } = [];
 
     [Required(AllowEmptyStrings = false)] public required string id { get; set; }
