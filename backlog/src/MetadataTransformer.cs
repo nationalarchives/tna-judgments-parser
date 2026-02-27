@@ -50,10 +50,10 @@ internal static class MetadataTransformer
                     MetadataFields = externalMetadataFields,
                     PrimarySource = new PrimarySourceFile
                     {
-                        Filename = null,
-                        Mimetype = null,
+                        Filename = sourceFilename,
+                        Mimetype = sourceMimeType,
                         Route = Route.Bulk,
-                        Sha256 = null
+                        Sha256 = contentHash
                     },
                     XmlContainsDocumentText = xmlContainsDocumentText
                 },
@@ -144,5 +144,14 @@ internal static class MetadataTransformer
             Source = MetadataSource.External,
             Timestamp = DateTime.UtcNow
         };
+    }
+
+    public static string GetFileName(string csvLineFilePath)
+    {
+        var pathSeparator = csvLineFilePath.Contains('/') ? '/' : '\\';
+
+        var pathParts = csvLineFilePath.Split(pathSeparator);
+
+        return pathParts[^1];
     }
 }

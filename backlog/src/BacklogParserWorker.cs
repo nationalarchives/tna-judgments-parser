@@ -252,7 +252,7 @@ internal class BacklogParserWorker(
         var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
         var response = CreateResponse(csvLine, mimeType, sourceContent, isStub);
 
-        var originalSourceFileName = Path.GetFileName(csvLine.FilePath);
+        var originalSourceFileName = MetadataTransformer.GetFileName(csvLine.FilePath);
         var contentHash = Hash(sourceContent);
         var images = response.Images?.ToArray() ?? [];
 

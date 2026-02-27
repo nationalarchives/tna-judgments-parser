@@ -305,6 +305,19 @@ public class TestMetadataTransformer
         Assert.DoesNotContain(fields, f => f.Name == MetadataFieldName.WebArchivingLink);
     }
 
+    [Theory]
+    [InlineData("appeals\\j2\\R(IS)7-02ws.doc", "R(IS)7-02ws.doc")]
+    [InlineData("finance-and-tax/j7/e00417.doc", "e00417.doc")]
+    [InlineData("documents\\ICRI Ltd - Out of time decision .pdf",  "ICRI Ltd - Out of time decision .pdf")]
+    [InlineData("asylum-support/j12750/Reaosns Statement.24894..doc", "Reaosns Statement.24894..doc")]
+    [InlineData("EAT64299, 64399, 64499, 64599, 64699 & 649991372000.doc", "EAT64299, 64399, 64499, 64599, 64699 & 649991372000.doc")]
+    [InlineData("file with no extension", "file with no extension")]
+    public void GetFileName_ReturnsFileName(string input, string expected)
+    {
+        var result = MetadataTransformer.GetFileName(input);
+        Assert.Equal(expected, result);
+    }
+
     private static void AssertHasSingleMetadataFieldWithValue<T>(T expectedValue, MetadataFieldName metadataFieldName,
         List<IMetadataField> fields)
     {
