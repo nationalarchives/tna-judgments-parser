@@ -8,6 +8,7 @@ using Backlog.Src;
 
 using TRE.Metadata;
 using TRE.Metadata.Enums;
+using TRE.Metadata.MetadataFieldTypes;
 
 using UK.Gov.Legislation.Judgments;
 
@@ -238,14 +239,23 @@ public class TestMetadataTransformer
     }
 
     [Fact]
-    public void CsvLineToMetadataFields_CsvMetadataFileContents_IsMapped()
+    public void CsvLineToMetadataFields_CsvMetadataFileProperties_IsMapped()
     {
-        var fullCsvLineContents = new Dictionary<string, string> { { "a", "1" }, { "b", "2" } };
-        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { FullCsvLineContents = fullCsvLineContents };
+        var expectedCsvProperties = new CsvProperties(
+            "name.csv",
+            "hash",
+            new Dictionary<string, string> { { "a", "1" }, { "b", "2" } }
+        );
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            CsvProperties = (expectedCsvProperties.Name, expectedCsvProperties.Hash),
+            FullCsvLineContents = expectedCsvProperties.FullLineContents
+        };
 
         var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        AssertHasSingleMetadataFieldWithValue(fullCsvLineContents, MetadataFieldName.CsvMetadataFileContents, fields);
+        AssertHasSingleMetadataFieldWithValue(expectedCsvProperties, MetadataFieldName.CsvMetadataFileProperties,
+            fields);
     }
 
     [Fact]

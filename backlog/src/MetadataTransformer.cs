@@ -9,6 +9,7 @@ using Backlog.TreMetadata;
 
 using TRE.Metadata;
 using TRE.Metadata.Enums;
+using TRE.Metadata.MetadataFieldTypes;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -99,7 +100,7 @@ internal static class MetadataTransformer
     {
         List<IMetadataField> metadataFields =
         [
-            CreateExternalMetadataField(MetadataFieldName.CsvMetadataFileContents, csvLine.FullCsvLineContents),
+            CreateExternalMetadataField(MetadataFieldName.CsvMetadataFileProperties, new CsvProperties(csvLine.CsvProperties.Name, csvLine.CsvProperties.Hash, csvLine.FullCsvLineContents)),
             CreateExternalMetadataField(MetadataFieldName.CaseNumber, csvLine.CaseNo),
             .. CreateExternalMetadataFields(MetadataFieldName.Category, () => csvLine.Categories),
             CreateExternalMetadataField(MetadataFieldName.Court, csvLine.court),

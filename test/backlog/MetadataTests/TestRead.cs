@@ -200,6 +200,7 @@ public class TestRead: IDisposable
         var publicPropertiesInCsvLineClass = typeof(CsvLine).GetProperties()
                                                             .Select(p => p.Name)
                                                             .Except([
+                                                                nameof(CsvLine.CsvProperties),
                                                                 nameof(CsvLine.FullCsvLineContents),
                                                                 nameof(CsvLine.Categories),
                                                                 nameof(CsvLine.Parties)
