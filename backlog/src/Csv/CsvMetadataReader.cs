@@ -124,7 +124,7 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
                 {
                     var headerNames = convertFromStringArgs.Row.HeaderRecord!;
                     return headerNames.ToDictionary(headerName => headerName.Trim(),
-                        headerName => convertFromStringArgs.Row[headerName]);
+                                          headerName => convertFromStringArgs.Row[headerName] ?? string.Empty);
                 });
 
             // Ensure every column with a value of "" is Null.
