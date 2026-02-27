@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -11,7 +12,7 @@ using Metadata = UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata;
 
 namespace test.backlog.EndToEndTests
 {
-    public class EndToEndTests : BaseEndToEndTests
+    public partial class EndToEndTests : BaseEndToEndTests
     {
         private static readonly string ExpectedParserVersion = typeof(Metadata)
                                                                .Assembly
@@ -108,6 +109,22 @@ namespace test.backlog.EndToEndTests
             Assert.Equal(expectedXml, actualXml);
         }
 
+        private void AssertCapturedContentContainsExpectedMetadataJson(string capturedKey,
+            string expectedMetadataJsonResourceName)
+        {
+            var actualMetadataJson =
+                ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.json");
+            var expectedMetadataJson = DocumentHelpers.ReadEmbeddedResourceAsString(expectedMetadataJsonResourceName);
+            
+            // Remove all non-deterministic data
+            actualMetadataJson = GuidRegex().Replace(actualMetadataJson, "");
+            expectedMetadataJson = GuidRegex().Replace(expectedMetadataJson, "");
+            actualMetadataJson = MetadataFieldTimestampRegex().Replace(actualMetadataJson,"");
+            expectedMetadataJson = MetadataFieldTimestampRegex().Replace(expectedMetadataJson,"");
+
+            Assert.Equal(expectedMetadataJson, actualMetadataJson);
+        }
+
         /// <summary>
         ///     Pulls the first &lt;uk:parser&gt; value out of the supplied XML, preserving whitespace.
         /// </summary>
@@ -118,64 +135,35 @@ namespace test.backlog.EndToEndTests
             return document.Descendants(uk + "parser").FirstOrDefault()?.Value;
         }
 
-        [Fact]
-        public void ProcessBacklogJudgment_SuccessfullyUploadsToS3()
+        [Theory]
+        [InlineData("docx", "Altaf Ebrahim t_a Ebrahim & Co v OISC", "JudgmentFiles\\", "data/HMCTS_Judgment_Files/", 5)]
+        [InlineData("pdf", "Money Worries Ltd v Office of Fair Trading", "Documents\\", "data/Consumer Credit Appeals/Documents/", 20)]
+        public void ProcessBacklogJudgment_SuccessfullyUploadsExpectedFilesToS3(string _, string testCaseName, string judgmentFilePath, string hmctsFilesPath, uint docId)
         {
-            // Setup test environment for DOCX test
-            ConfigureTestEnvironment("Altaf Ebrahim t_a Ebrahim & Co v OISC");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
-
-            // Arrange
-            const uint docId = 5; // doc id 5 from the court_metadata.csv being tested
+            // Setup test environment
+            ConfigureTestEnvironment(testCaseName);
+            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", judgmentFilePath);
+            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", hmctsFilesPath);
 
             // Act
-            var exitCode = Backlog.Src.Program.Main(new[] { "--id", docId.ToString() });
+            var exitCode = Backlog.Src.Program.Main("--id", docId.ToString());
 
+            // Assert - Program exited successfully
             AssertProgramExitedSuccessfully(exitCode);
 
-            // Verify content was uploaded
+            // Assert - Verify content was uploaded
             mockS3Client.AssertNumberOfUploads(1);
             mockS3Client.AssertUploadsWereValid();
-
+            
             var capturedKey = mockS3Client.CapturedKeys.Single();
 
-            // Check if tracker was updated
-            Assert.Contains(GetUuidFromKey(capturedKey), File.ReadAllText(trackerPath));
-            AssertCapturedContentMatchesOutputContent(capturedKey);
-            AssertCapturedContentContainsExpectedXml(capturedKey,
-                "test.backlog.expected_output.Altaf Ebrahim t_a Ebrahim & Co v OISC.xml");
-        }
-
-        [Fact]
-        public void ProcessBacklogJudgment_SuccessfullyProcessesPDF()
-        {
-            // Setup test environment for PDF test
-            ConfigureTestEnvironment("Money Worries Ltd v Office of Fair Trading");
-            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "Documents\\");
-            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/Consumer Credit Appeals/Documents/");
-
-            // Arrange
-            const uint docId = 20; // Using doc id of a PDF
-
-            // Act
-            var exitCode = Backlog.Src.Program.Main(new[] { "--id", docId.ToString() });
-
-            // Assert
-            AssertProgramExitedSuccessfully(exitCode);
-
-            // Verify content was uploaded
-            mockS3Client.AssertNumberOfUploads(1);
-            mockS3Client.AssertUploadsWereValid();
-
-            var capturedKey = mockS3Client.CapturedKeys.Single();
-
-            // Check if tracker was updated
+            // Assert - Check tracker was updated
             Assert.Contains(GetUuidFromKey(capturedKey), File.ReadAllText(trackerPath));
 
+            // Assert - Check output files are as expected
             AssertCapturedContentMatchesOutputContent(capturedKey);
-            AssertCapturedContentContainsExpectedXml(capturedKey,
-                "test.backlog.expected_output.Money Worries Ltd v Office of Fair Trading.xml");
+            AssertCapturedContentContainsExpectedXml(capturedKey, $"test.backlog.expected_output.{testCaseName}.xml");
+            AssertCapturedContentContainsExpectedMetadataJson(capturedKey, $"test.backlog.expected_output.{testCaseName}.json");
         }
 
         [Fact]
@@ -281,5 +269,10 @@ namespace test.backlog.EndToEndTests
             // Assert
             Assert.Equal(1, exitCode);
         }
+
+        [GeneratedRegex(@"""timestamp"":""\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{1,6}Z""")]
+        private static partial Regex MetadataFieldTimestampRegex();
+        [GeneratedRegex("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")]
+        private static partial Regex GuidRegex();
     }
 }

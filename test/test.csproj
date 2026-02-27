@@ -38,7 +38,8 @@
     <EmbeddedResource Include="./lawmaker/**/*.docx" />
     <EmbeddedResource Include="./lawmaker/**/*.xml" />
 
-    <EmbeddedResource Include="backlog/expected-output/*.xml" />
+    <EmbeddedResource Include="./backlog/expected-output/*.json" />
+    <EmbeddedResource Include="./backlog/expected-output/*.xml" />
   </ItemGroup>
 
 </Project>

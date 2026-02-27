@@ -2,6 +2,8 @@
 
 using System.Text.Json.Serialization;
 
+using TRE.Metadata;
+
 namespace Backlog.TreMetadata;
 
 internal class Parameters
@@ -11,7 +13,7 @@ internal class Parameters
     public required Tre TRE { get; init; }
 
     [JsonPropertyName("PARSER")]
-    public required UK.Gov.NationalArchives.Judgments.Api.Meta PARSER { get; init; }
+    public required ParserProcessMetadata PARSER { get; init; }
 
     [JsonPropertyName("INGESTER_OPTIONS")]
     public required IngestorOptions IngestorOptions { get; init; }
