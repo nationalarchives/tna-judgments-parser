@@ -1,0 +1,1390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="http://www.legislation.gov.uk/id/ukdsi/2019/9780111178034/impacts/2019/8" />
+          <FRBRuri value="http://www.legislation.gov.uk/id/ukdsi/2019/9780111178034/impacts/2019/8" />
+          <FRBRdate date="2018-12-14" name="document" />
+          <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
+          <FRBRcountry value="GB-UKM" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8" />
+          <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8" />
+          <FRBRdate date="2018-12-14" name="document" />
+          <FRBRauthor href="#" />
+          <FRBRlanguage language="en" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/data.akn" />
+          <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/data.akn" />
+          <FRBRdate date="2026-02-20" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#tna">
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+      </references>
+      <proprietary source="#">
+        <uk:parser>1.5.1</uk:parser>
+        <dc:modified>2019-01-09</dc:modified>
+        <uk:legislation>http://www.legislation.gov.uk/id/ukdsi/2019/9780111178034</uk:legislation>
+        <uk:associatedID>http://www.legislation.gov.uk/id/ukia/2019/8</uk:associatedID>
+        <uk:documentStage>Final</uk:documentStage>
+        <uk:documentMainType>UnitedKingdomImpactAssessment</uk:documentMainType>
+        <uk:department>Department for Environment, Food and Rural Affairs</uk:department>
+        <uk:date>2019-01-09</uk:date>
+        <uk:pdfDate>2019-01-09</uk:pdfDate>
+        <uk:legislationClass>UnitedKingdomDraftStatutoryInstrument</uk:legislationClass>
+        <uk:year>2019</uk:year>
+        <uk:number>8</uk:number>
+        <uk:legislationYear>2019</uk:legislationYear>
+        <uk:legislationNumber>9780111178034</uk:legislationNumber>
+        <uk:hash>981cb6f3d188f807193d74c6bd84fff9ac7cf7bc6c672ca4677d95f6d7881fd8</uk:hash>
+      </proprietary>
+    </meta>
+    <mainBody>
+      <toc>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8" level="1"><inline name="tocHeading">The whole Impact Assessment</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/2" level="2"><inline name="tocHeading">1. Summary Analysis &amp; Evidence</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/3" level="2"><inline name="tocHeading">2. Evidence base</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/4" level="2"><inline name="tocHeading">3. INTRODUCTION &amp; BACKGROUND</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/5" level="2"><inline name="tocHeading">4. PROBLEM UNDER CONSIDERATION</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/6" level="2"><inline name="tocHeading">5. POLICY OBJECTIVE</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/7" level="2"><inline name="tocHeading">6. ECONOMIC RATIONALE FOR GOVERNMENT INTERVENTION</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/8" level="2"><inline name="tocHeading">7. DESCRIPTION OF OPTIONS CONSIDERED</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/9" level="2"><inline name="tocHeading">8. Option 0 Static acquis baseline</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/10" level="2"><inline name="tocHeading">9. Option 1 Introduce legislation - Building UK regulatory capability. This would ensure that the sy...</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/11" level="2"><inline name="tocHeading">10. Alternative to regulation</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/12" level="2"><inline name="tocHeading">11. BENEFITS TO BUSINESSES, GOVERNMENT AND SOCIETY FROM OPTION 1</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/13" level="2"><inline name="tocHeading">12. DIRECT COSTS TO GOVERNMENT</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/14" level="2"><inline name="tocHeading">13. Option 0 Baseline - Static Acquis (Current Arrangements)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/15" level="2"><inline name="tocHeading">14. Option 0.1 Baseline - do nothing (no legislation)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/16" level="2"><inline name="tocHeading">15. Option 1 Building UK regulatory capability</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/17" level="2"><inline name="tocHeading">16. DIRECT IMPACTS TO UK BUSINESSES</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/18" level="2"><inline name="tocHeading">17. Option 0 Baseline - Current Arrangements</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/19" level="2"><inline name="tocHeading">18. Option 0.1 Baseline - do nothing (no legislation)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/20" level="2"><inline name="tocHeading">19. Option 1 Building UK regulatory capability</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/21" level="2"><inline name="tocHeading">20. Summary of impacts</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/22" level="2"><inline name="tocHeading">21. RATIONALE AND EVIDENCE THAT JUSTIFY THE LEVEL OF ANALYSIS</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/23" level="2"><inline name="tocHeading">22. RISKS AND ASSUMPTIONS</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/24" level="2"><inline name="tocHeading">23. WIDER IMPACTS</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/25" level="2"><inline name="tocHeading">24. Small and Micro Business Assessment (SaMBA)</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/26" level="2"><inline name="tocHeading">25. Competition</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/27" level="2"><inline name="tocHeading">26. Family impact test</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/28" level="2"><inline name="tocHeading">27. Equalities and human rights</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/29" level="2"><inline name="tocHeading">28. Environmental impacts</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/30" level="2"><inline name="tocHeading">29. Animal Welfare</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/section/31" level="2"><inline name="tocHeading">30. Regional impacts</inline></tocItem>
+      </toc>
+      <level>
+        <content>
+          <table uk:widths="1.18in 1.08in 1.77in 0.21in 0.87in 1.97in 0.01in">
+            <tr>
+              <td colspan="4">
+                <p class="ia-table-text"><b>Title:</b> <docTitle>    <b>UK REACH (Registration, Evaluation, Authorisation &amp; restriction of CHemicals)</b></docTitle></p>
+                <p class="ia-table-text"><b>IA No:  </b><b>DEFRA/CHM/01</b></p>
+                <p class="ia-head-label"><b>RPC Reference No:   RPC-4313(1)-DEFRA</b></p>
+                <p class="ia-table-text"><b>Lead department or agency:</b> <inline name="leadDepartment"> Department for Environment, Food and Rural Affairs       </inline></p>
+                <p class="ia-table-text"><b>Other departments or agencies:        </b></p>
+              </td>
+              <td colspan="3">
+                <table uk:widths="2.84in">
+                  <tr>
+                    <td>
+                      <p class="ia-title">Impact Assessment (IA)</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Date:</b><b> </b><docDate date="2018-12-14"> 14/12/2018</docDate></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Stage: </b><b> </b><docStage>Final</docStage></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Source of intervention: </b><b>Domestic</b></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Type of measure: </b><b>Secondary legislation</b></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text"><b>Contact for enquiries:</b> <b>Keith Bailey</b></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="ia-table-text" />
+                    </td>
+                  </tr>
+                </table>
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <p class="ia-table-text"><b>Summary: Intervention and Options </b></p>
+                <p class="ia-table-text" />
+              </td>
+              <td colspan="3">
+                <p class="ia-table-text"><b>RPC Opinion: </b>GREEN</p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="7">
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6">
+                <p class="ia-table-text"><b>Cost of Preferred (or more likely) Option</b></p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>Total Net Present Value</b></p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Business Net Present Value</b></p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Net cost to business per year </b>(EANDCB in 2014 prices)</p>
+              </td>
+              <td colspan="2">
+                <p class="ia-table-text"><b>One-In, </b></p>
+                <p class="ia-table-text"><b>Three-Out</b></p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Business Impact Target       Status</b></p>
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="ia-table-text">n/a</p>
+              </td>
+              <td>
+                <p class="ia-table-text">n/a</p>
+              </td>
+              <td>
+                <p class="ia-table-text">n/a</p>
+              </td>
+              <td colspan="2">
+                <p class="ia-table-text"> N/A</p>
+              </td>
+              <td>
+                <p class="ia-table-text">Out of scope</p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6">
+                <p class="ia-table-text"><b>What is the problem under consideration? Why is government intervention necessary?</b></p>
+                <p class="ia-table-text">As part of necessary contingency planning of leaving the EU, the UK will need to use the powers provided by the Withdrawal Act to implement a workable chemicals regulatory system.  The SI would be necessary to provide continued legal certainty in regard to the requirements for placing chemicals on the UK market, ensure companies remain under a legal duty to ensure safe management of chemicals, and to enable regulatory authorities to continue to respond to new and emerging risks, and to make sure that the most dangerous chemicals are still safely controlled.</p>
+                <p class="ia-table-text" />
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="7.08in">
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>What are the policy objectives and the intended effects?</b></p>
+                <p class="ia-table-text">To convert the existing EU REACH regulation into national law. This national regulatory regime would continue to support the Government’s objectives for chemicals policy:</p>
+                <p class="ia-table-text">- To ensure a high level of protection of human health and the environment;</p>
+                <p class="ia-table-text">- To enhance the competitiveness and innovation of UK business;</p>
+                <p class="ia-table-text">- To give businesses the duty to understand the hazards and potential risks of the chemicals they produce, place on the market and use, and to identify and apply appropriate risk management measures;</p>
+                <p class="ia-table-text">- To ensure that UK Government can respond to new and emerging risks from chemicals and that regulatory decisions are proportionate and based on scientific assessment of hazard and risk.</p>
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="7.08in">
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option (further details in Evidence Base)</b></p>
+                <p class="ia-table-text" />
+                <p class="ia-table-text">This policy has been developed by following the provisions in the European Union (Withdrawal) Act to bring existing EU laws into UK law without changing the underlying policy to ensure a smooth transition, while addressing legislative inoperabilities arising from the need to apply pan-EU processes in a UK-only context.</p>
+                <p class="ia-table-text" />
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="7.08in">
+            <tr>
+              <td>
+                <p class="ia-table-text"><b>Will the policy be reviewed?  </b>It will not be reviewed.<b> </b>The European Union (Withdrawal) Act has relieved the requirement for PIRs of the statutory instruments that are brought forward under the Act</p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <level>
+        <content>
+          <table uk:widths="4.35in 0.68in 0.68in 0.24in 0.44in 0.68in">
+            <tr>
+              <td colspan="2">
+                <p class="ia-table-text">Does implementation go beyond minimum EU requirements?</p>
+              </td>
+              <td colspan="4">
+                <p class="ia-table-text">   N/a</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="ia-table-text">Are any of these organisations in scope?</p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Micro</b></p>
+                <p class="ia-table-text">Yes</p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Small</b></p>
+                <p class="ia-table-text">Yes</p>
+              </td>
+              <td colspan="2">
+                <p class="ia-table-text"><b>Medium</b></p>
+                <p class="ia-table-text">Yes</p>
+              </td>
+              <td>
+                <p class="ia-table-text"><b>Large</b></p>
+                <p class="ia-table-text">Yes</p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <p class="ia-table-text">What is the CO2 equivalent change in greenhouse gas emissions? <br />(Million tonnes CO2 equivalent)  </p>
+              </td>
+              <td colspan="2">
+                <p class="ia-table-text"><b>Traded:   </b><br /><b>NA</b></p>
+              </td>
+              <td colspan="2">
+                <p class="ia-table-text"><b>Non-traded:   </b><br /><b>NA</b></p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </level>
+      <paragraph>
+        <content>
+          <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></p>
+          <table uk:widths="3.33in 1.59in 0.89in 1.28in">
+            <tr>
+              <td>
+                <p class="ia-table-text">Signed by the responsible: Director of Analysis</p>
+              </td>
+              <td>
+                <p class="ia-table-text">John Curnow</p>
+              </td>
+              <td>
+                <p class="ia-table-text"> Date:</p>
+              </td>
+              <td>
+                <p class="ia-table-text">8 November 2018 </p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </paragraph>
+      <section eId="section_2">
+        <heading>Summary Analysis &amp; Evidence</heading>
+        <intro>
+          <p><b>Summary: Analysis &amp; Evidence</b>Policy Option 1</p>
+        </intro>
+        <level>
+          <content>
+            <p><b>Description:  </b>Option 1: Introduce legislation - Building UK regulatory capability.</p>
+          </content>
+        </level>
+        <paragraph>
+          <content>
+            <p><b>FULL ECONOMIC ASSESSMENT</b></p>
+            <table uk:widths="0.98in 0.78in 1.05in 1.1in 1.12in 2.02in">
+              <tr>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Price Base Year  n/a</b></p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>PV Base Year  n/a</b></p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Time Period Years  n/a</b></p>
+                </td>
+                <td colspan="3">
+                  <p class="ia-table-text"><b>Net Benefit (Present Value (PV)) (£m)</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low: n/a</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>High: n/a</b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate: n/a</b></p>
+                </td>
+              </tr>
+            </table>
+            <table uk:widths="1.6in 1.19in 0.48in 1.75in 1.08in 0.94in">
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>COSTS (£m)</b></p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Transition </b><br />(Constant Price)Years</p>
+                  <p class="ia-table-text"><br /></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Average Annual </b><br />(excl. Transition) (Constant Price)</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Cost</b> <br />(Present Value)</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+                <td rowspan="3">
+                  <p class="ia-table-text">   </p>
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>n/a</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>High </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>n/a</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">         n/a     </p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>n/a     </b></p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Description and scale of key monetised costs by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">N/A</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Other key non-monetised costs by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">Additional costs for businesses to transmit the supporting data for existing registrations and authorisations to the UK agency. Familiarisation costs would be expected to be relatively small. If access to data sharing is limited, businesses could face higher future costs to access or to conduct new data tests. </p>
+                  <p class="ia-table-text">Further Government cost of building regulatory capacity.</p>
+                  <p class="ia-table-text" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>BENEFITS (£m)</b></p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Transition </b><br />(Constant Price)Years</p>
+                  <p class="ia-table-text"><br /></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Average Annual </b><br />(excl. Transition) (Constant Price)</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>Total Benefit</b> <br />(Present Value)</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Low </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+                <td rowspan="3">
+                  <p class="ia-table-text">   </p>
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>n/a</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>High </b></p>
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>n/a</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text"><b>Best Estimate</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+                <td colspan="2">
+                  <p class="ia-table-text"><b>n/a</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Description and scale of key monetised benefits by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">N/A</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text"><b>Other key non-monetised benefits by ‘main affected groups’ </b></p>
+                  <p class="ia-table-text">This statutory instrument would enact the necessary legislative amendments to make the regulatory system operable in the UK after Day 1 and thereby provide continuity, stability and legal certainty for businesses and UK regulatory authorities. This would maintain the drivers of the health and environmental benefits in the static acquis baseline. </p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <p class="ia-table-text"><b>Key assumptions/sensitivities/risks</b><b>Discount rate (%)</b></p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <p class="ia-table-text">n/a</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+        <paragraph>
+          <content>
+            <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
+            <table uk:widths="1.52in 1.13in 1.04in 3.37in">
+              <tr>
+                <td colspan="3">
+                  <p class="ia-table-text"><b>Direct impact on business (Equivalent Annual) £m: </b></p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Score for Business Impact Target (qualifying provisions only) £m:</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Costs: </b>n/a</p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Benefits: </b>n/a</p>
+                </td>
+                <td rowspan="2">
+                  <p class="ia-table-text"><b>Net: </b>n/a</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">n/a</p>
+                  <p class="ia-table-text" />
+                  <p class="ia-table-text" />
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_3">
+        <heading>Evidence base</heading>
+        <intro>
+          <p><b>Evidence base</b></p>
+        </intro>
+        <paragraph>
+          <num>1.</num>
+          <content>
+            <p>The Government has set out its objectives for leaving the EU in the Withdrawal Agreement and Political Declaration on our future relationship with the EU. While it is in both the UK’s and the EU’s interests to secure a good deal, the Government has a duty to plan for all possible outcomes. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>2.</num>
+          <content>
+            <p>The Political Declaration on the future relationship between the UK and the EU makes proposals for a UK-EU free trade area for goods, which ensures a trading relationship that is as close as possible, combining deep regulatory and customs cooperation. The UK and the EU will explore the possibility of cooperation between UK authorities and EU agencies, such as the European Chemicals Agency. (ECHA)  Alongside this preferred option, the Government must prepare for all scenarios and contingencies across a range of potential negotiated agreements, as well as preparing for leaving without a deal.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>3.</num>
+          <content>
+            <p>Plans are well developed and have been designed to provide the flexibility to respond to a range of potential outcomes.  The Government is working with businesses across the economy to provide the certainty they need as part of preparations for EU exit.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>4.</num>
+          <content>
+            <p>An implementation period as part of a Withdrawal Period may prolong the UK participation in the EU regulatory regimes including REACH. Depending on the exact nature of this, we anticipate no changes from the static acquis for businesses. Without a negotiated agreement, the measures broadly equivalent to this SI would come into place at the end of this period.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>5.</num>
+          <content>
+            <p>The options, risks and assumptions, and analysis in this impact assessment, and the statutory instrument on which it is based, have been prepared in the context of preparing for contingency scenarios and should be read against that background.   The impact assessment addresses the statutory instrument (SI) necessary to ensure we have an operable chemicals system in the event of leaving the EU without a deal. The SI will amend powers currently carried out by ECHA and transfer them to the Government and regulatory authorities.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_4">
+        <num><b>A.</b></num>
+        <heading>INTRODUCTION &amp; BACKGROUND</heading>
+        <intro>
+          <p><b><i>INTRODUCTION &amp; BACKGROUND</i></b></p>
+        </intro>
+        <paragraph>
+          <num>6.</num>
+          <content>
+            <p>Chemicals<authorialNote marker="1"><p> Substances and preparations as defined in Directive 67/548/EEC</p></authorialNote> underpin other manufacturing processes and provide substantial benefits to society as ingredients in industrial and household goods; however, their widespread use in industry, agriculture, food systems and homes has led in some cases to pollution of land, water, air and food. It is important therefore that risks associated with chemicals are controlled through a robust chemical risk management regime to ensure a high level of protection of human health and the environment. It has been estimated that there are 100,000 individual chemicals on the EU market.<authorialNote marker="2"><p> European Inventory of Existing Commercial Chemical Substances (EINECS) is an inventory of a sizeable 100,196 different substances deemed to be on the European market between 1971 and 1981</p></authorialNote> The regulatory focus is on those substances manufactured and imported in quantities of 1 tonne or more (estimated at 30,000) rather than those traded in smaller quantities. This is because this covers the bulk of the substances on the EU market, representing a greater exposure to humans and the environment due to their widespread occurrence.   </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>7.</num>
+          <content>
+            <p>Existing regulation of chemicals is largely carried out through EU legislation.  Previously individual Member States had taken adhoc regulatory steps in response to risks from individual chemicals, but it was EU legislation that introduced general regulation of all chemical substances. In addition EU chemicals legislation is tied to the operation of the single market as it focuses on the sale and use of chemicals in the EU.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>8.</num>
+          <intro>
+            <p>EU policy for regulating chemicals has developed over time and has gone through four main phases:</p>
+          </intro>
+          <subparagraph>
+            <num>-</num>
+            <content>
+              <p>1970s: ad hoc restrictions on the marketing and use of chemicals that were known to be harmful;</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>-</num>
+            <content>
+              <p>1980s: a systematic and proactive approach to new chemicals, which were not allowed onto the market before being tested (known as notification of new substances – NONS);</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>-</num>
+            <content>
+              <p>1990s: a programme to evaluate existing chemicals through the Existing Substances Regulation, along with the management of those identified as risks;</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>-</num>
+            <content>
+              <p>2000s: the current REACH regulation is a consolidation and extension of the earlier phases so that new and existing substances are addressed in a consistent manner through the registration procedure combined with a streamlined restriction process for chemicals with unacceptable risks, as well as a new authorisation procedure for control of substances of very high concern.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+      </section>
+      <section eId="section_5">
+        <num><b>B.</b></num>
+        <heading>PROBLEM UNDER CONSIDERATION</heading>
+        <intro>
+          <p><b>PROBLEM UNDER CONSIDERATION</b></p>
+        </intro>
+        <paragraph>
+          <num>9.</num>
+          <content>
+            <p>The UK chemicals sector is highly diverse, including the manufacture of commodity/bulk chemicals, speciality chemicals, polymers (plastics) and consumer chemicals (e.g. personal care and cleaning products). The chemicals they manufacture and use are an essential building block for manufacturing and other industry and business sectors, even though many downstream users may not be aware of their dependence on chemicals. The UK chemicals manufacturing sector directly accounted for £12.7 billion of the UK economy’s Gross Value Added (GVA)<authorialNote marker="3"><p> GDP(O) Low Level Aggregates National Accounts, ONS, September 2018</p></authorialNote> and 95,000 direct jobs in 2017.<authorialNote marker="4"><p> ‘Employee Jobs by Industry’, ONS, March 2018</p></authorialNote> There are approximately 2,800 chemical businesses, of which 97.5% are Small and Medium Enterprises (SMEs) and microbusinesses.<authorialNote marker="5"><p> UK Business; activity, size and location, ONS, January 2018</p></authorialNote></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>10.</num>
+          <content>
+            <p>Chemicals also present a range of hazards and potential risks.  Some of these may be physical hazards, e.g. they can be flammable or explosive.  Others can present risks to human health as a result of their toxicity, e.g. they might cause cancer, or they might be persistent, bioaccumulate and/or be toxic to the environment.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>11.</num>
+          <content>
+            <p>As a result all users of chemicals need to understand the potential risks of the chemicals they use, and should take the appropriate measures to control them.  Equally regulatory authorities need to be able to investigate outstanding concerns, introduce appropriate controls to protect human health and the environment and respond to new and emerging risks, and then to take enforcement action where necessary.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>12.</num>
+          <intro>
+            <p>These elements have been the main focus of chemicals regulation as it has developed over time and are currently brought together in the EU REACH (Registration, Evaluation, Authorisation and Restriction of Chemicals) regulation (see Figure 1: REACH Explained on the next page). This is a directly acting EU regulation given effect in the UK by the European Communities Act 1972. The Government’s intention when the UK leaves the EU is that existing EU law should be carried over into UK law under the terms of the European Union (Withdrawal) Act.  A further policy objective, expressed by the Prime Minister when launching the Government’s 25 Year Environment Plan on 11 January 2018, is that the Government has no intention of weakening the UK’s current environmental protections as we leave the EU, and that the UK  will maintain its high regulatory standards for the environment. </p>
+          </intro>
+          <subparagraph>
+            <num>13.</num>
+            <content>
+              <p>REACH established a highly integrated regulatory system across the EU with a central focus on the implementation role of the European Chemicals Agency (ECHA) as an agency of the EU. This means that a major part of the REACH legislation would become inoperable if it were simply carried into UK law under the Withdrawal Act without remedial amendment. For example the industry dutyholders are defined as being “established in the Community”, which means that they would no longer be subject to duties on safe use without amendments to REACH.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+      </section>
+      <section eId="section_6">
+        <num><b>C.</b></num>
+        <heading>POLICY OBJECTIVE</heading>
+        <intro>
+          <p><b>POLICY OBJECTIVE</b></p>
+        </intro>
+        <paragraph>
+          <num>14.</num>
+          <intro>
+            <p>The Political Declaration on the future relationship between the UK and the EU makes proposals for a UK-EU free trade area for goods, which ensures a trading relationship that is as close as possible, combining deep regulatory and customs cooperation. The UK and the EU will explore the possibility of cooperation between UK authorities and EU agencies, such as the European Chemicals Agency. (ECHA)  In addition to this preferred option, the Government must prepare for all scenarios, which includes  developing domestic arrangements to regulate chemicals after the UK leaves the EU, specifically:</p>
+          </intro>
+          <subparagraph>
+            <num>-</num>
+            <content>
+              <p>To convert the existing EU REACH regulation into national law, through the powers provided by the EU (Withdrawal) Act.  REACH is a single EU-wide regulatory system centred on the European Chemicals Agency, so significant areas of REACH will become inoperable at a national level and will require amendment, so this statutory instrument makes the legislative amendments necessary to make it operable in the UK national context; and thereby</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>-</num>
+            <content>
+              <p>To provide continuity and stability for businesses by converting, where possible, established EU law into UK law.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>15.</num>
+          <intro>
+            <p>This national regulatory regime would continue to support the Government’s objectives for chemicals policy:</p>
+          </intro>
+          <subparagraph>
+            <num>-</num>
+            <content>
+              <p>To ensure a high level of protection of human health and the environment;</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>-</num>
+            <content>
+              <p>To enhance the competitiveness and innovation of UK business;</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>-</num>
+            <content>
+              <p>To give businesses the duty to understand the hazards and potential risks of the chemicals they produce, place on the market and use, and to identify and apply appropriate risk management measures;</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>-</num>
+            <content>
+              <p>To ensure that UK Government can respond to new and emerging risks from chemicals and that regulatory decisions are proportionate and based on scientific assessment of hazard and risk.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+      </section>
+      <section eId="section_7">
+        <num><b>D.</b></num>
+        <heading>ECONOMIC RATIONALE FOR GOVERNMENT INTERVENTION</heading>
+        <intro>
+          <p><b><i>ECONOMIC RATIONALE FOR GOVERNMENT INTERVENTION</i></b></p>
+        </intro>
+        <paragraph>
+          <num>16.</num>
+          <content>
+            <p>Chemicals and manufactured chemical goods exist everywhere in our daily lives and are essential to modern day living, from the manufacture of industrial goods to everyday household products. However, chemical substances also present a range of hazards and potential risks to human health and the environment. They can affect human health directly or enter our water, soil, and air through production, use or disposal and can cause long lasting damage in the natural environment. These are negative externalities (external costs) which provide the rationale for Government intervention.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>17.</num>
+          <content>
+            <p>Currently these market failures for chemical substances are primarily addressed through the EU REACH Regulation. This sets rules and practices for placing chemicals on the EU market to ensure their safe use and the protection of health and the environment.  It operates on the principle of “no data, no market” requiring businesses to supply data on their chemical substances.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>18.</num>
+          <content>
+            <p>In the context of this SI, the specific rationale for intervention is to ensure there is an operable chemicals regime in any UK only context, avoiding institutional failure. The terms of the European Union (Withdrawal) Act alone are not sufficient to adopt the EU regime to make it work in a national context.  It is necessary to use the SI-making powers contained in the Act, for example to provide for safe access to the UK market and to replace the roles of EU Member State committees in authorising or restricting chemicals.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_8">
+        <num><b>E.</b></num>
+        <heading>DESCRIPTION OF OPTIONS CONSIDERED</heading>
+        <content>
+          <p><b>DESCRIPTION OF OPTIONS CONSIDERED</b></p>
+        </content>
+      </section>
+      <section eId="section_9">
+        <heading>Option 0 Static acquis baseline</heading>
+        <intro>
+          <p><b>Option 0: Static acquis baseline </b></p>
+        </intro>
+        <paragraph>
+          <num>19.</num>
+          <content>
+            <p>The primary baseline against which measures are assessed is ‘static acquis’ baseline, whereby the current body of European law is taken to be static at the point of departure. For chemicals, this includes the EU REACH legislation as detailed in figure 1.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p><b>Option 0.1: </b><b>Alternative baseline: Do nothing (no legislation)</b></p>
+          </content>
+        </level>
+        <paragraph>
+          <num>20.</num>
+          <content>
+            <p>The problem under consideration would be left unaddressed under this option.  The European Union (Withdrawal) Act, would transfer directly applicable EU legislation into UK law at exit but leaves it unchanged.  In order to ensure this body of law functions properly on exit day, the Act provides a statutory instrument-making power to correct deficiencies that arise from applying in a single country legislation that was designed to work in an EU-wide context.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>21.</num>
+          <content>
+            <p>REACH sets up a highly integrated chemicals management system, which includes conditions for companies wanting to place their chemicals on the EU single market, as well as the centralised European Chemicals Agency responsible for most of the regulatory implementation of REACH.  The powers and duties of Member State authorities exist as an adjunct to these centralised processes.  All of these processes and activities would become inoperable if the SI-making power in the Act was not used to correct them.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>22.</num>
+          <content>
+            <p>The <b>do </b><b>n</b><b>othing (no legislation) </b>option, i.e. not using  the SI-making power to correct deficiencies, would leave the UK with a largely unworkable chemicals management regulatory system, because REACH is designed to work in such an integrated and centralised way.  There would be no provision or conditions to allow regulated access to the UK market.  UK economic operators would be under no duty to identify the hazards and potential risks of the chemicals they produce or to apply appropriate risk management measures.  The UK authorities would have no powers to respond to new and emerging risks from chemicals to human health or the environment, and there would be legal uncertainty as to whether existing regulatory controls on dangerous chemicals would still apply. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_10">
+        <heading>Option 1 Introduce legislation - Building UK regulatory capability. This would ensure that the system would remain operable in all scenarios.</heading>
+        <intro>
+          <p><b>Option 1: Introduce legislation - Building UK regulatory capability. This would ensure that the system would remain operable in all scenarios.</b></p>
+        </intro>
+        <paragraph>
+          <num>23.</num>
+          <intro>
+            <p>In the context of the necessary contingency planning, our leading option is to use the powers provided in the Act to put in place the necessary legal amendments to ensure an effective chemicals regulatory system is operable within the UK. This would be based on the existing REACH system which is familiar to regulators, business and other stakeholders.  The UK system would continue with the following features, which need the SI powers in order to work: </p>
+          </intro>
+          <subparagraph>
+            <num>i.</num>
+            <intro>
+              <p>Proper understanding and management of risks that chemicals can pose to human health and the environment </p>
+            </intro>
+            <subparagraph>
+              <num>●</num>
+              <content>
+                <p>chemical producers have the primary duty for understanding potential risks and what is needed to manage them</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>●</num>
+              <content>
+                <p>understanding and management of risk is the condition of market access </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>●</num>
+              <content>
+                <p>all chemical users have a duty to ensure safe management </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>●</num>
+              <content>
+                <p>effective means of checking and enforcing compliance </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>●</num>
+              <content>
+                <p>powers and duties for authorities and industry to investigate and correct remaining uncertainties about hazard and risk </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>●</num>
+              <content>
+                <p>regulatory powers to take effective action to address unacceptable or emerging risks on the basis of scientific and socio-economic analysis. </p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+          <subparagraph>
+            <num>ii.</num>
+            <intro>
+              <p>Continued effective working of markets and supply chains</p>
+            </intro>
+            <subparagraph>
+              <num>●</num>
+              <content>
+                <p>continued validity of existing UK company registrations within the UK market at Day 1  </p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>●</num>
+              <content>
+                <p>clear rules for UK market entry for new chemicals and new entrant companies after Day 1</p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num>●</num>
+              <content>
+                <p>continued smooth working of supply chains for the chemicals sector and other manufacturing sectors that depend on chemicals, to the extent this can be provided by UK law independently of negotiated agreements with the EU.</p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>24.</num>
+          <content>
+            <p>The UK system would include a regulatory authority combining functions currently carried out by ECHA and the UK Competent Authority. This would include operating a stakeholder helpdesk, receiving registration dossiers and making information on chemicals publicly available, measuring compliance, evaluating levels of hazard and risk, and making recommendations in cases where additional regulatory risk management may be necessary.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>25.</num>
+          <content>
+            <p>Other powers that are currently exercised by the European Commission would be transferred to the Secretary of State for Environment, Food and Rural Affairs.  These include the powers to introduce new or amended restrictions, adding to the list of chemicals that are subject to the authorisation procedure, and granting authorisations to applicant companies<b>.</b></p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_11">
+        <heading>Alternative to regulation</heading>
+        <intro>
+          <p><b>Alternative to regulation</b></p>
+        </intro>
+        <paragraph>
+          <num>26.</num>
+          <content>
+            <p>The European Union (Withdrawal) Act does not permit policy changes so a non-regulatory alternative would not be a legal option.  It is also unlikely that non-regulatory management would be effective, given the market failures discussed above. Before REACH regulation was introduced there were considerable gaps in the understanding of both industry and regulatory authorities of the hazards and potential risks attached to the majority of chemicals on the market.  Regulatory efforts were a response to cases where clear harm had already occurred to human health or the environment.  Examples of this reactive stance include: asbestos; mercury poisoning through environmental exposure; and the pesticide DDT. These gaps in understanding can result in the industry not knowing which management measures are needed to control the risks. Moreover, regulators cannot take appropriate steps to prevent rather than react to human health or environmental risks. The effect of regulation in closing these gaps and improving risk management by industry can be seen in the results of the earlier rounds of REACH registrations in 2010 and 2013; an analysis<authorialNote marker="6"><p> European Commission (2016): <i>Study on the Calculation of the Benefits of Chemicals Legislation on Human Health and the Environment. Development of a System of Indicators</i>. Table on pages viii-ix</p></authorialNote> of a cross section of chemicals found that the number of chemicals identified by industry as hazards to the aquatic environment increased by 99% compared to the pre-REACH baseline and the number identified as toxic to reproduction went up by 229%.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>27.</num>
+          <content>
+            <p>There are no legal or other alternatives to Government intervention to correct for deficiencies in the legal and institutional arrangements that arise under the provisions of the European Union (Withdrawal) Act.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_12">
+        <num><b>F.</b></num>
+        <heading>BENEFITS TO BUSINESSES, GOVERNMENT AND SOCIETY FROM OPTION 1</heading>
+        <intro>
+          <p><b>BENEFITS TO BUSINESSES, GOVERNMENT AND SOCIETY FROM OPTION 1</b></p>
+        </intro>
+        <paragraph>
+          <num>28.</num>
+          <content>
+            <p><b>Benefits compared to Option 0 static acquis:</b> This statutory instrument would enable the necessary legislative amendments to make the regulatory system operable in the UK after Day 1 and thereby provide continuity, stability and legal certainty for businesses and UK regulatory authorities.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>29.</num>
+          <content>
+            <p>This would maintain the drivers of the health and environmental benefits in the static acquis baseline, as businesses would continue to be under the duty to identify the hazards and potential risks of the chemicals they produce or to apply appropriate risk management measures. The UK authorities would have the necessary powers, currently held by the EU, to respond to new and emerging risks from chemicals to human health or the environment, and would have legal certainty that existing regulatory controls on dangerous chemicals still apply following exit.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>30.</num>
+          <content>
+            <p><b>Benefits compared to Option 0.1 do nothing (no legislation):</b> There would be large benefits associated with introducing the legislation compared with the alternative, as the legislation would offset the significant risks outlined in the ‘do nothing’ in the options section and enable a functioning chemicals regime to deliver the Government’s objectives for chemicals policy. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_13">
+        <num><b>G.</b></num>
+        <heading>DIRECT COSTS TO GOVERNMENT</heading>
+        <intro>
+          <p><b>DIRECT COSTS TO GOVERNMENT </b></p>
+        </intro>
+        <paragraph>
+          <num>31.</num>
+          <content>
+            <p>This section aims to understand what the overall impact to Government might be from implementing option 1 compared to the counterfactuals of option 0. Given the nature of this provision it is not considered proportionate to monetise all impacts at this stage. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_14">
+        <heading>Option 0 Baseline - Static Acquis (Current Arrangements)</heading>
+        <intro>
+          <p><b>Option 0: Baseline - Static Acquis (Current Arrangements)</b></p>
+        </intro>
+        <paragraph>
+          <num>32.</num>
+          <content>
+            <p>Currently Defra pays the Health &amp; Safety Executive (HSE) for its activities acting as a UK competent authority for chemicals regulation. ECHA is partly funded through the EU general budget, to which the UK contributes approximately 12% (after rebate)<authorialNote marker="7"><p> Office for Budget Responsibility (March 2018): <i>Economic and fiscal outlook </i>Section B.23</p></authorialNote>.  The actual amount of Union subsidy paid to ECHA varies considerably from year to year depending on the level of the Agency’s fee income. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_15">
+        <heading>Option 0.1 Baseline - do nothing (no legislation)</heading>
+        <intro>
+          <p><b>Option 0.1: Baseline - do nothing (no legislation)</b></p>
+        </intro>
+        <paragraph>
+          <num>33.</num>
+          <content>
+            <p>In the event of leaving the EU without a deal, the UK would no longer contribute funding to ECHA through its contributions to the EU Budget. Defra, however, would still be required to fund the HSE for its chemicals work in a ‘do nothing’ scenario’. As detailed in the options section, UK producers and users of chemicals would no longer be under any duty to identify and apply risk management measures and there would be legal uncertainty as to whether existing regulatory controls on dangerous chemicals would still apply.  </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_16">
+        <heading>Option 1 Building UK regulatory capability</heading>
+        <intro>
+          <p><b>Option 1: Building UK regulatory capability </b></p>
+        </intro>
+        <paragraph>
+          <num>34.</num>
+          <content>
+            <p><b>Costs </b><b>compared to Option 0 static acquis:</b>  The Withdrawal Act and SI would transfer functions to the UK which are currently exercised by ECHA and the European Commission. These activities which are currently (partially) funded by the UK’s contributions to the EU budget, would under this option be undertaken domestically by: (i) increasing headcounts in HSE, Defra and EA; (ii) building and maintaining a new UK REACH-IT system; and (iii) additional costs of funding evidence budgets, scientific advice and providing helpdesk services.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>35.</num>
+          <content>
+            <p>In line with existing EU REACH, some costs may be recovered through fees and charges to business. However, ECHA’s main source of fees to date is from registrations, which will largely not be available to the UK authorities following the final deadline for phase-in registrations in May 2018.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>36.</num>
+          <content>
+            <p><b>Costs compared to Option 0.1 do nothing (no legislation): </b>The three further costs to fully operate a standalone UK regime mentioned above would also be additional compared to this baseline. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_17">
+        <num><b>H.</b></num>
+        <heading>DIRECT IMPACTS TO UK BUSINESSES</heading>
+        <content>
+          <p><b>DIRECT IMPACTS TO UK BUSINESSES</b></p>
+        </content>
+      </section>
+      <section eId="section_18">
+        <heading>Option 0 Baseline - Current Arrangements</heading>
+        <intro>
+          <p><b>Option 0: Baseline - Current Arrangements</b></p>
+        </intro>
+        <paragraph>
+          <num>37.</num>
+          <content>
+            <p>Under the static acquis baseline, UK businesses currently register substances with ECHA and apply for authorisations for some substances, giving them access to both the UK and wider EEA market. They incur costs from ECHA fees<authorialNote marker="8"><p> As set out in the EU Regulation on Fees and Charges payable to ECHA available here: <a href="http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:L:2013:079:0007:0018:EN:PDF"><u>http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:L:2013:079:0007:0018:EN:PDF</u></a> </p></authorialNote>, conducting studies or otherwise accessing data from other firms to complete their understanding of the hazards and risks of the chemicals they produce, and administrative costs in compiling a registration dossier or application for authorisation. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>38.</num>
+          <content>
+            <p>UK based Only Representatives<authorialNote marker="9"><p> An only representative is a natural or legal person based in the EU who represents the interest and takes on the registration obligations of a non-EU manufacturer thereby relieving the importer of their obligations under REACH.</p></authorialNote> (ORs) can register with ECHA on behalf of third country companies to give them access to both the UK and wider EEA market. UK firms acquiring chemical goods from the EU or EEA are not categorised as importers. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_19">
+        <heading>Option 0.1 Baseline - do nothing (no legislation)</heading>
+        <intro>
+          <p><b>Option 0.1: Baseline - do nothing (no legislation)</b></p>
+        </intro>
+        <paragraph>
+          <num>39.</num>
+          <content>
+            <p>As detailed in the options section, doing nothing would leave the UK with a largely unworkable chemicals management regulatory system and legal uncertainty. Industry would avoid future regulatory costs for UK market access. However the investment in supplying information for most chemicals on the market has already been made as the final registration deadline for REACH of May 2018 has passed. . </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_20">
+        <heading>Option 1 Building UK regulatory capability</heading>
+        <intro>
+          <p><b>Option 1: Building UK regulatory capability</b></p>
+        </intro>
+        <paragraph>
+          <num><b><i>(a)</i></b></num>
+          <content>
+            <p><b><i>Costs compared to the Option 0 static acquis baseline:</i></b></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>40.</num>
+          <content>
+            <p>The additional costs referred to in this section are part of the contingency options. The Political Declaration on the future relationship between the UK and the EU makes proposals for a UK-EU free trade area for goods, which ensures a trading relationship that is as close as possible, combining deep regulatory and customs cooperation. The UK and the EU will explore the possibility of cooperation between UK authorities and EU agencies, such as the European Chemicals Agency. (ECHA)  ). Future cooperation may minimise costs for businesses. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>41.</num>
+          <content>
+            <p>As part of a contingency measure, under this SI existing registrations<authorialNote marker="10"><p> Data for registrations held by companies in EEA is available here: <a href="https://echa.europa.eu/registration-statistics-infograph"><u>https://echa.europa.eu/registration-statistics-infograph#</u></a> </p></authorialNote> held by UK companies (there are over 12,000 as of October 2018) would continue to be valid within the UK.  These existing registrations held by UK companies would be ‘grandfathered’ into the UK system, there would be no direct costs from a need to re-register and pay fees within the UK. No additional steps are needed to transfer authorisation decisions held by UK companies as they would have the status of ‘retained EU law’ under the EU (Withdrawal) Act. There are currently three UK held authorisations decisions.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>42.</num>
+          <content>
+            <p>However, there would be requirements on existing UK registration and authorisation holders to re-submit the supporting data in their dossiers to the UK agency. The REACH procedures of industry joint registrations and data sharing mean UK companies may not be in a position to re-send all of the data to the UK regulator immediately. This SI provides for a partial transition where data items within the company’s sole ownership (including evidence of the EU registration) are needed within 60 days, and those that may be part of a joint submission are needed within two years. The Secretary of State would have the power to alter the second submission date if the evidence justifies such a change.  UK businesses may incur additional costs through this, depending on their particular circumstance of their data ownership/data sharing agreements.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>43.</num>
+          <content>
+            <p>UK firms wishing to access the UK market for the first time after exit would face costs from new registrations and authorisations to a UK authority, including fees and administration costs. The UK authority would take the same approach to fees and charges as ECHA, so we assume these costs would be the same as they would have incurred under the baseline. There would be familiarisation costs for businesses using the new system, but these are expected to be small as the UK REACH IT system is being designed to replicate the EU REACH IT system as closely as possible, and detailed user testing is being undertaken.  They would face additional costs to access the EEA market, but these are out of scope of this SI.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>44.</num>
+          <content>
+            <p>Firms would face the same data requirements as under the static acquis baseline, but would now submit their dossiers to the UK regulatory authority. There may be some additional costs to UK firms to access data previously submitted to ECHA, including labour and time costs, if existing data is not shared with the UK and firms are outside ECHA’s dispute mechanism which gives ECHA legal powers to force data sharing. If data cannot be accessed firms would need to submit new testing proposals and conduct new data tests, and may incur substantial costs for doing so. Section K discusses this risk. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>45.</num>
+          <content>
+            <p>If EU REACH rules were to be mirrored exactly in the UK, the status of companies currently buying chemicals from the EEA under their REACH registrations would change from that of a downstream user to that of an importer as they would be receiving chemicals from outside of the UK<authorialNote marker="11"><p> UK companies currently buying chemicals from the EEA are covered by the REACH registrations with ECHA, which are lodged either by the supplier or the downstream user. UK companies currently buying chemicals from the EEA operate as downstream users under EU REACH.  A downstream user is defined in EU REACH as any natural or legal person established within the Community, other than the manufacturer or the importer, who uses a substance, either on its own or in a mixture, in the course of his industrial or professional activities. An importer is defined in EU REACH as any natural or legal person established within the Community who is responsible for import, while import means the physical introduction into the customs territory of the Community.  </p></authorialNote>. They would need to register their imported chemicals with the UK authority, they would face additional fees and administrative burden compared to the baseline unless the EEA supplier chooses to register the supplied chemicals through a UK based Only Representative. The SI provides for an interim simplified notification and recognition system for existing UK companies receiving chemicals from the EEA as long as they meet certain conditions, to ensure continuity for businesses.  The conditions are intended to ensure that these companies and their customers know how to use chemicals safely to avoid harm to human health or the environment.  These conditions would impose a small administrative cost compared to the baseline but it would be considerably less than the costs that would result from full registration obligations. These costs are considered a cost of EU exit itself (in changing the scope of export/import) and so are out of scope of the SI.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>46.</num>
+          <content>
+            <p>UK-based ORs would be affected as they would lose the ability to serve third country exporters accessing the EEA market, but this impact is considered out of scope of this SI. However, these firms may adapt their business services and instead offer OR services for non-UK firms wanting to access the UK market, including EEA-based companies for the first time, which would be a benefit in scope of this SI. It is unknown whether the net impact would be a cost or benefit to these UK businesses.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num><b><i>(b)</i></b></num>
+          <content>
+            <p><b><i>Benefits compared to</i></b> <b><i>the Option 0 static acquis baseline:</i></b></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>47.</num>
+          <content>
+            <p>No change compared to the static acquis. This option would maintain legal certainty for businesses, with continuity that this would be based on the existing EU REACH system with continued validity of existing UK company registrations through grandfathering.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num><b><i>(c)</i></b></num>
+          <content>
+            <p><b><i>Costs compared to Option 0.1 do nothing (no legislation) baseline</i></b></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>48.</num>
+          <content>
+            <p>Increased costs from complying with the regulation, compared to the ‘do nothing’ option where businesses are under no obligations to understand the hazards and potential risks of the chemicals they produce, place on the market and use, and to identify and apply appropriate risk management measures.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num><b><i>(d)</i></b></num>
+          <content>
+            <p><b><i>Benefits compared to Option 0.1 do nothing (no legislation) baseline:</i></b></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>49.</num>
+          <content>
+            <p>Businesses would benefit from having legal certainty of regulatory controls on chemicals, and from the continuity of regulatory approach that this would be based on the existing EU REACH system where industry is familiar with how to comply as well as with continued validity of existing UK company registrations through grandfathering. In addition, implementing this option would avoid a largely unworkable chemicals management system which would leave industry facing greater risks to human health and the environment and increased costs, e.g. from legal liability.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_21">
+        <num><b>I.</b></num>
+        <heading>Summary of impacts</heading>
+        <intro>
+          <p><b>Summary of impacts</b></p>
+        </intro>
+        <paragraph>
+          <num>50.</num>
+          <content>
+            <p>The table below provides a summary of the costs and benefits of the preferred contingency Option 1 compared to static acquis and do nothing baselines, to illustrate the differences of using different baselines in this assessment.</p>
+            <table uk:widths="1.7in 2.52in 2.53in">
+              <tr>
+                <td>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text">Option 1 relative to Option 0 - static acquis baseline</p>
+                </td>
+                <td>
+                  <p class="ia-table-text">Option 1 relative to Option 0.1 do nothing (no legislation) baseline</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">Benefits to Government and society (<i>Section F</i>)</p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>No change</b> – Introducing legislation would maintain the drivers of human health and environmental benefits of the current arrangements</p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Large benefits</b> – Introducing legislation would enable a functioning chemicals regime to deliver the Government’s objectives for chemicals policy. </p>
+                  <p class="ia-table-text">This avoids the significant risks to human health and the environment without it.</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">Costs to Government (<i>Section G</i>)</p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Increased cost</b> for building UK regulatory capability</p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Increased cost</b> for building UK regulatory capability</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">Benefits to business (<i>Section F)</i></p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>No change</b> – Introducing legislation would maintain legal certainty for businesses, with continuity that this would be based on the existing EU REACH system where industry is familiar with how to comply as well as with continued validity of existing UK company registrations through grandfathering.</p>
+                  <p class="ia-table-text" />
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Large benefits </b>– Introducing the legislation would: </p>
+                  <p class="ia-table-text">(i) Provide continuity, stability and legal certainty for businesses (including continuity this would be based on the existing EU REACH system with continued validity of existing UK company registrations through grandfathering)</p>
+                  <p class="ia-table-text">(ii) Avoids industry facing greater risks to human health and the environment and increased costs e.g. from legal liability.</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="ia-table-text">Costs to business (<i>Section H</i>) </p>
+                </td>
+                <td>
+                  <p class="ia-table-text">No change for fees and administration cost for businesses to access UK market as the UK authority would take same approach as current ECHA arrangements. Some familiarisation costs which are expected to be relatively small. </p>
+                  <p class="ia-table-text"> </p>
+                  <p class="ia-table-text"><b>Additional costs which the SI seeks to minimise</b>:</p>
+                  <p class="ia-table-text">(i) Businesses would need to transmit the supporting data for existing registrations and authorisations to the UK agency. May incur significant costs depending on particular circumstance of data ownership/data sharing agreements. (Transition cost in first 2 years of EU Exit)</p>
+                  <p class="ia-table-text">(ii) If less access to data sharing, businesses face higher future costs to access or to conduct new data tests. (Transition and Ongoing costs)</p>
+                  <p class="ia-table-text" />
+                  <p class="ia-table-text"><b>Additional costs considered out of scope of the SI:</b></p>
+                  <p class="ia-table-text">(iii) UK businesses who buy chemicals from EEA become importers rather than downstream users, with a notification duty. They would face small administrative costs, rising over time as they are brought into the registration system. (Transition and Ongoing costs)  </p>
+                  <p class="ia-table-text">(iv) UK businesses would face additional costs to access the EU market compared to the static acquis (Transition and Ongoing costs) </p>
+                </td>
+                <td>
+                  <p class="ia-table-text"><b>Increased costs</b> – compared to the ‘do nothing’ option where businesses are under no obligations to understand the hazards and potential risks of the chemicals they produce, place on the market and use, and to identify and apply appropriate risk management measures</p>
+                  <p class="ia-table-text" />
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_22">
+        <num><b>J.</b></num>
+        <heading>RATIONALE AND EVIDENCE THAT JUSTIFY THE LEVEL OF ANALYSIS</heading>
+        <intro>
+          <p><b>RATIONALE AND EVIDENCE THAT JUSTIFY THE LEVEL OF ANALYSIS</b></p>
+        </intro>
+        <paragraph>
+          <num>51.</num>
+          <content>
+            <p>This SI is primarily to transfer to the Government and its regulatory authorities the power to establish an operable UK-only regulatory framework and then to make regulatory decisions on chemicals management including registrations, authorisations and restrictions. For this reason this IA is high level and does not cover potential benefits and costs that would arise from future regulation decisions on specific substances.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_23">
+        <num><b>K.</b></num>
+        <heading>RISKS AND ASSUMPTIONS</heading>
+        <intro>
+          <p><b>RISKS AND ASSUMPTIONS</b></p>
+        </intro>
+        <paragraph>
+          <num>52.</num>
+          <content>
+            <p>Data costs have not been quantified due to the uncertainty surrounding the extent of the effects. The scale of the data costs is dependent on whether data already inputted into the REACH system would continue to be shared with the UK regulator and UK businesses, businesses’ existing data arrangements, and the number of future registrations and authorisations by UK firms. These are the types of costs businesses face: </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num><b>a.</b></num>
+          <content>
+            <p><b>Data costs for existing registrations and authorisations: </b>UK registration and authorisation holders need to submit the supporting information in their dossiers to the UK agency. For some this would involve renegotiating access to data testing information as standard existing arrangements (Letters of Access) stipulate data may only be used for the purposes of EU REACH. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num><b>b.</b></num>
+          <content>
+            <p><b>Access costs to EEA data: </b>Registration data held by ECHA are owned by the registering companies (either outright or bought through a Letter of Access for the purposes of EU REACH). In the absence of a negotiated settlement with the EU or bilaterally with ECHA for continued access to data<b>, </b>it is unknown whether existing REACH data would continue to be shared with the dutyholders in a standalone UK system. In the absence of robust data sharing procedures to encourage cooperation (like the existing disputes mechanism which gives ECHA legal powers to force data sharing), businesses would incur costs to find and contact owners of required data. In this instance, the cost of negotiating access for UK regulatory purposes in future may be substantial. This could include labour costs, costs from time delays, and may result in UK businesses paying higher costs for the data.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num><b>c.</b></num>
+          <content>
+            <p><b>Costs of conducting studies: </b>If data from EEA is not accessible, UK firms would be required to submit new testing proposals and may need to conduct duplicate tests on the chemicals (including animal testing) to comply with a UK system. Businesses would incur costs from conducting these tests.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num><b>d.</b></num>
+          <content>
+            <p><b>Future data sharing: </b>EU REACH allows for data sharing between companies and requires data sharing in the case of animal studies.  The same requirements would apply in the UK system.  However, the smaller size of the UK market would mean that fewer companies would be present to share that cost burden.  This would increase the cost per company compared to the baseline.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_24">
+        <num><b>L.</b></num>
+        <heading>WIDER IMPACTS</heading>
+        <intro>
+          <p><b>WIDER IMPACTS</b></p>
+        </intro>
+        <paragraph>
+          <num>53.</num>
+          <content>
+            <p>This section examines wider impacts which apply under both the static acquis baseline and this SI, and draws out where applicable, where the impacts of the SI are incremental to the static acquis baseline.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_25">
+        <heading>Small and Micro Business Assessment (SaMBA)</heading>
+        <intro>
+          <p><b>Small and Micro Business Assessment (SaMBA)</b></p>
+        </intro>
+        <paragraph>
+          <num>54.</num>
+          <content>
+            <p>Under both the static acquis baseline and the proposed SI, the regulatory measures are expected to impact all businesses. There are approximately 2,800 UK chemicals businesses, of which 97.5% are Small and Medium Enterprises (SMEs) and microbusinesses (employing fewer than 250 people).<authorialNote marker="12"><p> UK Business; activity, size and location, ONS, January 2018</p></authorialNote></p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>55.</num>
+          <content>
+            <p><b>Cost of fees: </b>Businesses would be required to register their chemical substances and apply for authorisations for certain substances. They would incur fees to do so. The UK authority would adopt a range of fees dependent on company size and tonnage produced, to help alleviate the disproportionately higher burden to smaller businesses. This would be the same fee structure which businesses currently face under ECHA.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>56.</num>
+          <content>
+            <p><b>Cost of providing data:</b> Businesses would be required to provide data on their substances, and this cost is likely to be substantially higher than the cost of fees. This may place a disproportionately high cost on smaller businesses. However, the size of a registration dossier and the amount of supporting data needed are less for lower tonnages of a chemical, with significantly reduced requirements in particular for tonnages under 10 tonnes; this would benefit smaller businesses who in general manufacture or import smaller quantities.  Businesses would also be able to share the costs of testing substances through using joint registrations.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_26">
+        <heading>Competition</heading>
+        <intro>
+          <p><b>Competition</b></p>
+        </intro>
+        <paragraph>
+          <num>57.</num>
+          <content>
+            <p>Under both the static acquis baseline and the proposed SI, one of the aims stated in the legislation is to enhance competitiveness and innovation.  The legislation also includes provision for fair cost sharing between companies who are registering and sharing data on the same chemicals.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_27">
+        <heading>Family impact test</heading>
+        <intro>
+          <p><b>Family impact test</b></p>
+        </intro>
+        <paragraph>
+          <num>58.</num>
+          <content>
+            <p>No impact identified.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_28">
+        <heading>Equalities and human rights</heading>
+        <intro>
+          <p><b>Equalities and human rights </b></p>
+        </intro>
+        <paragraph>
+          <num>59.</num>
+          <content>
+            <p>The SI’s provisions have no undue effect on particular racial groups, income groups, gender groups, age groups, people with disabilities, or people with particular religious views. It is not envisaged that any equality issues would arise as a result of the SI’s provisions. In line with the principles of sustainable development, social, economic and environmental considerations would all be taken into account for any decision-making when exercising powers under the SI. The overarching aim of managing chemicals would benefit all of society. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_29">
+        <heading>Environmental impacts</heading>
+        <intro>
+          <p><b>Environmental impacts</b></p>
+        </intro>
+        <paragraph>
+          <num>60.</num>
+          <content>
+            <p>Under both the static acquis baseline and the proposed SI, one of the stated primary aims is to ensure a high level of protection of human health and the environment.  It would be the duty of industry to identify and understand the hazards and potential risks of the chemicals they place on the market or use, and then to recommend and apply appropriate risk management measures. There would also be comprehensive powers for the regulatory authorities to investigate hazards and risks and to introduce regulatory controls where necessary.  These powers would allow evidence based decisions on chemicals to effectively manage the health and environmental risks. Using the processes set out in the proposed SI, decisions on specific substances would be based on detailed scientific, including socio-economic, analysis. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_30">
+        <heading>Animal Welfare</heading>
+        <intro>
+          <p><b>Animal Welfare</b></p>
+        </intro>
+        <paragraph>
+          <num>61.</num>
+          <content>
+            <p>The Government is committed to the very highest standards of animal welfare. Similar to the static acquis baseline, a UK regulatory regime would require chemical data sharing between firms and promote alternative testing methods to prevent unnecessary animal testing within the UK market. Where a registrant company considers that it needs to carry out a new animal study the same rules would continue to apply with the need to justify this in a testing proposal and get agreement from the UK regulatory authority before it can carry out the tests.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>62.</num>
+          <content>
+            <p>However, there is a risk of additional impacts compared to the static acquis baseline if a process for data sharing with ECHA is not established. This may cause difficulties for firms to source and access existing chemical research, which could cause duplication of animal testing with the EEA, with resulting loss of animal welfare and ethical considerations. The requirement to submit a testing proposal first would continue to provide rigorous challenge.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_31">
+        <heading>Regional impacts</heading>
+        <intro>
+          <p><b>Regional impacts</b></p>
+        </intro>
+        <paragraph>
+          <num>63.</num>
+          <content>
+            <p>The chemicals sector is a significant employer in regions with higher levels of economic deprivation. Chemical production is concentrated in four main clusters – Hull, Teesside, Runcorn and Grangemouth. This proposal would ensure a functioning chemicals regime and provide stability for UK businesses (a large benefit compared to a “do nothing” scenario, and no change in benefit compared to static acquis).</p>
+          </content>
+        </paragraph>
+      </section>
+    </mainBody>
+  </doc>
+</akomaNtoso>
