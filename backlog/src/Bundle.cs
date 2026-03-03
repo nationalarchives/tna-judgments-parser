@@ -10,6 +10,8 @@ using Backlog.TreMetadata;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 
+using TRE.Metadata;
+
 using UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src
@@ -57,7 +59,7 @@ namespace Backlog.Src
 
         private static void WriteMetadata(FullTreMetadata metadata, string name, TarOutputStream tar)
         {
-            var json = JsonSerializer.SerializeToUtf8Bytes(metadata, metadata.Options);
+            var json = JsonSerializer.SerializeToUtf8Bytes(metadata, ParserProcessMetadata.JsonSerializerOptions);
             Write(json, name, tar);
         }
 
