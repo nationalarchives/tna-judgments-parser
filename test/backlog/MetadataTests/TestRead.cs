@@ -47,11 +47,12 @@ public class TestRead: IDisposable
     {
         using var csvStream = new StringReader(
             @"id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent
-123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State for the Home Department
+123 , /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department
 124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC"
         );
 
-        var result = csvMetadataReader.Read(csvStream, out _);
+        var result = csvMetadataReader.Read(csvStream, out var csvParseErrors);
+        Assert.Empty(csvParseErrors);
 
         Assert.Collection(result,
             line => Assert.EquivalentWithExclusions(
@@ -184,7 +185,7 @@ public class TestRead: IDisposable
             """
             id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary,jurisdictions,ncn,webarchiving,uuid,skip
             123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,,
-            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,,,,,
+            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,    ,    ,    ,    ,
             125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC/2025/003,UKFTT-GRC,,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case,,[2023] EWCA Civ 123 & 124,,,
             123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA/2025/004,UKUT-IAC,Brown,,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case,,,,,
             126,/test/data/test-case5.docx,.docx,2025-01-19 13:00:00,IA/2025/005,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions,"Community,Environment",,,,
@@ -576,8 +577,8 @@ public class TestRead: IDisposable
         Assert.Equivalent(
             new List<string>
             {
-                "Line 6: Field '  01/16/2025 10:00:00  ' is not valid. [125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]",
-                "Line 7: Field '  31/01/2025 10:00:00  ' is not valid. [125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]"
+                "Line 6: Field '01/16/2025 10:00:00' is not valid. [125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]",
+                "Line 7: Field '31/01/2025 10:00:00' is not valid. [125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]"
             },
             csvParseErrors);
     }

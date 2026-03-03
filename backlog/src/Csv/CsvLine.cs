@@ -21,7 +21,8 @@ internal record CsvLine
 {
     public Dictionary<string, string> FullCsvLineContents { get; set; } = [];
 
-    [Required(AllowEmptyStrings = false)] public required string id { get; set; }
+    [Required(AllowEmptyStrings = false)]
+    public required string id { get; set; }
     [Required(AllowEmptyStrings = false)] public required string court { get; set; }
     [Required(AllowEmptyStrings = false)] public required string FilePath { get; set; }
     [Required(AllowEmptyStrings = false)] public required string Extension { get; set; }
@@ -30,48 +31,38 @@ internal record CsvLine
     [Optional] public string[] Jurisdictions { get; set; } = [];
 
     [Optional]
-    [TypeConverter(typeof(TrimmedNullableStringConverter))]
     public string? claimants { get; set; }
 
     [Optional]
-    [TypeConverter(typeof(TrimmedNullableStringConverter))]
     public string? appellants { get; set; }
 
     [Required(AllowEmptyStrings = false)] public required string respondent { get; set; }
 
     [Optional]
-    [TypeConverter(typeof(TrimmedNullableStringConverter))]
     public string? main_category { get; set; }
 
     [Optional]
-    [TypeConverter(typeof(TrimmedNullableStringConverter))]
     public string? main_subcategory { get; set; }
 
     [Optional]
-    [TypeConverter(typeof(TrimmedNullableStringConverter))]
     public string? sec_category { get; set; }
 
     [Optional]
-    [TypeConverter(typeof(TrimmedNullableStringConverter))]
     public string? sec_subcategory { get; set; }
 
     [Optional]
-    [TypeConverter(typeof(TrimmedNullableStringConverter))]
     public string? ncn { get; set; }
 
     [Optional]
-    [TypeConverter(typeof(TrimmedNullableStringConverter))]
     public string? headnote_summary { get; set; }
 
     [Optional]
-    [TypeConverter(typeof(TrimmedNullableStringConverter))]
     public string? webarchiving { get; set; }
 
     [Optional]
-    [TypeConverter(typeof(TrimmedNullableStringConverter))]
     public string? Uuid { get; set; }
 
-    [Optional] [Default(false)] public bool Skip { get; set; }
+    [Optional][Default(false)] public bool Skip { get; set; }
 
     /// <summary>
     /// Gets the name of the first party (either claimants or appellants)
