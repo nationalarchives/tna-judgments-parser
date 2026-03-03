@@ -1,9 +1,13 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 
 using CsvHelper;
@@ -27,15 +31,16 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
         {
             ShouldSkipRecord = args => false,
             IgnoreBlankLines = true,
-            PrepareHeaderForMatch = args => args.Header.ToLower()
+            PrepareHeaderForMatch = args => args.Header.ToLower(),
+            TrimOptions = TrimOptions.Trim | TrimOptions.InsideQuotes,
         };
         using var csv = new CsvReader(textReader, config);
-            
+
         csv.Context.RegisterClassMap<CsvLineMap>();
-            
+
         var records = new List<CsvLine>();
         csvParseErrors = [];
-            
+
         // Read the header first
         csv.Read();
         csv.ReadHeader();
@@ -80,7 +85,7 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
 
         return records;
     }
-    
+
     private sealed class CsvLineMap : ClassMap<CsvLine>
     {
         public CsvLineMap()
@@ -97,10 +102,10 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
             Map(l => l.Jurisdictions)
                 .Optional()
                 .Convert(convertFromStringArgs =>
-                {	
+                {
                     // Get value
                     convertFromStringArgs.Row.TryGetField<string>("jurisdictions", out var field);
-                    return field?.Split(',').Select(item => item.Trim()) ?? [];
+                    return field?.Split(',').Select(item => item.Trim()).Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction)).ToArray() ?? [];
                 });
             Map(l => l.Skip)
                 .Optional()
@@ -121,6 +126,12 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
                     return headerNames.ToDictionary(headerName => headerName.Trim(),
                         headerName => convertFromStringArgs.Row[headerName]);
                 });
+
+            // Ensure every column with a value of "" is Null.
+            foreach (var map in MemberMaps)
+            {
+                map.TypeConverterOption.NullValues(string.Empty);
+            }
         }
     }
 }
