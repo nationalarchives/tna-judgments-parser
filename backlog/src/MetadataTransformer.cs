@@ -50,10 +50,10 @@ internal static class MetadataTransformer
                     MetadataFields = externalMetadataFields,
                     PrimarySource = new PrimarySourceFile
                     {
-                        Filename = null,
-                        Mimetype = null,
+                        Filename = sourceFilename,
+                        Mimetype = sourceMimeType,
                         Route = Route.Bulk,
-                        Sha256 = null
+                        Sha256 = contentHash
                     },
                     XmlContainsDocumentText = xmlContainsDocumentText
                 },

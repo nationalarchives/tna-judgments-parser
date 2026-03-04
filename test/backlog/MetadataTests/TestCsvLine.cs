@@ -214,4 +214,24 @@ public class TestCsvLine
         Assert.Equal("Costs", categories[3].Name);
         Assert.Equal("Practice and Procedure", categories[3].Parent);
     }
+
+    [Theory]
+    [InlineData("appeals\\j2\\R(IS)7-02ws.doc", "R(IS)7-02ws.doc")]
+    [InlineData("finance-and-tax/j7/e00417.doc", "e00417.doc")]
+    [InlineData("documents\\ICRI Ltd - Out of time decision .pdf", "ICRI Ltd - Out of time decision .pdf")]
+    [InlineData("asylum-support/j12750/Reaosns Statement.24894..doc", "Reaosns Statement.24894..doc")]
+    [InlineData("EAT64299, 64399, 64499, 64599, 64699 & 649991372000.doc",
+        "EAT64299, 64399, 64499, 64599, 64699 & 649991372000.doc")]
+    [InlineData("file with no extension", "file with no extension")]
+    public void FileName_ReturnsFileNameFromFilePath(string filePath, string expected)
+    {
+        // Arrange
+        var csvLine = CsvMetadataLineHelper.DummyLine with { FilePath = filePath };
+
+        // Act
+        var result = csvLine.FileName;
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
 }
