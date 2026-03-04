@@ -67,11 +67,13 @@ internal class ListNum {
         match = Regex.Match(fieldCode, @"^ LISTNUM \\l (\d) $");    // EWHC/Patents/2013/2927
         if (match.Success) {
             Paragraph p = first.Ancestors<Paragraph>().First();
-            int numId = p.ParagraphProperties.NumberingProperties.NumberingId.Val.Value;
-            int ilvl = int.Parse(match.Groups[1].Value) - 1;    // ilvl indexes are 0 based
-            string fNum = DOCX.Numbering2.FormatNumber(numId, ilvl, 1, main);
-            RunProperties rProps = first.RunProperties;
-            return new DOCX.WNumber2(fNum, rProps, main, p.ParagraphProperties);
+            if (p.ParagraphProperties.NumberingProperties is not null) {
+                int numId = p.ParagraphProperties.NumberingProperties.NumberingId.Val.Value;
+                int ilvl = int.Parse(match.Groups[1].Value) - 1;    // ilvl indexes are 0 based
+                string fNum = DOCX.Numbering2.FormatNumber(numId, ilvl, 1, main);
+                RunProperties rProps = first.RunProperties;
+                return new DOCX.WNumber2(fNum, rProps, main, p.ParagraphProperties);
+            }
         }
         match = Regex.Match(fieldCode, @"^ listnum ""WP List \d"" \\l (\d) $");  // EWHC/Ch/2004/1835, [2022] EWHC 3185 (Admin)
         if (match.Success) {
@@ -113,7 +115,65 @@ internal class ListNum {
             RunProperties rProps = first.RunProperties;
             return new DOCX.WNumber2(fNum, rProps, main, pProps);
         }
+
+        // Handle the rest of any other LISTNUM field codes not handled above even if the ouput num is incorrect
+        string fieldNum = CatchAllListNums(main, first, fieldCode);
+        if (fieldNum is not null) {
+            ParagraphProperties pProps = first.Ancestors<Paragraph>().First().ParagraphProperties;
+            RunProperties rProps = first.RunProperties;
+            return new DOCX.WNumber2(fieldNum, rProps, main, pProps);
+        }
+
         throw new Exception(fieldCode);
+    }
+    
+    /*
+     * This method is a general solution to handle any LISTNUM field codes not explicitly handled.
+     * The fieldNum returned is expected to not be correct in most cases as the main purpose of this 
+     * method is to prevent exceptions being thrown due to unhandled field codes.
+     */
+    private static string CatchAllListNums(MainDocumentPart main, Run first, string fieldCode) {
+        string fieldName = null;
+        Match match = Regex.Match(fieldCode, @"^ LISTNUM (""?([^""\\]+?)""?) ");
+        if (match.Success) {
+            fieldName = match.Groups[1].Value;
+        }
+        int fieldLvl = -1;
+        match = Regex.Match(fieldCode, @"\\l (\d)");
+        if (match.Success) {
+            fieldLvl = int.Parse(match.Groups[1].Value) - 1; // fieldLvl is 0 based
+        }
+        int fieldStart = -1;
+        match = Regex.Match(fieldCode, @"\\s (\d)");
+        if (match.Success) {
+            fieldStart = int.Parse(match.Groups[1].Value);
+        }
+        
+        string fieldNum;
+        if (fieldLvl > -1) {
+            if (fieldStart > -1) {
+                fieldNum = fieldName is not null
+                    ? DOCX.Numbering2.FormatNumber(fieldName, fieldLvl, fieldStart, main)
+                    : "(1)";
+            }
+            else {
+                int n = CountPreceding(first, fieldCode) + 1;
+                fieldNum = FormatNNumberDefault(fieldLvl, n);
+            }
+        }
+        else {
+            if (fieldStart > -1) {
+                int n = CountPreceding(first, fieldCode) + fieldStart;
+                fieldNum = n.ToString() + ".";
+            }
+            else {
+                Paragraph p = first.Ancestors<Paragraph>().First();
+                int n = CountPrecedingParagraphsWithListNumLegalDefault(p, 1) + 1;
+                fieldNum = n.ToString() + ".";
+            }
+        }
+        
+        return fieldNum;
     }
 
     private static int CountPreceding(OpenXmlElement anchor, string fieldCode) {
