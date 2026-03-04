@@ -145,13 +145,4 @@ internal static class MetadataTransformer
             Timestamp = DateTime.UtcNow
         };
     }
-
-    public static string GetFileName(string csvLineFilePath)
-    {
-        var pathSeparator = csvLineFilePath.Contains('/') ? '/' : '\\';
-
-        var pathParts = csvLineFilePath.Split(pathSeparator);
-
-        return pathParts[^1];
-    }
 }

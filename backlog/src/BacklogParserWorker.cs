@@ -253,16 +253,15 @@ internal class BacklogParserWorker(
         var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
         var response = CreateResponse(csvLine, mimeType, sourceContent, isStub);
 
-        var originalSourceFileName = MetadataTransformer.GetFileName(csvLine.FilePath);
         var contentHash = Hash(sourceContent);
         var images = response.Images?.ToArray() ?? [];
 
         var externalMetadataFields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        var trePipelineMetadata = MetadataTransformer.CreateFullTreMetadata(originalSourceFileName, mimeType,
+        var trePipelineMetadata = MetadataTransformer.CreateFullTreMetadata(csvLine.FileName, mimeType,
             contentHash, autoPublish, images, response.Meta, externalMetadataFields, !isStub);
 
-        return Bundle.Make(response, trePipelineMetadata, sourceContent, originalSourceFileName, images);
+        return Bundle.Make(response, trePipelineMetadata, sourceContent, csvLine.FileName, images);
     }
 
     public static string Hash(byte[] content)
