@@ -60,6 +60,8 @@ public partial class LegislationParser
         int finalChildStart = i;
         while (i < Body.Count)
         {
+            if (BreakFromProv1())
+                break;
             // Break early if we encounter the next definition.
             if (PeekDefinition(Current()))
                 break;
