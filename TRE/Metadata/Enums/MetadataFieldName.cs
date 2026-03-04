@@ -14,7 +14,7 @@ public enum MetadataFieldName
     CaseNumber,
     Category,
     Court,
-    CsvMetadataFileContents,
+    CsvMetadataFileProperties,
     Date,
     HeadnoteSummary,
     Jurisdiction,
@@ -41,7 +41,7 @@ public static class MetadataFieldNameExtensions
                 or MetadataFieldName.SourceFormat
                 or MetadataFieldName.WebArchivingLink => typeof(string),
             MetadataFieldName.Category => typeof(Category),
-            MetadataFieldName.CsvMetadataFileContents => typeof(Dictionary<string, string>),
+            MetadataFieldName.CsvMetadataFileProperties => typeof(CsvProperties),
             MetadataFieldName.Date => typeof(DateTime),
             MetadataFieldName.Party => typeof(Party),
             MetadataFieldName.Uri => typeof(Uri),
