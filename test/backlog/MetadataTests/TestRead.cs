@@ -203,7 +203,8 @@ public class TestRead: IDisposable
                                                                 nameof(CsvLine.CsvProperties),
                                                                 nameof(CsvLine.FullCsvLineContents),
                                                                 nameof(CsvLine.Categories),
-                                                                nameof(CsvLine.Parties)
+                                                                nameof(CsvLine.Parties),
+                                                                nameof(CsvLine.FileName)
                                                             ]);
         var csvHeaderParts = csvContent.Split(Environment.NewLine)[0].Split(",");
         foreach (var publicProperty in publicPropertiesInCsvLineClass)
