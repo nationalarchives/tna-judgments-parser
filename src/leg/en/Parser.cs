@@ -17,18 +17,26 @@ namespace UK.Gov.Legislation.ExplanatoryNotes {
 
 partial class Parser : BaseLegislativeDocumentParser {
 
-    internal static IDocument Parse(WordprocessingDocument doc) {
+    private readonly string _filename;
+
+    internal static IDocument Parse(WordprocessingDocument doc, string filename = null) {
         CaseLaw.WordDocument preParsed = new CaseLaw.PreParser().Parse(doc);
-        Parser instance = new Parser(doc, preParsed);
+        Parser instance = new Parser(doc, preParsed, filename);
         return instance.Parse();
     }
 
     private static ILogger logger = Logging.Factory.CreateLogger<Parser>();
 
-    private Parser(WordprocessingDocument doc, CaseLaw.WordDocument preParsed) : base(doc, preParsed, LegislativeDocumentConfig.ForExplanatoryNotes()) { }
+    private Parser(WordprocessingDocument doc, CaseLaw.WordDocument preParsed, string filename) : base(doc, preParsed, LegislativeDocumentConfig.ForExplanatoryNotes()) {
+        _filename = filename;
+    }
 
     // All parsing logic is inherited from BaseLegislativeDocumentParser
-    
+
+    protected override DocumentMetadata MakeMetadata(List<IBlock> header) {
+        return ENMetadata.Make(header, doc, Config, _filename);
+    }
+
     protected override List<IBlock> Header() {
         // EN header structure is different from EM/IA
         // For now, use a simple approach: look for "EXPLANATORY NOTES" title

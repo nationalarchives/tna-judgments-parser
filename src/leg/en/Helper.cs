@@ -18,15 +18,23 @@ class Helper : BaseHelper {
     private Helper() : base(LegislativeDocumentConfig.ForExplanatoryNotes()) { }
 
     public static new IXmlDocument Parse(Stream docx, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify);
+        return Parse(docx, null, simplify);
     }
 
     public static new IXmlDocument Parse(byte[] docx, bool simplify = true) {
-        return ((BaseHelper)Instance).Parse(docx, simplify);
+        return Parse(docx, null, simplify);
     }
 
-    protected override IDocument ParseDocument(WordprocessingDocument docx) {
-        return ExplanatoryNotes.Parser.Parse(docx);
+    public static IXmlDocument Parse(Stream docx, string filename, bool simplify = true) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
+    }
+
+    public static IXmlDocument Parse(byte[] docx, string filename, bool simplify = true) {
+        return ((BaseHelper)Instance).Parse(docx, simplify, filename);
+    }
+
+    protected override IDocument ParseDocument(WordprocessingDocument docx, string filename = null) {
+        return ExplanatoryNotes.Parser.Parse(docx, filename);
     }
 
 }
