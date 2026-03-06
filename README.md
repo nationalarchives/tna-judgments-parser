@@ -3,6 +3,16 @@ Judgments parser
 
 This parser converts UK judgments from .docx format to XML. It is written in C# and requires .NET 8.0.
 
+<!-- TOC -->
+* [Judgments parser](#judgments-parser)
+  * [Making a FCL release](#making-a-fcl-release)
+  * [Using the parser](#using-the-parser)
+    * [C# API](#c-api)
+    * [REST API](#rest-api)
+    * [CLI](#cli)
+  * [Tests](#tests)
+<!-- TOC -->
+
 ## Making a FCL release
 
 1. Update the code
@@ -17,8 +27,9 @@ This parser converts UK judgments from .docx format to XML. It is written in C# 
     - A [workflow in da-tre-terraform-environments](https://github.com/nationalarchives/da-tre-terraform-environments/actions/workflows/parser_cd.yml) is scheduled to run each night and deploy the latest release
     - Go to [Find Case Law](https://caselaw.nationalarchives.gov.uk/) and check that a new judgment has the new `<uk:parser>` in it
 
-C# API
-------
+## Using the parser
+
+### C# API
 
 To invoke the parser programatically, clients should use the classes in the [UK.Gov.NationalArchives.Judgments.Api](./src/api/) namespace.
 1. Create a [Request](./src/api/Request.cs) object, with the following properties:
@@ -48,14 +59,12 @@ To invoke the parser programatically, clients should use the classes in the [UK.
     - Meta, a [Meta](./src/api/Meta.cs) object, as above
 
 
-REST API
---------
+### REST API
 
 A REST API, mimicking the above, is available at <https://parse.judgments.tna.jurisdatum.com>. Its specification can be found at [/api.yaml](https://parse.judgments.tna.jurisdatum.com/api.yaml).
 
 
-CLI
----
+### CLI
 
 The parser can also be invoked from the command line, as follows:
 
@@ -78,3 +87,19 @@ If the `--log` option is used, the parser will log its progress to the specified
     dotnet run --input test/judgments/test1.docx --output something.xml --log log.txt
 
 And if the `--test` option is used, the parser will perform a few tests and display the results either in the console or, if logging is enabled, to the log file.
+
+## Tests
+
+There are a mixture of unit, integration and end to end tests which overall give a good coverage of the codebase. These run in CI and should be updated/added to when changes are made.
+
+To run all the tests use your IDE or run: 
+
+```shell
+dotnet test tna-judgments-parser.sln
+```
+
+When significant changes are made to the parser some tests may fail due to differences in the expected xml output. The test xmls can be updated en masse by running:
+
+```shell
+dotnet test tna-judgments-parser.sln --filter test.UpdateXmlFiles.UpdateJudgmentXmls -e UPDATE_XML="true"
+```

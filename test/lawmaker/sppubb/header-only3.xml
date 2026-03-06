@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="sppubb">
+    <meta>
+      <references source="#author">
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="Desecration of War Memorials (Scotland) Bill" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="For Introduction" />
+      </references>
+    </meta>
+    <preface eId="preface">
+      <block name="title"><docTitle><ref href="#varBillTitle" class="placeholder" /></docTitle></block>
+      <block name="stageVersion">[<docStage><ref href="#varStageVersion" class="placeholder" /></docStage>]</block>
+      <longTitle>
+        <p>An Act of the Scottish Parliament to provide for the creation of a criminal offence of destroying, damaging or desecrating a war memorial.</p>
+      </longTitle>
+    </preface>
+    <body />
+  </bill>
+</akomaNtoso>

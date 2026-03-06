@@ -17,15 +17,20 @@ namespace UK.Gov.Legislation.ExplanatoryMemoranda {
 
 partial class Parser : BaseLegislativeDocumentParser {
 
-    internal static IDocument Parse(WordprocessingDocument doc) {
+    private readonly string _filename;
+
+    internal static IDocument Parse(WordprocessingDocument doc, string filename = null) {
         CaseLaw.WordDocument preParsed = new CaseLaw.PreParser().Parse(doc);
-        Parser instance = new Parser(doc, preParsed);
+        Parser instance = new Parser(doc, preParsed, filename);
         return instance.Parse();
     }
 
     private static ILogger logger = Logging.Factory.CreateLogger<Parser>();
 
-    private Parser(WordprocessingDocument doc, CaseLaw.WordDocument preParsed) : base(doc, preParsed, LegislativeDocumentConfig.ForExplanatoryMemoranda()) { }
+    private Parser(WordprocessingDocument doc, CaseLaw.WordDocument preParsed, string filename) 
+        : base(doc, preParsed, LegislativeDocumentConfig.ForExplanatoryMemoranda()) {
+        _filename = filename;
+    }
 
     // All parsing logic is now inherited from BaseLegislativeDocumentParser
     
@@ -33,6 +38,10 @@ partial class Parser : BaseLegislativeDocumentParser {
         List<IBlock> header = BaseHeaderSplitter.Split(PreParsed.Body, Config);
         i = header.Count;
         return header;
+    }
+
+    protected override DocumentMetadata MakeMetadata(List<IBlock> header) {
+        return EMMetadata.Make(header, doc, Config, _filename);
     }
 
 }

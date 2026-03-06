@@ -3,7 +3,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-using Backlog.Src;
+using Backlog.Csv;
 
 using Xunit;
 
@@ -41,9 +41,9 @@ public class TestAppellantsOrClaimantsPresentValidationAttribute
     public void IsValid_WithOtherObject_throwsException()
     {
         var exception = Assert.Throws<InvalidOperationException>(() =>
-            appellantsOrClaimantsPresentValidationAttribute.IsValid($"Not a {nameof(Metadata.Line)}"));
+            appellantsOrClaimantsPresentValidationAttribute.IsValid($"Not a {nameof(CsvLine)}"));
         
-        Assert.Equal($"AppellantsOrClaimantsPresentValidationAttribute can only be used on a {nameof(Metadata.Line)}",
+        Assert.Equal($"AppellantsOrClaimantsPresentValidationAttribute can only be used on a {nameof(CsvLine)}",
             exception.Message);
     }
 }

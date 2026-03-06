@@ -25,7 +25,7 @@ namespace UK.Gov.Legislation.Lawmaker
 
             if (Body[i+1] is not WLine line2)
                 return null;
-            if (!IsCenterAligned(line2))
+            if (!line2.IsCenterAligned())
                 return null;
             ILine heading = line2;
 
@@ -67,7 +67,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is WOldNumberedParagraph np)
                 return false;
-            if (!IsCenterAligned(line))
+            if (!line.IsCenterAligned())
                 return false;
             // Group of parts **always** has a part num, part heading and something beneath it
             if (i > Body.Count - 3)

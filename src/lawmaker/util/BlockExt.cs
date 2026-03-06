@@ -37,4 +37,11 @@ public static class BlockExt
     }
 
     internal static bool IsFlushLeft(this WLine line) => OptimizedParser.IsFlushLeft(line);
+
+    internal static bool IsCenterAligned(this WLine line)
+    {
+        var alignment = line.GetEffectiveAlignment();
+        return alignment == AlignmentValues.Center;
+    }
+
 }

@@ -8,6 +8,7 @@ using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using CaseLaw = UK.Gov.NationalArchives.CaseLaw.Parse;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
+using UK.Gov.Legislation.Lawmaker.Headers;
 
 
 namespace UK.Gov.Legislation.Lawmaker;
@@ -82,8 +83,12 @@ public partial class LegislationParser
         QuotationEnricher quotationEnricher = new(LanguageService, $"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
         quotationEnricher.EnrichDivisions(body);
 
-        FootnoteEnricher footnoteEnricher = new FootnoteEnricher();
-        footnoteEnricher.EnrichBlocks(preamble);
+        FootnoteEnricher footnoteEnricher = new();
+        FootnoteHeaderVisitor footnoteHeaderVisitor = new() {
+            FootnoteEnricher = footnoteEnricher,
+        };
+
+        header = header?.Visit(footnoteHeaderVisitor, new HeaderVisitorContext(docName));
         footnoteEnricher.EnrichDivisions(body);
 
 
@@ -92,9 +97,7 @@ public partial class LegislationParser
             Type = docName,
             Styles = Styles,
             Metadata = new(),
-            CoverPage = coverPage,
-            Preface = preface,
-            Preamble = preamble,
+            Header = header,
             Body = body,
             Schedules = [],
             Conclusions = conclusions

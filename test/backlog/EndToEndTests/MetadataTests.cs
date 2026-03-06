@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 
-using Backlog.Src;
+using Backlog.Csv;
 
 using Xunit;
 
@@ -69,7 +69,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
     }
 
     private void WriteCourtMetadataCsv(int lineId, string originalFileName,
-        params Metadata.Line[] metadataLines)
+        params CsvLine[] metadataLines)
     {
         const string judgmentsFilePath = @"JudgmentFiles\";
         Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", judgmentsFilePath);
@@ -103,7 +103,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
 
         ConfigureTestEnvironment(originalFileName, docWithoutJurisdictionsId);
         
-        var metadataLine = new Metadata.Line
+        var metadataLine = new CsvLine
         {
             Extension = ".docx",
             decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
@@ -153,7 +153,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
 
         ConfigureTestEnvironment(originalFileName, null);
         
-        var metadataLine = new Metadata.Line
+        var metadataLine = new CsvLine
         {
             Extension = ".pdf",
             decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
@@ -200,7 +200,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         ConfigureTestEnvironment(originalFileName, DocIdWithJurisdiction);
 
         // Metadata
-        var metadataLine = new Metadata.Line
+        var metadataLine = new CsvLine
         {
             Extension = ".docx",
             decision_datetime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
@@ -230,7 +230,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         ConfigureTestEnvironment(originalFileName, DocIdWithJurisdiction);
 
         // Metadata
-        var metadataLine = new Metadata.Line
+        var metadataLine = new CsvLine
         {
             Extension = ".docx",
             decision_datetime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
@@ -306,7 +306,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         ConfigureTestEnvironment(originalFileName, DocIdWithJurisdiction);
 
         // Metadata
-        var metadataLine = new Metadata.Line
+        var metadataLine = new CsvLine
         {
             Extension = ".docx",
             decision_datetime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),

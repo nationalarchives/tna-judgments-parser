@@ -13,6 +13,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseSchedulePart(WLine line)
         {
+            var save = i;
+
             if (!PeekSchedulePartHeading(line))
                 return null;
 
@@ -24,18 +26,61 @@ namespace UK.Gov.Legislation.Lawmaker
             if (IsEndOfQuotedStructure(line.NormalizedContent))
                 return new SchedulePartLeaf { Number = number };
 
-            if (Body[i + 1] is not WLine line2)
+            IBlock line2 = Body[i + 1];
+            // Current line may be a WLine or WTable
+            if (line2 is not WLine && line2 is not WTable)
                 return null;
-            if (!IsCenterAligned(line2))
-                return null;
-            ILine heading = line2;
 
-            if (IsEndOfQuotedStructure(line2.NormalizedContent))
+            // Schedule parts may have no heading
+            ILine heading = null;
+            if (line2 is WLine)
+                if (!(!((WLine) line2).IsCenterAligned() || LanguageService.IsMatch(((WLine) line2).TextContent, ScheduleChapter.NumberPatterns)))
+                    heading = (WLine) line2;
+            i += heading is null ? 1 : 2;
+
+            if (line2 is WLine && IsEndOfQuotedStructure(((WLine) line2).NormalizedContent))
                 return new SchedulePartLeaf { Number = number, Heading = heading };
 
-            var save1 = i;
-            i += 2;
+            WLine partBodyStartLine = (WLine) Body[i-1];
+            List<IBlock> contents = ParseLeafContents(partBodyStartLine);
+            HContainer part;
+            if (contents.Count > 0)
+                part = new SchedulePartLeaf { Number = number, Heading = heading, Contents = contents };
+            else
+            {
+                List<IDivision> children = ParseSchedulePartBranchChildren();
+                // A SchedulePartBranch must have at least 1 child.
+                if (children.Count == 0)
+                {
+                    i = save;
+                    return null;
+                }
+                part = new SchedulePartBranch { Number = number, Heading = heading, Children = children };
+            }
 
+            return part;
+        }
+
+        private bool PeekSchedulePartHeading(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!line.IsCenterAligned())
+                return false;
+            if (i > Body.Count - 2)
+                return false;
+            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
+            if (!LanguageService.IsMatch(numText, SchedulePart.NumberPatterns))
+                return false;
+            return true;
+        }
+
+        /// <summary>
+        /// Parses and returns a list of child divisions belonging to the <c>SchedulePartBranch</c>.
+        /// </summary>
+        /// <returns>A list of child divisions belonging to the <c>SchedulePartBranch</c></returns>
+        internal List<IDivision> ParseSchedulePartBranchChildren()
+        {
             List<IDivision> children = [];
             while (i < Body.Count)
             {
@@ -55,26 +100,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (IsEndOfQuotedStructure(next))
                     break;
             }
-            if (children.Count == 0)
-            {
-                i = save1;
-                return null;
-            }
-            return new SchedulePartBranch { Number = number, Heading = heading, Children = children };
-        }
-
-        private bool PeekSchedulePartHeading(WLine line)
-        {
-            if (line is WOldNumberedParagraph np)
-                return false;
-            if (!IsCenterAligned(line))
-                return false;
-            if (i > Body.Count - 3)
-                return false;
-            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
-            if (!LanguageService.IsMatch(numText, SchedulePart.NumberPatterns))
-                return false;
-            return true;
+            return children;
         }
 
     }

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <CourtsJson>https://raw.githubusercontent.com/nationalarchives/ds-caselaw-utils/refs/tags/v4.1.0/src/autogen/courts.json</CourtsJson>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="courts.json" />
+      <EmbeddedResource Include="courts.json" />
+    </ItemGroup>
+
+    <Target Name="DownloadContentFiles" BeforeTargets="BeforeBuild">
+        <DownloadFile
+                SourceUrl="$(CourtsJson)"
+                DestinationFolder="$(MSBuildProjectDirectory)">
+            <Output TaskParameter="DownloadedFile" ItemName="Content" />
+        </DownloadFile>
+    </Target>
+    
+</Project>

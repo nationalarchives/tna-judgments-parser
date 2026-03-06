@@ -92,7 +92,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (line is not WOldNumberedParagraph np)
                 return false;
-            if (!SchProv1.IsValidNumber(GetNumString(np.Number)))
+            if (!SchProv1.IsValidNumber(GetNumString(np.Number), frames.CurrentDocName))
                 return false;
             return true;
         }

@@ -81,11 +81,14 @@ namespace UK.Gov.NationalArchives.Enrichment
             if (end > groupEnd)
             {
                 start = inlinePositions[inlineIndex];
-                WText inlineToSplit = remainder.Skip(inside.Count).First() as WText;
-                WText portionBefore = new WText(inlineToSplit.Text[..(groupEnd - start)], inlineToSplit.properties);
-                WText portionAfter = new WText(inlineToSplit.Text[(groupEnd - start)..], inlineToSplit.properties);
-                inside.Add(portionBefore);
-                after.Add(portionAfter);
+                WText inlineToSplit = remainder.Skip(inside.Count).OfType<WText>().FirstOrDefault();
+                if (inlineToSplit is not null)
+                {
+                    WText portionBefore = new WText(inlineToSplit.Text[..(groupEnd - start)], inlineToSplit.properties);
+                    WText portionAfter = new WText(inlineToSplit.Text[(groupEnd - start)..], inlineToSplit.properties);
+                    inside.Add(portionBefore);
+                    after.Add(portionAfter);
+                }
             }
 
             // Collect Inlines after group

@@ -54,7 +54,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return false;
             if (line is WOldNumberedParagraph np)
                 return false;
-            if (!IsCenterAligned(line))
+            if (!line.IsCenterAligned())
                 return false;
             if (!line.IsPartiallyItalicized())
                 return false;

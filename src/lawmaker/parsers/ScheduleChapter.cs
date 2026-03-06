@@ -13,6 +13,8 @@ namespace UK.Gov.Legislation.Lawmaker
 
         private HContainer ParseScheduleChapter(WLine line)
         {
+            var save = i;
+
             if (!PeekScheduleChapterHeading(line))
                 return null;
 
@@ -24,18 +26,62 @@ namespace UK.Gov.Legislation.Lawmaker
             if (IsEndOfQuotedStructure(line.NormalizedContent))
                 return new ScheduleChapterLeaf { Number = number };
 
-            if (Body[i + 1] is not WLine line2)
+            IBlock line2 = Body[i + 1];
+            // Current line may be a WLine or WTable
+            if (line2 is not WLine && line2 is not WTable)
                 return null;
-            if (!IsCenterAligned(line2))
-                return null;
-            ILine heading = line2;
 
-            if (IsEndOfQuotedStructure(line2.NormalizedContent))
+            // Schedule chapters may have no heading
+            ILine heading = null;
+            if (line2 is WLine l2)
+                if (l2.IsCenterAligned())
+                    heading = (WLine) line2;
+
+            i += heading is null ? 1 : 2;
+
+            if (line2 is WLine && IsEndOfQuotedStructure(((WLine) line2).NormalizedContent))
                 return new ScheduleChapterLeaf { Number = number, Heading = heading };
 
-            var save1 = i;
-            i += 2;
+            WLine chapterBodyStartLine = (WLine) Body[i-1];
+            List<IBlock> contents = ParseLeafContents(chapterBodyStartLine);
+            HContainer chapter;
+            if (contents.Count > 0)
+                chapter = new ScheduleChapterLeaf { Number = number, Heading = heading, Contents = contents };
+            else
+            {
+                List<IDivision> children = ParseScheduleChapterBranchChildren();
+                // A ScheduleChapterBranch must have at least 1 child.
+                if (children.Count == 0)
+                {
+                    i = save;
+                    return null;
+                }
+                chapter = new ScheduleChapterBranch { Number = number, Heading = heading, Children = children };
+            }
 
+            return chapter;
+        }
+
+        private bool PeekScheduleChapterHeading(WLine line)
+        {
+            if (line is WOldNumberedParagraph np)
+                return false;
+            if (!line.IsCenterAligned())
+                return false;
+            if (i > Body.Count - 2)
+                return false;
+            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
+            if (!LanguageService.IsMatch(numText, ScheduleChapter.NumberPatterns))
+                return false;
+            return true;
+        }
+
+        /// <summary>
+        /// Parses and returns a list of child divisions belonging to the <c>ScheduleChapterBranch</c>.
+        /// </summary>
+        /// <returns>A list of child divisions belonging to the <c>ScheduleChapterBranch</c></returns>
+        internal List<IDivision> ParseScheduleChapterBranchChildren()
+        {
             List<IDivision> children = [];
             while (i < Body.Count)
             {
@@ -55,26 +101,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 if (IsEndOfQuotedStructure(next))
                     break;
             }
-            if (children.Count == 0)
-            {
-                i = save1;
-                return null;
-            }
-            return new ScheduleChapterBranch { Number = number, Heading = heading, Children = children };
-        }
-
-        private bool PeekScheduleChapterHeading(WLine line)
-        {
-            if (line is WOldNumberedParagraph np)
-                return false;
-            if (!IsCenterAligned(line))
-                return false;
-            if (i > Body.Count - 3)
-                return false;
-            string numText = IgnoreQuotedStructureStart(line.NormalizedContent, quoteDepth);
-            if (!LanguageService.IsMatch(numText, ScheduleChapter.NumberPatterns))
-                return false;
-            return true;
+            return children;
         }
 
     }

@@ -140,10 +140,8 @@ class Metadata {
             if (court is not null) {
                 XmlElement tldOrg = append(doc, references, "TLCOrganization");
                 tldOrg.SetAttribute("eId", MakeCourtId(court));
-                tldOrg.SetAttribute("href", court.Value.URL);
-                tldOrg.SetAttribute("showAs", court.Value.LongName);
-                if (court.Value.ShortName is not null)
-                    tldOrg.SetAttribute("shortForm", court.Value.ShortName);
+                tldOrg.SetAttribute("href", court.URL);
+                tldOrg.SetAttribute("showAs", court.Name);
             }
 
             XmlElement tna = append(doc, references, "TLCOrganization");
@@ -217,7 +215,7 @@ class Metadata {
             if (court is not null) {
                 XmlElement courtt = doc.CreateElement("uk", "court", ukns);
                 proprietary.AppendChild(courtt);
-                courtt.AppendChild(doc.CreateTextNode(court.Value.Code.ToString()));
+                courtt.AppendChild(doc.CreateTextNode(court.Code));
             }
             if (metadata.Year is not null) {
                 XmlElement year = doc.CreateElement("uk", "year", ukns);

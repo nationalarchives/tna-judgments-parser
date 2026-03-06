@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="../version.targets" />
 
@@ -19,9 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
     <PackageReference Include="Moq" Version="4.20.72" />
-    <PackageReference Include="xunit.v3" Version="3.2.1" />
+    <PackageReference Include="xunit.v3" Version="3.2.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
 
     <EmbeddedResource Include="./judgments/*.docx" />
@@ -34,6 +34,8 @@
     <EmbeddedResource Include="./leg/em/*.docx" />
     <EmbeddedResource Include="./leg/em/*.xml" />
     <EmbeddedResource Include="./leg/em/*.akn" />
+    <EmbeddedResource Include="./leg/em/original filenames/*.docx" />
+    <EmbeddedResource Include="./leg/em/original filenames/*.akn" />
 
     <EmbeddedResource Include="./lawmaker/**/*.docx" />
     <EmbeddedResource Include="./lawmaker/**/*.xml" />

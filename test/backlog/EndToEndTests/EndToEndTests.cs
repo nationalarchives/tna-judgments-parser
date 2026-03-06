@@ -231,6 +231,25 @@ namespace test.backlog.EndToEndTests
         }
 
         [Fact]
+        public async Task ProcessBacklogJudgment_WithId_OnlyProcessesSpecifiedId()
+        {
+            // Setup test environment
+            ConfigureTestEnvironment("MultiLineTest");
+            Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", "JudgmentFiles\\");
+            Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", "data/HMCTS_Judgment_Files/");
+
+            // Act
+            var exitCode = Backlog.Src.Program.Main(["--id", "102"]);
+
+            // Assert
+            AssertProgramExitedSuccessfully(exitCode);
+
+            var trackerLines = await File.ReadAllLinesAsync(trackerPath, TestContext.Current.CancellationToken);
+            var singleLine = Assert.Single(trackerLines);
+            Assert.StartsWith("102/JudgmentFiles\\j102\\test3.pdf,", singleLine);
+        }
+
+        [Fact]
         public void ProcessBacklogJudgment_FullCSV_WithEmptyCSV_ReturnsError()
         {
             // Setup test environment with empty CSV

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -16,37 +15,92 @@ namespace test.backlog
     /// <summary>
     /// Tests for the Files class focusing on file path handling and UUID resolution.
     /// </summary>
-    public class TestBacklogFiles : IDisposable
+    public sealed class TestBacklogFiles : IDisposable
     {
-        private string _tempTestDir;
-        private string _courtDocumentsDir;
-        private string _tdrMetadataDir;
+        private readonly string tempTestDir;
+        private readonly string courtDocumentsDir;
+        private readonly string tdrMetadataDir;
 
         private BacklogFiles backlogFiles;
-        private ILogger<BacklogFiles> mockLogger = new MockLogger<BacklogFiles>().Object;
+        private readonly ILogger<BacklogFiles> mockLogger = new MockLogger<BacklogFiles>().Object;
 
         public TestBacklogFiles()
         {
             // Create a temporary directory for test files
-            _tempTestDir = Path.Combine(Path.GetTempPath(), $"FilesTest_{Guid.NewGuid()}");
-            Directory.CreateDirectory(_tempTestDir);
+            tempTestDir = Path.Combine(Path.GetTempPath(), $"FilesTest_{Guid.NewGuid()}");
+            Directory.CreateDirectory(tempTestDir);
 
-            _courtDocumentsDir = Path.Combine(_tempTestDir, "court_documents");
-            _tdrMetadataDir = Path.Combine(_tempTestDir, "tdr_metadata");
+            courtDocumentsDir = Path.Combine(tempTestDir, "court_documents");
+            tdrMetadataDir = Path.Combine(tempTestDir, "tdr_metadata");
             
-            Directory.CreateDirectory(_courtDocumentsDir);
-            Directory.CreateDirectory(_tdrMetadataDir);
+            Directory.CreateDirectory(courtDocumentsDir);
+            Directory.CreateDirectory(tdrMetadataDir);
             
-            backlogFiles = new(mockLogger, _tempTestDir, "", "");
+            backlogFiles = new(mockLogger, tempTestDir, "", "");
         }
 
         public void Dispose()
         {
             // Clean up test files
-            if (Directory.Exists(_tempTestDir))
+            if (Directory.Exists(tempTestDir))
             {
-                Directory.Delete(_tempTestDir, true);
+                Directory.Delete(tempTestDir, true);
             }
+        }
+
+        [Fact]
+        public void BacklogFilesConstructor_WhenNoCourtDocumentsFolder_ThrowsDirectoryNotFoundException()
+        {
+            Directory.Delete(courtDocumentsDir);
+
+            var exception =
+                Assert.Throws<DirectoryNotFoundException>(() => new BacklogFiles(mockLogger, tempTestDir, "", ""));
+            Assert.Equal($"Couldn't find {courtDocumentsDir}", exception.Message);
+        }
+
+        [Fact]
+        public void ReadFile_WithUuidForFileThatDoesntExist_ThrowsFileNotFoundException()
+        {
+            var thisUuidDoesnTHaveACorrespondingFile = "this uuid doesn't have a corresponding file";
+
+            var exception =
+                Assert.Throws<FileNotFoundException>(() => backlogFiles.ReadFile(thisUuidDoesnTHaveACorrespondingFile));
+
+            Assert.Equal(
+                $"Couldn't find file with UUID: {thisUuidDoesnTHaveACorrespondingFile}. It must have been received through TDR in order to have been assigned a UUID so check the original TDR bucket and check any file conversion folders",
+                exception.Message);
+        }
+
+        [Theory]
+        [InlineData("a80ed36d-7a5c-4956-894d-51b14c89aa79", ".doc")]
+        [InlineData("b80ed36d-7a5c-4956-894d-51b14c89aa79", ".docx")]
+        [InlineData("b80ed36d-7a5c-4956-894d-51b14c89aa79", "....docx")]
+        [InlineData("c80ed36d-7a5c-4956-894d-51b14c89aa79", ".pdf")]
+        [InlineData("d80ed36d-7a5c-4956-894d-51b14c89aa79", ".mystery")]
+        [InlineData("d80ed36d-7a5c-4956-894d-51b14c89aa79", "")]
+        public void ReadFile_WithUuidForFileThatDoesExist_ReturnsFileContentsRegardlessOfExtension(string uuid,
+            string fileExtension)
+        {
+            byte[] expectedContent = [1, 2, 3, 4, 5];
+            File.WriteAllBytes(Path.Combine(courtDocumentsDir, $"{uuid}{fileExtension}"), expectedContent);
+
+            var result = backlogFiles.ReadFile(uuid);
+
+            Assert.Equal(expectedContent, result);
+        }
+
+        [Fact]
+        public void ReadFile_WithUuidThatMatchesMultipleFiles_Throws()
+        {
+            const string uuid = "a80ed36d-7a5c-4956-894d-51b14c89aa79";
+            File.WriteAllBytes(Path.Combine(courtDocumentsDir, uuid), [1, 2, 3, 4, 5]);
+            File.WriteAllBytes(Path.Combine(courtDocumentsDir, $"{uuid}.docx"), [6, 7, 8, 9, 10]);
+
+            var exception = Assert.Throws<MoreThanOneFileFoundException>(() => backlogFiles.ReadFile(uuid));
+
+            Assert.Equal(
+                "There should only be one file in court_documents matching UUID a80ed36d-7a5c-4956-894d-51b14c89aa79 but found 2: [\"a80ed36d-7a5c-4956-894d-51b14c89aa79.docx\", \"a80ed36d-7a5c-4956-894d-51b14c89aa79\"]",
+                exception.Message);
         }
 
         /// <summary>
@@ -61,7 +115,7 @@ namespace test.backlog
             const string hmctsFilePath = "data/Claims management decisions";
             const string expectedUuid = "test-uuid-12345";  
             
-            backlogFiles = new(mockLogger, _tempTestDir, judgmentsFilePath, hmctsFilePath);
+            backlogFiles = new(mockLogger, tempTestDir, judgmentsFilePath, hmctsFilePath);
 
             // Create transfer metadata CSV content with 2-level deep judgments file path
             var transferMetadataContent = new StringBuilder();
@@ -69,7 +123,7 @@ namespace test.backlog
             transferMetadataContent.AppendLine($"TEST1,test-decision.pdf,File,1024,{hmctsFilePath}/j100/test-decision.pdf,Crown Copyright,Public Record(s),\"The National Archives, Kew\",2023-01-01T00:00:00,Open,,,,,false,,,false,,English,,,,,,{expectedUuid}");
 
             // Write the transfer metadata file
-            var transferMetadataPath = Path.Combine(_tdrMetadataDir, "file-metadata.csv");
+            var transferMetadataPath = Path.Combine(tdrMetadataDir, "file-metadata.csv");
             File.WriteAllText(transferMetadataPath, transferMetadataContent.ToString());
 
             // Act
@@ -91,7 +145,7 @@ namespace test.backlog
             const string hmctsFilePath = "data/Claims management decisions";
             const string expectedUuid = "test-uuid-mixed-paths";
 
-            backlogFiles = new(mockLogger, _tempTestDir, judgmentsFilePath, hmctsFilePath);
+            backlogFiles = new(mockLogger, tempTestDir, judgmentsFilePath, hmctsFilePath);
 
             // Create transfer metadata with forward slashes (Unix style) - should still match
             var transferMetadataContent = new StringBuilder();
@@ -99,7 +153,7 @@ namespace test.backlog
             transferMetadataContent.AppendLine($"TEST2,test-file.doc,File,2048,{hmctsFilePath}/subfolder/test-file.doc,Crown Copyright,Public Record(s),\"The National Archives, Kew\",2023-01-01T00:00:00,Open,,,,,false,,,false,,English,,,,,,{expectedUuid}");
 
             // Write the transfer metadata file
-            var transferMetadataPath = Path.Combine(_tdrMetadataDir, "file-metadata.csv");
+            var transferMetadataPath = Path.Combine(tdrMetadataDir, "file-metadata.csv");
             File.WriteAllText(transferMetadataPath, transferMetadataContent.ToString());
 
             // Act
@@ -120,7 +174,7 @@ namespace test.backlog
             const string judgmentsFilePath = @"Documents\Decisions";
             const string hmctsFilePath = "data/Claims management decisions";
 
-            backlogFiles = new(mockLogger, _tempTestDir, judgmentsFilePath, hmctsFilePath);
+            backlogFiles = new(mockLogger, tempTestDir, judgmentsFilePath, hmctsFilePath);
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentException>(() =>

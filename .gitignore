@@ -9,9 +9,15 @@ obj
 .idea/
 *.user
 
+## log files
+*.log
+
 ## Copied over from old backlog .gitignore
 Secrets.cs
 
 ## Used in backlog
 .env
 .env.*
+
+## Files downloaded from other repos
+NationalArchives.FindCaseLaw.Utils/courts.json

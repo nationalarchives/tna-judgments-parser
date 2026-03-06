@@ -33,7 +33,7 @@ namespace UK.Gov.Legislation.Lawmaker
         {
 
             Document bill = LegislationParser.Parse(docx, classifier, languageService);
-            XmlDocument doc = Builder.Build(bill);
+            XmlDocument doc = Builder.Build(bill, languageService);
             Simplifier.Simplify(doc, bill.Styles);
             string xml = NationalArchives.Judgments.Api.Parser.SerializeXml(doc);
             return new Bundle { Xml = xml };

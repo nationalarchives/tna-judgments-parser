@@ -27,7 +27,7 @@ public record DatesContainer(IEnumerable<DateBlock> DateBlocks) : IBlock, IBuild
     public static DatesContainer? Parse(IParser<IBlock> parser) =>
         parser.MatchWhile(
             l => l is not WLine line || !TableOfContents.IsTableOfContentsHeading(line, parser.LanguageService)
-                && !Preamble.IsStart(line),
+                && !Headers.Preamble.IsStart(line),
 
             DateBlock.Parse
             ) is IEnumerable<DateBlock> dates
@@ -46,11 +46,6 @@ public abstract partial record DateBlock(
 {
     private static readonly ILogger Logger = Logging.Factory.CreateLogger<DateBlock>();
 
-    // private Reference? _ref = Key is ReferenceKey key
-    //             && Date is ValidDate validDate
-    //         ? new Reference(key, validDate.Date.ToString("o", System.Globalization.CultureInfo.InvariantCulture))
-    //         : null;
-
     public XNode? Build(Document document)
     {
         return new XElement(akn + "block",
@@ -59,9 +54,7 @@ public abstract partial record DateBlock(
             Class is null ? null : new XAttribute(akn + "class", Class),
             new XElement(akn + "span",
                 new XAttribute("keep", "true"),
-                new XText(SpanText + (Date is UnknownDate(string text)
-                    ? " " + text
-                    : ""))),
+                new XText(SpanText)),
             Date.Build(document));
     }
 
@@ -166,7 +159,7 @@ public abstract partial record DateBlock(
     // it may be worth writing a regex to find the actual dates,
     // something like this?
     // (?<day>\d\d?(th|rd|st|nd))\s+(?<month>(January|Februrary|March|April|May|June|July|August|September|October|November|December))\s+(?<year>\d{2, 4})
-    private const string DATE = @"(?<date>[^\s].*$)";
+    private const string DATE = @"(?<date>[^\s-].*$|$)";
 
     // we generally always expect the date to be separated from it's text by
     // at least one tab as it's required in Word to achieve the formatting.

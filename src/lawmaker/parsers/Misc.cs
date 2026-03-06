@@ -15,12 +15,6 @@ namespace UK.Gov.Legislation.Lawmaker
     partial class LegislationParser : BlockParser
     {
 
-        internal static bool IsCenterAligned(WLine line)
-        {
-            var alignment = line.GetEffectiveAlignment();
-            return alignment == AlignmentValues.Center;
-        }
-
         private static bool IsRightAligned(WLine line)
         {
             var alignment = line.GetEffectiveAlignment();
@@ -30,7 +24,7 @@ namespace UK.Gov.Legislation.Lawmaker
         private static string GetRightTabbedText(WLine line)
         {
             if (!line.Contents.OfType<WTab>().Any())
-                return line.NormalizedContent;
+                return "";
 
             IEnumerable<IInline> inlines = line.Contents.Reverse().TakeWhile(i => i is not WTab).Reverse();
             return new WLine(line, inlines).NormalizedContent;

@@ -36,7 +36,7 @@ namespace Backlog.Src
             return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
         }
 
-        internal static Bundle Make(Source source, Judgments.Api.Response response, List<CustomField> customMetadata, bool autoPublish = false)
+        internal static Bundle Make(Source source, Judgments.Api.Response response, bool autoPublish = false)
         {
             string uuid = Guid.NewGuid().ToString();
             Metadata metadata = new()
@@ -61,8 +61,7 @@ namespace Backlog.Src
                             Format = source.MimeType,
                             Hash = Hash(source.Content)
                         }
-                    },
-                    CustomFields = customMetadata
+                    }
                 }
             };
             using var memStream = new MemoryStream();
@@ -142,10 +141,6 @@ namespace Backlog.Src
 
             [JsonPropertyName("INGESTER_OPTIONS")]
             public IngestorOptions IngestorOptions { get; set; }
-
-            [JsonPropertyName("CUSTOM_METADATA")]
-            public List<CustomField> CustomFields { get; set; }
-
         }
 
         public class IngestorOptions
@@ -169,20 +164,6 @@ namespace Backlog.Src
             }
 
         }
-
-        public class CustomField
-        {
-            [JsonPropertyName("name")]
-            public string Name { get; set; }
-
-            [JsonPropertyName("source")]
-            public string Source { get; set; }
-
-            [JsonPropertyName("value")]
-            public string Value { get; set; }
-
-        }
-
     }
 
 }

@@ -31,6 +31,8 @@
 	</xsl:choose>
 </xsl:variable>
 
+<xsl:variable name="parameters" as="document-node()?" select="if (doc-available('input:request')) then doc('input:request') else ()"/>
+
 <!-- templates -->
 
 <xsl:template match="akomaNtoso">
@@ -40,6 +42,7 @@
 			<xsl:call-template name="style" />
 		</head>
 		<body>
+			<xsl:call-template name="header"/>
 			<xsl:apply-templates />
 		</body>
 	</html>
@@ -160,6 +163,11 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 	padding: 4pt;
 }
 
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center;}
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size:x-large}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
 
 </style>
 </xsl:template>
@@ -190,6 +198,9 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 		<xsl:apply-templates />
 	</div>
 </xsl:template>
+
+<!-- Suppress in-document TOC (contents link is in header); no template = text dump -->
+<xsl:template match="toc" />
 
 <xsl:template match="level | section | paragraph | subparagraph | hcontainer">
 	<section>
@@ -381,6 +392,36 @@ article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:
 	</xsl:element>
 </xsl:template>
 
+<!--[ TOC Link Header ]-->
+<xsl:template name="header">
+	<xsl:variable name="toc-url">
+		<xsl:choose>
+			<xsl:when test="$parameters/*:parameters/*:leg-type !=''">
+				<xsl:value-of select="string-join((
+					$parameters/*:parameters/*:leg-type,
+					$parameters/*:parameters/*:leg-year,
+					$parameters/*:parameters/*:leg-number,
+					'impacts',
+					$parameters/*:parameters/*:impact-year,
+					$parameters/*:parameters/*:impact-number,
+					'contents'), '/')"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="string-join((
+					$parameters/*:parameters/*:impact-type,
+					$parameters/*:parameters/*:impact-year,
+					$parameters/*:parameters/*:impact-number,
+					'contents'), '/')"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+
+	<div class="toc-container">
+		<div class="toc-box">
+			<a href="/{$toc-url}">Impact Assessment Table of Contents</a>
+		</div>
+	</div>
+</xsl:template>
 
 <!-- end of templates -->
 

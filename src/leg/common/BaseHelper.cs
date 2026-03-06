@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
@@ -5,6 +6,7 @@ using DocumentFormat.OpenXml.Packaging;
 
 using UK.Gov.NationalArchives.AkomaNtoso;
 using UK.Gov.Legislation.Models;
+using UK.Gov.Legislation.Judgments;
 
 namespace UK.Gov.Legislation.Common {
 
@@ -16,18 +18,22 @@ abstract class BaseHelper {
         Config = config;
     }
 
-    public IXmlDocument Parse(Stream docx, bool simplify = true) {
+    public IXmlDocument Parse(Stream docx, bool simplify = true, string filename = null) {
         WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify);
+        return Parse(word, simplify, filename);
     }
 
-    public IXmlDocument Parse(byte[] docx, bool simplify = true) {
+    public IXmlDocument Parse(byte[] docx, bool simplify = true, string filename = null) {
         WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify);
+        return Parse(word, simplify, filename);
     }
 
-    private IXmlDocument Parse(WordprocessingDocument docx, bool simplify) {
-        IDocument doc = ParseDocument(docx);
+    private IXmlDocument Parse(WordprocessingDocument docx, bool simplify, string filename = null) {
+        IDocument doc = ParseDocument(docx, filename);
+        
+        // Process images: convert formats, rename to S3 convention, update references
+        IEnumerable<Judgments.IImage> processedImages = LegImageProcessor.ProcessImages(doc);
+        
         XmlDocument xml = Builder.Build(doc);
         docx.Dispose();
         if (simplify)
@@ -36,14 +42,14 @@ abstract class BaseHelper {
         // Apply document-specific processing
         ApplyDocumentSpecificProcessing(xml);
         
-        return new XmlDocument_ { Document = xml };
+        return new XmlDocument_ { Document = xml, Images = processedImages };
     }
 
     /// <summary>
     /// Parse the document using the appropriate parser for this document type.
     /// Must be implemented by derived classes.
     /// </summary>
-    protected abstract IDocument ParseDocument(WordprocessingDocument docx);
+    protected abstract IDocument ParseDocument(WordprocessingDocument docx, string filename = null);
 
     /// <summary>
     /// Apply document-specific processing to the XML.

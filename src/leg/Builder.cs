@@ -35,9 +35,10 @@ class Builder : AkN.Builder {
         main.SetAttribute("xmlns:uk", UKNS);
         
         // Add dc namespace if document has lastModified info (for dc:modified in proprietary)
-        // Check both ExpressionDate with lastModified name and IA-specific LastModified property
+        // Check both ExpressionDate with lastModified name and IA/EM-specific LastModified property
         bool hasModified = (document.Meta.ExpressionDateName == "lastModified" && document.Meta.ExpressionDate != null) ||
-                          (document.Meta is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue);
+                          (document.Meta is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) ||
+                          (document.Meta is ExplanatoryMemoranda.EMMetadata emData && emData.LastModified.HasValue);
         if (hasModified) {
             main.SetAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
         }
@@ -81,7 +82,7 @@ class Builder : AkN.Builder {
         }
 
         XmlElement workAuthor = CreateAndAppend("FRBRauthor", work);
-        workAuthor.SetAttribute("href", "#");
+        workAuthor.SetAttribute("href", data.WorkAuthor ?? "#");
         XmlElement workCountry = CreateAndAppend("FRBRcountry", work);
         workCountry.SetAttribute("value", "GB-UKM");
 
@@ -103,7 +104,7 @@ class Builder : AkN.Builder {
         XmlElement expAuthor = CreateAndAppend("FRBRauthor", expression);
         expAuthor.SetAttribute("href", "#");
         XmlElement expLanguage = CreateAndAppend("FRBRlanguage", expression);
-        expLanguage.SetAttribute("language", "eng");
+        expLanguage.SetAttribute("language", "en");
 
         XmlElement manifestation = CreateAndAppend("FRBRManifestation", identification);
         XmlElement maniThis = CreateAndAppend("FRBRthis", manifestation);
@@ -111,7 +112,7 @@ class Builder : AkN.Builder {
         XmlElement maniURI = CreateAndAppend("FRBRuri", manifestation);
         maniURI.SetAttribute("value",  data.ExpressionUri + "/data.akn");
         XmlElement maniDate = CreateAndAppend("FRBRdate", manifestation);
-        maniDate.SetAttribute("date", FormatDateAndTime(DateTime.UtcNow));
+        maniDate.SetAttribute("date", FormatDateOnly(DateTime.UtcNow));
         maniDate.SetAttribute("name", "transform");
         XmlElement maniAuthor = CreateAndAppend("FRBRauthor", manifestation);
         maniAuthor.SetAttribute("href", "#tna");
@@ -148,11 +149,16 @@ class Builder : AkN.Builder {
         
         // For IA documents, use the LastModified property
         if (data is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) {
-            modifiedValue = FormatDateAndTime(iaData.LastModified);
+            modifiedValue = FormatDateOnly(iaData.LastModified);
         }
-        // For other documents (like EMs), use ExpressionDate if it's a lastModified timestamp
+        // For EM documents, use the LastModified property
+        else if (data is ExplanatoryMemoranda.EMMetadata emData && emData.LastModified.HasValue) {
+            modifiedValue = FormatDateOnly(emData.LastModified);
+        }
+        // For other documents, use ExpressionDate if it's a lastModified timestamp
         else if (data.ExpressionDateName == "lastModified" && data.ExpressionDate != null) {
-            modifiedValue = data.ExpressionDate;
+            // Extract date portion only (first 10 characters: yyyy-MM-dd)
+            modifiedValue = data.ExpressionDate.Length >= 10 ? data.ExpressionDate[..10] : data.ExpressionDate;
         }
         
         if (modifiedValue != null) {
@@ -168,8 +174,69 @@ class Builder : AkN.Builder {
             legislation.AppendChild(doc.CreateTextNode(data.LegislationUri));
         }
 
+        // Add additional EM metadata from CSV mapping (for Explanatory Memoranda)
+        if (data is ExplanatoryMemoranda.EMMetadata emMetadata) {
+            // Add associated document URI for contractor upload (e.g. http://www.legislation.gov.uk/id/uksi/2013/2911/memorandum/1)
+            if (!string.IsNullOrEmpty(emMetadata.ShortUriComponent)) {
+                XmlElement associatedId = doc.CreateElement("uk", "associatedID", UKNS);
+                proprietary.AppendChild(associatedId);
+                associatedId.AppendChild(doc.CreateTextNode(emMetadata.WorkUri));
+            }
+            if (!string.IsNullOrEmpty(emMetadata.DocumentMainType)) {
+                XmlElement documentMainType = doc.CreateElement("uk", "documentMainType", UKNS);
+                proprietary.AppendChild(documentMainType);
+                documentMainType.AppendChild(doc.CreateTextNode(emMetadata.DocumentMainType));
+            }
+            
+            if (!string.IsNullOrEmpty(emMetadata.Department)) {
+                XmlElement department = doc.CreateElement("uk", "department", UKNS);
+                proprietary.AppendChild(department);
+                department.AppendChild(doc.CreateTextNode(emMetadata.Department));
+            }
+            
+            if (!string.IsNullOrEmpty(emMetadata.EmDate)) {
+                XmlElement date = doc.CreateElement("uk", "date", UKNS);
+                proprietary.AppendChild(date);
+                date.AppendChild(doc.CreateTextNode(emMetadata.EmDate));
+            }
+            
+            if (!string.IsNullOrEmpty(emMetadata.LegislationClass)) {
+                XmlElement legislationClass = doc.CreateElement("uk", "legislationClass", UKNS);
+                proprietary.AppendChild(legislationClass);
+                legislationClass.AppendChild(doc.CreateTextNode(emMetadata.LegislationClass));
+            }
+            
+            if (emMetadata.EmYear.HasValue) {
+                XmlElement year = doc.CreateElement("uk", "year", UKNS);
+                proprietary.AppendChild(year);
+                year.AppendChild(doc.CreateTextNode(emMetadata.EmYear.Value.ToString()));
+            }
+            
+            XmlElement version = doc.CreateElement("uk", "version", UKNS);
+            proprietary.AppendChild(version);
+            version.AppendChild(doc.CreateTextNode(emMetadata.EmVersion.ToString()));
+            
+            if (emMetadata.LegislationYear.HasValue) {
+                XmlElement legislationYear = doc.CreateElement("uk", "legislationYear", UKNS);
+                proprietary.AppendChild(legislationYear);
+                legislationYear.AppendChild(doc.CreateTextNode(emMetadata.LegislationYear.Value.ToString()));
+            }
+            
+            if (!string.IsNullOrEmpty(emMetadata.LegislationNumber)) {
+                XmlElement legislationNumber = doc.CreateElement("uk", "legislationNumber", UKNS);
+                proprietary.AppendChild(legislationNumber);
+                legislationNumber.AppendChild(doc.CreateTextNode(emMetadata.LegislationNumber));
+            }
+        }
         // Add additional IA metadata from CSV mapping (for Impact Assessments)
-        if (data is ImpactAssessments.IAMetadata iaMetadata) {
+        else if (data is ImpactAssessments.IAMetadata iaMetadata) {
+            // Add associated document URI for contractor upload (e.g. http://www.legislation.gov.uk/id/ukia/2025/17)
+            if (!string.IsNullOrEmpty(iaMetadata.UkiaUri)) {
+                XmlElement associatedId = doc.CreateElement("uk", "associatedID", UKNS);
+                proprietary.AppendChild(associatedId);
+                associatedId.AppendChild(doc.CreateTextNode(iaMetadata.UkiaUri));
+            }
+            
             if (!string.IsNullOrEmpty(iaMetadata.DocumentStage)) {
                 XmlElement documentStage = doc.CreateElement("uk", "documentStage", UKNS);
                 proprietary.AppendChild(documentStage);
@@ -189,9 +256,9 @@ class Builder : AkN.Builder {
             }
             
             if (!string.IsNullOrEmpty(iaMetadata.IADate)) {
-                XmlElement iaDate = doc.CreateElement("uk", "iaDate", UKNS);
-                proprietary.AppendChild(iaDate);
-                iaDate.AppendChild(doc.CreateTextNode(iaMetadata.IADate));
+                XmlElement date = doc.CreateElement("uk", "date", UKNS);
+                proprietary.AppendChild(date);
+                date.AppendChild(doc.CreateTextNode(iaMetadata.IADate));
             }
             
             if (!string.IsNullOrEmpty(iaMetadata.PDFDate)) {
@@ -204,6 +271,30 @@ class Builder : AkN.Builder {
                 XmlElement legislationClass = doc.CreateElement("uk", "legislationClass", UKNS);
                 proprietary.AppendChild(legislationClass);
                 legislationClass.AppendChild(doc.CreateTextNode(iaMetadata.LegislationClass));
+            }
+            
+            if (iaMetadata.UkiaYear.HasValue) {
+                XmlElement year = doc.CreateElement("uk", "year", UKNS);
+                proprietary.AppendChild(year);
+                year.AppendChild(doc.CreateTextNode(iaMetadata.UkiaYear.Value.ToString()));
+            }
+            
+            if (iaMetadata.UkiaNumber.HasValue) {
+                XmlElement number = doc.CreateElement("uk", "number", UKNS);
+                proprietary.AppendChild(number);
+                number.AppendChild(doc.CreateTextNode(iaMetadata.UkiaNumber.Value.ToString()));
+            }
+            
+            if (iaMetadata.LegislationYear.HasValue) {
+                XmlElement legislationYear = doc.CreateElement("uk", "legislationYear", UKNS);
+                proprietary.AppendChild(legislationYear);
+                legislationYear.AppendChild(doc.CreateTextNode(iaMetadata.LegislationYear.Value.ToString()));
+            }
+            
+            if (!string.IsNullOrEmpty(iaMetadata.LegislationNumber)) {
+                XmlElement legislationNumber = doc.CreateElement("uk", "legislationNumber", UKNS);
+                proprietary.AppendChild(legislationNumber);
+                legislationNumber.AppendChild(doc.CreateTextNode(iaMetadata.LegislationNumber));
             }
         }
 
@@ -227,23 +318,31 @@ class Builder : AkN.Builder {
     //         base.AddDivision(parent, div);
     // }
 
+    /// <summary>Adds an inline to an AKN element that does not allow br (e.g. docTitle, inline). Line breaks are emitted as a space.</summary>
+    private void AddInlineNoBr(XmlElement parent, Judgments.IInline model) {
+        if (model is Judgments.ILineBreak)
+            parent.AppendChild(doc.CreateTextNode(" "));
+        else
+            base.AddInline(parent, model);
+    }
+
     protected override void AddInline(XmlElement parent, Judgments.IInline model) {
         if (model is DocType2 docType) {
             XmlElement e = CreateAndAppend("docType", parent);
             foreach (Judgments.IInline child in docType.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is DocNumber2 docNum) {
             XmlElement e = CreateAndAppend("docNumber", parent);
             foreach (Judgments.IInline child in docNum.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is DocTitle docTitle) {
             XmlElement e = CreateAndAppend("docTitle", parent);
             foreach (Judgments.IInline child in docTitle.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is DocStage docStage) {
             XmlElement e = CreateAndAppend("docStage", parent);
             foreach (Judgments.IInline child in docStage.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is DocDate docDate) {
             XmlElement e = CreateAndAppend("docDate", parent);
             string dateValue = ExtractDateFromContent(docDate.Contents);
@@ -251,21 +350,21 @@ class Builder : AkN.Builder {
                 e.SetAttribute("date", dateValue);
             }
             foreach (Judgments.IInline child in docDate.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is LeadDepartment leadDept) {
             XmlElement e = CreateAndAppend("inline", parent);
             e.SetAttribute("name", "leadDepartment");
             foreach (Judgments.IInline child in leadDept.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is OtherDepartments otherDept) {
             XmlElement e = CreateAndAppend("inline", parent);
             e.SetAttribute("name", "otherDepartments");
             foreach (Judgments.IInline child in otherDept.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else if (model is DocDepartment docDept) {
             XmlElement e = CreateAndAppend("docProponent", parent);
             foreach (Judgments.IInline child in docDept.Contents)
-                base.AddInline(e, child);
+                AddInlineNoBr(e, child);
         } else {
             base.AddInline(parent, model);
         }
