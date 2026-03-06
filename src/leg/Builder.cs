@@ -38,7 +38,8 @@ class Builder : AkN.Builder {
         // Check both ExpressionDate with lastModified name and IA/EM-specific LastModified property
         bool hasModified = (document.Meta.ExpressionDateName == "lastModified" && document.Meta.ExpressionDate != null) ||
                           (document.Meta is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) ||
-                          (document.Meta is ExplanatoryMemoranda.EMMetadata emData && emData.LastModified.HasValue);
+                          (document.Meta is ExplanatoryMemoranda.EMMetadata emData && emData.LastModified.HasValue) ||
+                          (document.Meta is ExplanatoryNotes.ENMetadata enData && enData.LastModified.HasValue);
         if (hasModified) {
             main.SetAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
         }
@@ -154,6 +155,10 @@ class Builder : AkN.Builder {
         // For EM documents, use the LastModified property
         else if (data is ExplanatoryMemoranda.EMMetadata emData && emData.LastModified.HasValue) {
             modifiedValue = FormatDateOnly(emData.LastModified);
+        }
+        // For EN documents, use the LastModified property
+        else if (data is ExplanatoryNotes.ENMetadata enData && enData.LastModified.HasValue) {
+            modifiedValue = FormatDateOnly(enData.LastModified);
         }
         // For other documents, use ExpressionDate if it's a lastModified timestamp
         else if (data.ExpressionDateName == "lastModified" && data.ExpressionDate != null) {
@@ -295,6 +300,39 @@ class Builder : AkN.Builder {
                 XmlElement legislationNumber = doc.CreateElement("uk", "legislationNumber", UKNS);
                 proprietary.AppendChild(legislationNumber);
                 legislationNumber.AppendChild(doc.CreateTextNode(iaMetadata.LegislationNumber));
+            }
+        }
+        // Add additional EN metadata from CSV mapping (for Explanatory Notes)
+        else if (data is ExplanatoryNotes.ENMetadata enMetadata) {
+            if (!string.IsNullOrEmpty(enMetadata.ShortUriComponent)) {
+                XmlElement associatedId = doc.CreateElement("uk", "associatedID", UKNS);
+                proprietary.AppendChild(associatedId);
+                associatedId.AppendChild(doc.CreateTextNode(enMetadata.WorkUri));
+            }
+            if (!string.IsNullOrEmpty(enMetadata.DocumentMainType)) {
+                XmlElement documentMainType = doc.CreateElement("uk", "documentMainType", UKNS);
+                proprietary.AppendChild(documentMainType);
+                documentMainType.AppendChild(doc.CreateTextNode(enMetadata.DocumentMainType));
+            }
+            if (!string.IsNullOrEmpty(enMetadata.EnDate)) {
+                XmlElement date = doc.CreateElement("uk", "date", UKNS);
+                proprietary.AppendChild(date);
+                date.AppendChild(doc.CreateTextNode(enMetadata.EnDate));
+            }
+            if (!string.IsNullOrEmpty(enMetadata.LegislationClass)) {
+                XmlElement legislationClass = doc.CreateElement("uk", "legislationClass", UKNS);
+                proprietary.AppendChild(legislationClass);
+                legislationClass.AppendChild(doc.CreateTextNode(enMetadata.LegislationClass));
+            }
+            if (enMetadata.LegislationYear.HasValue) {
+                XmlElement legislationYear = doc.CreateElement("uk", "legislationYear", UKNS);
+                proprietary.AppendChild(legislationYear);
+                legislationYear.AppendChild(doc.CreateTextNode(enMetadata.LegislationYear.Value.ToString()));
+            }
+            if (!string.IsNullOrEmpty(enMetadata.LegislationNumber)) {
+                XmlElement legislationNumber = doc.CreateElement("uk", "legislationNumber", UKNS);
+                proprietary.AppendChild(legislationNumber);
+                legislationNumber.AppendChild(doc.CreateTextNode(enMetadata.LegislationNumber));
             }
         }
 

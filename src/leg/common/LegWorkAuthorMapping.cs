@@ -30,6 +30,7 @@ internal static class LegWorkAuthorMapping {
             "UnitedKingdomStatutoryInstrument"      => "government/uk",
             "UnitedKingdomDraftStatutoryInstrument" => "government/uk",
             "WelshAssemblyMeasure"                  => "legislature/NationalAssemblyForWales",
+            "WelshParliamentAct"                    => "legislature/SeneddCymru",
             "WelshNationalAssemblyAct"              => "legislature/NationalAssemblyForWales",
             "WelshStatutoryInstrument"              => "government/wales",
             "WelshDraftStatutoryInstrument"         => "government/wales",
