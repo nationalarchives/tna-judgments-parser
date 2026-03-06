@@ -53,6 +53,11 @@ public static class DocumentHelpers
 
     public static string ReadXml(string resource)
     {
+        return ReadEmbeddedResourceAsString(resource);
+    }
+
+    public static string ReadEmbeddedResourceAsString(string resource)
+    {
         using var stream = GetManifestResourceStream(resource);
         using StreamReader reader = new(stream);
         return reader.ReadToEnd();

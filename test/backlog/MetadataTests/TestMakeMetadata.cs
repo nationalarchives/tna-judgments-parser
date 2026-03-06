@@ -67,6 +67,7 @@ public class TestMakeMetadata
         var line = new CsvLine
         {
             id = "124",
+            FilePath = "/test/data/test.pdf",
             court = "UKFTT-GRC",
             decision_datetime = new DateTime(2023, 01, 14,  14, 30, 00, DateTimeKind.Utc),
             CaseNo = "ABC/2023/002",
@@ -144,8 +145,8 @@ public class TestMakeMetadata
         };
 
         // Act & Assert
-        var ex = Assert.Throws<Exception>(() => MetadataTransformer.MakeMetadata(line));
-        Assert.Equal("Unexpected extension .txt", ex.Message);
+        var ex = Assert.Throws<ArgumentOutOfRangeException>(() => MetadataTransformer.MakeMetadata(line));
+        Assert.Contains("Unexpected extension .txt", ex.Message);
     }
 
     [Fact]
@@ -163,148 +164,6 @@ public class TestMakeMetadata
 
         // Assert
         Assert.Equal(Courts.FirstTierTribunal_GRC, result.Court);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithPartiesData_CreatesCorrectParties()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLine with
-        {
-            claimants = "Jane Doe & John Smith",
-            respondent = "Home Office"
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result.Parties);
-        Assert.Equal(2, result.Parties.Count);
-
-        var claimant = result.Parties.Find(p => p.Role == PartyRole.Claimant);
-        var respondent = result.Parties.Find(p => p.Role == PartyRole.Respondent);
-
-        Assert.NotNull(claimant);
-        Assert.Equal("Jane Doe & John Smith", claimant.Name);
-
-        Assert.NotNull(respondent);
-        Assert.Equal("Home Office", respondent.Name);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithAppellantPartiesData_CreatesCorrectParties()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLine with
-        {
-            appellants = "Jane Doe & John Smith",
-            respondent = "Home Office"
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result.Parties);
-        Assert.Equal(2, result.Parties.Count);
-
-        var appellant = result.Parties.Find(p => p.Role == PartyRole.Appellant);
-        var respondent = result.Parties.Find(p => p.Role == PartyRole.Respondent);
-
-        Assert.NotNull(appellant);
-        Assert.Equal("Jane Doe & John Smith", appellant.Name);
-
-        Assert.NotNull(respondent);
-        Assert.Equal("Home Office", respondent.Name);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithCategoriesData_CreatesCorrectCategories()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            sec_category = "Human Rights",
-            sec_subcategory = "Article 8"
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result.Categories);
-        Assert.Equal(4, result.Categories.Count);
-
-        // Check main category and subcategory
-        var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
-        var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
-
-        Assert.NotNull(mainCategory);
-        Assert.NotNull(mainSubcategory);
-
-        // Check secondary category and subcategory
-        var secCategory = result.Categories.Find(c => c.Name == "Human Rights" && c.Parent == null);
-        var secSubcategory = result.Categories.Find(c => c.Name == "Article 8" && c.Parent == "Human Rights");
-
-        Assert.NotNull(secCategory);
-        Assert.NotNull(secSubcategory);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithoutSecondaryCategory_CreatesOnlyMainCategories()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            sec_category = null, // No secondary category
-            sec_subcategory = null
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result.Categories);
-        Assert.Equal(2, result.Categories.Count);
-
-        // Check only main category and subcategory exist
-        var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
-        var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
-
-        Assert.NotNull(mainCategory);
-        Assert.NotNull(mainSubcategory);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithWhitespaceSecondaryCategory_CreatesOnlyMainCategories()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            main_category = "Immigration",
-            main_subcategory = "Asylum",
-            sec_category = "   ", // Whitespace only
-            sec_subcategory = "Article 8",
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result.Categories);
-        Assert.Equal(2, result.Categories.Count);
-
-        // Check only main category and subcategory exist
-        var mainCategory = result.Categories.Find(c => c.Name == "Immigration" && c.Parent == null);
-        var mainSubcategory = result.Categories.Find(c => c.Name == "Asylum" && c.Parent == "Immigration");
-
-        Assert.NotNull(mainCategory);
-        Assert.NotNull(mainSubcategory);
     }
 
     [Fact]
@@ -375,40 +234,6 @@ public class TestMakeMetadata
     }
 
     [Fact]
-    public void MakeMetadata_WithEmptyNCN_NCNPropertyIsEmpty()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            ncn = ""
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal("", result.NCN);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithWhitespaceNCN_NCNPropertyIsWhitespace()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            ncn = "   "
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal("   ", result.NCN);
-    }
-
-    [Fact]
     public void MakeMetadata_WithWebArchiving_SetsWebArchivingLinkProperty()
     {
         // Arrange
@@ -422,22 +247,6 @@ public class TestMakeMetadata
 
         // Assert
         Assert.Equal("http://webarchivelink", result.WebArchivingLink);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithoutWebArchiving_WebArchivingLinkIsNull()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            webarchiving = ""
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.Null(result.WebArchivingLink);
     }
 
     [Fact]
@@ -471,38 +280,5 @@ public class TestMakeMetadata
 
         // Assert
         Assert.Empty(result.Jurisdictions);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithWhitespaceJurisdiction_JurisdictionPropertyIsEmpty()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = ["   "]
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        Assert.Empty(result.Jurisdictions);
-    }
-
-    [Fact]
-    public void MakeMetadata_WithWhitespaceAndNonWhitespaceJurisdictions_IgnoresBlankJurisdictions()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Jurisdictions = ["   ", "Transport", ""]
-        };
-
-        // Act
-        var result = MetadataTransformer.MakeMetadata(line);
-
-        // Assert
-        var actualJurisdiction = Assert.Single(result.Jurisdictions);
-        Assert.Equal("Transport", actualJurisdiction.ShortName);
     }
 }

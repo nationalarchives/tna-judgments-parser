@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 
 using Backlog.Csv;
 
@@ -190,75 +191,83 @@ internal class BacklogParserWorker(
         }
     }
 
-    private Api.Response CreateResponse(ExtendedMetadata meta, byte[] content)
+    private Api.Response CreateResponse(CsvLine csvLine, string mimeType, byte[] sourceContent, bool isStub)
     {
-        var isPdf = meta.SourceFormat.ToLower() == "application/pdf";
-        if (isPdf)
+        Api.Response response;
+        if (isStub)
         {
-            var metadata = new Api.Meta
+            var stubMetadata = MetadataTransformer.MakeMetadata(csvLine);
+            var stub = Stub.Make(stubMetadata);
+
+            response = new Api.Response
             {
-                DocumentType = "decision",
-                Court = meta.Court?.Code,
-                Date = meta.Date?.Date,
-                Name = meta.Name
+                Xml = stub.Serialize(),
+                Meta = new Api.Meta
+                {
+                    DocumentType = "decision",
+                    Court = stubMetadata.Court?.Code,
+                    Date = stubMetadata.Date?.Date,
+                    Name = stubMetadata.Name
+                }
             };
-
-            var stub = Stub.Make(meta);
-
-            var response = new Api.Response { Xml = stub.Serialize(), Meta = metadata };
-            return response;
         }
         else
         {
-            var metadata = new Api.Meta
-            {
-                DocumentType = "decision",
-                Court = meta.Court?.Code,
-                Date = meta.Date?.Date,
-                Name = meta.Name,
-                JurisdictionShortNames = meta.Jurisdictions.Select(j => j.ShortName).ToList(),
-                Extensions = new Api.Extensions
-                {
-                    SourceFormat = meta.SourceFormat,
-                    CaseNumbers = meta.CaseNumbers,
-                    Parties = meta.Parties,
-                    Categories = meta.Categories,
-                    WebArchivingLink = meta.WebArchivingLink
-                }
-            };
-
             var request = new Api.Request
             {
-                Meta = metadata,
+                Meta = new Api.Meta
+                {
+                    DocumentType = "decision",
+                    Court = csvLine.court,
+                    Date = csvLine.decision_datetime.ToString("yyyy-MM-dd"),
+                    Name = csvLine.FirstPartyName + " v " + csvLine.respondent,
+                JurisdictionShortNames = csvLine.Jurisdictions.ToList(),
+                    Extensions = new Api.Extensions
+                    {
+                        SourceFormat = mimeType,
+                        CaseNumbers = [csvLine.CaseNo],
+                        Parties = csvLine.Parties.ToList(),
+                        Categories = csvLine.Categories.ToList(),
+                        WebArchivingLink = csvLine.webarchiving
+                    }
+                },
                 Hint = Api.Hint.UKUT,
-                Content = content
+                Content = sourceContent
             };
 
-            var response = parser.Parse(request);
-            return response;
+            response = parser.Parse(request);
         }
+
+        return response;
     }
 
     private Bundle GenerateBundle(CsvLine csvLine, bool autoPublish)
     {
-        var meta = MetadataTransformer.MakeMetadata(csvLine);
-
-        var uuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)
+        var tdrUuid = !string.IsNullOrWhiteSpace(csvLine.Uuid)
             ? csvLine.Uuid
             : backlogFiles.FindUuidInTransferMetadata(csvLine.FilePath);
-        var content = backlogFiles.ReadFile(uuid);
 
-        var response = CreateResponse(meta, content);
+        var sourceContent = backlogFiles.ReadFile(tdrUuid);
+        var mimeType = MetadataTransformer.GetMimeType(csvLine.Extension);
 
-        var source = new Bundle.Source
-        {
-            Filename = Path.GetFileName(csvLine.FilePath),
-            Content = content,
-            MimeType = meta.SourceFormat
-        };
+        var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
+        var response = CreateResponse(csvLine, mimeType, sourceContent, isStub);
 
-        logger.LogInformation("Creating bundle with source: {SourceFilename}", source.Filename);
-        logger.LogInformation("Creating bundle with content: {ContentLength} bytes", source.Content.Length);
-        return Bundle.Make(source, response, autoPublish);
+        var originalSourceFileName = Path.GetFileName(csvLine.FilePath);
+        var contentHash = Hash(sourceContent);
+        var images = response.Images?.ToArray() ?? [];
+
+        var externalMetadataFields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+
+        var trePipelineMetadata = MetadataTransformer.CreateFullTreMetadata(originalSourceFileName, mimeType,
+            contentHash, autoPublish, images, response.Meta, externalMetadataFields, !isStub);
+
+        return Bundle.Make(response, trePipelineMetadata, sourceContent, originalSourceFileName, images);
+    }
+
+    public static string Hash(byte[] content)
+    {
+        var hash = SHA256.HashData(content);
+        return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
     }
 }

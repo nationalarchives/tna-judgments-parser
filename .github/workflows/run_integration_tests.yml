@@ -36,4 +36,6 @@ jobs:
 
       # Run tests
       - name: Run tests
+        env:
+          XUNIT_PRINT_MAX_STRING_LENGTH: 100
         run: dotnet test tna-judgments-parser.sln --no-build --configuration release

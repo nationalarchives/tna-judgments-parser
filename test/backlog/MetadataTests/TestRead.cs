@@ -41,60 +41,85 @@ public class TestRead: IDisposable
             Directory.Delete(testDataDirectory, true);
         }
     }
-    
+
     [Fact]
     public void Read_WithOnlyRequiredColumnsAndClaimants_ParsesCsvIntoLines()
     {
         using var csvStream = new StringReader(
-            @"id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent
-123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State for the Home Department
-124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC"
+            """
+            id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent
+            123 , /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department
+            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC
+            """
+        );
+
+        var result = csvMetadataReader.Read(csvStream, out var csvParseErrors);
+        Assert.Empty(csvParseErrors);
+
+        CsvMetadataLineHelper.AssertCsvLinesMatch(result,
+            new CsvLine
+            {
+                id = "123",
+                court = "UKUT-IAC",
+                FilePath = "/test/data/test-case.pdf",
+                Extension = ".pdf",
+                decision_datetime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/001",
+                Jurisdictions = [],
+                claimants = "Smith",
+                appellants = null,
+                respondent = "Secretary of State for the Home Department",
+                main_category = null,
+                main_subcategory = null,
+                sec_category = null,
+                sec_subcategory = null,
+                ncn = null,
+                headnote_summary = null
+            },
+            new CsvLine
+            {
+                id = "124",
+                court = "UKFTT-TC",
+                FilePath = "/test/data/test-case2.docx",
+                Extension = ".docx",
+                decision_datetime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/002",
+                Jurisdictions = [],
+                claimants = "Jones",
+                appellants = null,
+                respondent = "HMRC",
+                main_category = null,
+                main_subcategory = null,
+                sec_category = null,
+                sec_subcategory = null,
+                ncn = null,
+                headnote_summary = null
+            }
+        );
+    }
+
+    [Theory]
+    [InlineData("", new string[] { })]
+    [InlineData("     ", new string[] { })]
+    [InlineData(",   ,  ", new string[] { })]
+    [InlineData("\"Community,Environment\"", new[] { "Community", "Environment" })]
+    [InlineData("\"Community, Environment,Other , Another ,\"", new[] { "Community", "Environment", "Other", "Another" })]
+    [InlineData("\"Community, Environment,,  ,Other , Another ,\"", new[] { "Community", "Environment", "Other", "Another" })]
+    [InlineData("\"Environment\"", new[] { "Environment" })]
+    [InlineData("Environment", new[] { "Environment" })]
+    public void Read_WithJurisdictions_StoresTrimmedNonEmptyJurisdictions(string csvJurisdictions, string[] expectedJurisdictions)
+    {
+        using var csvStream = new StringReader(
+            $"""
+             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,jurisdictions
+             125,/test/data/test-case4.docx,.docx,2025-01-19 13:00:00,IA/2025/004,UKUT-IAC,Taylor,Home Office,{csvJurisdictions}
+             """
         );
 
         var result = csvMetadataReader.Read(csvStream, out _);
 
-        Assert.Collection(result,
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "123",
-                    court = "UKUT-IAC",
-                    FilePath = "/test/data/test-case.pdf",
-                    Extension = ".pdf",
-                    decision_datetime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/001",
-                    Jurisdictions = [],
-                    claimants = "Smith",
-                    appellants = null,
-                    respondent = "Secretary of State for the Home Department",
-                    main_category = null,
-                    main_subcategory = null,
-                    sec_category = null,
-                    sec_subcategory = null,
-                    ncn = null,
-                    headnote_summary = null
-                }, line, l => l.FullCsvLineContents),
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "124",
-                    court = "UKFTT-TC",
-                    FilePath = "/test/data/test-case2.docx",
-                    Extension = ".docx",
-                    decision_datetime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/002",
-                    Jurisdictions = [],
-                    claimants = "Jones",
-                    appellants = null,
-                    respondent = "HMRC",
-                    main_category = null,
-                    main_subcategory = null,
-                    sec_category = null,
-                    sec_subcategory = null,
-                    ncn = null,
-                    headnote_summary = null
-                }, line, l => l.FullCsvLineContents)
-        );
+        var line = Assert.Single(result);
+        Assert.Equal(expectedJurisdictions, line.Jurisdictions);
     }
 
     [Fact]
@@ -157,25 +182,31 @@ public class TestRead: IDisposable
     {
         // Arrange - This CSV content should have ALL possible columns in it
         const string csvContent =
-            @"id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary,jurisdictions,ncn,webarchiving,uuid,skip
-123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,,
-124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,,,,,
-125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC/2025/003,UKFTT-GRC,,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case,,[2023] EWCA Civ 123 & 124,,,
-123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA/2025/004,UKUT-IAC,Brown,,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case,,,,,
-126,/test/data/test-case5.docx,.docx,2025-01-19 13:00:00,IA/2025/005,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions,""Community,Environment"",,,,
-127,/test/data/test-case6.docx,.docx,2025-01-19 13:00:00,IA/2025/006,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions with spaces,""Community, Environment,Other , Another ,"",,,,
-128,/test/data/test-case7.docx,.docx,2025-01-19 13:00:00,IA/2025/007,UKUT-IAC,,Davies,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,One Jurisdiction,Environment,,,,
-129,/test/data/test-case8.pdf,.pdf,2025-01-20 14:00:00,IA/2025/008,UKUT-IAC,,Berry,Home Office,,,,,With web archiving link,,,http://webarchivinglink,,
-130,/test/data/test-case9.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With UUID,,,,ba2c15ca-6d3d-4550-8975-b516e3c0ed2d,n
-131,/test/data/test-case10.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With Skip,,,,,skip me";
+            """
+            id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary,jurisdictions,ncn,webarchiving,uuid,skip
+            123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,,
+            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,    ,    ,    ,    ,
+            125,/test/data/test-case3.pdf,.pdf,2025-01-17 11:00:00,GRC/2025/003,UKFTT-GRC,,Williams,DWP,Social Security,Employment Support Allowance,Benefits,Appeals Procedure,Benefits case,,[2023] EWCA Civ 123 & 124,,,
+            123,/test/data/test-case4.pdf,.pdf,2025-01-18 12:00:00,IA/2025/004,UKUT-IAC,Brown,,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Duplicate ID case,,,,,
+            126,/test/data/test-case5.docx,.docx,2025-01-19 13:00:00,IA/2025/005,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions,"Community,Environment",,,,
+            127,/test/data/test-case6.docx,.docx,2025-01-19 13:00:00,IA/2025/006,UKUT-IAC,,Taylor,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,Multiple Jurisdictions with spaces,"Community, Environment,Other , Another ,",,,,
+            128,/test/data/test-case7.docx,.docx,2025-01-19 13:00:00,IA/2025/007,UKUT-IAC,,Davies,Home Office,Immigration,Entry Clearance,Administrative Law,Case Management,One Jurisdiction,Environment,,,,
+            129,/test/data/test-case8.pdf,.pdf,2025-01-20 14:00:00,IA/2025/008,UKUT-IAC,,Berry,Home Office,,,,,With web archiving link,,,http://webarchivinglink,,
+            130,/test/data/test-case9.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With UUID,,,,ba2c15ca-6d3d-4550-8975-b516e3c0ed2d,n
+            131,/test/data/test-case10.pdf,.pdf,2025-01-20 14:00:00,IA/2025/009,UKUT-IAC,,Berry,Home Office,,,,,With Skip,,,,,skip me
+            """;
 
         // Arrange - Double check that csv input has all columns in case new ones are added
-        var publicPropertiesInLineClass = typeof(CsvLine).GetProperties()
-                                                         .Select(p => p.Name)
-                                                         .Where(p => p is not nameof(CsvLine
-                                                             .FullCsvLineContents)); //Ignore AllMetadataFields as it is a constructed property
+        var publicPropertiesInCsvLineClass = typeof(CsvLine).GetProperties()
+                                                            .Select(p => p.Name)
+                                                            .Except([
+                                                                nameof(CsvLine.CsvProperties),
+                                                                nameof(CsvLine.FullCsvLineContents),
+                                                                nameof(CsvLine.Categories),
+                                                                nameof(CsvLine.Parties)
+                                                            ]);
         var csvHeaderParts = csvContent.Split(Environment.NewLine)[0].Split(",");
-        foreach (var publicProperty in publicPropertiesInLineClass)
+        foreach (var publicProperty in publicPropertiesInCsvLineClass)
         {
             Assert.Contains(publicProperty, csvHeaderParts, StringComparer.InvariantCultureIgnoreCase);
         }
@@ -186,236 +217,225 @@ public class TestRead: IDisposable
         //Act
         var result = csvMetadataReader.Read(csvStream, out _);
 
-        Assert.Collection(result,
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "123",
-                    court = "UKUT-IAC",
-                    FilePath = "/test/data/test-case.pdf",
-                    Extension = ".pdf",
-                    decision_datetime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/001",
-                    Jurisdictions = [],
-                    claimants = "Smith",
-                    appellants = "",
-                    respondent = "Secretary of State for the Home Department",
-                    main_category = "Immigration",
-                    main_subcategory = "Appeal Rights",
-                    sec_category = "Administrative Law",
-                    sec_subcategory = "Judicial Review",
-                    ncn = "",
-                    webarchiving = "",
-                    headnote_summary = "This is a test headnote summary",
-                    Uuid = "",
-                    Skip = false
-                }, line, l => l.FullCsvLineContents),
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "124",
-                    court = "UKFTT-TC",
-                    FilePath = "/test/data/test-case2.docx",
-                    Extension = ".docx",
-                    decision_datetime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/002",
-                    Jurisdictions = [],
-                    claimants = "",
-                    appellants = "Jones",
-                    respondent = "HMRC",
-                    main_category = "Tax",
-                    main_subcategory = "VAT Appeals",
-                    sec_category = "Employment",
-                    sec_subcategory = "Tribunal Procedure",
-                    ncn = "",
-                    webarchiving = "",
-                    headnote_summary = "Another test case",
-                    Uuid = "",
-                    Skip = false
-                }, line, l => l.FullCsvLineContents),
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "125",
-                    court = "UKFTT-GRC",
-                    FilePath = "/test/data/test-case3.pdf",
-                    Extension = ".pdf",
-                    decision_datetime = new DateTime(2025, 01, 17, 11, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "GRC/2025/003",
-                    Jurisdictions = [],
-                    claimants = "Williams",
-                    appellants = "",
-                    respondent = "DWP",
-                    main_category = "Social Security",
-                    main_subcategory = "Employment Support Allowance",
-                    sec_category = "Benefits",
-                    sec_subcategory = "Appeals Procedure",
-                    ncn = "[2023] EWCA Civ 123 & 124",
-                    webarchiving = "",
-                    headnote_summary = "Benefits case",
-                    Uuid = "",
-                    Skip = false
-                }, line, l => l.FullCsvLineContents),
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "123",
-                    court = "UKUT-IAC",
-                    FilePath = "/test/data/test-case4.pdf",
-                    Extension = ".pdf",
-                    decision_datetime = new DateTime(2025, 01, 18, 12, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/004",
-                    Jurisdictions = [],
-                    claimants = "",
-                    appellants = "Brown",
-                    respondent = "Home Office",
-                    main_category = "Immigration",
-                    main_subcategory = "Entry Clearance",
-                    sec_category = "Administrative Law",
-                    sec_subcategory = "Case Management",
-                    ncn = "",
-                    webarchiving = "",
-                    headnote_summary = "Duplicate ID case",
-                    Uuid = "",
-                    Skip = false
-                }, line, l => l.FullCsvLineContents),
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "126",
-                    court = "UKUT-IAC",
-                    FilePath = "/test/data/test-case5.docx",
-                    Extension = ".docx",
-                    decision_datetime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/005",
-                    Jurisdictions = ["Community", "Environment"],
-                    claimants = "Taylor",
-                    appellants = "",
-                    respondent = "Home Office",
-                    main_category = "Immigration",
-                    main_subcategory = "Entry Clearance",
-                    sec_category = "Administrative Law",
-                    sec_subcategory = "Case Management",
-                    ncn = "",
-                    webarchiving = "",
-                    headnote_summary = "Multiple Jurisdictions",
-                    Uuid = "",
-                    Skip = false
-                }, line, l => l.FullCsvLineContents),
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "127",
-                    court = "UKUT-IAC",
-                    FilePath = "/test/data/test-case6.docx",
-                    Extension = ".docx",
-                    decision_datetime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/006",
-                    Jurisdictions = ["Community", "Environment", "Other", "Another"],
-                    claimants = "Taylor",
-                    appellants = "",
-                    respondent = "Home Office",
-                    main_category = "Immigration",
-                    main_subcategory = "Entry Clearance",
-                    sec_category = "Administrative Law",
-                    sec_subcategory = "Case Management",
-                    ncn = "",
-                    webarchiving = "",
-                    headnote_summary = "Multiple Jurisdictions with spaces",
-                    Uuid = "",
-                    Skip = false
-                }, line, l => l.FullCsvLineContents),
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "128",
-                    court = "UKUT-IAC",
-                    FilePath = "/test/data/test-case7.docx",
-                    Extension = ".docx",
-                    decision_datetime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/007",
-                    Jurisdictions = ["Environment"],
-                    claimants = "Davies",
-                    appellants = "",
-                    respondent = "Home Office",
-                    main_category = "Immigration",
-                    main_subcategory = "Entry Clearance",
-                    sec_category = "Administrative Law",
-                    sec_subcategory = "Case Management",
-                    ncn = "",
-                    webarchiving = "",
-                    headnote_summary = "One Jurisdiction",
-                    Uuid = ""
-                }, line, l => l.FullCsvLineContents),
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "129",
-                    court = "UKUT-IAC",
-                    FilePath = "/test/data/test-case8.pdf",
-                    Extension = ".pdf",
-                    decision_datetime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/008",
-                    Jurisdictions = [],
-                    claimants = "Berry",
-                    appellants = "",
-                    respondent = "Home Office",
-                    main_category = "",
-                    main_subcategory = "",
-                    sec_category = "",
-                    sec_subcategory = "",
-                    ncn = "",
-                    webarchiving = "http://webarchivinglink",
-                    headnote_summary = "With web archiving link",
-                    Uuid = "",
-                    Skip = false
-                }, line, l => l.FullCsvLineContents),
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "130",
-                    court = "UKUT-IAC",
-                    FilePath = "/test/data/test-case9.pdf",
-                    Extension = ".pdf",
-                    decision_datetime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/009",
-                    Jurisdictions = [],
-                    claimants = "Berry",
-                    appellants = "",
-                    respondent = "Home Office",
-                    main_category = "",
-                    main_subcategory = "",
-                    sec_category = "",
-                    sec_subcategory = "",
-                    ncn = "",
-                    webarchiving = "",
-                    headnote_summary = "With UUID",
-                    Uuid = "ba2c15ca-6d3d-4550-8975-b516e3c0ed2d",
-                    Skip = false
-                }, line, l => l.FullCsvLineContents),
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "131",
-                    court = "UKUT-IAC",
-                    FilePath = "/test/data/test-case10.pdf",
-                    Extension = ".pdf",
-                    decision_datetime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/009",
-                    Jurisdictions = [],
-                    claimants = "Berry",
-                    appellants = "",
-                    respondent = "Home Office",
-                    main_category = "",
-                    main_subcategory = "",
-                    sec_category = "",
-                    sec_subcategory = "",
-                    ncn = "",
-                    webarchiving = "",
-                    headnote_summary = "With Skip",
-                    Uuid = "",
-                    Skip = true
-                }, line, l => l.FullCsvLineContents)
+        CsvMetadataLineHelper.AssertCsvLinesMatch(result,
+            new CsvLine
+            {
+                id = "123",
+                court = "UKUT-IAC",
+                FilePath = "/test/data/test-case.pdf",
+                Extension = ".pdf",
+                decision_datetime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/001",
+                Jurisdictions = [],
+                claimants = "Smith",
+                appellants = null,
+                respondent = "Secretary of State for the Home Department",
+                main_category = "Immigration",
+                main_subcategory = "Appeal Rights",
+                sec_category = "Administrative Law",
+                sec_subcategory = "Judicial Review",
+                ncn = null,
+                webarchiving = null,
+                headnote_summary = "This is a test headnote summary",
+                Uuid = null,
+                Skip = false
+            },
+            new CsvLine
+            {
+                id = "124",
+                court = "UKFTT-TC",
+                FilePath = "/test/data/test-case2.docx",
+                Extension = ".docx",
+                decision_datetime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/002",
+                Jurisdictions = [],
+                claimants = null,
+                appellants = "Jones",
+                respondent = "HMRC",
+                main_category = "Tax",
+                main_subcategory = "VAT Appeals",
+                sec_category = "Employment",
+                sec_subcategory = "Tribunal Procedure",
+                ncn = null,
+                webarchiving = null,
+                headnote_summary = "Another test case",
+                Uuid = null,
+                Skip = false
+            },
+            new CsvLine
+            {
+                id = "125",
+                court = "UKFTT-GRC",
+                FilePath = "/test/data/test-case3.pdf",
+                Extension = ".pdf",
+                decision_datetime = new DateTime(2025, 01, 17, 11, 00, 00, DateTimeKind.Utc),
+                CaseNo = "GRC/2025/003",
+                Jurisdictions = [],
+                claimants = "Williams",
+                appellants = null,
+                respondent = "DWP",
+                main_category = "Social Security",
+                main_subcategory = "Employment Support Allowance",
+                sec_category = "Benefits",
+                sec_subcategory = "Appeals Procedure",
+                ncn = "[2023] EWCA Civ 123 & 124",
+                webarchiving = null,
+                headnote_summary = "Benefits case",
+                Uuid = null,
+                Skip = false
+            },
+            new CsvLine
+            {
+                id = "123",
+                court = "UKUT-IAC",
+                FilePath = "/test/data/test-case4.pdf",
+                Extension = ".pdf",
+                decision_datetime = new DateTime(2025, 01, 18, 12, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/004",
+                Jurisdictions = [],
+                claimants = null,
+                appellants = "Brown",
+                respondent = "Home Office",
+                main_category = "Immigration",
+                main_subcategory = "Entry Clearance",
+                sec_category = "Administrative Law",
+                sec_subcategory = "Case Management",
+                ncn = null,
+                webarchiving = null,
+                headnote_summary = "Duplicate ID case",
+                Uuid = null,
+                Skip = false
+            },
+            new CsvLine
+            {
+                id = "126",
+                court = "UKUT-IAC",
+                FilePath = "/test/data/test-case5.docx",
+                Extension = ".docx",
+                decision_datetime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/005",
+                Jurisdictions = ["Community", "Environment"],
+                claimants = "Taylor",
+                appellants = null,
+                respondent = "Home Office",
+                main_category = "Immigration",
+                main_subcategory = "Entry Clearance",
+                sec_category = "Administrative Law",
+                sec_subcategory = "Case Management",
+                ncn = null,
+                webarchiving = null,
+                headnote_summary = "Multiple Jurisdictions",
+                Uuid = null,
+                Skip = false
+            },
+            new CsvLine
+            {
+                id = "127",
+                court = "UKUT-IAC",
+                FilePath = "/test/data/test-case6.docx",
+                Extension = ".docx",
+                decision_datetime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/006",
+                Jurisdictions = ["Community", "Environment", "Other", "Another"],
+                claimants = "Taylor",
+                appellants = null,
+                respondent = "Home Office",
+                main_category = "Immigration",
+                main_subcategory = "Entry Clearance",
+                sec_category = "Administrative Law",
+                sec_subcategory = "Case Management",
+                ncn = null,
+                webarchiving = null,
+                headnote_summary = "Multiple Jurisdictions with spaces",
+                Uuid = null,
+                Skip = false
+            },
+            new CsvLine
+            {
+                id = "128",
+                court = "UKUT-IAC",
+                FilePath = "/test/data/test-case7.docx",
+                Extension = ".docx",
+                decision_datetime = new DateTime(2025, 01, 19, 13, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/007",
+                Jurisdictions = ["Environment"],
+                claimants = "Davies",
+                appellants = null,
+                respondent = "Home Office",
+                main_category = "Immigration",
+                main_subcategory = "Entry Clearance",
+                sec_category = "Administrative Law",
+                sec_subcategory = "Case Management",
+                ncn = null,
+                webarchiving = null,
+                headnote_summary = "One Jurisdiction",
+                Uuid = null
+            }, new CsvLine
+            {
+                id = "129",
+                court = "UKUT-IAC",
+                FilePath = "/test/data/test-case8.pdf",
+                Extension = ".pdf",
+                decision_datetime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/008",
+                Jurisdictions = [],
+                claimants = "Berry",
+                appellants = null,
+                respondent = "Home Office",
+                main_category = null,
+                main_subcategory = null,
+                sec_category = null,
+                sec_subcategory = null,
+                ncn = null,
+                webarchiving = "http://webarchivinglink",
+                headnote_summary = "With web archiving link",
+                Uuid = null,
+                Skip = false
+            },
+            new CsvLine
+            {
+                id = "130",
+                court = "UKUT-IAC",
+                FilePath = "/test/data/test-case9.pdf",
+                Extension = ".pdf",
+                decision_datetime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/009",
+                Jurisdictions = [],
+                claimants = "Berry",
+                appellants = null,
+                respondent = "Home Office",
+                main_category = null,
+                main_subcategory = null,
+                sec_category = null,
+                sec_subcategory = null,
+                ncn = null,
+                webarchiving = null,
+                headnote_summary = "With UUID",
+                Uuid = "ba2c15ca-6d3d-4550-8975-b516e3c0ed2d",
+                Skip = false
+            },
+            new CsvLine
+            {
+                id = "131",
+                court = "UKUT-IAC",
+                FilePath = "/test/data/test-case10.pdf",
+                Extension = ".pdf",
+                decision_datetime = new DateTime(2025, 01, 20, 14, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/009",
+                Jurisdictions = [],
+                claimants = "Berry",
+                appellants = null,
+                respondent = "Home Office",
+                main_category = null,
+                main_subcategory = null,
+                sec_category = null,
+                sec_subcategory = null,
+                ncn = null,
+                webarchiving = null,
+                headnote_summary = "With Skip",
+                Uuid = null,
+                Skip = true
+            }
         );
     }
 
@@ -467,51 +487,49 @@ public class TestRead: IDisposable
         //Act
         var result = csvMetadataReader.Read(csvStream, out _);
 
-        Assert.Collection(result,
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "123",
-                    court = "UKUT-IAC",
-                    FilePath = "/test/data/test-case.pdf",
-                    Extension = ".pdf",
-                    decision_datetime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/001",
-                    Jurisdictions = [],
-                    claimants = "Smith",
-                    appellants = "",
-                    respondent = "Secretary of State for the Home Department",
-                    main_category = "Immigration",
-                    main_subcategory = "Appeal Rights",
-                    sec_category = "Administrative Law",
-                    sec_subcategory = "Judicial Review",
-                    ncn = "",
-                    webarchiving = "",
-                    headnote_summary = "This is a test headnote summary",
-                    Uuid = ""
-                }, line, l => l.FullCsvLineContents),
-            line => Assert.EquivalentWithExclusions(
-                new CsvLine
-                {
-                    id = "124",
-                    court = "UKFTT-TC",
-                    FilePath = "/test/data/test-case2.docx",
-                    Extension = ".docx",
-                    decision_datetime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
-                    CaseNo = "IA/2025/002",
-                    Jurisdictions = [],
-                    claimants = "",
-                    appellants = "Jones",
-                    respondent = "HMRC",
-                    main_category = "Tax",
-                    main_subcategory = "VAT Appeals",
-                    sec_category = "Employment",
-                    sec_subcategory = "Tribunal Procedure",
-                    ncn = "",
-                    webarchiving = "",
-                    headnote_summary = "Another test case",
-                    Uuid = ""
-                }, line, l => l.FullCsvLineContents)
+        CsvMetadataLineHelper.AssertCsvLinesMatch(result,
+            new CsvLine
+            {
+                id = "123",
+                court = "UKUT-IAC",
+                FilePath = "/test/data/test-case.pdf",
+                Extension = ".pdf",
+                decision_datetime = new DateTime(2025, 01, 15, 09, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/001",
+                Jurisdictions = [],
+                claimants = "Smith",
+                appellants = null,
+                respondent = "Secretary of State for the Home Department",
+                main_category = "Immigration",
+                main_subcategory = "Appeal Rights",
+                sec_category = "Administrative Law",
+                sec_subcategory = "Judicial Review",
+                ncn = null,
+                webarchiving = null,
+                headnote_summary = "This is a test headnote summary",
+                Uuid = null
+            },
+            new CsvLine
+            {
+                id = "124",
+                court = "UKFTT-TC",
+                FilePath = "/test/data/test-case2.docx",
+                Extension = ".docx",
+                decision_datetime = new DateTime(2025, 01, 16, 10, 00, 00, DateTimeKind.Utc),
+                CaseNo = "IA/2025/002",
+                Jurisdictions = [],
+                claimants = null,
+                appellants = "Jones",
+                respondent = "HMRC",
+                main_category = "Tax",
+                main_subcategory = "VAT Appeals",
+                sec_category = "Employment",
+                sec_subcategory = "Tribunal Procedure",
+                ncn = null,
+                webarchiving = null,
+                headnote_summary = "Another test case",
+                Uuid = null
+            }
         );
     }
 
@@ -547,8 +565,8 @@ public class TestRead: IDisposable
         Assert.Equivalent(
             new List<string>
             {
-                "Line 6: Field '  01/16/2025 10:00:00  ' is not valid. [125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]",
-                "Line 7: Field '  31/01/2025 10:00:00  ' is not valid. [125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]"
+                "Line 6: Field '01/16/2025 10:00:00' is not valid. [125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]",
+                "Line 7: Field '31/01/2025 10:00:00' is not valid. [125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]"
             },
             csvParseErrors);
     }

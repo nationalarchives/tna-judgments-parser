@@ -1,6 +1,6 @@
 #nullable enable
+
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -16,13 +16,10 @@ public class MetadataFieldJsonConverter : JsonConverter<IMetadataField>
         var metadataFieldJsonElement = JsonElement.ParseValue(ref reader);
         var metaDataFieldName = metadataFieldJsonElement.GetProperty("name")
                                                         .Deserialize<MetadataFieldName>(options);
+        var metadataFieldType = typeof(MetadataField<>).MakeGenericType(metaDataFieldName.GetFieldValueType());
 
-        IMetadataField deserializedMetadataField = metaDataFieldName switch
-        {
-            MetadataFieldName.CsvMetadataFileContents
-                => metadataFieldJsonElement.Deserialize<MetadataField<Dictionary<string, string>>>(options)!,
-            _ => throw new NotImplementedException()
-        };
+        var deserializedMetadataField =
+            (IMetadataField)metadataFieldJsonElement.Deserialize(metadataFieldType, options)!;
 
         return deserializedMetadataField;
     }
