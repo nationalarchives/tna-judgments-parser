@@ -135,4 +135,20 @@ internal record CsvLine
             return categories.ToArray();
         }
     }
+
+    /// <summary>
+    /// The original file name extracted from FilePath
+    /// Use this instead of Path.GetFileName for csv lines because it handles both '/' and '\' path separators
+    /// </summary>
+    public string FileName
+    {
+        get
+        {
+            var pathSeparator = FilePath.Contains('/') ? '/' : '\\';
+
+            var pathParts = FilePath.Split(pathSeparator);
+
+            return pathParts[^1];
+        }
+    }
 }
