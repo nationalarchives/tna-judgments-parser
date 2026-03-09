@@ -44,4 +44,8 @@
     <EmbeddedResource Include="./backlog/expected-output/*.xml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="backlog\test-data\MultiLineTest\court_documents\empty directory\" />
+  </ItemGroup>
+
 </Project>
