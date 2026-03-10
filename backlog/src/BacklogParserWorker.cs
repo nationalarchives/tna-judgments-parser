@@ -22,7 +22,8 @@ internal class BacklogParserWorker(
     Api.Parser parser,
     BacklogFiles backlogFiles,
     CsvMetadataReader csvMetadataReader,
-    Tracker tracker)
+    Tracker tracker,
+    Bucket bucket)
 {
     public int Run(bool isDryRun, uint? id, string pathToCourtMetadataFile, bool autoPublish, string pathToOutputFolder)
     {
@@ -84,7 +85,7 @@ internal class BacklogParserWorker(
                 else
                 {
                     logger.LogInformation("  Uploading {BundleFileName} to S3", bundleFileName);
-                    Bucket.UploadBundle(bundleFileName, bundle.TarGz).Wait();
+                    bucket.UploadBundle(bundleFileName, bundle.TarGz).Wait();
                 }
 
                 tracker.MarkDone(line, bundle.Uuid);

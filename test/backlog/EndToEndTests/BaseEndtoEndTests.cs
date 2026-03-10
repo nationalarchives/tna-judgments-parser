@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Backlog.Src;
+using Amazon.S3;
 
 using Xunit;
 
@@ -22,10 +22,11 @@ public abstract class BaseEndToEndTests : IDisposable
 
         // Ensure environment is clean before running any tests
         CleanEnvironmentVariables();
-        
+
         // Configure S3 client
+        Environment.SetEnvironmentVariable("IS_TEST", "true");
         Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
-        Bucket.Configure(mockS3Client.Object, MockS3Client.TestBucket);
+        Backlog.Src.Program.DependencyInjectionOverrides.Add((typeof(IAmazonS3), mockS3Client.Object));
     }
 
     public void Dispose()
@@ -54,6 +55,7 @@ public abstract class BaseEndToEndTests : IDisposable
         Environment.SetEnvironmentVariable("TRACKER_PATH", null);
         Environment.SetEnvironmentVariable("OUTPUT_PATH", null);
         Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", null);
+        Environment.SetEnvironmentVariable("IS_TEST", null);
         Environment.SetEnvironmentVariable("AWS_REGION", null);
 
         Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", null);

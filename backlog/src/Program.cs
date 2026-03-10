@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 
+using Amazon.S3;
+
 using Backlog.Csv;
 using Backlog.Utilities;
 
@@ -131,8 +133,11 @@ public class Program
         var pathToOutputFolder = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? AppDomain.CurrentDomain.BaseDirectory;
         Directory.CreateDirectory(pathToOutputFolder);
         var trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
+        var bucketName = Environment.GetEnvironmentVariable("BUCKET_NAME") ??
+                         throw new InvalidOperationException("BUCKET_NAME environment variable not set");
 
-        var serviceProvider = ConfigureDependencyInjection(pathToDataFolder, trackerPath, judgmentsFilePath, hmctsFilePath);
+        var serviceProvider = ConfigureDependencyInjection(pathToDataFolder, trackerPath, judgmentsFilePath,
+            hmctsFilePath, bucketName);
 
         var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
         try
@@ -165,7 +170,7 @@ public class Program
             : throw new InvalidOperationException("Cannot use dependency injection overrides in production");
 
     private static ServiceProvider ConfigureDependencyInjection(string pathToDataFolder, string trackerPath,
-        string judgmentsFilePath, string hmctsFilePath)
+        string judgmentsFilePath, string hmctsFilePath, string bucketName)
     {
         var services = new ServiceCollection();
 
@@ -186,6 +191,8 @@ public class Program
         services.AddSingleton<BacklogFiles>(serviceProvider => new BacklogFiles(serviceProvider.GetRequiredService<ILogger<BacklogFiles>>(), pathToDataFolder,
             judgmentsFilePath, hmctsFilePath));
         services.AddSingleton<Tracker>(_ => new Tracker(trackerPath));
+        services.AddSingleton<IAmazonS3, AmazonS3Client>();
+        services.AddSingleton<Bucket>(serviceProvider => new Bucket(serviceProvider.GetRequiredService<IAmazonS3>(), bucketName));
 
         if (IsTest())
         {
