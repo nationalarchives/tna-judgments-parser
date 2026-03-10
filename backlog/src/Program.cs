@@ -1,16 +1,17 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 
 using Backlog.Csv;
-
 using Backlog.Utilities;
 
 using DotNetEnv;
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.NationalArchives.Judgments.Api;
@@ -36,7 +37,8 @@ public class Program
         });
 
         RootCommand.SetAction(validatedCommandInputs =>
-            RunBacklogParser(validatedCommandInputs.GetValue(DryRunOption), validatedCommandInputs.GetValue(FileIdOption))
+            RunBacklogParser(validatedCommandInputs.GetValue(DryRunOption),
+                validatedCommandInputs.GetValue(FileIdOption))
         );
     }
 
@@ -151,6 +153,17 @@ public class Program
         }
     }
 
+
+    private static List<(Type serviceType, object instance)> _dependencyInjectionOverrides = [];
+
+    /// <summary>
+    ///     Allow services like S3 to be mocked during tests
+    /// </summary>
+    internal static List<(Type serviceType, object instance)> DependencyInjectionOverrides =>
+        IsTest()
+            ? _dependencyInjectionOverrides
+            : throw new InvalidOperationException("Cannot use dependency injection overrides in production");
+
     private static ServiceProvider ConfigureDependencyInjection(string pathToDataFolder, string trackerPath,
         string judgmentsFilePath, string hmctsFilePath)
     {
@@ -174,6 +187,25 @@ public class Program
             judgmentsFilePath, hmctsFilePath));
         services.AddSingleton<Tracker>(_ => new Tracker(trackerPath));
 
+        if (IsTest())
+        {
+            OverrideDependencyInjection(services);
+        }
+
         return services.BuildServiceProvider();
+    }
+
+    private static void OverrideDependencyInjection(ServiceCollection services)
+    {
+        foreach (var (serviceType, instance) in DependencyInjectionOverrides)
+        {
+            services.RemoveAll(serviceType);
+            services.AddSingleton(serviceType, instance);
+        }
+    }
+
+    private static bool IsTest()
+    {
+        return bool.TryParse(Environment.GetEnvironmentVariable("IS_TEST"), out var isTest) && isTest;
     }
 }
