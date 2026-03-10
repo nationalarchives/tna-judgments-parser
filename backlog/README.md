@@ -99,8 +99,9 @@ data/
 ├── tdr_metadata/
 │   └── file-metadata.csv              # Maps original judgment filenames to UUIDs (only required if UUID isn't provided in the Court Metadata CSV)
 └── court_documents/                   # Contains the actual judgment documents
-    ├── {uuid}                         # (e.g., a1b2c3d4-e5f6-7890-abcd-ef1234567890)
-    ├── {uuid}
+    ├── {uuid}                         # (e.g. a1b2c3d4-e5f6-7890-abcd-ef1234567890, 6f4d2e8b-3c91-4a7f-9d25-1b8e6c0f7a42.pdf)
+    ├── Some subfolder/                # Optional subfolder structure
+    │   └── {uuid}
     └── {uuid}
 └── {court_metadata.csv}               # Metadata extracted from tribunal-specific spreadsheets about courts and their judgments
 ```
