@@ -54,7 +54,7 @@ public abstract class BaseEndToEndTests : IDisposable
         Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", null);
         Environment.SetEnvironmentVariable("TRACKER_PATH", null);
         Environment.SetEnvironmentVariable("OUTPUT_PATH", null);
-        Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", null);
+
         Environment.SetEnvironmentVariable("IS_TEST", null);
         Environment.SetEnvironmentVariable("AWS_REGION", null);
 
@@ -63,18 +63,16 @@ public abstract class BaseEndToEndTests : IDisposable
     }
 
     protected static void SetPathEnvironmentVariables(string dataDir, string? outputPath = null,
-        string? courtMetadataPath = null, string? trackerPath = null, string? bulkNumbersPath = null)
+        string? courtMetadataPath = null, string? trackerPath = null)
     {
         outputPath ??= Path.Combine(dataDir, "output");
         courtMetadataPath ??= Path.Combine(dataDir, "court_metadata.csv");
         trackerPath ??= Path.Combine(dataDir, "uploaded-production.csv");
-        bulkNumbersPath ??= Path.Combine(dataDir, "bulk_numbers.csv");
 
         Environment.SetEnvironmentVariable("COURT_METADATA_PATH", courtMetadataPath);
         Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", dataDir);
         Environment.SetEnvironmentVariable("TRACKER_PATH", trackerPath);
         Environment.SetEnvironmentVariable("OUTPUT_PATH", outputPath);
-        Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", bulkNumbersPath);
     }
 
     protected static void AssertProgramExitedSuccessfully(int exitCode)
