@@ -53,9 +53,8 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         // Set environment variables
         courtMetadataPath = Path.Combine(tempDataDir, "court_metadata.csv");
         var trackerPath = Path.Combine(tempDataDir, "uploaded-production.csv");
-        var bulkNumbersPath = Path.Combine(tempDataDir, "bulk_numbers.csv");
 
-        SetPathEnvironmentVariables(tempDataDir, outputPath, courtMetadataPath, trackerPath, bulkNumbersPath);
+        SetPathEnvironmentVariables(tempDataDir, outputPath, courtMetadataPath, trackerPath);
     }
 
     private static void WriteTransferMetaDataCsv(string uuid, string tdrMetadataDir, string originalFileName)

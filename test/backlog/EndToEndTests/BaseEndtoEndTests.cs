@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Backlog.Src;
+using Amazon.S3;
 
 using Xunit;
 
@@ -22,10 +22,11 @@ public abstract class BaseEndToEndTests : IDisposable
 
         // Ensure environment is clean before running any tests
         CleanEnvironmentVariables();
-        
+
         // Configure S3 client
+        Environment.SetEnvironmentVariable("IS_TEST", "true");
         Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
-        Bucket.Configure(mockS3Client.Object, MockS3Client.TestBucket);
+        Backlog.Src.Program.DependencyInjectionOverrides.Add((typeof(IAmazonS3), mockS3Client.Object));
     }
 
     public void Dispose()
@@ -53,7 +54,8 @@ public abstract class BaseEndToEndTests : IDisposable
         Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", null);
         Environment.SetEnvironmentVariable("TRACKER_PATH", null);
         Environment.SetEnvironmentVariable("OUTPUT_PATH", null);
-        Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", null);
+
+        Environment.SetEnvironmentVariable("IS_TEST", null);
         Environment.SetEnvironmentVariable("AWS_REGION", null);
 
         Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", null);
@@ -61,18 +63,16 @@ public abstract class BaseEndToEndTests : IDisposable
     }
 
     protected static void SetPathEnvironmentVariables(string dataDir, string? outputPath = null,
-        string? courtMetadataPath = null, string? trackerPath = null, string? bulkNumbersPath = null)
+        string? courtMetadataPath = null, string? trackerPath = null)
     {
         outputPath ??= Path.Combine(dataDir, "output");
         courtMetadataPath ??= Path.Combine(dataDir, "court_metadata.csv");
         trackerPath ??= Path.Combine(dataDir, "uploaded-production.csv");
-        bulkNumbersPath ??= Path.Combine(dataDir, "bulk_numbers.csv");
 
         Environment.SetEnvironmentVariable("COURT_METADATA_PATH", courtMetadataPath);
         Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", dataDir);
         Environment.SetEnvironmentVariable("TRACKER_PATH", trackerPath);
         Environment.SetEnvironmentVariable("OUTPUT_PATH", outputPath);
-        Environment.SetEnvironmentVariable("BULK_NUMBERS_PATH", bulkNumbersPath);
     }
 
     protected static void AssertProgramExitedSuccessfully(int exitCode)
