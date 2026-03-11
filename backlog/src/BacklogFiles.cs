@@ -118,7 +118,7 @@ namespace Backlog.Src
             if (filesWithUuid.Length > 1)
             {
                 throw new MoreThanOneFileFoundException(
-                    $"There should only be one file in {COURT_DOCUMENTS_DIR} matching UUID {uuid} but found {filesWithUuid.Length}: [{string.Join(", ", filesWithUuid.Select(f => $"\"{f.Name}\""))}]");
+                    $"There should only be one file in {COURT_DOCUMENTS_DIR} matching UUID {uuid} but found {filesWithUuid.Length}: [{string.Join(", ", filesWithUuid.OrderBy(f => f.Name).Select(f => $"\"{f.Name}\""))}]");
             }
 
             return File.ReadAllBytes(filesWithUuid.Single().FullName);
