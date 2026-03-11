@@ -103,3 +103,14 @@ When significant changes are made to the parser some tests may fail due to diffe
 ```shell
 dotnet test tna-judgments-parser.sln --filter test.UpdateXmlFiles.UpdateJudgmentXmls -e UPDATE_XML="true"
 ```
+
+### Dev Containers
+You can run this code in a Dev Container in VSCode or [other IDES](https://containers.dev/supporting).
+
+* Install the `ms-vscode-remote.remote-containers` extension
+
+* Press F1, and select `Dev Containers: Open Folder in Container...`. Select the parser folder.
+
+You can now run tests in debug mode from the Flask (Testing) icon on the left.
+
+Configuration lives in `devcontainer.json`.
