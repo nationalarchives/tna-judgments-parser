@@ -109,7 +109,7 @@ namespace Backlog.Src
         /// <returns>File contents as a byte array</returns>
         internal byte[] ReadFile(string uuid)
         {
-            var filesWithUuid = courtDocumentsDirectory.GetFiles($"{uuid}*");
+            var filesWithUuid = courtDocumentsDirectory.GetFiles($"{uuid}*", SearchOption.AllDirectories);
             if (filesWithUuid.Length == 0)
             {
                 throw new FileNotFoundException($"Couldn't find file with UUID: {uuid}. It must have been received through TDR in order to have been assigned a UUID so check the original TDR bucket and check any file conversion folders");
