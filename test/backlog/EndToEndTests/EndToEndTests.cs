@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -115,7 +116,7 @@ namespace test.backlog.EndToEndTests
             var actualMetadataJson =
                 ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.json");
             var expectedMetadataJson = DocumentHelpers.ReadEmbeddedResourceAsString(expectedMetadataJsonResourceName);
-            
+                        
             // Remove all non-deterministic data
             actualMetadataJson = GuidRegex().Replace(actualMetadataJson, "");
             expectedMetadataJson = GuidRegex().Replace(expectedMetadataJson, "");
@@ -144,6 +145,9 @@ namespace test.backlog.EndToEndTests
             ConfigureTestEnvironment(testCaseName);
             Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", judgmentFilePath);
             Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", hmctsFilesPath);
+            // This time is the "now" that is used in the "expected metadata" JSON fixture
+            DateTimeOffset expectedTime = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
+            fakeTimeProvider.AdjustTime(expectedTime);
 
             // Act
             var exitCode = Backlog.Src.Program.Main("--id", docId.ToString());
@@ -154,7 +158,7 @@ namespace test.backlog.EndToEndTests
             // Assert - Verify content was uploaded
             mockS3Client.AssertNumberOfUploads(1);
             mockS3Client.AssertUploadsWereValid();
-            
+
             var capturedKey = mockS3Client.CapturedKeys.Single();
 
             // Assert - Check tracker was updated
@@ -176,7 +180,6 @@ namespace test.backlog.EndToEndTests
 
             // Act - Run without --id to process full CSV
             var exitCode = Backlog.Src.Program.Main(new string[0]);
-
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
 

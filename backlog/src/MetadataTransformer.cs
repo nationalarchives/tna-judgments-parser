@@ -17,9 +17,9 @@ using UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src;
 
-internal static class MetadataTransformer
+internal class MetadataTransformer(TimeProvider timeProvider)
 {
-    internal static FullTreMetadata CreateFullTreMetadata(string sourceFilename, string sourceMimeType,
+    internal FullTreMetadata CreateFullTreMetadata(string sourceFilename, string sourceMimeType,
         string contentHash, bool autoPublish, Image[] images, Meta responseMeta,
         List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText)
     {
@@ -53,7 +53,8 @@ internal static class MetadataTransformer
                         Filename = sourceFilename,
                         Mimetype = sourceMimeType,
                         Route = Route.Bulk,
-                        Sha256 = contentHash
+                        Sha256 = contentHash,
+                        RouteDateTime = timeProvider.GetUtcNow().UtcDateTime
                     },
                     XmlContainsDocumentText = xmlContainsDocumentText
                 },

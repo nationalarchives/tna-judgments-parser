@@ -15,11 +15,11 @@ using DotNetEnv;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Time.Testing;
 
 using UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src;
-
 public class Program
 {
     static Program()
@@ -89,7 +89,7 @@ public class Program
     };
 
     #endregion
-    
+
     /// <summary>
     /// This is the entry point method that is triggered by running the backlog parser on commandline
     /// </summary>
@@ -135,6 +135,7 @@ public class Program
         var trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
         var bucketName = Environment.GetEnvironmentVariable("BUCKET_NAME") ??
                          throw new InvalidOperationException("BUCKET_NAME environment variable not set");
+        
 
         var serviceProvider = ConfigureDependencyInjection(pathToDataFolder, trackerPath, judgmentsFilePath,
             hmctsFilePath, bucketName);
@@ -148,7 +149,7 @@ public class Program
             logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}", pathToCourtMetadataFile);
 
             var backlogParserWorker = serviceProvider.GetRequiredService<BacklogParserWorker>();
-            
+
             return backlogParserWorker.Run(isDryRun, id, pathToCourtMetadataFile, autoPublish, pathToOutputFolder);
         }
         catch (Exception e)
@@ -162,18 +163,17 @@ public class Program
     private static List<(Type serviceType, object instance)> _dependencyInjectionOverrides = [];
 
     /// <summary>
-    ///     Allow services like S3 to be mocked during tests
+    ///     Allow services like S3 to be mocked, but only during tests
     /// </summary>
     internal static List<(Type serviceType, object instance)> DependencyInjectionOverrides =>
         IsTest()
             ? _dependencyInjectionOverrides
             : throw new InvalidOperationException("Cannot use dependency injection overrides in production");
 
-    private static ServiceProvider ConfigureDependencyInjection(string pathToDataFolder, string trackerPath,
+    internal static ServiceProvider ConfigureDependencyInjection(string pathToDataFolder, string trackerPath,
         string judgmentsFilePath, string hmctsFilePath, string bucketName)
     {
         var services = new ServiceCollection();
-
         services.AddLogging(loggingBuilder =>
         {
             var logFilePath = Path.Combine(pathToDataFolder, $"log_{DateTime.Now:yy-MM-dd_HH-mm}.txt");
@@ -193,6 +193,8 @@ public class Program
         services.AddSingleton<Tracker>(_ => new Tracker(trackerPath));
         services.AddSingleton<IAmazonS3, AmazonS3Client>();
         services.AddSingleton<Bucket>(serviceProvider => new Bucket(serviceProvider.GetRequiredService<IAmazonS3>(), bucketName));
+        services.AddSingleton<MetadataTransformer>();
+        services.AddSingleton<TimeProvider>(_ => TimeProvider.System);
 
         if (IsTest())
         {
@@ -211,6 +213,9 @@ public class Program
         }
     }
 
+    /// <summary>
+    /// Are we running in a test environment (is the IS_TEST envvar true?)
+    /// </summary>
     private static bool IsTest()
     {
         return bool.TryParse(Environment.GetEnvironmentVariable("IS_TEST"), out var isTest) && isTest;
