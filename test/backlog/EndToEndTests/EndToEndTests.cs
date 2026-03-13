@@ -114,12 +114,10 @@ namespace test.backlog.EndToEndTests
                 ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.json");
             var expectedMetadataJson = DocumentHelpers.ReadEmbeddedResourceAsString(expectedMetadataJsonResourceName);
                         
-            // Remove all non-deterministic data
+            // Remove non-deterministic GUIDs
             actualMetadataJson = GuidRegex().Replace(actualMetadataJson, "");
             expectedMetadataJson = GuidRegex().Replace(expectedMetadataJson, "");
-            // actualMetadataJson = MetadataFieldTimestampRegex().Replace(actualMetadataJson,"");
-            // expectedMetadataJson = MetadataFieldTimestampRegex().Replace(expectedMetadataJson,"");
-
+            
             Assert.Equal(expectedMetadataJson, actualMetadataJson);
         }
 
