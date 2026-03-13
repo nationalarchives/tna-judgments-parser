@@ -13,7 +13,7 @@ using Metadata = UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata;
 
 namespace test.backlog.EndToEndTests
 {
-    public partial class EndToEndTests : BaseEndToEndTests
+    public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
     {
         private static readonly string ExpectedParserVersion = typeof(Metadata)
                                                                .Assembly
@@ -120,8 +120,8 @@ namespace test.backlog.EndToEndTests
             // Remove all non-deterministic data
             actualMetadataJson = GuidRegex().Replace(actualMetadataJson, "");
             expectedMetadataJson = GuidRegex().Replace(expectedMetadataJson, "");
-            actualMetadataJson = MetadataFieldTimestampRegex().Replace(actualMetadataJson,"");
-            expectedMetadataJson = MetadataFieldTimestampRegex().Replace(expectedMetadataJson,"");
+            // actualMetadataJson = MetadataFieldTimestampRegex().Replace(actualMetadataJson,"");
+            // expectedMetadataJson = MetadataFieldTimestampRegex().Replace(expectedMetadataJson,"");
 
             Assert.Equal(expectedMetadataJson, actualMetadataJson);
         }

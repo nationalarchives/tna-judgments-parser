@@ -97,7 +97,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
         };
     }
 
-    public static List<IMetadataField> CsvLineToMetadataFields(CsvLine csvLine)
+    public List<IMetadataField> CsvLineToMetadataFields(CsvLine csvLine)
     {
         List<IMetadataField> metadataFields =
         [
@@ -129,13 +129,13 @@ internal class MetadataTransformer(TimeProvider timeProvider)
         return metadataFields;
     }
 
-    private static IEnumerable<MetadataField<T>> CreateExternalMetadataFields<T>(MetadataFieldName metadataFieldName,
+    private IEnumerable<MetadataField<T>> CreateExternalMetadataFields<T>(MetadataFieldName metadataFieldName,
         Func<IEnumerable<T>> values)
     {
         return values().Select(item => CreateExternalMetadataField(metadataFieldName, item));
     }
 
-    private static MetadataField<T> CreateExternalMetadataField<T>(MetadataFieldName metadataFieldName, T value)
+    private MetadataField<T> CreateExternalMetadataField<T>(MetadataFieldName metadataFieldName, T value)
     {
         return new MetadataField<T>
         {
@@ -143,7 +143,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
             Name = metadataFieldName,
             Value = value,
             Source = MetadataSource.External,
-            Timestamp = DateTime.UtcNow
+            Timestamp = timeProvider.GetUtcNow().UtcDateTime
         };
     }
 }

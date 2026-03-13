@@ -258,7 +258,7 @@ internal class BacklogParserWorker(
         var contentHash = Hash(sourceContent);
         var images = response.Images?.ToArray() ?? [];
 
-        var externalMetadataFields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var externalMetadataFields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(csvLine.FileName, mimeType,
             contentHash, autoPublish, images, response.Meta, externalMetadataFields, !isStub);
