@@ -24,12 +24,6 @@ namespace test.backlog.EndToEndTests
         private string trackerPath;
         private string dataDir;
 
-        public EndToEndTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
-        {
-            // Ensure environment is clean before running any tests
-            CleanFiles();
-        }
-
         protected override void Dispose(bool disposing)
         {
             CleanFiles();
@@ -83,6 +77,9 @@ namespace test.backlog.EndToEndTests
 
             // Set environment variables for this test
             SetPathEnvironmentVariables(dataDir, outputDir, trackerPath: trackerPath);
+
+            // Requires the environment variables to be set up to know where to clean
+            CleanFiles();
         }
 
         private void AssertCapturedContentMatchesOutputContent(string capturedKey)
