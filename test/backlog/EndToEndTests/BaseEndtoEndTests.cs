@@ -7,6 +7,7 @@ using System.IO;
 using Amazon.S3;
 
 using Xunit;
+using Microsoft.Extensions.Time.Testing;
 
 namespace test.backlog.EndToEndTests;
 
@@ -14,8 +15,9 @@ namespace test.backlog.EndToEndTests;
 public abstract class BaseEndToEndTests : IDisposable
 {
     protected readonly MockS3Client mockS3Client = new();
+    protected readonly FakeTimeProvider fakeTimeProvider = new();
     protected readonly ITestOutputHelper TestOutputHelper;
-
+    
     protected BaseEndToEndTests(ITestOutputHelper testOutputHelper)
     {
         TestOutputHelper = testOutputHelper;
@@ -27,6 +29,7 @@ public abstract class BaseEndToEndTests : IDisposable
         Environment.SetEnvironmentVariable("IS_TEST", "true");
         Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
         Backlog.Src.Program.DependencyInjectionOverrides.Add((typeof(IAmazonS3), mockS3Client.Object));
+        Backlog.Src.Program.DependencyInjectionOverrides.Add((typeof(TimeProvider), fakeTimeProvider ));
     }
 
     public void Dispose()
@@ -47,8 +50,8 @@ public abstract class BaseEndToEndTests : IDisposable
         var envFile = Path.Combine(assemblyPathDir, ".env");
         if (File.Exists(envFile))
             File.Delete(envFile);
-        
-        
+
+
         // Clean up environment variables
         Environment.SetEnvironmentVariable("COURT_METADATA_PATH", null);
         Environment.SetEnvironmentVariable("DATA_FOLDER_PATH", null);

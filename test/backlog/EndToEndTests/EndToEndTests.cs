@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -12,7 +13,7 @@ using Metadata = UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata;
 
 namespace test.backlog.EndToEndTests
 {
-    public partial class EndToEndTests : BaseEndToEndTests
+    public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
     {
         private static readonly string ExpectedParserVersion = typeof(Metadata)
                                                                .Assembly
@@ -22,12 +23,6 @@ namespace test.backlog.EndToEndTests
         private string outputDir;
         private string trackerPath;
         private string dataDir;
-
-        public EndToEndTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
-        {
-            // Ensure environment is clean before running any tests
-            CleanFiles();
-        }
 
         protected override void Dispose(bool disposing)
         {
@@ -82,6 +77,9 @@ namespace test.backlog.EndToEndTests
 
             // Set environment variables for this test
             SetPathEnvironmentVariables(dataDir, outputDir, trackerPath: trackerPath);
+
+            // Requires the environment variables to be set up to know where to clean
+            CleanFiles();
         }
 
         private void AssertCapturedContentMatchesOutputContent(string capturedKey)
@@ -115,13 +113,11 @@ namespace test.backlog.EndToEndTests
             var actualMetadataJson =
                 ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(capturedKey), @".*\.json");
             var expectedMetadataJson = DocumentHelpers.ReadEmbeddedResourceAsString(expectedMetadataJsonResourceName);
-            
-            // Remove all non-deterministic data
+                        
+            // Remove non-deterministic GUIDs
             actualMetadataJson = GuidRegex().Replace(actualMetadataJson, "");
             expectedMetadataJson = GuidRegex().Replace(expectedMetadataJson, "");
-            actualMetadataJson = MetadataFieldTimestampRegex().Replace(actualMetadataJson,"");
-            expectedMetadataJson = MetadataFieldTimestampRegex().Replace(expectedMetadataJson,"");
-
+            
             Assert.Equal(expectedMetadataJson, actualMetadataJson);
         }
 
@@ -144,6 +140,9 @@ namespace test.backlog.EndToEndTests
             ConfigureTestEnvironment(testCaseName);
             Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", judgmentFilePath);
             Environment.SetEnvironmentVariable("HMCTS_FILES_PATH", hmctsFilesPath);
+            // This time is the "now" that is used in the "expected metadata" JSON fixture
+            DateTimeOffset expectedTime = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
+            fakeTimeProvider.AdjustTime(expectedTime);
 
             // Act
             var exitCode = Backlog.Src.Program.Main("--id", docId.ToString());
@@ -154,7 +153,7 @@ namespace test.backlog.EndToEndTests
             // Assert - Verify content was uploaded
             mockS3Client.AssertNumberOfUploads(1);
             mockS3Client.AssertUploadsWereValid();
-            
+
             var capturedKey = mockS3Client.CapturedKeys.Single();
 
             // Assert - Check tracker was updated
@@ -176,7 +175,6 @@ namespace test.backlog.EndToEndTests
 
             // Act - Run without --id to process full CSV
             var exitCode = Backlog.Src.Program.Main(new string[0]);
-
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
 

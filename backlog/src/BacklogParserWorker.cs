@@ -23,7 +23,8 @@ internal class BacklogParserWorker(
     BacklogFiles backlogFiles,
     CsvMetadataReader csvMetadataReader,
     Tracker tracker,
-    Bucket bucket)
+    Bucket bucket,
+    MetadataTransformer metadataTransformer)
 {
     public int Run(bool isDryRun, uint? id, string pathToCourtMetadataFile, bool autoPublish, string pathToOutputFolder)
     {
@@ -129,7 +130,7 @@ internal class BacklogParserWorker(
                               ---------------------------
                               Successfully processed {SuccessfulLinesCount} of {CsvLinesCount} csv lines, of which:
                                 - {NewLinesCount} lines were new
-                                - {MarkedToSkipLineCount} lines were marked in the csv to skip {MarkedToSkipIds} 
+                                - {MarkedToSkipLineCount} lines were marked in the csv to skip {MarkedToSkipIds}
                                 - {AlreadyDoneLineCount} lines were skipped because they had been processed in a previous run
                               """,
             markedAsSkipLines.Count + alreadyDoneLines.Count + successfulNewLines.Count,
@@ -257,9 +258,9 @@ internal class BacklogParserWorker(
         var contentHash = Hash(sourceContent);
         var images = response.Images?.ToArray() ?? [];
 
-        var externalMetadataFields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var externalMetadataFields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        var trePipelineMetadata = MetadataTransformer.CreateFullTreMetadata(csvLine.FileName, mimeType,
+        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(csvLine.FileName, mimeType,
             contentHash, autoPublish, images, response.Meta, externalMetadataFields, !isStub);
 
         return Bundle.Make(response, trePipelineMetadata, sourceContent, csvLine.FileName, images);

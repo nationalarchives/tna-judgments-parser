@@ -6,6 +6,10 @@ using System.Linq;
 
 using Backlog.Src;
 
+using Microsoft.Extensions.Time.Testing;
+
+using test.backlog;
+
 using TRE.Metadata;
 using TRE.Metadata.Enums;
 using TRE.Metadata.MetadataFieldTypes;
@@ -21,6 +25,13 @@ namespace test.backlog.MetadataTests;
 
 public class TestMetadataTransformer
 {
+    private readonly FakeTimeProvider fakeTimeProvider = new();
+    private readonly MetadataTransformer metadataTransformer;
+    public TestMetadataTransformer()
+    {
+        metadataTransformer = new(fakeTimeProvider);   
+    }
+
     [Fact]
     public void CreateFullTreMetadata_SetsIngestorOptions()
     {
@@ -30,7 +41,7 @@ public class TestMetadataTransformer
         var responseMeta = new Api.Meta { DocumentType = "decision" };
 
         // Act
-        var result = MetadataTransformer.CreateFullTreMetadata("test.pdf", sourceMimeType, contentHash, autoPublish, [],
+        var result = metadataTransformer.CreateFullTreMetadata("test.pdf", sourceMimeType, contentHash, autoPublish, [],
             responseMeta, [], false);
 
         // Assert
@@ -47,6 +58,9 @@ public class TestMetadataTransformer
         const string cite = "[2026] IMTU 3312";
         const string date = "2025-07-30";
         const string name = "a v b";
+        DateTimeOffset expectedDate = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
+        fakeTimeProvider.AdjustTime(expectedDate);
+
         var extensions = new Api.Extensions
         {
             Parties =
@@ -71,7 +85,7 @@ public class TestMetadataTransformer
         // Act
         List<IMetadataField> externalMetadataFields = [];
 
-        var result = MetadataTransformer.CreateFullTreMetadata("test.docx", "application/pdf", "1234-456-789", true, [],
+        var result = metadataTransformer.CreateFullTreMetadata("test.docx", "application/pdf", "1234-456-789", true, [],
             responseMeta, externalMetadataFields, xmlContainsDocumentText);
 
         // Assert
@@ -86,6 +100,12 @@ public class TestMetadataTransformer
         Assert.Empty(result.Parameters.PARSER.ErrorMessages);
         Assert.Equal(externalMetadataFields, result.Parameters.PARSER.MetadataFields);
         Assert.Equal(xmlContainsDocumentText, result.Parameters.PARSER.XmlContainsDocumentText);
+
+        Assert.Equal("test.docx", result.Parameters.PARSER.PrimarySource.Filename);
+        Assert.Equal("application/pdf", result.Parameters.PARSER.PrimarySource.Mimetype);
+        Assert.Equal(Route.Bulk, result.Parameters.PARSER.PrimarySource.Route);
+        Assert.Equal("1234-456-789", result.Parameters.PARSER.PrimarySource.Sha256);
+        Assert.Equal(expectedDate, result.Parameters.PARSER.PrimarySource.RouteDateTime);
     }
 
     [Fact]
@@ -100,7 +120,7 @@ public class TestMetadataTransformer
         ];
 
         // Act
-        var result = MetadataTransformer.CreateFullTreMetadata(
+        var result = metadataTransformer.CreateFullTreMetadata(
             sourceFilename,
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
@@ -120,7 +140,7 @@ public class TestMetadataTransformer
     [Fact]
     public void CreateFullTreMetadata_Generates_UniqueReference()
     {
-        var firstFullTreMetadata = MetadataTransformer.CreateFullTreMetadata(
+        var firstFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
             "test-file.docx",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
@@ -130,7 +150,7 @@ public class TestMetadataTransformer
             [],
             false
         );
-        var secondFullTreMetadata = MetadataTransformer.CreateFullTreMetadata(
+        var secondFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
             "test-file.docx",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
@@ -155,7 +175,7 @@ public class TestMetadataTransformer
     {
         var metadataLine = CsvMetadataLineHelper.DummyLineWithClaimants;
 
-        var result = MetadataTransformer.CsvLineToMetadataFields(metadataLine);
+        var result = metadataTransformer.CsvLineToMetadataFields(metadataLine);
 
         Assert.All(result, field => Assert.Equal(MetadataSource.External, field.Source));
     }
@@ -164,12 +184,11 @@ public class TestMetadataTransformer
     public void CsvLineToMetadataFields_AllFields_HaveCurrentTimestamp()
     {
         var metadataLine = CsvMetadataLineHelper.DummyLineWithClaimants;
+        DateTimeOffset expectedDate = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
+        fakeTimeProvider.AdjustTime(expectedDate);
 
-        var beforeCall = DateTime.UtcNow;
-        var result = MetadataTransformer.CsvLineToMetadataFields(metadataLine);
-        var afterCall = DateTime.UtcNow;
-
-        Assert.All(result, field => Assert.InRange(field.Timestamp, beforeCall, afterCall));
+        var result = metadataTransformer.CsvLineToMetadataFields(metadataLine);
+        Assert.All(result, field => Assert.Equal(field.Timestamp, expectedDate));
     }
 
     [Fact]
@@ -177,7 +196,7 @@ public class TestMetadataTransformer
     {
         var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { CaseNo = "XYZ/123" };
 
-        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         AssertHasSingleMetadataFieldWithValue("XYZ/123", MetadataFieldName.CaseNumber, fields);
     }
@@ -187,7 +206,7 @@ public class TestMetadataTransformer
     {
         var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { court = "UKFTT-GRC" };
 
-        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         AssertHasSingleMetadataFieldWithValue("UKFTT-GRC", MetadataFieldName.Court, fields);
     }
@@ -198,7 +217,7 @@ public class TestMetadataTransformer
         var decisionDatetime = new DateTime(2024, 2, 1, 10, 30, 0, DateTimeKind.Utc);
         var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { decision_datetime = decisionDatetime };
 
-        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         AssertHasSingleMetadataFieldWithValue(decisionDatetime, MetadataFieldName.Date, fields);
     }
@@ -208,7 +227,7 @@ public class TestMetadataTransformer
     {
         var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Jurisdictions = ["Transport", "Tax"] };
 
-        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         AssertHasMetadataFieldsWithValues(["Transport", "Tax"], MetadataFieldName.Jurisdiction, fields);
     }
@@ -218,7 +237,7 @@ public class TestMetadataTransformer
     {
         var csvLine = CsvMetadataLineHelper.DummyLine with { appellants = "Alice", respondent = "HMRC" };
 
-        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         AssertHasMetadataFieldsWithValues(csvLine.Parties, MetadataFieldName.Party, fields);
     }
@@ -233,7 +252,7 @@ public class TestMetadataTransformer
             sec_category = "CatB"
         };
 
-        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         AssertHasMetadataFieldsWithValues(csvLine.Categories, MetadataFieldName.Category, fields);
     }
@@ -252,7 +271,7 @@ public class TestMetadataTransformer
             FullCsvLineContents = expectedCsvProperties.FullLineContents
         };
 
-        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         AssertHasSingleMetadataFieldWithValue(expectedCsvProperties, MetadataFieldName.CsvMetadataFileProperties,
             fields);
@@ -263,7 +282,7 @@ public class TestMetadataTransformer
     {
         var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { ncn = "NCN123" };
 
-        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         AssertHasSingleMetadataFieldWithValue("NCN123", MetadataFieldName.Ncn, fields);
     }
@@ -273,7 +292,7 @@ public class TestMetadataTransformer
     {
         var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { headnote_summary = "A summary" };
 
-        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         AssertHasSingleMetadataFieldWithValue("A summary", MetadataFieldName.HeadnoteSummary, fields);
     }
@@ -283,7 +302,7 @@ public class TestMetadataTransformer
     {
         var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { webarchiving = "http://example.com" };
 
-        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         AssertHasSingleMetadataFieldWithValue("http://example.com", MetadataFieldName.WebArchivingLink, fields);
     }
@@ -298,7 +317,7 @@ public class TestMetadataTransformer
             webarchiving = null
         };
 
-        var fields = MetadataTransformer.CsvLineToMetadataFields(csvLine);
+        var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
         Assert.DoesNotContain(fields, f => f.Name == MetadataFieldName.HeadnoteSummary);
         Assert.DoesNotContain(fields, f => f.Name == MetadataFieldName.Ncn);
