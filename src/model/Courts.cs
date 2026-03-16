@@ -24,7 +24,7 @@ public record Court
     public Regex? CitationPattern => fclCourt.NcnPattern is not null ? new Regex(fclCourt.NcnPattern) : null;
 }
 
-public static class Courts
+public static partial class Courts
 {
     private static readonly CourtStore CourtStore = new();
 
@@ -163,4 +163,7 @@ public static class Courts
 
     public const string FirstTierTribunalChamberCodesPattern = "TC|GRC|PC";
     public const string UpperTribunalChamberCodesPattern = "AAC|IAC|LC|TCC";
+
+    [GeneratedRegex(@"^(IN THE )?First-tier Tribunal$", RegexOptions.IgnoreCase, "en-GB")]
+    public static partial Regex FirstTierTribunalIdentifierRegex();
 }

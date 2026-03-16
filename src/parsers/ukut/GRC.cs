@@ -15,7 +15,7 @@ class GRCCombo : Combo3 {
     private static readonly ILogger Logger = Logging.Factory.CreateLogger<GRCCombo>();
 
     internal GRCCombo() {
-        Re1 = new(@"^First-tier Tribunal$", RegexOptions.IgnoreCase);
+        Re1 = Courts.FirstTierTribunalIdentifierRegex();
         Re2 = new(@"^\(?General Regulatory Chamber\)?$", RegexOptions.IgnoreCase);
         Court = Courts.FirstTierTribunal_GRC;
     }
