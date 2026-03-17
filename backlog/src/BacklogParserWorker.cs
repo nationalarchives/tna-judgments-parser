@@ -238,6 +238,9 @@ internal class BacklogParserWorker(
             };
 
             response = parser.Parse(request);
+            
+            if (response.Xml.Contains("<header />"))
+                throw new NotSupportedException("Couldn't parse header - try updating titles used to identify the end of header in OptimizedUKUTParser.titles");
         }
 
         return response;

@@ -133,6 +133,7 @@ namespace test.backlog.EndToEndTests
 
         [Theory]
         [InlineData("docx", "Altaf Ebrahim t_a Ebrahim & Co v OISC", "JudgmentFiles\\", "data/HMCTS_Judgment_Files/", 5)]
+        [InlineData("docx", "Sultan Others", "", "", 1243)]
         [InlineData("pdf", "Money Worries Ltd v Office of Fair Trading", "Documents\\", "data/Consumer Credit Appeals/Documents/", 20)]
         public void ProcessBacklogJudgment_SuccessfullyUploadsExpectedFilesToS3(string _, string testCaseName, string judgmentFilePath, string hmctsFilesPath, uint docId)
         {
