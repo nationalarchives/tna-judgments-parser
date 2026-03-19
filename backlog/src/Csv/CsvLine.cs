@@ -24,86 +24,112 @@ internal record CsvLine
 
     [Required(AllowEmptyStrings = false)]
     public required string id { get; set; }
-    [Required(AllowEmptyStrings = false)] public required string court { get; set; }
-    [Required(AllowEmptyStrings = false)] public required string FilePath { get; set; }
-    [Required(AllowEmptyStrings = false)] public required string Extension { get; set; }
-    public required DateTime decision_datetime { get; set; }
-    [Required(AllowEmptyStrings = false)] public required string CaseNo { get; set; }
-    [Optional] public string[] Jurisdictions { get; set; } = [];
+
+    [Required(AllowEmptyStrings = false)]
+    public required string Court { get; set; }
+
+    [Required(AllowEmptyStrings = false)]
+    public required string FilePath { get; set; }
+
+    [Required(AllowEmptyStrings = false)]
+    public required string Extension { get; set; }
+
+    public required DateTime DecisionDateTime { get; set; }
+
+    [Required(AllowEmptyStrings = false)]
+    public required string CaseNo { get; set; }
 
     [Optional]
-    public string? claimants { get; set; }
+    public string[] Jurisdictions { get; set; } = [];
 
     [Optional]
-    public string? appellants { get; set; }
-
-    [Required(AllowEmptyStrings = false)] public required string respondent { get; set; }
+    public string? Claimants { get; set; }
 
     [Optional]
-    public string? main_category { get; set; }
+    public string? Appellants { get; set; }
+
+    [Required(AllowEmptyStrings = false)]
+    public required string Respondent { get; set; }
 
     [Optional]
-    public string? main_subcategory { get; set; }
+    public string? MainCategory { get; set; }
 
     [Optional]
-    public string? sec_category { get; set; }
+    public string? MainSubcategory { get; set; }
 
     [Optional]
-    public string? sec_subcategory { get; set; }
+    public string? SecCategory { get; set; }
 
     [Optional]
-    public string? ncn { get; set; }
+    public string? SecSubcategory { get; set; }
 
     [Optional]
-    public string? headnote_summary { get; set; }
+    public string? Ncn { get; set; }
 
     [Optional]
-    public string? webarchiving { get; set; }
+    public string? HeadnoteSummary { get; set; }
+
+    [Optional]
+    public string? WebArchiving { get; set; }
 
     [Optional]
     public string? Uuid { get; set; }
 
-    [Optional][Default(false)] public bool Skip { get; set; }
+    [Optional]
+    [Default(false)]
+    public bool Skip { get; set; }
 
     /// <summary>
-    /// Gets the name of the first party (either claimants or appellants)
+    ///     Gets the name of the first party (either claimants or appellants)
     /// </summary>
     internal string FirstPartyName
     {
         get
         {
-            if (!string.IsNullOrWhiteSpace(claimants))
-                return claimants;
-            if (!string.IsNullOrWhiteSpace(appellants))
-                return appellants;
+            if (!string.IsNullOrWhiteSpace(Claimants))
+            {
+                return Claimants;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Appellants))
+            {
+                return Appellants;
+            }
+
             throw new InvalidOperationException("No first party (claimants or appellants) is defined");
         }
     }
 
     /// <summary>
-    /// Gets the role of the first party (either Claimant or Appellant)
+    ///     Gets the role of the first party (either Claimant or Appellant)
     /// </summary>
     internal PartyRole FirstPartyRole
     {
         get
         {
-            if (!string.IsNullOrWhiteSpace(claimants))
+            if (!string.IsNullOrWhiteSpace(Claimants))
+            {
                 return PartyRole.Claimant;
-            if (!string.IsNullOrWhiteSpace(appellants))
+            }
+
+            if (!string.IsNullOrWhiteSpace(Appellants))
+            {
                 return PartyRole.Appellant;
+            }
+
             throw new InvalidOperationException("No first party (claimants or appellants) is defined");
         }
     }
 
     public Party[] Parties =>
     [
-        (appellants, claimants) switch
+        (appellants: Appellants, claimants: Claimants) switch
         {
-            (appellants: null, claimants: not null) => new Party { Name = claimants, Role = PartyRole.Claimant },
-            (appellants: not null, claimants: null) => new Party { Name = appellants, Role = PartyRole.Appellant },
+            (appellants: null, claimants: not null) => new Party { Name = Claimants, Role = PartyRole.Claimant },
+            (appellants: not null, claimants: null) => new Party { Name = Appellants, Role = PartyRole.Appellant },
             _ => throw new InvalidOperationException()
         },
-        new() { Name = respondent, Role = PartyRole.Respondent }
+        new() { Name = Respondent, Role = PartyRole.Respondent }
     ];
 
     public ICategory[] Categories
@@ -112,23 +138,23 @@ internal record CsvLine
         {
             List<ICategory> categories = [];
 
-            if (main_category is not null)
+            if (MainCategory is not null)
             {
-                categories.Add(new Category { Name = main_category });
+                categories.Add(new Category { Name = MainCategory });
 
-                if (main_subcategory is not null)
+                if (MainSubcategory is not null)
                 {
-                    categories.Add(new Category { Name = main_subcategory, Parent = main_category });
+                    categories.Add(new Category { Name = MainSubcategory, Parent = MainCategory });
                 }
             }
 
-            if (sec_category is not null)
+            if (SecCategory is not null)
             {
-                categories.Add(new Category { Name = sec_category });
+                categories.Add(new Category { Name = SecCategory });
 
-                if (sec_subcategory is not null)
+                if (SecSubcategory is not null)
                 {
-                    categories.Add(new Category { Name = sec_subcategory, Parent = sec_category });
+                    categories.Add(new Category { Name = SecSubcategory, Parent = SecCategory });
                 }
             }
 
@@ -137,8 +163,8 @@ internal record CsvLine
     }
 
     /// <summary>
-    /// The original file name extracted from FilePath
-    /// Use this instead of Path.GetFileName for csv lines because it handles both '/' and '\' path separators
+    ///     The original file name extracted from FilePath
+    ///     Use this instead of Path.GetFileName for csv lines because it handles both '/' and '\' path separators
     /// </summary>
     public string FileName
     {

@@ -220,9 +220,9 @@ internal class BacklogParserWorker(
                 Meta = new Api.Meta
                 {
                     DocumentType = "decision",
-                    Court = csvLine.court,
-                    Date = csvLine.decision_datetime.ToString("yyyy-MM-dd"),
-                    Name = csvLine.FirstPartyName + " v " + csvLine.respondent,
+                    Court = csvLine.Court,
+                    Date = csvLine.DecisionDateTime.ToString("yyyy-MM-dd"),
+                    Name = csvLine.FirstPartyName + " v " + csvLine.Respondent,
                 JurisdictionShortNames = csvLine.Jurisdictions.ToList(),
                     Extensions = new Api.Extensions
                     {
@@ -230,7 +230,7 @@ internal class BacklogParserWorker(
                         CaseNumbers = [csvLine.CaseNo],
                         Parties = csvLine.Parties.ToList(),
                         Categories = csvLine.Categories.ToList(),
-                        WebArchivingLink = csvLine.webarchiving
+                        WebArchivingLink = csvLine.WebArchiving
                     }
                 },
                 Hint = Api.Hint.UKUT,
