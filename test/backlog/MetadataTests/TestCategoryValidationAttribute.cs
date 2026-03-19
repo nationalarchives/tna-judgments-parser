@@ -34,10 +34,10 @@ public class TestCategoryValidationAttribute
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
             id = "125",
-            main_category = mainCategory,
-            main_subcategory = mainSubcategory,
-            sec_category = secondaryCategory,
-            sec_subcategory = secondarySubcategory
+            MainCategory = mainCategory,
+            MainSubcategory = mainSubcategory,
+            SecCategory = secondaryCategory,
+            SecSubcategory = secondarySubcategory
         };
 
         // Act & Assert

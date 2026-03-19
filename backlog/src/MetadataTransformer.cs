@@ -73,16 +73,16 @@ internal class MetadataTransformer(TimeProvider timeProvider)
         StubMetadata meta = new()
         {
             Type = JudgmentType.Decision,
-            Court = Courts.GetByCode(line.court),
+            Court = Courts.GetByCode(line.Court),
             Jurisdictions = line.Jurisdictions.Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction }),
-            Date = new WNamedDate { Date = line.decision_datetime.ToString("yyyy-MM-dd"), Name = "decision" },
-            Name = line.FirstPartyName + " v " + line.respondent,
+            Date = new WNamedDate { Date = line.DecisionDateTime.ToString("yyyy-MM-dd"), Name = "decision" },
+            Name = line.FirstPartyName + " v " + line.Respondent,
             CaseNumbers = [line.CaseNo],
             Parties = line.Parties.ToList(),
             Categories = line.Categories.ToList(),
             SourceFormat = GetMimeType(line.Extension),
-            NCN = line.ncn,
-            WebArchivingLink = line.webarchiving
+            NCN = line.Ncn,
+            WebArchivingLink = line.WebArchiving
         };
         return meta;
     }
@@ -104,26 +104,26 @@ internal class MetadataTransformer(TimeProvider timeProvider)
             CreateExternalMetadataField(MetadataFieldName.CsvMetadataFileProperties, new CsvProperties(csvLine.CsvProperties.Name, csvLine.CsvProperties.Hash, csvLine.FullCsvLineContents)),
             CreateExternalMetadataField(MetadataFieldName.CaseNumber, csvLine.CaseNo),
             .. CreateExternalMetadataFields(MetadataFieldName.Category, () => csvLine.Categories),
-            CreateExternalMetadataField(MetadataFieldName.Court, csvLine.court),
-            CreateExternalMetadataField(MetadataFieldName.Date, csvLine.decision_datetime),
+            CreateExternalMetadataField(MetadataFieldName.Court, csvLine.Court),
+            CreateExternalMetadataField(MetadataFieldName.Date, csvLine.DecisionDateTime),
             .. CreateExternalMetadataFields(MetadataFieldName.Jurisdiction, () => csvLine.Jurisdictions),
             .. CreateExternalMetadataFields(MetadataFieldName.Party, () => csvLine.Parties)
         ];
 
-        if (csvLine.ncn is not null)
+        if (csvLine.Ncn is not null)
         {
-            metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.Ncn, csvLine.ncn));
+            metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.Ncn, csvLine.Ncn));
         }
 
-        if (csvLine.headnote_summary is not null)
+        if (csvLine.HeadnoteSummary is not null)
         {
             metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.HeadnoteSummary,
-                csvLine.headnote_summary));
+                csvLine.HeadnoteSummary));
         }
 
-        if (csvLine.webarchiving is not null)
+        if (csvLine.WebArchiving is not null)
         {
-            metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.WebArchivingLink, csvLine.webarchiving));
+            metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.WebArchivingLink, csvLine.WebArchiving));
         }
 
         return metadataFields;

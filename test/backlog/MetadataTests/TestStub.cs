@@ -14,7 +14,7 @@ public class TestStub
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            ncn = "[2023] UKUT 123 (IAC)"
+            Ncn = "[2023] UKUT 123 (IAC)"
         };
         var metadata = MetadataTransformer.MakeMetadata(line);
 
@@ -32,7 +32,7 @@ public class TestStub
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            ncn = ""
+            Ncn = ""
         };
         var metadata = MetadataTransformer.MakeMetadata(line);
 
@@ -52,7 +52,7 @@ public class TestStub
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
             // ncn is not set (null)
-            ncn = null
+            Ncn = null
         };
         var metadata = MetadataTransformer.MakeMetadata(line);
 
@@ -71,7 +71,7 @@ public class TestStub
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            ncn = "   "
+            Ncn = "   "
         };
         var metadata = MetadataTransformer.MakeMetadata(line);
 
@@ -90,7 +90,7 @@ public class TestStub
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            ncn = "[2023] EWCA Civ 123 & 124"
+            Ncn = "[2023] EWCA Civ 123 & 124"
         };
         var metadata = MetadataTransformer.MakeMetadata(line);
 
@@ -172,7 +172,7 @@ public class TestStub
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            webarchiving = "a web archive link"
+            WebArchiving = "a web archive link"
         };
         var metadata = MetadataTransformer.MakeMetadata(line);
 
@@ -192,7 +192,7 @@ public class TestStub
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            webarchiving = null
+            WebArchiving = null
         };
         var metadata = MetadataTransformer.MakeMetadata(line);
 
