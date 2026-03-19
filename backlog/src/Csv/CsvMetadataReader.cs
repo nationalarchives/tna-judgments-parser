@@ -37,7 +37,7 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
         {
             ShouldSkipRecord = args => false,
             IgnoreBlankLines = true,
-            PrepareHeaderForMatch = args => args.Header.ToLower(),
+            PrepareHeaderForMatch = args => args.Header.ToLower().Replace("_", ""),
             TrimOptions = TrimOptions.Trim | TrimOptions.InsideQuotes,
         };
         using var csv = new CsvReader(textReader, config);
@@ -106,7 +106,7 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
         private void Configure()
         {
             AutoMap(CultureInfo.InvariantCulture);
-            Map(l => l.decision_datetime)
+            Map(l => l.DecisionDateTime)
                 .TypeConverterOption.DateTimeStyles(DateTimeStyles.AllowWhiteSpaces & DateTimeStyles.AssumeUniversal)
                 .Validate(v => Regex.IsMatch(v.Field.Trim(), @"^\d\d\d\d")); // Ensure dates start with the year
             Map(l => l.Jurisdictions)
