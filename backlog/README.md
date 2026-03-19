@@ -148,8 +148,9 @@ The following columns are optional:
 - `Jurisdictions` - Jurisdictions to be added as `uk:jurisdiction` elements in the xml. This can be blank, a single item or a comma seperated list in quotes (e.g. `"jurisdiction1,jurisdiction2"`)
 - `uuid` - The TDR-cleansed filenames. If not provided then it will be derived from `tdr_metadata/file-metadata.csv`
 - `webarchiving` - Link to the webarchive for this judgment
+- `Skip` - Leave blank or set to `n`, `0` or `false` to process the record. Fill in anything to skip it (e.g. `skip`, `Already in FCL`, `Duplicate`)
 
-**Note**: If required columns are missing, the system will throw a validation error listing the missing columns.
+**Note**: If required columns are missing, the system will throw a validation error listing the missing columns but if optional columns are missing or misspelt then there will be no warning.
 
 #### CSV Line Example
 
