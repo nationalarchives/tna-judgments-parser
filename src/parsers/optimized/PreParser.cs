@@ -262,9 +262,14 @@ class PreParser {
                 OpenXmlElement e = Main.Document.Body.ChildElements.ElementAt(i);
                 if (e is not Paragraph p)
                     return null;
-                i += 1;
-                if (HasAnExtraFieldEnd(p)) // needs to be before IsSkippable
+                if (HasAnExtraFieldEnd(p)) { // needs to be before IsSkippable
+                    // Only advance past the field-end paragraph if it has no real content;
+                    // otherwise leave i so it gets re-processed as a normal body block
+                    if (IsSkippable(p))
+                        i += 1;
                     return new TableOfContents { Contents = contents };
+                }
+                i += 1;
                 if (IsSkippable(e))
                     continue;
                 WLine line = ParseParagraph(Main, p);

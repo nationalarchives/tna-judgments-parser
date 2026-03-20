@@ -1,0 +1,32 @@
+/*
+ * base.css - Generic AKN-to-HTML layout styles
+ *
+ * Applies to all legislation associated document types (IA, EM, EN, etc.).
+ * Referenced via <link> when the XSLT css-base parameter is set (pipeline mode).
+ * The same rules are also inlined in akn2html.xsl for standalone/preview rendering.
+ */
+
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td { vertical-align: top }
+span.fn { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* TOC link box (used by Impact Assessment header) */
+.toc-container { display: flex; justify-content: center; align-items: center; }
+.toc-box { border: 2px solid #6aa9ff; padding: 8px 16px; border-radius: 4px; background: #fff; color: #1a5fd0; font-weight: bold; font-size: x-large }
+.toc-box a { color: inherit; text-decoration: none; }
+.toc-box a:hover, .toc-box a:focus { text-decoration: underline; }

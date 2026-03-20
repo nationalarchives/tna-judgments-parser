@@ -39,7 +39,6 @@ class OptimizedUKUTParser : OptimizedParser {
         "DECISION AND DIRECTIONS",
         "DECISION in PRINCIPLE",
         "DECISION OF THE UPPER TRIBUNAL",
-        "DECISIONS OF THE FIRST-TIER TRIBUNAL",
 
         "Interlocutory Decision", // [2016] UKUT 337 (IAC)
         "DECISION ON APPLICATIONS", // [2016] UKUT 559 (IAC)

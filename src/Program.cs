@@ -1,4 +1,3 @@
-
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -83,6 +82,7 @@ public class Program {
             TransformEM(input, output, outputZip, log, test, attachment);
             return Success;
         }
+
         DocName? docName = DocNames.GetDocName(hint);
         if (docName != null) {
             LegislationClassifier classifier = new LegislationClassifier((DocName)docName, subType, procedure);
@@ -95,6 +95,8 @@ public class Program {
             return Success;
         } else {
             logger?.LogCritical("unrecognized document type: {}", hint);
+            Console.Error.WriteLine($"Error: Invalid hint '{hint}'. Supported values: 'em', or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'.");
+            Environment.Exit(1);
         }
         byte[] docx = File.ReadAllBytes(input.FullName);
         Api.Request request;
@@ -124,7 +126,17 @@ public class Program {
         if (attachment is not null)
             throw new Exception();
         byte[] docx = File.ReadAllBytes(input.FullName);
-        var parsed = EM.Helper.Parse(docx);
+        string filename = input.Name;
+        var parsed = EM.Helper.Parse(docx, filename);
+        
+        // Save images alongside output if output path is specified
+        if (output is not null) {
+            string outputDir = Path.GetDirectoryName(output.FullName);
+            if (!string.IsNullOrEmpty(outputDir)) {
+                parsed.SaveImages(outputDir);
+            }
+        }
+        
         if (outputZip is not null)
             SaveZip(parsed, outputZip);
         else if (output is not null)

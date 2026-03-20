@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="../version.targets" />
 
@@ -34,18 +34,17 @@
     <EmbeddedResource Include="./leg/em/*.docx" />
     <EmbeddedResource Include="./leg/em/*.xml" />
     <EmbeddedResource Include="./leg/em/*.akn" />
+    <EmbeddedResource Include="./leg/em/original filenames/*.docx" />
+    <EmbeddedResource Include="./leg/em/original filenames/*.akn" />
 
     <EmbeddedResource Include="./lawmaker/**/*.docx" />
     <EmbeddedResource Include="./lawmaker/**/*.xml" />
 
     <EmbeddedResource Include="./leg/en/*.docx" />
+    <EmbeddedResource Include="./leg/en/*.akn" />
 
     <EmbeddedResource Include="./backlog/expected-output/*.json" />
-    <EmbeddedResource Include="./backlog/expected-output/*.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="backlog\test-data\MultiLineTest\court_documents\empty directory\" />
+    <EmbeddedResource Include="backlog/expected-output/*.xml" />
   </ItemGroup>
 
 </Project>

@@ -2,18 +2,24 @@
 
 <xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
 	xpath-default-namespace="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
-	xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn"
+	xmlns:uk="https://legislation.gov.uk/akn"
 	xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:math="http://www.w3.org/1998/Math/MathML"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	exclude-result-prefixes="uk html math xs">
+	exclude-result-prefixes="uk html xs">
 
 <xsl:output method="html" version="5" encoding="utf-8" indent="yes" include-content-type="no" />
 
 <xsl:strip-space elements="*" />
-<xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docketNumber judge lawyer location neutralCitation party role time" />
+<xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docStage docProponent time b i u" />
 
 <xsl:param name="image-base" as="xs:string" select="'/'" />
+
+<!--
+  Optional base URL for external CSS files, e.g. '/css/'.
+  When set, <link> tags are emitted for base.css and the doc-type CSS (ia.css, em.css).
+  The inline <style> block is always emitted for standalone/preview rendering.
+-->
+<xsl:param name="css-base" as="xs:string" select="''" />
 
 <!-- global variables -->
 
@@ -32,6 +38,8 @@
 	</xsl:choose>
 </xsl:variable>
 
+<xsl:variable name="parameters" as="document-node()?" select="if (doc-available('input:request')) then doc('input:request') else ()"/>
+
 <!-- templates -->
 
 <xsl:template match="akomaNtoso">
@@ -41,46 +49,159 @@
 			<xsl:call-template name="style" />
 		</head>
 		<body>
+			<xsl:call-template name="header"/>
 			<xsl:apply-templates />
 		</body>
 	</html>
 </xsl:template>
 
 <xsl:template name="style">
+	<!-- External CSS links when css-base is provided (pipeline/production mode) -->
+	<xsl:if test="$css-base != ''">
+		<link rel="stylesheet" href="{$css-base}base.css" />
+		<xsl:variable name="doc-name" select="/akomaNtoso/doc/@name" />
+		<xsl:choose>
+			<xsl:when test="$doc-name = 'ImpactAssessment'">
+				<link rel="stylesheet" href="{$css-base}ia.css" />
+			</xsl:when>
+			<xsl:when test="$doc-name = 'ExplanatoryMemorandum' or $doc-name = 'PolicyNote'">
+				<link rel="stylesheet" href="{$css-base}em.css" />
+			</xsl:when>
+		</xsl:choose>
+	</xsl:if>
+
+	<!-- Inline styles for standalone/preview rendering -->
 	<style>
+body { margin: 0 }
+
+/* --- Base layout (all document types) --- */
+
 article { margin: 0.5in 1in }
 p.center { text-align: center }
 section { position: relative }
 h2 { font-size: inherit; font-weight: normal }
-.section &gt; h2 &gt; .num { display: inline-block; width: 0.5in }
+.section > h2 > .num { display: inline-block; width: 0.5in }
 .paragraph { margin-left: 0.5in }
-.paragraph &gt; h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
 .subparagraph { margin-left: 0.5in }
-.subparagraph &gt; h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
-section &gt; .level &gt; h2 { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
 table { border-collapse: collapse }
 th, td { border: thin dotted; padding: 3pt }
 td { vertical-align: top }
 span.fn { vertical-align: super; font-size: small }
-.footnote &gt; p:first-child &gt; .marker:first-child { vertical-align: super; font-size: small }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
 .blockContainer { position: relative; margin-left: 0.5in }
-.blockContainer &gt; p:first-child &gt; .num:first-child { position: absolute; margin-left: -0.25in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
 .attachment { margin-top: 2em }
+
+/* --- Impact Assessment --- */
+
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA tables */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+}
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+.ia-table td p {
+	font-size: 11pt;
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+.ia-table td:empty {
+	display: none !important;
+}
+
+/* Summary header table: first row is the IA black title banner */
+.hcontainer.summary .ia-table tr:first-child td {
+	background: #000;
+	color: #fff;
+	padding: 0;
+}
+.hcontainer.summary .ia-table tr:first-child td p {
+	font-size: 16pt;
+	margin: 0;
+	padding: 8pt;
+	text-align: center;
+	color: #fff;
+}
+
+/* Semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent {
+	font-size: 11pt;
+	line-height: 1.2;
+}
+
+/* Special styling for summary header tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+/* Hide extra rows in nested summary tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA blockContainer override */
+article[data-doc-type='ImpactAssessment'] .blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* IA TOC Link */
+.toc-container { display: flex; justify-content: center; align-items: center; background: #F5F5F5; color: #1E1E1E; font-size: 16px; font-family: Roboto, Arial, sans-serif; padding: 8px 0; margin: 0 -1in; border-bottom: 1px solid #D5D5D5}
+.toc-box { background: #fff; color: #0A64D7; border: 1px solid #0A64D7; font-size: 16px; font-family: Roboto, Arial, sans-serif; border-radius: 5px; padding: 10px 15px; display: inline-block; text-align: center}
+.toc-box a { color: inherit; text-decoration: none;}
+.toc-box a:hover,.toc-box a:focus {text-decoration: underline;}
+
+/* Explanatory Notes table borders */
+article[data-doc-type='ExplanatoryNotes'] th,
+article[data-doc-type='ExplanatoryNotes'] td { border: thin solid }
+
 </style>
-<!--	
-td { position: relative; min-width: 2em; padding-left: 1em; padding-right: 1em; vertical-align: top }
-td > .num { left: -2em }
-table { margin: 0 auto; width: 100%; border-collapse: collapse }
-.header table { table-layout: fixed }
-td > p:first-child { margin-top: 0 }
-td > p:last-child { margin-bottom: 0 }
-.fn { vertical-align: super; font-size: small }
-.footnote > p > .marker { vertical-align: super; font-size: small }
-.tab { display: inline-block; width: 0.25in } -->
+
+	<!-- Inject Word-extracted CSS from AKN <presentation> if present -->
+	<xsl:apply-templates select="/akomaNtoso/*/meta/presentation" />
+</xsl:template>
+
+<!-- Inject presentation CSS from AKN meta (Word-extracted styles) -->
+<xsl:template match="meta/presentation">
+	<xsl:copy-of select="html:style" />
 </xsl:template>
 
 <xsl:template match="doc">
-	<article id="doc">
+	<article id="doc" data-doc-type="{@name}">
 		<xsl:apply-templates />
 		<xsl:call-template name="footnotes" />
 	</article>
@@ -106,10 +227,17 @@ td > p:last-child { margin-bottom: 0 }
 	</div>
 </xsl:template>
 
-<xsl:template match="level | section | paragraph | subparagraph">
+<!-- Suppress in-document TOC (contents link is in header); no template = text dump -->
+<xsl:template match="toc" />
+
+<xsl:template match="level | section | paragraph | subparagraph | hcontainer">
 	<section>
 		<xsl:attribute name="class">
 			<xsl:value-of select="local-name(.)" />
+			<xsl:if test="@name">
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="@name" />
+			</xsl:if>
 			<xsl:if test="num">
 				<xsl:text> num</xsl:text>
 			</xsl:if>
@@ -139,17 +267,7 @@ td > p:last-child { margin-bottom: 0 }
 	</p>
 </xsl:template>
 
-<!-- embedded structures -->
-
-<xsl:template match="block[@name='embeddedStructure']">
-	<xsl:apply-templates />
-</xsl:template>
-
-<xsl:template match="embeddedStructure">
-	<blockquote>
-		<xsl:apply-templates />
-	</blockquote>
-</xsl:template>
+<!-- content blocks -->
 
 <!-- blocks -->
 
@@ -168,7 +286,12 @@ td > p:last-child { margin-bottom: 0 }
 
 <!-- inline -->
 
-<xsl:template match="num | heading | docType | docNumber | date">
+<!-- Hide IA section headings - they're for semantic structure, not display -->
+<xsl:template match="doc[@name='ImpactAssessment']//section/heading">
+	<!-- Hidden for semantic purposes only -->
+</xsl:template>
+
+<xsl:template match="num | heading | docType | docNumber | docTitle | docStage | docDate | docProponent | date">
 	<span class="{ local-name() }">
 		<xsl:apply-templates />
 	</span>
@@ -205,6 +328,16 @@ td > p:last-child { margin-bottom: 0 }
 <xsl:template match="table">
 	<table>
 		<xsl:copy-of select="@class | @style" />
+		<!-- Add IA table class based on context -->
+		<xsl:if test="ancestor::doc[@name='ImpactAssessment']">
+			<xsl:attribute name="class">
+				<xsl:text>ia-table</xsl:text>
+				<xsl:if test="@class">
+					<xsl:text> </xsl:text>
+					<xsl:value-of select="@class" />
+				</xsl:if>
+			</xsl:attribute>
+		</xsl:if>
 		<xsl:if test="exists(@uk:widths)">
 			<colgroup>
 				<xsl:for-each select="tokenize(@uk:widths, ' ')">
@@ -218,7 +351,7 @@ td > p:last-child { margin-bottom: 0 }
 	</table>
 </xsl:template>
 
-<xsl:template match="tr | td">
+<xsl:template match="tr | th | td">
 	<xsl:element name="{ local-name() }">
 		<xsl:copy-of select="@*" />
 		<xsl:apply-templates />
@@ -236,19 +369,7 @@ td > p:last-child { margin-bottom: 0 }
 </xsl:template>
 
 
-<!-- tables of contents -->
-
-<xsl:template match="toc">
-	<div class="toc">
-		<xsl:apply-templates />
-	</div>
-</xsl:template>
-
-<xsl:template match="tocItem">
-	<p class="tocItem">
-		<xsl:apply-templates />
-	</p>
-</xsl:template>
+<!-- content organization -->
 
 
 <!-- markers and attributes -->
@@ -288,7 +409,9 @@ td > p:last-child { margin-bottom: 0 }
 
 <xsl:template match="authorialNote/p[1]">
 	<xsl:element name="{ local-name() }">
-		<xsl:apply-templates select="@*" />
+		<xsl:if test="@class">
+			<xsl:attribute name="class" select="@class" />
+		</xsl:if>
 		<span class="marker">
 			<xsl:value-of select="../@marker" />
 		</span>
@@ -297,14 +420,37 @@ td > p:last-child { margin-bottom: 0 }
 	</xsl:element>
 </xsl:template>
 
+<!--[ TOC Link Header ]-->
+<xsl:template name="header">
+	<xsl:variable name="toc-url">
+		<xsl:choose>
+			<xsl:when test="$parameters/*:parameters/*:leg-type !=''">
+				<xsl:value-of select="string-join((
+					$parameters/*:parameters/*:leg-type,
+					$parameters/*:parameters/*:leg-year,
+					$parameters/*:parameters/*:leg-number,
+					'impacts',
+					$parameters/*:parameters/*:impact-year,
+					$parameters/*:parameters/*:impact-number,
+					'contents'), '/')"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="string-join((
+					$parameters/*:parameters/*:impact-type,
+					$parameters/*:parameters/*:impact-year,
+					$parameters/*:parameters/*:impact-number,
+					'contents'), '/')"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
 
-<!-- math -->
-
-<xsl:template match="math:*">
-	<xsl:copy>
-		<xsl:copy-of select="@*"/>
-		<xsl:apply-templates />
-	</xsl:copy>
+	<div class="toc-container">
+		<div class="toc-box">
+			<a href="/{$toc-url}">Impact Assessment Table of Contents</a>
+		</div>
+	</div>
 </xsl:template>
+
+<!-- end of templates -->
 
 </xsl:transform>
