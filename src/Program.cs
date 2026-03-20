@@ -13,6 +13,7 @@ using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using EM = UK.Gov.Legislation.ExplanatoryMemoranda;
+using EN = UK.Gov.Legislation.ExplanatoryNotes;
 using UK.Gov.Legislation.Lawmaker;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
@@ -28,7 +29,7 @@ public class Program {
     private static readonly Option<FileInfo> LogOption = new("--log"){ Description = "the log file"};
     private static readonly Option<bool> TestOption = new("--test"){ Description = "whether to test the result"};
     private static readonly Option<FileInfo> AttachmentOption = new("--attachment"){ Description = "an associated file to include"};
-    private static readonly Option<string> HintOption = new("--hint"){ Description = "the type of document: 'em' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"};
+    private static readonly Option<string> HintOption = new("--hint"){ Description = "the type of document: 'em', 'en' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"};
     private static readonly Option<string> SubtypeOption = new("--subtype"){ Description = "the subtype of the document e.g. 'order'. Only applicable if --hint is a secondary type"};
     private static readonly Option<string> ProcedureOption = new("--procedure"){ Description = "the procedure of the document e.g. 'made', 'draftaffirm'. Only applicable if --hint is a secondary type"};
     private static readonly Option<string[]> LanguageOption = new("--language"){ Description = "the language(s) of the document - the default is English", AllowMultipleArgumentsPerToken = true};
@@ -83,6 +84,11 @@ public class Program {
             return Success;
         }
 
+        if ("en".Equals(hint, StringComparison.InvariantCultureIgnoreCase)) {
+            TransformEN(input, output, outputZip, log, test, attachment);
+            return Success;
+        }
+
         DocName? docName = DocNames.GetDocName(hint);
         if (docName != null) {
             LegislationClassifier classifier = new LegislationClassifier((DocName)docName, subType, procedure);
@@ -95,7 +101,7 @@ public class Program {
             return Success;
         } else {
             logger?.LogCritical("unrecognized document type: {}", hint);
-            Console.Error.WriteLine($"Error: Invalid hint '{hint}'. Supported values: 'em', or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'.");
+            Console.Error.WriteLine($"Error: Invalid hint '{hint}'. Supported values: 'em', 'en', or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'.");
             Environment.Exit(1);
         }
         byte[] docx = File.ReadAllBytes(input.FullName);
@@ -137,6 +143,32 @@ public class Program {
             }
         }
         
+        if (outputZip is not null)
+            SaveZip(parsed, outputZip);
+        else if (output is not null)
+            File.WriteAllText(output.FullName, parsed.Serialize());
+        else
+            Console.WriteLine(parsed.Serialize());
+    }
+
+    static void TransformEN(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
+        if (attachment is not null)
+            throw new Exception();
+
+        if (log is not null) {
+            Logging.SetConsoleAndFile(log, LogLevel.Debug);
+        }
+
+        byte[] docx = File.ReadAllBytes(input.FullName);
+        var parsed = EN.Helper.Parse(docx, input.Name);
+
+        if (output is not null) {
+            string outputDir = Path.GetDirectoryName(output.FullName);
+            if (!string.IsNullOrEmpty(outputDir)) {
+                parsed.SaveImages(outputDir);
+            }
+        }
+
         if (outputZip is not null)
             SaveZip(parsed, outputZip);
         else if (output is not null)

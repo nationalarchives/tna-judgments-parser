@@ -10,6 +10,7 @@ namespace UK.Gov.Legislation {
 public class Validator {
 
     private XmlSchemaSet EmSchemas = new XmlSchemaSet();
+    private XmlSchemaSet EnSchemas = new XmlSchemaSet();
 
     public Validator() {
         var assembly = Assembly.GetExecutingAssembly();
@@ -25,6 +26,16 @@ public class Validator {
             EmSchemas.Add("http://www.w3.org/XML/1998/namespace", reader2);
         }
 
+        // Load EN schemas
+        using (Stream stream5 = assembly.GetManifestResourceStream("leg.en-subschema.xsd")) {
+            using XmlReader reader5 = XmlReader.Create(stream5);
+            EnSchemas.Add(Builder.ns, reader5);
+        }
+
+        using (Stream stream6 = assembly.GetManifestResourceStream("akn.xml.xsd")) {
+            using XmlReader reader6 = XmlReader.Create(stream6);
+            EnSchemas.Add("http://www.w3.org/XML/1998/namespace", reader6);
+        }
     }
 
     public List<ValidationEventArgs> Validate(XmlDocument akn) {
@@ -37,7 +48,11 @@ public class Validator {
         XmlNode docNode = akn.SelectSingleNode("//akn:doc", nsmgr);
         string docType = docNode?.Attributes?["name"]?.Value;
         
-        copy.Schemas = EmSchemas;
+        if (docType == "ExplanatoryNotes") {
+            copy.Schemas = EnSchemas;
+        } else {
+            copy.Schemas = EmSchemas; // Default to EM schemas for ExplanatoryMemorandum and PolicyNote
+        }
         
         List<ValidationEventArgs> errors = new List<ValidationEventArgs>();
         copy.Validate((sender, e) => errors.Add(e));    // modifies the DOM
