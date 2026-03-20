@@ -37,6 +37,7 @@ class Builder : AkN.Builder {
         // Add dc namespace if document has lastModified info (for dc:modified in proprietary)
         // Check both ExpressionDate with lastModified name and IA/EM-specific LastModified property
         bool hasModified = (document.Meta.ExpressionDateName == "lastModified" && document.Meta.ExpressionDate != null) ||
+                          (document.Meta is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) ||
                           (document.Meta is ExplanatoryMemoranda.EMMetadata emData && emData.LastModified.HasValue);
         if (hasModified) {
             main.SetAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
@@ -146,8 +147,12 @@ class Builder : AkN.Builder {
         // This provides a consistent location for file modification timestamp
         string modifiedValue = null;
         
+        // For IA documents, use the LastModified property
+        if (data is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) {
+            modifiedValue = FormatDateOnly(iaData.LastModified);
+        }
         // For EM documents, use the LastModified property
-        if (data is ExplanatoryMemoranda.EMMetadata emData && emData.LastModified.HasValue) {
+        else if (data is ExplanatoryMemoranda.EMMetadata emData && emData.LastModified.HasValue) {
             modifiedValue = FormatDateOnly(emData.LastModified);
         }
         // For other documents, use ExpressionDate if it's a lastModified timestamp
@@ -221,6 +226,75 @@ class Builder : AkN.Builder {
                 XmlElement legislationNumber = doc.CreateElement("uk", "legislationNumber", UKNS);
                 proprietary.AppendChild(legislationNumber);
                 legislationNumber.AppendChild(doc.CreateTextNode(emMetadata.LegislationNumber));
+            }
+        }
+        // Add additional IA metadata from CSV mapping (for Impact Assessments)
+        else if (data is ImpactAssessments.IAMetadata iaMetadata) {
+            // Add associated document URI for contractor upload (e.g. http://www.legislation.gov.uk/id/ukia/2025/17)
+            if (!string.IsNullOrEmpty(iaMetadata.UkiaUri)) {
+                XmlElement associatedId = doc.CreateElement("uk", "associatedID", UKNS);
+                proprietary.AppendChild(associatedId);
+                associatedId.AppendChild(doc.CreateTextNode(iaMetadata.UkiaUri));
+            }
+
+            if (!string.IsNullOrEmpty(iaMetadata.DocumentStage)) {
+                XmlElement documentStage = doc.CreateElement("uk", "documentStage", UKNS);
+                proprietary.AppendChild(documentStage);
+                documentStage.AppendChild(doc.CreateTextNode(iaMetadata.DocumentStage));
+            }
+
+            if (!string.IsNullOrEmpty(iaMetadata.DocumentMainType)) {
+                XmlElement documentMainType = doc.CreateElement("uk", "documentMainType", UKNS);
+                proprietary.AppendChild(documentMainType);
+                documentMainType.AppendChild(doc.CreateTextNode(iaMetadata.DocumentMainType));
+            }
+
+            if (!string.IsNullOrEmpty(iaMetadata.Department)) {
+                XmlElement department = doc.CreateElement("uk", "department", UKNS);
+                proprietary.AppendChild(department);
+                department.AppendChild(doc.CreateTextNode(iaMetadata.Department));
+            }
+
+            if (!string.IsNullOrEmpty(iaMetadata.IADate)) {
+                XmlElement date = doc.CreateElement("uk", "date", UKNS);
+                proprietary.AppendChild(date);
+                date.AppendChild(doc.CreateTextNode(iaMetadata.IADate));
+            }
+
+            if (!string.IsNullOrEmpty(iaMetadata.PDFDate)) {
+                XmlElement pdfDate = doc.CreateElement("uk", "pdfDate", UKNS);
+                proprietary.AppendChild(pdfDate);
+                pdfDate.AppendChild(doc.CreateTextNode(iaMetadata.PDFDate));
+            }
+
+            if (!string.IsNullOrEmpty(iaMetadata.LegislationClass)) {
+                XmlElement legislationClass = doc.CreateElement("uk", "legislationClass", UKNS);
+                proprietary.AppendChild(legislationClass);
+                legislationClass.AppendChild(doc.CreateTextNode(iaMetadata.LegislationClass));
+            }
+
+            if (iaMetadata.UkiaYear.HasValue) {
+                XmlElement year = doc.CreateElement("uk", "year", UKNS);
+                proprietary.AppendChild(year);
+                year.AppendChild(doc.CreateTextNode(iaMetadata.UkiaYear.Value.ToString()));
+            }
+
+            if (iaMetadata.UkiaNumber.HasValue) {
+                XmlElement number = doc.CreateElement("uk", "number", UKNS);
+                proprietary.AppendChild(number);
+                number.AppendChild(doc.CreateTextNode(iaMetadata.UkiaNumber.Value.ToString()));
+            }
+
+            if (iaMetadata.LegislationYear.HasValue) {
+                XmlElement legislationYear = doc.CreateElement("uk", "legislationYear", UKNS);
+                proprietary.AppendChild(legislationYear);
+                legislationYear.AppendChild(doc.CreateTextNode(iaMetadata.LegislationYear.Value.ToString()));
+            }
+
+            if (!string.IsNullOrEmpty(iaMetadata.LegislationNumber)) {
+                XmlElement legislationNumber = doc.CreateElement("uk", "legislationNumber", UKNS);
+                proprietary.AppendChild(legislationNumber);
+                legislationNumber.AppendChild(doc.CreateTextNode(iaMetadata.LegislationNumber));
             }
         }
 

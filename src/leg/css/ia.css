@@ -1,0 +1,109 @@
+/*
+ * ia.css - Impact Assessment specific styles
+ *
+ * Targets the semantic AKN structure produced by the parser rather than
+ * content-guessed CSS classes. Requires base.css to be loaded first.
+ *
+ * Key structural elements targeted:
+ *   article[data-doc-type='ImpactAssessment']  - scopes all IA-specific rules
+ *   .hcontainer.summary                         - the metadata header table block
+ *   .ia-table                                   - tables inside IA documents
+ *   .docTitle, .docStage, .docDate etc.         - semantic inline elements
+ */
+
+/* Document-level font */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+/* Remove paragraph indentation (IA uses table-based layout, not indent) */
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* blockContainer spacing override */
+article[data-doc-type='ImpactAssessment'] .blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* --- IA tables --- */
+
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+}
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+.ia-table td p {
+	font-size: 11pt;
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+.ia-table td:empty {
+	display: none !important;
+}
+
+/* --- Summary header block (metadata table at top of IA) --- */
+
+/*
+ * The first row of the summary table is the black title banner.
+ * In the IA Word template this is a full-width spanning row with
+ * white text on a black background.
+ */
+.hcontainer.summary .ia-table tr:first-child td {
+	background: #000;
+	color: #fff;
+	padding: 0;
+}
+.hcontainer.summary .ia-table tr:first-child td p {
+	font-size: 16pt;
+	margin: 0;
+	padding: 8pt;
+	text-align: center;
+	color: #fff;
+}
+
+/* Summary outer table has no border (inner nested table provides borders) */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table {
+	border: none;
+}
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td {
+	border: 1px solid black;
+}
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+/* The RPC sign-off table at the bottom of the summary is capped at 6 visible rows */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* --- Semantic inline elements --- */
+
+.docTitle,
+.docNumber,
+.docStage,
+.docDate,
+.docProponent {
+	font-size: 11pt;
+	line-height: 1.2;
+}

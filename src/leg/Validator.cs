@@ -10,6 +10,7 @@ namespace UK.Gov.Legislation {
 public class Validator {
 
     private XmlSchemaSet EmSchemas = new XmlSchemaSet();
+    private XmlSchemaSet IaSchemas = new XmlSchemaSet();
 
     public Validator() {
         var assembly = Assembly.GetExecutingAssembly();
@@ -25,6 +26,16 @@ public class Validator {
             EmSchemas.Add("http://www.w3.org/XML/1998/namespace", reader2);
         }
 
+        // Load IA schemas
+        using (Stream stream3 = assembly.GetManifestResourceStream("leg.ia-subschema.xsd")) {
+            using XmlReader reader3 = XmlReader.Create(stream3);
+            IaSchemas.Add(Builder.ns, reader3);
+        }
+
+        using (Stream stream4 = assembly.GetManifestResourceStream("akn.xml.xsd")) {
+            using XmlReader reader4 = XmlReader.Create(stream4);
+            IaSchemas.Add("http://www.w3.org/XML/1998/namespace", reader4);
+        }
     }
 
     public List<ValidationEventArgs> Validate(XmlDocument akn) {
@@ -37,7 +48,11 @@ public class Validator {
         XmlNode docNode = akn.SelectSingleNode("//akn:doc", nsmgr);
         string docType = docNode?.Attributes?["name"]?.Value;
         
-        copy.Schemas = EmSchemas;
+        if (docType == "ImpactAssessment") {
+            copy.Schemas = IaSchemas;
+        } else {
+            copy.Schemas = EmSchemas; // Default to EM schemas for ExplanatoryMemorandum and PolicyNote
+        }
         
         List<ValidationEventArgs> errors = new List<ValidationEventArgs>();
         copy.Validate((sender, e) => errors.Add(e));    // modifies the DOM
