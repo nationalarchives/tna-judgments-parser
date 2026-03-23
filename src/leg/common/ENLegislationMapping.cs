@@ -15,9 +15,28 @@ internal static partial class ENLegislationMapping {
     private static readonly ILogger logger = Logging.Factory.CreateLogger(typeof(ENLegislationMapping));
     private static readonly Dictionary<string, ENMappingRecord> _records = LoadRecords();
 
+    // Matches EN filename patterns: ukpgaen_20200007_en, ukpga_20180015_en, aspen_20250001_en, etc.
+    // Groups: prefix (ukpgaen, ukpga, aspen, niaen), year, number, optional suffix (_edit, _001, etc.)
+    [GeneratedRegex(@"^(ukpgaen|ukpga|aspen|niaen|aniaen)[_](\d{4})[_]?(\d+)[_]en(?:[_].+)?$", RegexOptions.IgnoreCase)]
+    private static partial Regex FilenamePartsRegex();
+
     private static string NormalizeFilename(string filename) {
         if (string.IsNullOrWhiteSpace(filename)) return filename ?? "";
         string name = Path.GetFileNameWithoutExtension(filename.Trim());
+
+        // Try to normalize to the CSV canonical format: {type}en_{YYYY}{NNNN}_en
+        var match = FilenamePartsRegex().Match(name);
+        if (match.Success) {
+            string prefix = match.Groups[1].Value.ToLowerInvariant();
+            string year = match.Groups[2].Value;
+            string number = match.Groups[3].Value.PadLeft(4, '0');
+
+            // Normalize prefix: ukpga -> ukpgaen
+            if (prefix == "ukpga") prefix = "ukpgaen";
+
+            return $"{prefix}_{year}{number}_en";
+        }
+
         return name.Trim();
     }
 
