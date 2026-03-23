@@ -36,7 +36,9 @@ public class TestEN {
 
         var actual = Helper.Parse(docx, filename + ".docx").Serialize();
 
-        var expectedResourceName = $"test.leg.en.{filename}.akn";
+        // Look up expected .akn by normalized filename (canonical CSV format)
+        var normalizedName = UK.Gov.Legislation.Common.ENLegislationMapping.NormalizeFilename(filename);
+        var expectedResourceName = $"test.leg.en.{normalizedName}.akn";
         var assembly = System.Reflection.Assembly.GetExecutingAssembly();
         if (!assembly.GetManifestResourceNames().Contains(expectedResourceName)) {
             var doc = new XmlDocument();
@@ -66,10 +68,11 @@ public class TestEN {
                 var docx = DocumentHelpers.ReadDocx(resourceName);
                 var result = Helper.Parse(docx, filename + ".docx");
                 var testFolder = Path.Combine(projectRoot, "test", "leg", "en");
-                var outputPath = Path.Combine(testFolder, $"{filename}.akn");
+                var normalizedName = UK.Gov.Legislation.Common.ENLegislationMapping.NormalizeFilename(filename);
+                var outputPath = Path.Combine(testFolder, $"{normalizedName}.akn");
                 File.WriteAllText(outputPath, result.Serialize());
                 result.SaveImages(testFolder);
-                Console.WriteLine($"Regenerated {filename}.akn");
+                Console.WriteLine($"Regenerated {normalizedName}.akn (from {filename}.docx)");
             } catch (Exception ex) {
                 failures.Add($"{filename}: {ex.Message}");
                 Console.WriteLine($"Skipped {filename}: {ex.Message}");

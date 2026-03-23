@@ -20,7 +20,12 @@ internal static partial class ENLegislationMapping {
     [GeneratedRegex(@"^(ukpgaen|ukpga|aspen|niaen|aniaen)[_](\d{4})[_]?(\d+)[_]en(?:[_].+)?$", RegexOptions.IgnoreCase)]
     private static partial Regex FilenamePartsRegex();
 
-    private static string NormalizeFilename(string filename) {
+    /// <summary>
+    /// Normalizes an EN filename to the canonical CSV format: {type}en_{YYYY}{NNNN}_en.
+    /// Handles variations like missing leading zeros, extra underscores, _edit suffixes,
+    /// and ukpga vs ukpgaen prefix differences.
+    /// </summary>
+    public static string NormalizeFilename(string filename) {
         if (string.IsNullOrWhiteSpace(filename)) return filename ?? "";
         string name = Path.GetFileNameWithoutExtension(filename.Trim());
 
