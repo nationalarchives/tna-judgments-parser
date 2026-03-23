@@ -103,6 +103,9 @@ class Helper : BaseHelper {
         wholeDocItem.AppendChild(wholeDocHeading);
         toc.AppendChild(wholeDocItem);
         
+        // Also find paragraphs with num but no intro (flat-paragraph EMs)
+        var paragraphsWithNumNoIntro = xml.SelectNodes("//akn:mainBody/akn:paragraph[akn:num and not(akn:intro)]", nsmgr);
+
         // Add paragraph entries (for EMs with paragraph/intro structure)
         int tocNumber = 1;
         if (paragraphsWithIntro != null && paragraphsWithIntro.Count > 0) {
@@ -111,11 +114,19 @@ class Helper : BaseHelper {
                 tocNumber++;
             }
         }
-        
+
         // Add section entries (for EMs with section/heading structure)
         if (sectionsWithHeadings != null && sectionsWithHeadings.Count > 0) {
             foreach (XmlElement section in sectionsWithHeadings) {
                 AddTocItemFromSection(xml, toc, section, expressionUri, nsmgr, tocNumber);
+                tocNumber++;
+            }
+        }
+
+        // Add entries for flat-paragraph EMs (paragraphs with num but no intro/heading)
+        if (paragraphsWithNumNoIntro != null && paragraphsWithNumNoIntro.Count > 0) {
+            foreach (XmlElement paragraph in paragraphsWithNumNoIntro) {
+                AddTocItemFromFlatParagraph(xml, toc, paragraph, expressionUri, nsmgr, tocNumber);
                 tocNumber++;
             }
         }
@@ -147,11 +158,12 @@ class Helper : BaseHelper {
             return;
         }
 
-        // Extract number (e.g., "1" from "1." or "<b>1.</b>")
-        string number = System.Text.RegularExpressions.Regex.Replace(numText, @"[^\d]", "");
-        if (string.IsNullOrEmpty(number)) {
+        // Extract first number only (e.g., "1" from "1." or "1.1")
+        var numMatch = System.Text.RegularExpressions.Regex.Match(numText, @"\d+");
+        if (!numMatch.Success) {
             return;
         }
+        string number = numMatch.Value;
 
         // Get heading text from intro/p
         var intro = paragraph.SelectSingleNode("akn:intro/akn:p", nsmgr);
@@ -159,14 +171,9 @@ class Helper : BaseHelper {
             return;
         }
 
-        string headingText = intro.InnerText?.Trim();
+        string headingText = ExtractHeadingText(intro, nsmgr);
         if (string.IsNullOrEmpty(headingText)) {
             return;
-        }
-
-        // Truncate long headings
-        if (headingText.Length > 100) {
-            headingText = headingText.Substring(0, 97) + "...";
         }
 
         // Generate and add eId attribute if not present
@@ -183,16 +190,7 @@ class Helper : BaseHelper {
             href = "#" + eId;
         }
 
-        var tocItem = xml.CreateElement("tocItem", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
-        tocItem.SetAttribute("href", href);
-        tocItem.SetAttribute("level", "2");
-        
-        var inlineHeading = xml.CreateElement("inline", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
-        inlineHeading.SetAttribute("name", "tocHeading");
-        inlineHeading.InnerText = $"{tocNumber}. {headingText}";
-        tocItem.AppendChild(inlineHeading);
-        
-        toc.AppendChild(tocItem);
+        AddTocItem(xml, toc, href, tocNumber, headingText);
     }
 
     /// <summary>
@@ -202,7 +200,7 @@ class Helper : BaseHelper {
         // Extract section number/eId
         string eId = section.GetAttribute("eId");
         var numElement = section.SelectSingleNode("akn:num", nsmgr);
-        
+
         if (numElement == null) {
             return;
         }
@@ -212,11 +210,12 @@ class Helper : BaseHelper {
             return;
         }
 
-        // Extract number (e.g., "1" from "1." or "<b>1.</b>")
-        string sectionNumber = System.Text.RegularExpressions.Regex.Replace(numText, @"[^\d]", "");
-        if (string.IsNullOrEmpty(sectionNumber)) {
+        // Extract first number only (e.g., "1" from "1." or "1.1")
+        var numMatch = System.Text.RegularExpressions.Regex.Match(numText, @"\d+");
+        if (!numMatch.Success) {
             return;
         }
+        string sectionNumber = numMatch.Value;
 
         // Get heading text
         var heading = section.SelectSingleNode("akn:heading", nsmgr);
@@ -229,10 +228,7 @@ class Helper : BaseHelper {
             return;
         }
 
-        // Truncate long headings
-        if (headingText.Length > 100) {
-            headingText = headingText.Substring(0, 97) + "...";
-        }
+        headingText = TruncateHeading(headingText);
 
         // Generate and add eId attribute if not present
         if (string.IsNullOrEmpty(eId)) {
@@ -248,16 +244,7 @@ class Helper : BaseHelper {
             href = "#" + eId;
         }
 
-        var tocItem = xml.CreateElement("tocItem", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
-        tocItem.SetAttribute("href", href);
-        tocItem.SetAttribute("level", "2");
-        
-        var inlineHeading = xml.CreateElement("inline", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
-        inlineHeading.SetAttribute("name", "tocHeading");
-        inlineHeading.InnerText = $"{tocNumber}. {headingText}";
-        tocItem.AppendChild(inlineHeading);
-        
-        toc.AppendChild(tocItem);
+        AddTocItem(xml, toc, href, tocNumber, headingText);
     }
 
     /// <summary>
@@ -279,6 +266,121 @@ class Helper : BaseHelper {
         
         // Default for all memorandum types
         return "The whole Explanatory Memorandum";
+    }
+
+    /// <summary>
+    /// Add a TOC item from a flat paragraph (has num and content but no intro/heading).
+    /// Extracts heading from first bold run or first sentence of first paragraph in content.
+    /// </summary>
+    private static void AddTocItemFromFlatParagraph(XmlDocument xml, XmlElement toc, XmlElement paragraph, string expressionUri, XmlNamespaceManager nsmgr, int tocNumber) {
+        var numElement = paragraph.SelectSingleNode("akn:num", nsmgr);
+        if (numElement == null) {
+            return;
+        }
+
+        string numText = numElement.InnerText?.Trim();
+        if (string.IsNullOrEmpty(numText)) {
+            return;
+        }
+
+        var numMatch = System.Text.RegularExpressions.Regex.Match(numText, @"\d+");
+        if (!numMatch.Success) {
+            return;
+        }
+        string number = numMatch.Value;
+
+        // Try to extract heading from content
+        var content = paragraph.SelectSingleNode("akn:content", nsmgr);
+        if (content == null) {
+            return;
+        }
+
+        var firstP = content.SelectSingleNode("akn:p", nsmgr);
+        if (firstP == null) {
+            return;
+        }
+
+        string headingText = ExtractHeadingText(firstP, nsmgr);
+        if (string.IsNullOrEmpty(headingText)) {
+            return;
+        }
+
+        // Generate and add eId attribute if not present
+        string eId = $"paragraph_{number}";
+        if (!paragraph.HasAttribute("eId")) {
+            paragraph.SetAttribute("eId", eId);
+        }
+
+        string href;
+        if (!string.IsNullOrEmpty(expressionUri)) {
+            href = $"{expressionUri}/paragraph/{number}";
+        } else {
+            href = "#" + eId;
+        }
+
+        AddTocItem(xml, toc, href, tocNumber, headingText);
+    }
+
+    /// <summary>
+    /// Extract heading text from a paragraph element.
+    /// Prefers first bold run; falls back to first sentence of full text.
+    /// </summary>
+    private static string ExtractHeadingText(XmlNode paragraph, XmlNamespaceManager nsmgr) {
+        // Strategy 1: First bold run (common for EM section titles)
+        var boldElement = paragraph.SelectSingleNode(".//akn:b", nsmgr);
+        if (boldElement != null) {
+            string boldText = boldElement.InnerText?.Trim();
+            if (!string.IsNullOrEmpty(boldText) && boldText.Length > 3) {
+                return TruncateHeading(boldText);
+            }
+        }
+
+        // Strategy 2: First sentence or full text of paragraph
+        string fullText = paragraph.InnerText?.Trim();
+        if (string.IsNullOrEmpty(fullText)) {
+            return null;
+        }
+
+        return TruncateHeading(fullText);
+    }
+
+    /// <summary>
+    /// Truncate heading text at word boundary if longer than 100 chars.
+    /// </summary>
+    private static string TruncateHeading(string text) {
+        if (string.IsNullOrEmpty(text)) return text;
+
+        // Normalize whitespace
+        text = System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ").Trim();
+
+        if (text.Length <= 100) {
+            return text;
+        }
+
+        // Truncate at last word boundary before position 97
+        int lastSpace = text.LastIndexOf(' ', 97);
+        if (lastSpace > 20) {
+            return text.Substring(0, lastSpace) + "...";
+        }
+
+        // Fallback: hard truncate
+        return text.Substring(0, 97) + "...";
+    }
+
+    /// <summary>
+    /// Create and append a tocItem element.
+    /// </summary>
+    private static void AddTocItem(XmlDocument xml, XmlElement toc, string href, int tocNumber, string headingText) {
+        var tocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
+        tocItem.SetAttribute("href", href);
+        tocItem.SetAttribute("level", "2");
+
+        var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
+        inlineHeading.SetAttribute("name", "tocHeading");
+        inlineHeading.InnerText = $"{tocNumber}. {headingText}";
+        tocItem.AppendChild(inlineHeading);
+
+        toc.AppendChild(tocItem);
     }
 
 }
