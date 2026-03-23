@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/7/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/7/notes" />
-          <FRBRdate date="2026-03-06" name="generated" />
+          <FRBRdate date="2026-03-23" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/7/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/7/notes/data.akn" />
-          <FRBRdate date="2026-03-06" name="transform" />
+          <FRBRdate date="2026-03-23" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,7 +29,7 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>1.5.1</uk:parser>
+        <uk:parser>1.6.1</uk:parser>
         <dc:modified>2025-08-01</dc:modified>
         <uk:legislation>http://www.legislation.gov.uk/id/ukpga/2020/7</uk:legislation>
         <uk:associatedID>http://www.legislation.gov.uk/id/ukpga/2020/7/notes</uk:associatedID>
@@ -48,6 +48,118 @@
     <mainBody>
       <toc>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes" level="1"><inline name="tocHeading">The whole Explanatory Note</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/1" level="2"><inline name="tocHeading">Overview of the Act</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/2" level="2"><inline name="tocHeading">Legal background</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/3" level="2"><inline name="tocHeading">Territorial extent and application</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/4" level="2"><inline name="tocHeading">Commentary on provisions of Act</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Part 1: Main Provisions</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 1: Meaning of “coronavirus” and related terminology</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 2 and Schedule 1: Emergency registration of nurses and other health and care professionals</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 3 and Schedule 2: Emergency arrangements concerning medical practitioners: Wales</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 4 and Schedule 3: Emergency arrangements concerning medical practitioners: Scotland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 5 and Schedule 4: Emergency registration of and extension of prescribing powers for pharm...</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 6 and Schedule 5: Emergency registration of social workers: England and Wales</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 7 and Schedule 6: Temporary registration of social workers: Scotland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 8 and Schedule 7: Emergency volunteering leave</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 9: Compensation for emergency volunteers</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 10 and Schedules 8, 9, 10 and 11: Temporary modification of mental health and mental capa...</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 11: Indemnity for health service activity: England and Wales</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 12: Indemnity for health service activity: Scotland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 13: Indemnity for health and social care activity: Northern Ireland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 14: NHS Continuing Healthcare assessments: England</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 15 and Schedule 12: Local authority care and support</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 16: Duty of local authority to assess needs: Scotland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 17: Section 16: further provision</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 18 and Schedule 13: Registration of deaths and still-births etc</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 19: Confirmatory medical certificate not required for cremations: England and Wales</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 20 and Schedule 14: Review of cause of death certificates and cremations: Scotland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 21: Modifications of requirements regarding medical certificates for cremations: Northern...</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 22: Appointment of temporary Judicial Commissioners</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 23: Time limits in relation to urgent warrants etc under Investigatory Powers Act</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 24: Extension of time limits for retention of fingerprints and DNA profiles</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 25: Power to require information relating to food supply chains</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 26: Authorities which may require information</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 27: Restrictions on use and disclosure of information</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 28 and Schedule 15: Enforcement of requirement to provide information</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 29: Meaning of “food supply chain” and related expressions</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 30: Suspension of requirement to hold inquest with jury: England and Wales</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 31: Suspension of requirement to hold inquest with jury: Northern Ireland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 32: Deaths in custody from natural illness: Northern Ireland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 33: Disapplication etc by Welsh Ministers of DBS provisions</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 34: Temporary disapplication of disclosure offences: Scotland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 35: Power to reclassify certain disclosure requests: Scotland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 36: Vaccination and immunisation: Scotland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 37 and Schedule 16: Temporary closure of educational institutions and childcare premises</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 38 and Schedule 17: Temporary continuity: education, training and childcare</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 39: Statutory sick pay: funding of employers’ liabilities</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 40: Statutory sick pay: power to disapply waiting period limitation</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 41: Statutory sick pay: modification of regulation making powers</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 42: Statutory sick pay: funding of employers’ liabilities: Northern Ireland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 43: Statutory sick pay: power to disapply waiting period limitation: Northern Ireland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 44: Statutory sick pay: modification of regulation making power: Northern Ireland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 45: NHS Pension Schemes: suspension of restrictions on return to work: England and Wales</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 46: NHS pension schemes: suspension of restrictions on return to work: Scotland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 47 Health and social care pension schemes: suspension of restrictions on return to work: ...</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 49 and Schedule 19: Health Protection Regulations: Scotland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 50 and Schedule 20: Power to suspend port operations</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 51 and Schedule 21: Powers relating to potentially infectious persons</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 52 and Schedule 22: Powers to issue directions relating to events, gatherings and premises</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 53 and Schedule 23: Expansion of availability of live links in criminal proceedings</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 54 and Schedule 24: Expansion of availability of live links in other criminal hearings</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 55 and Schedule 25: Public participation in proceedings conducted by video or audio</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 56 and Schedule 26: Live links in magistrates’ court appeals against requirements or rest...</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 57 and Schedule 27: Use of live links in legal proceedings: Northern Ireland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 58 and Schedule 28: Powers in relation to transportation, storage and disposal of dead bo...</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 59: Elections and referendums due to be held in England in period after 15 March 2020</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 60: Postponement of elections due to be held on 7 May 2020</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 61: Power to postpone certain other elections and referendums</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 62: Power to postpone a recall petition under the Recall of MPs Act 2015</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 63: Power to make supplementary etc provision</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 64: Northern Ireland: timing of the canvass and Assembly by-elections</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 65: Elections due to be held in Wales in period after 15 March 2020</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 66: Postponement of National Assembly for Wales elections for constituency vacancies</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 67: Power to postpone local authority elections in Wales for casual vacancies</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 68: Power to make supplementary etc provision</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 69: Postponement of Scottish Parliament elections for constituency vacancies</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 70: Postponement of local authority elections for casual vacancies</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 70: Postponement of local authority elections for casual vacancies</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 71: Signatures of Treasury Commissioners</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 72: Power under section 143 of the Social Security Administration Act 1992</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 73: Power under section 145 of the Social Security Administration Act 1992</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 74: Power under section 5 of the National Insurance Contributions Act 2014</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 75: Disapplication of limit under section 8 of the Industrial Development Act 1982</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 76: HMRC Functions</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 77: Up-rating of working tax credit etc</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 78: Local Authority Meetings</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 79: Extension of BID arrangements: England</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 80: Extension of BID arrangements: Northern Ireland</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 81 and Schedule 29: Residential tenancies in England and Wales: protection from eviction</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 82: Business tenancies in England and Wales: protection from forfeiture etc</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 83: Business tenancies in Northern Ireland: protection from forfeiture etc</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 84: Postponement of General Synod elections</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Part 2: Final Provisions</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 85: Interpretation</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 86: Financial provision</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 87: Commencement</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 88: Power to suspend and revive provisions of this Act</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 89: Expiry</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 90: Power to alter expiry date</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 91: Power to amend Act in consequence of amendments to subordinate legislation</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 92: Power to make consequential modifications</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 93: Procedure for certain regulations made by a Minister of the Crown</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 94: Procedure for certain regulations made by the Welsh Ministers</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 95: Procedure for certain regulations made by the Scottish Ministers</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 96: Procedure for certain orders made by a Northern Ireland department</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 97: Report by Secretary of State on status of non-devolved provisions of this Act</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 98: Six-monthly parliamentary review</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 99: Parliamentary consideration of status of non-devolved provisions of this Act</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 100: Extent</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 101: Extension to the Isle of Man</inline></tocItem>
+        <tocItem href="#section_4" level="3"><inline name="tocHeading">Section 102: Short title</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/5" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/6" level="2"><inline name="tocHeading">Annex A - Territorial extent and application</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/7" level="2"><inline name="tocHeading">Annex B - Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/7/notes/section/8" level="2"><inline name="tocHeading">Annex C - Progress of Bill Table</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -92,7 +204,7 @@
           </content>
         </subparagraph>
       </paragraph>
-      <section>
+      <section eId="section_1">
         <heading><b>Overview of the Act</b></heading>
         <paragraph>
           <num>1 </num>
@@ -1360,7 +1472,7 @@
           </content>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_2">
         <heading><b>Legal background</b></heading>
         <paragraph>
           <num>155 </num>
@@ -1369,7 +1481,7 @@
           </content>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_3">
         <heading><b>Territorial extent and application</b></heading>
         <paragraph>
           <num>156 </num>
@@ -1402,7 +1514,7 @@
           </content>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_4">
         <heading><b>Commentary on provisions of Act</b></heading>
         <level>
           <heading><b>Part 1: Main Provisions</b></heading>
@@ -5346,7 +5458,7 @@
           </level>
         </level>
       </section>
-      <section>
+      <section eId="section_5">
         <heading><b>Commencement</b></heading>
         <paragraph>
           <num>666 </num>
@@ -5355,7 +5467,7 @@
           </content>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_6">
         <heading><b>Annex A - Territorial extent and application</b></heading>
         <paragraph>
           <num>667 </num>
@@ -6834,7 +6946,7 @@
           </content>
         </level>
       </section>
-      <section>
+      <section eId="section_7">
         <heading><b>Annex B - Hansard References</b></heading>
         <paragraph>
           <num>668 </num>
@@ -6992,7 +7104,7 @@
           </content>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_8">
         <heading><b>Annex C - Progress of Bill Table</b></heading>
         <paragraph>
           <num>669 </num>

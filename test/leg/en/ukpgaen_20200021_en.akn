@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/21/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/21/notes" />
-          <FRBRdate date="2026-03-06" name="generated" />
+          <FRBRdate date="2026-03-23" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/21/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/21/notes/data.akn" />
-          <FRBRdate date="2026-03-06" name="transform" />
+          <FRBRdate date="2026-03-23" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,7 +29,7 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>1.5.1</uk:parser>
+        <uk:parser>1.6.1</uk:parser>
         <dc:modified>2025-08-01</dc:modified>
         <uk:legislation>http://www.legislation.gov.uk/id/ukpga/2020/21</uk:legislation>
         <uk:associatedID>http://www.legislation.gov.uk/id/ukpga/2020/21/notes</uk:associatedID>
@@ -48,6 +48,33 @@
     <mainBody>
       <toc>
         <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes" level="1"><inline name="tocHeading">The whole Explanatory Note</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes/section/1" level="2"><inline name="tocHeading">Overview of the Act</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes/section/2" level="2"><inline name="tocHeading">Policy background</inline></tocItem>
+        <tocItem href="#section_2" level="3"><inline name="tocHeading">Health and Harmony: the future of food, farming and the environment in a green Brexit</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes/section/3" level="2"><inline name="tocHeading">Legal background</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes/section/4" level="2"><inline name="tocHeading">Territorial extent and application</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes/section/5" level="2"><inline name="tocHeading">Commentary on provisions of Act</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Part 1: Financial Assistance</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Chapter 1: New Financial Assistance Powers</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Chapter 2: Direct Payments After EU Exit</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Part 2: Food and Agricultural Markets</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Chapter 1: Food Security</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Chapter 2: Intervention in Agricultural Markets</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Part 3: Transparency and Fairness in the Agri-Food Supply Chain</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Chapter 1: Collection and Sharing of Data</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Chapter 2: Fair Dealing with Agricultural Producers and Others in the Supply Chain</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Chapter 3: Producer Organisations</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Part 4: Matters Relating to Farming and the Countryside</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Part 5: Marketing Standards, Organic Products and Carcass Classification</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Part 6: WTO Agreement on Agriculture</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Part 7: Wales and Northern Ireland</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Part 8: General and Financial Provisions</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes/section/6" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes/section/7" level="2"><inline name="tocHeading">Related documents</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes/section/8" level="2"><inline name="tocHeading">Annex A - Territorial extent and application in the United Kingdom</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes/section/9" level="2"><inline name="tocHeading">Annex B - Hansard References</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes/section/10" level="2"><inline name="tocHeading">Annex C - Progress of Bill Table</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/21/notes/section/11" level="2"><inline name="tocHeading">Annex D - Glossary</inline></tocItem>
       </toc>
       <level>
         <content>
@@ -92,7 +119,7 @@
           </table>
         </content>
       </paragraph>
-      <section>
+      <section eId="section_1">
         <heading><b>Overview of the Act</b></heading>
         <paragraph>
           <num>1 </num>
@@ -209,7 +236,7 @@
           </subparagraph>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_2">
         <heading><b>Policy background</b></heading>
         <level>
           <content>
@@ -292,7 +319,7 @@
           </paragraph>
         </level>
       </section>
-      <section>
+      <section eId="section_3">
         <heading><b>Legal background</b></heading>
         <paragraph>
           <num>10 </num>
@@ -337,7 +364,7 @@
           </content>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_4">
         <heading><b>Territorial extent and application</b></heading>
         <paragraph>
           <num>13 </num>
@@ -358,7 +385,7 @@
           </content>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_5">
         <heading><b>Commentary on provisions of Act</b></heading>
         <level>
           <heading><b>Part 1: Financial Assistance</b></heading>
@@ -4301,7 +4328,7 @@
           </paragraph>
         </level>
       </section>
-      <section>
+      <section eId="section_6">
         <heading><b>Commencement</b></heading>
         <paragraph>
           <num>535 </num>
@@ -4370,7 +4397,7 @@
           </content>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_7">
         <heading><b>Related documents</b></heading>
         <paragraph>
           <num>539 </num>
@@ -4397,7 +4424,7 @@
           </subparagraph>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_8">
         <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
@@ -4950,7 +4977,7 @@
           </content>
         </level>
       </section>
-      <section>
+      <section eId="section_9">
         <heading><b>Annex B - Hansard References</b></heading>
         <paragraph>
           <num>540 </num>
@@ -5179,7 +5206,7 @@
           </content>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_10">
         <heading><b>Annex C - Progress of Bill Table</b></heading>
         <paragraph>
           <num>541 </num>
@@ -6510,7 +6537,7 @@
           </content>
         </paragraph>
       </section>
-      <section>
+      <section eId="section_11">
         <heading><b>Annex D - Glossary</b></heading>
         <level>
           <content>

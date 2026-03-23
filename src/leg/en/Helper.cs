@@ -82,23 +82,16 @@ class Helper : BaseHelper {
         wholeDocItem.AppendChild(wholeDocHeading);
         toc.AppendChild(wholeDocItem);
 
-        int tocNumber = 1;
+        // Walk direct children of mainBody in document order
+        int sectionCounter = 0;
+        foreach (XmlNode child in mainBody.ChildNodes) {
+            if (child is not XmlElement element) continue;
 
-        // Add paragraph entries (paragraphs with intro)
-        var paragraphsWithIntro = xml.SelectNodes("//akn:mainBody/akn:paragraph[akn:intro]", nsmgr);
-        if (paragraphsWithIntro != null && paragraphsWithIntro.Count > 0) {
-            foreach (XmlElement paragraph in paragraphsWithIntro) {
-                AddTocItemFromParagraph(xml, toc, paragraph, expressionUri, nsmgr, tocNumber);
-                tocNumber++;
-            }
-        }
-
-        // Add section entries (sections with headings)
-        var sectionsWithHeadings = xml.SelectNodes("//akn:mainBody/akn:section[akn:heading]", nsmgr);
-        if (sectionsWithHeadings != null && sectionsWithHeadings.Count > 0) {
-            foreach (XmlElement section in sectionsWithHeadings) {
-                AddTocItemFromSection(xml, toc, section, expressionUri, nsmgr, tocNumber);
-                tocNumber++;
+            if (element.LocalName == "section") {
+                sectionCounter++;
+                AddSectionToToc(xml, toc, element, expressionUri, nsmgr, sectionCounter);
+            } else if (element.LocalName == "paragraph") {
+                AddParagraphToToc(xml, toc, element, expressionUri, nsmgr);
             }
         }
 
@@ -112,7 +105,68 @@ class Helper : BaseHelper {
         }
     }
 
-    private static void AddTocItemFromParagraph(XmlDocument xml, XmlElement toc, XmlElement paragraph, string expressionUri, XmlNamespaceManager nsmgr, int tocNumber) {
+    private static void AddSectionToToc(XmlDocument xml, XmlElement toc, XmlElement section, string expressionUri, XmlNamespaceManager nsmgr, int sectionNumber) {
+        var heading = section.SelectSingleNode("akn:heading", nsmgr);
+        if (heading == null) return;
+
+        string headingText = heading.InnerText?.Trim();
+        if (string.IsNullOrEmpty(headingText)) return;
+
+        // Assign eId — use <num> if present, otherwise use sequential number
+        string eId = section.GetAttribute("eId");
+        if (string.IsNullOrEmpty(eId)) {
+            var numElement = section.SelectSingleNode("akn:num", nsmgr);
+            if (numElement != null) {
+                string num = Regex.Replace(numElement.InnerText?.Trim() ?? "", @"[^\d]", "");
+                if (!string.IsNullOrEmpty(num))
+                    eId = $"section_{num}";
+            }
+            if (string.IsNullOrEmpty(eId))
+                eId = $"section_{sectionNumber}";
+            section.SetAttribute("eId", eId);
+        }
+
+        if (headingText.Length > 100)
+            headingText = headingText.Substring(0, 97) + "...";
+
+        string href = !string.IsNullOrEmpty(expressionUri)
+            ? $"{expressionUri}/section/{sectionNumber}"
+            : "#" + eId;
+
+        AddTocItem(xml, toc, href, headingText, "2");
+
+        // Add nested level headings (e.g. "Commentary on provisions" sub-sections)
+        var nestedLevels = section.SelectNodes("akn:level[akn:heading]", nsmgr);
+        if (nestedLevels != null) {
+            foreach (XmlElement level in nestedLevels) {
+                AddLevelToToc(xml, toc, level, expressionUri, nsmgr, eId);
+            }
+        }
+    }
+
+    private static void AddLevelToToc(XmlDocument xml, XmlElement toc, XmlElement level, string expressionUri, XmlNamespaceManager nsmgr, string parentEId) {
+        var heading = level.SelectSingleNode("akn:heading", nsmgr);
+        if (heading == null) return;
+
+        string headingText = heading.InnerText?.Trim();
+        if (string.IsNullOrEmpty(headingText)) return;
+
+        if (headingText.Length > 100)
+            headingText = headingText.Substring(0, 97) + "...";
+
+        string href = "#" + parentEId;
+        AddTocItem(xml, toc, href, headingText, "3");
+
+        // Recurse into nested levels (e.g. "Section 1: ..." under "Part 1")
+        var childLevels = level.SelectNodes("akn:level[akn:heading]", nsmgr);
+        if (childLevels != null) {
+            foreach (XmlElement child in childLevels) {
+                AddLevelToToc(xml, toc, child, expressionUri, nsmgr, parentEId);
+            }
+        }
+    }
+
+    private static void AddParagraphToToc(XmlDocument xml, XmlElement toc, XmlElement paragraph, string expressionUri, XmlNamespaceManager nsmgr) {
         var numElement = paragraph.SelectSingleNode("akn:num", nsmgr);
         if (numElement == null) return;
 
@@ -139,51 +193,16 @@ class Helper : BaseHelper {
             ? $"{expressionUri}/paragraph/{number}"
             : "#" + eId;
 
-        var tocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
-        tocItem.SetAttribute("href", href);
-        tocItem.SetAttribute("level", "2");
-        var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
-        inlineHeading.SetAttribute("name", "tocHeading");
-        inlineHeading.InnerText = $"{tocNumber}. {headingText}";
-        tocItem.AppendChild(inlineHeading);
-        toc.AppendChild(tocItem);
+        AddTocItem(xml, toc, href, headingText, "2");
     }
 
-    private static void AddTocItemFromSection(XmlDocument xml, XmlElement toc, XmlElement section, string expressionUri, XmlNamespaceManager nsmgr, int tocNumber) {
-        string eId = section.GetAttribute("eId");
-        var numElement = section.SelectSingleNode("akn:num", nsmgr);
-        if (numElement == null) return;
-
-        string numText = numElement.InnerText?.Trim();
-        if (string.IsNullOrEmpty(numText)) return;
-
-        string sectionNumber = Regex.Replace(numText, @"[^\d]", "");
-        if (string.IsNullOrEmpty(sectionNumber)) return;
-
-        var heading = section.SelectSingleNode("akn:heading", nsmgr);
-        if (heading == null) return;
-
-        string headingText = heading.InnerText?.Trim();
-        if (string.IsNullOrEmpty(headingText)) return;
-
-        if (headingText.Length > 100)
-            headingText = headingText.Substring(0, 97) + "...";
-
-        if (string.IsNullOrEmpty(eId)) {
-            eId = $"section_{sectionNumber}";
-            section.SetAttribute("eId", eId);
-        }
-
-        string href = !string.IsNullOrEmpty(expressionUri)
-            ? $"{expressionUri}/section/{sectionNumber}"
-            : "#" + eId;
-
+    private static void AddTocItem(XmlDocument xml, XmlElement toc, string href, string text, string level) {
         var tocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
         tocItem.SetAttribute("href", href);
-        tocItem.SetAttribute("level", "2");
+        tocItem.SetAttribute("level", level);
         var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
         inlineHeading.SetAttribute("name", "tocHeading");
-        inlineHeading.InnerText = $"{tocNumber}. {headingText}";
+        inlineHeading.InnerText = text;
         tocItem.AppendChild(inlineHeading);
         toc.AppendChild(tocItem);
     }
