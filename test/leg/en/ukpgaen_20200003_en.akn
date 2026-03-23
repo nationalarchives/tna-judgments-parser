@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/3/notes" />
+          <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/3/notes" />
+          <FRBRdate date="2026-03-23" name="generated" />
+          <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
+          <FRBRcountry value="GB-UKM" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/3/notes" />
+          <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/3/notes" />
+          <FRBRdate date="2020-03-03T15:39:00Z" name="lastModified" />
+          <FRBRauthor href="#" />
+          <FRBRlanguage language="en" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/3/notes/data.akn" />
+          <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/3/notes/data.akn" />
+          <FRBRdate date="2026-03-23" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/akn+xml" />
+        </FRBRManifestation>
+      </identification>
+      <references source="#tna">
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+      </references>
+      <proprietary source="#">
+        <uk:parser>1.6.1</uk:parser>
+        <dc:modified>2020-03-03</dc:modified>
+        <uk:legislation>http://www.legislation.gov.uk/id/ukpga/2020/3</uk:legislation>
+        <uk:associatedID>http://www.legislation.gov.uk/id/ukpga/2020/3/notes</uk:associatedID>
+        <uk:documentMainType>UnitedKingdomExplanatoryNotes</uk:documentMainType>
+        <uk:date>2020-05-11</uk:date>
+        <uk:legislationClass>UnitedKingdomPublicGeneralAct</uk:legislationClass>
+        <uk:legislationYear>2020</uk:legislationYear>
+        <uk:legislationNumber>3</uk:legislationNumber>
+        <uk:hash>55a3ed8c2449ce6cb71fef5198e4a7395c52f4673bcf379e9e1c67565f1ffc3e</uk:hash>
+      </proprietary>
+    </meta>
+    <preface>
+      <p><b>TERRORIST OFFENDERS (RESTRICTION OF EARLY RELEASE) ACT 2020</b></p>
+      <p>EXPLANATORY NOTES</p>
+    </preface>
+    <mainBody>
+      <toc>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/3/notes" level="1"><inline name="tocHeading">The whole Explanatory Note</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/3/notes/section/1" level="2"><inline name="tocHeading">Overview of the Act</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/3/notes/section/2" level="2"><inline name="tocHeading">Policy background</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/3/notes/section/3" level="2"><inline name="tocHeading">Legal background</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/3/notes/section/4" level="2"><inline name="tocHeading">Territorial extent and application</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/3/notes/section/5" level="2"><inline name="tocHeading">Commentary on provisions of Act</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Section 1: Eligibility for release on licence of terrorist prisoners: England and Wales</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Section 2: Disapplication of existing release provisions: England and Wales</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Section 3: Eligibility for release on licence of terrorist prisoners: Scotland</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Section 4: Disapplication of existing release provisions: Scotland</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Section 5: Setting of licence conditions for terrorist prisoners: England and Wales</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Section 6: Consequential amendments relating to transitional cases: England and Wales</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Section 7: Other consequential amendments: England and Wales</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Section 8: Transitional provision for terrorist prisoners subject to supervised release orders: S...</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Section 9: Consequential amendments: Scotland</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Section 10: Extent, commencement, transitory provision and short title</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Schedule 1: Terrorist Offences carrying restricted eligibility for release on licence</inline></tocItem>
+        <tocItem href="#section_5" level="3"><inline name="tocHeading">Schedule 2: Terrorist offences carrying restricted eligibility for release on licence: Scotland</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/3/notes/section/6" level="2"><inline name="tocHeading">Commencement</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/3/notes/section/7" level="2"><inline name="tocHeading">Annex A - Territorial extent and application in the United Kingdom</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukpga/2020/3/notes/section/8" level="2"><inline name="tocHeading">Annex B – Hansard References</inline></tocItem>
+      </toc>
+      <level>
+        <content>
+          <p><b>What these notes do</b></p>
+        </content>
+      </level>
+      <level>
+        <content>
+          <p>These Explanatory Notes relate to the Terrorist Offenders (Restriction of Early Release) Act 2020 which received Royal Assent on 27 February 2020 (c. 3).</p>
+        </content>
+      </level>
+      <paragraph>
+        <num>•</num>
+        <content>
+          <p>These Explanatory Notes have been produced by the Ministry of Justice in order to assist the reader in understanding the Act. They do not form part of the Act and have not been endorsed by Parliament.</p>
+        </content>
+      </paragraph>
+      <paragraph>
+        <num>•</num>
+        <content>
+          <p>These Explanatory Notes explain what each part of the Act will mean in practice; provide background information on the development of policy; and provide additional information on how the Act will affect existing legislation in this area. </p>
+        </content>
+      </paragraph>
+      <paragraph>
+        <num>•</num>
+        <content>
+          <p>These Explanatory Notes might best be read alongside the Act. They are not, and are not intended to be, a comprehensive description of the Act.</p>
+        </content>
+      </paragraph>
+      <paragraph>
+        <content>
+          <p><b>Table of Contents</b></p>
+          <table uk:widths="3.15in 3.15in">
+            <tr>
+              <td>
+                <p><b>Subject</b></p>
+              </td>
+              <td>
+                <p><b>Page of these Notes</b></p>
+              </td>
+            </tr>
+          </table>
+        </content>
+      </paragraph>
+      <section eId="section_1">
+        <heading><b>Overview of the Act</b></heading>
+        <paragraph>
+          <num>1.</num>
+          <content>
+            <p>The purpose of the Terrorist Offenders (Restriction of Early Release) Act 2020 is to ensure that terrorist offenders are not automatically released before the end of their custodial term without agreement of the Parole Board. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>2.</num>
+          <content>
+            <p>The provisions in the Act change the release point for offenders who have committed a relevant terrorism offence and refer those offenders to the Parole Board at the two-thirds point of the sentence. The changes will apply to offenders currently serving a custodial sentence for terrorist offences, as well as to future terrorist offenders who receive a standard determinate sentence or (in England and Wales) sentence for offenders of particular concern (SOPC). This will include terrorist offenders aged under 18 who have been, or in the future will be, sentenced under section 91 of the Powers of Criminal Courts Sentencing Act 2000 (which is a fixed term sentence and applies to offences where an adult over 21 could receive a sentence of 14 years or more) or children detained in solemn proceedings under section 208 of the Criminal Procedure (Scotland) Act 1995 (“the 1995 Act”) in Scotland. The Act does not retrospectively alter a serving offender’s sentence as imposed by the court, or alter the maximum penalties for offences. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_2">
+        <heading><b>Policy background</b></heading>
+        <paragraph>
+          <num>3.</num>
+          <content>
+            <p>Terrorism offenders can receive a variety of sentences depending on the offence committed, and dangerousness. Many receive a determinate sentence, where prisoners are entitled to be released on licence once they have served one half of their sentence. They continue to serve their sentence in the community on licence until the expiry of the sentence. Others in England and Wales receive a SOPC, under which prisoners may be considered for release by the Parole Board once they have served one half of the custodial element of their sentence. In England and Wales, those assessed as dangerous may receive an extended determinate sentence (EDS) under which they may be considered for release by the Parole Board once they have served two-thirds of the custodial element of their sentence. In Scotland, offenders receiving Extended Sentences may be considered for release after serving half of the custodial element of their sentence. Extended sentences and SOPCs have a custodial term and a separate extended licence set by the court as part of the sentencing exercise. There are also some former release provisions that still apply to older sentences from the Criminal Justice Act 1991 and older types of extended sentences imposed before the current EDS regime came into force which retain previous release arrangements. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>4.</num>
+          <content>
+            <p>Release arrangements in Scotland changed in 2016; long-term sentences imposed before that point resulted in automatic release at the two thirds point if the prisoner had not been released earlier on a Parole Board recommendation. Since that change, those serving extended sentences have remained eligible for release from the halfway point but without automatic release before the end of the custodial term.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>5.</num>
+          <intro>
+            <p>Following the events at Fishmongers’ Hall on 30 November 2019, the Government announced a new approach to the sentencing and management of terrorist offenders.<authorialNote marker="1"><p> <a href="https://www.gov.uk/government/news/tougher-sentencing-and-monitoring-in-government-overhaul-of-terrorism-response"><u>https://www.gov.uk/government/news/tougher-sentencing-and-monitoring-in-government-overhaul-of-terrorism-response</u></a> </p></authorialNote> This included:</p>
+          </intro>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Introducing longer sentences for the most serious dangerous terrorist offenders and ending early release for other serious dangerous terrorist offenders;</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>An overhaul of prisons and probation, to include tougher monitoring conditions and doubling of counter-terrorism probation officers;</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Counter-Terrorism Police funding to be increased by £90 million for 2020/21; and </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>A review of support for victims of terrorism, including an immediate £500,000 to the Victims of Terrorism Unit.</p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>6.</num>
+          <content>
+            <p>The Government is also launching an independent review of the way different agencies, including police, probation service, and the security services investigate, monitor and manage terrorist offenders – called Multi Agency Public Protection Arrangements (MAPPA).</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>7.</num>
+          <content>
+            <p>Many of these measures are underway, and those focused on ensuring the most serious and dangerous terrorist offenders spend longer in prison, with strengthened licence periods, will be included in a new Counter-Terrorism (Sentencing and Release) Bill.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>8.</num>
+          <content>
+            <p>In January, Parliament approved the Release of Prisoners (Alteration of Relevant Proportion of Sentence) Order 2020 which amends in England and Wales the automatic release point from half-way to two-thirds of the sentence for those convicted of a relevant violent or sexual offence (defined within the Order as an offence listed in Part 1 or 2 of Schedule 15 to the Criminal Justice Act 2003 for which the maximum penalty is life) and sentenced to a standard determinate sentence of 7 years or more. This will come into effect on 1 April 2020 and will apply to persons sentenced on or after that date. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_3">
+        <heading><b>Legal background</b></heading>
+        <paragraph>
+          <num>9.</num>
+          <content>
+            <p>Sentences of imprisonment are generally served part in prison and part in the community. Under current legislation, prisoners in England and Wales must be released in accordance with the provisions contained in the Criminal Justice Act 2003 (“the 2003 Act”) and the legacy release provisions of the Criminal Justice Act 1991 which are restated in Schedule 20B of the 2003 Act. In Scotland, prisoners must be released in accordance with the terms of the 1993 Act.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>10.</num>
+          <intro>
+            <p>The following fixed-term sentences (which are explained further below) attract automatic release or a right of consideration for release by the Parole Board at the halfway or two-thirds point:</p>
+          </intro>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Standard Determinate Sentences (SDS) where the prisoner is released automatically at the halfway point on licence.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>In Scotland short-term custodial sentences (under four years) which have automatic release at the halfway point and long-term sentences (four years and above) which have discretionary release from the halfway point.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Sentence for Offenders of Particular Concern (SOPC) (England and Wales only) where the prisoner is eligible to be considered for release by the Parole Board at the halfway point of the custodial term.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Extended Determinate Sentences (EDS) where, as initially enacted in 2012, some prisoners were subject to automatic release at the two-thirds point of the custodial term (since 2015, the EDS was amended to provide for discretionary release by the Parole Board between two-thirds and end points for all EDSs imposed). </p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Extended Sentences (in Scotland) where the prisoner is eligible to be considered for release by the Parole Board at the halfway point; for such sentences imposed before 1 February 2016, the prisoner was entitled to automatic release at the two-thirds point of the custodial term.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Extended Public Protection sentences (EPPs): (England and Wales only) which were the type of extended sentences that applied before the EDS was introduced in 2012; in the later version of the EPP (imposed between 2008 and 2012), release is automatic at the halfway point of the custodial term, and in the earlier version (pre-2008) release was via the Parole Board at that point.</p>
+            </content>
+          </subparagraph>
+          <subparagraph>
+            <num>•</num>
+            <content>
+              <p>Discretionary Conditional Release (DCR) sentences (England and Wales only) which applied under the Criminal Justice Act 1991 where release is via the Parole Board at the halfway point and automatic at the two-thirds point.   </p>
+            </content>
+          </subparagraph>
+        </paragraph>
+        <paragraph>
+          <num>11.</num>
+          <content>
+            <p>In England and Wales, section 244 of the 2003 Act places a duty upon the Secretary of State to release those serving SDS on licence once they have served half of their sentence. This is known as automatic release. Automatic release historically applied to short term prisoners (those with sentences of less than 4 years) under section 33(2) of the Criminal Justice Act 1991.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>12.</num>
+          <content>
+            <p>In Scotland, section 1 of the 1993 Act requires the Scottish Ministers to release a short-term prisoner automatically at the halfway point of their sentence. For long-term prisoners serving standard determinate sentences, they are eligible for discretionary release at the halfway point, and the duty to automatically release occurs 6 months before the end of the sentence if the prisoner has not been released earlier. Prior to 1 February 2016, such prisoners were also eligible for release at the halfway point, but automatically released at the two-thirds point.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>13.</num>
+          <content>
+            <p>The Criminal Justice and Courts Act 2015 introduced the SOPC in England and Wales, which applies automatically to offenders convicted of a specific sexual or terrorist offence (as listed in Schedule 18A of the 2003 Act), in circumstances where the courts decide that neither the seriousness threshold for applying a life sentence, nor the dangerousness threshold for applying an EDS, have been met. Under section 244A of the 2003 Act, offenders serving these sentences must be released on licence at the end of their custodial term, but the Parole Board has the discretion to release from the halfway point if satisfied that the offender’s detention is no longer necessary for the protection of the public. As part of the SOPC, a further 12-month licence period is imposed to follow the custodial term, to manage the assessed risk the offender poses.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>14.</num>
+          <content>
+            <p>The 2003 Act created new extended sentences (EPP) imposed under sections 227 and 228 of the 2003 Act (since replaced by the EDS). EPPs are subject to the release arrangements of section 247 of the 2003 Act. As enacted, release was subject to Parole Board discretion at the halfway point of the custodial term. In 2008, the Criminal Justice and Immigration Act 2008 altered that mechanism so that instead of referral to the Board at halfway point, release would be automatic at the halfway point. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>15.</num>
+          <content>
+            <p>The EDS, introduced by the Legal Aid, Sentencing and Punishment of Offenders Act 2012, is an extended sentence imposed under sections 226A or 226B of the 2003 Act. Like the EPP, the Court imposes a custodial term commensurate with the seriousness of the offence for which the offender has been convicted and an extended preventative licence. The Court may impose an EDS where an offender has committed a specified violent, sexual or terrorist offence (as listed in Schedule 15 to the 2003 Act) and the courts find the offender to be ‘dangerous’. The Court sets a custodial term and an extended licence period. Under the EDS, an offender must be released at the end of their custodial term, but the Parole Board has the discretion to release from the two-thirds point if satisfied that the offender’s detention is no longer necessary for the protection of the public. As enacted, and prior to 13 April 2015, if the custodial term of an EDS was for a period of less than 10 years, and the offence was not listed in Schedule 15B to the 2003 Act, release was automatic at the two-thirds point – with no Parole Board consideration. This was amended by the Criminal Justice and Court Act 2015 which provided for Parole Board consideration of the release of all EDS sentenced offenders sentenced after that Act came into force. Fixed-term recall does not apply to the EDS sentence, so even when recalled EDS prisoners cannot be re-released automatically.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>16.</num>
+          <content>
+            <p>In Scotland, extended sentences were introduced under the Crime and Disorder Act 1998 which inserted section 210A into the 1995 Act. Under section 210A the Court may impose an extended sentence if it is intending to pass a determinate sentence in relation to a sexual offence of any length, or a violent or terrorism offence of four years or more, and considers that the terms of a standard sentence would not be adequate for the purpose of protecting the public from serious harm from the offender. An extended sentence is made up of a custodial term and an extension period set by the Court (up to 10 years). Prisoners subject to an extended sentence are eligible for release by the Scottish Ministers on a recommendation from the Parole Board at the halfway point. Before commencement of the Prisoners (Control of Release) Scotland Act 2015 on 1 February 2016 prisoners were entitled to automatic release at the two-thirds point; since that time, automatic release is at the end of the custodial term.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>17.</num>
+          <content>
+            <p>Schedule 20B of the 2003 Act contains release provisions which continue to apply to those serving sentences imposed under the Criminal Justice Act 1967 and the Criminal Justice Act 1991. Offenders sentenced under the 1967 and 1991 Acts are subject to discretionary conditional release. Offenders sentenced under these provisions before 3 December 2012 for offences committed before 4 April 2005, who received a sentence of 4 years or more for an offence listed in Schedule 15 to the 2003 Act, are subject to automatic release on licence at the two-thirds point, if not released by the Parole Board at the halfway point. The licence expires at the three-quarters point, meaning the offender is no longer subject to conditions and cannot be recalled to custody after that point. Schedule 20B also includes the release provisions for those who continue to serve the now repealed EPP sentences. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_4">
+        <heading><b>Territorial extent and application</b></heading>
+        <paragraph>
+          <num>18.</num>
+          <content>
+            <p>Section 10 sets out the territorial extent of the Act (the jurisdiction of which the law forms a part). The provisions of the Act extend and apply (where the law produces a practical effect) to England, Wales and Scotland. Counter-terrorism is a reserved matter, although prisons and sentencing (including release provisions) are devolved to Scotland and Northern Ireland. The Act will apply to those convicted of relevant terrorist offences in Scotland, and Northern Ireland and who are subsequently transferred into the jurisdiction of England and Wales, and to those convicted of relevant terrorist offences in England and Wales or Northern Ireland and who are subsequently transferred into the jurisdiction of Scotland.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>19.</num>
+          <content>
+            <p>The Act relates to reserved matters in Scotland and excepted matters in Northern Ireland, as it contains “special provisions for dealing with terrorism”: see paragraph B8 of Schedule 5 to the Scotland Act 1998, and paragraph 17 of Schedule 2 to the Northern Ireland Act 1998.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>20.</num>
+          <content>
+            <p>There is a convention that Westminster will not normally legislate with regard to matters that are within the legislative competence of the Scottish Parliament, the National Assembly for Wales or the Northern Ireland Assembly without the consent of the legislature concerned. The Government is of the view that a Legislative Consent Motion is required from the Scottish Parliament on the basis that the Act alters the executive functions of the Scottish Ministers in relation to release of prisoners.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num>21.</num>
+          <content>
+            <p>See the table in Annex A for a summary of the position regarding territorial extent and application in the United Kingdom. </p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_5">
+        <heading><b>Commentary on provisions of Act</b></heading>
+        <level>
+          <heading><b>Section 1: Eligibility for release on licence of terrorist prisoners: England and Wales</b></heading>
+          <paragraph>
+            <num>22.</num>
+            <content>
+              <p>The release on licence of offenders serving fixed-term sentences is governed by provisions contained in Chapter 6 of Part 12 of the Criminal Justice Act 2003. Section 1(2) creates a new release provision, section 247A, applying to all relevant terrorist offenders, standardising their first eligible release point to the two-thirds point of their sentence (or the custodial element of it in the case of an SOPC or extended sentence), and referring all such offenders to the Parole Board for consideration of whether they are safe to release after that point. While section 247A will cover all relevant terrorist offenders, including who those who are serving an extended sentence, the Act does not change the release arrangements for those terrorist offenders; it aligns them.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>23.</num>
+            <content>
+              <p>New section 247A(1) applies the new release provision to relevant terrorist offenders serving a fixed term sentence. New section 247A(2) provides that a relevant offence is a counter-terrorism offence specified in the new Schedule 19ZA, or any other offence specified in that Schedule where the court found a terrorist connection under section 30 or section 31 (for Scotland) or section 32 (for armed services offences) of the Counter-Terrorism Act 2008, whilst also making it clear that the changes apply to both existing and future sentences during the custodial period. It will not apply to those already released.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>24.</num>
+            <content>
+              <p>New section 247A(3) places a duty on the Secretary of State to refer relevant offenders to the Parole Board and specifies that reviews must take place at the two-thirds point (for extended sentences and SOPCs this is two-thirds of the custodial part of the sentence imposed by the court), and then at least every two years where the Board’s decision is not to release the offender. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>25.</num>
+            <content>
+              <p>New section 247A(4) requires that the prisoner may only be released from the two-thirds point of the custodial period, and only once the Parole Board has directed it. New section 247A(5) makes it clear this can only take place once referral has been made and the Board has determined that the prisoner is safe to be released. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>26.</num>
+            <content>
+              <p>For adult and youth offenders serving an extended determinate sentence, an extended sentence for public protection or a SOPC, new section 247A(6) and (7) place a duty on the Secretary of State to release these offenders on licence at the end of their custodial term if discretionary release is not directed by the Parole Board before that point.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>27.</num>
+            <content>
+              <p>New section 247A(8) contains definitions of the relevant periods. New section 247A(8)(c) ensures that the new release requirement for the relevant sentence is carried through and applied when the prisoner is also serving another sentence, whether concurrently or consecutively. New section 247A(9) provides for relevant offenders who have already begun their parole review process before commencement of the Act, bringing them into the scope of the provisions for subsequent referrals to the Board. New section 247A(10) makes it clear that those offenders who have already received a release direction from the Board, who remain in prison for reasons such as awaiting a place in an Approved Premises, are unaffected by the provisions of the Act. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>28.</num>
+            <content>
+              <p>Subsection (3) of section 1 inserts Schedule 19ZA to the 2003 Act. Schedule 19ZA lists the terrorist and terrorist connection offences which the new provisions apply to. </p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><b>Section 2: Disapplication of existing release provisions: England and Wales</b></heading>
+          <paragraph>
+            <num>29.</num>
+            <content>
+              <p>This section makes changes to existing legislation to ensure that other provisions function as they should, where they rely on reference to the release provisions in Chapter 6 of Part 12 of the 2003 Act.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>30.</num>
+            <content>
+              <p>Subsections (2), (3), (4), (6) and (7) disapply the current release provision regime for those terrorist prisoners who will now be released under section 247A. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>31.</num>
+            <content>
+              <p>Subsection (5) excludes such terrorist prisoners from being released early on Home Detention Curfew. </p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><b>Section 3: Eligibility for release on licence of terrorist prisoners: Scotland</b></heading>
+          <paragraph>
+            <num>32.</num>
+            <content>
+              <p>Section 3 sets the same parameters for release of terrorist offenders in Scotland, via amendment to the Criminal Proceedings (Scotland) Act 1993. For specified terrorist offences it places a duty on the Scottish Ministers to refer offenders to the Parole Board from the two-thirds point of their sentence.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>33.</num>
+            <content>
+              <p>Subsection (2) inserts a new section 1AB into the 1993 Act, setting out that where a prisoner (other than one serving a life sentence) is serving a sentence in respect of terrorist and terrorist-related offences set out in new Schedule 1A (inserted by subsection (3)), the Scottish Ministers must refer them to the Parole Board from the two-thirds point of the sentence or, where they have previously been referred, no later than two years following the last such reference.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><b>Section 4: Disapplication of existing release provisions: Scotland</b></heading>
+          <paragraph>
+            <num>34.</num>
+            <content>
+              <p>Section 4 makes changes to other provisions in the 1993 Act to disapply various existing release provisions in Scottish law which apply to prisoners who will be released under section 1AB and which would otherwise result in automatic release.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><b>Section 5: Setting of licence conditions for terrorist prisoners: England and Wales</b></heading>
+          <paragraph>
+            <num>35.</num>
+            <content>
+              <p>The effect of section 5 is to transfer responsibility for setting licence conditions to the Secretary of State when the automatic release point is reached at the end of the custodial term of a SOPC or extended sentence for a terrorist offender in England and Wales, or if the terrorist offender is re-released following recall to prison. </p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><b>Section 6: Consequential amendments relating to transitional cases: England and Wales</b></heading>
+          <paragraph>
+            <num>36.</num>
+            <content>
+              <p>Section 6 amends the transitional provisions of Schedule 20B to the Criminal Justice Act 2003. Schedule 20B preserves applicable release provisions for those sentences which have been repealed, but still apply to prisoners serving their sentences. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>37.</num>
+            <content>
+              <p>Paragraphs 5 and 6 of Schedule 20B save the Parole Board discretionary release point at halfway and provide for automatic release at the two-thirds point of the sentence. The amendments in subsections (2) and (3) of section 6 carve out those terrorist prisoners now subject to release under section 247A so that paragraphs 5 and 6 of Schedule 20B no longer apply to those prisoners and they will be released in accordance with the new section 247A.  </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>38.</num>
+            <content>
+              <p>Subsection (2)(b) reframes the terms used in extended sentences to describe the custodial part of the sentence to apply for this cohort of offenders consistently with the rest of section 247A. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>39.</num>
+            <content>
+              <p>Subsections (4) and (5) preserve the current licence arrangements for those previously subject to the release arrangements of paragraphs 5 and 6 of Schedule 20B, but who now will be released under section 247A and possibly at a point after the licence would have ended, so that the licence expires at the three-quarter point, as now.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>40.</num>
+            <content>
+              <p>Subsection (6) ensures that for offenders serving an extended sentence under section 85 of the Powers of the Criminal Courts Sentencing Act 2000, the full extended licence period will be served if a prisoner is released under section 247A after the three-quarter point of the sentence. </p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><b>Section 7: Other consequential amendments: England and Wales</b></heading>
+          <paragraph>
+            <num>41.</num>
+            <content>
+              <p>Subsection (1) preserves the two-thirds release point and Parole Board referral for offenders serving sentences subject to release under section 247A at the same time as a youth detention and training order.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>42.</num>
+            <content>
+              <p>Subsections (3) and (4) exclude this cohort of terrorist offenders from the post-sentence supervision regime.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>43.</num>
+            <content>
+              <p>Subsection (5) excludes this cohort of prisoners from the early removal scheme for foreign national offenders.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>44.</num>
+            <content>
+              <p>Subsection (6) ensures an offender who has already been removed from the UK for deportation purposes who would have fallen into scope of section 247A if they had not been removed is subject to new section 247A provision if they return before the end of the sentence.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>45.</num>
+            <content>
+              <p>Subsection (7) ensures that where a prisoner is serving multiple sentences consecutively, the two-thirds point referral to the Parole Board is preserved for sentences subject to section 247A release.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>46.</num>
+            <content>
+              <p>Subsection (8) re-establishes the definition of “requisite custodial period” for this cohort of offenders in the Interpretation provision for Chapter 6 of the 2003 Act.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>47.</num>
+            <content>
+              <p>Subsection (9) adds section 247A to section 128 of the Legal Aid, Sentencing and Punishment of Offenders Act 2012 which allows for all parole release test provisions in Chapter 6 of Part 12 of the 2003 Act to be altered by secondary legislation.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><b>Section 8: Transitional provision for terrorist prisoners subject to supervised release orders: Scotland</b></heading>
+          <paragraph>
+            <num>48.</num>
+            <content>
+              <p>This section provides for the situation where a Court has imposed a Supervised Release Order (SRO) under section 209 of the 1995 Act on a prisoner currently serving a sentence for terrorist offence. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>49.</num>
+            <content>
+              <p>Where a terrorist offender is currently due to serve such an order on release, subsection (2) provides that, if the offender is released only at the end of the sentence, the SRO will be revoked. Under subsections (3) and (4) if the prisoner is released before the end of their sentence, the SRO will come into effect upon release but not extend beyond the end of the custodial sentence in line with section 209(7) of the 1995 Act.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><b>Section 9: Consequential amendments: Scotland</b></heading>
+          <paragraph>
+            <num>50.</num>
+            <content>
+              <p>Section 9 makes consequential provision so that the licence period of a short-term prisoner released under new section 1AB lasts until the end of their sentence.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><b>Section 10: Extent, commencement, transitory provision and short title</b></heading>
+          <paragraph>
+            <num>51.</num>
+            <content>
+              <p>Subsections (1) to (3) of section 10 set out the territorial extent of the Act. </p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>52.</num>
+            <content>
+              <p>Subsection (4) sets out that the Act comes into force upon Royal Assent. Subsection (5) clarifies that any references to paragraphs of Schedule 4 to the Space Industry Act 2018 are not to come into force until those provisions do.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><b>Schedule 1: Terrorist Offences carrying restricted eligibility for release on licence</b></heading>
+          <paragraph>
+            <num>53.</num>
+            <content>
+              <p>Schedule 1 inserts Schedule 19ZA into the 2003 Act. New Schedule 19ZA lists the offences which identify an offender as a “terrorist offender”, thereby bringing them into the provisions of the Act. Part 1 lists the relevant offences under counter-terrorism legislation, in the Terrorism Act 2000, the Anti-Terrorism, Crime and Security Act 2001, the Terrorism Act 2006, the Counter-Terrorism Act 2008, the Terrorism Prevention and Investigation Measures Act 2011, and the Counter-Terrorism and Security Act 2015. Paragraph 7 expands paragraphs 1 to 6 offences to include attempt, conspiracy, aiding and abetting etc, of those offences. Paragraph 8 includes equivalent historic terrorist offences.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>54.</num>
+            <content>
+              <p>Part 2 lists relevant offences that may be considered to have a terrorist connection under section 30 or 32 of the Counter-Terrorism Act 2008.</p>
+            </content>
+          </paragraph>
+        </level>
+        <level>
+          <heading><b>Schedule 2: Terrorist offences carrying restricted eligibility for release on licence: Scotland</b></heading>
+          <paragraph>
+            <num>55.</num>
+            <content>
+              <p>Schedule 2 inserts Schedule 1A into the 1993 Act. New Schedule 1A lists the offences which identify an offender as a “terrorist offender”, thereby bringing them into the provisions of the Act. Part 1 lists the relevant offences under counter-terrorism legislation, in the Terrorism Act 2000, the Anti-Terrorism, Crime and Security Act 2001, the Terrorism Act 2006, the Counter-Terrorism Act 2008, the Terrorism Prevention and Investigation Measures Act 2011, and the Counter-Terrorism and Security Act 2015. Paragraph 7 expands paragraphs 1 to 6 offences to include attempt, conspiracy, aiding and abetting etc, of those offences. Paragraph 8 includes equivalent historic terrorist offences.</p>
+            </content>
+          </paragraph>
+          <paragraph>
+            <num>56.</num>
+            <content>
+              <p>Part 2 lists relevant offences that may be considered to have a terrorist connection under section 31 or 32 of the Counter-Terrorism Act 2008.</p>
+            </content>
+          </paragraph>
+        </level>
+      </section>
+      <section eId="section_6">
+        <heading><b>Commencement</b></heading>
+        <paragraph>
+          <num>57.</num>
+          <content>
+            <p>The Act will come into force upon Royal Assent.</p>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_7">
+        <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
+        <paragraph>
+          <num>58.</num>
+          <content>
+            <p>The provisions in this Act form part of the law of England and Wales. Some extend and apply to England and Wales, and some extend and apply to Scotland. </p>
+            <table uk:widths="1.48in 1.08in 1.18in 1.18in 1.28in">
+              <tr>
+                <td>
+                  <p><b>Provision</b></p>
+                </td>
+                <td>
+                  <p><b>Extends to E &amp; W and applies to England?</b></p>
+                </td>
+                <td>
+                  <p><b>Extends to E &amp; W and applies to Wales?</b></p>
+                </td>
+                <td>
+                  <p><b>Extends and applies to Scotland?</b></p>
+                </td>
+                <td>
+                  <p><b>Extends and applies to Northern Ireland?</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Section 1</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>Yes </p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Section 2</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>Yes </p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Section 3</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Section 4</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>No </p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Section 5</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>Yes </p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Section 6 </p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>Yes </p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Section 7</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>Yes </p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Section 8</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Section 9</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Section 10</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Schedule 1</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>Yes </p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Schedule 2</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+                <td>
+                  <p>Yes</p>
+                </td>
+                <td>
+                  <p>No</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+      </section>
+      <section eId="section_8">
+        <heading><b>Annex B – Hansard References</b></heading>
+        <paragraph>
+          <num>59.</num>
+          <content>
+            <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament. </p>
+            <table uk:widths="1.95in 1.9in 1.94in">
+              <tr>
+                <td>
+                  <p><b>Stage</b></p>
+                </td>
+                <td>
+                  <p><b>Date</b></p>
+                </td>
+                <td>
+                  <p><b>Hansard Reference</b></p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <p><i>House of Commons</i></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>First Reading</p>
+                </td>
+                <td>
+                  <p>11 February 2020</p>
+                </td>
+                <td>
+                  <p>No debate</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Second Reading</p>
+                </td>
+                <td>
+                  <p>12 February 2020</p>
+                </td>
+                <td>
+                  <p><a href="https://hansard.parliament.uk/commons/2020-02-12/debates/724D0060-A340-4F55-9566-8D5079993A2D/TerroristOffenders(RestrictionOfEarlyRelease)Bill"><u>Vol.671 Col.863</u></a> </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Committee of the Whole House</p>
+                </td>
+                <td>
+                  <p>12 February 2020</p>
+                </td>
+                <td>
+                  <p><a href="https://hansard.parliament.uk/Commons/2020-02-12/debates/940E9472-6B51-42C9-BDA0-7D2C92916A5E/TerroristOffenders(RestrictionOfEarlyRelease)Bill"><u>Vol.671 Col.920</u></a> </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Third Reading</p>
+                </td>
+                <td>
+                  <p>12 February 2020</p>
+                </td>
+                <td>
+                  <p><a href="https://hansard.parliament.uk/Commons/2020-02-12/debates/940E9472-6B51-42C9-BDA0-7D2C92916A5E/TerroristOffenders(RestrictionOfEarlyRelease)Bill"><u>Vol.671 Col.939</u></a>  </p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <p><i>House of Lords</i></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>First Reading</p>
+                </td>
+                <td>
+                  <p>13 February 2020</p>
+                </td>
+                <td>
+                  <p><a href="https://hansard.parliament.uk/lords/2020-02-13/debates/18C27E26-8441-4048-9CBF-4E0456F31E8F/TerroristOffenders(RestrictionOfEarlyRelease)Bill"><u>Vol.801 Col.2346</u></a></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Second Reading</p>
+                </td>
+                <td>
+                  <p>24 February 2020</p>
+                </td>
+                <td>
+                  <p><a href="https://hansard.parliament.uk/lords/2020-02-24/debates/19598619-4708-4258-897B-F1D69C947678/TerroristOffenders(RestrictionOfEarlyRelease)Bill"><u>Vol.802 Col.12</u></a> </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Committee of the Whole House</p>
+                </td>
+                <td>
+                  <p>24 February 2020</p>
+                </td>
+                <td>
+                  <p><a href="https://hansard.parliament.uk/Lords/2020-02-24/debates/57AC41DD-CF40-4B74-BBA3-1C7371953A57/TerroristOffenders(RestrictionOfEarlyRelease)Bill"><u>Vol.802 Col.95</u></a> </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Third Reading</p>
+                </td>
+                <td>
+                  <p>24 February 2020</p>
+                </td>
+                <td>
+                  <p><a href="https://hansard.parliament.uk/Lords/2020-02-24/debates/84CBEB0D-B2BA-400F-B994-DD9F409967BE/TerroristOffenders(RestrictionOfEarlyRelease)Bill"><u>Vol.802 Col.114</u></a> </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Royal Assent </p>
+                </td>
+                <td>
+                  <p>27 February 2020</p>
+                </td>
+                <td>
+                  <p>House of Commons</p>
+                  <p><a href="https://hansard.parliament.uk/commons/2020-02-26/debates/0D909187-456A-4BE8-A155-87B51E4D182D/RoyalAssent"><u>Vol.672 Col.368</u></a> </p>
+                  <p>House of Lords</p>
+                  <p><u>Vol.802 Col.205</u></p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </paragraph>
+      </section>
+    </mainBody>
+  </doc>
+</akomaNtoso>
