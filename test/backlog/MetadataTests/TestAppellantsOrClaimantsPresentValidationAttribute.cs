@@ -27,8 +27,8 @@ public class TestAppellantsOrClaimantsPresentValidationAttribute
         var line = CsvMetadataLineHelper.DummyLine with
         {
             id = "125",
-            claimants = claimants,
-            appellants = appellants
+            Claimants = claimants,
+            Appellants = appellants
         };
 
         // Act & Assert

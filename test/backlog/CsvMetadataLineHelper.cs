@@ -18,15 +18,15 @@ public static class CsvMetadataLineHelper
     internal static readonly CsvLine DummyLine = new()
     {
         id = "007",
-        court = "UKFTT-GRC",
+        Court = "UKFTT-GRC",
         FilePath = "",
         Extension = ".pdf",
-        decision_datetime = DateTime.MinValue,
+        DecisionDateTime = DateTime.MinValue,
         CaseNo = "ABC/2023/001",
-        respondent = "The respondent"
+        Respondent = "The respondent"
     };
 
-    internal static readonly CsvLine DummyLineWithClaimants = DummyLine with { claimants = "The claimants" };
+    internal static readonly CsvLine DummyLineWithClaimants = DummyLine with { Claimants = "The claimants" };
 
     internal static void AssertCsvLinesMatch(List<CsvLine> result, params CsvLine[] expectedCsvLines)
     {

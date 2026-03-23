@@ -114,40 +114,36 @@ data/
 
 ### Court Metadata CSV
 
-Contains metadata extracted from tribunal-specific spreadsheets about courts and their judgments. This data includes:
+Contains cleansed metadata extracted from tribunal-specific spreadsheets about courts and their judgments.
 
-- Court identifiers and names
-- Judgment dates
-- Case numbers
-- Document metadata from the source tribunal system
-- Any tribunal-specific metadata fields
+Column names are case-insensitive, can optionally use underscores and can be arranged in any order.
 
 #### Required Columns
 
 The CSV file must contain the following columns for each judgment:
 
-- `id` - Unique identifier for each judgment record
-- `court` - Court code that maps to a Court object (e.g., "EWHC-QBD-Admin", "UKFTT-GRC"). Must match a valid court code defined in the Courts.ByCode dictionary
+- `Id` - Unique identifier for each judgment record
+- `Court` - Court code that maps to a Court object (e.g., "EWHC-QBD-Admin", "UKFTT-GRC"). Must match a valid court code defined in the Courts.ByCode dictionary
 - `FilePath` - Path to the judgment file relative to the base directory (UUID without extension)
 - `Extension` - File extension indicating the original file type (.pdf, .docx, .doc)
-- `decision_datetime` - Date and time when the decision was made (format: "yyyy-MM-dd HH:mm:ss")
+- `Decision_datetime` - Date when the decision was made (format: "yyyy-MM-dd")
 - `CaseNo` - Case number(s) (with space inbetween if multiple)
-- `claimants` OR `appellants` - Name(s) of the claimant(s)/appellant(s)
-- `respondent` - Name(s) of the respondent(s)
+- `Claimants` OR `Appellants` - Name(s) of the claimant(s)/appellant(s)
+- `Respondent` - Name(s) of the respondent(s)
 
 #### Optional Columns
 
 The following columns are optional:
 
-- `main_category` - Primary category name
-- `main_subcategory` - Primary subcategory name (child of main_category)
-- `sec_category` - Secondary category name (optional)
-- `sec_subcategory` - Secondary subcategory name (child of sec_category, only used if sec_category is provided)
-- `ncn` - Neutral Citation Number (NCN) for the judgment, when available. If provided, this appears as `uk:cite` in the generated AkomaNtoso XML
-- `headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
+- `Main_category` - Primary category name
+- `Main_subcategory` - Primary subcategory name (child of main_category)
+- `Sec_category` - Secondary category name (optional)
+- `Sec_subcategory` - Secondary subcategory name (child of sec_category, only used if sec_category is provided)
+- `Ncn` - Neutral Citation Number (NCN) for the judgment, when available. If provided, this appears as `uk:cite` in the generated AkomaNtoso XML
+- `Headnote_summary` - Summary of the judgment (included in metadata JSON but not in XML output)
 - `Jurisdictions` - Jurisdictions to be added as `uk:jurisdiction` elements in the xml. This can be blank, a single item or a comma seperated list in quotes (e.g. `"jurisdiction1,jurisdiction2"`)
-- `uuid` - The TDR-cleansed filenames. If not provided then it will be derived from `tdr_metadata/file-metadata.csv`
-- `webarchiving` - Link to the webarchive for this judgment
+- `Uuid` - The TDR-cleansed filenames. If not provided then it will be derived from `tdr_metadata/file-metadata.csv`
+- `Webarchiving` - Link to the webarchive for this judgment
 - `Skip` - Leave blank or set to `n`, `0` or `false` to process the record. Fill in anything to skip it (e.g. `skip`, `Already in FCL`, `Duplicate`)
 
 **Note**: If required columns are missing, the system will throw a validation error listing the missing columns but if optional columns are missing or misspelt then there will be no warning.

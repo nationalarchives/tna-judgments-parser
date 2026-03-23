@@ -204,7 +204,7 @@ public class TestMetadataTransformer
     [Fact]
     public void CsvLineToMetadataFields_Court_IsMapped()
     {
-        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { court = "UKFTT-GRC" };
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Court = "UKFTT-GRC" };
 
         var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
@@ -215,7 +215,7 @@ public class TestMetadataTransformer
     public void CsvLineToMetadataFields_Date_IsMapped()
     {
         var decisionDatetime = new DateTime(2024, 2, 1, 10, 30, 0, DateTimeKind.Utc);
-        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { decision_datetime = decisionDatetime };
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { DecisionDateTime = decisionDatetime };
 
         var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
@@ -235,7 +235,7 @@ public class TestMetadataTransformer
     [Fact]
     public void CsvLineToMetadataFields_Parties_AreMapped()
     {
-        var csvLine = CsvMetadataLineHelper.DummyLine with { appellants = "Alice", respondent = "HMRC" };
+        var csvLine = CsvMetadataLineHelper.DummyLine with { Appellants = "Alice", Respondent = "HMRC" };
 
         var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
@@ -247,9 +247,9 @@ public class TestMetadataTransformer
     {
         var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            main_category = "CatA",
-            main_subcategory = "SubA",
-            sec_category = "CatB"
+            MainCategory = "CatA",
+            MainSubcategory = "SubA",
+            SecCategory = "CatB"
         };
 
         var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
@@ -280,7 +280,7 @@ public class TestMetadataTransformer
     [Fact]
     public void CsvLineToMetadataFields_Ncn_IsIncludedWhenPresent()
     {
-        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { ncn = "NCN123" };
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "NCN123" };
 
         var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
@@ -290,7 +290,7 @@ public class TestMetadataTransformer
     [Fact]
     public void CsvLineToMetadataFields_HeadnoteSummary_IsIncludedWhenPresent()
     {
-        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { headnote_summary = "A summary" };
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { HeadnoteSummary = "A summary" };
 
         var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
@@ -300,7 +300,7 @@ public class TestMetadataTransformer
     [Fact]
     public void CsvLineToMetadataFields_WebArchivingLink_IsIncludedWhenPresent()
     {
-        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { webarchiving = "http://example.com" };
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { WebArchiving = "http://example.com" };
 
         var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
@@ -312,9 +312,9 @@ public class TestMetadataTransformer
     {
         var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            headnote_summary = null,
-            ncn = null,
-            webarchiving = null
+            HeadnoteSummary = null,
+            Ncn = null,
+            WebArchiving = null
         };
 
         var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
