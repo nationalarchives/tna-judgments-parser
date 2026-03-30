@@ -73,7 +73,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         Environment.SetEnvironmentVariable("JUDGMENTS_FILE_PATH", JudgmentsFilePath);
 
         var headerLine =
-            "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,jurisdictions,webarchiving";
+            "id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,claimants,respondent,jurisdictions,webarchiving,skip";
         var csvMetadataLines = new List<string> { headerLine };
         csvMetadataLines.AddRange(metadataLines.Select(metadataLine =>
         {
@@ -83,8 +83,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
                 jurisdictions = $"\"{jurisdictions}\"";
             }
 
-            return
-                $"{metadataLine.id},{metadataLine.FilePath},{metadataLine.Extension},{metadataLine.DecisionDateTime:yyyy-MM-dd},{metadataLine.CaseNo},{metadataLine.Court},{metadataLine.Appellants},{metadataLine.Claimants},{metadataLine.Respondent},{jurisdictions},{metadataLine.WebArchiving}";
+            return $"{metadataLine.id},{metadataLine.FilePath},{metadataLine.Extension},{metadataLine.DecisionDateTime:yyyy-MM-dd},{metadataLine.CaseNo},{metadataLine.Court},{metadataLine.Appellants},{metadataLine.Claimants},{metadataLine.Respondent},{jurisdictions},{metadataLine.WebArchiving},{(metadataLine.Skip ? "skip" : "")}";
         }));
 
         var metadataPath = courtMetadataPath ??

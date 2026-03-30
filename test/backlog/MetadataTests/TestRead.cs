@@ -47,9 +47,9 @@ public class TestRead: IDisposable
     {
         using var csvStream = new StringReader(
             """
-            id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent
-            123 , /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department
-            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC
+            id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
+            123 , /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department,
+            124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
             """
         );
 
@@ -74,7 +74,8 @@ public class TestRead: IDisposable
                 SecCategory = null,
                 SecSubcategory = null,
                 Ncn = null,
-                HeadnoteSummary = null
+                HeadnoteSummary = null,
+                Skip = false
             },
             new CsvLine
             {
@@ -93,7 +94,8 @@ public class TestRead: IDisposable
                 SecCategory = null,
                 SecSubcategory = null,
                 Ncn = null,
-                HeadnoteSummary = null
+                HeadnoteSummary = null,
+                Skip = true
             }
         );
     }
@@ -107,12 +109,14 @@ public class TestRead: IDisposable
     [InlineData(nameof(CsvLine.Court))]
     [InlineData("claimants")] // missing claimants/appellants has a different validation message
     [InlineData(nameof(CsvLine.Respondent))]
+    [InlineData(nameof(CsvLine.Skip))]
     public void Read_WithMissingRequiredColumns_ReturnsParseErrors(string missingColumn)
     {
         var validCsvWithAllRequiredColumns = """
-                id,FilePath,Extension,DecisionDateTime,CaseNo,Court,claimants,Respondent
-                123 , /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department
-                124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC
+                id,FilePath,Extension,DecisionDateTime,CaseNo,Court,claimants,Respondent,Skip
+                123 , /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department,
+                124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,
+                125,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,skip
                 """;
         
         var csvWithMissingColumn = validCsvWithAllRequiredColumns.Replace(missingColumn, "missing_column");
@@ -140,8 +144,8 @@ public class TestRead: IDisposable
     {
         using var csvStream = new StringReader(
             $"""
-             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,jurisdictions
-             125,/test/data/test-case4.docx,.docx,2025-01-19 13:00:00,IA/2025/004,UKUT-IAC,Taylor,Home Office,{csvJurisdictions}
+             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,jurisdictions,skip
+             125,/test/data/test-case4.docx,.docx,2025-01-19 13:00:00,IA/2025/004,UKUT-IAC,Taylor,Home Office,{csvJurisdictions},
              """
         );
 
@@ -156,10 +160,10 @@ public class TestRead: IDisposable
     {
         using var csvStream = new StringReader(
             """
-            id,extra column,FilePath,Extension, Other extra Column,decision_datetime,CaseNo,court,claimants,respondent
-            123,with data,/test/data/test-case.pdf,.pdf,   ,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State for the Home Department
-            124,,/test/data/test-case2.docx,.docx,some data here,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC
-            125,data here,/test/data/test-case3.docx,.docx,and data here,2025-01-17 11:00:00,IA/2025/003,UKFTT-TC,Jones,HMRC
+            id,extra column,FilePath,Extension, Other extra Column,decision_datetime,CaseNo,court,claimants,respondent,skip
+            123,with data,/test/data/test-case.pdf,.pdf,   ,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State for the Home Department,
+            124,,/test/data/test-case2.docx,.docx,some data here,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,
+            125,data here,/test/data/test-case3.docx,.docx,and data here,2025-01-17 11:00:00,IA/2025/003,UKFTT-TC,Jones,HMRC,
             """
         );
 
@@ -474,15 +478,15 @@ public class TestRead: IDisposable
     {
         using var csvStream = new StringReader(
             """
-            id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory
-            121,Valid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,,,,
-            122,AlsoValid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,My category,,,
-            123,NoClaimants.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Secretary of State for the Home Department,,,,
+            id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,skip
+            121,Valid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,,,,,
+            122,AlsoValid.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,My category,,,,
+            123,NoClaimants.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Secretary of State for the Home Department,,,,,
             completely invalid line
-            124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,
-            125,MissingMainCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad main subcategory,,
-            126,MissingSecondaryCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,,,Bad secondary subcategory
-            999,ValidOneAtTheEnd.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,,,,
+            124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,,
+            125,MissingMainCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad main subcategory,,,
+            126,MissingSecondaryCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,,,Bad secondary subcategory,
+            999,ValidOneAtTheEnd.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Carter,Secretary of State for the Home Department,,,,,
             """
         );
 
@@ -496,7 +500,7 @@ public class TestRead: IDisposable
             {
                 "Line 4: Id 123 - Must have either claimants or appellants. At least one is required.",
                 "Line 5: Field at index '5' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [completely invalid line]",
-                "Line 6: Field at index '11' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,]",
+                "Line 6: Field at index '12' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,,]",
                 "Line 7: Id 125 - main_subcategory 'Bad main subcategory' cannot exist without main_category being defined",
                 "Line 8: Id 126 - sec_subcategory 'Bad secondary subcategory' cannot exist without sec_category being defined"
             },
@@ -507,9 +511,9 @@ public class TestRead: IDisposable
     public void Read_WithMixedCaseHeaders_ParsesCorrectly()
     {
         const string csvContent =
-            @"ID,FilePath,extension,DECISION_DATETIME,CaseNo,coUrt,appellants,CLAIMANTS,respondent,MAIN_CATEGORY,main_subcategory,SEC_CATEGORY,sec_subcategory,HEADNOTE_SUMMARY,jurisdictions,NCN,webarchiving,uUiD
-123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,
-124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,,,,";
+            @"ID,FilePath,extension,DECISION_DATETIME,CaseNo,coUrt,appellants,CLAIMANTS,respondent,MAIN_CATEGORY,main_subcategory,SEC_CATEGORY,sec_subcategory,HEADNOTE_SUMMARY,jurisdictions,NCN,webarchiving,uUiD,Skip
+123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,Immigration,Appeal Rights,Administrative Law,Judicial Review,This is a test headnote summary,,,,,
+124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,,HMRC,Tax,VAT Appeals,Employment,Tribunal Procedure,Another test case,,,,,skip me";
 
         // Arrange - set up stream reader
         using var csvStream = new StringReader(csvContent);
@@ -537,7 +541,8 @@ public class TestRead: IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "This is a test headnote summary",
-                Uuid = null
+                Uuid = null,
+                Skip = false
             },
             new CsvLine
             {
@@ -558,7 +563,8 @@ public class TestRead: IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "Another test case",
-                Uuid = null
+                Uuid = null,
+                Skip = true
             }
         );
     }
@@ -568,15 +574,15 @@ public class TestRead: IDisposable
     {
         const string csvContent =
             """
-            id,filepath,extension,decision_datetime,caseno,court,appellants,claimants,respondent
-            123,good.pdf,.pdf,  2025-01-15  ,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department
-            123,good.pdf,.pdf,  2025/01/15  ,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department
-            123,good.pdf,.pdf,  2025 01 15  ,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department
+            id,filepath,extension,decision_datetime,caseno,court,appellants,claimants,respondent,skip
+            123,good.pdf,.pdf,  2025-01-15  ,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,
+            123,good.pdf,.pdf,  2025/01/15  ,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,
+            123,good.pdf,.pdf,  2025 01 15  ,IA/2025/001,UKUT-IAC,,Smith,Secretary of State for the Home Department,
 
-            125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC
-            125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC
+            125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC,
+            125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC,
 
-            124,good_with_time.docx,.docx,  2025-01-16 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC
+            124,good_with_time.docx,.docx,  2025-01-16 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC,
             """;
 
         // Arrange - set up stream reader
@@ -595,8 +601,8 @@ public class TestRead: IDisposable
         Assert.Equivalent(
             new List<string>
             {
-                "Line 6: Field '01/16/2025 10:00:00' is not valid. [125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]",
-                "Line 7: Field '31/01/2025 10:00:00' is not valid. [125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC]"
+                "Line 6: Field '01/16/2025 10:00:00' is not valid. [125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC,]",
+                "Line 7: Field '31/01/2025 10:00:00' is not valid. [125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC,]"
             },
             csvParseErrors);
     }
