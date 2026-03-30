@@ -111,7 +111,8 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             Claimants = "new claimants",
             Respondent = "new respondent",
             Jurisdictions = ["new jurisdiction"],
-            WebArchiving = "my web archiving link"
+            WebArchiving = "my web archiving link",
+            Ncn = "[1989] UKUT 1234 (LC)"
         };
         WriteCourtMetadataCsv(metadataLine);
 
@@ -135,9 +136,9 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"),
                child => child.Should().HaveName("uk:parser"),
                child => child.Should().Match("uk:hash", "4684bfd014fadda75dc2bd683fb4edf8df0f42656a2ac85013bb3dfb14ca512e"),
-               child => child.Should().Match("uk:year", "2022"),
-               child => child.Should().Match("uk:number", "121"),
-               child => child.Should().Match("uk:cite", "[2022] UKUT 121 (LC)"),
+               child => child.Should().Match("uk:year", "1989"),
+               child => child.Should().Match("uk:number", "1234"),
+               child => child.Should().Match("uk:cite", "[1989] UKUT 1234 (LC)"),
                child => child.Should().Match("uk:webarchiving", "my web archiving link")
            );
 
@@ -320,6 +321,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
             Extension = ".docx",
             DecisionDateTime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = "EA/2023/0132",
+            Ncn = "[2023] UKFTT 916 (GRC)",
             Court = "UKFTT-GRC",
             Appellants = "NIGEL RAWLINS",
             Respondent = "THE INFORMATION COMMISSIONER",
