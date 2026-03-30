@@ -37,8 +37,6 @@ public class Extensions {
 
     public List<ICategory> Categories { get; set; }
 
-    public string NCN { get; set; }
-
     public required string WebArchivingLink { get; init; }
 }
 

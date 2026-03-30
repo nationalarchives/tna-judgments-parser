@@ -81,7 +81,7 @@ internal class MetadataTransformer(TimeProvider timeProvider)
             Parties = line.Parties.ToList(),
             Categories = line.Categories.ToList(),
             SourceFormat = GetMimeType(line.Extension),
-            NCN = line.Ncn,
+            Cite = line.Ncn,
             WebArchivingLink = line.WebArchiving
         };
         return meta;
