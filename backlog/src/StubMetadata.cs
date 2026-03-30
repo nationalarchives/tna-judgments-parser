@@ -51,8 +51,6 @@ namespace Backlog.Src
 
         public List<ICategory> Categories { get; init; } = [];
         
-        public string NCN { get; init; }
-        
         public string WebArchivingLink { get; init; }
     }
 }
