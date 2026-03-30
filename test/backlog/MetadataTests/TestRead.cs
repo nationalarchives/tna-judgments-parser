@@ -99,6 +99,35 @@ public class TestRead: IDisposable
     }
 
     [Theory]
+    [InlineData(nameof(CsvLine.id))]
+    [InlineData(nameof(CsvLine.FilePath))]
+    [InlineData(nameof(CsvLine.Extension))]
+    [InlineData(nameof(CsvLine.DecisionDateTime))]
+    [InlineData(nameof(CsvLine.CaseNo))]
+    [InlineData(nameof(CsvLine.Court))]
+    [InlineData("claimants")] // missing claimants/appellants has a different validation message
+    [InlineData(nameof(CsvLine.Respondent))]
+    public void Read_WithMissingRequiredColumns_ReturnsParseErrors(string missingColumn)
+    {
+        var validCsvWithAllRequiredColumns = """
+                id,FilePath,Extension,DecisionDateTime,CaseNo,Court,claimants,Respondent
+                123 , /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department
+                124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC
+                """;
+        
+        var csvWithMissingColumn = validCsvWithAllRequiredColumns.Replace(missingColumn, "missing_column");
+        
+        using var csvStream = new StringReader(
+            csvWithMissingColumn
+        );
+
+        var result = csvMetadataReader.Read(csvStream, out var csvParseErrors);
+
+        Assert.Empty(result);
+        Assert.All(csvParseErrors, csvParseError => Assert.Contains(missingColumn, csvParseError));
+    }
+
+    [Theory]
     [InlineData("", new string[] { })]
     [InlineData("     ", new string[] { })]
     [InlineData(",   ,  ", new string[] { })]
