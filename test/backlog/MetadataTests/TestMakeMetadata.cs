@@ -200,7 +200,7 @@ public class TestMakeMetadata
     }
 
     [Fact]
-    public void MakeMetadata_WithNCN_SetsNCNProperty()
+    public void MakeMetadata_WithNCN_SetsCiteProperty()
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
@@ -213,11 +213,11 @@ public class TestMakeMetadata
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal("[2023] UKUT 123 (IAC)", result.NCN);
+        Assert.Equal("[2023] UKUT 123 (IAC)", result.Cite);
     }
 
     [Fact]
-    public void MakeMetadata_WithoutNCN_NCNPropertyIsNull()
+    public void MakeMetadata_WithoutNCN_CitePropertyIsNull()
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
@@ -230,7 +230,7 @@ public class TestMakeMetadata
 
         // Assert
         Assert.NotNull(result);
-        Assert.Null(result.NCN);
+        Assert.Null(result.Cite);
     }
 
     [Fact]
