@@ -118,11 +118,10 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
                     return field?.Split(',').Select(item => item.Trim()).Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction)).ToArray() ?? [];
                 });
             Map(l => l.Skip)
-                .Optional()
                 .Convert(convertFromStringArgs =>
                 {
-                    convertFromStringArgs.Row.TryGetField<string>(nameof(CsvLine.Skip), out var field);
-                    return field?.Trim().ToLower() switch
+                    var field = convertFromStringArgs.Row.GetField<string>(nameof(CsvLine.Skip));
+                    return field!.Trim().ToLower() switch
                     {
                         null or "" or "n" or "no" or "f" or "false" or "0" => false,
                         _ => true // return true when there is any value that is not explicitly negative

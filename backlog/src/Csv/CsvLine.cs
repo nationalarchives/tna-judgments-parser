@@ -75,7 +75,6 @@ internal record CsvLine
     [Optional]
     public string? Uuid { get; set; }
 
-    [Optional]
     [Default(false)]
     public bool Skip { get; set; }
 
