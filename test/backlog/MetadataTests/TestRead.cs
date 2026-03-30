@@ -101,6 +101,61 @@ public class TestRead: IDisposable
     }
 
     [Theory]
+    [InlineData("")]
+    [InlineData("   ")]
+    [InlineData("n")]
+    [InlineData("N")]
+    [InlineData("no")]
+    [InlineData("No")]
+    [InlineData("NO")]
+    [InlineData("f")]
+    [InlineData("F")]
+    [InlineData("0")]
+    [InlineData("false")]
+    [InlineData("False")]
+    [InlineData("FALSE")]
+    public void Read_WithFalsySkipValues_ParsesSkipAsFalse(string skipValue)
+    {
+        using var csvStream = new StringReader(
+            $"""
+             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
+             123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State for the Home Department,{skipValue}
+             """
+        );
+
+        var result = csvMetadataReader.Read(csvStream, out var csvParseErrors);
+
+        Assert.Empty(csvParseErrors);
+        var line = Assert.Single(result);
+        Assert.False(line.Skip);
+    }
+
+    [Theory]
+    [InlineData("skip")]
+    [InlineData("Skip")]
+    [InlineData("skip - for reasons")]
+    [InlineData("Already in FCL")]
+    [InlineData("Duplicate")]
+    [InlineData("1")]
+    [InlineData("yes")]
+    [InlineData("T")]
+    public void Read_WithTruthySkipValues_ParsesSkipAsTrue(string skipValue)
+    {
+        using var csvStream = new StringReader(
+            $"""
+             id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip
+             123,/test/data/test-case.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,Smith,Secretary of State for the Home Department,{skipValue}
+             """
+        );
+
+        var result = csvMetadataReader.Read(csvStream, out var csvParseErrors);
+
+        Assert.Empty(csvParseErrors);
+        var line = Assert.Single(result);
+        Assert.True(line.Skip);
+    }
+
+    [Theory]
     [InlineData(nameof(CsvLine.id))]
     [InlineData(nameof(CsvLine.FilePath))]
     [InlineData(nameof(CsvLine.Extension))]
