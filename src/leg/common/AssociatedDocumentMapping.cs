@@ -12,7 +12,6 @@ namespace UK.Gov.Legislation.Common {
 
 /// <summary>
 /// Provides lookup for fields from the combined associated document mapping CSV.
-/// Currently used to supplement existing mapping classes with legislation_title and publisher.
 /// </summary>
 internal static class AssociatedDocumentMapping {
 
@@ -67,9 +66,50 @@ internal static class AssociatedDocumentMapping {
             if (records.ContainsKey(filename))
                 continue;
 
+            int? docYear = null;
+            if (!string.IsNullOrWhiteSpace(parts[5])) {
+                if (double.TryParse(parts[5].Trim(), out double y))
+                    docYear = (int)y;
+            }
+
+            int? docNumber = null;
+            if (!string.IsNullOrWhiteSpace(parts[6])) {
+                if (double.TryParse(parts[6].Trim(), out double n))
+                    docNumber = (int)n;
+            }
+
+            int? legYear = null;
+            if (!string.IsNullOrWhiteSpace(parts[12])) {
+                if (double.TryParse(parts[12].Trim(), out double ly))
+                    legYear = (int)ly;
+            }
+
+            string legNumber = null;
+            if (!string.IsNullOrWhiteSpace(parts[13])) {
+                if (double.TryParse(parts[13].Trim(), out double ln))
+                    legNumber = ((long)ln).ToString();
+                else
+                    legNumber = Unquote(parts[13].Trim());
+            }
+
             records[filename] = new AssociatedDocumentRecord {
+                DocumentType = Unquote(parts[0]?.Trim() ?? ""),
+                DocumentUri = Unquote(parts[1]?.Trim() ?? ""),
+                Filename = filename,
+                DocumentTitle = Unquote(parts[3]?.Trim() ?? ""),
+                DocumentDate = Unquote(parts[4]?.Trim() ?? ""),
+                DocumentYear = docYear,
+                DocumentNumber = docNumber,
+                Department = Unquote(parts[7]?.Trim() ?? ""),
+                Publisher = Unquote(parts[8]?.Trim() ?? ""),
+                ModifiedDate = Unquote(parts[9]?.Trim() ?? ""),
+                LegislationUri = Unquote(parts[10]?.Trim() ?? ""),
+                LegislationClass = Unquote(parts[11]?.Trim() ?? ""),
+                LegislationYear = legYear,
+                LegislationNumber = legNumber,
                 LegislationTitle = Unquote(parts[14]?.Trim() ?? ""),
-                Publisher = Unquote(parts[8]?.Trim() ?? "")
+                DocumentStage = parts.Length > 15 ? Unquote(parts[15]?.Trim() ?? "") : "",
+                PdfDate = parts.Length > 16 ? Unquote(parts[16]?.Trim() ?? "") : ""
             };
         }
 
@@ -78,14 +118,23 @@ internal static class AssociatedDocumentMapping {
     }
 
     /// <summary>
+    /// Gets the full mapping record for the given filename.
+    /// Returns null if no mapping found.
+    /// </summary>
+    public static AssociatedDocumentRecord GetRecord(string filename) {
+        string key = NormalizeFilename(filename);
+        if (_records.TryGetValue(key, out var record))
+            return record;
+        return null;
+    }
+
+    /// <summary>
     /// Gets the legislation title for the given filename.
     /// Returns null if no mapping found or title is empty.
     /// </summary>
     public static string GetLegislationTitle(string filename) {
-        string key = NormalizeFilename(filename);
-        if (_records.TryGetValue(key, out var record) && !string.IsNullOrEmpty(record.LegislationTitle))
-            return record.LegislationTitle;
-        return null;
+        var record = GetRecord(filename);
+        return !string.IsNullOrEmpty(record?.LegislationTitle) ? record.LegislationTitle : null;
     }
 
     /// <summary>
@@ -93,13 +142,11 @@ internal static class AssociatedDocumentMapping {
     /// Returns null if no mapping found or publisher is empty.
     /// </summary>
     public static string GetPublisher(string filename) {
-        string key = NormalizeFilename(filename);
-        if (_records.TryGetValue(key, out var record) && !string.IsNullOrEmpty(record.Publisher))
-            return record.Publisher;
-        return null;
+        var record = GetRecord(filename);
+        return !string.IsNullOrEmpty(record?.Publisher) ? record.Publisher : null;
     }
 
-    private static string[] ParseCsvLine(string line) {
+    internal static string[] ParseCsvLine(string line) {
         var parts = new List<string>();
         bool inQuotes = false;
         string currentField = "";
@@ -126,7 +173,7 @@ internal static class AssociatedDocumentMapping {
         return parts.ToArray();
     }
 
-    private static string Unquote(string value) {
+    internal static string Unquote(string value) {
         if (string.IsNullOrEmpty(value))
             return value;
         if (value.Length >= 2 && value[0] == '"' && value[^1] == '"')
@@ -137,8 +184,23 @@ internal static class AssociatedDocumentMapping {
 }
 
 internal class AssociatedDocumentRecord {
-    public string LegislationTitle { get; init; }
+    public string DocumentType { get; init; }
+    public string DocumentUri { get; init; }
+    public string Filename { get; init; }
+    public string DocumentTitle { get; init; }
+    public string DocumentDate { get; init; }
+    public int? DocumentYear { get; init; }
+    public int? DocumentNumber { get; init; }
+    public string Department { get; init; }
     public string Publisher { get; init; }
+    public string ModifiedDate { get; init; }
+    public string LegislationUri { get; init; }
+    public string LegislationClass { get; init; }
+    public int? LegislationYear { get; init; }
+    public string LegislationNumber { get; init; }
+    public string LegislationTitle { get; init; }
+    public string DocumentStage { get; init; }
+    public string PdfDate { get; init; }
 }
 
 }
