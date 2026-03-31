@@ -93,7 +93,9 @@ class IAMetadata : DocumentMetadata {
             LegislationNumber = mappingRecord?.LegislationNumber,
             // Full UKIA URI
             UkiaUri = mappingRecord?.UkiaUri,
-            WorkAuthor = Common.LegWorkAuthorMapping.GetWorkAuthorUri(mappingRecord?.LegislationClass)
+            WorkAuthor = Common.LegWorkAuthorMapping.GetWorkAuthorUri(mappingRecord?.LegislationClass),
+            LegislationTitle = AssociatedDocumentMapping.GetLegislationTitle(filename),
+            Publisher = AssociatedDocumentMapping.GetPublisher(filename)
         };
     }
 

@@ -84,6 +84,10 @@ internal class DocumentMetadata {
     /// </summary>
     public virtual string ImageFileIdentifier => ShortUriComponent;
 
+    public string LegislationTitle { get; init; }
+
+    public string Publisher { get; init; }
+
     public Dictionary<string, Dictionary<string, string>> CSS { get; init; }
 
     public DocumentStatistics Statistics { get; internal set; }

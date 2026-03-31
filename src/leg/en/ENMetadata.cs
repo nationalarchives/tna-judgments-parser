@@ -58,7 +58,9 @@ class ENMetadata : DocumentMetadata {
             LegislationClass = mappingRecord.LegislationClass,
             LegislationYear = mappingRecord.LegislationYear,
             LegislationNumber = mappingRecord.LegislationNumber,
-            WorkAuthor = Common.LegWorkAuthorMapping.GetWorkAuthorUri(mappingRecord.LegislationClass)
+            WorkAuthor = Common.LegWorkAuthorMapping.GetWorkAuthorUri(mappingRecord.LegislationClass),
+            LegislationTitle = mappingRecord.LegislationTitle,
+            Publisher = AssociatedDocumentMapping.GetPublisher(filename)
         };
     }
 

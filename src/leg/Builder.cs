@@ -22,6 +22,20 @@ class Builder : AkN.Builder {
         return date?.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ", System.Globalization.CultureInfo.InvariantCulture);
     }
 
+    private static string BuildDcTitle(DocumentMetadata data) {
+        string docTypeLabel = data switch {
+            ImpactAssessments.IAMetadata => "Impact Assessment",
+            ExplanatoryMemoranda.EMMetadata => "Explanatory Memorandum",
+            ExplanatoryNotes.ENMetadata => "Explanatory Notes",
+            _ => null
+        };
+        if (docTypeLabel is null)
+            return null;
+        if (!string.IsNullOrEmpty(data.LegislationTitle))
+            return $"{docTypeLabel} {data.LegislationTitle}";
+        return docTypeLabel;
+    }
+
     public static XmlDocument Build(IDocument document) {
         Builder builder = new();
         builder.PrivateBuild(document);
@@ -162,6 +176,40 @@ class Builder : AkN.Builder {
             XmlElement modified = doc.CreateElement("dc", "modified", "http://purl.org/dc/elements/1.1/");
             proprietary.AppendChild(modified);
             modified.AppendChild(doc.CreateTextNode(modifiedValue));
+        }
+
+        // Add DC metadata properties
+        string dcTitle = BuildDcTitle(data);
+        if (!string.IsNullOrEmpty(dcTitle)) {
+            string dcNs = "http://purl.org/dc/elements/1.1/";
+            XmlElement title = doc.CreateElement("dc", "title", dcNs);
+            proprietary.AppendChild(title);
+            title.AppendChild(doc.CreateTextNode(dcTitle));
+
+            XmlElement description = doc.CreateElement("dc", "description", dcNs);
+            proprietary.AppendChild(description);
+            description.AppendChild(doc.CreateTextNode(dcTitle));
+        }
+
+        {
+            string dcNs = "http://purl.org/dc/elements/1.1/";
+            XmlElement dcType = doc.CreateElement("dc", "type", dcNs);
+            proprietary.AppendChild(dcType);
+            dcType.AppendChild(doc.CreateTextNode("text"));
+
+            XmlElement dcFormat = doc.CreateElement("dc", "format", dcNs);
+            proprietary.AppendChild(dcFormat);
+            dcFormat.AppendChild(doc.CreateTextNode("application/akn+xml"));
+
+            XmlElement dcLanguage = doc.CreateElement("dc", "language", dcNs);
+            proprietary.AppendChild(dcLanguage);
+            dcLanguage.AppendChild(doc.CreateTextNode("en"));
+        }
+
+        if (!string.IsNullOrEmpty(data.Publisher)) {
+            XmlElement dcPublisher = doc.CreateElement("dc", "publisher", "http://purl.org/dc/elements/1.1/");
+            proprietary.AppendChild(dcPublisher);
+            dcPublisher.AppendChild(doc.CreateTextNode(data.Publisher));
         }
 
         // Add legislation reference if available (for Impact Assessments)
