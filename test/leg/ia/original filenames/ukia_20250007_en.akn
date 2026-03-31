@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2025/25/impacts/2025/7" />
           <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2025/25/impacts/2025/7" />
-          <FRBRdate date="2026-02-26" name="generated" />
+          <FRBRdate date="2026-03-31" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2025/25/impacts/2025/7/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2025/25/impacts/2025/7/data.akn" />
-          <FRBRdate date="2026-02-26" name="transform" />
+          <FRBRdate date="2026-03-31" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,21 +29,21 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>1.5.1</uk:parser>
+        <ukm:parser>1.6.1</ukm:parser>
         <dc:modified>2024-10-28</dc:modified>
-        <uk:legislation>http://www.legislation.gov.uk/id/uksi/2025/25</uk:legislation>
-        <uk:associatedID>http://www.legislation.gov.uk/id/ukia/2025/7</uk:associatedID>
-        <uk:documentStage>Final</uk:documentStage>
-        <uk:documentMainType>UnitedKingdomImpactAssessment</uk:documentMainType>
-        <uk:department>Department for Energy Security and Net Zero</uk:department>
-        <uk:date>2025-01-13</uk:date>
-        <uk:pdfDate>2025-01-13</uk:pdfDate>
-        <uk:legislationClass>UnitedKingdomStatutoryInstrument</uk:legislationClass>
-        <uk:year>2025</uk:year>
-        <uk:number>7</uk:number>
-        <uk:legislationYear>2025</uk:legislationYear>
-        <uk:legislationNumber>25</uk:legislationNumber>
-        <uk:hash>dd2cbfc21e8f2e4ea549e3a027513fbf114b64e50f11e1de916eac44be772ee1</uk:hash>
+        <ukm:legislation>http://www.legislation.gov.uk/id/uksi/2025/25</ukm:legislation>
+        <ukm:associatedID>http://www.legislation.gov.uk/id/ukia/2025/7</ukm:associatedID>
+        <ukm:documentStage>Final</ukm:documentStage>
+        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
+        <ukm:department>Department for Energy Security and Net Zero</ukm:department>
+        <ukm:date>2025-01-13</ukm:date>
+        <ukm:pdfDate>2025-01-13</ukm:pdfDate>
+        <ukm:legislationClass>UnitedKingdomStatutoryInstrument</ukm:legislationClass>
+        <ukm:year>2025</ukm:year>
+        <ukm:number>7</ukm:number>
+        <ukm:legislationYear>2025</ukm:legislationYear>
+        <ukm:legislationNumber>25</ukm:legislationNumber>
+        <ukm:hash>dd2cbfc21e8f2e4ea549e3a027513fbf114b64e50f11e1de916eac44be772ee1</ukm:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -353,7 +353,7 @@
         <paragraph>
           <content>
             <p><b>Table A: Overall and stakeholder impacts </b></p>
-            <table uk:widths="1.27in 3.97in 1.52in">
+            <table ukm:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="2">
                   <p><b>(1) Overall impacts on total welfare </b></p>
@@ -439,7 +439,7 @@
                 </td>
               </tr>
             </table>
-            <table uk:widths="1.27in 3.97in 1.52in">
+            <table ukm:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="3">
                   <p><b>(2) Expected impacts on businesses </b></p>
@@ -502,7 +502,7 @@
                 </td>
               </tr>
             </table>
-            <table uk:widths="1.27in 3.97in 1.52in">
+            <table ukm:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="3">
                   <p><b>(3) Expected impacts on households</b></p>
@@ -563,7 +563,7 @@
         <paragraph>
           <content>
             <p><b>Table B: Impacts on wider Government priorities</b></p>
-            <table uk:widths="1.77in 3.64in 1.21in">
+            <table ukm:widths="1.77in 3.64in 1.21in">
               <tr>
                 <td>
                   <p><b>Category</b></p>
@@ -879,7 +879,7 @@
         <paragraph>
           <content>
             <p><i>Table 1: Illustrative change in support costs under policy scenarios compared to the “Do Nothing” counterfactual. Measured over the lifetime of the CfD, 2024 prices, discounted, £m, rounded to nearest £100m.</i></p>
-            <table uk:widths="3.44in 1.58in 1.77in">
+            <table ukm:widths="3.44in 1.58in 1.77in">
               <tr>
                 <td>
                   <p><b>Repowered ONW Capacity (MW)</b></p>
@@ -950,7 +950,7 @@
         <paragraph>
           <content>
             <p><i>Table 2: Illustrative change in carbon costs under policy scenario from 2027 to 2052, scenarios compared to the “Do Nothing” counterfactual. 2024 prices, discounted, £m, rounded to nearest £100m.</i></p>
-            <table uk:widths="3.44in 1.58in 1.77in">
+            <table ukm:widths="3.44in 1.58in 1.77in">
               <tr>
                 <td>
                   <p><b>Repowered ONW Capacity (MW)</b></p>

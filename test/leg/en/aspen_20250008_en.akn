@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/asp/2025/8/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/asp/2025/8/notes" />
-          <FRBRdate date="2026-03-23" name="generated" />
+          <FRBRdate date="2026-03-31" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/ScottishParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/asp/2025/8/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/asp/2025/8/notes/data.akn" />
-          <FRBRdate date="2026-03-23" name="transform" />
+          <FRBRdate date="2026-03-31" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,16 +29,16 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>1.6.1</uk:parser>
+        <ukm:parser>1.6.1</ukm:parser>
         <dc:modified>2025-09-02</dc:modified>
-        <uk:legislation>http://www.legislation.gov.uk/id/asp/2025/8</uk:legislation>
-        <uk:associatedID>http://www.legislation.gov.uk/id/asp/2025/8/notes</uk:associatedID>
-        <uk:documentMainType>ScottishActExplanatoryNotes</uk:documentMainType>
-        <uk:date>2025-09-03</uk:date>
-        <uk:legislationClass>ScottishAct</uk:legislationClass>
-        <uk:legislationYear>2025</uk:legislationYear>
-        <uk:legislationNumber>8</uk:legislationNumber>
-        <uk:hash>1c72eab9e93f871cb5b49bb52840ad26d7e8b6be662288441f295fb4ed04dd51</uk:hash>
+        <ukm:legislation>http://www.legislation.gov.uk/id/asp/2025/8</ukm:legislation>
+        <ukm:associatedID>http://www.legislation.gov.uk/id/asp/2025/8/notes</ukm:associatedID>
+        <ukm:documentMainType>ScottishActExplanatoryNotes</ukm:documentMainType>
+        <ukm:date>2025-09-03</ukm:date>
+        <ukm:legislationClass>ScottishAct</ukm:legislationClass>
+        <ukm:legislationYear>2025</ukm:legislationYear>
+        <ukm:legislationNumber>8</ukm:legislationNumber>
+        <ukm:hash>1c72eab9e93f871cb5b49bb52840ad26d7e8b6be662288441f295fb4ed04dd51</ukm:hash>
       </proprietary>
     </meta>
     <preface>
@@ -3736,7 +3736,7 @@
         <num>356.</num>
         <content>
           <p>The following is a list of the proceedings in the Scottish Parliament on the Act for the Act and significant documents connected to the Act published by the Parliament during the Act’s parliamentary passage.</p>
-          <table uk:widths="2.9in 3.36in">
+          <table ukm:widths="2.9in 3.36in">
             <tr>
               <th>
                 <p><i>Proceedings and reports</i></p>

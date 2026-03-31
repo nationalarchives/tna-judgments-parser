@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/20/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/20/notes" />
-          <FRBRdate date="2026-03-23" name="generated" />
+          <FRBRdate date="2026-03-31" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/20/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/20/notes/data.akn" />
-          <FRBRdate date="2026-03-23" name="transform" />
+          <FRBRdate date="2026-03-31" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,16 +29,16 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>1.6.1</uk:parser>
+        <ukm:parser>1.6.1</ukm:parser>
         <dc:modified>2020-12-02</dc:modified>
-        <uk:legislation>http://www.legislation.gov.uk/id/ukpga/2020/20</uk:legislation>
-        <uk:associatedID>http://www.legislation.gov.uk/id/ukpga/2020/20/notes</uk:associatedID>
-        <uk:documentMainType>UnitedKingdomExplanatoryNotes</uk:documentMainType>
-        <uk:date>2020-12-08</uk:date>
-        <uk:legislationClass>UnitedKingdomPublicGeneralAct</uk:legislationClass>
-        <uk:legislationYear>2020</uk:legislationYear>
-        <uk:legislationNumber>20</uk:legislationNumber>
-        <uk:hash>4f01d6eed0b2cbd2afe35ef40fc35c0ab678b672aa96e58f614046c4ff1fe3d3</uk:hash>
+        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2020/20</ukm:legislation>
+        <ukm:associatedID>http://www.legislation.gov.uk/id/ukpga/2020/20/notes</ukm:associatedID>
+        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
+        <ukm:date>2020-12-08</ukm:date>
+        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
+        <ukm:legislationYear>2020</ukm:legislationYear>
+        <ukm:legislationNumber>20</ukm:legislationNumber>
+        <ukm:hash>4f01d6eed0b2cbd2afe35ef40fc35c0ab678b672aa96e58f614046c4ff1fe3d3</ukm:hash>
       </proprietary>
     </meta>
     <preface>
@@ -87,7 +87,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table uk:widths="3.22in 3.22in">
+          <table ukm:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p>Subject</p>
@@ -652,7 +652,7 @@
           <num>71 </num>
           <content>
             <p>The following is a non-exhaustive list of the directly effective rights relevant to this Paragraph.</p>
-            <table uk:widths="2.36in 1.97in 2.42in">
+            <table ukm:widths="2.36in 1.97in 2.42in">
               <tr>
                 <th>
                   <p><b>Title of Treaty</b></p>
@@ -1152,7 +1152,7 @@
         <heading><b>Annex A – Glossary</b></heading>
         <level>
           <content>
-            <table uk:widths="3.1in 3.49in">
+            <table ukm:widths="3.1in 3.49in">
               <tr>
                 <td>
                   <p>84  <b>Term</b></p>
@@ -1261,7 +1261,7 @@
         <paragraph>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament:</p>
-            <table uk:widths="1.95in 1.7in 2.64in">
+            <table ukm:widths="1.95in 1.7in 2.64in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>

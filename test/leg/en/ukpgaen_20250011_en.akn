@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2025/11/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2025/11/notes" />
-          <FRBRdate date="2026-03-23" name="generated" />
+          <FRBRdate date="2026-03-31" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/11/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/11/notes/data.akn" />
-          <FRBRdate date="2026-03-23" name="transform" />
+          <FRBRdate date="2026-03-31" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,16 +29,16 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>1.6.1</uk:parser>
+        <ukm:parser>1.6.1</ukm:parser>
         <dc:modified>2025-08-01</dc:modified>
-        <uk:legislation>http://www.legislation.gov.uk/id/ukpga/2025/11</uk:legislation>
-        <uk:associatedID>http://www.legislation.gov.uk/id/ukpga/2025/11/notes</uk:associatedID>
-        <uk:documentMainType>UnitedKingdomExplanatoryNotes</uk:documentMainType>
-        <uk:date>2025-04-10</uk:date>
-        <uk:legislationClass>UnitedKingdomPublicGeneralAct</uk:legislationClass>
-        <uk:legislationYear>2025</uk:legislationYear>
-        <uk:legislationNumber>11</uk:legislationNumber>
-        <uk:hash>afadd2652b9a451aadb322dc9970f5d519e98311046d0dec182734306f64b10b</uk:hash>
+        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2025/11</ukm:legislation>
+        <ukm:associatedID>http://www.legislation.gov.uk/id/ukpga/2025/11/notes</ukm:associatedID>
+        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
+        <ukm:date>2025-04-10</ukm:date>
+        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
+        <ukm:legislationYear>2025</ukm:legislationYear>
+        <ukm:legislationNumber>11</ukm:legislationNumber>
+        <ukm:hash>afadd2652b9a451aadb322dc9970f5d519e98311046d0dec182734306f64b10b</ukm:hash>
       </proprietary>
     </meta>
     <preface>
@@ -90,7 +90,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table uk:widths="3.22in 3.22in">
+          <table ukm:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p>Subject</p>
@@ -344,7 +344,7 @@
         <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table uk:widths="0.85in 0.85in 0.85in 0.85in 0.85in">
+            <table ukm:widths="0.85in 0.85in 0.85in 0.85in 0.85in">
               <tr>
                 <th rowspan="2">
                   <p><b>Provision</b></p>
@@ -419,7 +419,7 @@
           <num>23 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
-            <table uk:widths="1.71in 1.44in 3.15in">
+            <table ukm:widths="1.71in 1.44in 3.15in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -600,7 +600,7 @@
           <num>24 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
-            <table uk:widths="1.04in 1.05in 1.05in 1.05in 1.05in 1.05in">
+            <table ukm:widths="1.04in 1.05in 1.05in 1.05in 1.05in 1.05in">
               <tr>
                 <td>
                   <p><b>Section of the Act</b></p>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/16/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/16/notes" />
-          <FRBRdate date="2026-03-23" name="generated" />
+          <FRBRdate date="2026-03-31" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/16/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/16/notes/data.akn" />
-          <FRBRdate date="2026-03-23" name="transform" />
+          <FRBRdate date="2026-03-31" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,16 +29,16 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>1.6.1</uk:parser>
+        <ukm:parser>1.6.1</ukm:parser>
         <dc:modified>2020-08-10</dc:modified>
-        <uk:legislation>http://www.legislation.gov.uk/id/ukpga/2020/16</uk:legislation>
-        <uk:associatedID>http://www.legislation.gov.uk/id/ukpga/2020/16/notes</uk:associatedID>
-        <uk:documentMainType>UnitedKingdomExplanatoryNotes</uk:documentMainType>
-        <uk:date>2020-07-30</uk:date>
-        <uk:legislationClass>UnitedKingdomPublicGeneralAct</uk:legislationClass>
-        <uk:legislationYear>2020</uk:legislationYear>
-        <uk:legislationNumber>16</uk:legislationNumber>
-        <uk:hash>b5f24ff2219bee01ebdb5fb2f3a90709ad2468bc30500f38f548be396b1da34e</uk:hash>
+        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2020/16</ukm:legislation>
+        <ukm:associatedID>http://www.legislation.gov.uk/id/ukpga/2020/16/notes</ukm:associatedID>
+        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
+        <ukm:date>2020-07-30</ukm:date>
+        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
+        <ukm:legislationYear>2020</ukm:legislationYear>
+        <ukm:legislationNumber>16</ukm:legislationNumber>
+        <ukm:hash>b5f24ff2219bee01ebdb5fb2f3a90709ad2468bc30500f38f548be396b1da34e</ukm:hash>
       </proprietary>
     </meta>
     <preface>
@@ -100,7 +100,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table uk:widths="3.14in 3.13in">
+          <table ukm:widths="3.14in 3.13in">
             <tr>
               <td>
                 <p>Subject</p>
@@ -561,7 +561,7 @@
           <num>52 </num>
           <content>
             <p>For Great Britain the power to require a medical report is set out in legislation.</p>
-            <table uk:widths="5.79in">
+            <table ukm:widths="5.79in">
               <tr>
                 <td>
                   <p>Reference: Regulation 10(5) of the Motor Vehicles (Driving Licences) Regulations 1999 </p>
@@ -587,7 +587,7 @@
           <num>55 </num>
           <content>
             <p>The duration of licences is governed by provisions in the Road Traffic Act:</p>
-            <table uk:widths="5.89in">
+            <table ukm:widths="5.89in">
               <tr>
                 <td>
                   <p>Reference: Section 99(1A) of the Road Traffic Act 1988 </p>
@@ -1486,7 +1486,7 @@
               <num>146 </num>
               <content>
                 <p>An example of how these provisions would apply to certain planning permissions is detailed in the text box below.</p>
-                <table uk:widths="6.03in">
+                <table ukm:widths="6.03in">
                   <tr>
                     <td>
                       <p>Example 1: Cases of development with an extant planning permission</p>
@@ -1605,7 +1605,7 @@
               <num>159 </num>
               <content>
                 <p>An example of how these provisions would apply to outline planning permissions is detailed in the text box below.</p>
-                <table uk:widths="5.9in">
+                <table ukm:widths="5.9in">
                   <tr>
                     <td>
                       <p>Example 1: Cases of an extant outline planning permission involving an application for reserved matters approval</p>
@@ -2008,7 +2008,7 @@
         <heading><b>Annex A </b><b>–</b><b> Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table uk:widths="1.38in 0.69in 0.79in 0.79in 0.89in">
+            <table ukm:widths="1.38in 0.69in 0.79in 0.79in 0.89in">
               <tr>
                 <td>
                   <p><b>Provision</b></p>
@@ -2193,7 +2193,7 @@
           <num>191 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
-            <table uk:widths="1.71in 1.43in 3.12in">
+            <table ukm:widths="1.71in 1.43in 3.12in">
               <tr>
                 <th>
                   <p>Stage</p>
@@ -2362,7 +2362,7 @@
         <paragraph>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
-            <table uk:widths="0.96in 1in 1in 1.27in">
+            <table ukm:widths="0.96in 1in 1in 1.27in">
               <tr>
                 <th>
                   <p>Section of the Act</p>

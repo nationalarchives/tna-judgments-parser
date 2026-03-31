@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990/impacts/2025/13" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990/impacts/2025/13" />
-          <FRBRdate date="2026-02-26" name="generated" />
+          <FRBRdate date="2026-03-31" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348267990/impacts/2025/13/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348267990/impacts/2025/13/data.akn" />
-          <FRBRdate date="2026-02-26" name="transform" />
+          <FRBRdate date="2026-03-31" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,21 +29,21 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#">
-        <uk:parser>1.5.1</uk:parser>
+        <ukm:parser>1.6.1</ukm:parser>
         <dc:modified>2025-01-17</dc:modified>
-        <uk:legislation>http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990</uk:legislation>
-        <uk:associatedID>http://www.legislation.gov.uk/id/ukia/2025/13</uk:associatedID>
-        <uk:documentStage>Final</uk:documentStage>
-        <uk:documentMainType>UnitedKingdomImpactAssessment</uk:documentMainType>
-        <uk:department>Department for Education</uk:department>
-        <uk:date>2025-01-16</uk:date>
-        <uk:pdfDate>2025-01-20</uk:pdfDate>
-        <uk:legislationClass>UnitedKingdomDraftStatutoryInstrument</uk:legislationClass>
-        <uk:year>2025</uk:year>
-        <uk:number>13</uk:number>
-        <uk:legislationYear>2025</uk:legislationYear>
-        <uk:legislationNumber>9780348267990</uk:legislationNumber>
-        <uk:hash>0cafd907349923a2f90f32e1fd5aaf805106ccce6ca5e357e614f9acee7b7a22</uk:hash>
+        <ukm:legislation>http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990</ukm:legislation>
+        <ukm:associatedID>http://www.legislation.gov.uk/id/ukia/2025/13</ukm:associatedID>
+        <ukm:documentStage>Final</ukm:documentStage>
+        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
+        <ukm:department>Department for Education</ukm:department>
+        <ukm:date>2025-01-16</ukm:date>
+        <ukm:pdfDate>2025-01-20</ukm:pdfDate>
+        <ukm:legislationClass>UnitedKingdomDraftStatutoryInstrument</ukm:legislationClass>
+        <ukm:year>2025</ukm:year>
+        <ukm:number>13</ukm:number>
+        <ukm:legislationYear>2025</ukm:legislationYear>
+        <ukm:legislationNumber>9780348267990</ukm:legislationNumber>
+        <ukm:hash>0cafd907349923a2f90f32e1fd5aaf805106ccce6ca5e357e614f9acee7b7a22</ukm:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -184,7 +184,7 @@
         <paragraph>
           <content>
             <p><b>Table 1: Number of providers of classroom-based undergraduate degrees with an integrated foundation year (with at least one entrant) delivered via franchised partners 2022/23</b></p>
-            <table uk:widths="1.68in 1.27in 1.27in 1.27in 1.27in">
+            <table ukm:widths="1.68in 1.27in 1.27in 1.27in 1.27in">
               <tr>
                 <td>
                   <p />
@@ -302,7 +302,7 @@
         <paragraph>
           <content>
             <p>Without action, foundation years in classroom-based subjects would continue to represent poor value for money for students with provision continuing to expand in a way which does not best serve the interests of students and taxpayers.</p>
-            <table uk:widths="2.65in 0.74in 1.04in 1.04in 1.04in 1.04in 1.04in 1.04in 1.04in">
+            <table ukm:widths="2.65in 0.74in 1.04in 1.04in 1.04in 1.04in 1.04in 1.04in 1.04in">
               <tr>
                 <td>
                   <p><i>  </i></p>
@@ -1189,7 +1189,7 @@
         <paragraph>
           <intro>
             <p><i>Average annual rate of growth for entrants until academic year 2025/26, based on year-on-year average growth rate within provider typology group between academic year 2020/21 and academic year 2022/23.</i></p>
-            <table uk:widths="2.06in 1.58in">
+            <table ukm:widths="2.06in 1.58in">
               <tr>
                 <td>
                   <p><b>Provider typology</b></p>
@@ -1303,7 +1303,7 @@
           <paragraph>
             <content>
               <p><i>Percentage decrease from lowering of classroom-based course fees as a proportion of academic year 2022/23 total income of classroom-based FY (PGD) providers.</i></p>
-              <table uk:widths="1.73in 1.17in 1.18in 1.17in 1.18in">
+              <table ukm:widths="1.73in 1.17in 1.18in 1.17in 1.18in">
                 <tr>
                   <td>
                     <p><b>Provider typology</b></p>
@@ -1450,7 +1450,7 @@
         <paragraph>
           <content>
             <p><i>Percentage decrease from lowering of classroom-based course fees as a proportion of academic year 2022/23 total income of classroom-based FY (PGD) providers.</i></p>
-            <table uk:widths="2.27in 1.07in 1.19in 0.94in 1.07in">
+            <table ukm:widths="2.27in 1.07in 1.19in 0.94in 1.07in">
               <tr>
                 <td rowspan="2">
                   <p><b>Provider size</b></p>
@@ -1627,7 +1627,7 @@
         <paragraph>
           <content>
             <p><b>Part A: Overall and stakeholder impacts </b></p>
-            <table uk:widths="1.27in 3.97in 1.52in">
+            <table ukm:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="2">
                   <p><b>(1) Overall impacts on total welfare </b></p>
@@ -1696,7 +1696,7 @@
                 </td>
               </tr>
             </table>
-            <table uk:widths="1.27in 3.97in 1.52in">
+            <table ukm:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="2">
                   <p><b>(2) Expected impacts on businesses </b></p>
@@ -1762,7 +1762,7 @@
                 </td>
               </tr>
             </table>
-            <table uk:widths="1.27in 3.97in 1.52in">
+            <table ukm:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="3">
                   <p><b>(3) Expected impacts on students </b></p>
@@ -1824,7 +1824,7 @@
                 </td>
               </tr>
             </table>
-            <table uk:widths="1.27in 3.97in 1.52in">
+            <table ukm:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="3">
                   <p><b>(3) Expected impacts on taxpayers</b></p>
@@ -1875,7 +1875,7 @@
         <paragraph>
           <content>
             <p><b>Part B: Impacts on wider government priorities</b></p>
-            <table uk:widths="1.77in 3.64in 1.21in">
+            <table ukm:widths="1.77in 3.64in 1.21in">
               <tr>
                 <td>
                   <p><b>Category</b></p>
@@ -2128,7 +2128,7 @@
         <paragraph>
           <content>
             <p><b>PV base year:</b></p>
-            <table uk:widths="1.28in 1.48in 1.38in 2.58in 1.75in 1.87in">
+            <table ukm:widths="1.28in 1.48in 1.38in 2.58in 1.75in 1.87in">
               <tr>
                 <td>
                   <p />
