@@ -33,7 +33,9 @@ abstract class BaseHelper {
         
         // Process images: convert formats, rename to S3 convention, update references
         IEnumerable<Judgments.IImage> processedImages = LegImageProcessor.ProcessImages(doc);
-        
+
+        doc.Meta.Statistics = StatisticsCalculator.Calculate(doc);
+
         XmlDocument xml = Builder.Build(doc);
         docx.Dispose();
         if (simplify)

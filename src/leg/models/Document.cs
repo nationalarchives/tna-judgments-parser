@@ -86,6 +86,20 @@ internal class DocumentMetadata {
 
     public Dictionary<string, Dictionary<string, string>> CSS { get; init; }
 
+    public DocumentStatistics Statistics { get; internal set; }
+
+}
+
+internal class DocumentStatistics {
+
+    public int TotalParagraphs { get; init; }
+
+    public int BodyParagraphs { get; init; }
+
+    public int ScheduleParagraphs { get; init; }
+
+    public int TotalImages { get; init; }
+
 }
 
 internal class AnnexMetadata : DocumentMetadata {

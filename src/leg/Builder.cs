@@ -34,15 +34,7 @@ class Builder : AkN.Builder {
         main.SetAttribute("name", document.Meta.Name);
         main.SetAttribute("xmlns:ukm", UKNS);
         
-        // Add dc namespace if document has lastModified info (for dc:modified in proprietary)
-        // Check both ExpressionDate with lastModified name and IA/EM-specific LastModified property
-        bool hasModified = (document.Meta.ExpressionDateName == "lastModified" && document.Meta.ExpressionDate != null) ||
-                          (document.Meta is ImpactAssessments.IAMetadata iaData && iaData.LastModified.HasValue) ||
-                          (document.Meta is ExplanatoryMemoranda.EMMetadata emData && emData.LastModified.HasValue) ||
-                          (document.Meta is ExplanatoryNotes.ENMetadata enData && enData.LastModified.HasValue);
-        if (hasModified) {
-            main.SetAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
-        }
+        main.SetAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
         
         AddMetadata(main, document.Meta);
         if (document.Header is not null && document.Header.Any()) {
@@ -183,7 +175,7 @@ class Builder : AkN.Builder {
         if (data is ExplanatoryMemoranda.EMMetadata emMetadata) {
             // Add associated document URI for contractor upload (e.g. http://www.legislation.gov.uk/id/uksi/2013/2911/memorandum/1)
             if (!string.IsNullOrEmpty(emMetadata.ShortUriComponent)) {
-                XmlElement associatedId = doc.CreateElement("ukm","associatedID", UKNS);
+                XmlElement associatedId = doc.CreateElement("dc", "identifier", "http://purl.org/dc/elements/1.1/");
                 proprietary.AppendChild(associatedId);
                 associatedId.AppendChild(doc.CreateTextNode(emMetadata.WorkUri));
             }
@@ -237,7 +229,7 @@ class Builder : AkN.Builder {
         else if (data is ImpactAssessments.IAMetadata iaMetadata) {
             // Add associated document URI for contractor upload (e.g. http://www.legislation.gov.uk/id/ukia/2025/17)
             if (!string.IsNullOrEmpty(iaMetadata.UkiaUri)) {
-                XmlElement associatedId = doc.CreateElement("ukm","associatedID", UKNS);
+                XmlElement associatedId = doc.CreateElement("dc", "identifier", "http://purl.org/dc/elements/1.1/");
                 proprietary.AppendChild(associatedId);
                 associatedId.AppendChild(doc.CreateTextNode(iaMetadata.UkiaUri));
             }
@@ -305,7 +297,7 @@ class Builder : AkN.Builder {
         // Add additional EN metadata from CSV mapping (for Explanatory Notes)
         else if (data is ExplanatoryNotes.ENMetadata enMetadata) {
             if (!string.IsNullOrEmpty(enMetadata.ShortUriComponent)) {
-                XmlElement associatedId = doc.CreateElement("ukm","associatedID", UKNS);
+                XmlElement associatedId = doc.CreateElement("dc", "identifier", "http://purl.org/dc/elements/1.1/");
                 proprietary.AppendChild(associatedId);
                 associatedId.AppendChild(doc.CreateTextNode(enMetadata.WorkUri));
             }
@@ -334,6 +326,27 @@ class Builder : AkN.Builder {
                 proprietary.AppendChild(legislationNumber);
                 legislationNumber.AppendChild(doc.CreateTextNode(enMetadata.LegislationNumber));
             }
+        }
+
+        if (data.Statistics is not null) {
+            XmlElement statistics = doc.CreateElement("ukm","Statistics", UKNS);
+            proprietary.AppendChild(statistics);
+
+            XmlElement totalParas = doc.CreateElement("ukm","TotalParagraphs", UKNS);
+            totalParas.SetAttribute("Value", data.Statistics.TotalParagraphs.ToString());
+            statistics.AppendChild(totalParas);
+
+            XmlElement bodyParas = doc.CreateElement("ukm","BodyParagraphs", UKNS);
+            bodyParas.SetAttribute("Value", data.Statistics.BodyParagraphs.ToString());
+            statistics.AppendChild(bodyParas);
+
+            XmlElement scheduleParas = doc.CreateElement("ukm","ScheduleParagraphs", UKNS);
+            scheduleParas.SetAttribute("Value", data.Statistics.ScheduleParagraphs.ToString());
+            statistics.AppendChild(scheduleParas);
+
+            XmlElement totalImages = doc.CreateElement("ukm","TotalImages", UKNS);
+            totalImages.SetAttribute("Value", data.Statistics.TotalImages.ToString());
+            statistics.AppendChild(totalImages);
         }
 
         if (data.CSS is not null) {
