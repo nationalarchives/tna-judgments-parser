@@ -15,11 +15,11 @@ using DotNetEnv;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Time.Testing;
 
 using UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src;
+
 public class Program
 {
     static Program()
@@ -40,7 +40,8 @@ public class Program
 
         RootCommand.SetAction(validatedCommandInputs =>
             RunBacklogParser(validatedCommandInputs.GetValue(DryRunOption),
-                validatedCommandInputs.GetValue(FileIdOption))
+                validatedCommandInputs.GetValue(FileIdOption),
+                validatedCommandInputs.GetValue(AutoPublishOption))
         );
     }
 
@@ -76,6 +77,11 @@ public class Program
         Description = "Use the dry run flag to run the parser without sending to AWS"
     };
 
+    private static readonly Option<bool> AutoPublishOption = new("--auto-publish")
+    {
+        Description = "Use the auto-publish flag to automatically publish uploaded judgments"
+    };
+
     private static readonly Option<uint?> FileIdOption = new("--id")
     {
         Description =
@@ -85,7 +91,13 @@ public class Program
 
     private static readonly RootCommand RootCommand = new("Backlog parser used to bulk parse imported files")
     {
-        Options = { DryRunOption, FileIdOption }, Subcommands = { SplitFilesByExtension }
+        Options =
+        {
+            DryRunOption,
+            AutoPublishOption,
+            FileIdOption
+        },
+        Subcommands = { SplitFilesByExtension }
     };
 
     #endregion
@@ -120,10 +132,8 @@ public class Program
         }
     }
 
-    private static int RunBacklogParser(bool isDryRun, uint? id)
+    private static int RunBacklogParser(bool isDryRun, uint? id, bool autoPublish)
     {
-        var autoPublish = true;
-
         Env.Load(); // required for bucket name
 
         var judgmentsFilePath = Environment.GetEnvironmentVariable("JUDGMENTS_FILE_PATH") ?? "";
@@ -135,7 +145,6 @@ public class Program
         var trackerPath = Environment.GetEnvironmentVariable("TRACKER_PATH") ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "uploaded-production.csv");
         var bucketName = Environment.GetEnvironmentVariable("BUCKET_NAME") ??
                          throw new InvalidOperationException("BUCKET_NAME environment variable not set");
-        
 
         var serviceProvider = ConfigureDependencyInjection(pathToDataFolder, trackerPath, judgmentsFilePath,
             hmctsFilePath, bucketName);
