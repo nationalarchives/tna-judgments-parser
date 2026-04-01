@@ -8,7 +8,7 @@ This module provides a specialized entry point to the parser specifically design
     * [Pre-requisites](#pre-requisites)
     * [File Splitter (tool to assist with preparing for file conversions)](#file-splitter-tool-to-assist-with-preparing-for-file-conversions)
     * [Backlog Parser](#backlog-parser)
-    * [Processing Modes](#processing-modes)
+      * [Options](#options)
   * [Configuration](#configuration)
     * [File Formats](#file-formats)
     * [Directory Structure](#directory-structure)
@@ -50,37 +50,28 @@ dotnet run split <source folder> --destination <destination folder>
     - Exporting in the shell (e.g. `export MY_VAR=value`)
     - Adding them to a `.env` file in the assembly folder
     - Adding them to the build/run configuration in your IDE (e.g. [Run configs in Rider](https://www.jetbrains.com/help/rider/Run_Debug_Configuration.html#envvars-progargs))
-3. **Run the processor** using one of the [Processing Modes](#processing-modes).
+3. **Run the processor** using the [Options](#options) below.
     - It is recommended to do a dry run before uploading to S3 to ensure that there are no hidden complications in the new data.
 
-### Processing Modes
+#### Options
 
-The backlog processor supports three modes of operation:
+The following options can be combined in any combination:
 
-1. **Process the Entire CSV** (default):
+| Flag | Description |
+|------|-------------|
+| `--id <id>` | Process only the record with this ID from the court metadata CSV. Without this flag, all records are processed sequentially, skipping already-processed ones |
+| `--dry-run` | Write output files to the output path but do not upload to S3 |
+| `--auto-publish` | Set `auto_publish: true` in the bundle metadata, instructing the ingester to automatically publish each judgment after ingestion. Without this flag, `auto_publish` defaults to `false` and judgments must be published manually |
 
-   ```bash
-   dotnet run
-   ```
+Examples:
 
-   Processes every record in the court metadata CSV sequentially, skipping already processed records.
-
-2. **Process Specific Records by ID**:
-
-   ```bash
-   dotnet run --id <id>
-   ```
-
-   Processes a specific judgment record by its ID from the court metadata CSV.
-
-3. **Dry run**:
-
-   ```bash
-   dotnet run --dry-run
-   dotnet run --dry-run --id <id>
-   ```
-
-   Processes every record or specific record (as specified by `--id`), writes the files to the output path but does not send the results to S3
+```bash
+dotnet run                                        # Process all records
+dotnet run --id 42                                # Process one record
+dotnet run --dry-run --id 42                      # Dry run for one record
+dotnet run --auto-publish                         # Process all, auto-publishing each
+dotnet run --dry-run --auto-publish --id 42       # Dry run, single record, with auto-publish set
+```
 
 ## Configuration
 
