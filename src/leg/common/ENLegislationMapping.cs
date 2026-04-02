@@ -14,8 +14,9 @@ internal static partial class ENLegislationMapping {
 
     private static readonly ILogger logger = Logging.Factory.CreateLogger(typeof(ENLegislationMapping));
 
-    // Matches EN filename patterns: ukpgaen_20200007_en, ukpga_20180015_en, aspen_20250001_en, etc.
-    [GeneratedRegex(@"^(ukpgaen|ukpga|aspen|niaen|aniaen)[_](\d{4})[_]?(\d+)[_]en(?:[_].+)?$", RegexOptions.IgnoreCase)]
+    // Matches EN filename patterns with or without _en suffix:
+    // ukpgaen_20200007_en, ukpga_20180015_en, aspen_20250001_en, ukpgaen_20250015, ukpgaen_20180019_en2, etc.
+    [GeneratedRegex(@"^(ukpgaen|ukpga|aspen|niaen|aniaen)[_](\d{4})[_]?(\d+)(?:[_]en\d*)?(?:[_].+)?$", RegexOptions.IgnoreCase)]
     private static partial Regex FilenamePartsRegex();
 
     /// <summary>
