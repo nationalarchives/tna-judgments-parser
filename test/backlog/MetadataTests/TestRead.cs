@@ -687,4 +687,39 @@ public class TestRead: IDisposable
         // Assert
         Assert.Empty(lines);
     }
+
+    [Fact]
+    public void Read_FromPath_PopulatesCsvPropertiesWithNameAndHash()
+    {
+        // Arrange
+        const string csvContent = "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip\n" +
+                                  "123,/test/data/test.pdf,.pdf,2025-01-15,IA/2025/001,UKUT-IAC,Smith,HMRC,";
+        var csvPath = MakeRealCsvFile(csvContent);
+        var expectedHash = BacklogParserWorker.Hash(File.ReadAllBytes(csvPath));
+
+        // Act
+        var result = csvMetadataReader.Read(csvPath, out _, out _);
+
+        // Assert
+        var line = Assert.Single(result);
+        Assert.Equal("metadata.csv", line.CsvProperties.Name);
+        Assert.Equal(expectedHash, line.CsvProperties.Hash);
+    }
+
+    [Fact]
+    public void Read_FromTextReader_PopulatesCsvPropertiesWithUnknown()
+    {
+        // Arrange
+        const string csvContent = "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,skip\n" +
+                                  "123,/test/data/test.pdf,.pdf,2025-01-15,IA/2025/001,UKUT-IAC,Smith,HMRC,";
+        using var reader = new StringReader(csvContent);
+
+        // Act
+        var result = csvMetadataReader.Read(reader, out _, out _);
+
+        // Assert
+        var line = Assert.Single(result);
+        Assert.Equal("unknown.csv", line.CsvProperties.Name);
+        Assert.Equal("unknown", line.CsvProperties.Hash);
+    }
 }
