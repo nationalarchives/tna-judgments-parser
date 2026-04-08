@@ -42,7 +42,9 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
         };
         using var csv = new CsvReader(textReader, config);
 
+        csv.Context.TypeConverterCache.AddConverter<BooleanSkipConverter>(new BooleanSkipConverter());
         csv.Context.RegisterClassMap(new CsvLineMap(csvName, csvHash));
+
         var records = new List<CsvLine>();
         csvParseErrors = [];
 
@@ -106,9 +108,11 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
         private void Configure()
         {
             AutoMap(CultureInfo.InvariantCulture);
+
             Map(l => l.DecisionDateTime)
                 .TypeConverterOption.DateTimeStyles(DateTimeStyles.AllowWhiteSpaces & DateTimeStyles.AssumeUniversal)
                 .Validate(v => Regex.IsMatch(v.Field.Trim(), @"^\d\d\d\d")); // Ensure dates start with the year
+
             Map(l => l.Jurisdictions)
                 .Optional()
                 .Convert(convertFromStringArgs =>
@@ -116,16 +120,6 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
                     // Get value
                     convertFromStringArgs.Row.TryGetField<string>("jurisdictions", out var field);
                     return field?.Split(',').Select(item => item.Trim()).Where(jurisdiction => !string.IsNullOrWhiteSpace(jurisdiction)).ToArray() ?? [];
-                });
-            Map(l => l.Skip)
-                .Convert(convertFromStringArgs =>
-                {
-                    var field = convertFromStringArgs.Row.GetField<string>(nameof(CsvLine.Skip));
-                    return field!.Trim().ToLower() switch
-                    {
-                        null or "" or "n" or "no" or "f" or "false" or "0" => false,
-                        _ => true // return true when there is any value that is not explicitly negative
-                    };
                 });
 
             Map(l => l.FullCsvLineContents)
