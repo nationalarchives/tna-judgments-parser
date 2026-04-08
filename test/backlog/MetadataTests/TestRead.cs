@@ -656,8 +656,8 @@ public class TestRead: IDisposable
         Assert.Equivalent(
             new List<string>
             {
-                "Line 6: Field '01/16/2025 10:00:00' is not valid. [125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC,]",
-                "Line 7: Field '31/01/2025 10:00:00' is not valid. [125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC,]"
+                "Line 6: \"01/16/2025 10:00:00\" failed validation with message: Unsupported decision date. Ensure dates are in yyyy-MM-dd format [125,bad.pdf,.pdf,  01/16/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC,]",
+                "Line 7: \"31/01/2025 10:00:00\" failed validation with message: Unsupported decision date. Ensure dates are in yyyy-MM-dd format [125,bad.pdf,.pdf,  31/01/2025 10:00:00  ,IA/2025/002,UKFTT-TC,Jones,,HMRC,]"
             },
             csvParseErrors);
     }

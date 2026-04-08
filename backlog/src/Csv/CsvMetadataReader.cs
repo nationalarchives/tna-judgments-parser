@@ -57,24 +57,31 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
         {
             try
             {
-                var record = csv.GetRecord<CsvLine>();
-
-                // Use DataAnnotations validation
-                var validationContext = new ValidationContext(record);
-                var validationResults = new List<ValidationResult>();
-
-                if (Validator.TryValidateObject(record, validationContext, validationResults, true))
+                try
                 {
-                    records.Add(record);
+                    var record = csv.GetRecord<CsvLine>();
+
+                    // Use DataAnnotations validation
+                    var validationContext = new ValidationContext(record);
+                    var validationResults = new List<ValidationResult>();
+
+                    if (Validator.TryValidateObject(record, validationContext, validationResults, true))
+                    {
+                        records.Add(record);
+                    }
+                    else
+                    {
+                        var errors = string.Join(", ", validationResults.Where(r => r != ValidationResult.Success)
+                                                                        .Select(r => r.ErrorMessage));
+
+                        csvParseErrors.Add($"Line {csv.Context.Parser!.Row}: {errors}");
+                        logger.LogError("CSV validation errors [{Errors}] at row {ParserRow}", errors,
+                            csv.Context.Parser?.Row);
+                    }
                 }
-                else
+                catch (FieldValidationException ex) //created by failed `Validate`s in `CsvLineMap`
                 {
-                    var errors = string.Join(", ", validationResults.Where(r => r != ValidationResult.Success)
-                                                                    .Select(r => r.ErrorMessage));
-
-                    csvParseErrors.Add($"Line {csv.Context.Parser!.Row}: {errors}");
-                    logger.LogError("CSV validation errors [{Errors}] at row {ParserRow}", errors,
-                        csv.Context.Parser?.Row);
+                    csvParseErrors.Add($"Line {csv.Context.Parser!.Row}: \"{ex.Field}\" failed validation with message: {ex.Message.Substring(0, ex.Message.IndexOf(Environment.NewLine, StringComparison.Ordinal))} [{csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty)}]");
                 }
             }
             catch (Exception ex)
@@ -111,7 +118,10 @@ class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
 
             Map(l => l.DecisionDateTime)
                 .TypeConverterOption.DateTimeStyles(DateTimeStyles.AllowWhiteSpaces & DateTimeStyles.AssumeUniversal)
-                .Validate(v => Regex.IsMatch(v.Field.Trim(), @"^\d\d\d\d")); // Ensure dates start with the year
+                .Validate(v => Regex.IsMatch(v.Field.Trim(), @"^\d\d\d\d"),
+                    v => string.IsNullOrWhiteSpace(v.Field)
+                        ? "Decision date must be provided"
+                        : "Unsupported decision date. Ensure dates are in yyyy-MM-dd format");
 
             Map(l => l.Jurisdictions)
                 .Optional()
