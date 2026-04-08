@@ -76,6 +76,7 @@ internal record CsvLine
     public string? Uuid { get; set; }
 
     [Default(false)]
+    [TypeConverter(typeof(BooleanSkipConverter))]
     public bool Skip { get; set; }
 
     /// <summary>
