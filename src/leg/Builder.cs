@@ -13,6 +13,7 @@ namespace UK.Gov.Legislation {
 class Builder : AkN.Builder {
 
     override protected string UKNS => "https://legislation.gov.uk/akn";
+    private const string UKM_NS = "http://www.legislation.gov.uk/namespaces/metadata";
 
 
     private static string FormatDateOnly(DateTime? date) {
@@ -46,9 +47,7 @@ class Builder : AkN.Builder {
         XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
         XmlElement main = CreateAndAppend("doc", akomaNtoso);
         main.SetAttribute("name", document.Meta.Name);
-        main.SetAttribute("xmlns:ukm", UKNS);
-        
-        main.SetAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
+        main.SetAttribute("xmlns:uk", UKNS);
         
         AddMetadata(main, document.Meta);
         if (document.Header is not null && document.Header.Any()) {
@@ -64,7 +63,7 @@ class Builder : AkN.Builder {
         else
             throw new System.Exception();
         AddAnnexes(main, document);
-        AddHash(doc, UKNS, "ukm");
+        AddHash(doc, UKNS, "uk");
     }
 
     private void AddMetadata(XmlElement main, DocumentMetadata data) {
@@ -138,17 +137,12 @@ class Builder : AkN.Builder {
 
         XmlElement proprietary = CreateAndAppend("proprietary", meta);
         proprietary.SetAttribute("source", "#");
-        // if (data is Metadata em && em.AltNum is not null) {
-        //     string ukm = "http://www.legislation.gov.uk/namespaces/metadata";
-        //     proprietary.SetAttribute("xmlns:ukm", ukm);
-        //     XmlElement altNum = doc.CreateElement("ukm", "AlternativeNumber", ukm);
-        //     altNum.SetAttribute("Value", em.AltNum.Item2.ToString());
-        //     altNum.SetAttribute("Category", em.AltNum.Item1);
-        //     proprietary.AppendChild(altNum);
-        // }
-        XmlElement parser = doc.CreateElement("ukm","parser", UKNS);
+        proprietary.SetAttribute("xmlns:ukm", UKM_NS);
+        proprietary.SetAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
+
+        XmlElement parser = doc.CreateElement("ukm", "Parser", UKM_NS);
         proprietary.AppendChild(parser);
-        parser.AppendChild(doc.CreateTextNode(AkN.Metadata.GetParserVersion()));
+        parser.SetAttribute("Value", AkN.Metadata.GetParserVersion());
         
         // Add dc:modified for all documents that have lastModified information
         // This provides a consistent location for file modification timestamp
@@ -214,9 +208,9 @@ class Builder : AkN.Builder {
 
         // Add legislation reference if available (for Impact Assessments)
         if (data.LegislationUri is not null) {
-            XmlElement legislation = doc.CreateElement("ukm","legislation", UKNS);
+            XmlElement legislation = doc.CreateElement("ukm", "Legislation", UKM_NS);
             proprietary.AppendChild(legislation);
-            legislation.AppendChild(doc.CreateTextNode(data.LegislationUri));
+            legislation.SetAttribute("Value", data.LegislationUri);
         }
 
         // Add additional EM metadata from CSV mapping (for Explanatory Memoranda)
@@ -228,49 +222,49 @@ class Builder : AkN.Builder {
                 associatedId.AppendChild(doc.CreateTextNode(emMetadata.WorkUri));
             }
             if (!string.IsNullOrEmpty(emMetadata.DocumentMainType)) {
-                XmlElement documentMainType = doc.CreateElement("ukm","documentMainType", UKNS);
+                XmlElement documentMainType = doc.CreateElement("ukm", "DocumentMainType", UKM_NS);
                 proprietary.AppendChild(documentMainType);
-                documentMainType.AppendChild(doc.CreateTextNode(emMetadata.DocumentMainType));
+                documentMainType.SetAttribute("Value", emMetadata.DocumentMainType);
             }
-            
+
             if (!string.IsNullOrEmpty(emMetadata.Department)) {
-                XmlElement department = doc.CreateElement("ukm","department", UKNS);
+                XmlElement department = doc.CreateElement("ukm", "Department", UKM_NS);
                 proprietary.AppendChild(department);
-                department.AppendChild(doc.CreateTextNode(emMetadata.Department));
+                department.SetAttribute("Value", emMetadata.Department);
             }
-            
+
             if (!string.IsNullOrEmpty(emMetadata.EmDate)) {
-                XmlElement date = doc.CreateElement("ukm","date", UKNS);
+                XmlElement date = doc.CreateElement("ukm", "Date", UKM_NS);
                 proprietary.AppendChild(date);
-                date.AppendChild(doc.CreateTextNode(emMetadata.EmDate));
+                date.SetAttribute("Value", emMetadata.EmDate);
             }
-            
+
             if (!string.IsNullOrEmpty(emMetadata.LegislationClass)) {
-                XmlElement legislationClass = doc.CreateElement("ukm","legislationClass", UKNS);
+                XmlElement legislationClass = doc.CreateElement("ukm", "LegislationClass", UKM_NS);
                 proprietary.AppendChild(legislationClass);
-                legislationClass.AppendChild(doc.CreateTextNode(emMetadata.LegislationClass));
+                legislationClass.SetAttribute("Value", emMetadata.LegislationClass);
             }
-            
+
             if (emMetadata.EmYear.HasValue) {
-                XmlElement year = doc.CreateElement("ukm","year", UKNS);
+                XmlElement year = doc.CreateElement("ukm", "Year", UKM_NS);
                 proprietary.AppendChild(year);
-                year.AppendChild(doc.CreateTextNode(emMetadata.EmYear.Value.ToString()));
+                year.SetAttribute("Value", emMetadata.EmYear.Value.ToString());
             }
-            
-            XmlElement version = doc.CreateElement("ukm","version", UKNS);
+
+            XmlElement version = doc.CreateElement("ukm", "Version", UKM_NS);
             proprietary.AppendChild(version);
-            version.AppendChild(doc.CreateTextNode(emMetadata.EmVersion.ToString()));
-            
+            version.SetAttribute("Value", emMetadata.EmVersion.ToString());
+
             if (emMetadata.LegislationYear.HasValue) {
-                XmlElement legislationYear = doc.CreateElement("ukm","legislationYear", UKNS);
+                XmlElement legislationYear = doc.CreateElement("ukm", "LegislationYear", UKM_NS);
                 proprietary.AppendChild(legislationYear);
-                legislationYear.AppendChild(doc.CreateTextNode(emMetadata.LegislationYear.Value.ToString()));
+                legislationYear.SetAttribute("Value", emMetadata.LegislationYear.Value.ToString());
             }
-            
+
             if (!string.IsNullOrEmpty(emMetadata.LegislationNumber)) {
-                XmlElement legislationNumber = doc.CreateElement("ukm","legislationNumber", UKNS);
+                XmlElement legislationNumber = doc.CreateElement("ukm", "LegislationNumber", UKM_NS);
                 proprietary.AppendChild(legislationNumber);
-                legislationNumber.AppendChild(doc.CreateTextNode(emMetadata.LegislationNumber));
+                legislationNumber.SetAttribute("Value", emMetadata.LegislationNumber);
             }
         }
         // Add additional IA metadata from CSV mapping (for Impact Assessments)
@@ -283,63 +277,63 @@ class Builder : AkN.Builder {
             }
             
             if (!string.IsNullOrEmpty(iaMetadata.DocumentStage)) {
-                XmlElement documentStage = doc.CreateElement("ukm","documentStage", UKNS);
+                XmlElement documentStage = doc.CreateElement("ukm", "DocumentStage", UKM_NS);
                 proprietary.AppendChild(documentStage);
-                documentStage.AppendChild(doc.CreateTextNode(iaMetadata.DocumentStage));
+                documentStage.SetAttribute("Value", iaMetadata.DocumentStage);
             }
-            
+
             if (!string.IsNullOrEmpty(iaMetadata.DocumentMainType)) {
-                XmlElement documentMainType = doc.CreateElement("ukm","documentMainType", UKNS);
+                XmlElement documentMainType = doc.CreateElement("ukm", "DocumentMainType", UKM_NS);
                 proprietary.AppendChild(documentMainType);
-                documentMainType.AppendChild(doc.CreateTextNode(iaMetadata.DocumentMainType));
+                documentMainType.SetAttribute("Value", iaMetadata.DocumentMainType);
             }
-            
+
             if (!string.IsNullOrEmpty(iaMetadata.Department)) {
-                XmlElement department = doc.CreateElement("ukm","department", UKNS);
+                XmlElement department = doc.CreateElement("ukm", "Department", UKM_NS);
                 proprietary.AppendChild(department);
-                department.AppendChild(doc.CreateTextNode(iaMetadata.Department));
+                department.SetAttribute("Value", iaMetadata.Department);
             }
-            
+
             if (!string.IsNullOrEmpty(iaMetadata.IADate)) {
-                XmlElement date = doc.CreateElement("ukm","date", UKNS);
+                XmlElement date = doc.CreateElement("ukm", "Date", UKM_NS);
                 proprietary.AppendChild(date);
-                date.AppendChild(doc.CreateTextNode(iaMetadata.IADate));
+                date.SetAttribute("Value", iaMetadata.IADate);
             }
-            
+
             if (!string.IsNullOrEmpty(iaMetadata.PDFDate)) {
-                XmlElement pdfDate = doc.CreateElement("ukm","pdfDate", UKNS);
+                XmlElement pdfDate = doc.CreateElement("ukm", "PdfDate", UKM_NS);
                 proprietary.AppendChild(pdfDate);
-                pdfDate.AppendChild(doc.CreateTextNode(iaMetadata.PDFDate));
+                pdfDate.SetAttribute("Value", iaMetadata.PDFDate);
             }
-            
+
             if (!string.IsNullOrEmpty(iaMetadata.LegislationClass)) {
-                XmlElement legislationClass = doc.CreateElement("ukm","legislationClass", UKNS);
+                XmlElement legislationClass = doc.CreateElement("ukm", "LegislationClass", UKM_NS);
                 proprietary.AppendChild(legislationClass);
-                legislationClass.AppendChild(doc.CreateTextNode(iaMetadata.LegislationClass));
+                legislationClass.SetAttribute("Value", iaMetadata.LegislationClass);
             }
-            
+
             if (iaMetadata.UkiaYear.HasValue) {
-                XmlElement year = doc.CreateElement("ukm","year", UKNS);
+                XmlElement year = doc.CreateElement("ukm", "Year", UKM_NS);
                 proprietary.AppendChild(year);
-                year.AppendChild(doc.CreateTextNode(iaMetadata.UkiaYear.Value.ToString()));
+                year.SetAttribute("Value", iaMetadata.UkiaYear.Value.ToString());
             }
-            
+
             if (iaMetadata.UkiaNumber.HasValue) {
-                XmlElement number = doc.CreateElement("ukm","number", UKNS);
+                XmlElement number = doc.CreateElement("ukm", "Number", UKM_NS);
                 proprietary.AppendChild(number);
-                number.AppendChild(doc.CreateTextNode(iaMetadata.UkiaNumber.Value.ToString()));
+                number.SetAttribute("Value", iaMetadata.UkiaNumber.Value.ToString());
             }
-            
+
             if (iaMetadata.LegislationYear.HasValue) {
-                XmlElement legislationYear = doc.CreateElement("ukm","legislationYear", UKNS);
+                XmlElement legislationYear = doc.CreateElement("ukm", "LegislationYear", UKM_NS);
                 proprietary.AppendChild(legislationYear);
-                legislationYear.AppendChild(doc.CreateTextNode(iaMetadata.LegislationYear.Value.ToString()));
+                legislationYear.SetAttribute("Value", iaMetadata.LegislationYear.Value.ToString());
             }
-            
+
             if (!string.IsNullOrEmpty(iaMetadata.LegislationNumber)) {
-                XmlElement legislationNumber = doc.CreateElement("ukm","legislationNumber", UKNS);
+                XmlElement legislationNumber = doc.CreateElement("ukm", "LegislationNumber", UKM_NS);
                 proprietary.AppendChild(legislationNumber);
-                legislationNumber.AppendChild(doc.CreateTextNode(iaMetadata.LegislationNumber));
+                legislationNumber.SetAttribute("Value", iaMetadata.LegislationNumber);
             }
         }
         // Add additional EN metadata from CSV mapping (for Explanatory Notes)
@@ -350,49 +344,49 @@ class Builder : AkN.Builder {
                 associatedId.AppendChild(doc.CreateTextNode(enMetadata.WorkUri));
             }
             if (!string.IsNullOrEmpty(enMetadata.DocumentMainType)) {
-                XmlElement documentMainType = doc.CreateElement("ukm","documentMainType", UKNS);
+                XmlElement documentMainType = doc.CreateElement("ukm", "DocumentMainType", UKM_NS);
                 proprietary.AppendChild(documentMainType);
-                documentMainType.AppendChild(doc.CreateTextNode(enMetadata.DocumentMainType));
+                documentMainType.SetAttribute("Value", enMetadata.DocumentMainType);
             }
             if (!string.IsNullOrEmpty(enMetadata.EnDate)) {
-                XmlElement date = doc.CreateElement("ukm","date", UKNS);
+                XmlElement date = doc.CreateElement("ukm", "Date", UKM_NS);
                 proprietary.AppendChild(date);
-                date.AppendChild(doc.CreateTextNode(enMetadata.EnDate));
+                date.SetAttribute("Value", enMetadata.EnDate);
             }
             if (!string.IsNullOrEmpty(enMetadata.LegislationClass)) {
-                XmlElement legislationClass = doc.CreateElement("ukm","legislationClass", UKNS);
+                XmlElement legislationClass = doc.CreateElement("ukm", "LegislationClass", UKM_NS);
                 proprietary.AppendChild(legislationClass);
-                legislationClass.AppendChild(doc.CreateTextNode(enMetadata.LegislationClass));
+                legislationClass.SetAttribute("Value", enMetadata.LegislationClass);
             }
             if (enMetadata.LegislationYear.HasValue) {
-                XmlElement legislationYear = doc.CreateElement("ukm","legislationYear", UKNS);
+                XmlElement legislationYear = doc.CreateElement("ukm", "LegislationYear", UKM_NS);
                 proprietary.AppendChild(legislationYear);
-                legislationYear.AppendChild(doc.CreateTextNode(enMetadata.LegislationYear.Value.ToString()));
+                legislationYear.SetAttribute("Value", enMetadata.LegislationYear.Value.ToString());
             }
             if (!string.IsNullOrEmpty(enMetadata.LegislationNumber)) {
-                XmlElement legislationNumber = doc.CreateElement("ukm","legislationNumber", UKNS);
+                XmlElement legislationNumber = doc.CreateElement("ukm", "LegislationNumber", UKM_NS);
                 proprietary.AppendChild(legislationNumber);
-                legislationNumber.AppendChild(doc.CreateTextNode(enMetadata.LegislationNumber));
+                legislationNumber.SetAttribute("Value", enMetadata.LegislationNumber);
             }
         }
 
         if (data.Statistics is not null) {
-            XmlElement statistics = doc.CreateElement("ukm","Statistics", UKNS);
+            XmlElement statistics = doc.CreateElement("ukm", "Statistics", UKM_NS);
             proprietary.AppendChild(statistics);
 
-            XmlElement totalParas = doc.CreateElement("ukm","TotalParagraphs", UKNS);
+            XmlElement totalParas = doc.CreateElement("ukm", "TotalParagraphs", UKM_NS);
             totalParas.SetAttribute("Value", data.Statistics.TotalParagraphs.ToString());
             statistics.AppendChild(totalParas);
 
-            XmlElement bodyParas = doc.CreateElement("ukm","BodyParagraphs", UKNS);
+            XmlElement bodyParas = doc.CreateElement("ukm", "BodyParagraphs", UKM_NS);
             bodyParas.SetAttribute("Value", data.Statistics.BodyParagraphs.ToString());
             statistics.AppendChild(bodyParas);
 
-            XmlElement scheduleParas = doc.CreateElement("ukm","ScheduleParagraphs", UKNS);
+            XmlElement scheduleParas = doc.CreateElement("ukm", "ScheduleParagraphs", UKM_NS);
             scheduleParas.SetAttribute("Value", data.Statistics.ScheduleParagraphs.ToString());
             statistics.AppendChild(scheduleParas);
 
-            XmlElement totalImages = doc.CreateElement("ukm","TotalImages", UKNS);
+            XmlElement totalImages = doc.CreateElement("ukm", "TotalImages", UKM_NS);
             totalImages.SetAttribute("Value", data.Statistics.TotalImages.ToString());
             statistics.AppendChild(totalImages);
         }

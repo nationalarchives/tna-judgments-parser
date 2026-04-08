@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2019-02-01</dc:modified>
         <dc:title>Impact Assessment The Venture Capital Funds (Amendment) (EU Exit) Regulations 2019</dc:title>
         <dc:description>Impact Assessment The Venture Capital Funds (Amendment) (EU Exit) Regulations 2019</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/uksi/2019/333</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/uksi/2019/333" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2019/60</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>HM Treasury</ukm:department>
-        <ukm:date>2019-02-20</ukm:date>
-        <ukm:pdfDate>2019-02-21</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2019</ukm:year>
-        <ukm:number>60</ukm:number>
-        <ukm:legislationYear>2019</ukm:legislationYear>
-        <ukm:legislationNumber>333</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="HM Treasury" />
+        <ukm:Date Value="2019-02-20" />
+        <ukm:PdfDate Value="2019-02-21" />
+        <ukm:LegislationClass Value="UnitedKingdomStatutoryInstrument" />
+        <ukm:Year Value="2019" />
+        <ukm:Number Value="60" />
+        <ukm:LegislationYear Value="2019" />
+        <ukm:LegislationNumber Value="333" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="110" />
           <ukm:BodyParagraphs Value="110" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="2" />
         </ukm:Statistics>
-        <ukm:hash>10479f50b03e21f9a06058304f6ecfacfa8a04289b5820fcc12d333450fdc1c1</ukm:hash>
+        <uk:hash>10479f50b03e21f9a06058304f6ecfacfa8a04289b5820fcc12d333450fdc1c1</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -70,7 +70,7 @@
       </toc>
       <level>
         <content>
-          <table ukm:widths="1.21in 1.11in 1.81in 0.21in 0.89in 2.01in 0.01in">
+          <table uk:widths="1.21in 1.11in 1.81in 0.21in 0.89in 2.01in 0.01in">
             <tr>
               <td colspan="4">
                 <p><b>Title:</b> <docTitle>    European Union (Withdrawal) Act – Financial Services Statutory Instruments (III)</docTitle></p>
@@ -80,7 +80,7 @@
                 <p><b>Other departments or agencies: </b> <inline name="otherDepartments">Department for Exiting the European Union</inline></p>
               </td>
               <td colspan="3">
-                <table ukm:widths="2.91in">
+                <table uk:widths="2.91in">
                   <tr>
                     <td>
                       <p>Impact Assessment (IA)</p>
@@ -212,7 +212,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.26in">
+          <table uk:widths="7.26in">
             <tr>
               <td>
                 <p><b>What are the policy objectives and the intended effects?</b></p>
@@ -228,7 +228,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.26in">
+          <table uk:widths="7.26in">
             <tr>
               <td>
                 <p><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option (further details in Evidence Base)</b></p>
@@ -242,7 +242,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.26in">
+          <table uk:widths="7.26in">
             <tr>
               <td>
                 <p><b>Will the policy be reviewed?  </b>It will not be reviewed. <b>If applicable, set review date: </b>N/A</p>
@@ -253,7 +253,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="4.42in 0.69in 0.69in 0.25in 0.45in 0.69in">
+          <table uk:widths="4.42in 0.69in 0.69in 0.25in 0.45in 0.69in">
             <tr>
               <td colspan="2">
                 <p>Does implementation go beyond minimum EU requirements?</p>
@@ -299,7 +299,7 @@
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></p>
-          <table ukm:widths="3.42in 1.63in 0.91in 1.31in">
+          <table uk:widths="3.42in 1.63in 0.91in 1.31in">
             <tr>
               <td>
                 <p>Signed by the responsible Minister:</p>
@@ -331,7 +331,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT </b><authorialNote marker="1"><p> Familiarisation costs only – excludes non-monetised impacts. Results given to two significant figures.</p></authorialNote></p>
-            <table ukm:widths="0.98in 0.98in 0.78in 1.25in 1.26in 1.82in">
+            <table uk:widths="0.98in 0.98in 0.78in 1.25in 1.26in 1.82in">
               <tr>
                 <td rowspan="2">
                   <p><b>Price Base Year  </b></p>
@@ -364,7 +364,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.38in 1.86in 0.03in 1.98in 1.23in 0.59in">
+            <table uk:widths="1.38in 1.86in 0.03in 1.98in 1.23in 0.59in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -534,7 +534,7 @@
         <paragraph>
           <content>
             <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
-            <table ukm:widths="1.28in 1.28in 1.18in 3.34in">
+            <table uk:widths="1.28in 1.28in 1.18in 3.34in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual) £m: </b></p>
@@ -1135,7 +1135,7 @@
         <paragraph>
           <content>
             <p><b>Table 1. Quantified Familiarisation costs by SI</b></p>
-            <table ukm:widths="2.09in 2.09in 2.09in">
+            <table uk:widths="2.09in 2.09in 2.09in">
               <tr>
                 <td>
                   <p>SI title</p>
@@ -1402,7 +1402,7 @@
           <paragraph>
             <content>
               <p>Table 3. Summary of anticipated costs by SI</p>
-              <table ukm:widths="2.81in 0.99in 0.99in 0.99in 0.99in 0.99in 0.99in 0.99in">
+              <table uk:widths="2.81in 0.99in 0.99in 0.99in 0.99in 0.99in 0.99in 0.99in">
                 <tr>
                   <td>
                     <p>SI</p>
@@ -2939,7 +2939,7 @@
         <paragraph>
           <intro>
             <p><b>Table 2. Impact on SMBs</b></p>
-            <table ukm:widths="3.13in 1.69in">
+            <table uk:widths="3.13in 1.69in">
               <tr>
                 <td>
                   <p>SI title</p>
@@ -3203,7 +3203,7 @@
         <paragraph>
           <content>
             <p>Under this assumption, these hourly rates would reflect the full cost incurred by businesses: no non-wage costs would be incurred since it is assumed the work is not carried out in-house. It is assumed that one professional per business is reading the SI and disseminating legal advice to firms’ internal EU exit compliance and legal teams, and that this work will be billed to the firm on a per-minute basis. </p>
-            <table ukm:widths="2.06in 2.48in">
+            <table uk:widths="2.06in 2.48in">
               <tr>
                 <td colspan="2">
                   <p>Solicitors and legal executives with over 4 years’ experience</p>
@@ -3240,7 +3240,7 @@
         <paragraph>
           <content>
             <p><b>Breakdown of Familiarisation Costs:</b></p>
-            <table ukm:widths="1.4in 0.66in 1.03in 1.43in 1.46in">
+            <table uk:widths="1.4in 0.66in 1.03in 1.43in 1.46in">
               <tr>
                 <td>
                   <p>Time spent on familiarisation (hrs)</p>
@@ -3281,7 +3281,7 @@
         <paragraph>
           <intro>
             <p><b>Monetised Familiarisation Costs by SI:</b></p>
-            <table ukm:widths="2.21in 1.04in 1.04in 1.04in 1.04in 1.04in">
+            <table uk:widths="2.21in 1.04in 1.04in 1.04in 1.04in 1.04in">
               <tr>
                 <td>
                   <p>SI</p>
@@ -3494,7 +3494,7 @@
         <paragraph>
           <content>
             <p>As set out in section I (2), a small number of provisions in these SIs come into effect before 29 March 2019. These are provisions which allow the regulators to make the necessary preparations, but they are also specifically designed to prepare for a “no deal” scenario. The table below summarises these provisions. </p>
-            <table ukm:widths="2.85in 4.55in">
+            <table uk:widths="2.85in 4.55in">
               <tr>
                 <td>
                   <p>SI</p>

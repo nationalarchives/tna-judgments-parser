@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2021/3/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2021/3/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/3/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/3/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2021-03-24</dc:modified>
         <dc:title>Explanatory Notes Medicines and Medical Devices Act 2021</dc:title>
         <dc:description>Explanatory Notes Medicines and Medical Devices Act 2021</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2021/3</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2021/3" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2021/3/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2021-03-17</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2021</ukm:legislationYear>
-        <ukm:legislationNumber>3</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2021-03-17" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2021" />
+        <ukm:LegislationNumber Value="3" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="381" />
           <ukm:BodyParagraphs Value="381" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>a343f37d9e064e1bf805871d7eeeb10da7ec872cedaa809a7a93f2612a51dbb4</ukm:hash>
+        <uk:hash>a343f37d9e064e1bf805871d7eeeb10da7ec872cedaa809a7a93f2612a51dbb4</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -109,7 +109,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -616,7 +616,7 @@
           <num>56 </num>
           <content>
             <p>Subsection (1)(j) allows provision to be made in relation to the labelling and packaging of human medicines as well as the patient information leaflets (PILs) that accompany them. Existing requirements are found in Part 13 (packaging and leaflets) of the HMRs. Regulations made under section 2(1) and relying on this provision could update the existing requirements to allow further for the provision of information online and/or through other emerging media platforms or they could be used to create new requirements to address gaps identified in the provision of information, for example to require that patient information leaflets are included in both boxes where a pharmacist splits a product between two patients.</p>
-            <table ukm:widths="5.17in">
+            <table uk:widths="5.17in">
               <tr>
                 <td>
                   <p>Example (1): Labelling and Leafletting </p>
@@ -648,7 +648,7 @@
           <num>60 </num>
           <content>
             <p>Subsection (1)(n) provides that amendments may be made to provisions in the general rules on who can supply human medicines and from where they can be supplied. The rules are set out in subsection (2) and include regulations 214 (sale or supply of prescription only medicines), 215 (prescribing and administration by supplementary prescribers), 220 (sale or supply of medicinal products not subject for general sale), 221 (sale or supply of medicinal products subject for general sale) and 249 (restrictions on persons to be supplied with medical products) of the HMRs. These provide that prescription only medicines (POMs) can only be supplied in accordance with a prescription and set out who can issue prescriptions. They also set out that medicinal products that are not subject to general sale (POMs and pharmacy medicines) must be supplied from a registered pharmacy, while general sale medicines need to be supplied from premises that can be closed off to exclude the public. Finally, they restrict who can be supplied with medicinal products by way of wholesale dealing. There are multiple exemptions from these rules set out in Chapter 3, Part 12 of the HMRs and the associated Schedules. An example of an existing exemption is one that enables Royal National Lifeboat Institution (RNLI) first aiders to supply prescription only medicines in the course of their work for the RNLI when needed to treat the injured. Another exemption allows schools to obtain asthma inhalers and to supply them in an emergency to pupils who are known to suffer from asthma. Regulations made under section 2(1) and relying on section 3(1)(n) could, for example, be used to allow additional healthcare professionals to be given appropriately restricted prescribing rights or to amend the exemptions to the requirement for a prescription.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example (2): Prescribing Policy</p>
@@ -981,7 +981,7 @@
           <num>101 </num>
           <content>
             <p>Subsection (1)(d) allows provision to be made in relation to marketing authorisations for veterinary medicines. As a general rule, a marketing authorisation is required to place a medicine on the UK market for sale and supply as set out in regulation 4 (placing a veterinary medicinal product on the market) of the Veterinary Medicines Regulations 2013. An authorised product will have an authorisation number preceded by the symbol “Vm” on its product literature. This offers users a clear guarantee that the product has been assessed and approved in accordance with the instructions on the product literature. Subsection (d) combined with paragraphs (a), (b), (g), and (i) could be used to make provision in regulations under section 10 about using a medicine outside the terms of a marketing authorisation if there is clinical need and benefit (the Cascade). </p>
-            <table ukm:widths="5.81in">
+            <table uk:widths="5.81in">
               <tr>
                 <td>
                   <p>Example (3): The Cascade</p>
@@ -1002,7 +1002,7 @@
           <num>102 </num>
           <content>
             <p>Subsection (1)(e) allows provision to be made in relation to manufacturing, importing and distributing active substances. Active substances are the raw ingredients used to make veterinary medicines which give the finished product its therapeutic effect. The quality of the active substance is critical to assure the safety, quality and efficacy of the finished veterinary medicine. Regulations relying on this provision could be made, for example, to provide for a registration scheme for importers, manufacturers and distributors of active substances.</p>
-            <table ukm:widths="5.76in">
+            <table uk:widths="5.76in">
               <tr>
                 <td>
                   <p>Example (4): Veterinary Medicines prescribing policy </p>
@@ -1053,7 +1053,7 @@
           <num>108 </num>
           <content>
             <p>Subsection (1)(k) allows provision to be made in relation to the labelling and packaging of veterinary medicines. </p>
-            <table ukm:widths="5.17in">
+            <table uk:widths="5.17in">
               <tr>
                 <td>
                   <p>Example (5): Labels and pictograms</p>
@@ -1298,7 +1298,7 @@
           <num>140 </num>
           <content>
             <p>Subsection (1)(h) covers registration of devices, their manufacturers or suppliers, including what information must be entered in a register. The power could be used to, by regulations, provide that information entered on a register be made available to the public.</p>
-            <table ukm:widths="5.17in">
+            <table uk:widths="5.17in">
               <tr>
                 <td>
                   <p>Example (6): Registration of Devices </p>
@@ -1341,7 +1341,7 @@
           <num>145 </num>
           <content>
             <p>Subsection (1)(a) allows for regulations to be made about fees in respect of functions conferred by a medical device provision. A medical device provision is a provision of regulations made under section 15(1) or a provision of the MDRs, including the function of charging fees by a person appointed under regulations made in reliance on section 16(1)(c). </p>
-            <table ukm:widths="5.17in">
+            <table uk:widths="5.17in">
               <tr>
                 <td>
                   <p>Example (7): Fees</p>
@@ -1523,7 +1523,7 @@
           <num>169 </num>
           <content>
             <p>“Enforcement authority” is defined in section 42(2). In relation to all medical devices, this is the Secretary of State, and in relation to devices that are consumer products, it also means a local weights and measures authority in Great Britain/district council in Northern Ireland.</p>
-            <table ukm:widths="5.17in">
+            <table uk:widths="5.17in">
               <tr>
                 <td>
                   <p>Example (8): Enforcement </p>
@@ -1598,7 +1598,7 @@
           <num>174 </num>
           <content>
             <p>Subsection (5) provides that if the person mentioned in subsection (1) is a manufacturer, this notice can either be served on them, or their representative (or both).</p>
-            <table ukm:widths="5.17in">
+            <table uk:widths="5.17in">
               <tr>
                 <td>
                   <p>Example (9): Definition of Manufacturer </p>
@@ -1889,7 +1889,7 @@
           <num>211 </num>
           <content>
             <p>Subsection (3) outlines that the maximum 51 weeks imprisoned outlined in paragraph(a) is to be read as 6 months if the offence is committed before section 281(5) of the Criminal Justice Act 2003 is commenced. </p>
-            <table ukm:widths="5.25in">
+            <table uk:widths="5.25in">
               <tr>
                 <td>
                   <p>Example (10): Section 281(5) of the Criminal Justice Act 2003</p>
@@ -3370,7 +3370,7 @@
         <heading><b>Annex A </b><b>–</b><b> Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.09in 0.98in 1.1in 0.86in 1.34in">
+            <table uk:widths="1.09in 0.98in 1.1in 0.86in 1.34in">
               <tr>
                 <td>
                   <p><b>Provision</b></p>
@@ -3517,7 +3517,7 @@
           <num>376 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
-            <table ukm:widths="1.75in 1.48in 3.22in">
+            <table uk:widths="1.75in 1.48in 3.22in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>
@@ -3693,7 +3693,7 @@
           <num>377 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
-            <table ukm:widths="1.07in 1.08in 1.08in 1.08in 1.08in 1.08in">
+            <table uk:widths="1.07in 1.08in 1.08in 1.08in 1.08in 1.08in">
               <tr>
                 <th>
                   <p><b>Section of the Act</b></p>

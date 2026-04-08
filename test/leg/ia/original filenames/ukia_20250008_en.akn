@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2025/36/impacts/2025/8" />
           <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2025/36/impacts/2025/8" />
-          <FRBRdate date="2026-03-31" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2025/36/impacts/2025/8/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2025/36/impacts/2025/8/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-01-15</dc:modified>
         <dc:title>Impact Assessment The Firearms (Variation of Fees) Order 2025</dc:title>
         <dc:description>Impact Assessment The Firearms (Variation of Fees) Order 2025</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/uksi/2025/36</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/uksi/2025/36" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2025/8</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>Home Office</ukm:department>
-        <ukm:date>2025-01-14</ukm:date>
-        <ukm:pdfDate>2025-01-15</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2025</ukm:year>
-        <ukm:number>8</ukm:number>
-        <ukm:legislationYear>2025</ukm:legislationYear>
-        <ukm:legislationNumber>36</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="Home Office" />
+        <ukm:Date Value="2025-01-14" />
+        <ukm:PdfDate Value="2025-01-15" />
+        <ukm:LegislationClass Value="UnitedKingdomStatutoryInstrument" />
+        <ukm:Year Value="2025" />
+        <ukm:Number Value="8" />
+        <ukm:LegislationYear Value="2025" />
+        <ukm:LegislationNumber Value="36" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="133" />
           <ukm:BodyParagraphs Value="133" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="1" />
         </ukm:Statistics>
-        <ukm:hash>2722230efefae6891c05138440e4918740cca3161fb4ba65b919787cdba70bbb</ukm:hash>
+        <uk:hash>2722230efefae6891c05138440e4918740cca3161fb4ba65b919787cdba70bbb</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -364,7 +364,7 @@
         <paragraph>
           <content>
             <p><b>Part A: Overall and stakeholder impacts </b></p>
-            <table ukm:widths="1.27in 3.97in 1.52in">
+            <table uk:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="2">
                   <p><b>(1) Overall impacts on total welfare </b></p>
@@ -429,7 +429,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.27in 3.97in 1.52in">
+            <table uk:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="3">
                   <p><b>(2) Expected impacts on businesses </b></p>
@@ -488,7 +488,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.27in 3.97in 1.52in">
+            <table uk:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="3">
                   <p><b>(3) Expected impacts on households</b></p>
@@ -551,7 +551,7 @@
         <paragraph>
           <content>
             <p><b>Part B: Impacts on wider government priorities</b></p>
-            <table ukm:widths="1.77in 3.64in 1.21in">
+            <table uk:widths="1.77in 3.64in 1.21in">
               <tr>
                 <td>
                   <p><b>Category</b></p>
@@ -715,7 +715,7 @@
         <paragraph>
           <content>
             <p><b>PV base year:</b></p>
-            <table ukm:widths="1.18in 1.18in 1.87in 1.87in 1.87in 1.87in">
+            <table uk:widths="1.18in 1.18in 1.87in 1.87in 1.87in 1.87in">
               <tr>
                 <td colspan="2">
                   <p> This table may be reformatted provided the side-by-side comparison of options is retained</p>
@@ -932,7 +932,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="2.36in 1.87in 1.87in 1.87in 1.87in">
+            <table uk:widths="2.36in 1.87in 1.87in 1.87in 1.87in">
               <tr>
                 <td>
                   <p> This table may be reformatted provided the side-by-side comparison of options is retained</p>
@@ -1151,7 +1151,7 @@
           <subparagraph>
             <content>
               <p><b>Table 1 - Numbers of businesses in England, Wales and Scotland that will be affected by updating fees for firearm or shotgun licences.</b></p>
-              <table ukm:widths="1.48in 2.66in 2.17in">
+              <table uk:widths="1.48in 2.66in 2.17in">
                 <tr>
                   <td>
                     <p><b>Occupation</b></p>
@@ -1397,7 +1397,7 @@
           <subparagraph>
             <content>
               <p><b>Table 2 - Proposed fees (£) under each Option, £s (values rounded to nearest £)</b></p>
-              <table ukm:widths="2.17in 1.08in 1.08in 1.08in 0.98in">
+              <table uk:widths="2.17in 1.08in 1.08in 1.08in 0.98in">
                 <tr>
                   <td>
                     <p><b>Type of License</b></p>
@@ -1686,7 +1686,7 @@
           <subparagraph>
             <content>
               <p><b>Table 3 - Labour Costs by Role Type and Cost Component (£ per hour), 2024 prices</b></p>
-              <table ukm:widths="2.56in 1.97in 1.85in">
+              <table uk:widths="2.56in 1.97in 1.85in">
                 <tr>
                   <td>
                     <p><b>Role Type</b></p>
@@ -1820,7 +1820,7 @@
           <subparagraph>
             <content>
               <p><b>Table 4 - Volume of grants and applications for more common licence types, England and Wales, 2018/19 to 2023/24</b></p>
-              <table ukm:widths="0.75in 0.83in 0.88in 0.85in 0.88in 1.09in 1.09in">
+              <table uk:widths="0.75in 0.83in 0.88in 0.85in 0.88in 1.09in 1.09in">
                 <tr>
                   <td>
                     <p />
@@ -1993,7 +1993,7 @@
           <subparagraph>
             <content>
               <p><b>Table 5 - Volume of grants and applications for less common licence types, England and Wales, 2018/19 to 2023/24</b></p>
-              <table ukm:widths="1.08in 0.98in 1.08in 1.18in 1.18in 0.89in">
+              <table uk:widths="1.08in 0.98in 1.08in 1.18in 1.18in 0.89in">
                 <tr>
                   <td>
                     <p />
@@ -2199,7 +2199,7 @@
           <subparagraph>
             <content>
               <p><b>Table 6 - Fee Analysis for Most Common Licence Types over 10 year appraisal period, central volume scenario (£ million, 2024 prices, 2024/25 PV)</b></p>
-              <table ukm:widths="1.67in 0.8in 0.89in 0.99in 1.11in 0.93in">
+              <table uk:widths="1.67in 0.8in 0.89in 0.99in 1.11in 0.93in">
                 <tr>
                   <td>
                     <p><b>Licence Type</b></p>
@@ -2730,7 +2730,7 @@
           <subparagraph>
             <content>
               <p><b>Table 7 - Impact on fee revenue / costs, most common licence types, central volume scenario (£ million, 2024 prices, 2024/25 PV)</b></p>
-              <table ukm:widths="1.67in 0.77in 0.89in 1.01in 1.11in 0.95in">
+              <table uk:widths="1.67in 0.77in 0.89in 1.01in 1.11in 0.95in">
                 <tr>
                   <td>
                     <p><b>Licence Type</b></p>
@@ -3188,7 +3188,7 @@
           <subparagraph>
             <content>
               <p><b>Table 8 - Impact on fee revenue / costs, less common licence types, £ million, 2024 prices, 2024/25 PV</b></p>
-              <table ukm:widths="1.67in 0.77in 0.89in 1.01in 1.11in 0.95in">
+              <table uk:widths="1.67in 0.77in 0.89in 1.01in 1.11in 0.95in">
                 <tr>
                   <td>
                     <p><b>Licence Type</b></p>
@@ -3575,7 +3575,7 @@
           <subparagraph>
             <content>
               <p><b>Table 9 - Total impact on fee revenues / costs for all licence types, £ million, 2024 prices, 2024/25 PV</b></p>
-              <table ukm:widths="1.27in 1.27in 1.27in 1.27in 1.27in">
+              <table uk:widths="1.27in 1.27in 1.27in 1.27in 1.27in">
                 <tr>
                   <td>
                     <p><b>Option</b></p>
@@ -3703,7 +3703,7 @@
           <subparagraph>
             <content>
               <p><b>Table 10 – Central volume scenario total impacts on individuals, businesses, police revenue and net present social value (£ million, 2024 prices, 2024/25 PV)</b></p>
-              <table ukm:widths="2.46in 0.98in 0.98in 0.98in 0.96in">
+              <table uk:widths="2.46in 0.98in 0.98in 0.98in 0.96in">
                 <tr>
                   <td>
                     <p />
@@ -3818,7 +3818,7 @@
           <subparagraph>
             <content>
               <p><b>Table 11 – High volume scenario total impacts on individuals, businesses, police (£ million, 2024 prices, 2024/25 PV)</b></p>
-              <table ukm:widths="2.66in 0.98in 0.89in 0.89in 0.89in">
+              <table uk:widths="2.66in 0.98in 0.89in 0.89in 0.89in">
                 <tr>
                   <td>
                     <p> </p>
@@ -3915,7 +3915,7 @@
           <subparagraph>
             <content>
               <p><b>Table 12 – High volume scenario total impacts on individuals, businesses, police (£ million, 2024 prices, 2024/25 PV)</b></p>
-              <table ukm:widths="2.66in 0.98in 0.89in 0.89in 0.92in">
+              <table uk:widths="2.66in 0.98in 0.89in 0.89in 0.92in">
                 <tr>
                   <td>
                     <p> </p>
@@ -4067,7 +4067,7 @@
           <subparagraph>
             <content>
               <p><b>Table 13 – Average Annual Costs, 10-year costs and BNPVs for all volume scenarios (£ million, 2024 prices, 2024/25 PV)</b></p>
-              <table ukm:widths="1.16in 1.06in 1.06in 1.06in 1.06in 1.06in">
+              <table uk:widths="1.16in 1.06in 1.06in 1.06in 1.06in 1.06in">
                 <tr>
                   <td>
                     <p> </p>
@@ -4297,7 +4297,7 @@
           <subparagraph>
             <content>
               <p><b>Table 14 – EANDCBs for all volume scenarios (£ million, 2024 prices, 2024/25 PV)</b></p>
-              <table ukm:widths="1.26in 1.26in 1.26in 1.26in 1.26in">
+              <table uk:widths="1.26in 1.26in 1.26in 1.26in 1.26in">
                 <tr>
                   <td>
                     <p> </p>
@@ -4389,7 +4389,7 @@
           <subparagraph>
             <content>
               <p><b>Table 15 – RFD licence grant and renewal fees and fee increases (£, 2024 prices)</b></p>
-              <table ukm:widths="2.36in 1.18in 0.98in 0.89in 0.89in">
+              <table uk:widths="2.36in 1.18in 0.98in 0.89in 0.89in">
                 <tr>
                   <td>
                     <p><b> </b></p>
@@ -4493,7 +4493,7 @@
           <subparagraph>
             <content>
               <p><b>Table 16 – Average Annual and Total Cost Increases to RFDs and BNPVs for RFDs (£ / £ million, 2024 prices, 2024/24 PV)</b></p>
-              <table ukm:widths="1.77in 0.79in 0.98in 0.98in 0.98in 0.91in">
+              <table uk:widths="1.77in 0.79in 0.98in 0.98in 0.98in 0.91in">
                 <tr>
                   <td>
                     <p> </p>
@@ -4742,7 +4742,7 @@
           <subparagraph>
             <content>
               <p><b>Table 17 - 2 digit SIC Code Definitions</b></p>
-              <table ukm:widths="2.76in 3.54in">
+              <table uk:widths="2.76in 3.54in">
                 <tr>
                   <td>
                     <p><b>2 Digit SIC Code</b></p>
@@ -4806,7 +4806,7 @@
           <subparagraph>
             <content>
               <p><b>Table 18 - Proportion of Businesses group by size in each SIC code group (%)</b></p>
-              <table ukm:widths="1.06in 1.06in 1.06in 1.06in 1.06in 1.06in">
+              <table uk:widths="1.06in 1.06in 1.06in 1.06in 1.06in 1.06in">
                 <tr>
                   <td>
                     <p><b> SIC Code</b></p>
@@ -4918,7 +4918,7 @@
           <subparagraph>
             <content>
               <p><b>Table 19 – Estimated number of businesses who hold firearms licenses</b></p>
-              <table ukm:widths="1.27in 1.08in 1.08in 0.78in 0.78in 0.78in 0.6in">
+              <table uk:widths="1.27in 1.08in 1.08in 0.78in 0.78in 0.78in 0.6in">
                 <tr>
                   <td>
                     <p><b>Business Type</b></p>
@@ -5155,7 +5155,7 @@
           <subparagraph>
             <content>
               <p><b>Table 20 – Fee levels and Licence lengths (£)</b></p>
-              <table ukm:widths="2.17in 0.89in 0.83in 0.83in 0.83in 0.83in">
+              <table uk:widths="2.17in 0.89in 0.83in 0.83in 0.83in 0.83in">
                 <tr>
                   <td>
                     <p><b>Licence Type</b></p>
@@ -5484,7 +5484,7 @@
           <subparagraph>
             <content>
               <p><b>Table 21 – Average Annual Costs, 10 year costs and household NPVs for all volume scenarios (£ million, 2024 prices, 2024/25 PV)</b></p>
-              <table ukm:widths="1.48in 0.98in 0.98in 0.98in 0.98in 0.97in">
+              <table uk:widths="1.48in 0.98in 0.98in 0.98in 0.98in 0.97in">
                 <tr>
                   <td>
                     <p> </p>
@@ -5714,7 +5714,7 @@
           <subparagraph>
             <content>
               <p><b>Table 22 – EANDCHs for all volume scenarios (£ million, 2024 prices, 2024/25 PV)</b></p>
-              <table ukm:widths="1.3in 1.3in 1.3in 1.3in 1.3in">
+              <table uk:widths="1.3in 1.3in 1.3in 1.3in 1.3in">
                 <tr>
                   <td>
                     <p> </p>
@@ -5812,7 +5812,7 @@
           <subparagraph>
             <content>
               <p><b>Table 23  - Costs of Rod Fishing and TV Licences in 2024 (£)</b></p>
-              <table ukm:widths="1.87in 1.67in 1.77in 1.03in">
+              <table uk:widths="1.87in 1.67in 1.77in 1.03in">
                 <tr>
                   <td>
                     <p><b>License Type</b></p>
@@ -6007,7 +6007,7 @@
           <num>85.</num>
           <content>
             <p>The estimated cost of producing a licence is assumed to grow at the rate that labour costs grew historically. It is possible that if labour costs grow at a faster / slower rate, the estimated cost of a licence will be different. However, this can be examined during the next review.</p>
-            <table ukm:widths="5.45in 0.91in">
+            <table uk:widths="5.45in 0.91in">
               <tr>
                 <td>
                   <p><b>Mandatory specific impact test - Statutory Equalities Duties</b></p>

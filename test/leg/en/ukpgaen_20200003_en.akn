@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/3/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/3/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/3/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/3/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2020-03-03</dc:modified>
         <dc:title>Explanatory Notes Terrorist Offenders (Restriction of Early Release) Act 2020</dc:title>
         <dc:description>Explanatory Notes Terrorist Offenders (Restriction of Early Release) Act 2020</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2020/3</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2020/3" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2020/3/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2020-05-11</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2020</ukm:legislationYear>
-        <ukm:legislationNumber>3</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2020-05-11" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2020" />
+        <ukm:LegislationNumber Value="3" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="63" />
           <ukm:BodyParagraphs Value="63" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>55a3ed8c2449ce6cb71fef5198e4a7395c52f4673bcf379e9e1c67565f1ffc3e</ukm:hash>
+        <uk:hash>55a3ed8c2449ce6cb71fef5198e4a7395c52f4673bcf379e9e1c67565f1ffc3e</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -112,7 +112,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.15in 3.15in">
+          <table uk:widths="3.15in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -592,7 +592,7 @@
           <num>58.</num>
           <content>
             <p>The provisions in this Act form part of the law of England and Wales. Some extend and apply to England and Wales, and some extend and apply to Scotland. </p>
-            <table ukm:widths="1.48in 1.08in 1.18in 1.18in 1.28in">
+            <table uk:widths="1.48in 1.08in 1.18in 1.18in 1.28in">
               <tr>
                 <td>
                   <p><b>Provision</b></p>
@@ -824,7 +824,7 @@
           <num>59.</num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament. </p>
-            <table ukm:widths="1.95in 1.9in 1.94in">
+            <table uk:widths="1.95in 1.9in 1.94in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>

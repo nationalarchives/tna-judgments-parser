@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2025/20/impacts/2025/4/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2025/20/impacts/2025/4/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-01-09</dc:modified>
         <dc:title>Impact Assessment The Customs (Safety and Security Procedures) Regulations 2025</dc:title>
         <dc:description>Impact Assessment The Customs (Safety and Security Procedures) Regulations 2025</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/uksi/2025/20</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/uksi/2025/20" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2025/4</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>HM Revenue and Customs</ukm:department>
-        <ukm:date>2025-01-09</ukm:date>
-        <ukm:pdfDate>2025-01-09</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2025</ukm:year>
-        <ukm:number>4</ukm:number>
-        <ukm:legislationYear>2025</ukm:legislationYear>
-        <ukm:legislationNumber>20</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="HM Revenue and Customs" />
+        <ukm:Date Value="2025-01-09" />
+        <ukm:PdfDate Value="2025-01-09" />
+        <ukm:LegislationClass Value="UnitedKingdomStatutoryInstrument" />
+        <ukm:Year Value="2025" />
+        <ukm:Number Value="4" />
+        <ukm:LegislationYear Value="2025" />
+        <ukm:LegislationNumber Value="20" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="101" />
           <ukm:BodyParagraphs Value="101" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="1" />
         </ukm:Statistics>
-        <ukm:hash>891d99a50cc591ce3ddfdd3578c9474358180781059b57072ad9662ddb19a8b0</ukm:hash>
+        <uk:hash>891d99a50cc591ce3ddfdd3578c9474358180781059b57072ad9662ddb19a8b0</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -81,7 +81,7 @@
       </toc>
       <level>
         <content>
-          <table ukm:widths="2.06in 1.18in 0.89in 0.59in 0.98in 1.38in">
+          <table uk:widths="2.06in 1.18in 0.89in 0.59in 0.98in 1.38in">
             <tr>
               <td colspan="3">
                 <p><b>Title:</b> <docTitle>     Impact Assessment for the end of the waiver for Entry Summary (ENS) declarations in respect of imports from the EU; and reduction of ENS dataset to security-critical elements</docTitle></p>
@@ -91,7 +91,7 @@
                 <p><b>Other departments or agencies:   </b><b> </b><inline name="otherDepartments">Home Office, Border Force, HMT</inline></p>
               </td>
               <td colspan="3">
-                <table ukm:widths="2.88in">
+                <table uk:widths="2.88in">
                   <tr>
                     <td>
                       <p>Impact Assessment (IA)</p>
@@ -196,7 +196,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.08in">
+          <table uk:widths="7.08in">
             <tr>
               <td>
                 <p><b>What are the policy objectives and the intended effects?</b></p>
@@ -212,7 +212,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.08in">
+          <table uk:widths="7.08in">
             <tr>
               <td>
                 <p><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option (further details in Evidence Base)</b></p>
@@ -228,7 +228,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.08in">
+          <table uk:widths="7.08in">
             <tr>
               <td>
                 <p><b>Will the policy be reviewed?  </b>There are currently no plans to review this policy.<b> </b><b> </b></p>
@@ -240,7 +240,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="4.35in 0.68in 0.68in 0.24in 0.44in 0.68in">
+          <table uk:widths="4.35in 0.68in 0.68in 0.24in 0.44in 0.68in">
             <tr>
               <td colspan="2">
                 <p>Is this measure likely to impact on international trade and investment?</p>
@@ -287,7 +287,7 @@
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that (a) it represents a fair and reasonable view of the expected costs, benefits and impact of the policy, and (b) that the benefits justify the costs.</i></b></p>
-          <table ukm:widths="3.34in 1.88in 0.69in 1.21in">
+          <table uk:widths="3.34in 1.88in 0.69in 1.21in">
             <tr>
               <td>
                 <p><b><i>Signed by the responsible Minister:</i></b></p>
@@ -318,7 +318,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT</b></p>
-            <table ukm:widths="0.88in 0.87in 1in 1.25in 1.26in 1.82in">
+            <table uk:widths="0.88in 0.87in 1in 1.25in 1.26in 1.82in">
               <tr>
                 <td rowspan="2">
                   <p><b>Price Base Year 2021</b></p>
@@ -345,7 +345,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.46in 1.43in 0.58in 2.1in 1.31in 0.63in">
+            <table uk:widths="1.46in 1.43in 0.58in 2.1in 1.31in 0.63in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -528,7 +528,7 @@
         <paragraph>
           <content>
             <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
-            <table ukm:widths="1.28in 1.28in 1.18in 3.34in">
+            <table uk:widths="1.28in 1.28in 1.18in 3.34in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual) £m: </b></p>
@@ -797,7 +797,7 @@
         <paragraph>
           <intro>
             <p><b>Table 1: Estimated number of ENS declarations, by movement type and region of dispatch</b></p>
-            <table ukm:widths="2.62in 1.08in 1.1in 1.11in">
+            <table uk:widths="2.62in 1.08in 1.1in 1.11in">
               <tr>
                 <td>
                   <p><b>Movement type</b></p>
@@ -1116,7 +1116,7 @@
         <paragraph>
           <content>
             <p><b>Table 2: Final adjustments to costs for EANDCB calculations</b></p>
-            <table ukm:widths="0.99in 0.59in 0.53in 0.55in 0.55in 0.55in 0.55in 0.55in 0.55in 0.55in 0.55in 0.7in">
+            <table uk:widths="0.99in 0.59in 0.53in 0.55in 0.55in 0.55in 0.55in 0.55in 0.55in 0.55in 0.55in 0.7in">
               <tr>
                 <td>
                   <p><b>Policy year</b></p>
@@ -1456,7 +1456,7 @@
         <paragraph>
           <content>
             <p><b>Table 3: Estimated percent savings per ENS declaration due to data reduction</b></p>
-            <table ukm:widths="1.11in 0.86in 1.04in 0.9in 1.08in 1.03in">
+            <table uk:widths="1.11in 0.86in 1.04in 0.9in 1.08in 1.03in">
               <tr>
                 <td>
                   <p> </p>
@@ -1585,7 +1585,7 @@
         <paragraph>
           <content>
             <p><b>Table 4: Net benefits minus costs</b></p>
-            <table ukm:widths="0.79in 0.48in 0.59in 0.56in 0.56in 0.56in 0.56in 0.61in 0.56in 0.56in 0.46in 1.25in">
+            <table uk:widths="0.79in 0.48in 0.59in 0.56in 0.56in 0.56in 0.56in 0.61in 0.56in 0.56in 0.46in 1.25in">
               <tr>
                 <td>
                   <p><b>Policy year</b></p>

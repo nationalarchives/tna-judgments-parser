@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2025/26/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2025/26/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2025/26/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2025/26/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2026-02-25</dc:modified>
         <dc:title>Explanatory Notes Renters' Rights Act 2025</dc:title>
         <dc:description>Explanatory Notes Renters' Rights Act 2025</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2025/26</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2025/26" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2025/26/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2026-02-18</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2025</ukm:legislationYear>
-        <ukm:legislationNumber>26</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2026-02-18" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2025" />
+        <ukm:LegislationNumber Value="26" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="1156" />
           <ukm:BodyParagraphs Value="1156" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>60ab057c394fa95fca9a85ad6b8a3b52f47447b871e84ff5f9572e2a99d5a713</ukm:hash>
+        <uk:hash>60ab057c394fa95fca9a85ad6b8a3b52f47447b871e84ff5f9572e2a99d5a713</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -127,7 +127,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.15in 3.15in">
+          <table uk:widths="3.15in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -1859,7 +1859,7 @@
               <num>173.</num>
               <content>
                 <p>Sections 16I, 16J, 16K, and 16L are all new provisions being added to the Housing Act 1988 to ensure appropriate financial penalties for prohibited behaviour under the new system. These provisions are intended to deter non-compliance and help local authorities proportionately target enforcement activity against those landlords, former landlords and relevant persons who wilfully or recklessly disregard their obligations to tenants.</p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>0Example 1: Offering a fixed-term contract</p>
@@ -4598,7 +4598,7 @@
               <num>469.</num>
               <content>
                 <p>This is a new provision. The imposition of financial penalties for first and subsequent breaches of the requirement for landlords to be members of a redress scheme reflects the approaches taken in section 8 of the Tenant Fees Act 2019 and section 87 of the Consumer Rights Act 2015. Amending the maximum financial penalty to account for inflation will ensure that penalties continue to be an effective and proportionate deterrent. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>2BExample: Where a landlord is not a member of an approved or designated scheme</p>
@@ -4675,7 +4675,7 @@
               <num>478.</num>
               <content>
                 <p>This is a new provision. Section 67 provides for when a landlord has committed a breach of regulations or an offence for which financial penalties, as specified in section 66, can be imposed. The definition of the offence mirrors section 12 of the Tenant Fees Act 2019.</p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>3BExample: Landlord is not a member of a scheme – repeat offence </p>
@@ -5042,7 +5042,7 @@
               <num>514.</num>
               <content>
                 <p>This is a new provision. Section 76 sets out a definition of the database operator and the arrangements the Secretary of State may make with a person that they appoint as the database operator.</p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>4BExample: Transferring data between organisations operating the database </p>
@@ -5118,7 +5118,7 @@
               <num>522.</num>
               <content>
                 <p>This is a new provision. The section outlines that the Secretary of State may pass regulations that will outline how, and by whom, landlord and dwelling entries may be made and will prescribe the criteria which will need to be met for a landlord or dwelling entry on the database to be recognised as “active”, or live. These will include the prescribed form a landlord is required to complete, either online or on paper, the prescribed information required and the prescribed fee to be paid, as well as the time by which these requirements must be complied with. The power also extends to the provision for a grace period not exceeding 28 days for compliance with a requirement specified in regulations following the making of an entry. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>5BExample: 28-day grace period </p>
@@ -5182,7 +5182,7 @@
               <num>528.</num>
               <content>
                 <p>This is a new provision. Section 78 introduces a requirement for entries to be kept up-to-date so as to ensure that entries in the database are accurate, contain valid information and that evidence relating to housing standards can be consistently monitored. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>6BExample: Keeping entries up to date</p>
@@ -5246,7 +5246,7 @@
               <num>534.</num>
               <content>
                 <p>This is a new provision. Section 79 outlines the power that the Secretary of State will hold to make regulations which will specify circumstances in which an entry may become “inactive” or vice versa. An entry may become “inactive” and no longer publicly viewable if it expires without renewal, or, under certain circumstances, if a landlord makes a request – for example, if they have sold the property. Once an entry is inactive, either at the landlord’s request or because it has expired, the respective dwelling cannot be marketed, advertised or let unless it is made active again. Inactive entries will be archived for five years, after which they will be deleted from the database. Regulations will determine the process for renewals and the procedure applicable to late renewals. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>7BExample: Failing to re-register before the specified deadline </p>
@@ -5304,7 +5304,7 @@
               <num>539.</num>
               <content>
                 <p>This is a new provision. Section 80 empowers the Secretary of State to make regulations that detail how information collected on the database will be authenticated and outline a process for editing or removing incorrect entries. The power would extend to making provision about how and by whom verifications and corrections may be carried out, including requiring local housing authorities or other bodies such as the operator to undertake these functions. The intent is for a quota of information collected by the database to undergo a form of verification to check whether it is valid, and for corrections to be made where this is not the case. This may be partially automated, but a proportion of triaged applications will likely require follow up by those carrying out these functions. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>8BExample: Removal of landlord entry made in error </p>
@@ -5398,7 +5398,7 @@
               <num>550.</num>
               <content>
                 <p>This is a new provision. The government intends to charge a fee to landlords for registration on the database. This includes an enabling power to set fee amounts by reference to “relevant costs”. The “relevant costs” are the costs that can be recovered via database fees. These costs can include the cost of setting up and running the database and wider enforcement costs arising in the private rented sector.</p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>9BExample: Charging an additional late fee </p>
@@ -5474,7 +5474,7 @@
               <num>558.</num>
               <content>
                 <p>This is a new provision. This section introduces a requirement for dwellings and the associated private landlords to be registered on the database before they can be let, or before they are advertised or marketed for let. Existing landlords must ensure that they have an active landlord and dwelling entry and comply with any requirements relating to those entries imposed by regulations made under section 78. These restrictions will apply to landlords, letting agents and to anybody who advertises a dwelling as available to let. The effect of these restrictions is that prospective tenants will be able to view and confirm whether a dwelling they are considering renting is registered before they make a decision on renting.</p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>10BExample: Marketing a property that is not registered on the database </p>
@@ -5610,7 +5610,7 @@
               <num>576.</num>
               <content>
                 <p> Detail is also provided, within the section, on the information that must and may form part of an entry in the database made under this section.</p>
-                <table ukm:widths="5.89in">
+                <table uk:widths="5.89in">
                   <tr>
                     <td>
                       <p>11Example: Banning order offence information </p>
@@ -5657,7 +5657,7 @@
               <num>580.</num>
               <content>
                 <p>This is a new provision. This section requires the database operator to allocate a unique identifier – a sequence of letters and/or numbers – to each landlord and dwelling with an entry on the database. The purpose of utilising unique identifiers is to enable ease of navigation for local housing authorities within the database and provide a way of distinguishing different entries on the database. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>12BExample: Registering multiple properties </p>
@@ -5704,7 +5704,7 @@
               <num>584.</num>
               <content>
                 <p>This is a new provision. This section sets out the general duties of the database operator to enable the effective running of the database. These are in addition to those established throughout the chapter. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>13BExample: A tenant identifying a property that is not registered on the database </p>
@@ -5786,7 +5786,7 @@
               <num>593.</num>
               <content>
                 <p>This is a new provision. The section indicates that the Secretary of State may by regulations specify that certain information contained in active landlord and dwelling entries must be made public, that entries pertaining to offences must be linked to that person’s entry and the timescale for this information to be made publicly available. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>14BExample: Banning order offence </p>
@@ -5886,7 +5886,7 @@
               <num>605.</num>
               <content>
                 <p>This is a new provision. This section outlines under what circumstances information on the database can be shared with third parties other than local housing authorities and lead enforcement authorities and specifies that regulations may be made that clarify what private information can or cannot be disclosed. The intent of this section is to enable the Secretary of State to make regulations which will govern how data collected by the database can be shared or circumstances in which access to this data is limited. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>15BExample: Fire safety investigation </p>
@@ -6102,7 +6102,7 @@
               <num>628.</num>
               <content>
                 <p>Section 91 gives local housing authorities the power to impose financial penalties on people that do not meet the requirements of the Private Rented Sector Database (the database), as set out in section 82, or commit an offence related to the database, as set out in section 92.</p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>16BExample: Failure to register a property on the database </p>
@@ -6185,7 +6185,7 @@
               <num>638.</num>
               <content>
                 <p>Section 92 defines the offences of continuing and repeat breaches of requirements imposed by section 82, subsections (1), (2) or (3) and of knowingly or recklessly providing false or misleading information in relation to meeting a requirement relating to the database. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>17BExample: Failure to register a property on the database – offence </p>
@@ -6557,7 +6557,7 @@
               <num>679.</num>
               <content>
                 <p>Subsections (5), (6) and (7) of this section outlining the definition of lettings agency work echo the legislation laid out in section 83, subsections (7), (8) and (9) of the Enterprise and Regulatory Reform Act 2013. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>18BExample: Marketing a property that is not registered </p>
@@ -6840,7 +6840,7 @@
               <num>708.</num>
               <content>
                 <p>Tenants and local authorities (where the rent has been paid by universal credit) can apply to the Tribunal for a rent repayment order against the landlord if the landlord has committed certain offences specified in section 40 of the HPA 2016. The Supreme Court in <i>Rakusen v Jepsen [2023] UKSC 9 </i>held that a rent repayment order cannot be made against a superior landlord. The amendments in this section mean that superior as well as immediate landlords can be liable for a rent repayment order if the superior landlord committed the offence. The maximum amount payable is doubled from 12 months to two years’ rent to account for longer periods of non-compliance and to ensure that rent repayment orders have a stronger deterrent effect. The amendments in this section ensure that rent paid in advance and paid on behalf of the tenant can be included in the Tribunal’s assessment of the amount due under the rent repayment order. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>19BExample: Rent repayment order against a superior landlord</p>
@@ -7418,7 +7418,7 @@
               <num>772.</num>
               <content>
                 <p>This power will enable local housing authorities to receive information from persons such as the landlord’s bank, accountant and client money protection scheme when investigating suspected non-compliance with the “rented accommodation legislation.” Such information, which in some cases may be withheld by “relevant persons”, such as landlords and letting agents as defined in section 114, may be an important element of an investigation into whether non-compliance has occurred and for setting appropriate penalties. These provisions are similar to those in Part 3 (powers in relation to the production of information) of Schedule 5 (Investigatory Powers) to the Consumer Rights Act 2015. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>20BExample: Imposing a financial penalty on a landlord for unlawful eviction</p>
@@ -7543,7 +7543,7 @@
               <num>784.</num>
               <content>
                 <p>This power enables local housing authorities to enter business premises of landlords at any reasonable time without a warrant. This will help with gathering evidence of suspected non-compliance, such as tenancy agreements, bank statements or letters, which are often held on a landlord’s business premises. This is a similar power to that provided in paragraph 23 (power to enter premises without warrant) of Schedule 5 (Investigatory Powers) to the Consumer Rights Act 2015, which is available for estate and letting agent legislation and other consumer protection legislation. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>21BExample: Overcrowding in unlicensed HMO </p>
@@ -8667,7 +8667,7 @@
               <num>907.</num>
               <content>
                 <p>The power will allow the Secretary of State to make consequential amendments arising from the Act, for example removing now-defunct terms from other pieces of legislation (an example is given below to further illustrate this). Any such amendments that involve amending primary legislation are subject to the affirmative procedure.</p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>22BExample: References to section 21 in other legislation</p>
@@ -9297,7 +9297,7 @@
               <num>967.</num>
               <content>
                 <p>Under the Housing Act 1988, the court will not grant possession on Ground 4 if the landlord did not give notice in writing to the tenant before the start of the tenancy that possession might be recovered on this ground. Replacement provisions under section 12 of this Act will mean that landlords will be required to include notice in the mandatory written statement of terms that possession might be recovered using this ground, but the court will not be prevented from awarding possession if the landlord failed to comply. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>23BExample: Letting student accommodation to non-students </p>
@@ -9416,7 +9416,7 @@
               <num>978.</num>
               <content>
                 <p>This new specialist ground will allow landlords to continue to let such properties to both agricultural workers (whether employed or contracted), or other tenants, depending on business need and housing demand. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>24BExample: Letting to a farm worker </p>
@@ -9457,7 +9457,7 @@
               <num>981.</num>
               <content>
                 <p>Some private registered providers of social housing offer employment-related tenancies, such as housing for “key workers”, or housing linked to a specific profession or income bracket. These landlords have properties that they generally intend to use for this purpose, but they may also let it to other tenants when it is not needed for that use. Private registered providers will be able to use Ground 5B to evict a tenant who does not meet the relevant eligibility criteria in order to house a tenant who does. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>25BExample: Letting a property to NHS workers</p>
@@ -9498,7 +9498,7 @@
               <num>984.</num>
               <content>
                 <p>This is a renaming and expansion of Ground 16 of the Housing Act 1988. The existing ground allows a landlord to gain possession when their tenant is also their employee and the tenant’s employment has ended. The ground has been expanded to cover the scenario where the current tenant’s tenancy had not been intended to last for the full duration of the tenant’s employment and to make it also available to landlords who provide accommodation to those tenants who are in service in the office of a constable e.g. police officers.</p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>26BExample 1: Gaining possession when employment has ended</p>
@@ -9541,7 +9541,7 @@
               <num>987.</num>
               <content>
                 <p>The landlord will not need to demonstrate that the housing is needed for a different worker in order to gain possession. This is because some of these types of properties may be let subject to the condition that they can only be occupied by tenants meeting the relevant criteria so the landlord needs to gain possession when the tenant no longer meets those criteria. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>28BExample: Tenant no longer meeting employment-related eligibility criteria</p>
@@ -9582,7 +9582,7 @@
               <num>990.</num>
               <content>
                 <p>This new specialist ground will allow landlords to continue to let such properties either as supported accommodation or to other tenants, depending on business need and housing demand. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>29BExample: Supported accommodation</p>
@@ -9689,7 +9689,7 @@
               <num>995.</num>
               <content>
                 <p>The specialist nature of the services provided in supported accommodation means there are some situations in which providers will need to gain possession of properties that are not covered by the other grounds for possession, to enable them to meet the needs of current or prospective tenants. These include ensuring that tenancies are appropriate for residents with particular needs, that the support being provided is suitable or to maintain the viability of schemes. Providers currently use section 21 to secure possession in these circumstances.</p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>30BExamples: Supported Accommodation</p>
@@ -10120,7 +10120,7 @@
               <num>1036.</num>
               <content>
                 <p>Ground 8 of Schedule 2 of the Housing Act 1988 currently requires a court to award possession if a monthly tenant owes over two months’ rent at the time the landlord initiates possession proceedings and at the time of the court hearing (or eight weeks in the case of a weekly or fortnightly tenancy).The universal credit condition will protect benefit claimants who have met the threshold for the mandatory ground only due to the gap between their entitlement being established at the end of their assessment period and their benefits payment arriving. This may happen on a recurring basis if the timing of their payment does not align with the date rent is due. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>35BExample: Missing rent due to the wait for Universal Credit payments</p>
@@ -10470,7 +10470,7 @@
               <num>1072.</num>
               <content>
                 <p>The Local Government Act 1974, Housing Act 1996 and Building Safety Act 2022 contain existing provisions to allow for relevant ombudsmen and regulatory bodies to work together. This includes provisions for the sharing of information and resources and conducting of joint investigations as set out in the relevant sections and schedules of these Acts. </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>36BExample: Private Rented Sector Landlord Ombudsman Service</p>
@@ -10688,7 +10688,7 @@
               <num>1090.</num>
               <content>
                 <p>The effect of the provisions in this Schedule will be to place a legally enforceable duty on landlords to ensure their properties meet the DHS. A breach of any element of the DHS can result in sanctions against the landlord – both a fine and enforcement action for the most serious breaches (a Category 1 hazard or the failure to meet a Type 1 DHS requirement) and enforcement action for other breaches (the failure to meet a Type 2 DHS requirement). </p>
-                <table ukm:widths="6.29in">
+                <table uk:widths="6.29in">
                   <tr>
                     <td>
                       <p>37BExample: Financial Penalty</p>
@@ -11303,7 +11303,7 @@
           <num>1150.</num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament.</p>
-            <table ukm:widths="1.91in 1.9in 3.22in">
+            <table uk:widths="1.91in 1.9in 3.22in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>
@@ -11534,7 +11534,7 @@
           <num>1151.</num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
-            <table ukm:widths="0.98in 1.06in 1.06in 1.06in 1.06in 1.06in">
+            <table uk:widths="0.98in 1.06in 1.06in 1.06in 1.06in 1.06in">
               <tr>
                 <th>
                   <p><b>Section of the Act</b></p>
@@ -14705,7 +14705,7 @@
           <num>1152.</num>
           <content>
             <p>This table shows the grounds for possession that a landlord can use to evict a tenant as set out in Schedule 2 of the Housing Act 1988 and amended by this Act. </p>
-            <table ukm:widths="0.55in 1.21in 3.4in 0.01in 1.11in 0.01in">
+            <table uk:widths="0.55in 1.21in 3.4in 0.01in 1.11in 0.01in">
               <tr>
                 <th colspan="2">
                   <p><b>Ground</b></p>

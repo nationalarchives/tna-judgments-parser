@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2019/9780111178034/impacts/2019/8/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2019-01-09</dc:modified>
         <dc:title>Impact Assessment The REACH etc. (Amendment etc.) (EU Exit) Regulations 2019</dc:title>
         <dc:description>Impact Assessment The REACH etc. (Amendment etc.) (EU Exit) Regulations 2019</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukdsi/2019/9780111178034</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukdsi/2019/9780111178034" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2019/8</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>Department for Environment, Food and Rural Affairs</ukm:department>
-        <ukm:date>2019-01-09</ukm:date>
-        <ukm:pdfDate>2019-01-09</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomDraftStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2019</ukm:year>
-        <ukm:number>8</ukm:number>
-        <ukm:legislationYear>2019</ukm:legislationYear>
-        <ukm:legislationNumber>9780111178034</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="Department for Environment, Food and Rural Affairs" />
+        <ukm:Date Value="2019-01-09" />
+        <ukm:PdfDate Value="2019-01-09" />
+        <ukm:LegislationClass Value="UnitedKingdomDraftStatutoryInstrument" />
+        <ukm:Year Value="2019" />
+        <ukm:Number Value="8" />
+        <ukm:LegislationYear Value="2019" />
+        <ukm:LegislationNumber Value="9780111178034" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="85" />
           <ukm:BodyParagraphs Value="85" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>981cb6f3d188f807193d74c6bd84fff9ac7cf7bc6c672ca4677d95f6d7881fd8</ukm:hash>
+        <uk:hash>981cb6f3d188f807193d74c6bd84fff9ac7cf7bc6c672ca4677d95f6d7881fd8</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -94,7 +94,7 @@
       </toc>
       <level>
         <content>
-          <table ukm:widths="1.18in 1.08in 1.77in 0.21in 0.87in 1.97in 0.01in">
+          <table uk:widths="1.18in 1.08in 1.77in 0.21in 0.87in 1.97in 0.01in">
             <tr>
               <td colspan="4">
                 <p><b>Title:</b> <docTitle>    <b>UK REACH (Registration, Evaluation, Authorisation &amp; restriction of CHemicals)</b></docTitle></p>
@@ -104,7 +104,7 @@
                 <p><b>Other departments or agencies:        </b></p>
               </td>
               <td colspan="3">
-                <table ukm:widths="2.84in">
+                <table uk:widths="2.84in">
                   <tr>
                     <td>
                       <p>Impact Assessment (IA)</p>
@@ -237,7 +237,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.08in">
+          <table uk:widths="7.08in">
             <tr>
               <td>
                 <p><b>What are the policy objectives and the intended effects?</b></p>
@@ -254,7 +254,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.08in">
+          <table uk:widths="7.08in">
             <tr>
               <td>
                 <p><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option (further details in Evidence Base)</b></p>
@@ -268,7 +268,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.08in">
+          <table uk:widths="7.08in">
             <tr>
               <td>
                 <p><b>Will the policy be reviewed?  </b>It will not be reviewed.<b> </b>The European Union (Withdrawal) Act has relieved the requirement for PIRs of the statutory instruments that are brought forward under the Act</p>
@@ -279,7 +279,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="4.35in 0.68in 0.68in 0.24in 0.44in 0.68in">
+          <table uk:widths="4.35in 0.68in 0.68in 0.24in 0.44in 0.68in">
             <tr>
               <td colspan="2">
                 <p>Does implementation go beyond minimum EU requirements?</p>
@@ -326,7 +326,7 @@
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></p>
-          <table ukm:widths="3.33in 1.59in 0.89in 1.28in">
+          <table uk:widths="3.33in 1.59in 0.89in 1.28in">
             <tr>
               <td>
                 <p>Signed by the responsible: Director of Analysis</p>
@@ -357,7 +357,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT</b></p>
-            <table ukm:widths="0.98in 0.78in 1.05in 1.1in 1.12in 2.02in">
+            <table uk:widths="0.98in 0.78in 1.05in 1.1in 1.12in 2.02in">
               <tr>
                 <td rowspan="2">
                   <p><b>Price Base Year  n/a</b></p>
@@ -384,7 +384,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.6in 1.19in 0.48in 1.75in 1.08in 0.94in">
+            <table uk:widths="1.6in 1.19in 0.48in 1.75in 1.08in 0.94in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -553,7 +553,7 @@
         <paragraph>
           <content>
             <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
-            <table ukm:widths="1.52in 1.13in 1.04in 3.37in">
+            <table uk:widths="1.52in 1.13in 1.04in 3.37in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual) £m: </b></p>
@@ -1159,7 +1159,7 @@
           <num>50.</num>
           <content>
             <p>The table below provides a summary of the costs and benefits of the preferred contingency Option 1 compared to static acquis and do nothing baselines, to illustrate the differences of using different baselines in this assessment.</p>
-            <table ukm:widths="1.7in 2.52in 2.53in">
+            <table uk:widths="1.7in 2.52in 2.53in">
               <tr>
                 <td>
                   <p />

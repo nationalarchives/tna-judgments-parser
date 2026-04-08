@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2017/3/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2017/3/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2017/3/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2017/3/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2019-04-30</dc:modified>
         <dc:title>Explanatory Notes Policing and Crime Act 2017</dc:title>
         <dc:description>Explanatory Notes Policing and Crime Act 2017</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2017/3</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2017/3" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2017/3/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2017-02-08</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2017</ukm:legislationYear>
-        <ukm:legislationNumber>3</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2017-02-08" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2017" />
+        <ukm:LegislationNumber Value="3" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="1559" />
           <ukm:BodyParagraphs Value="1559" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>a4ca964823ee5c28421a5f068997ff0d186792b753a11a8be2e996ad5d806f69</ukm:hash>
+        <uk:hash>a4ca964823ee5c28421a5f068997ff0d186792b753a11a8be2e996ad5d806f69</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -806,7 +806,7 @@
         <num>79.</num>
         <content>
           <p>The current position of staff and volunteers is summarised in the table below:</p>
-          <table ukm:widths="1.51in 1.55in 1.38in 1.55in">
+          <table uk:widths="1.51in 1.55in 1.38in 1.55in">
             <tr>
               <th>
                 <p />
@@ -2244,7 +2244,7 @@
       <paragraph>
         <content>
           <p><b>Disregards: 1 January 2017</b></p>
-          <table ukm:widths="1.07in 1.08in 1.08in 1.08in 1.08in">
+          <table uk:widths="1.07in 1.08in 1.08in 1.08in 1.08in">
             <tr>
               <th>
                 <p><b>Applicants</b></p>
@@ -2285,7 +2285,7 @@
       <paragraph>
         <content>
           <p><b>Accepted cases</b></p>
-          <table ukm:widths="1.07in 1.08in 1.08in 1.08in 1.08in">
+          <table uk:widths="1.07in 1.08in 1.08in 1.08in 1.08in">
             <tr>
               <th>
                 <p><b>Section 12 of the Sexual Offences Act 1956  (buggery)</b></p>
@@ -2326,7 +2326,7 @@
       <paragraph>
         <content>
           <p><b>Rejected cases</b></p>
-          <table ukm:widths="0.95in 1in 0.93in 0.94in 0.92in 0.86in 0.85in">
+          <table uk:widths="0.95in 1in 0.93in 0.94in 0.92in 0.86in 0.85in">
             <tr>
               <th>
                 <p><b>In public lavatory</b></p>
@@ -4562,7 +4562,7 @@
         <num>500.</num>
         <content>
           <p>Local policing bodies will be the review body for reviews/appeals currently heard by chief officers (see Schedule 5). This section, which inserts new section 13A into the 2002 Act, covers those other complaints functions under Part 2 of (including Schedule 3 to) the 2002 Act (as amended, including by this Act) for which local policing bodies can assume responsibility. It allows a local policing body to give a notice to the relevant chief officer that the local policing body, rather than the chief officer, will exercise certain functions in the process for handling complaints. A local policing body can take responsibility for the functions detailed under subsection (2) or both subsections (2) and (3) of new section 13A of the 2002 Act. These are set at out at A and B below.</p>
-          <table ukm:widths="1.48in 5.02in">
+          <table uk:widths="1.48in 5.02in">
             <tr>
               <td>
                 <p><b>Functions</b></p>
@@ -5603,7 +5603,7 @@
         <num>630.</num>
         <content>
           <p>Examples of how these provisions will work in practice are provided below.</p>
-          <table ukm:widths="6.45in">
+          <table uk:widths="6.45in">
             <tr>
               <td>
                 <p><b>Example 1:</b></p>
@@ -5615,7 +5615,7 @@
               </td>
             </tr>
           </table>
-          <table ukm:widths="6.45in">
+          <table uk:widths="6.45in">
             <tr>
               <td>
                 <p><b>Example 2:</b></p>
@@ -5653,7 +5653,7 @@
         <num>634.</num>
         <content>
           <p>An example of how these provisions will work in practice is below. </p>
-          <table ukm:widths="6.45in">
+          <table uk:widths="6.45in">
             <tr>
               <td>
                 <p><b>Example 1 </b></p>
@@ -5693,7 +5693,7 @@
         <num>639.</num>
         <content>
           <p>The police advisory list does not bar a person from being appointed but is made available for vetting purposes (new section 88K) should the individual seek employment with another policing body identified in new section 88K(3) (including chief constables, PCCs, HMIC and the IPCC) and as specified in regulations made by virtue of new section 88C(5)(e). These bodies are under a duty to consult the police advisory list before appointing or employing a person. A further report detailing whether misconduct liable to lead to dismissal was proven or no case was found is required where it is determined that no disciplinary proceedings will be brought, where the proceedings are withdrawn or where they conclude without a finding that the individual would have been dismissed (new section 88L). By virtue of section 41, police volunteers who are found to have committed gross misconduct will also be captured on the police advisory list.</p>
-          <table ukm:widths="6.45in">
+          <table uk:widths="6.45in">
             <tr>
               <td>
                 <p><b>Example 2</b></p>
@@ -10612,7 +10612,7 @@
       <paragraph>
         <content>
           <p><b>Annex A – Glossary</b></p>
-          <table ukm:widths="2.95in 3.35in">
+          <table uk:widths="2.95in 3.35in">
             <tr>
               <td>
                 <p><b>ACPO</b></p>
@@ -11139,7 +11139,7 @@
       <paragraph>
         <content>
           <p><b>Annex B - Police force areas and fire and rescue authorities in England (excluding London)</b></p>
-          <table ukm:widths="1.85in 3.25in">
+          <table uk:widths="1.85in 3.25in">
             <tr>
               <td>
                 <p><b>Police Force</b></p>
@@ -11611,7 +11611,7 @@
       <paragraph>
         <content>
           <p>The process for misconduct proceedings is set out in the Police (Conduct) Regulations 2012 (SI 2012/2632), which applies to all police officers and special constables. These regulations set out the process and steps that must be followed where an allegation comes to the attention of the Appropriate Authority which indicates that the conduct of a police officer may amount to misconduct or gross misconduct. This includes an allegation contained within a complaint or conduct matter referred to the IPCC in accordance with the 2002 Act.</p>
-          <table ukm:widths="1.16in 5.73in">
+          <table uk:widths="1.16in 5.73in">
             <tr>
               <td colspan="2">
                 <p><b>Appropriate Authority Definitions</b></p>
@@ -11645,7 +11645,7 @@
       <paragraph>
         <content>
           <p>When an allegation that an officer may have breached the standards of professional behaviour comes to light, the Appropriate Authority will make an assessment of its severity. This assessment determines the seriousness of the alleged breach and therefore the course of proceedings that should be followed.</p>
-          <table ukm:widths="1.15in 5.74in">
+          <table uk:widths="1.15in 5.74in">
             <tr>
               <td colspan="2">
                 <p><b>Discipline Definitions</b></p>
@@ -11733,7 +11733,7 @@
         <num>•</num>
         <content>
           <p>Misconduct hearings, for cases where there is a case to answer in respect of gross misconduct or where the police officer has a live final written warning and there is a case to answer in respect of a further act of misconduct. These hearings are held in public.</p>
-          <table ukm:widths="2.14in 4.63in">
+          <table uk:widths="2.14in 4.63in">
             <tr>
               <td colspan="2">
                 <p><b>Misconduct Hearing Composition</b></p>
@@ -11843,7 +11843,7 @@
       <paragraph>
         <content>
           <p>The composition of a PAT is as follows:</p>
-          <table ukm:widths="2.05in 4.4in">
+          <table uk:widths="2.05in 4.4in">
             <tr>
               <td colspan="2">
                 <p><b>PAT Composition</b></p>
@@ -12386,7 +12386,7 @@
       <paragraph>
         <content>
           <p><b>Annex G - Police workforce, England and Wales</b></p>
-          <table ukm:widths="3.12in 1.52in 2.37in">
+          <table uk:widths="3.12in 1.52in 2.37in">
             <tr>
               <td>
                 <p><b>Rank</b></p>
@@ -12601,7 +12601,7 @@
       <paragraph>
         <content>
           <p><b>Individuals convicted of an offence</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Situation</b></p>
@@ -12642,7 +12642,7 @@
       <paragraph>
         <content>
           <p><b>Individuals not convicted of an offence</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Situation</b></p>
@@ -12694,7 +12694,7 @@
       <paragraph>
         <content>
           <p><b>Annex I - Territorial extent and application</b></p>
-          <table ukm:widths="1.09in 1.38in 1.38in 1.28in 1.38in">
+          <table uk:widths="1.09in 1.38in 1.38in 1.28in 1.38in">
             <tr>
               <td>
                 <p><b>Provision</b></p>
@@ -14441,7 +14441,7 @@
         <num>1196.</num>
         <content>
           <p>The following table sets out the dates and Hansard references for each stage of the Bill's passage through Parliament. </p>
-          <table ukm:widths="1.75in 1.48in 3.22in">
+          <table uk:widths="1.75in 1.48in 3.22in">
             <tr>
               <th>
                 <p><b>Stage</b></p>
@@ -14744,7 +14744,7 @@
         <num>1197.</num>
         <content>
           <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
-          <table ukm:widths="1.07in 1.08in 1.08in 1.08in 1.08in 1.08in">
+          <table uk:widths="1.07in 1.08in 1.08in 1.08in 1.08in 1.08in">
             <tr>
               <th>
                 <p><b>Section of the Act</b></p>

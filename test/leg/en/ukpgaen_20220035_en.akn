@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/35/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/35/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/35/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/35/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,28 +28,28 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2022-07-15</dc:modified>
         <dc:title>Explanatory Notes Judicial Review and Courts Act 2022</dc:title>
         <dc:description>Explanatory Notes Judicial Review and Courts Act 2022</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2022/35</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2022/35" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2022/35/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2022-06-16</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2022</ukm:legislationYear>
-        <ukm:legislationNumber>35</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2022-06-16" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2022" />
+        <ukm:LegislationNumber Value="35" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="438" />
           <ukm:BodyParagraphs Value="438" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>334d041a8d252200252ad81899b04d911e85f1eb8293cff8903c891e3ee479cb</ukm:hash>
+        <uk:hash>334d041a8d252200252ad81899b04d911e85f1eb8293cff8903c891e3ee479cb</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -100,7 +100,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.15in 3.15in">
+          <table uk:widths="3.15in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -1346,7 +1346,7 @@
           <num>93 </num>
           <content>
             <p>Subsection (5) of new section 29A provides that where the action or decision in question is upheld by virtue of section 29A(3) or (4), it is to be treated for all purposes as if its validity and force were, and always had been, unimpaired by the relevant defect. Relevant defect is defined in subsection (11) as “the defect, failure or other matter on the ground of which the court is making the order”. Subsection (5) therefore does not prevent defects, failures or other matters which are not the subject of the order from having an effect on the validity of the impugned act.</p>
-            <table ukm:widths="5.79in">
+            <table uk:widths="5.79in">
               <tr>
                 <td>
                   <p>Example (1): Effect of suspended relief</p>
@@ -1507,7 +1507,7 @@
           <num>109 </num>
           <content>
             <p>Subsection (2) of the section sets out the transitional arrangements for new section 11A, and provides that decisions of the Upper Tribunal made before the section comes into force are not affected. </p>
-            <table ukm:widths="4.66in">
+            <table uk:widths="4.66in">
               <tr>
                 <td>
                   <p>Example (1): Review of the Upper Tribunal not permitted</p>
@@ -3246,7 +3246,7 @@
           <num>343 </num>
           <content>
             <p>This section inserts a new paragraph 1A after paragraph 1 of Schedule 22 to the 2009 Act to permit two or more coroner areas each of which is wholly within the area of the same local authority and is specified in either the transitional order (which preserved coroner areas made under previous legislation), or an earlier order made by virtue of the paragraph to combine, by order, without the resulting coroner area having to satisfy paragraph 1(2) of Schedule 2 i.e. not having to be the whole of the area of a local authority.</p>
-            <table ukm:widths="4.66in">
+            <table uk:widths="4.66in">
               <tr>
                 <td>
                   <p>Example (1): merger of coroner areas </p>
@@ -3964,7 +3964,7 @@
         <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.02in 1.02in 1.02in 1.02in 1.02in">
+            <table uk:widths="1.02in 1.02in 1.02in 1.02in 1.02in">
               <tr>
                 <th rowspan="2">
                   <p><b>Provision</b></p>
@@ -4210,7 +4210,7 @@
           <num>437 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament.</p>
-            <table ukm:widths="2.58in 1.8in 1.54in">
+            <table uk:widths="2.58in 1.8in 1.54in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>

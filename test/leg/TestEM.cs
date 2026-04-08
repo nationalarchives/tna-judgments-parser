@@ -88,16 +88,16 @@ public class TestEM {
     }
 
     private static string xslt = @"<?xml version='1.0'?>
-<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' xmlns:uk='https://legislation.gov.uk/akn'>
+<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' xmlns:uk='https://legislation.gov.uk/akn' xmlns:ukm='http://www.legislation.gov.uk/namespaces/metadata'>
   <xsl:template match='akn:FRBRdate/@date'/>
-  <xsl:template match='uk:parser/text()'/>
+  <xsl:template match='ukm:Parser'/>
   <xsl:template match='uk:hash/text()'/>
-  <xsl:template match='uk:documentMainType'/>
-  <xsl:template match='uk:department'/>
-  <xsl:template match='uk:date'/>
-  <xsl:template match='uk:year'/>
-  <xsl:template match='uk:version'/>
-  <xsl:template match='uk:legislationClass'/>
+  <xsl:template match='ukm:DocumentMainType'/>
+  <xsl:template match='ukm:Department'/>
+  <xsl:template match='ukm:Date'/>
+  <xsl:template match='ukm:Year'/>
+  <xsl:template match='ukm:Version'/>
+  <xsl:template match='ukm:LegislationClass'/>
   <xsl:template match='@*|node()'>
     <xsl:copy>
       <xsl:apply-templates select='@*|node()'/>

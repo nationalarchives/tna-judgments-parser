@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2023/7/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2023/7/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/7/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/7/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,28 +28,28 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2023-04-04</dc:modified>
         <dc:title>Explanatory Notes Social Security (Additional Payments) Act 2023</dc:title>
         <dc:description>Explanatory Notes Social Security (Additional Payments) Act 2023</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2023/7</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2023/7" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2023/7/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2023-04-11</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2023</ukm:legislationYear>
-        <ukm:legislationNumber>7</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2023-04-11" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2023" />
+        <ukm:LegislationNumber Value="7" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="50" />
           <ukm:BodyParagraphs Value="50" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>29b47f927100b718d6c1dce79fe26d82a7e38df6677a6a51f6744fc7f506c6cd</ukm:hash>
+        <uk:hash>29b47f927100b718d6c1dce79fe26d82a7e38df6677a6a51f6744fc7f506c6cd</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -255,7 +255,7 @@
             <num>17 </num>
             <content>
               <p>Subsection (1) provides that a person has a qualifying entitlement in respect of a qualifying day if they are entitled to a payment of at least 1p in respect of an assessment period ending during the period of one month ending with the qualifying day (for people in receipt of universal credit); or entitled to a payment of at least 1p on any day during the period of one month ending with the qualifying day (for people in receipt of state pension credit, income-based jobseeker’s allowance, income support or income-related employment and support). </p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (1): Qualifying entitlement to universal credit for the means-tested additional payments </p>
@@ -289,7 +289,7 @@
             <num>20 </num>
             <content>
               <p>Subsection (1) defines what is meant by the qualifying entitlement to child tax credit or working tax credit by reference to a qualifying day. This requires HMRC to have made a payment of tax credits in respect of a day in the qualifying period. The person must receive a payment of child tax credit or working tax credit in respect of any day during the period of one month ending with the qualifying day. Subsection (2) clarifies scenarios which do not fall within Subsection (1) which include those: paid a lump sum in advance, for a qualifying period, under Regulation 10 of the Tax Credits (Payments by the Commissioners) Regulations 2002, but whose eligibility to tax credits has ceased; and payments of tax credits obtained as a result of fraud.</p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (3): Qualifying entitlement to child tax credit for the means-tested additional payments </p>
@@ -326,7 +326,7 @@
             <num>24 </num>
             <content>
               <p>Situations in which a person has a qualifying benefit to both a social security benefit and tax credit are addressed in section 1(2), which provides that HMRC must make a payment if any person has a qualifying entitlement to a tax credit, but not to a social security benefit. </p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (4): A person with a qualifying entitlement to more than one social security benefit  </p>
@@ -511,7 +511,7 @@
         <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.57in 0.69in 0.79in 0.79in 0.69in 0.79in 0.69in 0.79in">
+            <table uk:widths="1.57in 0.69in 0.79in 0.79in 0.69in 0.79in 0.69in 0.79in">
               <tr>
                 <th rowspan="2">
                   <p><b>Provision</b></p>
@@ -842,7 +842,7 @@
           <num>49 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
-            <table ukm:widths="1.7in 1.44in 3.15in">
+            <table uk:widths="1.7in 1.44in 3.15in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -962,7 +962,7 @@
           <num>50 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
-            <table ukm:widths="1.05in 1.05in 1.05in 1.05in 1.05in 1.05in">
+            <table uk:widths="1.05in 1.05in 1.05in 1.05in 1.05in 1.05in">
               <tr>
                 <td>
                   <p><b>Section of the Act</b></p>

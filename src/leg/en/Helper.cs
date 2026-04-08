@@ -50,7 +50,7 @@ class Helper : BaseHelper {
     private static void GenerateTableOfContents(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
-        nsmgr.AddNamespace("uk", "https://legislation.gov.uk/akn");
+        nsmgr.AddNamespace("ukm", "http://www.legislation.gov.uk/namespaces/metadata");
         var logger = Logging.Factory.CreateLogger<Helper>();
 
         var mainBody = xml.SelectSingleNode("//akn:mainBody", nsmgr);

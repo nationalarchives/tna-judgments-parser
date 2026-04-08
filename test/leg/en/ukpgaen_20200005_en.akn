@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/5/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/5/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/5/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/5/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2020-05-20</dc:modified>
         <dc:title>Explanatory Notes NHS Funding Act 2020</dc:title>
         <dc:description>Explanatory Notes NHS Funding Act 2020</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2020/5</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2020/5" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2020/5/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2020-05-26</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2020</ukm:legislationYear>
-        <ukm:legislationNumber>5</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2020-05-26" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2020" />
+        <ukm:LegislationNumber Value="5" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="40" />
           <ukm:BodyParagraphs Value="40" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>e34f64f2b7f8f2f607d1ab5ae27149248c08deb1d4abd36bce795e2ebd9042aa</ukm:hash>
+        <uk:hash>e34f64f2b7f8f2f607d1ab5ae27149248c08deb1d4abd36bce795e2ebd9042aa</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -101,7 +101,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -215,7 +215,7 @@
           <num>12 </num>
           <content>
             <p>The table below sets out NHS England’s revenue funding for each year up to (and including) 2023-24. These figures include the Government’s funding settlement for the Long Term Plan.</p>
-            <table ukm:widths="1.23in 0.86in 0.86in 0.86in 0.86in 0.86in 0.86in">
+            <table uk:widths="1.23in 0.86in 0.86in 0.86in 0.86in 0.86in 0.86in">
               <tr>
                 <td>
                   <p>NHS England revenue budget</p>
@@ -301,7 +301,7 @@
           <num>16 </num>
           <content>
             <p>Subsection (1) sets out the duty on the Secretary of State to allot to NHSE, as a minimum, the amount of funding for each financial year set out in the table below.</p>
-            <table ukm:widths="1.97in 1.77in">
+            <table uk:widths="1.97in 1.77in">
               <tr>
                 <td>
                   <p>Financial Year</p>
@@ -459,7 +459,7 @@
           <num>31 </num>
           <content>
             <p>The Act extends to England and Wales but will apply only to the NHS in England.  No provisions of the Act have effect outside England.</p>
-            <table ukm:widths="1.41in 0.95in 1.07in 1.1in 1.51in">
+            <table uk:widths="1.41in 0.95in 1.07in 1.1in 1.51in">
               <tr>
                 <td>
                   <p><b>Provision</b></p>
@@ -525,7 +525,7 @@
           <num>32 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
-            <table ukm:widths="1.75in 1.48in 3.22in">
+            <table uk:widths="1.75in 1.48in 3.22in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>

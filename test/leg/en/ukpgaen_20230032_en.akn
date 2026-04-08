@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2023/32/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2023/32/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/32/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/32/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2023-09-12</dc:modified>
         <dc:title>Explanatory Notes National Security Act 2023</dc:title>
         <dc:description>Explanatory Notes National Security Act 2023</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2023/32</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2023/32" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2023/32/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2023-09-13</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2023</ukm:legislationYear>
-        <ukm:legislationNumber>32</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2023-09-13" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2023" />
+        <ukm:LegislationNumber Value="32" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="656" />
           <ukm:BodyParagraphs Value="656" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>efe8e47f1bf166d1dee9a3e4400d1dd310857dd68efaeebc5c633f59bc0d6bc1</ukm:hash>
+        <uk:hash>efe8e47f1bf166d1dee9a3e4400d1dd310857dd68efaeebc5c633f59bc0d6bc1</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -138,7 +138,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.15in 3.15in">
+          <table uk:widths="3.15in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -961,7 +961,7 @@
               <num>70 </num>
               <content>
                 <p>Hypothetical examples of where these conditions are met can be found below.</p>
-                <table ukm:widths="6in">
+                <table uk:widths="6in">
                   <tr>
                     <td>
                       <p>Example (1): where conduct is carried on for a foreign power</p>
@@ -1074,7 +1074,7 @@
               <num>82 </num>
               <content>
                 <p>Subsection (8) sets out the maximum penalty for the offence. On indictment, the maximum penalty is a term of imprisonment not exceeding 14 years or a fine (or both). The inclusion of a fine is in recognition that the offence can be committed by bodies corporate and other similar entities (see section 33). </p>
-                <table ukm:widths="6in">
+                <table uk:widths="6in">
                   <tr>
                     <td>
                       <p>Example (1): where a person is approached by a foreign power</p>
@@ -1116,7 +1116,7 @@
                 <num>•</num>
                 <content>
                   <p>Subsection (3) provides that conduct which may be likely to materially assist a foreign intelligence service includes providing, or providing access to: goods, for example supplying surveillance and recording equipment to a foreign intelligence service, with the intention of materially assisting their activities; services, for example providing IT services knowing this would materially assist a foreign intelligence service; financial benefits, for example providing ready access to cash to support UK-related activities; information, such as personal details, that could be used as compromising material, which is useful to a foreign intelligence service, about an individual.  </p>
-                  <table ukm:widths="6in">
+                  <table uk:widths="6in">
                     <tr>
                       <td>
                         <p>Example (1): where the person intends to benefit a FIS under section 3(1)</p>
@@ -1195,7 +1195,7 @@
               <num>92 </num>
               <content>
                 <p>Subsection (2) makes clear that inspecting can include the taking of photographs, videos or other media recordings of a prohibited place, and the inspection of photographs, videos, or other recordings of a prohibited place. </p>
-                <table ukm:widths="5.59in">
+                <table uk:widths="5.59in">
                   <tr>
                     <td>
                       <p>Example (1): Carrying out inspection</p>
@@ -1209,7 +1209,7 @@
               <num>93 </num>
               <content>
                 <p>Subsection (3) provides that a person can carry out the conduct within subsection (1)(a) in person or by electronic or remote means.  </p>
-                <table ukm:widths="5.59in">
+                <table uk:widths="5.59in">
                   <tr>
                     <td>
                       <p>Example (1): Carrying out conduct in person</p>
@@ -1227,7 +1227,7 @@
               <num>94 </num>
               <content>
                 <p>Subsection (4) provides for extra-territorial jurisdiction for this offence. This means that it can be committed by persons located both within and outside the United Kingdom. An example of this type of activity is noted below:</p>
-                <table ukm:widths="6in">
+                <table uk:widths="6in">
                   <tr>
                     <td>
                       <p>Example (1): Carrying out conduct in relation to a UK prohibited place from outside the UK </p>
@@ -1482,7 +1482,7 @@
               <num>128 </num>
               <content>
                 <p>Subsection (3) defines the terms “asset” and “damage”. An asset can be tangible or intangible and includes real and personal property, electronic systems, and information. “Damage” is not defined exhaustively, but includes destruction, alteration, contamination, interference, loss of or reduction in access or availability or loss of or reduction in function, utility, or reliability. This applies whether the damage is temporary or permanent. The offence of sabotage does not specify a level of damage, nor does it protect specific assets likely to be targeted, given the requirements for the foreign power condition to be met and for a purpose prejudicial to the safety or interests of the UK. </p>
-                <table ukm:widths="6in">
+                <table uk:widths="6in">
                   <tr>
                     <td>
                       <p>Example (1): where conduct involves a cyber intrusion</p>
@@ -1722,7 +1722,7 @@
               <num>150 </num>
               <content>
                 <p>Subsection (7) states that “interference effect” has the meaning given by section 14.</p>
-                <table ukm:widths="6in">
+                <table uk:widths="6in">
                   <tr>
                     <td>
                       <p>Example (1): where P is reckless as to whether their conduct will have the effect in section 14(1)(a)</p>
@@ -1779,7 +1779,7 @@
               <num>156 </num>
               <content>
                 <p>Subsection (6) references amendments set out in Part 2 of the table in Schedule 1. These amendments concern existing provisions in the Representation of the People Act 1983 and the Political Parties, Elections and Referendums Act 2000 as they apply to the provisions of this section. </p>
-                <table ukm:widths="6.04in">
+                <table uk:widths="6.04in">
                   <tr>
                     <td>
                       <p>Example 1 (an offence in the Representation of the People Act 1983)</p>
@@ -1896,7 +1896,7 @@
               <num><b>171 </b></num>
               <content>
                 <p>Subsection (12) is a list of terms which all have the same meaning as those in section 3 of this Act.</p>
-                <table ukm:widths="6.04in">
+                <table uk:widths="6.04in">
                   <tr>
                     <td>
                       <p>Example 1 (obtaining a benefit for yourself)</p>
@@ -1929,7 +1929,7 @@
               <num>173 </num>
               <content>
                 <p>Subsection (2) is included to confirm that a person commits the offence if they engage in conduct either with the intention that it is preparatory to specific acts (within subsection (3)) or to acts (within subsection (3)) in general. The conduct does not have to be carried out with the intention that a specific identifiable act will be committed, if the person intends that acts in general will be committed. Where a person intends their conduct to be preparatory to a number of acts, the offence will be committed even if the person, or another person, has yet to choose which of those acts they will subsequently commit.  </p>
-                <table ukm:widths="6.04in">
+                <table uk:widths="6.04in">
                   <tr>
                     <td>
                       <p>Example (where the ultimate outcome of the preparatory conduct is unclear)</p>
@@ -2309,7 +2309,7 @@
               <num>224 </num>
               <content>
                 <p>A hypothetical example of the use of a disclosure order would include:</p>
-                <table ukm:widths="6.04in">
+                <table uk:widths="6.04in">
                   <tr>
                     <td>
                       <p>Hypothetical example (use of a disclosure order requiring a company to provide information)</p>
@@ -2395,7 +2395,7 @@
               <num>235 </num>
               <content>
                 <p>A hypothetical example of the use of a customer information order would include:</p>
-                <table ukm:widths="6.05in">
+                <table uk:widths="6.05in">
                   <tr>
                     <td>
                       <p>Hypothetical example (use of a customer information order to identify accounts linked to the financing of state threats activity)</p>
@@ -2474,7 +2474,7 @@
               <num>245 </num>
               <content>
                 <p>A hypothetical example of the use of an account monitoring order would include:</p>
-                <table ukm:widths="6.05in">
+                <table uk:widths="6.05in">
                   <tr>
                     <td>
                       <p>Hypothetical example (use of an account monitoring order to investigate the financing of a suspect by a foreign power)</p>
@@ -2766,7 +2766,7 @@
               <num>283 </num>
               <content>
                 <p>Subsection (2) provides that reasonable force may be used by a constable in the exercise of powers under Part 1 should it be necessary. </p>
-                <table ukm:widths="6.05in">
+                <table uk:widths="6.05in">
                   <tr>
                     <td>
                       <p>Hypothetical example (use of reasonable force to take biometric data)</p>
@@ -4058,7 +4058,7 @@
             <num>451 </num>
             <content>
               <p>Subsection (5) provides that the regulations specifying a foreign power or person subject to foreign power control may make provision for the registration requirement at section 66 to apply with modifications where a foreign activity arrangement was already in existence prior to the scheme coming into force.  For example, the regulations could allow a longer period of time than 10 days to register an existing arrangement.  </p>
-              <table ukm:widths="6.29in">
+              <table uk:widths="6.29in">
                 <tr>
                   <td>
                     <p>Example (1): Establishment of a foreign activity arrangement (entity) </p>
@@ -4164,7 +4164,7 @@
             <num>463 </num>
             <content>
               <p>Subsection (6) provides that references to “relevant activity” in section 67 have the meaning given by section 65 (see section 65(2). </p>
-              <table ukm:widths="6.29in">
+              <table uk:widths="6.29in">
                 <tr>
                   <td>
                     <p>Example (1): How the offence would apply in relation to example 1 under section 66</p>
@@ -4253,7 +4253,7 @@
             <num>475 </num>
             <content>
               <p>Subsection (12) sets out that a person is considered to have shown a matter mentioned in subsection (11) if there is sufficient evidence to raise an issue with respect of it, and the contrary is not proved beyond reasonable doubt. It will be for a defendant to provide evidence that the defence applies, following which it will be for the prosecution to prove beyond reasonable doubt that the person did not take all reasonably practicable steps, or that they did not hold a reasonable belief that the activities were registered.</p>
-              <table ukm:widths="6.29in">
+              <table uk:widths="6.29in">
                 <tr>
                   <td>
                     <p>Example (1): Activities carried out by specified persons</p>
@@ -4366,7 +4366,7 @@
             <num>490 </num>
             <content>
               <p>Subsection (5) defines a “Northern Ireland minister”, “UK person”, “UK registered political party” and “Welsh minister”, for the purposes of this section.</p>
-              <table ukm:widths="6.29in">
+              <table uk:widths="6.29in">
                 <tr>
                   <td>
                     <p>Example (1): Establishment of a foreign influence arrangement (communication) </p>
@@ -4520,7 +4520,7 @@
             <num>510 </num>
             <content>
               <p> Subsection (6) sets out that a person is considered to have shown a matter mentioned in subsection (5) if there is sufficient evidence to raise an issue with respect of it, and the contrary is not proved beyond reasonable doubt. It will be for a defendant to provide evidence that the defence applies, following which it will be for the prosecution to prove beyond reasonable doubt that the person did not take all reasonably practicable steps, or that they did not hold a reasonable belief that the arrangement was registered.</p>
-              <table ukm:widths="6.29in">
+              <table uk:widths="6.29in">
                 <tr>
                   <td>
                     <p>Example (1): How the offence would apply in relation to example 1 under section 70</p>
@@ -4600,7 +4600,7 @@
             <num>520 </num>
             <content>
               <p>Subsection (8) provides that a person is considered to have shown a matter mentioned in subsection (7) if there is sufficient evidence to raise an issue with respect of it, and the contrary is not proved beyond reasonable doubt. It will be for a defendant to provide evidence that the defence applies, following which it will be for the prosecution to prove beyond reasonable doubt that the person did not take all reasonably practicable steps, or that they did not hold a reasonable belief that the activities were registered.</p>
-              <table ukm:widths="6.29in">
+              <table uk:widths="6.29in">
                 <tr>
                   <td>
                     <p>Example: Political influence activities carried out by a foreign power while making a misrepresentation</p>
@@ -4649,7 +4649,7 @@
             <num>524 </num>
             <content>
               <p>Paragraph 1(3) defines what a UK arrangement means for the purposes of paragraph 1(1) and (2). </p>
-              <table ukm:widths="5.77in">
+              <table uk:widths="5.77in">
                 <tr>
                   <td>
                     <p>Example: A UK ‘arrangement’</p>
@@ -4721,7 +4721,7 @@
             <num>533 </num>
             <content>
               <p>Paragraph 3(6) defines the following terms that are used in paragraph 3; consular post, diplomatic mission and UK-based international organisation.</p>
-              <table ukm:widths="5.77in">
+              <table uk:widths="5.77in">
                 <tr>
                   <td>
                     <p>Example (1): An arrangement which relates to the provision of goods or services which are reasonably necessary to support the efficient functioning of a diplomatic mission, consular post, or a permanent mission to a UK-based international organisation</p>
@@ -4851,7 +4851,7 @@
             <num>547 </num>
             <content>
               <p>Paragraph 6(4) defines legal activity for the purpose of paragraph 6(2). </p>
-              <table ukm:widths="5.77in">
+              <table uk:widths="5.77in">
                 <tr>
                   <td>
                     <p>Example: An arrangement which relates to the provision of legal services</p>
@@ -5097,7 +5097,7 @@
             <num>572 </num>
             <content>
               <p>Hypothetical examples of when information notices can be given are provided below.</p>
-              <table ukm:widths="6.29in">
+              <table uk:widths="6.29in">
                 <tr>
                   <td>
                     <p>Example (1): A person who is party to a foreign influence arrangement registered under section 69</p>
@@ -5191,7 +5191,7 @@
             <num>583 </num>
             <content>
               <p>Subsection (2) creates an offence for carrying out political influence activities, or arranging for such activities to be carried out, in the United Kingdom pursuant to a foreign influence arrangement which is required to be registered under section 69(4) (requirement to register foreign influence arrangements), where information has been provided by the person, or another person, (either through registration or in response to an information notice) that is false, inaccurate or misleading in a material way, and the person knows, or having regard to other matters known to them ought reasonably to know, that the information provided is false, inaccurate or misleading in a material way. </p>
-              <table ukm:widths="6.29in">
+              <table uk:widths="6.29in">
                 <tr>
                   <td>
                     <p>Example (1): How the offence would apply in relation to example 1 under section 66</p>
@@ -5853,7 +5853,7 @@
           <num>658 </num>
           <content>
             <p>The Act extends to the whole of the United Kingdom. This is subject to the exception that amendments and repeals have the same extent as the enactment to which they relate, which means that some provisions in the Act extend to only parts of the United Kingdom (see Territorial extent and application above for further detail). </p>
-            <table ukm:widths="1.83in 0.69in 0.58in 0.72in 0.62in">
+            <table uk:widths="1.83in 0.69in 0.58in 0.72in 0.62in">
               <tr>
                 <td>
                   <p><b>Provision </b></p>
@@ -6259,7 +6259,7 @@
           <num>659 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
-            <table ukm:widths="1.59in 1.33in 3.37in">
+            <table uk:widths="1.59in 1.33in 3.37in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>
@@ -6450,7 +6450,7 @@
           <num>660 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
-            <table ukm:widths="1.07in 1.08in 1.08in 1.08in 1.24in 1.08in">
+            <table uk:widths="1.07in 1.08in 1.08in 1.08in 1.24in 1.08in">
               <tr>
                 <th>
                   <p><b>Section of the Act</b></p>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/6/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/6/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/6/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/6/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,28 +28,28 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2022-03-09</dc:modified>
         <dc:title>Explanatory Notes Charities Act 2022</dc:title>
         <dc:description>Explanatory Notes Charities Act 2022</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2022/6</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2022/6" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2022/6/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2022-03-11</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2022</ukm:legislationYear>
-        <ukm:legislationNumber>6</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2022-03-11" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2022" />
+        <ukm:LegislationNumber Value="6" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="179" />
           <ukm:BodyParagraphs Value="179" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>3afa8c457c8bfb6f838efb22a7e792adcda96f41f976e567f652bea8b17e6489</ukm:hash>
+        <uk:hash>3afa8c457c8bfb6f838efb22a7e792adcda96f41f976e567f652bea8b17e6489</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -105,7 +105,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.25in 3.15in">
+          <table uk:widths="3.25in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -1229,7 +1229,7 @@
             <num>89 </num>
             <content>
               <p>The new power can be exercised in relation to any “available endowment fund” of the charity, meaning the entirety of the charity’s permanent endowment if it is subject to the same trusts or any part of it subject to particular trusts: see section 284A(9). The trustees can exercise the power if they are satisfied that it is expedient for the amount to be borrowed, taking into account the purposes of both the permanent endowment fund and (if different) the charity: section 284A(2). Borrowing is limited to the “permitted amount” as defined in section 284B and must be repaid within 20 years of being borrowed. The permitted amount and the repayment period can be amended by regulations: section 12(3), inserting new section 285(3). The effect of exercising the power is to release the amount borrowed from the restrictions on spending capital which applied to it when it was part of the permanent endowment fund.</p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (1a): Borrowing from permanent endowment</p>
@@ -1243,7 +1243,7 @@
             <num>90 </num>
             <content>
               <p>Section 284A(10) clarifies how the power operates where a charity has opted in to investing on a “total return” basis by passing a resolution under section 104A(2). The effect of subsection (10) is to limit the “available endowment fund” – from which the trustees may resolve to borrow – to the value of the fund representing the capital of the permanent endowment in respect of which the section 104A(2) resolution was passed (which the Charities (Total Return) Regulations 2013 (“the TRI Regulations”) refer to as the “trust for investment”). This excludes any returns from the investment of that fund which have not been accumulated to it (the “unapplied total return” in the TRI Regulations).</p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (1b): Borrowing from permanent endowment which is invested on a “total return” basis</p>
@@ -1257,7 +1257,7 @@
             <num>91 </num>
             <content>
               <p>Section 284B provides the formula for calculating the “permitted amount” which can be borrowed under section 284A. It is designed to ensure that a charity cannot borrow more than 25% of the total capital value of the available endowment fund (although if the value of the remaining capital subsequently falls, the result might be that the charity’s outstanding borrowing exceeds 25% of the total capital value of the endowment fund). In calculating the permitted amount, “V” is the value of the available endowment fund from which the trustees are seeking to borrow. It does not include the value of any other permanent endowment that is subject to separate trusts, for example functional permanent endowment. “V” is defined as the value of the available endowment fund on the “relevant date”, namely, the date on which the trustees resolve to borrow from the fund. This does not require the trustees to seek a valuation on the same day that they pass the resolution but it will require them to use a fairly recent valuation, and if the trustees have reason to believe that the valuation is out of date by the time they pass the resolution they should obtain a fresh valuation.</p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (2a): Calculating the amount that can be borrowed from permanent endowment</p>
@@ -1303,7 +1303,7 @@
             <num>96 </num>
             <content>
               <p>Permanent endowment can be used to make social investments (within the meaning of section 292A), provided those social investments do not contravene the restriction on expenditure of capital that applies to the permanent endowment. Accordingly, social investments with an anticipated negative financial return (where the trustees expect to receive back less than the initial capital outlay) cannot generally be made using permanent endowment. Section 13 creates a new power, by inserting section 104AA into the CA 2011, to use permanent endowment to make social investments that trustees could not otherwise make. The new power is limited to charities that have already opted in to investing on a total return basis under section 104A(2). The power will enable charities to use the fund to make social investments which they would not otherwise be able to make because they are expected to produce a loss. New regulations governing the use of the fund to make social investments will apply to the fund. Section 13(3) amends section 104B of the CA 2011 to enable the Charity Commission to make these regulations.</p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (3): Making loss-making social investments using permanent endowment</p>
@@ -1489,7 +1489,7 @@
             <num>113 </num>
             <content>
               <p>Subsection (2)(c) substitutes section 117(3)(c) of the CA 2011 with a new subsection which clarifies when a disposition of charity land made to another charity will be excluded from the restriction in section 117(1). The exception as amended will apply where the disposition is neither (1) a commercial transaction (i.e. intended to achieve the best price that can reasonably be obtained); nor (2) a social investment (as defined in section 292A of the CA 2011). This will ensure that in cases where the price obtained as a result of the disposition is a motivating factor (even if only a partial one in the case of a social investment) charities will have to comply with the advice requirements in Part 7 which are designed to protect against disposals at an undervalue. The provision removes the requirement under the existing subsection (c)(ii) that the disposition be authorised by the trusts of the charity. The amendment is intended to clarify that no express provision in the trusts of the charity authorising the disposition is required in order for it to fall within the exception. But the amendment does not allow charities to make dispositions which they would not be permitted to make under the trusts of the charity.</p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (4a): Exception to the requirement to obtain advice under section 117(3)(c)</p>
@@ -1839,7 +1839,7 @@
             <num>155 </num>
             <content>
               <p>Subsection (2) clarifies that trust corporation status will automatically be conferred on any trustee which meets the criteria under section 334A(1), even if that trustee became a trustee of the trust in question before the amendment came into force. This does not mean, however, that the trustee is treated as having had trust corporation status prior to the commencement of the section. </p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (5): trust corporation status</p>
@@ -1861,7 +1861,7 @@
             <num>156 </num>
             <content>
               <p>Section 33(4) replaces the previous section 311(2) of the CA 2011 with a new subsection (2) and (2A). The new subsection enables gifts to a charity which has since merged (as part of a “relevant charity merger” within the meaning of section 306) to take effect as a gift to the new charity. Under the new subsection this will be the case even where the gift specifies that it will only take effect if the charity continues to exist on the date the gift takes effect. The section therefore overcomes the difficulty highlighted in <i>Berry v IBS-STL (UK) Ltd</i>.<authorialNote marker="17"><p> [2012] EWHC 666 (Ch), [2012] PTSR 1619.</p></authorialNote> The new section 311(2) and (2A) applies to any gift made after the section is commenced, even if the instrument which gives rise to the gift (typically a will) was executed before commencement: section 33(5).</p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (6a): Gifts to a charity that has merged</p>
@@ -2073,7 +2073,7 @@
         <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.57in 1.28in 1.38in 1.38in 1.24in">
+            <table uk:widths="1.57in 1.28in 1.38in 1.38in 1.24in">
               <tr>
                 <th>
                   <p><b>Provision</b></p>
@@ -2314,7 +2314,7 @@
         <heading><b>Annex B - Hansard References</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.91in 1.45in 3.13in">
+            <table uk:widths="1.91in 1.45in 3.13in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>

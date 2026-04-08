@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990/impacts/2025/12" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990/impacts/2025/12" />
-          <FRBRdate date="2026-03-31" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348267990/impacts/2025/12/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348267990/impacts/2025/12/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-01-17</dc:modified>
         <dc:title>Impact Assessment The Higher Education (Fee Limits and Fee Limit Condition) (England) (Amendment) Regulations 2025</dc:title>
         <dc:description>Impact Assessment The Higher Education (Fee Limits and Fee Limit Condition) (England) (Amendment) Regulations 2025</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2025/12</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>Department for Education</ukm:department>
-        <ukm:date>2025-01-16</ukm:date>
-        <ukm:pdfDate>2025-01-20</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomDraftStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2025</ukm:year>
-        <ukm:number>12</ukm:number>
-        <ukm:legislationYear>2025</ukm:legislationYear>
-        <ukm:legislationNumber>9780348267990</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="Department for Education" />
+        <ukm:Date Value="2025-01-16" />
+        <ukm:PdfDate Value="2025-01-20" />
+        <ukm:LegislationClass Value="UnitedKingdomDraftStatutoryInstrument" />
+        <ukm:Year Value="2025" />
+        <ukm:Number Value="12" />
+        <ukm:LegislationYear Value="2025" />
+        <ukm:LegislationNumber Value="9780348267990" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="38" />
           <ukm:BodyParagraphs Value="38" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="8" />
         </ukm:Statistics>
-        <ukm:hash>f908c88adfe6a1fecca228bb0dea70f861a49502894d8917c749549fd439205f</ukm:hash>
+        <uk:hash>f908c88adfe6a1fecca228bb0dea70f861a49502894d8917c749549fd439205f</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -579,7 +579,7 @@
         <paragraph>
           <content>
             <p><b>Green </b><b>– full meets objective, </b><b>Amber</b><b> – partially meets criteria, </b><b>Red</b><b> – does not meet criteria </b></p>
-            <table ukm:widths="1.3in 0.98in 1.07in 1.21in 1.27in 1.25in">
+            <table uk:widths="1.3in 0.98in 1.07in 1.21in 1.27in 1.25in">
               <tr>
                 <td>
                   <p><b>Criteria </b></p>
@@ -785,7 +785,7 @@
         <paragraph>
           <content>
             <p><b>Table 3: Distribution of micro, small, medium and large providers across Approved (fee cap) HE providers </b></p>
-            <table ukm:widths="2.27in 1.13in 1.79in 1.62in">
+            <table uk:widths="2.27in 1.13in 1.79in 1.62in">
               <tr>
                 <td>
                   <p />
@@ -877,7 +877,7 @@
         <paragraph>
           <content>
             <p><b>Table 4: Average income gained % under option 1 scenario by student typology. </b></p>
-            <table ukm:widths="3.07in 3.55in">
+            <table uk:widths="3.07in 3.55in">
               <tr>
                 <td>
                   <p><b>Student typology</b> </p>
@@ -960,7 +960,7 @@
         <paragraph>
           <content>
             <p><b>Part A: Overall and stakeholder impacts </b></p>
-            <table ukm:widths="1.27in 3.97in 1.52in">
+            <table uk:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="2">
                   <p><b>(1) Overall impacts on total welfare </b></p>
@@ -1030,7 +1030,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.27in 4.04in 1.44in">
+            <table uk:widths="1.27in 4.04in 1.44in">
               <tr>
                 <td colspan="3">
                   <p><b>(2) Expected impacts on businesses </b></p>
@@ -1091,7 +1091,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.27in 3.97in 1.52in">
+            <table uk:widths="1.27in 3.97in 1.52in">
               <tr>
                 <td colspan="3">
                   <p><b>(3) Expected impacts on households</b></p>
@@ -1162,7 +1162,7 @@
         <paragraph>
           <content>
             <p><b>Part B: Impacts on wider government priorities</b></p>
-            <table ukm:widths="1.77in 3.64in 1.21in">
+            <table uk:widths="1.77in 3.64in 1.21in">
               <tr>
                 <td>
                   <p><b>Category</b></p>
@@ -1577,7 +1577,7 @@
         <paragraph>
           <content>
             <p><b>Table A-2: Fiscal impact of an increase to tuition fee limits and loans relative to baseline of fee freeze, financial year (£m)</b></p>
-            <table ukm:widths="1.04in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in">
+            <table uk:widths="1.04in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in 0.52in">
               <tr>
                 <td>
                   <p><b>Option 1 impact £m</b></p>
@@ -1698,7 +1698,7 @@
         <paragraph>
           <content>
             <p><b>Table A 3: Fiscal impact of an increase to tuition fee limits and loans relative to baseline of fee freeze, academic year (£m)</b></p>
-            <table ukm:widths="0.92in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in">
+            <table uk:widths="0.92in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in">
               <tr>
                 <td>
                   <p><b>Option 1 impact £m</b></p>
@@ -1867,7 +1867,7 @@
         <paragraph>
           <content>
             <p>PV base year:</p>
-            <table ukm:widths="1.77in 3.35in 5in">
+            <table uk:widths="1.77in 3.35in 5in">
               <tr>
                 <td>
                   <p>This table may be reformatted provided the side-by-side comparison of options is retained</p>

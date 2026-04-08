@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2021/34/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2021/34/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/34/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/34/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2022-01-19</dc:modified>
         <dc:title>Explanatory Notes Rating (Coronavirus) and Directors Disqualification (Dissolved Companies) Act 2021</dc:title>
         <dc:description>Explanatory Notes Rating (Coronavirus) and Directors Disqualification (Dissolved Companies) Act 2021</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2021/34</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2021/34" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2021/34/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2022-01-11</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2021</ukm:legislationYear>
-        <ukm:legislationNumber>34</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2022-01-11" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2021" />
+        <ukm:LegislationNumber Value="34" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="81" />
           <ukm:BodyParagraphs Value="81" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>698fbcf4f7e7cb0ee8483296a92cc59e667969fa123ae83a9d01a05cbf222534</ukm:hash>
+        <uk:hash>698fbcf4f7e7cb0ee8483296a92cc59e667969fa123ae83a9d01a05cbf222534</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -108,7 +108,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.15in 3.15in">
+          <table uk:widths="3.15in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -738,7 +738,7 @@
           <num>73 </num>
           <content>
             <p>The territorial extent and application of the Act is summarised as follows. Section 1 extends and applies to England and Wales. Section 2 extends and applies to England, Wales and Scotland. Section 3 extends and applies to Northern Ireland. Please see the table below for further details. </p>
-            <table ukm:widths="1.02in 1.08in 1.08in 1.18in 1.41in">
+            <table uk:widths="1.02in 1.08in 1.08in 1.18in 1.41in">
               <tr>
                 <th>
                   <p><b>Provision</b></p>
@@ -835,7 +835,7 @@
           <num>77 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
-            <table ukm:widths="2.1in 2.1in 2.1in">
+            <table uk:widths="2.1in 2.1in 2.1in">
               <tr>
                 <td>
                   <p>Stage</p>

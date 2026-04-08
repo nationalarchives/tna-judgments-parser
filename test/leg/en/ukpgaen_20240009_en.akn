@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2024/9/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2024/9/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2024/9/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2024/9/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2024-06-04</dc:modified>
         <dc:title>Explanatory Notes Investigatory Powers (Amendment) Act 2024</dc:title>
         <dc:description>Explanatory Notes Investigatory Powers (Amendment) Act 2024</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2024/9</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2024/9" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2024/9/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2024-05-31</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2024</ukm:legislationYear>
-        <ukm:legislationNumber>9</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2024-05-31" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2024" />
+        <ukm:LegislationNumber Value="9" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="418" />
           <ukm:BodyParagraphs Value="418" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>3d4d8a71a0f56bb5620f365f4a0f952e1826534063887e9f297516fc192b501e</ukm:hash>
+        <uk:hash>3d4d8a71a0f56bb5620f365f4a0f952e1826534063887e9f297516fc192b501e</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -1136,7 +1136,7 @@
             <num>99.</num>
             <content>
               <p>In order to be compatible with the ECHR, the statutory regime provides for adequate and effective safeguards against abuse. In the context of pre-IPA 2016 bulk interception, the Grand Chamber of the European Court of Human Rights dealt with this point in <i>Big Brother Watch v UK</i><authorialNote marker="9"><p> (2022) 74 EHRR 17; see also: <a href="https://hudoc.echr.coe.int/eng?i=001-210077"><u>https://hudoc.echr.coe.int/eng?i=001-210077</u></a></p></authorialNote> at §361:</p>
-              <table ukm:widths="6.2in">
+              <table uk:widths="6.2in">
                 <tr>
                   <td>
                     <p>“361. In assessing whether the respondent State acted within its margin of appreciation (see paragraph 347 above), the Court would need to take account of a wider range of criteria than the six Weber safeguards. More specifically, in addressing jointly “in accordance with the law” and “necessity” as is the established approach in this area ([…]), the Court will examine whether the domestic legal framework clearly defined:</p>
@@ -1157,7 +1157,7 @@
             <num>100.</num>
             <content>
               <p>It is also instructive to have regard to the pre-IPA 2016 decision of the Investigatory Powers Tribunal in <i>Privacy International v Secretary of State for Foreign and Commonwealth Affairs</i>.<authorialNote marker="10"><p> [2017] 3 All ER 647; see also: <a href="https://investigatorypowerstribunal.org.uk/judgement/privacy-international-and-1-secretary-of-state-for-foreign-and-commonwealth-affairs-2-secretary-of-state-for-the-home-department-3-government-communications-headquarters-4-security-service-5/"><u>https://investigatorypowerstribunal.org.uk/judgement/privacy-international-and-1-secretary-of-state-for-foreign-and-commonwealth-affairs-2-secretary-of-state-for-the-home-department-3-government-communications-headquarters-4-security-service-5/</u></a></p></authorialNote> This case specifically concerned the acquisition and retention of bulk communications data and bulk personal datasets under the Telecommunications Act 1984 (to note: not datasets that could be said to be low/no datasets). As to safeguards and foreseeability, at §62 the Tribunal set out the following: </p>
-              <table ukm:widths="4.99in">
+              <table uk:widths="4.99in">
                 <tr>
                   <td>
                     <p>“62. Accordingly, by reference to our considered assessment of the ECHR jurisprudence, we can summarise in short terms what we conclude the proper approach is:</p>
@@ -1281,7 +1281,7 @@
             <num>117.</num>
             <content>
               <p>The change in the Act concerns this second ‘subject identification’ aspect of the legislation. The IPA 2016 as drafted cover this within Condition A. </p>
-              <table ukm:widths="4.99in">
+              <table uk:widths="4.99in">
                 <tr>
                   <td>
                     <p>Condition A is that the person with power to grant the authorisation considers that it is necessary, for a purpose falling within section 60A(7), 61(7) or 61A(7) (as applicable), to obtain the data to identify which person or apparatus is using an internet service where— </p>
@@ -1484,7 +1484,7 @@
             <num>142.</num>
             <content>
               <p>Section 23 of FOIA (as relevant) states: </p>
-              <table ukm:widths="4.99in">
+              <table uk:widths="4.99in">
                 <tr>
                   <td>
                     <p>“23. Information supplied by, or relating to, bodies dealing with security matters.</p>
@@ -1553,7 +1553,7 @@
             <num>151.</num>
             <content>
               <p>The statutory purposes at section 60A(7) state that it must be necessary to obtain the data—</p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>“(a) in the interests of national security,</p>
@@ -3886,7 +3886,7 @@
         <heading><b>Annex A – Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.12in 1.12in 1.12in 1.12in 1.12in">
+            <table uk:widths="1.12in 1.12in 1.12in 1.12in 1.12in">
               <tr>
                 <th>
                   <p><b>Provision</b></p>
@@ -4181,7 +4181,7 @@
           <num>413.</num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
-            <table ukm:widths="1.75in 1.48in 3.22in">
+            <table uk:widths="1.75in 1.48in 3.22in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>
@@ -4342,7 +4342,7 @@
           <num>414.</num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
-            <table ukm:widths="1.07in 1.07in 1.08in 1.08in 1.08in 1.08in">
+            <table uk:widths="1.07in 1.07in 1.08in 1.08in 1.08in 1.08in">
               <tr>
                 <th>
                   <p><b>Section of the Act</b></p>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/23/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/23/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/23/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/23/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,28 +28,28 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2022-05-20</dc:modified>
         <dc:title>Explanatory Notes Subsidy Control Act 2022</dc:title>
         <dc:description>Explanatory Notes Subsidy Control Act 2022</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2022/23</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2022/23" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2022/23/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2022-05-26</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2022</ukm:legislationYear>
-        <ukm:legislationNumber>23</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2022-05-26" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2022" />
+        <ukm:LegislationNumber Value="23" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="353" />
           <ukm:BodyParagraphs Value="353" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>63617511fd5e67346e10ca7370caa07c71b1a65e45a6593d1b1fd6fdd93095e4</ukm:hash>
+        <uk:hash>63617511fd5e67346e10ca7370caa07c71b1a65e45a6593d1b1fd6fdd93095e4</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -116,7 +116,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -2794,7 +2794,7 @@
           <num>269 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
-            <table ukm:widths="1.71in 1.44in 3.11in">
+            <table uk:widths="1.71in 1.44in 3.11in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>

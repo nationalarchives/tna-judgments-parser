@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2024/21/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2024/21/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2024/21/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2024/21/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-08-01</dc:modified>
         <dc:title>Explanatory Notes Victims and Prisoners Act 2024</dc:title>
         <dc:description>Explanatory Notes Victims and Prisoners Act 2024</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2024/21</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2024/21" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2024/21/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2025-06-05</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2024</ukm:legislationYear>
-        <ukm:legislationNumber>21</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2025-06-05" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2024" />
+        <ukm:LegislationNumber Value="21" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="563" />
           <ukm:BodyParagraphs Value="563" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>fa751732608eab46ca9d7b2be7387a2f803240912855fe67d745fd0fb17a2551</ukm:hash>
+        <uk:hash>fa751732608eab46ca9d7b2be7387a2f803240912855fe67d745fd0fb17a2551</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -153,7 +153,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p>Subject</p>
@@ -4994,7 +4994,7 @@
           <num>558 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of this Act's passage through Parliament. </p>
-            <table ukm:widths="1.71in 1.45in 3.13in">
+            <table uk:widths="1.71in 1.45in 3.13in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>
@@ -5426,7 +5426,7 @@
           <num>559 </num>
           <content>
             <p>This Annex shows how each section of this Act was numbered during the passage of the Bill through Parliament. </p>
-            <table ukm:widths="1.24in 1.31in 1.31in 1.31in 1.13in">
+            <table uk:widths="1.24in 1.31in 1.31in 1.31in 1.13in">
               <tr>
                 <th>
                   <p><b>Section of the Act</b></p>

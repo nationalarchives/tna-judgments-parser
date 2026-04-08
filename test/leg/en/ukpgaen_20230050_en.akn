@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2023/50/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2023/50/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/50/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/50/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,28 +28,28 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2023-11-16</dc:modified>
         <dc:title>Explanatory Notes Online Safety Act 2023</dc:title>
         <dc:description>Explanatory Notes Online Safety Act 2023</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2023/50</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2023/50" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2023/50/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2023-11-24</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2023</ukm:legislationYear>
-        <ukm:legislationNumber>50</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2023-11-24" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2023" />
+        <ukm:LegislationNumber Value="50" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="992" />
           <ukm:BodyParagraphs Value="992" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>e664bea63e779b19301298ee2bbc61d5374a55eaa844da7c26c11d082eb76799</ukm:hash>
+        <uk:hash>e664bea63e779b19301298ee2bbc61d5374a55eaa844da7c26c11d082eb76799</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -101,7 +101,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -8802,7 +8802,7 @@
           <num>987 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
-            <table ukm:widths="1.76in 1.49in 3.05in">
+            <table uk:widths="1.76in 1.49in 3.05in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -9063,7 +9063,7 @@
           <num>988 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
-            <table ukm:widths="1.14in 1.19in 1.19in 1.17in 1.19in 1.15in">
+            <table uk:widths="1.14in 1.19in 1.19in 1.17in 1.19in 1.15in">
               <tr>
                 <td>
                   <p><b>Section of the Act </b></p>

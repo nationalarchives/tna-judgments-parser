@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2015/9780111138861/impacts/2015/273/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2015-09-04</dc:modified>
         <dc:title>Impact Assessment The Small and Medium Sized Business (Credit Information) Regulations 2015</dc:title>
         <dc:description>Impact Assessment The Small and Medium Sized Business (Credit Information) Regulations 2015</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukdsi/2015/9780111138861</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukdsi/2015/9780111138861" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2015/273</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>HM Treasury</ukm:department>
-        <ukm:date>2015-09-03</ukm:date>
-        <ukm:pdfDate>2015-09-08</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomDraftStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2015</ukm:year>
-        <ukm:number>273</ukm:number>
-        <ukm:legislationYear>2015</ukm:legislationYear>
-        <ukm:legislationNumber>9780111138861</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="HM Treasury" />
+        <ukm:Date Value="2015-09-03" />
+        <ukm:PdfDate Value="2015-09-08" />
+        <ukm:LegislationClass Value="UnitedKingdomDraftStatutoryInstrument" />
+        <ukm:Year Value="2015" />
+        <ukm:Number Value="273" />
+        <ukm:LegislationYear Value="2015" />
+        <ukm:LegislationNumber Value="9780111138861" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="80" />
           <ukm:BodyParagraphs Value="80" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>1b9eaeba03cf32e0bc5fef7f267747facc1f49cbc4512ac86b4d0d859e2ef669</ukm:hash>
+        <uk:hash>1b9eaeba03cf32e0bc5fef7f267747facc1f49cbc4512ac86b4d0d859e2ef669</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -78,7 +78,7 @@
       </toc>
       <level>
         <content>
-          <table ukm:widths="1.4in 1.14in 1.78in 1.4in 1.49in 0.01in">
+          <table uk:widths="1.4in 1.14in 1.78in 1.4in 1.49in 0.01in">
             <tr>
               <td colspan="3">
                 <p><b>Title:</b></p>
@@ -90,7 +90,7 @@
                 <p>N/A</p>
               </td>
               <td colspan="3">
-                <table ukm:widths="2.88in">
+                <table uk:widths="2.88in">
                   <tr>
                     <td>
                       <p>Impact Assessment (IA)</p>
@@ -228,7 +228,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.18in">
+          <table uk:widths="7.18in">
             <tr>
               <td>
                 <p><b>What are the policy objectives and the intended effects? </b></p>
@@ -240,7 +240,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.19in">
+          <table uk:widths="7.19in">
             <tr>
               <td>
                 <p><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option (further details in Evidence Base)</b></p>
@@ -253,7 +253,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="3.67in 0.68in 0.68in 0.68in 0.24in 0.44in 0.78in">
+          <table uk:widths="3.67in 0.68in 0.68in 0.68in 0.24in 0.44in 0.78in">
             <tr>
               <td colspan="7">
                 <p><b>Will the policy be reviewed?  If applicable, set review date:  </b><b> </b><b>The policy will be reviewed on an ongoing basis</b></p>
@@ -308,7 +308,7 @@
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></p>
-          <table ukm:widths="3.33in 1.87in 0.49in 1.4in">
+          <table uk:widths="3.33in 1.87in 0.49in 1.4in">
             <tr>
               <td>
                 <p>Signed by the responsible SELECT SIGNATORY:</p>
@@ -340,7 +340,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT</b></p>
-            <table ukm:widths="0.88in 0.87in 1in 1.25in 1.26in 1.82in">
+            <table uk:widths="0.88in 0.87in 1in 1.25in 1.26in 1.82in">
               <tr>
                 <td rowspan="2">
                   <p><b>Price Base Year  </b>2009</p>
@@ -367,7 +367,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.38in 1.35in 0.55in 1.98in 1.23in 0.59in">
+            <table uk:widths="1.38in 1.35in 0.55in 1.98in 1.23in 0.59in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -542,7 +542,7 @@
         <paragraph>
           <content>
             <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
-            <table ukm:widths="1.38in 1.49in 1.37in 1.37in 1.46in">
+            <table uk:widths="1.38in 1.49in 1.37in 1.37in 1.46in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual) £m: </b></p>

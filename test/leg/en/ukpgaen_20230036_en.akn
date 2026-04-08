@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2023/36/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2023/36/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/36/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/36/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2023-09-18</dc:modified>
         <dc:title>Explanatory Notes Social Housing (Regulation) Act 2023</dc:title>
         <dc:description>Explanatory Notes Social Housing (Regulation) Act 2023</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2023/36</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2023/36" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2023/36/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2023-09-18</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2023</ukm:legislationYear>
-        <ukm:legislationNumber>36</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2023-09-18" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2023" />
+        <ukm:LegislationNumber Value="36" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="286" />
           <ukm:BodyParagraphs Value="286" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>f1f331f956bc38a52c0bd659b158bb11a5fef425398408ae40c02ccfbf0cb738</ukm:hash>
+        <uk:hash>f1f331f956bc38a52c0bd659b158bb11a5fef425398408ae40c02ccfbf0cb738</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -2679,7 +2679,7 @@
         <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.67in 0.76in 0.71in 0.79in 1.08in">
+            <table uk:widths="1.67in 0.76in 0.71in 0.79in 1.08in">
               <tr>
                 <td>
                   <p><b>Provision</b><authorialNote marker="5"><p> For the purposes of Annex A, provisions that have minor or consequential effects in devolved territories are not </p><p>listed as ‘applying’ to those territories. </p></authorialNote></p>
@@ -2790,7 +2790,7 @@
         <heading><b>Annex B - Clause numbers throughout Parliamentary scrutiny</b></heading>
         <level>
           <content>
-            <table ukm:widths="0.94in 0.89in 0.83in 0.89in 0.94in 0.89in 0.89in">
+            <table uk:widths="0.94in 0.89in 0.83in 0.89in 0.94in 0.89in 0.89in">
               <tr>
                 <td>
                   <p><b>Section of the Act</b></p>
@@ -4019,7 +4019,7 @@
         <heading><b>Annex C – Hansard references</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.47in 2.07in 1.97in">
+            <table uk:widths="1.47in 2.07in 1.97in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -4192,7 +4192,7 @@
         <heading><b>Glossary</b></heading>
         <level>
           <content>
-            <table ukm:widths="3.13in 3.13in">
+            <table uk:widths="3.13in 3.13in">
               <tr>
                 <td>
                   <p><b>Term</b></p>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2021/32/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2021/32/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/32/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/32/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,28 +28,28 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2021-12-30</dc:modified>
         <dc:title>Explanatory Notes Social Security (Up-rating of Benefits) Act 2021</dc:title>
         <dc:description>Explanatory Notes Social Security (Up-rating of Benefits) Act 2021</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2021/32</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2021/32" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2021/32/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2021-12-07</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2021</ukm:legislationYear>
-        <ukm:legislationNumber>32</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2021-12-07" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2021" />
+        <ukm:LegislationNumber Value="32" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="33" />
           <ukm:BodyParagraphs Value="33" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>de2cca7cbbb3d7b781717a0691e489453ee23cf0e323aebeaa1a280ea7c5543a</ukm:hash>
+        <uk:hash>de2cca7cbbb3d7b781717a0691e489453ee23cf0e323aebeaa1a280ea7c5543a</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -99,7 +99,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -335,7 +335,7 @@
         <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="0.76in 1.11in 1.08in 1.18in 1.58in">
+            <table uk:widths="0.76in 1.11in 1.08in 1.18in 1.58in">
               <tr>
                 <th>
                   <p><b>Provision</b></p>
@@ -394,7 +394,7 @@
           <num>28 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
-            <table ukm:widths="1.71in 1.45in 3.13in">
+            <table uk:widths="1.71in 1.45in 3.13in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>
@@ -563,7 +563,7 @@
           <num>29 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
-            <table ukm:widths="1.04in 1.05in 1.05in 1.05in 1.05in 1.05in">
+            <table uk:widths="1.04in 1.05in 1.05in 1.05in 1.05in 1.05in">
               <tr>
                 <th>
                   <p><b>Section of the Act</b></p>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2014/9780111117422/impacts/2014/204/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2014/9780111117422/impacts/2014/204/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2014-07-01</dc:modified>
         <dc:title>Impact Assessment The Drug Driving (Specified Limits) (England and Wales) Regulations 2014</dc:title>
         <dc:description>Impact Assessment The Drug Driving (Specified Limits) (England and Wales) Regulations 2014</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukdsi/2014/9780111117422</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukdsi/2014/9780111117422" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2014/204</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>Department for Transport</ukm:department>
-        <ukm:date>2014-07-01</ukm:date>
-        <ukm:pdfDate>2014-07-03</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomDraftStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2014</ukm:year>
-        <ukm:number>204</ukm:number>
-        <ukm:legislationYear>2014</ukm:legislationYear>
-        <ukm:legislationNumber>9780111117422</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="Department for Transport" />
+        <ukm:Date Value="2014-07-01" />
+        <ukm:PdfDate Value="2014-07-03" />
+        <ukm:LegislationClass Value="UnitedKingdomDraftStatutoryInstrument" />
+        <ukm:Year Value="2014" />
+        <ukm:Number Value="204" />
+        <ukm:LegislationYear Value="2014" />
+        <ukm:LegislationNumber Value="9780111117422" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="125" />
           <ukm:BodyParagraphs Value="125" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>0e7f3e29a6407b3440101dd55fa965c2b1721404e78ca1f8d87bd423c90c1bcf</ukm:hash>
+        <uk:hash>0e7f3e29a6407b3440101dd55fa965c2b1721404e78ca1f8d87bd423c90c1bcf</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -79,7 +79,7 @@
       </toc>
       <level>
         <content>
-          <table ukm:widths="1.38in 1.12in 1.75in 1.38in 1.46in 0.01in">
+          <table uk:widths="1.38in 1.12in 1.75in 1.38in 1.46in 0.01in">
             <tr>
               <td colspan="3">
                 <p><b>Title:</b> <docTitle> <b>Drug Driving</b>: Secondary legislation for England and Wales specifying the controlled drugs and the corresponding limits in blood for the new drug driving offence in section 5A of the Road Traffic Act 1988 (as inserted by the Crime and Courts Act 2013).     </docTitle></p>
@@ -89,7 +89,7 @@
                 <p>     </p>
               </td>
               <td colspan="3">
-                <table ukm:widths="2.84in">
+                <table uk:widths="2.84in">
                   <tr>
                     <td>
                       <p>Impact Assessment (IA)</p>
@@ -220,7 +220,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.08in">
+          <table uk:widths="7.08in">
             <tr>
               <td>
                 <p><b>What are the policy objectives and the intended effects?</b></p>
@@ -235,7 +235,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.09in">
+          <table uk:widths="7.09in">
             <tr>
               <td>
                 <p><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option (further details in Evidence Base)</b></p>
@@ -249,7 +249,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="3.67in 0.68in 0.68in 0.68in 0.24in 0.44in 0.69in">
+          <table uk:widths="3.67in 0.68in 0.68in 0.68in 0.24in 0.44in 0.69in">
             <tr>
               <td colspan="7">
                 <p><b>Will the policy be reviewed?  </b>It will be reviewed.<b> </b><b> If applicable, set review date:  </b>10/2016</p>
@@ -302,7 +302,7 @@
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the new drug driving offence.</i></b></p>
-          <table ukm:widths="3.34in 1.88in 0.49in 1.4in">
+          <table uk:widths="3.34in 1.88in 0.49in 1.4in">
             <tr>
               <td>
                 <p>Signed by the responsible Minister:</p>
@@ -338,7 +338,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT</b></p>
-            <table ukm:widths="1.35in 1.21in 1.51in 1.05in 0.89in 1.07in">
+            <table uk:widths="1.35in 1.21in 1.51in 1.05in 0.89in 1.07in">
               <tr>
                 <td rowspan="2">
                   <p><b>Price Base Year   </b>2015</p>
@@ -365,7 +365,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.38in 1.35in 0.55in 1.98in 1.23in 0.6in">
+            <table uk:widths="1.38in 1.35in 0.55in 1.98in 1.23in 0.6in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -535,7 +535,7 @@
         <paragraph>
           <content>
             <p><b>BUSINESS ASSESSMENT</b></p>
-            <table ukm:widths="1.38in 1.49in 1.37in 1.37in 1.46in">
+            <table uk:widths="1.38in 1.49in 1.37in 1.37in 1.46in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual) £m: </b></p>
@@ -758,7 +758,7 @@
         <paragraph>
           <content>
             <p><b>Table 1: Drug impaired driving casualty estimates on three baseline estimates </b></p>
-            <table ukm:widths="1.48in 0.5in 0.5in 0.5in 0.5in 0.5in 0.5in 0.5in 0.62in 0.62in 0.74in">
+            <table uk:widths="1.48in 0.5in 0.5in 0.5in 0.5in 0.5in 0.5in 0.5in 0.62in 0.62in 0.74in">
               <tr>
                 <td rowspan="2">
                   <p />
@@ -1096,7 +1096,7 @@
         <paragraph>
           <content>
             <p><b>Table 2: Limits for a zero tolerance approach to 8 illegal controlled drugs and a road safety risk based approach (Expert Panel recommendation) to 8 controlled drugs and a limit for amphetamine to be determined.</b></p>
-            <table ukm:widths="3.47in 3.03in">
+            <table uk:widths="3.47in 3.03in">
               <tr>
                 <td>
                   <p><b>Drug</b></p>
@@ -1387,7 +1387,7 @@
         <paragraph>
           <content>
             <p><b>Table 3: Total Additional Completed Proceedings by Offence Types per Annum (Central Scenario)</b></p>
-            <table ukm:widths="3.34in 1.97in">
+            <table uk:widths="3.34in 1.97in">
               <tr>
                 <td>
                   <p><b>Offence Type</b></p>
@@ -1505,7 +1505,7 @@
           <subparagraph>
             <content>
               <p><b>Table 4: Level of enforcement and annual percentage casualty reduction</b></p>
-              <table ukm:widths="2.96in 2.96in">
+              <table uk:widths="2.96in 2.96in">
                 <tr>
                   <td>
                     <p>Increase in Enforcement </p>
@@ -1576,7 +1576,7 @@
           <subparagraph>
             <content>
               <p><b>Table 5: Estimated increase in enforcement and annual % fall in casualties</b></p>
-              <table ukm:widths="1.39in 1.08in 1.1in 1.82in">
+              <table uk:widths="1.39in 1.08in 1.1in 1.82in">
                 <tr>
                   <td>
                     <p />
@@ -1645,7 +1645,7 @@
           <subparagraph>
             <content>
               <p><b>Table 6: Estimated Casualty Reductions, total over appraisal period for all 3 scenarios</b></p>
-              <table ukm:widths="0.86in 0.54in 0.63in 0.86in 0.5in 0.65in 0.57in 0.57in 0.68in 1.15in">
+              <table uk:widths="0.86in 0.54in 0.63in 0.86in 0.5in 0.65in 0.57in 0.57in 0.68in 1.15in">
                 <tr>
                   <td>
                     <p />
@@ -1881,7 +1881,7 @@
         <paragraph>
           <content>
             <p><b>Table 7: Unit cost - Criminal justice system costs</b><authorialNote marker="38"><p> With the exception of prison costs, the victim surcharge and community sentence costs (all 2013) have been uprated from 2010-11 prices to 2015 prices using GDP per capita growth and the GDP deflator. </p></authorialNote></p>
-            <table ukm:widths="1.75in 1.22in 0.85in 2.32in 1.02in">
+            <table uk:widths="1.75in 1.22in 0.85in 2.32in 1.02in">
               <tr>
                 <td>
                   <p><b>Type of Cost</b></p>
@@ -2041,7 +2041,7 @@
         <paragraph>
           <content>
             <p><b>Table 8: Unit Costs - Police costs</b><authorialNote marker="47"><p> Information provided by the Home Office and updated to 2013 prices using GDP deflator.</p></authorialNote></p>
-            <table ukm:widths="1.88in 2.62in 1.84in">
+            <table uk:widths="1.88in 2.62in 1.84in">
               <tr>
                 <td>
                   <p />
@@ -2120,7 +2120,7 @@
         <paragraph>
           <content>
             <p><b>Table 9: Police costs in relation to arrests and prosecutions</b></p>
-            <table ukm:widths="3.5in 1.25in 1.72in">
+            <table uk:widths="3.5in 1.25in 1.72in">
               <tr>
                 <td>
                   <p><b>Procedure</b></p>
@@ -2352,7 +2352,7 @@
           <subparagraph>
             <content>
               <p><b>Table 10: Value of Preventing a Casualty</b><authorialNote marker="52"><p> DfT Webtag 3.4.1 <a href="http://www.dft.gov.uk/webtag/documents/expert/unit3.4.1.php"><u>The Accidents Sub-Objective</u></a>, Table 1</p></authorialNote></p>
-              <table ukm:widths="2.96in 2.17in">
+              <table uk:widths="2.96in 2.17in">
                 <tr>
                   <td>
                     <p><b>Casualty Severity</b></p>
@@ -2530,7 +2530,7 @@
         <paragraph>
           <content>
             <p><b>Table 11: Total Costs and Benefits over the 20 year appraisal period (Present Value): </b></p>
-            <table ukm:widths="0.75in 0.73in 1.76in 1.76in 1.76in">
+            <table uk:widths="0.75in 0.73in 1.76in 1.76in 1.76in">
               <tr>
                 <td colspan="2">
                   <p> </p>

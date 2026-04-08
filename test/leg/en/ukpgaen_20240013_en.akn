@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2024/13/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2024/13/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2024/13/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2024/13/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2024-06-20</dc:modified>
         <dc:title>Explanatory Notes Digital Markets, Competition and Consumers Act 2024</dc:title>
         <dc:description>Explanatory Notes Digital Markets, Competition and Consumers Act 2024</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2024/13</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2024/13" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2024/13/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2024-06-20</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2024</ukm:legislationYear>
-        <ukm:legislationNumber>13</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2024-06-20" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2024" />
+        <ukm:LegislationNumber Value="13" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="1973" />
           <ukm:BodyParagraphs Value="1973" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>82795f5cf787eca351fc9fb1ae70b4a3d0cc9021b2c5aaddf3c69f40902b132f</ukm:hash>
+        <uk:hash>82795f5cf787eca351fc9fb1ae70b4a3d0cc9021b2c5aaddf3c69f40902b132f</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -198,7 +198,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.15in 3.15in">
+          <table uk:widths="3.15in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -222,7 +222,7 @@
           <num>2 </num>
           <content>
             <p>The Act is in six Parts and has 30 Schedules. The general arrangement of the Act is as follows:</p>
-            <table ukm:widths="1.2in 5.05in">
+            <table uk:widths="1.2in 5.05in">
               <tr>
                 <td>
                   <p>Part</p>
@@ -2150,7 +2150,7 @@
               <num>214 </num>
               <content>
                 <p>In deciding whether the exemption applies, the CMA can consider evidence submitted by the undertaking under investigation, evidence submitted by third parties and evidence it has gathered itself. However it is incumbent on the designated undertaking to make representations to the CMA to establish that the exemption applies.</p>
-                <table ukm:widths="6.2in">
+                <table uk:widths="6.2in">
                   <tr>
                     <td>
                       <p>Example of a designated undertaking’s claim of countervailing benefits</p>
@@ -2272,7 +2272,7 @@
               <num>228 </num>
               <content>
                 <p>This section provides that the CMA must keep the enforcement orders and interim enforcement orders it has made under review, including whether to vary or revoke them, and also the extent to which undertakings are complying with them and whether further enforcement action needs to be taken.</p>
-                <table ukm:widths="6in">
+                <table uk:widths="6in">
                   <tr>
                     <td>
                       <p>Example of an enforcement order</p>
@@ -2325,7 +2325,7 @@
               <num>233 </num>
               <content>
                 <p>Subsection (9) allows the CMA to exercise its functions in relation to potential and actual breaches of commitments where the commitments are no longer in place. This enables the CMA to take action against historic breaches.</p>
-                <table ukm:widths="6in">
+                <table uk:widths="6in">
                   <tr>
                     <td>
                       <p>Example of a commitment accepted by the CMA</p>
@@ -2606,7 +2606,7 @@
               <num>268 </num>
               <content>
                 <p>This section requires that the CMA keep final offer orders, and compliance with them, under review. </p>
-                <table ukm:widths="6.11in">
+                <table uk:widths="6.11in">
                   <tr>
                     <td>
                       <p>Flowchart of the FOM process</p>
@@ -2715,7 +2715,7 @@
               <num>272 </num>
               <content>
                 <p>Subsection (2) provides that when deciding what, if any, action to take to address the factor or combination of factors having an adverse effect on competition, the CMA may consider any benefits to UK users and UK customers arising from those factors. The PCI provisions adopt the terms UK users and UK customer, the former term being defined in this Act and the latter using the customer definition set out in the Enterprise Act 2002.</p>
-                <table ukm:widths="6in">
+                <table uk:widths="6in">
                   <tr>
                     <td>
                       <p>Example (1): A consumer benefit in a PCI investigation</p>
@@ -2731,7 +2731,7 @@
               <num>273 </num>
               <content>
                 <p>Subsection (3) sets out how the CMA can implement a PCI. It can take the form of either - or both - an order imposing requirements on the designated undertaking, and non-binding recommendations to other persons exercising functions of a public nature on steps they should take. Other parties may include the Government or another independent regulator better placed to act (e.g. by way of statutory powers and expertise). The CMA can also implement a PCI in relation to any part of the designated undertaking’s business, where the CMA decides that such requirements or non-binding recommendations would address the competition problem. </p>
-                <table ukm:widths="6in">
+                <table uk:widths="6in">
                   <tr>
                     <td>
                       <p>Example (2): A pro-competition order on an undertaking </p>
@@ -2892,7 +2892,7 @@
               <num>290 </num>
               <content>
                 <p>Subsection (3) and (4) outline that the pro-competition order may require a designated undertaking to trial a remedy or remedies with subsets of, or all of, the designated undertaking’s users following a PCI investigation, if it would help the CMA build evidence on an effective PCI remedy made on a non-trial basis. The CMA can choose to trial different remedies at the same time, or trial different versions of the same remedy in order to determine the effective remedy design. By their nature trials will be time limited.</p>
-                <table ukm:widths="6in">
+                <table uk:widths="6in">
                   <tr>
                     <td>
                       <p>Example (4): A trial pro-competition order</p>
@@ -3089,7 +3089,7 @@
               <num>316 </num>
               <content>
                 <p>Subsection (3) defines the second category of reportable event: those that involve a designated undertaking, or one or more members of a larger corporate group, forming a body corporate (a “joint venture vehicle”) with at least one other person (such as a company) that (as stipulated by subsection (7)) is not part of the undertaking or group, in circumstances where: the undertaking or (by virtue of section 61(2)) larger corporate group collectively acquires qualifying status (as defined in section 58(2)) in respect of shares or voting rights in relation to the joint venture vehicle; the undertaking or group members involved intend or expect the joint venture vehicle to become a UK-connected body corporate (as defined in subsections (5) and (6)); and, the total value of all capital and assets contributed to the joint venture vehicle by the undertaking or group, and of all other consideration provided by the undertaking or group in relation to the formation of the joint venture vehicle, is at least £25m.</p>
-                <table ukm:widths="6.11in">
+                <table uk:widths="6.11in">
                   <tr>
                     <td>
                       <p>Example 1: Reportable Event (categories 1&amp;2)</p>
@@ -3212,7 +3212,7 @@
               <num>331 </num>
               <content>
                 <p>Subsection (2) provides that the members of the group are to be treated as acting, or failing to act, collectively. It also provides that the combined consideration provided by all members of the group is to be treated as provided by each member individually, and that each member is to be treated as holding the combined interests or rights of all members of the group. This means that if a report is provided to the CMA by one member of the group, all members are deemed to have provided the report. Equally, if one of the members of the group fails to provide a report when required to do so, then all members are deemed to have failed to meet this requirement. </p>
-                <table ukm:widths="5.82in">
+                <table uk:widths="5.82in">
                   <tr>
                     <td>
                       <p>Example 2: Application of the Duty to Report </p>
@@ -15450,7 +15450,7 @@
               <num>1836 </num>
               <content>
                 <p>This Schedule makes a number of amendments to other legislation as follows: </p>
-                <table ukm:widths="1.08in 5.17in">
+                <table uk:widths="1.08in 5.17in">
                   <tr>
                     <td>
                       <p>Amendments to Part 3 of the Enterprise Act 2002</p>
@@ -16339,7 +16339,7 @@
           <num>1917 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
-            <table ukm:widths="1.72in 1.44in 3.14in">
+            <table uk:widths="1.72in 1.44in 3.14in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -16522,7 +16522,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.72in 1.44in 3.14in">
+            <table uk:widths="1.72in 1.44in 3.14in">
               <tr>
                 <td colspan="3">
                   <p><i>House of Commons</i></p>
@@ -16619,7 +16619,7 @@
           <num>1918 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
-            <table ukm:widths="1.04in 1.04in 1.04in 1.04in 1.04in 1.04in">
+            <table uk:widths="1.04in 1.04in 1.04in 1.04in 1.04in 1.04in">
               <tr>
                 <td>
                   <p><b>Section of the Act</b></p>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2024/22/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2024/22/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2024/22/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2024/22/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2024-07-16</dc:modified>
         <dc:title>Explanatory Notes Leasehold and Freehold Reform Act 2024</dc:title>
         <dc:description>Explanatory Notes Leasehold and Freehold Reform Act 2024</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2024/22</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2024/22" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2024/22/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2024-07-02</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2024</ukm:legislationYear>
-        <ukm:legislationNumber>22</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2024-07-02" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2024" />
+        <ukm:LegislationNumber Value="22" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="937" />
           <ukm:BodyParagraphs Value="937" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>e8850f566ae5e32063138dd872684f2dc4d146cd8090bfb03077beb66ffebedf</ukm:hash>
+        <uk:hash>e8850f566ae5e32063138dd872684f2dc4d146cd8090bfb03077beb66ffebedf</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -1792,7 +1792,7 @@
             <num>207 </num>
             <content>
               <p>Paragraph 2(6) deals with the situation in which an intermediate lease includes several flats sublet to non-participating qualifying tenants, as explained in the following example.</p>
-              <table ukm:widths="5.21in">
+              <table uk:widths="5.21in">
                 <tr>
                   <td>
                     <p>A block of flats is let on a headlease. The flats are sublet to qualifying tenants and a collective enfranchisement claim is made. Flats A and B are let to non-participating qualifying tenants. The nominee purchaser can choose whether to acquire the part of the headlease that relates to Flat A, or the part that relates to Flat B, or both parts. But the nominee purchaser cannot choose to acquire only a part of the headlease that demises (for example) the kitchen of Flat A, without acquiring the rest of the headlease of Flat A.</p>
@@ -5979,7 +5979,7 @@
             <num>784 </num>
             <content>
               <p>Paragraph 26(2) also limits the rent that is relevant to calculating the term value to rent which is payable only in respect of property that is subject to the standard valuation method. For example:</p>
-              <table ukm:widths="5.51in">
+              <table uk:widths="5.51in">
                 <tr>
                   <td>
                     <p>A leaseholder has a single lease of a house and a neighbouring field. Under the lease, the leaseholder pays £60 ground rent per year. £50 is ground rent for the house, and £10 is ground rent for the field. </p>
@@ -6052,7 +6052,7 @@
             <num>794 </num>
             <content>
               <p>Paragraph 33 sets out how to determine what loss is suffered by an eligible person. Subparagraph (1) provides that their loss is the combination of any loss they suffer as a result of their qualifying transaction, and any other loss they suffer resulting from the reduction in value of any of the interests they own as a result of the enfranchisement claim. For example:</p>
-              <table ukm:widths="5.51in">
+              <table uk:widths="5.51in">
                 <tr>
                   <td>
                     <p> A qualifying tenant of a flat extends their lease by 990 years. Their immediate landlord (the “intermediate leaseholder”) has 150 years remaining on their lease. The extended lease is granted by the freeholder, and the intermediate leaseholder’s lease is deemed surrendered and granted (and is subject to the extended lease).</p>
@@ -6276,7 +6276,7 @@
             <num>824 </num>
             <content>
               <p>The following example illustrates the effect that paragraph 12A has on the rents under a chain of leases and the operation of the limit in paragraph 12A(10).</p>
-              <table ukm:widths="6in">
+              <table uk:widths="6in">
                 <tr>
                   <td>
                     <p>The qualifying tenant (“QT") of a house pays their landlord (“IL3”) £100 each year in ground rent. There are a series of further intermediate leaseholders (“IL2”, and “IL1”) above IL3 but below the freeholder (“FH”) in the chain. The rent each of them owes to their landlord is as follows.</p>
@@ -7072,7 +7072,7 @@
           <num>931 </num>
           <content>
             <p>The table below sets out the territorial extent of each Section of the Act. </p>
-            <table ukm:widths="1.77in 1.18in 1.18in 1.08in 1.08in">
+            <table uk:widths="1.77in 1.18in 1.18in 1.08in 1.08in">
               <tr>
                 <th>
                   <p><b>Provision</b></p>
@@ -7977,7 +7977,7 @@
           <num>932 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament. </p>
-            <table ukm:widths="1.47in 1.48in 3.34in">
+            <table uk:widths="1.47in 1.48in 3.34in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -8134,7 +8134,7 @@
           <num>933 </num>
           <content>
             <p>This annex shows how each Section and Schedule of the Act was numbered during the passage of the Bill. </p>
-            <table ukm:widths="1.3in 1.3in 1.3in 1.3in 1.3in">
+            <table uk:widths="1.3in 1.3in 1.3in 1.3in 1.3in">
               <tr>
                 <th>
                   <p><b>Section of the Act</b></p>

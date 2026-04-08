@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/45/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/45/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/45/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/45/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-08-01</dc:modified>
         <dc:title>Explanatory Notes Identity and Language (Northern Ireland) Act 2022</dc:title>
         <dc:description>Explanatory Notes Identity and Language (Northern Ireland) Act 2022</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2022/45</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2022/45" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2022/45/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2023-09-14</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2022</ukm:legislationYear>
-        <ukm:legislationNumber>45</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2023-09-14" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2022" />
+        <ukm:LegislationNumber Value="45" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="68" />
           <ukm:BodyParagraphs Value="68" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>f70a299a66bcc84f4dcedfae75fca3b3c05c53fd08c131f739f723a9f6d9dd18</ukm:hash>
+        <uk:hash>f70a299a66bcc84f4dcedfae75fca3b3c05c53fd08c131f739f723a9f6d9dd18</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -100,7 +100,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -620,7 +620,7 @@
         <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.21in 1.21in 1.21in 1.21in 1.21in">
+            <table uk:widths="1.21in 1.21in 1.21in 1.21in 1.21in">
               <tr>
                 <td>
                   <p><b>Provision</b></p>
@@ -852,7 +852,7 @@
           <num>63 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament. </p>
-            <table ukm:widths="1.72in 1.44in 3.13in">
+            <table uk:widths="1.72in 1.44in 3.13in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -1010,7 +1010,7 @@
           <num>64 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
-            <table ukm:widths="1.05in 1.05in 1.05in 1.05in 1.05in 1.05in">
+            <table uk:widths="1.05in 1.05in 1.05in 1.05in 1.05in 1.05in">
               <tr>
                 <th>
                   <p><b>Section of the Act</b></p>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348268096/impacts/2025/15" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348268096/impacts/2025/15" />
-          <FRBRdate date="2026-03-31" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348268096/impacts/2025/15/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348268096/impacts/2025/15/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-01-21</dc:modified>
         <dc:title>Impact Assessment The Immigration and Nationality (Fees) (Amendment) Order 2025</dc:title>
         <dc:description>Impact Assessment The Immigration and Nationality (Fees) (Amendment) Order 2025</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukdsi/2025/9780348268096</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348268096" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2025/15</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>HM Treasury</ukm:department>
-        <ukm:date>2025-01-21</ukm:date>
-        <ukm:pdfDate>2025-01-21</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomDraftStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2025</ukm:year>
-        <ukm:number>15</ukm:number>
-        <ukm:legislationYear>2025</ukm:legislationYear>
-        <ukm:legislationNumber>9780348268096</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="HM Treasury" />
+        <ukm:Date Value="2025-01-21" />
+        <ukm:PdfDate Value="2025-01-21" />
+        <ukm:LegislationClass Value="UnitedKingdomDraftStatutoryInstrument" />
+        <ukm:Year Value="2025" />
+        <ukm:Number Value="15" />
+        <ukm:LegislationYear Value="2025" />
+        <ukm:LegislationNumber Value="9780348268096" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="221" />
           <ukm:BodyParagraphs Value="220" />
           <ukm:ScheduleParagraphs Value="1" />
           <ukm:TotalImages Value="2" />
         </ukm:Statistics>
-        <ukm:hash>b2812417f86101d3b5ed2580240d4d8f42e6d0171826c43946993beebd9f24cb</ukm:hash>
+        <uk:hash>b2812417f86101d3b5ed2580240d4d8f42e6d0171826c43946993beebd9f24cb</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -464,7 +464,7 @@
         <paragraph>
           <content>
             <p><b>Part A: Overall and stakeholder impacts </b></p>
-            <table ukm:widths="1.27in 4.24in 1.25in">
+            <table uk:widths="1.27in 4.24in 1.25in">
               <tr>
                 <td colspan="2">
                   <p><b>(1) Overall impacts on total welfare </b></p>
@@ -526,7 +526,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.58in 3.93in 1.25in">
+            <table uk:widths="1.58in 3.93in 1.25in">
               <tr>
                 <td colspan="3">
                   <p><b>(2) Expected impacts on businesses </b></p>
@@ -584,7 +584,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.56in 3.85in 1.34in">
+            <table uk:widths="1.56in 3.85in 1.34in">
               <tr>
                 <td colspan="3">
                   <p><b>(3) Expected impacts on households</b></p>
@@ -646,7 +646,7 @@
         <paragraph>
           <content>
             <p><b>Part B: Impacts on wider government priorities</b></p>
-            <table ukm:widths="1.77in 3.64in 1.38in">
+            <table uk:widths="1.77in 3.64in 1.38in">
               <tr>
                 <td>
                   <p><b>Category</b></p>
@@ -916,7 +916,7 @@
         <paragraph>
           <content>
             <p><b>PV base year:</b></p>
-            <table ukm:widths="1.18in 0.59in 3.15in 5.61in">
+            <table uk:widths="1.18in 0.59in 3.15in 5.61in">
               <tr>
                 <td colspan="2">
                   <p />
@@ -1068,7 +1068,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.77in 3.15in 5.61in">
+            <table uk:widths="1.77in 3.15in 5.61in">
               <tr>
                 <td>
                   <p />
@@ -1383,7 +1383,7 @@
           <subparagraph>
             <content>
               <p><b>Table 1: Estimated baseline visa application volumes for the period April 2025/26 to March 2029/30, central scenario</b></p>
-              <table ukm:widths="0.89in 1.18in 0.89in 0.89in 0.89in 0.87in 0.78in">
+              <table uk:widths="0.89in 1.18in 0.89in 0.89in 0.89in 0.87in 0.78in">
                 <tr>
                   <td colspan="2">
                     <p><b>Visa type</b></p>
@@ -1532,7 +1532,7 @@
         <paragraph>
           <content>
             <p><b>Table 2: Visa grant rates on impacted routes</b></p>
-            <table ukm:widths="1.38in 3.35in 1.65in">
+            <table uk:widths="1.38in 3.35in 1.65in">
               <tr>
                 <td colspan="2">
                   <p><b>Visa type</b></p>
@@ -1617,7 +1617,7 @@
           <subparagraph>
             <content>
               <p><b>Table 3: Visa grant rates on impacted routes (£)</b></p>
-              <table ukm:widths="0.97in 2.38in 0.62in 0.07in 0.73in 0.94in 0.67in">
+              <table uk:widths="0.97in 2.38in 0.62in 0.07in 0.73in 0.94in 0.67in">
                 <tr>
                   <td colspan="2">
                     <p><b>Visa type</b></p>
@@ -1950,7 +1950,7 @@
           <subparagraph>
             <content>
               <p><b>Table 4: Elasticities used to analyse the impact of changing fee maxima</b></p>
-              <table ukm:widths="1.38in 2.49in 1.15in 0.4in 0.53in 0.42in">
+              <table uk:widths="1.38in 2.49in 1.15in 0.4in 0.53in 0.42in">
                 <tr>
                   <td>
                     <p><b>Elasticity type</b> </p>
@@ -2104,7 +2104,7 @@
         <paragraph>
           <content>
             <p><b>Table 5: </b><b>Illustrative estimated reduction in visa applications, central case</b></p>
-            <table ukm:widths="0.97in 0.97in 0.97in 0.97in 0.97in 0.97in 0.97in">
+            <table uk:widths="0.97in 0.97in 0.97in 0.97in 0.97in 0.97in 0.97in">
               <tr>
                 <td colspan="2">
                   <p><b>Visa type</b></p>
@@ -2258,7 +2258,7 @@
         <paragraph>
           <content>
             <p><b>Table 6: </b><b>Illustrative estimated reduction in visa grants, central case</b></p>
-            <table ukm:widths="0.97in 0.97in 0.97in 0.97in 0.97in 0.97in 0.97in">
+            <table uk:widths="0.97in 0.97in 0.97in 0.97in 0.97in 0.97in 0.97in">
               <tr>
                 <td colspan="2">
                   <p><b>Visa type</b></p>
@@ -2734,7 +2734,7 @@
         <paragraph>
           <content>
             <p><b>Table 7: Illustrative estimated costs and benefits, central case (£ million)</b></p>
-            <table ukm:widths="1.8in 0.83in 0.83in 0.83in 0.83in 0.83in 0.83in">
+            <table uk:widths="1.8in 0.83in 0.83in 0.83in 0.83in 0.83in 0.83in">
               <tr>
                 <td>
                   <p><b>Present values (2024/25 prices)</b></p>
@@ -3067,7 +3067,7 @@
         <paragraph>
           <content>
             <p><b>Table 8:</b><b> </b><b>Comparison of theoretical costs and benefits and NPSV under low, central, and high impact scenarios over a 5-year appraisal period (£ million)</b></p>
-            <table ukm:widths="2.27in 1.57in 1.57in 1.57in">
+            <table uk:widths="2.27in 1.57in 1.57in 1.57in">
               <tr>
                 <td>
                   <p><b>Present values (2024/25 prices)</b></p>
@@ -3277,7 +3277,7 @@
         <paragraph>
           <content>
             <p><b>Table 9: Illustrative transfer costs and benefits, central scenario (£ million)</b></p>
-            <table ukm:widths="1.97in 0.84in 0.84in 0.84in 0.84in 0.84in 0.84in 0.01in">
+            <table uk:widths="1.97in 0.84in 0.84in 0.84in 0.84in 0.84in 0.84in 0.01in">
               <tr>
                 <td>
                   <p><b>Present values (2024/25 prices)</b> </p>
@@ -3499,7 +3499,7 @@
         <paragraph>
           <content>
             <p><b>Table 10: Estimated baseline visa application volumes for the period April 2025/26 to March 2029/30, low scenario</b></p>
-            <table ukm:widths="0.97in 0.97in 0.97in 0.97in 0.97in 0.97in 0.97in">
+            <table uk:widths="0.97in 0.97in 0.97in 0.97in 0.97in 0.97in 0.97in">
               <tr>
                 <td colspan="2">
                   <p><b>Visa type</b></p>
@@ -3617,7 +3617,7 @@
         <paragraph>
           <content>
             <p><b>Table 11: Estimated baseline visa application volumes for the period April 2025/26 to March 2029/30, high scenario</b></p>
-            <table ukm:widths="0.97in 0.97in 0.97in 0.97in 0.97in 0.97in 0.97in">
+            <table uk:widths="0.97in 0.97in 0.97in 0.97in 0.97in 0.97in 0.97in">
               <tr>
                 <td colspan="2">
                   <p><b>Visa type</b></p>
@@ -3880,7 +3880,7 @@
         <paragraph>
           <content>
             <p><b>Table 12: Illustrative costs and benefits to businesses, central scenario (£ million)</b></p>
-            <table ukm:widths="1.88in 0.77in 0.77in 0.77in 0.77in 0.77in 0.77in">
+            <table uk:widths="1.88in 0.77in 0.77in 0.77in 0.77in 0.77in 0.77in">
               <tr>
                 <td>
                   <p><b>Present values (2024/25 prices)</b> </p>
@@ -4063,7 +4063,7 @@
         <paragraph>
           <content>
             <p><b>Table 13: Comparison of illustrative costs and benefits to businesses and BNPV (£ million)</b></p>
-            <table ukm:widths="2.5in 1.28in 1.41in 1.35in">
+            <table uk:widths="2.5in 1.28in 1.41in 1.35in">
               <tr>
                 <td>
                   <p><b>Present values (2024/25 prices)</b> </p>
@@ -4418,21 +4418,21 @@
               <FRBRWork>
                 <FRBRthis value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348268096/impacts/2025/15/annex/1" />
                 <FRBRuri value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348268096/impacts/2025/15/annex/1" />
-                <FRBRdate date="2026-03-31" name="generated" />
+                <FRBRdate date="2026-04-08" name="generated" />
                 <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
                 <FRBRcountry value="GB-UKM" />
               </FRBRWork>
               <FRBRExpression>
                 <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348268096/impacts/2025/15/annex/1" />
                 <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348268096/impacts/2025/15/annex/1" />
-                <FRBRdate date="2026-03-31" name="generated" />
+                <FRBRdate date="2026-04-08" name="generated" />
                 <FRBRauthor href="#" />
                 <FRBRlanguage language="en" />
               </FRBRExpression>
               <FRBRManifestation>
                 <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348268096/impacts/2025/15/annex/1/data.akn" />
                 <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348268096/impacts/2025/15/annex/1/data.akn" />
-                <FRBRdate date="2026-03-31" name="transform" />
+                <FRBRdate date="2026-04-08" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/akn+xml" />
               </FRBRManifestation>
@@ -4440,7 +4440,7 @@
           </meta>
           <mainBody>
             <p><b>Annex</b></p>
-            <table ukm:widths="5.51in 0.85in">
+            <table uk:widths="5.51in 0.85in">
               <tr>
                 <td>
                   <p><b>Mandatory specific impact test - Statutory Equalities Duties</b></p>

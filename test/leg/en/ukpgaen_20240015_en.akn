@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2024/15/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2024/15/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2024/15/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2024/15/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2024-06-17</dc:modified>
         <dc:title>Explanatory Notes Media Act 2024</dc:title>
         <dc:description>Explanatory Notes Media Act 2024</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2024/15</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2024/15" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2024/15/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2024-06-18</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2024</ukm:legislationYear>
-        <ukm:legislationNumber>15</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2024-06-18" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2024" />
+        <ukm:LegislationNumber Value="15" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="448" />
           <ukm:BodyParagraphs Value="448" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>3eb383bbd43d5cccead91c1bc11733809c7f3ac1f077695d7d9e5f62988a8725</ukm:hash>
+        <uk:hash>3eb383bbd43d5cccead91c1bc11733809c7f3ac1f077695d7d9e5f62988a8725</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -139,7 +139,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -4024,7 +4024,7 @@
           <num>443 </num>
           <content>
             <p>All of the provisions in the Media Act extend and apply to the whole of the United Kingdom, with the exception of section 50, which extends and applies to England and Wales.<authorialNote marker="11"><p> References in this Annex to a provision being within the legislative competence of the Scottish Parliament, the Senedd Cymru or the Northern Ireland Assembly are to the provision being within the legislative competence of the relevant devolved legislature for the purposes of Standing Order No. 83J of the Standing Orders of the House of Commons relating to Public Business.</p></authorialNote></p>
-            <table ukm:widths="1.34in 1.34in 1.34in 1.34in 1.34in">
+            <table uk:widths="1.34in 1.34in 1.34in 1.34in 1.34in">
               <tr>
                 <td>
                   <p><b>Provision</b></p>
@@ -4241,7 +4241,7 @@
           <num>444 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
-            <table ukm:widths="2.08in 1.65in 2.52in">
+            <table uk:widths="2.08in 1.65in 2.52in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>

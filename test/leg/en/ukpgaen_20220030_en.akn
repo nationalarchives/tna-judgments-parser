@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/30/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/30/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/30/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/30/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,28 +28,28 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2022-08-15</dc:modified>
         <dc:title>Explanatory Notes Building Safety Act 2022</dc:title>
         <dc:description>Explanatory Notes Building Safety Act 2022</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2022/30</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2022/30" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2022/30/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2022-07-26</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2022</ukm:legislationYear>
-        <ukm:legislationNumber>30</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2022-07-26" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2022" />
+        <ukm:LegislationNumber Value="30" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="1951" />
           <ukm:BodyParagraphs Value="1951" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>a908e4f315824bffdc58453b2700dbba1241124cda8549015a44bbc0e9482903</ukm:hash>
+        <uk:hash>a908e4f315824bffdc58453b2700dbba1241124cda8549015a44bbc0e9482903</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -129,7 +129,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="1.58in 1.58in 3.15in">
+          <table uk:widths="1.58in 1.58in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -1880,7 +1880,7 @@
           <num>158 </num>
           <content>
             <p>The principles draw on the example of section 21 of the Legislative and Regulatory Reform Act 2006. Utilising established principles of regulatory best practice, which apply to Health and Safety Executive’s existing regulatory functions, will help ensure that the Health and Safety Executive delivers coherent and effective regulation across its different functions. The principles reflect both the approach the Health and Safety Executive takes to its existing functions, and the proportionate approach the Health and Safety Executive will take to its new building functions.</p>
-            <table ukm:widths="0.01in 5.11in">
+            <table uk:widths="0.01in 5.11in">
               <tr>
                 <td>
                   <p>Example 1 </p>
@@ -1937,7 +1937,7 @@
           <num>162 </num>
           <content>
             <p>This is a new provision.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -1976,7 +1976,7 @@
           <num>164 </num>
           <content>
             <p>This is a new provision.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -2011,7 +2011,7 @@
           <num>166 </num>
           <content>
             <p>This is a new provision. The Independent Review recognised competence as an area where improvement was needed across the built environment sector.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example 1: Functions in relation to industry competence</p>
@@ -2080,7 +2080,7 @@
           <num>172 </num>
           <content>
             <p>The Act provides for an equivalent provision (new section 120B Building Act 1984) at Schedule 5, paragraph 77 in relation to regulations which are made under the Building Act 1984, including in relation to regulations made under the new provisions inserted into the Building Act 1984 by Part 3 of this Act.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -2134,7 +2134,7 @@
           <num>177 </num>
           <content>
             <p>Guidance will be provided to set out what can be reported under the voluntary occurrence reporting system. The specified manner of reporting is envisaged to be via an online portal.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -2186,7 +2186,7 @@
           <num>181 </num>
           <content>
             <p>The Independent Review recommended that the Government should create a new structure to validate and assure guidance, oversee the performance of the built environment sector and provide expert advice.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -2239,7 +2239,7 @@
           <num>186 </num>
           <content>
             <p>The Independent Review identified that the current landscape for ensuring competence is fragmented, complex and inconsistent - different disciplines have various routes for assessing competence which are not always clear or consistent. The Review recommended that the built environment industry should work together to develop proposals for a system for competence oversight, which include the establishment of an industry-led committee within the Building Safety Regulator to ensure a consistent approach to improving competence across industry.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1: Advising the Building Safety Regulator</p>
@@ -2390,7 +2390,7 @@
           <num>199 </num>
           <content>
             <p>Repeal of the provision for a statutory committee would be a particularly important and sensitive use of the this delegated power and is intended to be used solely to assist the Building Safety Regulator deliver its functions effectively. Therefore, regulations to repeal a statutory Committee can only be brought forward following a proposal by the Building Safety Regulator to the Secretary of State. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -2506,7 +2506,7 @@
           <num>211 </num>
           <content>
             <p>For Crown premises, FSO authorised persons (otherwise known as Crown Premises Fire Safety Inspectors) act as the enforcement authority under the Fire Safety Order (see article 25(1)(e)). Therefore, it is appropriate that for Crown premises within scope of the regime, the Building Safety Regulator works closely with FSO authorised persons in decision-making on those buildings.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -2545,7 +2545,7 @@
           <num>213 </num>
           <content>
             <p>This is a new provision.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -2609,7 +2609,7 @@
           <num>219 </num>
           <content>
             <p>Schedule 1, paragraph 2 excludes building functions from the requirement under section 11(5)(a)-(b) of the Health and Safety at Work etc. Act 1974 to ensure that this provision (section 17) applies exclusively to the Building Safety Regulator’s building functions. The rationale for creating a new requirement for a plan specifically relating to the Building Safety Regulator’s building functions is to reflect the importance and distinctiveness of the Health and Safety Executive’s new building functions, and to allow for the provision of consultation requirements (notably with the residents’ panel) appropriate to the building functions.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -2657,7 +2657,7 @@
           <num>223 </num>
           <content>
             <p>Recommendation 1.4 of the Independent Review makes clear that the outputs of mandatory reports (and statistical analysis of this data) should be publicly available. This section ensures that this information is made publicly available.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example: Information published as part of an annual report</p>
@@ -2722,7 +2722,7 @@
           <num>226 </num>
           <content>
             <p>The provision reflects that the Independent Review found that trust in the building regulation and fire safety system needs to be rebuilt, with resident involvement and engagement placed at the heart of the new system. Disabled residents may be particularly vulnerable if there is a major incident in a higher-risk building. Therefore, specific provision has been made to ensure that the regulator seeks the views of disabled residents and is transparent about how, as the Building Safety Regulator, it engages disabled residents in its work.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -2805,7 +2805,7 @@
           <num>232 </num>
           <content>
             <p>This is a new provision.  </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example  </p>
@@ -2869,7 +2869,7 @@
           <num>238 </num>
           <content>
             <p>The Building Safety Regulator will have discretion in designating different individuals to exercise different sets of powers, as some will have more competence and expertise than others. This will allow the Building Safety Regulator to assign the relevant powers to those persons who are qualified and equipped to exercise them. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -2923,7 +2923,7 @@
           <num>243 </num>
           <content>
             <p>This is because obstruction could potentially disrupt or sabotage the operations of the Building Safety Regulator, which could adversely impact the safety of individuals in the building. In addition, those seeking unauthorised entry to dwellings could impersonate staff of the Building Safety Regulator to assist them in doing so.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1: Site obstruction</p>
@@ -2966,7 +2966,7 @@
           <num>246 </num>
           <content>
             <p>This section, as with section 22, mirrors similar provisions supporting staff of other regulatory bodies with the aim of protecting the staff of the Building Safety Regulator or those working on the Building Safety Regulator’s behalf. The offence exists primarily to deter the provision of false information, which could disrupt or sabotage the operations of the Building Safety Regulator, which in turn could adversely impact the safety of individuals in the building.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example: False claim of a building safety risk assessment</p>
@@ -3042,7 +3042,7 @@
           <num>254 </num>
           <content>
             <p>As such, this provision intends to allow interested persons to make a direct request to the Building Safety Regulator for a review of its decision before appealing to the First-tier Tribunal. This aligns with existing guidance that parties may achieve quicker resolution if alternative dispute resolution procedures are adopted.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -3089,7 +3089,7 @@
           <num>258 </num>
           <content>
             <p>This section is designed to operate in conjunction with section 25.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -3255,7 +3255,7 @@
           <num>273 </num>
           <content>
             <p>Schedule 3 paragraph 4 is specifically designed to make it easier for residents to have their safety concerns addressed effectively and help improve complaints handling for residents of all tenures by making sure that complaints quickly get to the right organisation for consideration and action.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1: Local authorities and the Building Safety Regulator</p>
@@ -3306,7 +3306,7 @@
           <num>277 </num>
           <content>
             <p>This provision should be read alongside section 57, which enables the Secretary of State to make regulations enabling the Building Safety Regulator (and other public authorities) to charge for their functions under the Building Act 1984 and regulations made under it.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -3513,7 +3513,7 @@
           <num>300 </num>
           <content>
             <p>Following pre-legislative scrutiny, the Housing, Communities and Local Government Committee recommended including the definition of “higher-risk building” within the Act, rather than in regulations.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -3660,7 +3660,7 @@
           <num>319 </num>
           <content>
             <p>For multi-building sites in Wales comprising both higher-risk buildings and non-higher-risk buildings although the developer may choose either a local authority or registered building control approver as the building control body for the non-higher risk building, the developer may choose to utilise the designated local authority for the whole site. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -3876,7 +3876,7 @@
           <num>340 </num>
           <content>
             <p>Some lower risk building work can be certified as complying with relevant building regulations requirements if the person undertaking the work is a member of a competent person scheme, and a local authority can accept the certificate as evidence of compliance. Schemes are authorised by the Secretary of State and are listed in Schedule 3 of the Building Regulations 2010. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example: Golden thread of information </p>
@@ -4093,7 +4093,7 @@
           <num>361 </num>
           <content>
             <p>The new provisions will impose general duties in relation to competence of persons carrying out any work on all buildings to ensure compliance with building regulations.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -4166,7 +4166,7 @@
           <num>368 </num>
           <content>
             <p>Section 52(5) of the Building Act 1984 currently provides a power for a local authority to cancel an initial notice if work has not commenced within three years of the notice being issued, and section 50(8) provides a power for a local authority to rescind acceptance of a plans certificate if work has not started within three years of the certificate being issued. Similar provision is made for a public body’s plans certificate in paragraph 2(6) of Schedule 4 to the Building Act 1984.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -4328,7 +4328,7 @@
           <num>386 </num>
           <content>
             <p>These measures have been modelled on notices under sections 21 and 22 of the Health and Safety at Work etc. Act 1974 and are intended to be used in similar circumstances.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -4413,7 +4413,7 @@
           <num>392 </num>
           <content>
             <p>Alongside section 38, this section provides stronger sanctions for use by building control authorities against those who seek to breach building regulations. This follows Dame Judith Hackitt’s finding in her foreword to the Independent Report that one of the key issues underpinning the failure of the Building Safety Regulatory system that led to the Grenfell Tower fire was that there was “Inadequate regulatory oversight and enforcement… Where enforcement is necessary, it is often not pursued. Where it is pursued, the penalties are so small as to be an ineffective deterrent”.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -4477,7 +4477,7 @@
           <num>398 </num>
           <content>
             <p>New section 112A has been modelled on section 37 of the Health and Safety at Work etc. Act 1974.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -4553,7 +4553,7 @@
           <num>406 </num>
           <content>
             <p>Paragraphs 13 and 14 of Schedule 8 to the EU Withdrawal Act set out procedure to be followed in legislation which amends or revokes certain retained EU law including that regulations should follow the affirmative procedure, and a requirement for pre-publication of the regulations.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -4725,7 +4725,7 @@
           <num>426 </num>
           <content>
             <p>This is a new provision.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1: Individual building inspector registration</p>
@@ -4817,7 +4817,7 @@
           <num>432 </num>
           <content>
             <p>This section makes a number of amendments to the Building Act 1984 which are consequential on Approved Inspectors being replaced by registered building control approvers.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -4893,7 +4893,7 @@
           <num>440 </num>
           <content>
             <p>This section inserts new sections 46A and 54A into the Building Act 1984.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1: Local authority</p>
@@ -4957,7 +4957,7 @@
           <num>445 </num>
           <content>
             <p>This section amends sections 116, 117 and 118 of the Building Act 1984, to clarify the powers of the appropriate national authority to intervene where a local authority has failed to perform their functions under the Building Act 1984, and to recognise the role of the Building Safety Regulator in advising the Secretary of State in relation to this power.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -5061,7 +5061,7 @@
           <num>457 </num>
           <content>
             <p>This section amends the Building Act 1984 to prevent a dutyholder in relation to higher-risk building work from choosing their building control body, as recommended by the Independent Review. The amendments ensure the new Building Safety Regulator is the building control body for this type of building work and is able to apply the new regulatory arrangements to improve the safety of such buildings. The definition of “higher-risk building work” is dealt with in section 31.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -5145,7 +5145,7 @@
           <num>464 </num>
           <content>
             <p>Were such a public body to supervise their own higher-risk building work and/or have the ability not to notify the Building Safety Regulator there would be a potential conflict of interest. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -5211,7 +5211,7 @@
           <num>469 </num>
           <content>
             <p>Secondary legislation will remove the requirement for Approved Inspectors to provide proof of adequate insurance when performing their statutory functions.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -5312,7 +5312,7 @@
           <num>481 </num>
           <content>
             <p>The Government consulted in Summer 2020 on proposals that plans certificates should be mandated in certain circumstances. Following the consultation, the Government announced that it would proceed with these plans. See Part 3 of <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/970325/UPDATED_FINAL_Government_Response_to_Fire_Safety_Consultation.pdf"><u>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/970325/UPDATED_FINAL_Government_Response_to_Fire_Safety_Consultation.pdf</u></a>.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -5382,7 +5382,7 @@
           <num>488 </num>
           <content>
             <p>At present, if an Approved Inspector/registered building control approver ceases to operate and has not cancelled its initial notices, only the person(s) carrying out the work is able to do so. This has been a significant problem in transitioning such work to local authority building control. This section amends section 52 of the Building Act 1984 to introduce new powers and obligations on the person shown on the initial notice as the registered building control approver (even if they are no longer registered), local authority and person carrying out the work to cancel initial notices and ensure that this process can happen efficiently in the future.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1: Registered building control approver</p>
@@ -5501,7 +5501,7 @@
           <num>502 </num>
           <content>
             <p>Similar circumstances such as this could also arise in the future. The measures in this section create greater flexibility and capacity for the building control system to address such issues, while satisfying the local authorities that any work by a new registered building control approver is adequate.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1: Person(s) carrying out the work</p>
@@ -5573,7 +5573,7 @@
           <num>507 </num>
           <content>
             <p>This section is a new power in response to issues arising from a number of Approved Inspectors that went into administration in 2019. In some cases, administrators have refused to provide information to local authorities and even to the clients of the Approved Inspector because they considered they were under no duty to do so in the Building Act 1984. This section places the person shown on the initial notice as the registered building control approver (formerly Approved Inspectors) under a new duty to provide all information requested by a local authority whether or not the person is still a registered building control approver and also to the person carrying out or intending to carry out the work.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1: Local authority</p>
@@ -5671,7 +5671,7 @@
           <num>518 </num>
           <content>
             <p>Whilst no new information will be added to existing registers once the new national register comes into force, the existing local registers will need to be kept and accessible to the public for a long period or historic information may be uploaded to the electronic register/portal.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example: Submitting an initial notice</p>
@@ -5730,7 +5730,7 @@
           <num>523 </num>
           <content>
             <p>Part 3 of the Building Act 1984 places a number of functions on local authorities in relation to buildings. These include the ability to issue a notice to the building owner requiring work to be undertaken on the building relating to matters such as drains, sanitary conveniences, provision of food storage, and means of escape. Functions are also placed on local authorities to enable them to require action to be taken, or take action themselves in relation to dangerous, defective and dilapidated buildings. Part 3 also provides functions for local authorities in relation to demolitions of buildings.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -5813,7 +5813,7 @@
           <num>531 </num>
           <content>
             <p>Appeals on building control matters have historically been heard in the Magistrates’ court, but they are civil issues. The Act creates routes of appeal to the First-tier Tribunal in England.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -5878,7 +5878,7 @@
           <num>537 </num>
           <content>
             <p>Paragraph 82 of Schedule 5 to this Act consequentially repeals paragraphs 5 and 9 of Schedule 1 to the Building Act 1984.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -5938,7 +5938,7 @@
           <num>543 </num>
           <content>
             <p>The levy will be paid as part of the building control process and will apply to all new residential developments, unless otherwise excluded.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -6176,7 +6176,7 @@
           <num>568 </num>
           <content>
             <p>The Government sought research from the Health and Safety Executive in relation to risks that are considered to be catastrophic to verify our approach and focus. The conclusions of this research are that the major accident hazards in scope for safety management in a higher-risk building would largely be rapid onset escalating fire, structural, or explosion events. Explosion events can trigger a rapid onset escalating fire or structural event.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -6256,7 +6256,7 @@
           <num>577 </num>
           <content>
             <p>These are new provisions.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -6359,7 +6359,7 @@
           <num>588 </num>
           <content>
             <p>Following pre-legislative scrutiny, the Housing, Communities and Local Government Committee recommended including the definition of “higher-risk buildings” within the Act, rather than in regulations.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -6439,7 +6439,7 @@
           <num>596 </num>
           <content>
             <p>This is a new provision.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -6519,7 +6519,7 @@
           <num>605 </num>
           <content>
             <p>This is a new provision. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -6607,7 +6607,7 @@
           <num>615 </num>
           <content>
             <p>The Building Safety Regulator will oversee the building safety regulatory system and will analyse data from the operating regime to be able to fulfil this duty.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -6770,7 +6770,7 @@
           <num>632 </num>
           <content>
             <p>The Independent Review identified that there should be a clear dutyholder during occupation who can be held to account and will have statutory obligations to maintain the fire and structural safety of the building. Building ownership in the UK is complex and the definition has been devised to ensure that the right person is defined as the Accountable Person according to their obligations that have been demised under concepts in property law. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -6841,7 +6841,7 @@
           <num>640 </num>
           <content>
             <p>The Independent Review identified that there should be a clearly defined dutyholder during occupation who can be held to account and will have statutory obligations for ensuring that fire and structural safety is being effectively managed for the whole building. Building ownership in the UK is complex and the definition of a Principal Accountable Person will ensure that there is a lead Accountable Person, the Principal Accountable Person, specifically responsible for various obligations under the regime. This will include applying for registration, and preparing the safety case report, avoiding the possibility of any relevant parties being able to absolve themselves of obligations and duties under this part. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -6936,7 +6936,7 @@
           <num>649 </num>
           <content>
             <p>The Independent Review identified that there should be a clearly defined dutyholder during occupation who can be held to account and will have statutory obligations to maintain the fire and structural safety of the building. This section provides certainty through the tribunal of where it is unclear who is the Accountable Person(s) for the building are, who the Principal Accountable Person is, or the parts of the higher-risk building for which any Accountable Person is responsible for.  </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -7001,7 +7001,7 @@
           <num>655 </num>
           <content>
             <p>This section ensures that the “hard stop” to occupation intended at Gateway three applies to high-rise residential buildings which are 18 metres or more in height, or at least seven storeys, including when buildings are occupied in phases.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -7051,7 +7051,7 @@
           <num>659 </num>
           <content>
             <p>It enables the Building Safety Regulator to take a systematic approach to the oversight of buildings in scope of the new regime. The obligations on Accountable Persons in Part 4 of the regime apply where higher-risk residential buildings become occupied. The meaning of ”occupied” for these purposes is set out in section 71. Registration will provide information about the building to the Building Safety Regulator who will then be able to use this for the effective regulation of higher-risk buildings. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -7119,7 +7119,7 @@
           <num>666 </num>
           <content>
             <p>An important recommendation from the Independent Review was that the name and UK contact information of the dutyholder(s) in occupation should be notified to the Building Safety Regulator and to residents and any other landlords of dwellings in the building. Notification of this information to the Building Safety Regulator will likely be accomplished through secondary legislation made under this section. The regulator will also be responsible for keeping the register up to date should any information provided at registration subsequently change.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -7175,7 +7175,7 @@
           <num>671 </num>
           <content>
             <p>The Independent Review identified that there should be clear dutyholders during occupation who will have statutory obligations to maintain the fire and structural safety of the building. The requirement to apply for a Building Assessment Certificate, and the building assessment that follows, provides a mechanism for the Building Safety Regulator to assess whether the dutyholders are, at that point in time, complying with the relevant Part 4 duties. The Building Assessment Certificate provides a transparent outcome to that assessment</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -7214,7 +7214,7 @@
           <num>673 </num>
           <content>
             <p>The Independent Review recommended that there needs to be a Building Safety Regulator for the whole of the building (referred to as the Joint Competent Authority in the Review) in relation to fire and structural safety in occupation which can hold dutyholders to account with robust sanctions where necessary. The Building Assessment Certificate is a mechanism that allows the Building Safety Regulator to assess whether, at the time the application is considered, the Accountable Persons are complying with the relevant duties placed on them. The issuance of the certificate by the regulator provides assurance that the Accountable Persons are meeting their requisite statutory obligations at that time.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -7274,7 +7274,7 @@
           <num>679 </num>
           <content>
             <p>The Independent Review identified that residents in higher-risk buildings need assurance in terms of the fire and structural safety of their buildings. Provisions relating to a Building Assessment Certificate help to ensure statutory obligations under the new regime are being met, by confirming that at the time of assessment, the regulator was satisfied that the Accountable Persons were complying with the relevant statutory obligations.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -7361,7 +7361,7 @@
           <num>689 </num>
           <content>
             <p>The duty to display a relevant compliance notice ensures that residents are informed about any subsisting concerns of the Building Safety Regulator about the building. </p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -7448,7 +7448,7 @@
           <num>698 </num>
           <content>
             <p>The Independent Review recommended new responsibilities be placed on dutyholders to proactively manage risks and work with residents (both those residing in the property and, depending on the ownership model, the landlord or leaseholder of the flat) to ensure that the building remains safe throughout its life cycle.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -7545,7 +7545,7 @@
           <num>709 </num>
           <content>
             <p>The Independent Review recommended new responsibilities be placed on dutyholders to proactively manage risks and work with residents (both those residing in the property and, depending on the ownership model, the landlord or leaseholder of flats) to ensure that the building remains safe throughout its life cycle.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -7649,7 +7649,7 @@
           <num>720 </num>
           <content>
             <p>As part of their Safety Case report, the Accountable Person will need to set out that the building is safe for occupation (i.e., meets the outcome of clause 84), through the sum of the measures they have in place to support that claim, that decisions have been taken in accordance with the prescribed principles and direct the reader to the evidence that supports that argument.</p>
-            <table ukm:widths="6in">
+            <table uk:widths="6in">
               <tr>
                 <td>
                   <p>Overview  </p>
@@ -7721,7 +7721,7 @@
           <num>727 </num>
           <content>
             <p>The Building Safety Regulator’s assessment of safety case reports is one of the main ways Accountable Persons will be held to account. Safety case reports will need to demonstrate that potential building safety risks have been properly assessed and that proportionate measure are in place to reduce and control them on an ongoing basis. Safety case reports will be reviewed by the Building Safety Regulator as part of an application for a Building Assessment Certificate.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1  </p>
@@ -7814,7 +7814,7 @@
           <num>736 </num>
           <content>
             <p>The Independent Review recommended that it should be mandatory for key dutyholders to report particularly dangerous safety-related events to the Building Safety Regulator. This section contributes to the fulfilment of this recommendation. </p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -7908,7 +7908,7 @@
           <num>747 </num>
           <content>
             <p>Requiring the prescribed information to be stored to the prescribed standards will improve the accessibility of this important information which is likely to be key in enabling compliance by the Accountable Person with their safety case-related duties in sections 83-86.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -8014,7 +8014,7 @@
           <num>760 </num>
           <content>
             <p>Regulations under this section will also set out the circumstances when the Accountable Person must provide information to the regulator and the form in which this information should be submitted. Regulations may also make requirements to ensure information is presented to the regulator in a standard format as this will enable the regulator to more easily review and analyse the information. This will support the regulator in their role in ensuring building safety and holding Accountable Persons to account.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -8096,7 +8096,7 @@
           <num>769 </num>
           <content>
             <p>It is also important that the Regulator is informed when there is a change in Accountable Person or change of Designated Accountable Person or a change to their contact details. Provisions made under this section will ensure that the Regulator is aware who is responsible for the safety of the building and has up to date contact details for this person or persons.  </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -8489,7 +8489,7 @@
           <num>802 </num>
           <content>
             <p>The purpose of this section is to ensure residents and owners of residential units in higher-risk buildings play their part in keeping buildings safe. The Independent Review recommended that residents should have a clear understanding of their responsibilities in relation to helping to keep their building safe.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -8633,7 +8633,7 @@
           <num>810 </num>
           <content>
             <p>The focus is on resident behaviours (and the behaviour of residential unit owners) and their co-operation with the Accountable Person in keeping the building safe. Where this fails the Accountable Person is able to investigate and enforce those duties. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -8752,7 +8752,7 @@
           <num>820 </num>
           <content>
             <p>The Accountable Person may need access to one or more spaces in the higher-risk building that are controlled or occupied by a resident or by an owner of a residential unit. This access may be required so that the Accountable Person can confirm whether a resident has breached a specified duty, or in order to perform their own duties to assess and manage building safety risks and take reasonable steps to minimise them.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -8832,7 +8832,7 @@
           <num>827 </num>
           <content>
             <p>These measures have been modelled on notices under section 21 of the Health and Safety at Work etc Act 1974 and are intended to be used in similar circumstances.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -8895,7 +8895,7 @@
           <num>832 </num>
           <content>
             <p>Where a requirement under the new regime is breached, the Building Safety Regulator would normally be expected to use a compliance notice as described in the previous sections to secure compliance from the Accountable Person – or an urgent action notice, where the contravention places people in or about the building in imminent danger. For the most serious breaches of these requirements, where the failure places those in or about the building at a significant risk of death or serious injury, the Building Safety Regulator will be able to move directly to prosecution for the offence described in this section, if it considers that to be the most effective and appropriate course of action.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -9026,7 +9026,7 @@
           <num>841 </num>
           <content>
             <p>This section provides a right of appeal for certain decisions the Regulator will make for higher-risk buildings under this legislation.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -9061,7 +9061,7 @@
           <num>843 </num>
           <content>
             <p>This section is intended to be used to provide a comprehensive right of appeal for the decisions the Regulator will make for higher-risk buildings under this legislation that are created in regulations. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -9126,7 +9126,7 @@
           <num>847 </num>
           <content>
             <p>This section supplements the overall package of appeal provisions for decisions made by the Regulator under this legislation.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -9161,7 +9161,7 @@
           <num>849 </num>
           <content>
             <p>The general position is that the tribunal does not have enforcement powers of its own, other than powers to enforce payment for a sum of money. As such, where it is necessary to have powers to enforce tribunal decisions, it is usual to insert a provision in legislation to enable the county court to enforce those decisions.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -9231,7 +9231,7 @@
           <num>853 </num>
           <content>
             <p>Historically, there has always been detailed guidance (the Approved Documents) to give further detail in respect of the functional requirements set out in Building Regulations. This section sets out those areas of this Act where similar guidance, with statutory force, is needed to give guidance to those with duties under the new occupation regime.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -9278,7 +9278,7 @@
           <num>857 </num>
           <content>
             <p>This is a new provision.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -9316,7 +9316,7 @@
           <num>859 </num>
           <content>
             <p>Section 24 of the Landlord and Tenant Act 1987 allows tenants to apply to the tribunal for appointment of a “manager” of their choosing to take over management functions where a landlord has failed to comply with its obligations. If that principle were to be carried through into building safety, it could compromise the authority of the Building Safety Regulator. The amendments to section 24 ensure that the new regime is compatible with existing legislation and provides clarity as to avenues of redress for breach of obligations. Under the Act, redress should be sought through the residents’ complaints mechanism to the Building Safety Regulator who can arrange for the appointment of a Special Measures Manager if there have been persistent breaches of building safety obligations by the Accountable Person. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -9981,7 +9981,7 @@
           <num>930 </num>
           <content>
             <p>The power at subsection (6)(c) will be used to make regulations setting out other circumstances (other than those set out in subsections (6)(a) and (6)(b)) where a building can be leaseholder-owned. </p>
-            <table ukm:widths="5.51in">
+            <table uk:widths="5.51in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -10041,7 +10041,7 @@
           <num>936 </num>
           <content>
             <p>A higher-risk building, as defined in section 31 (for the purposes of Part 3) and section 65 (for the purposes of Part 4), is one that is at least 18 metres in height or has at least seven storeys. For the purposes of Parts 3 and 4 of the Act, the details of how height and number of storeys are to be determined as set out in regulations made under sections 31 and 65. The concept of a higher-risk building does not apply for the purposes of the leaseholder protections, but the method by which a building’s height and number of storeys are to be determined is the same as set out in the draft Higher-Risk Building (Descriptions and Supplementary Provisions) Regulations which were published alongside the Building Safety Bill.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -10136,7 +10136,7 @@
           <num>948 </num>
           <content>
             <p>The “qualifying time” is defined as the beginning of 14 February 2022, as that was the date on which the leaseholder protections provisions were first tabled as amendments to the Building Safety Bill at Committee stage during the Bill’s passage through the House of Lords, and as such the point at which the provisions first become public knowledge. Although the leaseholder protections only take legal effect at commencement, two months after Royal Assent, the choice of qualifying time means that the provisions could not be manipulated or preemptively avoided in the period between the original publication of the amendments and the provisions becoming law.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -10241,7 +10241,7 @@
           <num>960 </num>
           <content>
             <p>Section 62 includes a power to prescribe other matters within the definition of a building safety risk. Although it is not proposed to expand that definition at this time, that power gives important flexibility for the future regime in Parts 3 and 4 of this Act should new building safety risks materialise. The leaseholder protections are backward-looking only, in the sense that they only apply to historical building safety defects. They are a one-off intervention designed to deal with current issues associated with historical defects in certain buildings and so it is not necessary to mirror a power to expand the definition of building safety risk in this section.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -10385,7 +10385,7 @@
           <num>979 </num>
           <content>
             <p>The power at section 121(12) will allow modifications to be made to subsections (3) to (5) in respect of the application of those subsections to the application of the associated persons tests in sections 122 to 125 and Schedule 8. This is because a slightly different definition of associated persons may be appropriate to the circumstances in which the test is used.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -10560,7 +10560,7 @@
           <num>1000 </num>
           <content>
             <p>The power at subsection (5)(e) will allow the Secretary of State to prescribe further persons who can apply for a remediation order, should the need to do so become apparent.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -10708,7 +10708,7 @@
           <num>1020 </num>
           <content>
             <p>The power at subsection (5)(f) will allow the Secretary of State to prescribe further persons who can apply for a remediation contribution order, should the need to do so become apparent.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -10817,7 +10817,7 @@
           <num>1034 </num>
           <content>
             <p>Similar to the provisions at section 124, the court can make an order under section 125 if it considers that it is just and equitable to do so. This is intended to ensure fairness in proceedings while giving the court  a wide decision-making remit which it is expected will allow it to take all appropriate factors into account when determining whether an order should be made, including the wider public interest in securing the safety of buildings, as well as the rights and interests of the individual against whom an order might be made.</p>
-            <table ukm:widths="5.11in">
+            <table uk:widths="5.11in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -10892,7 +10892,7 @@
           <num>1041 </num>
           <content>
             <p>Secondary legislation will be laid as soon as practicable. Regulations to establish a scheme will define who is eligible to be a member and set out membership conditions which may include conditions relating to the matters mentioned above; conditions restricting or prohibiting members’ use of prescribed construction products; conditions relating to the provision of information to the Secretary of State; and to the competence or conduct of individuals connected with a person who is eligible for scheme membership. This section also allows for differential membership categories and for the maintaining of lists, including in relation to scheme eligibility and scheme membership.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -11018,7 +11018,7 @@
           <num>1053 </num>
           <content>
             <p>This provision, together with the powers to make regulations to impose building control prohibitions detailed in section 128, may be imposed on persons who are eligible to join a building industry scheme but who do not join (because, for example, they do not meet or comply with the scheme membership conditions prescribed) and will encourage eligible persons to join and remain members of a scheme. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -11092,7 +11092,7 @@
           <num>1060 </num>
           <content>
             <p>The building control prohibitions, together with the prohibition on development detailed in section 128, may be imposed on persons who are eligible to join a building industry scheme but who do not join (because, for example, they do not meet or comply with the scheme membership conditions prescribed) and will encourage eligible persons to join and remain members of a scheme.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -11211,7 +11211,7 @@
           <num>1074 </num>
           <content>
             <p>The assessment is that relying upon English common law to address this consequence would be insufficient.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -11320,7 +11320,7 @@
           <num>1087 </num>
           <content>
             <p>The definitions used within this section have a basis in the Petroleum Act 1998 and the Corporation Tax Act 2010.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -11407,7 +11407,7 @@
           <num>1096 </num>
           <content>
             <p> This section allows for the Secretary of State, by regulations, to prescribe the description of persons who can apply to the court for an information order. We intend to create regulations to define these persons.  </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -11547,7 +11547,7 @@
           <num>1111 </num>
           <content>
             <p>This change to the law is being made to give leaseholders further rights and protection by ensuring other cost recovery routes are appropriately explored.  </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -11659,7 +11659,7 @@
           <num>1125 </num>
           <content>
             <p>The Defective Premises Act does not currently extend to work undertaken on a dwelling beyond its initial “provision”, meaning that work undertaken on existing buildings that has made the dwelling not fit for habitation does not fall within scope of the Act, even for highly complex, major works. This section expands the right to claim compensation to any work undertaken on a dwelling, provided that work is done in the course of a business. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -11729,7 +11729,7 @@
           <num>1132 </num>
           <content>
             <p>This section is a new provision. To complement the redress provisions for newly built homes that are being introduced through the Act, the Government wishes to go further and extend redress provisions for existing buildings.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1: Extended limitation period</p>
@@ -11795,7 +11795,7 @@
           <num>1138 </num>
           <content>
             <p>This is a new provision. There is no previous provision for owners of new build homes specifically to complain to an ombudsman or redress scheme. Redress schemes already exist in relation to management, lettings and estate agency work in the private residential sector, and for social housing residents. </p>
-            <table ukm:widths="5.13in">
+            <table uk:widths="5.13in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -11875,7 +11875,7 @@
           <num>1147 </num>
           <content>
             <p>This is a new provision. There is no previous provision for owners of new build homes specifically to complain to an ombudsman or redress scheme. Redress schemes already exist in relation to property management, lettings and estate agency work in the private residential sector, and for social housing residents. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -11957,7 +11957,7 @@
           <num>1156 </num>
           <content>
             <p>This is a new provision.</p>
-            <table ukm:widths="5.14in">
+            <table uk:widths="5.14in">
               <tr>
                 <td>
                   <p>Example: Review the definition of a developer</p>
@@ -12091,7 +12091,7 @@
           <num>1170 </num>
           <content>
             <p>There is presently no statutory obligation upon developers of new build homes specifically to belong to a redress scheme, nor a way to enforce the requirements. This represents a significant gap for purchasers of new build homes. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -12187,7 +12187,7 @@
           <num>1178 </num>
           <content>
             <p>This is a new provision.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -12269,7 +12269,7 @@
           <num>1184 </num>
           <content>
             <p>The Government intends to consult widely on the proposed minimum standards to be set in regulations made under this section. It intends to delay commencement of this section to allow industry the opportunity to consider the outcome of that consultation and make appropriate warranties available for sale.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -12312,7 +12312,7 @@
           <num>1187 </num>
           <content>
             <p>In order to deter developers from considering selling new homes without a compliant warranty, subsection (1) enables the Secretary of State, or a person designated by them, to issue financial penalties for doing so in the absence of a reasonable excuse. Subsection (2) provides that the level of penalties, the process for issuing them, provision for interest or additional penalties for late payment and conferring rights of appeal will be set in regulations; subsection (3) provides that the maximum penalty prescribed in regulations may not exceed £10,000 or 10% of the sale price of the new home, whichever is the greater.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -12435,7 +12435,7 @@
           <num>1197 </num>
           <content>
             <p>The purpose of this power is to provide that construction products placed on the UK market are safe and, in the case of products subject to designated standards, technical assessments or are on the safety critical list, that they will perform to certain technical standards. For these products, where they are placed on the UK market, this will ensure reliable information is available to anybody who wishes to buy or use these products.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -12635,7 +12635,7 @@
           <num>1224 </num>
           <content>
             <p>The “fit for habitation” test is intended to be equivalent to the test used in the Defective Premises Act 1972 which applies to England and Wales. The Defective Premises Act does not extend to Scotland, but the phrase has a generally understood meaning, which could be used by the Courts in Scotland, together with using the principles in caselaw under the Defective Premises Act as guidance. The same principles could apply should the provisions be extended to Northern Ireland using the power at section 169(7). </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -12787,7 +12787,7 @@
           <num>1245 </num>
           <content>
             <p>The cause of action created by section 148 has prospective effect. It applies to a wider range of construction products and will apply in respect of defaults which occur after the commencement of sections 148 and 149. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -12898,7 +12898,7 @@
           <num>1259 </num>
           <content>
             <p>The limitation periods set out in this section mirror the changes this Act makes to the limitation period under section 1 of the Defective Premises Act 1972 (to which see section 135).</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -13011,7 +13011,7 @@
           <num>1273 </num>
           <content>
             <p>These limitation periods mirror equivalent provision for limitation in England and Wales in relation to the new causes of action.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -13115,7 +13115,7 @@
           <num>1283 </num>
           <content>
             <p>This power will be used to make regulations to enable the Secretary of State to apply to a court for a costs contribution order to be made against an economic operator where the relevant conditions have been met, to require them to pay an amount in relation to the cost of remediation works. Regulations will set out the matters that the court will need to consider when deciding whether to make a costs contribution order and, where applicable, the amount that an economic operator should be required to pay, and to whom. Regulations will also enable the court to order an economic operator to pay to the Secretary of State the cost of any assessments undertaken as part of this process and making the application to court.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -13199,7 +13199,7 @@
           <num>1292 </num>
           <content>
             <p>This power will be used to make regulations to enable the Secretary of State to make a costs contribution order against an economic operator where the relevant conditions have been met, to require them to pay the relevant cost of remediation works. Regulations will set out the matters that the Secretary of State will need to consider when deciding whether to make a costs contribution order and, where applicable, the amount that an economic operator should be required to pay. Regulations will also enable the Secretary of State to require an economic operator to pay for cost of any assessments undertaken as part of this process.  Regulations will also allow for an economic operator to apply for the decision to be reviewed by the Secretary of State and will set out the circumstances under which appeals can be made to a court or tribunal. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -13337,7 +13337,7 @@
           <num>1305 </num>
           <content>
             <p>At present all Responsible Persons are required to undertake a fire risk assessment, but they are required to record the significant findings of that assessment only when they are an employer of five or more employees or where there is a licence in place, or an alterations notice under the FSO requiring this. Concern was raised during the call for evidence that it is difficult for enforcing authorities to evidence a breach of the Responsible Person’s duties under the FSO or for the Responsible Person to demonstrate compliance if the full fire risk assessment is not recorded. We are therefore introducing a requirement for all Responsible Persons to do so for all regulated premises. The Responsible Person will be able to access guidance to assist with completing and recording their fire risk assessment.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -13385,7 +13385,7 @@
           <num>1309 </num>
           <content>
             <p>Proposals to address this were included in the Fire Safety Consultation which set out a new requirement on the Responsible Person that any person appointed by them to undertake all, or any part, of the fire risk assessment must be competent. 96 per cent of respondents to the consultation agreed with this proposal.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -13420,7 +13420,7 @@
           <num>1311 </num>
           <content>
             <p>At present Responsible Persons are required to implement appropriate measures for their premises to enable effective planning, organisation, control, monitoring and review in order to comply with the requirements of the Order. At present recording is required only where they employ five or more employees or where there is a licence in place, or an alterations notice under the FSO requiring recording. We are introducing a requirement for all Responsible Persons to record fire safety arrangements to assist Responsible Persons to more easily demonstrate compliance and enforcing authorities to evidence a breach of the Order. This amendment will ensure consistency in approach with article 9A of the Order. The Responsible Person will be able to access guidance to assist their recording of their fire safety arrangements. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -13473,7 +13473,7 @@
           <num>1315 </num>
           <content>
             <p>The Government considered how to widen the provision of information requirements, under the FSO, by extending them to include residents of buildings containing two or more sets of domestic premises. Proposals were included in the Fire Safety Consultation which set out new requirements for Responsible Persons to share fire safety information with residents of multi-occupied residential buildings. Findings from the consultation showed that 90% of respondents were supportive of the proposals. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -13526,7 +13526,7 @@
           <num>1320 </num>
           <content>
             <p>We are therefore amending Article 22 of the Fire Safety Order to require that all Responsible Persons for premises regulated under the Order must establish whether any other Responsible Person in the premises shares, or has, duties in respect of the premises and to inform each other of their name, address and parts of the premises they consider themselves to be Responsible Person for. To inform and support Responsible Persons in discharging this duty, best practice will be provided in guidance. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -13578,7 +13578,7 @@
           <num>1324 </num>
           <content>
             <p>A new Article 22A will apply to all premises under the FSO. All departing Responsible Persons of these premises must provide the relevant fire safety information specified in a new Article 22A(3) to incoming Responsible Persons before they depart. It is intended that this requirement will facilitate the preservation of relevant fire safety information between successive Responsible Persons across the lifetime of a building. This compliments the “Golden Thread” provision for Accountable Persons in the Building Safety Act. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -13613,7 +13613,7 @@
           <num>1326 </num>
           <content>
             <p>This is a new provision. This requirement applies to all Responsible Persons for premises in a higher-risk building. For buildings subject to the Building Safety Act, the Responsible Person(s) must take reasonable steps to identify any Accountable Person(s) in the building and cooperate with them for the purpose of carrying out their respective duties to collectively manage building and fire safety for the entire building. The purpose of this requirement is to ensure that the duties of Responsible Persons and Accountable Persons will contribute towards a whole-building approach to building and fire safety.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -13656,7 +13656,7 @@
           <num>1329 </num>
           <content>
             <p>This amendment to the level of financial penalty that may be imposed for these offences enables the Magistrates Court, when prosecuting for these offences under the FSO to apply a higher level of fine for the most serious offences. Accordingly, this ensures these offences carry a suitable deterrent to discourage non-compliance with the Order.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -13692,7 +13692,7 @@
           <num>1331 </num>
           <content>
             <p>Currently under Article 50, the Secretary of State is required to make sure that such guidance as he considers is made available to assist Responsible Persons with discharging their duties under the FSO. Responses to the 2019 call for evidence and the Fire Safety Consultation have indicated that guidance should be strengthened to encourage compliance and to make clear what is statutory guidance. Article 50 guidance is made available to assist responsible persons to discharge their duties under the Order. It also reflects a similar approach to guidance under the Building Safety Act.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -13788,7 +13788,7 @@
           <num>1339 </num>
           <content>
             <p>This provision will apply to all architects on the Register, not only those working on higher-risk buildings, due to the public safety aspect of all construction. Most other regulated professions require their registrants to demonstrate competence throughout their career and most professional membership bodies have mandatory Continuous Professional Development requirements. This proposal brings the architects profession in line with best practice and gives greater assurance to those procuring and inhabiting buildings.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1: Discipline</p>
@@ -13826,7 +13826,7 @@
           <num>1341 </num>
           <content>
             <p>Section 22 of the Architects Act 1997 provides a judicial route of appeal for aggrieved persons. This section provides a non-judicial route of appeal to aggrieved persons, which will make the appeals process more accessible for architects. This section will ensure that architects removed from the Register under the new competence regime established by section 157 have adequate recourse to challenge the Board’s decision. </p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -13862,7 +13862,7 @@
           <num>1343 </num>
           <content>
             <p>Currently, the Architects Act 1997 prescribes a small amount of services for which the Board may charge. The costs of all of the Board’s functions are currently met by the annual fee for retention on the Register of Architects under section 8 of the 1997 Act, which is charged by the Board to all architects. Following the end of the EU Exit Transition Period, there will be an expansion in the services the Board provides to implement Mutual Recognition Agreements or Memoranda of Understanding relating to the regulation of architects. This section will allow the Secretary of State to lay regulations to make additional provision for separate fees for additional chargeable services, in order to keep the retention fee down for the architects that do not utilise additional services. This will be after a full impact assessment and consultation.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -13956,7 +13956,7 @@
           <num>1354 </num>
           <content>
             <p>It also emerged that in some areas tenant panels either do not exist or are not used. Removing the democratic filter was supported by the majority of respondents when the Housing Ombudsman Service consulted on its Corporate Plan 2019-22 and Business Plan 2019-20, with low support being expressed for the designated person role.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example: New complaints process</p>
@@ -14147,7 +14147,7 @@
           <num>1371 </num>
           <content>
             <p>The Independent Review recommended for there to be a periodic review (at least every five years) of the effectiveness of the overall system of building regulation including accountabilities, responsibilities, guidance, and the effectiveness of the regulator.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example </p>
@@ -14511,7 +14511,7 @@
           <num>1408 </num>
           <content>
             <p>These provisions are similar to those of other regulatory bodies, including existing provisions for local authority building control officers under sections 95 and 96 of the Building Act 1984.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example 1</p>
@@ -14568,7 +14568,7 @@
           <num>1413 </num>
           <content>
             <p>These provisions are similar to those of other regulatory bodies.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -14603,7 +14603,7 @@
           <num>1415 </num>
           <content>
             <p>This offence will be triable either way to deter non-compliance with the Building Safety Regulator and to reflect the gravity of the offence. The Building Safety Regulator requires relevant information to operate effectively and this must be complied with to fulfil that purpose.</p>
-            <table ukm:widths="5.12in">
+            <table uk:widths="5.12in">
               <tr>
                 <td>
                   <p>Example</p>
@@ -14738,7 +14738,7 @@
             <num>1425 </num>
             <content>
               <p>Under section 3(2) the Secretary of State may give a direction to exempt from all or any of the provisions of building regulations (as regards England) a particular building, or buildings of a particular class at a particular location, either unconditionally or subject to conditions. Under section 3(3) a person who contravenes or permits a direction given under subsection (2) to be contravened commits an offence and is liable to be fined. </p>
-              <table ukm:widths="5.22in">
+              <table uk:widths="5.22in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -14844,7 +14844,7 @@
             <num>1436 </num>
             <content>
               <p>Section 7 provides that failure to follow guidance in an Approved Document can be relied upon as tending to establish liability if a contravention of building regulations’ requirements is alleged and conversely proof of following guidance in Approved Documents can be taken as tending to negative liability.</p>
-              <table ukm:widths="5.12in">
+              <table uk:widths="5.12in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -14938,7 +14938,7 @@
             <num>1446 </num>
             <content>
               <p>Under section 11 the appropriate national authority may either on application or of its own accord, make a direction to dispense with or relax a requirement of building regulations as regards a particular type of building matter, if the requirement is deemed to be unreasonable. </p>
-              <table ukm:widths="5.32in">
+              <table uk:widths="5.32in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -15019,7 +15019,7 @@
             <num>1455 </num>
             <content>
               <p>Under section 12 the appropriate national authority may approve a particular type of building matter as complying with requirements of the building regulations, either on application or of its own accord. </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -15516,7 +15516,7 @@
             <num>1507 </num>
             <content>
               <p>New section 120B replaces sections 14(3) and (4) of the Building Act 1984 which previously set out requirements for consultation on proposals for building regulations in England. </p>
-              <table ukm:widths="4.95in">
+              <table uk:widths="4.95in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -15710,7 +15710,7 @@
             <num>1523 </num>
             <content>
               <p>Article 45 of the Fire Safety Order requires local authorities to consult Fire Safety Order enforcing authorities before approving plans of building work deposited with them.</p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -15969,7 +15969,7 @@
             <num>1554 </num>
             <content>
               <p>Paragraphs 39(3) and 41(3) of Schedule 5 to the Act are consequential to this provision and make amendments to the Building Act 1984 with regards to initial notices and amendment notices. The effect of these changes would be that in such cases where the developer and registered building control approver wrongly submits such a notice then the default deemed acceptance rules in section 47(3) and section 51A(5) of the Building Act do not apply.</p>
-              <table ukm:widths="5.12in">
+              <table uk:widths="5.12in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -16139,7 +16139,7 @@
             <num>1566 </num>
             <content>
               <p>Where the Building Safety Regulator proposes to apply to the First-tier Tribunal to intervene with the Accountable Person’s management of their building, procedural fairness dictates that affected parties should have the opportunity to make comment and provide representations. The paragraph ensures that the Building Safety Regulator discharges its power to apply for a special measures order in a fair and transparent way.</p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example </p>
@@ -16267,7 +16267,7 @@
             <num>1581 </num>
             <content>
               <p>The Government is going further and introducing a special measures manager who would take on the management of risks in a building as a last resort, where the Building Safety Regulator is successful in an application for an order where the grounds are made out in so as to keep residents safe from that poor management of building safety risks. </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example </p>
@@ -16354,7 +16354,7 @@
             <num>1590 </num>
             <content>
               <p>The purpose of this paragraph is to ensure financial propriety and that the Special Measures Manager holds payments from the Accountable Person in a designated bank account on trust to be used solely for relevant building safety expenses. Having a separate trust fund account will ensure that monies are carefully managed and transparently accounted for during the term of the special measures order. </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example </p>
@@ -16420,7 +16420,7 @@
             <num>1597 </num>
             <content>
               <p>In the making of this provision, it is considered that it may be necessary for the Special Measures Manager to be able to take over contracts and liabilities of the Accountable Person, to enable it to effectively discharge the functions as set out in the special measure order. It allows them to recoup damages arising from breaches of contracts relating to the discharge of Part 4 functions, prior to a special measures order coming into effect and pursue third parties. </p>
-              <table ukm:widths="5.05in">
+              <table uk:widths="5.05in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -16490,7 +16490,7 @@
             <num>1604 </num>
             <content>
               <p>This paragraph will ensure that the First-tier Tribunal appointing a Special Measures Manager can amend an order made under section 24 of the Landlord and Tenant Act 1987 aligning the functions of this manager with that of the Special Measures Manager’s function under the Building Safety Act. </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example </p>
@@ -16549,7 +16549,7 @@
             <num>1610 </num>
             <content>
               <p>It aligns the Landlord and Tenant Act 1987 with the Building Safety Act to replace a manager in situations where they fail to meet their obligations in the order to work constructively with the Special Measures Manager in ensuring building safety risks are adequately mitigated. </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -16634,7 +16634,7 @@
             <num>1617 </num>
             <content>
               <p>This paragraph supplements paragraph 4 by allowing, on application, the Tribunal to give directions in relation to special measures.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -16681,7 +16681,7 @@
             <num>1621 </num>
             <content>
               <p>Provisions about reviewing certain matters ensures that the Building Safety Regulator is proactive in undertaking a review of key matters with regard to a building in special measures. It provides some oversight of the progress that the Special Measures Manager is making with their obligations and oversight of financial matters related to that.  It places a duty on the regulator to make an application to vary the special measures order  following its review, where the regulator deems it appropriate. </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -16741,7 +16741,7 @@
             <num>1627 </num>
             <content>
               <p>Where the Building Safety Regulator proposes to apply to the First-tier Tribunal to vary a special measures order in relation to an higher-risk building, this paragraph ensures procedural fairness, including giving affected parties the opportunity to provide representations. The paragraph ensures that the Building Safety Regulator discharges its power to vary a special measures order in a fair way.</p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -16830,7 +16830,7 @@
             <num>1638 </num>
             <content>
               <p>In widening the powers of the First-tier Tribunal to make a special measures order and appoint a Special Measures Manager, there must also be complementary powers which enables the First-tier Tribunal to vary and discharge the special measures order made under paragraph 4.</p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example </p>
@@ -16883,7 +16883,7 @@
             <num>1643 </num>
             <content>
               <p>Notification about the making, varying or discharging of special measures orders ensure that the relevant persons set out in paragraph 15(2) are aware of action taken by the Building Safety Regulator and the First-tier Tribunal’s consequent decision. </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -16948,7 +16948,7 @@
             <num>1650 </num>
             <content>
               <p>This paragraph makes provision for new incoming Accountable Persons to become subject to the terms of a special measures order that is in force on their appointment, automatically, when the order has been made before they were an Accountable Person for that building. It also clarifies liability for the outgoing Accountable Person of any relevant part of a building. This is to ensure that a building in special measures cannot be transferred to a third party to subvert the requirements of the special measures order.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -17164,7 +17164,7 @@
             <num>1678 </num>
             <content>
               <p>As discussed in the explanatory note to section 121 it is common practice for owners of freehold and superior lease interests in multi-occupied residential buildings to use thinly capitalised subsidiary companies, often termed special purpose vehicles, to hold these interests. While developers will often sell on buildings after construction is completed, some developers and their subsidiaries will retain ownership of their buildings. Where developers have retained interests in buildings that they have had a role in developing, they will need to bear the costs associated with remediation in full.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -17308,7 +17308,7 @@
             <num>1697 </num>
             <content>
               <p>Sub-paragraph (6) lists the types of relevant landlord to which the contribution condition does not apply. The power at sub-paragraph (6)(c) allows further categories of persons to whom the contribution condition does not apply. This power will be used to prescribe further categories of persons to be excluded from paragraph 3 where it would not be appropriate for the contribution condition to be applied to that class of persons, or where “net worth” is not a relevant concept to that class of persons.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -17401,7 +17401,7 @@
             <num>1708 </num>
             <content>
               <p>As discussed in the explanatory note to section 122, where service charges are not payable according to paragraph 4, the provisions apply irrespective of when any service charge demands were issued to leaseholders.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -17498,7 +17498,7 @@
             <num>1720 </num>
             <content>
               <p>As discussed in the explanatory note to section 122, where service charges are not payable according to paragraphs 5 to 7, the provisions apply irrespective of when any service charge demands were issued to leaseholders.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>These examples refer to the permitted maximum amounts set out in paragraph 6.</p>
@@ -17633,7 +17633,7 @@
             <num>1737 </num>
             <content>
               <p>The regulations also allow provision to be made in respect of “prescribed cases”. It is intended that these regulations will set out how the value of the qualifying lease is to be determined when the most recent sale price cannot be identified.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -17712,7 +17712,7 @@
             <num>1746 </num>
             <content>
               <p>This approach is intended to maximise affordability for qualifying leaseholders who can be required to make a capped contribution. Landlords who are responsible for organising remediation work will need to put arrangements in place to begin work and recover capped leaseholder contributions over time.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -17769,7 +17769,7 @@
             <num>1751 </num>
             <content>
               <p>Although this paragraph provides that no cladding costs be charged to leaseholders going forward (i.e., after commencement), any leaseholder contributions towards cladding remediation that have been incurred prior to commencement do count towards the leaseholder contribution caps.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -17840,7 +17840,7 @@
             <num>1759 </num>
             <content>
               <p>Costs already incurred by leaseholders prior to commencement under this paragraph do not count against the “permitted maximum” totals set out in paragraph 6 (unless those costs are also classified as a “relevant measure” under paragraph 1). However, any costs not yet incurred by leaseholders under this paragraph are not payable from the date of commencement onward, even if those costs were incurred by the landlord prior to commencement.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -17954,7 +17954,7 @@
             <num>1773 </num>
             <content>
               <p>Paragraph 2 of Schedule 8 applies equally to non-residential leases as it does to residential leases. This means that where a landlord for the building was responsible for the defect, no service charges relating to that defect can be passed to any leaseholder, including non-residential leaseholders. The power at sub-paragraph (4) will be used to make provision setting out that in this situation, costs cannot be met by service charges payable by commercial leaseholders or by reserve funds into which commercial leaseholders may have made payments.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -18037,7 +18037,7 @@
             <num>1783 </num>
             <content>
               <p>The provisions in this paragraph mean that any amount that is not recoverable under a lease from a leaseholder as a result of Schedule 8 is reallocated to relevant landlords for the building (see paragraph 2 for the definition of “relevant landlord”) and cannot be reallocated to other leaseholders in the building.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -18173,7 +18173,7 @@
             <num>1801 </num>
             <content>
               <p>Paragraphs 4 to 7 set out the protections that apply to leaseholders where paragraphs 2 and 3 do not apply. Where paragraphs 4 and 7 apply, regulations will provide that all costs which cannot be recovered from leaseholders will be divided equitably among all relevant landlords for the building. The mechanism for division of costs will be set out in regulations and will provide that relevant landlords’ contributions will be proportionate to their level of interest in the building. For example, a landlord with a superior lease over the entire building will pay a greater proportion of costs than a landlord with a superior lease over just one floor.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -18285,7 +18285,7 @@
             <num>1815 </num>
             <content>
               <p>The power at sub-paragraph (3) will be used to prescribe requirements relating to the qualifying lease certificate, including the information that is to be contained within it, the form of the certificate, and the way in which the leaseholder is required to execute the certificate.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -18385,7 +18385,7 @@
             <num>1827 </num>
             <content>
               <p>The power at sub-paragraph (2) will be used to make provision which requires that a certificate is provided to leaseholders evidencing that the landlord was not responsible for given relevant defects, and that the landlord is to be treated as being responsible for creating the relevant defects unless such a certificate is provided.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -18479,7 +18479,7 @@
             <num>1838 </num>
             <content>
               <p>Where the qualifying lease is a shared ownership lease, the power will be used to prescribe the information and documents that need to be provided evidencing the equity stake in the lease that the leaseholder had at the qualifying time.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -18599,7 +18599,7 @@
             <num>1853 </num>
             <content>
               <p>The power at paragraph 16 will be used to make regulations requiring information and documents to be provided by landlords to leaseholders. This information will need to be provided alongside the landlord certificate mentioned in paragraph 14. Landlords will also be required to provide information in respect of costs incurred by leaseholders in the five years leading up to commencement in respect of relevant measures. Where a relevant building has multiple relevant landlords, provision will also be made requiring the sharing of information between such landlords. Provision will also be made in connection with an application to the First-tier Tribunal should the landlord fail to comply with the regulations made under paragraph 6.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -18703,7 +18703,7 @@
             <num>1864 </num>
             <content>
               <p>The provision applies equally to contracts that were entered into prior to the commencement of the provision. For example, if leaseholders had agreed in the past to pay their freeholder more than they are required to under this Schedule, then from the date on which the provision commences, that agreement is void and the leaseholders cannot be required to pay more than this Schedule dictates.  </p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -18780,7 +18780,7 @@
             <num>1873 </num>
             <content>
               <p>These are new provisions.</p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -18928,7 +18928,7 @@
             <num>1886 </num>
             <content>
               <p>These will be new powers. Following the Grenfell Tower fire, it became apparent there was no general safety requirement applicable to construction products. Such products are not usually covered by consumer protection legislation.</p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -18994,7 +18994,7 @@
             <num>1892 </num>
             <content>
               <p>The Grenfell Tower Inquiry and internal and external investigations relating to construction product advertising have highlighted the severe consequences of misleading product performance claims. This power will also allow the Secretary of State to impose requirements in regulations on the making of claims or statements about the performance of construction products, including those made in advertising products, and for relevant authorities to investigate, enforce against and sanction non-compliance with such regulations.</p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -19060,7 +19060,7 @@
             <num>1898 </num>
             <content>
               <p>The consequences of the Grenfell Tower fire revealed there is gap in the regulation of construction products if they are not covered by an EU harmonised standard, or conform to a EU Technical Assessment (now a designated standard and UK Technical Assessment) or regulated as a consumer product. The purpose of this power is to remove this gap for products the Secretary of State identifies as safety critical, allowing such products that do not meet their claimed performance to be withdrawn from the market.</p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example 1</p>
@@ -19114,7 +19114,7 @@
             <num>1902 </num>
             <content>
               <p>The Independent Review recommended that Government should ensure that there is a more effective enforcement regime with national oversight to cover construction product safety. The current regulatory framework sets out the enforcement and market surveillance powers of the Secretary of State and Trading Standards in relation to products where there is a designated standard or a United Kingdom Technical Assessment only. These regulations will allow us to create equivalent provisions for enforcement for products included on the safety critical list and those covered by the requirement to be safe. This means all construction products will be covered by an enforcement regime. The regulations can provide such powers can be exercised by relevant authorities (as defined).</p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -19161,7 +19161,7 @@
             <num>1905 </num>
             <content>
               <p>The Independent Review recommended that Government should ensure that there is a more effective enforcement, complaint investigation and market surveillance regime with national oversight to cover construction product safety. These powers enable the relevant authority (as defined), to recover some of the costs attributable to this new regime.</p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -19207,7 +19207,7 @@
             <num>1908 </num>
             <content>
               <p>There are a number of bodies in the UK, including those with regulatory or enforcement functions, which may, in the exercise of their functions, obtain information about construction products which are, or may be, unsafe. This regime will create an information Gateway which will allow for this information to be shared lawfully with the appropriate relevant authority (and between such authorities where necessary) and which can then be used in the exercise of their regulatory functions. The regime will allow for the publication of information, which could assist anybody considering using such products. This regime is intended to support the effective exercise of the regulation of construction products in the UK.</p>
-              <table ukm:widths="5.11in">
+              <table uk:widths="5.11in">
                 <tr>
                   <td>
                     <p>Example</p>
@@ -19712,7 +19712,7 @@
         <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.93in 1.15in 1.06in 1.04in 1.11in">
+            <table uk:widths="1.93in 1.15in 1.06in 1.04in 1.11in">
               <tr>
                 <th>
                   <p><b>Provision</b><authorialNote marker="8"><p> For the purposes of Annex A only, provisions that have minor or consequential effects in devolved territories are not listed as “applying” to those territories. This means that the “application” analysis here in Annex A differs slightly to the analysis in the main body of the explanatory notes, where a provision which has minor or consequential effects in a territory outside of England is said to “apply” to that territory as it produces practical effects there.   </p></authorialNote></p>
@@ -20365,7 +20365,7 @@
           <num>1923 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament.</p>
-            <table ukm:widths="2.1in 2.1in 2.1in">
+            <table uk:widths="2.1in 2.1in 2.1in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -20658,7 +20658,7 @@
         <heading><b>Annex C - Glossary</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.99in 4.31in">
+            <table uk:widths="1.99in 4.31in">
               <tr>
                 <th>
                   <p>Term</p>

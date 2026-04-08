@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryMemorandum" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryMemorandum" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2023/588/memorandum/3" />
           <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2023/588/memorandum/3" />
-          <FRBRdate date="2026-03-31" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2023/588/memorandum/3/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2023/588/memorandum/3/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2023-07-13</dc:modified>
         <dc:title>Explanatory Memorandum The Aviation Safety (Amendment) Regulations 2023</dc:title>
         <dc:description>Explanatory Memorandum The Aviation Safety (Amendment) Regulations 2023</dc:description>
@@ -37,22 +37,22 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/uksi/2023/588</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/uksi/2023/588" />
         <dc:identifier>http://www.legislation.gov.uk/id/uksi/2023/588/memorandum/3</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryMemorandum</ukm:documentMainType>
-        <ukm:date>2023-07-13</ukm:date>
-        <ukm:legislationClass>UnitedKingdomStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2023</ukm:year>
-        <ukm:version>3</ukm:version>
-        <ukm:legislationYear>2023</ukm:legislationYear>
-        <ukm:legislationNumber>588</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryMemorandum" />
+        <ukm:Date Value="2023-07-13" />
+        <ukm:LegislationClass Value="UnitedKingdomStatutoryInstrument" />
+        <ukm:Year Value="2023" />
+        <ukm:Version Value="3" />
+        <ukm:LegislationYear Value="2023" />
+        <ukm:LegislationNumber Value="588" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="54" />
           <ukm:BodyParagraphs Value="54" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>26a2ebcdcedab7501a16ef4f0ad07ea6e4d0fd238980b4cf3ddd5cf7e558d477</ukm:hash>
+        <uk:hash>26a2ebcdcedab7501a16ef4f0ad07ea6e4d0fd238980b4cf3ddd5cf7e558d477</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -410,7 +410,7 @@
             <num>7.23</num>
             <content>
               <p>The various coming into force dates and additional information on compliance are set out in the table below.</p>
-              <table ukm:widths="1.13in 1.26in 1.14in 0.9in 1.84in">
+              <table uk:widths="1.13in 1.26in 1.14in 0.9in 1.84in">
                 <tr>
                   <td>
                     <p>UK Regulation Number</p>

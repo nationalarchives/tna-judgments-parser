@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2023/56/impacts/2024/134/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2023/56/impacts/2024/134/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2024-09-17</dc:modified>
         <dc:title>Impact Assessment Economic Crime and Corporate Transparency Act 2023</dc:title>
         <dc:description>Impact Assessment Economic Crime and Corporate Transparency Act 2023</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2023/56</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2023/56" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2024/134</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>Department for Business and Trade</ukm:department>
-        <ukm:date>2024-09-17</ukm:date>
-        <ukm:pdfDate>2024-09-17</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:year>2024</ukm:year>
-        <ukm:number>134</ukm:number>
-        <ukm:legislationYear>2023</ukm:legislationYear>
-        <ukm:legislationNumber>56</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="Department for Business and Trade" />
+        <ukm:Date Value="2024-09-17" />
+        <ukm:PdfDate Value="2024-09-17" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:Year Value="2024" />
+        <ukm:Number Value="134" />
+        <ukm:LegislationYear Value="2023" />
+        <ukm:LegislationNumber Value="56" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="514" />
           <ukm:BodyParagraphs Value="514" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="9" />
         </ukm:Statistics>
-        <ukm:hash>3eaa5c43fb22fc819b20c755e93325f1a72f5cc1cc509c96cabf9dd44598e31c</ukm:hash>
+        <uk:hash>3eaa5c43fb22fc819b20c755e93325f1a72f5cc1cc509c96cabf9dd44598e31c</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -291,7 +291,7 @@
           <num>6.</num>
           <content>
             <p><b>Amendments made during Bill’s passage: </b>The Economic Crime and Corporate Transparency Act received Royal Assent in October 2023.<authorialNote marker="3"><p> See: <a href="https://bills.parliament.uk/bills/3339"><u>https://bills.parliament.uk/bills/3339</u></a> </p></authorialNote> Throughout the Bill’s passage through Parliament, various amendments were made to the legislation. Following our assessment of these amendments, we <u>do not</u> believe that the primary legislation has been amended in such a way that significantly changes the impacts set out in this IA. <u>As a result, a full enactment Impact Assessment has not been produced</u>.<i> </i>It is possible that as a result of further work on secondary legislation or during Companies House implementation that our assessment of costs and benefits will change. This will be reflected in any Impact Assessments accompanying regulations.</p>
-            <table ukm:widths="1.38in 1.57in 1.39in 0.57in 2.26in 0.01in">
+            <table uk:widths="1.38in 1.57in 1.39in 0.57in 2.26in 0.01in">
               <tr>
                 <td colspan="3">
                   <p><b>Title: </b><b> </b><docTitle><b>Corporate Transparency and Companies House Register Reform</b><b> </b></docTitle></p>
@@ -301,7 +301,7 @@
                   <p><b>Lead department or agency: </b><b> </b><inline name="leadDepartment">Department for Business, Energy and Industrial Strategy<b> </b><b> </b><b>Other departments or agencies: </b>Companies House  <b>     </b></inline></p>
                 </td>
                 <td colspan="3">
-                  <table ukm:widths="2.88in">
+                  <table uk:widths="2.88in">
                     <tr>
                       <td>
                         <p>Impact Assessment (IA)</p>
@@ -424,7 +424,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="7.18in">
+            <table uk:widths="7.18in">
               <tr>
                 <td>
                   <p><b>What are the policy objectives of the action or intervention and the intended effects?</b></p>
@@ -435,7 +435,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="7.18in">
+            <table uk:widths="7.18in">
               <tr>
                 <td>
                   <p><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option</b></p>
@@ -444,10 +444,10 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="7.18in">
+            <table uk:widths="7.18in">
               <tr>
                 <td>
-                  <table ukm:widths="4.34in 0.76in 0.6in 0.24in 0.44in 0.82in">
+                  <table uk:widths="4.34in 0.76in 0.6in 0.24in 0.44in 0.82in">
                     <tr>
                       <td colspan="2">
                         <p>Is this measure likely to impact on international trade and investment? </p>
@@ -498,7 +498,7 @@
         <paragraph>
           <content>
             <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></p>
-            <table ukm:widths="3.32in 1.62in 0.88in 1.27in">
+            <table uk:widths="3.32in 1.62in 0.88in 1.27in">
               <tr>
                 <td>
                   <p>Signed by the responsible: Lord Callanan, Parliamentary Under-Secretary of State, BEIS</p>
@@ -525,7 +525,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT</b></p>
-            <table ukm:widths="0.97in 0.87in 1.1in 1.14in 1.26in 1.82in">
+            <table uk:widths="0.97in 0.87in 1.1in 1.14in 1.26in 1.82in">
               <tr>
                 <td rowspan="2">
                   <p><b>Price Base Year  </b>2019</p>
@@ -552,7 +552,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.41in 1.3in 0.53in 1.9in 1.18in 0.85in">
+            <table uk:widths="1.41in 1.3in 0.53in 1.9in 1.18in 0.85in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -738,7 +738,7 @@
         <paragraph>
           <content>
             <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
-            <table ukm:widths="1.37in 1.27in 1.18in 3.34in">
+            <table uk:widths="1.37in 1.27in 1.18in 3.34in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual) £m: </b></p>
@@ -1197,7 +1197,7 @@
           <num>29.</num>
           <content>
             <p>We now consider the rationale for intervention, based on the issues identified in the problem under consideration section. Figure 3 below summarises the rationales for intervention against each problem identified, which we then discuss in full. Figure 3 also maps the problem under consideration and rationales to the specific measures set out later in this Impact Assessment. </p>
-            <table ukm:widths="1.3in 0.85in 1in 1.04in 1.08in 2.13in">
+            <table uk:widths="1.3in 0.85in 1in 1.04in 1.08in 2.13in">
               <tr>
                 <td>
                   <p />
@@ -1430,7 +1430,7 @@
           <num>41.</num>
           <content>
             <p>Part <b>III </b>of the Impact Assessment considers the individual reforms set out in figure 4 below. The costs to Companies House (part <b>IV</b>) and the benefits (part<b> V</b>) of the proposals are covered in separate sections.</p>
-            <table ukm:widths="1.21in 1.62in 4.57in">
+            <table uk:widths="1.21in 1.62in 4.57in">
               <tr>
                 <td>
                   <p><b>Section 1</b></p>
@@ -1982,7 +1982,7 @@
         <paragraph>
           <content>
             <p><b>Figure 5</b><b><i>: </i></b><b>Law enforcement referrals to Companies House (2015-2021</b><b><i>)</i></b></p>
-            <table ukm:widths="1.47in 0.87in 0.87in 0.87in 0.87in 0.87in 0.87in">
+            <table uk:widths="1.47in 0.87in 0.87in 0.87in 0.87in 0.87in 0.87in">
               <tr>
                 <td>
                   <p />
@@ -2138,7 +2138,7 @@
         <paragraph>
           <content>
             <p><b>Figure 6: Company Names Tribunals Decisions, 2017-2020</b></p>
-            <table ukm:widths="4.34in 0.58in 0.58in 0.58in 0.58in">
+            <table uk:widths="4.34in 0.58in 0.58in 0.58in 0.58in">
               <tr>
                 <td>
                   <p />
@@ -2618,7 +2618,7 @@
         <paragraph>
           <content>
             <p><b>Figure 7: Estimated current stock of officers who must identity verify</b></p>
-            <table ukm:widths="0.58in 2.06in 2.06in 2.06in">
+            <table uk:widths="0.58in 2.06in 2.06in 2.06in">
               <tr>
                 <td>
                   <p />
@@ -2660,7 +2660,7 @@
           <num>113.</num>
           <content>
             <p>Based on the above, we apply 0.5% to our population of unique officers identified in figure 7 above. This provides an estimate that between 30,000 and 44,000 would be assisted-digital verifiers (figure 8), with a central estimate of 33,000.</p>
-            <table ukm:widths="2.26in 1.22in 1.87in 1.78in">
+            <table uk:widths="2.26in 1.22in 1.87in 1.78in">
               <tr>
                 <td>
                   <p />
@@ -2756,7 +2756,7 @@
           <num>116.</num>
           <content>
             <p>Similar to above, Companies House provided estimates of the number of new unique officers on the companies register each year in the past five years. These estimates take into account historic growth in the number of corporate entities.<authorialNote marker="54"><p> Between 2016/17 and 2020/21 the number of corporate entities increased from 4.03 million to 4.88 million. <a href="https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021%20Table%20C1"><u>https://www.gov.uk/government/statistics/companies-register-activities-statistical-release-2020-to-2021 Table C1</u></a>. </p></authorialNote> This was done by looking at the earliest appointment date of an officer each year - if Officer A was appointed in 2016, resigned in 2017 and was reappointed in 2019 - Officer A would not be counted as a new officer in 2019/20. The estimate of new appointments between 2016 and 2021 is shown in figure 9.</p>
-            <table ukm:widths="1.67in 1.26in 0.94in 1.19in 0.09in 0.85in 1.08in">
+            <table uk:widths="1.67in 1.26in 0.94in 1.19in 0.09in 0.85in 1.08in">
               <tr>
                 <td>
                   <p />
@@ -2841,7 +2841,7 @@
         <paragraph>
           <content>
             <p><b>Figure 10: Estimated flow of new unique officers on the register each year</b></p>
-            <table ukm:widths="1.45in 2.97in">
+            <table uk:widths="1.45in 2.97in">
               <tr>
                 <td colspan="2">
                   <p><b>Flow of officers per year</b></p>
@@ -2947,7 +2947,7 @@
             <num>•</num>
             <content>
               <p>The turnover of staff who act as non-AML presenters (e.g. if they change job) - in 2020, the average job tenure was 8.6 years.<authorialNote marker="59"><p> See: <a href="https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE"><u>https://stats.oecd.org/Index.aspx?DataSetCode=TENURE_AVE#</u></a> </p></authorialNote> Therefore, we assume that after 8.6 years the entire population of presenters would change. We spread this change proportionately out over the 8.6 years to assume around 19,000 new presenters each year. This is summarised in figure 11 below. </p>
-              <table ukm:widths="2.06in 4.53in">
+              <table uk:widths="2.06in 4.53in">
                 <tr>
                   <td>
                     <p><b>Current stock</b></p>
@@ -3178,7 +3178,7 @@
         <paragraph>
           <content>
             <p><b>Figure 12: Summary of cost estimates for identity verification over 10-year appraisal period</b></p>
-            <table ukm:widths="1.03in 1.34in 1in 1in 0.88in 0.76in 0.93in">
+            <table uk:widths="1.03in 1.34in 1in 1in 0.88in 0.76in 0.93in">
               <tr>
                 <td>
                   <p> </p>
@@ -3608,7 +3608,7 @@
         <paragraph>
           <content>
             <p><b>Figure 13: Estimated year one costs for policy changes to ACSPs</b></p>
-            <table ukm:widths="1.57in 2.21in 1.31in 1.04in">
+            <table uk:widths="1.57in 2.21in 1.31in 1.04in">
               <tr>
                 <td>
                   <p />
@@ -4103,7 +4103,7 @@
           <num>204.</num>
           <content>
             <p>Existing non-traded companies limited by shares, will need to provide a one-off list of their shareholders’ full names. We therefore anticipate that there will be both familiarisation and compliance costs to non-traded companies, as they will need to contact shareholders to ask for their full names (if not already held) and provide a one-off update of their register of members.</p>
-            <table ukm:widths="5.58in 1.29in">
+            <table uk:widths="5.58in 1.29in">
               <tr>
                 <td>
                   <p>Type of company (non-traded limited by shares)</p>
@@ -4177,7 +4177,7 @@
         <paragraph>
           <content>
             <p><b>Figure 15: Summary of expected costs incurred by impacted companies due to new shareholder name disclosure requirements</b></p>
-            <table ukm:widths="1.04in 1.45in 1.79in 1.83in 1.12in">
+            <table uk:widths="1.04in 1.45in 1.79in 1.83in 1.12in">
               <tr>
                 <td>
                   <p>Company type</p>
@@ -4310,7 +4310,7 @@
         <paragraph>
           <content>
             <p><b>Figure 16: Summary of familiarisation costs due to new shareholder name disclosure requirements</b></p>
-            <table ukm:widths="2.44in 2.48in 2.15in">
+            <table uk:widths="2.44in 2.48in 2.15in">
               <tr>
                 <td>
                   <p><b>Company type</b></p>
@@ -4382,7 +4382,7 @@
           <num>216.</num>
           <content>
             <p>Figure 17 below provides a range of the number of shareholders across these 4.6 million non-traded companies limited by shares. FAME analysis indicates that of the affected 4.6 million non-traded companies limited by shares, 99% have ten shareholders or less. This means that around 1% of companies, or around 42,000, have more than ten shareholders.</p>
-            <table ukm:widths="1.65in 0.92in 0.81in 0.9in 0.78in 0.82in 0.8in">
+            <table uk:widths="1.65in 0.92in 0.81in 0.9in 0.78in 0.82in 0.8in">
               <tr>
                 <td colspan="7">
                   <p>Number of shareholders</p>
@@ -4560,7 +4560,7 @@
         <paragraph>
           <content>
             <p><b>Figure 18: Estimated costs to business for changes in requirements to shareholders names</b></p>
-            <table ukm:widths="1.46in 1.56in 1.52in 1.42in 0.59in 0.88in">
+            <table uk:widths="1.46in 1.56in 1.52in 1.42in 0.59in 0.88in">
               <tr>
                 <td>
                   <p />
@@ -5128,7 +5128,7 @@
         <paragraph>
           <content>
             <p><b>Figure 19</b>: <b>Estimated costs of increased discrepancy reporting requirements over 10-year appraisal period</b></p>
-            <table ukm:widths="2.02in 1.67in 1.46in">
+            <table uk:widths="2.02in 1.67in 1.46in">
               <tr>
                 <td>
                   <p><b>Scenario</b></p>
@@ -5495,7 +5495,7 @@
         <paragraph>
           <content>
             <p><b>Figure 20: Small company filing options - current position</b></p>
-            <table ukm:widths="3.54in 3.34in">
+            <table uk:widths="3.54in 3.34in">
               <tr>
                 <td>
                   <p><b>Small company</b></p>
@@ -5763,7 +5763,7 @@
           <num>314.</num>
           <content>
             <p>There were around 451,000 accounts which paper filed in 2019/20 (as of 31 March 2020) which would need to move to digital filing.<authorialNote marker="101"><p> We use data from 2019/20 due to the legislative easements around account filing due to the Covid-19 in 2020/21 due to the Covid-19 pandemic. See: <a href="https://www.gov.uk/government/publications/the-companies-etc-filing-requirements-temporary-modifications-regulations-2020/temporary-changes-to-companies-house-filing-requirements"><u>https://www.gov.uk/government/publications/the-companies-etc-filing-requirements-temporary-modifications-regulations-2020/temporary-changes-to-companies-house-filing-requirements</u></a> </p></authorialNote> <authorialNote marker="102"><p> Under new FCA requirements, listed companies will need to file electronically ahead of these changes. See: <a href="https://www.fca.org.uk/markets/company-annual-financial-reporting-electronic-format"><u>https://www.fca.org.uk/markets/company-annual-financial-reporting-electronic-format</u></a>. We will look to omit listed companies from our calculations going forward, although envisage this will be a small proportion of the current companies, given they make up less than 1% of companies on the register.</p></authorialNote> <authorialNote marker="103"><p> It is worth noting that a proportion of companies (approximately 20%) will not file accounts each year for several reasons, including being a new company (a company has up to 21 months from the date of incorporation to file their accounts) or being non-compliant and thus being struck off.</p></authorialNote> Using the rationale that one account is equal to one company, we estimate that 451,000 companies will need to switch from paper filing to digital filing. Figure 21 below provides a breakdown of this. </p>
-            <table ukm:widths="4.07in 3.13in 0.01in">
+            <table uk:widths="4.07in 3.13in 0.01in">
               <tr>
                 <td>
                   <p>Account Type</p>
@@ -5962,7 +5962,7 @@
           <num>322.</num>
           <content>
             <p>The costs of purchasing software can be summarised in figure 22 below.</p>
-            <table ukm:widths="2.47in 2.47in 2.47in">
+            <table uk:widths="2.47in 2.47in 2.47in">
               <tr>
                 <td>
                   <p />
@@ -6036,7 +6036,7 @@
         <paragraph>
           <content>
             <p><b>Figure 23: Summary of estimated costs to business of mandatory digitally filing over 10-year appraisal period</b></p>
-            <table ukm:widths="1.57in 4.13in 1.37in">
+            <table uk:widths="1.57in 4.13in 1.37in">
               <tr>
                 <td>
                   <p />
@@ -6105,7 +6105,7 @@
         <paragraph>
           <content>
             <p><b>Figure 24:</b><b><i> </i></b><b>Companies House account rejections by submission type (2019/20)</b></p>
-            <table ukm:widths="1.19in 1.31in 1.23in 1.3in 1.53in">
+            <table uk:widths="1.19in 1.31in 1.23in 1.3in 1.53in">
               <tr>
                 <td>
                   <p>Account type</p>
@@ -6185,7 +6185,7 @@
         <paragraph>
           <content>
             <p><b>Figure 25: Estimated annual savings to companies that currently paper file switching to digital </b></p>
-            <table ukm:widths="3.06in 0.97in 1.43in 1.78in">
+            <table uk:widths="3.06in 0.97in 1.43in 1.78in">
               <tr>
                 <td>
                   <p>Accounts type</p>
@@ -6391,7 +6391,7 @@
           <num>341.</num>
           <content>
             <p>Figure 26 below summarises the estimated costs to business of simplifying the small account regime.</p>
-            <table ukm:widths="3.71in 2.92in">
+            <table uk:widths="3.71in 2.92in">
               <tr>
                 <td>
                   <p />
@@ -6488,7 +6488,7 @@
         <paragraph>
           <content>
             <p><b>Figure 27: Summary of estimated costs to reforming accounts</b></p>
-            <table ukm:widths="3.76in 0.62in 0.72in 0.57in 0.48in 0.72in 0.52in">
+            <table uk:widths="3.76in 0.62in 0.72in 0.57in 0.48in 0.72in 0.52in">
               <tr>
                 <td>
                   <p />
@@ -6774,7 +6774,7 @@
         <paragraph>
           <content>
             <p><b>Figure 28: Companies House transformation programme cost (2021-2032)</b></p>
-            <table ukm:widths="0.6in 0.74in 0.74in 0.74in 0.63in 0.67in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in">
+            <table uk:widths="0.6in 0.74in 0.74in 0.74in 0.63in 0.67in 0.58in 0.58in 0.58in 0.58in 0.58in 0.58in">
               <tr>
                 <td>
                   <p><b>£m</b></p>
@@ -6869,7 +6869,7 @@
         <paragraph>
           <content>
             <p><b>Figure 29: Costs to Companies House of running transformed services (2021-32)</b></p>
-            <table ukm:widths="0.82in 0.61in 0.68in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in">
+            <table uk:widths="0.82in 0.61in 0.68in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in">
               <tr>
                 <td>
                   <p><b>£m</b></p>
@@ -6964,7 +6964,7 @@
         <paragraph>
           <content>
             <p><b>Figure 30: Internal benefits of transformation to Companies House (2021-32)</b></p>
-            <table ukm:widths="0.9in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in">
+            <table uk:widths="0.9in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in 0.61in">
               <tr>
                 <td>
                   <p><b>£m</b></p>
@@ -7059,7 +7059,7 @@
         <paragraph>
           <content>
             <p><b>Figure 31: Net cost of transformation to Companies House (2021-32)</b></p>
-            <table ukm:widths="0.56in 0.55in 0.57in 0.61in 0.72in 0.68in 0.68in 0.68in 0.68in 0.68in 0.59in 0.57in">
+            <table uk:widths="0.56in 0.55in 0.57in 0.61in 0.72in 0.68in 0.68in 0.68in 0.68in 0.68in 0.59in 0.57in">
               <tr>
                 <td>
                   <p><b>£m</b></p>
@@ -7328,7 +7328,7 @@
         <paragraph>
           <content>
             <p><b>Figure 37: Aggregate benefits of Companies House data (£m)</b></p>
-            <table ukm:widths="2.28in 2.28in 2.28in">
+            <table uk:widths="2.28in 2.28in 2.28in">
               <tr>
                 <td>
                   <p />
@@ -7408,7 +7408,7 @@
         <paragraph>
           <content>
             <p><b>Figure 38: Estimated NPV and EANDBB due to a percentage increase in the value of Companies House data</b></p>
-            <table ukm:widths="0.79in 1.45in 1.85in">
+            <table uk:widths="0.79in 1.45in 1.85in">
               <tr>
                 <td>
                   <p />
@@ -7571,7 +7571,7 @@
         <paragraph>
           <content>
             <p><b>Figure 40: Estimates of the different costs and types of crime</b></p>
-            <table ukm:widths="2.15in 1.05in 3.88in">
+            <table uk:widths="2.15in 1.05in 3.88in">
               <tr>
                 <td>
                   <p><b>Source</b></p>
@@ -7707,7 +7707,7 @@
           <num>403.</num>
           <content>
             <p>The table below provides a logic model of how we envisage these policies will lead to our intended outcomes.</p>
-            <table ukm:widths="1.11in 2.74in 0.19in 3.35in 0.17in 3.7in">
+            <table uk:widths="1.11in 2.74in 0.19in 3.35in 0.17in 3.7in">
               <tr>
                 <td>
                   <p> </p>
@@ -7875,7 +7875,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.18in 6.4in 0.39in 3.1in 0.18in">
+            <table uk:widths="1.18in 6.4in 0.39in 3.1in 0.18in">
               <tr>
                 <td>
                   <p> </p>
@@ -8051,7 +8051,7 @@
           <num>404.</num>
           <content>
             <p>This section provides a summary of the estimates costs of this policy package (see figure 41). The costs presented on the cover sheets will vary slightly from that in the main text of the Impact Assessment for BIT accounting purposes.</p>
-            <table ukm:widths="1.4in 1.5in 4.22in 1.29in 1.23in 1.23in">
+            <table uk:widths="1.4in 1.5in 4.22in 1.29in 1.23in 1.23in">
               <tr>
                 <td>
                   <p><b>Policy</b></p>
@@ -8498,7 +8498,7 @@
         <paragraph>
           <content>
             <p><i><u>Aim 1 Assessment</u></i></p>
-            <table ukm:widths="2.36in 1.67in">
+            <table uk:widths="2.36in 1.67in">
               <tr>
                 <td>
                   <p><b>Protected Characteristic</b></p>
@@ -8603,7 +8603,7 @@
         <paragraph>
           <content>
             <p><i><u>Aim 2 Assessment</u></i></p>
-            <table ukm:widths="2.36in 1.67in">
+            <table uk:widths="2.36in 1.67in">
               <tr>
                 <td>
                   <p><b>Protected Characteristic</b></p>
@@ -8694,7 +8694,7 @@
         <paragraph>
           <content>
             <p><i><u>Aim 3 Assessment</u></i></p>
-            <table ukm:widths="2.36in 1.67in">
+            <table uk:widths="2.36in 1.67in">
               <tr>
                 <td>
                   <p><b>Protected Characteristic</b></p>
@@ -9073,7 +9073,7 @@
           <num>7.</num>
           <content>
             <p>Summarised below are all of the amendments (with respect to DBT’s measures) made at each stage of the Bill’s passage through Parliament, as well as the supporting cost assessment for each:</p>
-            <table ukm:widths="3.15in 3.93in">
+            <table uk:widths="3.15in 3.93in">
               <tr>
                 <td colspan="2">
                   <p><b>Commons Committee and Report Stage Amendments</b></p>
@@ -9150,7 +9150,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="3.15in 3.93in">
+            <table uk:widths="3.15in 3.93in">
               <tr>
                 <td colspan="2">
                   <p><b>Lords Committee Stage Amendments</b></p>
@@ -9227,7 +9227,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="3.15in 3.93in">
+            <table uk:widths="3.15in 3.93in">
               <tr>
                 <td colspan="2">
                   <p><b>Lords Report Stage Amendments</b></p>
@@ -9290,7 +9290,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="3.15in 3.93in">
+            <table uk:widths="3.15in 3.93in">
               <tr>
                 <td colspan="2">
                   <p><b>Lords Third Reading Amendments</b></p>
@@ -9332,7 +9332,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="3.15in 3.93in">
+            <table uk:widths="3.15in 3.93in">
               <tr>
                 <td colspan="2">
                   <p><b>Lords Consideration of Commons Amendments Round 1 (LCCA1) Amendment</b></p>
@@ -9432,7 +9432,7 @@
         <paragraph>
           <content>
             <p><b>Table 1: Estimated familiarisation cost </b></p>
-            <table ukm:widths="1.89in 1.73in 1.73in 1.73in">
+            <table uk:widths="1.89in 1.73in 1.73in 1.73in">
               <tr>
                 <td>
                   <p />
@@ -9544,7 +9544,7 @@
         <paragraph>
           <content>
             <p><b>Table 2: Estimated annual benefit/cost-savings required </b></p>
-            <table ukm:widths="1.89in 1.73in 1.73in 1.73in">
+            <table uk:widths="1.89in 1.73in 1.73in 1.73in">
               <tr>
                 <td>
                   <p />

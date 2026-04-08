@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990/impacts/2025/14" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990/impacts/2025/14" />
-          <FRBRdate date="2026-03-31" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348267990/impacts/2025/14/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348267990/impacts/2025/14/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-01-17</dc:modified>
         <dc:title>Impact Assessment The Higher Education (Fee Limits and Fee Limit Condition) (England) (Amendment) Regulations 2025</dc:title>
         <dc:description>Impact Assessment The Higher Education (Fee Limits and Fee Limit Condition) (England) (Amendment) Regulations 2025</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348267990" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2025/14</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>Department for Education</ukm:department>
-        <ukm:date>2025-01-16</ukm:date>
-        <ukm:pdfDate>2025-01-20</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomDraftStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2025</ukm:year>
-        <ukm:number>14</ukm:number>
-        <ukm:legislationYear>2025</ukm:legislationYear>
-        <ukm:legislationNumber>9780348267990</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="Department for Education" />
+        <ukm:Date Value="2025-01-16" />
+        <ukm:PdfDate Value="2025-01-20" />
+        <ukm:LegislationClass Value="UnitedKingdomDraftStatutoryInstrument" />
+        <ukm:Year Value="2025" />
+        <ukm:Number Value="14" />
+        <ukm:LegislationYear Value="2025" />
+        <ukm:LegislationNumber Value="9780348267990" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="104" />
           <ukm:BodyParagraphs Value="104" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="2" />
         </ukm:Statistics>
-        <ukm:hash>f52cfa8e90a29bf252c86edbe5f6c7acdba68648de402cdb316491ce94ab397f</ukm:hash>
+        <uk:hash>f52cfa8e90a29bf252c86edbe5f6c7acdba68648de402cdb316491ce94ab397f</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -112,7 +112,7 @@
         <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267990/impacts/2025/14/section/50" level="2"><inline name="tocHeading">49. Disability</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348267990/impacts/2025/14/section/51" level="2"><inline name="tocHeading">50. Family Test Analysis</inline></tocItem>
       </toc>
-      <table ukm:widths="2.2in 2.2in 2.2in">
+      <table uk:widths="2.2in 2.2in 2.2in">
         <tr>
           <td>
             <p />
@@ -441,7 +441,7 @@
         <paragraph>
           <content>
             <p><b>Table 1: Maximum fees and fee loans for full-time and part-time courses in 2025/26 (Approved fee cap providers)</b></p>
-            <table ukm:widths="1.77in 1.38in 0.79in 0.89in 0.79in 0.98in">
+            <table uk:widths="1.77in 1.38in 0.79in 0.89in 0.79in 0.98in">
               <tr>
                 <td>
                   <p />
@@ -602,7 +602,7 @@
         <paragraph>
           <content>
             <p><b>Table 2: Maximum fees and fee loans for full-time and part-time courses in 2025/26 (Approved providers)</b></p>
-            <table ukm:widths="1.77in 1.38in 0.88in 0.89in 0.89in 0.79in">
+            <table uk:widths="1.77in 1.38in 0.88in 0.89in 0.89in 0.79in">
               <tr>
                 <td>
                   <p />
@@ -1294,7 +1294,7 @@
         <paragraph>
           <content>
             <p><b>Table 3: Full-time undergraduate acceptances, England</b></p>
-            <table ukm:widths="2.2in 2.2in 2.2in">
+            <table uk:widths="2.2in 2.2in 2.2in">
               <tr>
                 <td>
                   <p />
@@ -1372,7 +1372,7 @@
         <paragraph>
           <content>
             <p><b>Table 4: Progression to HE at age 19 by protected characteristic, England</b></p>
-            <table ukm:widths="4.23in 1.18in 1.18in">
+            <table uk:widths="4.23in 1.18in 1.18in">
               <tr>
                 <td>
                   <p />
@@ -1624,7 +1624,7 @@
         <paragraph>
           <content>
             <p><b>Table 5: Full-time, English domiciled undergraduate enrolments by funding type and sex at English HE providers in AY2022/23</b></p>
-            <table ukm:widths="2.66in 0.79in 0.89in 0.79in 0.89in">
+            <table uk:widths="2.66in 0.79in 0.89in 0.79in 0.89in">
               <tr>
                 <td>
                   <p />
@@ -1731,7 +1731,7 @@
         <paragraph>
           <content>
             <p><b>Table 6: Full-time, English domiciled undergraduate enrolments by funding type and age group at English HE providers in AY2022/23</b></p>
-            <table ukm:widths="2.64in 0.75in 0.78in 0.76in 0.86in 0.89in">
+            <table uk:widths="2.64in 0.75in 0.78in 0.76in 0.86in 0.89in">
               <tr>
                 <td>
                   <p />
@@ -1859,7 +1859,7 @@
         <paragraph>
           <content>
             <p><b>Table 7: Full-time, English domiciled undergraduate enrolments by funding type and disability status at English HE providers in AY2022/23</b></p>
-            <table ukm:widths="2.76in 1.28in 1.28in 1.28in">
+            <table uk:widths="2.76in 1.28in 1.28in 1.28in">
               <tr>
                 <td>
                   <p />
@@ -1952,7 +1952,7 @@
         <paragraph>
           <content>
             <p><b>Table 8: Full-time, English domiciled undergraduate enrolments by funding type and gender identity at English HE providers in AY22/23</b></p>
-            <table ukm:widths="2.76in 1.28in 1.48in 1.08in">
+            <table uk:widths="2.76in 1.28in 1.48in 1.08in">
               <tr>
                 <td>
                   <p />
@@ -2050,7 +2050,7 @@
         <paragraph>
           <content>
             <p><b>Table 9:</b><b> </b><b>Full-time, English domiciled undergraduate enrolments by funding type and religious belief at English HE providers in AY2022/23</b></p>
-            <table ukm:widths="2.58in 0.87in 0.82in 0.87in 0.8in 0.81in 0.8in 0.91in 0.88in 0.98in">
+            <table uk:widths="2.58in 0.87in 0.82in 0.87in 0.8in 0.81in 0.8in 0.91in 0.88in 0.98in">
               <tr>
                 <td>
                   <p />
@@ -2233,7 +2233,7 @@
         <paragraph>
           <content>
             <p><b>Table 10: Full-time, English domiciled undergraduate enrolments by funding type and sexual orientation at English HE providers in AY22/23</b></p>
-            <table ukm:widths="2.76in 1.48in 1.48in 1.48in 1.48in 1.48in">
+            <table uk:widths="2.76in 1.48in 1.48in 1.48in 1.48in 1.48in">
               <tr>
                 <td>
                   <p />
@@ -2351,7 +2351,7 @@
         <paragraph>
           <content>
             <p><b>Table 11:</b><b> </b><b>Full-time, English domiciled undergraduate enrolments by funding type and ethnicity at English HE providers in AY22/23</b></p>
-            <table ukm:widths="2.76in 1.23in 1.23in 1.23in 1.23in 1.23in 1.23in">
+            <table uk:widths="2.76in 1.23in 1.23in 1.23in 1.23in 1.23in 1.23in">
               <tr>
                 <td>
                   <p />
@@ -2484,7 +2484,7 @@
         <paragraph>
           <content>
             <p><b>Table 12:</b><b> </b><b>Full-time, English domiciled undergraduate enrolments by funding type and POLAR at English HE providers in AY2022/23</b></p>
-            <table ukm:widths="3.28in 2.28in 2.28in 1.42in">
+            <table uk:widths="3.28in 2.28in 2.28in 1.42in">
               <tr>
                 <td>
                   <p />
@@ -2572,7 +2572,7 @@
         <paragraph>
           <content>
             <p><b>Table 13: Full-time, English domiciled undergraduate enrolments by funding type and POLAR at English HE providers in AY2022/23</b></p>
-            <table ukm:widths="2.46in 0.83in 0.83in 0.81in 0.69in 0.79in 0.79in 0.69in 0.89in 0.79in 0.98in">
+            <table uk:widths="2.46in 0.83in 0.83in 0.81in 0.69in 0.79in 0.79in 0.69in 0.89in 0.79in 0.98in">
               <tr>
                 <td>
                   <p />
@@ -2862,7 +2862,7 @@
         <paragraph>
           <content>
             <p><b>Table 14:  Academic year 2022/23 student population segmented by </b><b><i>age and subject price group</i></b><b> – in foundation years and in first-year undergraduate study.</b></p>
-            <table ukm:widths="1.77in 1.18in 1.18in 1.18in 1.18in">
+            <table uk:widths="1.77in 1.18in 1.18in 1.18in 1.18in">
               <tr>
                 <td>
                   <p />
@@ -2974,7 +2974,7 @@
         <paragraph>
           <content>
             <p><b>Table 15: Academic year 2022/23 student characteristics by </b><b><i>disability status and subject price group</i></b><b>, across both foundation year students and first-year undergraduates.</b></p>
-            <table ukm:widths="1.77in 1.2in 1.2in 1.2in 1.2in">
+            <table uk:widths="1.77in 1.2in 1.2in 1.2in 1.2in">
               <tr>
                 <td>
                   <p />
@@ -3087,7 +3087,7 @@
         <paragraph>
           <content>
             <p><b>Table 16: Academic year 2022/23 student characteristics by </b><b><i>ethnicity and subject price group</i></b><b> across both foundation year students and first-year undergraduates</b><authorialNote marker="32"><p> Figures are rounded so total may exceed 100%. </p></authorialNote><b>.</b></p>
-            <table ukm:widths="2.03in 0.88in 0.88in 0.88in 0.88in 0.88in">
+            <table uk:widths="2.03in 0.88in 0.88in 0.88in 0.88in 0.88in">
               <tr>
                 <td>
                   <p />
@@ -3267,7 +3267,7 @@
         <paragraph>
           <content>
             <p><b>Table 17: Academic year 2022/23 student characteristics by </b><b><i>sex</i></b><b> </b><b><i>and subject price group</i></b><b> across both foundation year students and first-year undergraduates.</b></p>
-            <table ukm:widths="2.42in 1.54in 1.31in 1.31in">
+            <table uk:widths="2.42in 1.54in 1.31in 1.31in">
               <tr>
                 <td>
                   <p />
@@ -3427,7 +3427,7 @@
         <paragraph>
           <content>
             <p><b>Table 18: Academic year 2022/23 student characteristics by disadvantage (POLAR quintile</b><authorialNote marker="33"><p> https://www.officeforstudents.org.uk/data-and-analysis/young-participation-by-area/about-polar-and-adult-he/ is an area-based measure which classifies local areas into five groups based on the proportion of 18-19 years old who enter higher education. Quintile one shows the lowest rate of participation and five highest.</p></authorialNote><b>) across both foundation year students and comparable undergraduates</b><authorialNote marker="34"><p> Figures are rounded so total may exceed 100%.</p></authorialNote><b>.</b></p>
-            <table ukm:widths="2.07in 0.85in 0.95in 0.95in 0.95in 0.95in">
+            <table uk:widths="2.07in 0.85in 0.95in 0.95in 0.95in 0.95in">
               <tr>
                 <td>
                   <p />
@@ -3638,7 +3638,7 @@
         <paragraph>
           <content>
             <p><b>Table 19: Full-time undergraduate acceptances, England</b></p>
-            <table ukm:widths="2.07in 1.51in 1.51in 1.51in">
+            <table uk:widths="2.07in 1.51in 1.51in 1.51in">
               <tr>
                 <td>
                   <p />
@@ -3734,7 +3734,7 @@
         <paragraph>
           <content>
             <p><b>Table 20: Progression to HE at age 19 by protected characteristic, England</b></p>
-            <table ukm:widths="4.23in 1.18in 1.18in">
+            <table uk:widths="4.23in 1.18in 1.18in">
               <tr>
                 <td>
                   <p />
@@ -4007,7 +4007,7 @@
         <paragraph>
           <content>
             <p><b>Annex A - Maximum tuition fees at Approved (Fee Cap) providers for 2025/26</b></p>
-            <table ukm:widths="1.58in 1.05in 0.94in 1.15in 1.13in 1.14in">
+            <table uk:widths="1.58in 1.05in 0.94in 1.15in 1.13in 1.14in">
               <tr>
                 <td>
                   <p><b>Rate</b></p>

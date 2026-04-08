@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/asp/2025/6/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/asp/2025/6/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/ScottishParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/asp/2025/6/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/asp/2025/6/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-11-05</dc:modified>
         <dc:title>Explanatory Notes Welfare of Dogs (Scotland) Act 2025</dc:title>
         <dc:description>Explanatory Notes Welfare of Dogs (Scotland) Act 2025</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer for Scotland</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/asp/2025/6</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/asp/2025/6" />
         <dc:identifier>http://www.legislation.gov.uk/id/asp/2025/6/notes</dc:identifier>
-        <ukm:documentMainType>ScottishActExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2025-11-05</ukm:date>
-        <ukm:legislationClass>ScottishAct</ukm:legislationClass>
-        <ukm:legislationYear>2025</ukm:legislationYear>
-        <ukm:legislationNumber>6</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="ScottishActExplanatoryNotes" />
+        <ukm:Date Value="2025-11-05" />
+        <ukm:LegislationClass Value="ScottishAct" />
+        <ukm:LegislationYear Value="2025" />
+        <ukm:LegislationNumber Value="6" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="26" />
           <ukm:BodyParagraphs Value="26" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>d6e3ccf98cb09e250ba88f2b2b83beb622b742a1d7c6f77cb3f47acaf95276ec</ukm:hash>
+        <uk:hash>d6e3ccf98cb09e250ba88f2b2b83beb622b742a1d7c6f77cb3f47acaf95276ec</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -297,7 +297,7 @@
         <num>26.</num>
         <content>
           <p>The following table sets out, for each Stage of the proceedings in the Scottish Parliament on the Bill for this Act, the dates on which the proceedings at that Stage took place, and references to the Official Report of those proceedings.  It also shows the dates on which Committee reports and other papers relating to the Bill were published, and gives references to those reports and other papers.</p>
-          <table ukm:widths="3.08in 3.29in">
+          <table uk:widths="3.08in 3.29in">
             <tr>
               <th>
                 <p><b>PROCEEDINGS AND REPORTS</b></p>

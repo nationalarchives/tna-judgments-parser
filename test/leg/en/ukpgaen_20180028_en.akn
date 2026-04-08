@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2018/28/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2018/28/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2018/28/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2018/28/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2018-11-07</dc:modified>
         <dc:title>Explanatory Notes Northern Ireland (Executive Formation and Exercise of Functions) Act 2018</dc:title>
         <dc:description>Explanatory Notes Northern Ireland (Executive Formation and Exercise of Functions) Act 2018</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2018/28</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2018/28" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2018/28/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2018-11-09</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2018</ukm:legislationYear>
-        <ukm:legislationNumber>28</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2018-11-09" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2018" />
+        <ukm:LegislationNumber Value="28" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="39" />
           <ukm:BodyParagraphs Value="39" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>5be806ba6c43c61f7fb808df55c42a0b6f21da0f5b15e0363f90bd8810b717ac</ukm:hash>
+        <uk:hash>5be806ba6c43c61f7fb808df55c42a0b6f21da0f5b15e0363f90bd8810b717ac</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -102,7 +102,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -597,7 +597,7 @@
         <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="0.84in 0.79in 0.8in 0.69in 0.95in">
+            <table uk:widths="0.84in 0.79in 0.8in 0.69in 0.95in">
               <tr>
                 <th>
                   <p><b>Provision</b></p>
@@ -657,7 +657,7 @@
         <heading><b>Annex B - Hansard References</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.58in 1.87in 1.88in">
+            <table uk:widths="1.58in 1.87in 1.88in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>
@@ -813,7 +813,7 @@
         <heading><b>Annex C - Progress of Bill Table</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.07in 1.08in 1.08in 1.08in 1.08in 1.08in">
+            <table uk:widths="1.07in 1.08in 1.08in 1.08in 1.08in 1.08in">
               <tr>
                 <th>
                   <p><b>Section of the Act</b></p>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/asp/2025/1/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/asp/2025/1/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/ScottishParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/asp/2025/1/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/asp/2025/1/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-01-30</dc:modified>
         <dc:title>Explanatory Notes Prisoners (Early Release) (Scotland) Act 2025</dc:title>
         <dc:description>Explanatory Notes Prisoners (Early Release) (Scotland) Act 2025</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer for Scotland</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/asp/2025/1</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/asp/2025/1" />
         <dc:identifier>http://www.legislation.gov.uk/id/asp/2025/1/notes</dc:identifier>
-        <ukm:documentMainType>ScottishActExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2025-02-04</ukm:date>
-        <ukm:legislationClass>ScottishAct</ukm:legislationClass>
-        <ukm:legislationYear>2025</ukm:legislationYear>
-        <ukm:legislationNumber>1</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="ScottishActExplanatoryNotes" />
+        <ukm:Date Value="2025-02-04" />
+        <ukm:LegislationClass Value="ScottishAct" />
+        <ukm:LegislationYear Value="2025" />
+        <ukm:LegislationNumber Value="1" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="80" />
           <ukm:BodyParagraphs Value="80" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>6ef2e14896f9cce63024379f67bcaaf6dc6d609a074aee08149d0ce5ff23b366</ukm:hash>
+        <uk:hash>6ef2e14896f9cce63024379f67bcaaf6dc6d609a074aee08149d0ce5ff23b366</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -1021,7 +1021,7 @@
         <num>80.</num>
         <content>
           <p>The following is a list of the proceedings in the Scottish Parliament on the Bill for the Act and significant documents connected to the Bill published by the Parliament during the Bill’s parliamentary passage.  The Act was passed under the procedure for Emergency Bills.</p>
-          <table ukm:widths="3.54in 2.72in">
+          <table uk:widths="3.54in 2.72in">
             <tr>
               <th>
                 <p><b><i>Proceedings and reports</i></b></p>

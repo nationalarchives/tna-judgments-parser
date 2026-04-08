@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/38/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/38/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/38/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/38/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,28 +28,28 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2022-08-08</dc:modified>
         <dc:title>Explanatory Notes Social Security (Additional Payments) Act 2022</dc:title>
         <dc:description>Explanatory Notes Social Security (Additional Payments) Act 2022</dc:description>
         <dc:type>text</dc:type>
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2022/38</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2022/38" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2022/38/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2022-07-11</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2022</ukm:legislationYear>
-        <ukm:legislationNumber>38</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2022-07-11" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2022" />
+        <ukm:LegislationNumber Value="38" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="51" />
           <ukm:BodyParagraphs Value="51" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>82300b5a9a126594fd51fbe2477fdb48dea784f067c3fc77996d200e9654251a</ukm:hash>
+        <uk:hash>82300b5a9a126594fd51fbe2477fdb48dea784f067c3fc77996d200e9654251a</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -101,7 +101,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.15in 3.15in">
+          <table uk:widths="3.15in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -346,7 +346,7 @@
               <num>b.</num>
               <content>
                 <p>For State Pension Credit, an Income-Based Jobseeker’s Allowance, an Income Related Employment and Support Allowance or Income Support, a person must have an entitlement to a payment of at least 1p in respect of any day during the period of one month ending with the qualifying day. </p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Example 1: Qualifying entitlement to Universal Credit for the first Means-tested Additional Payment </p>
@@ -363,7 +363,7 @@
             <num>19 </num>
             <content>
               <p>Subsection (2) defines what is meant by the qualifying entitlement to Child Tax Credit or Working Tax Credit by reference to a qualifying day. A person must have received a payment or have an award in respect of any day in the period of one month ending with the qualifying day. The payment or award must be expected to total at least £26 for the tax year 2022-23.</p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (3): Qualifying entitlement to Child Tax Credit for the first Means-tested Additional Payment.</p>
@@ -394,7 +394,7 @@
             <num>22 </num>
             <content>
               <p>Subsection (2) provides that where a person has a qualifying entitlement to Child Tax Credit and to Working Tax Credit in respect of a qualifying day, the Means-tested Additional Payment is to be paid in reference to entitlement of Child Tax Credit. This means that the payment will be made in the same manner as, and to the same recipient of, the Child Tax Credit. </p>
-              <table ukm:widths="4.66in">
+              <table uk:widths="4.66in">
                 <tr>
                   <td>
                     <p>Example (3): A person with a qualifying entitlement to more than one social security benefit</p>
@@ -711,7 +711,7 @@
           <num>48 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament.</p>
-            <table ukm:widths="1.71in 1.44in 3.14in">
+            <table uk:widths="1.71in 1.44in 3.14in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>

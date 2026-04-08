@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryMemorandum" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryMemorandum" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2022/1005/memorandum/1" />
           <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2022/1005/memorandum/1" />
-          <FRBRdate date="2026-03-31" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2022/1005/memorandum/1/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2022/1005/memorandum/1/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2022-10-04</dc:modified>
         <dc:title>Explanatory Memorandum The Cat and Dog Fur (Control of Movement etc.) (EU Exit) Regulations 2022</dc:title>
         <dc:description>Explanatory Memorandum The Cat and Dog Fur (Control of Movement etc.) (EU Exit) Regulations 2022</dc:description>
@@ -37,22 +37,22 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/uksi/2022/1005</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/uksi/2022/1005" />
         <dc:identifier>http://www.legislation.gov.uk/id/uksi/2022/1005/memorandum/1</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryMemorandum</ukm:documentMainType>
-        <ukm:date>2022-10-04</ukm:date>
-        <ukm:legislationClass>UnitedKingdomStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2022</ukm:year>
-        <ukm:version>1</ukm:version>
-        <ukm:legislationYear>2022</ukm:legislationYear>
-        <ukm:legislationNumber>1005</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryMemorandum" />
+        <ukm:Date Value="2022-10-04" />
+        <ukm:LegislationClass Value="UnitedKingdomStatutoryInstrument" />
+        <ukm:Year Value="2022" />
+        <ukm:Version Value="1" />
+        <ukm:LegislationYear Value="2022" />
+        <ukm:LegislationNumber Value="1005" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="74" />
           <ukm:BodyParagraphs Value="48" />
           <ukm:ScheduleParagraphs Value="26" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>5211c013d0e0724ade292839b9a26106c8d67d6929543a86070729c4a3c12197</ukm:hash>
+        <uk:hash>5211c013d0e0724ade292839b9a26106c8d67d6929543a86070729c4a3c12197</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -589,21 +589,21 @@
               <FRBRWork>
                 <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2022/1005/memorandum/1/annex/1" />
                 <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2022/1005/memorandum/1/annex/1" />
-                <FRBRdate date="2026-03-31" name="generated" />
+                <FRBRdate date="2026-04-08" name="generated" />
                 <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
                 <FRBRcountry value="GB-UKM" />
               </FRBRWork>
               <FRBRExpression>
                 <FRBRthis value="http://www.legislation.gov.uk/uksi/2022/1005/memorandum/1/annex/1" />
                 <FRBRuri value="http://www.legislation.gov.uk/uksi/2022/1005/memorandum/1/annex/1" />
-                <FRBRdate date="2026-03-31" name="generated" />
+                <FRBRdate date="2026-04-08" name="generated" />
                 <FRBRauthor href="#" />
                 <FRBRlanguage language="en" />
               </FRBRExpression>
               <FRBRManifestation>
                 <FRBRthis value="http://www.legislation.gov.uk/uksi/2022/1005/memorandum/1/annex/1/data.akn" />
                 <FRBRuri value="http://www.legislation.gov.uk/uksi/2022/1005/memorandum/1/annex/1/data.akn" />
-                <FRBRdate date="2026-03-31" name="transform" />
+                <FRBRdate date="2026-04-08" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/akn+xml" />
               </FRBRManifestation>
@@ -615,7 +615,7 @@
             <p class="center"><b>Part 1A</b></p>
             <p class="center">Table of Statements under the 2018 Act</p>
             <p>This table sets out the statements that <u>may</u> be required under the 2018 Act.</p>
-            <table ukm:widths="0.98in 1.77in 1.87in 2.56in">
+            <table uk:widths="0.98in 1.77in 1.87in 2.56in">
               <tr>
                 <td>
                   <p><b>Statement</b></p>
@@ -784,7 +784,7 @@
             <p class="center"><b>Part 1B</b></p>
             <p class="center">Table of Statements under the 2020 Act</p>
             <p>This table sets out the statements that <u>may</u> be required under the 2020 Act.</p>
-            <table ukm:widths="0.98in 1.77in 1.87in 2.56in">
+            <table uk:widths="0.98in 1.77in 1.87in 2.56in">
               <tr>
                 <td>
                   <p><b>Statement</b></p>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348266474/impacts/2025/1/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348266474/impacts/2025/1/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2024-11-28</dc:modified>
         <dc:title>Impact Assessment The Heat Networks (Market Framework) (Great Britain) Regulations 2025</dc:title>
         <dc:description>Impact Assessment The Heat Networks (Market Framework) (Great Britain) Regulations 2025</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukdsi/2025/9780348266474</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348266474" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2025/1</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>Department for Energy Security and Net Zero</ukm:department>
-        <ukm:date>2024-11-28</ukm:date>
-        <ukm:pdfDate>2024-11-28</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomDraftStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2025</ukm:year>
-        <ukm:number>1</ukm:number>
-        <ukm:legislationYear>2025</ukm:legislationYear>
-        <ukm:legislationNumber>9780348266474</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="Department for Energy Security and Net Zero" />
+        <ukm:Date Value="2024-11-28" />
+        <ukm:PdfDate Value="2024-11-28" />
+        <ukm:LegislationClass Value="UnitedKingdomDraftStatutoryInstrument" />
+        <ukm:Year Value="2025" />
+        <ukm:Number Value="1" />
+        <ukm:LegislationYear Value="2025" />
+        <ukm:LegislationNumber Value="9780348266474" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="179" />
           <ukm:BodyParagraphs Value="148" />
           <ukm:ScheduleParagraphs Value="31" />
           <ukm:TotalImages Value="3" />
         </ukm:Statistics>
-        <ukm:hash>f73d4e7a4904ba1e1bc7e43a1a07f858a479299ee8c1ad3c07042e522d69af55</ukm:hash>
+        <uk:hash>f73d4e7a4904ba1e1bc7e43a1a07f858a479299ee8c1ad3c07042e522d69af55</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -98,7 +98,7 @@
       </toc>
       <level>
         <content>
-          <table ukm:widths="1.47in 1.61in 1.46in 0.6in 2.32in 0.01in">
+          <table uk:widths="1.47in 1.61in 1.46in 0.6in 2.32in 0.01in">
             <tr>
               <td colspan="3">
                 <p><b>Title:</b> <docTitle> Heat Networks Market Framework Regulations Impact Assessment   </docTitle></p>
@@ -108,7 +108,7 @@
                 <p><b>Other departments or agencies: </b><b> </b><inline name="otherDepartments">N/A</inline></p>
               </td>
               <td colspan="3">
-                <table ukm:widths="2.97in">
+                <table uk:widths="2.97in">
                   <tr>
                     <td>
                       <p>Impact Assessment (IA)</p>
@@ -231,7 +231,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.41in">
+          <table uk:widths="7.41in">
             <tr>
               <td>
                 <p><b>What are the policy objectives of the action or intervention and the intended effects? </b>This is an enabling policy which aims to achieve a twofold effect. The first objective is to specify Ofgem as the heat network regulator and implement consumer protection organisations into the market. This is what is explicitly legislated within the Heat Networks (Market Framework) (Great Britain) Regulations 2025 and hence is what has been included in scope of this IA. However, the intended effects of this policy go further as these initial statutory instruments build a regulatory groundwork in the market in which future powers and rules (e.g. extra rights and powers, Step In protections and technical standards) can be introduced through further statutory instruments to ensure greater consumer protection. The regulation also encourages growth of the heat network market by improving consumer and producer confidence. </p>
@@ -244,7 +244,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.38in">
+          <table uk:widths="7.38in">
             <tr>
               <td>
                 <p><b>What policy options have been considered, including any alternatives to regulation? </b>There are two overarching options assessed in this IA, a continuation of existing market arrangements (Counterfactual) and establishing Ofgem as the heat network regulator alongside consumer protection organisations such as Citizens Advice. The preferred option is to establish Ofgem as the regulator for heat networks market and define the initial powers. To operate in the market, a heat network must be authorised, comply with authorisation conditions, and provide a guaranteed standard of performance. The details of these conditions are to be determined by Ofgem.</p>
@@ -256,10 +256,10 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.43in">
+          <table uk:widths="7.43in">
             <tr>
               <td>
-                <table ukm:widths="4.34in 0.77in 0.62in 0.28in 0.51in 0.9in">
+                <table uk:widths="4.34in 0.77in 0.62in 0.28in 0.51in 0.9in">
                   <tr>
                     <td colspan="2">
                       <p>Is this measure likely to impact on international trade and investment? </p>
@@ -310,7 +310,7 @@
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></p>
-          <table ukm:widths="3.33in 1.59in 0.89in 1.28in">
+          <table uk:widths="3.33in 1.59in 0.89in 1.28in">
             <tr>
               <td>
                 <p>Signed by the responsible Minister:</p>
@@ -342,7 +342,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT</b></p>
-            <table ukm:widths="0.97in 0.87in 1in 1.24in 1.26in 1.82in">
+            <table uk:widths="0.97in 0.87in 1in 1.24in 1.26in 1.82in">
               <tr>
                 <td rowspan="2">
                   <p><b>Price Base Year  </b>2023</p>
@@ -369,7 +369,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.46in 1.35in 0.55in 1.98in 1.23in 0.7in">
+            <table uk:widths="1.46in 1.35in 0.55in 1.98in 1.23in 0.7in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -554,7 +554,7 @@
         <paragraph>
           <content>
             <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
-            <table ukm:widths="1.37in 1.27in 1.18in 3.34in">
+            <table uk:widths="1.37in 1.27in 1.18in 3.34in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual)</b><authorialNote marker="3"><p><b> Includes economic transfers as explained in EANDCB section. 2019 prices, 2020 PV base year.</b></p></authorialNote><b> £m: </b></p>
@@ -839,7 +839,7 @@
         <paragraph>
           <content>
             <p><b>Table 1 – summary of key regulatory powers</b></p>
-            <table ukm:widths="1.57in 1.28in 4.26in">
+            <table uk:widths="1.57in 1.28in 4.26in">
               <tr>
                 <td>
                   <p><b>Regulatory powers</b></p>
@@ -945,7 +945,7 @@
         <paragraph>
           <content>
             <p><b>Table 2 – proposed governance structure of the HNMF</b></p>
-            <table ukm:widths="1.67in 5.41in">
+            <table uk:widths="1.67in 5.41in">
               <tr>
                 <td>
                   <p><b>Organisation</b></p>
@@ -1504,7 +1504,7 @@
         <paragraph>
           <content>
             <p><b>Table 3 - Overview of total option costs over the 30-year appraisal period (Discounted, £m, 2023 prices)</b></p>
-            <table ukm:widths="2.13in 2.12in 1.44in 1.24in">
+            <table uk:widths="2.13in 2.12in 1.44in 1.24in">
               <tr>
                 <td colspan="2">
                   <p />
@@ -2073,7 +2073,7 @@
         <paragraph>
           <content>
             <p><b>Table 4 – Estimated NPSVs under a range of market growth and wider market conditions scenarios</b></p>
-            <table ukm:widths="1.42in 1.42in 1.42in 1.42in 1.42in">
+            <table uk:widths="1.42in 1.42in 1.42in 1.42in 1.42in">
               <tr>
                 <td>
                   <p><b>NPSV</b></p>
@@ -2295,21 +2295,21 @@
               <FRBRWork>
                 <FRBRthis value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348266474/impacts/2025/1/annex/1" />
                 <FRBRuri value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348266474/impacts/2025/1/annex/1" />
-                <FRBRdate date="2026-03-31" name="generated" />
+                <FRBRdate date="2026-04-08" name="generated" />
                 <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
                 <FRBRcountry value="GB-UKM" />
               </FRBRWork>
               <FRBRExpression>
                 <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348266474/impacts/2025/1/annex/1" />
                 <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348266474/impacts/2025/1/annex/1" />
-                <FRBRdate date="2026-03-31" name="generated" />
+                <FRBRdate date="2026-04-08" name="generated" />
                 <FRBRauthor href="#" />
                 <FRBRlanguage language="en" />
               </FRBRExpression>
               <FRBRManifestation>
                 <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348266474/impacts/2025/1/annex/1/data.akn" />
                 <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348266474/impacts/2025/1/annex/1/data.akn" />
-                <FRBRdate date="2026-03-31" name="transform" />
+                <FRBRdate date="2026-04-08" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/akn+xml" />
               </FRBRManifestation>
@@ -2335,7 +2335,7 @@
               <p><b>Profile and scale resource requirements </b>– To account for the anticipated growth, illustrative annual growth rates have been constructed based on the available evidence, detailed in Table 5. Sensitivity testing has shown that the future growth rate of the market plays a much larger role in the conclusions of the analysis than the estimate for the current size of the market. </p>
             </blockContainer>
             <p><b>Table 5 – Estimated heat network deployment under different growth scenarios</b></p>
-            <table ukm:widths="2.06in 2.04in 2.04in">
+            <table uk:widths="2.06in 2.04in 2.04in">
               <tr>
                 <td>
                   <p>Heat network deployment</p>
@@ -2404,7 +2404,7 @@
               <p><b>Aggregate costs</b> - The costs to business were summed across all activities to provide an aggregated costs for the whole market per year.</p>
             </blockContainer>
             <p><b>Table 6 – Cost to business assumption overview (central case)</b></p>
-            <table ukm:widths="2in 0.74in 1.05in 1.1in 1.06in 1.13in">
+            <table uk:widths="2in 0.74in 1.05in 1.1in 1.06in 1.13in">
               <tr>
                 <td>
                   <p>Assumption</p>
@@ -2557,7 +2557,7 @@
               <p><b>Estimated regulatory costs – </b>The current Heat Trust membership costs were then used to estimate the counterfactual regulatory costs, as summarised in Table 7.</p>
             </blockContainer>
             <p><b>Table 7 – Costs under the counterfactual</b></p>
-            <table ukm:widths="1.77in 1.77in 1.77in 1.77in">
+            <table uk:widths="1.77in 1.77in 1.77in 1.77in">
               <tr>
                 <td>
                   <p>Area</p>
@@ -2606,7 +2606,7 @@
               <p><b>Costs to business</b> were then calculated in a similar way to the factual case. Though – apart from HNMBR annual reporting – costs for a given area of regulation were multiplied by the projected number of heat networks/suppliers that will join the Heat Trust (as opposed to all heat networks). These costs are summarised in Table 8 below.</p>
             </blockContainer>
             <p><b>Table 8 – Costs to business under the counterfactual</b></p>
-            <table ukm:widths="1.77in 1.77in 1.77in 1.77in">
+            <table uk:widths="1.77in 1.77in 1.77in 1.77in">
               <tr>
                 <td>
                   <p>Area</p>

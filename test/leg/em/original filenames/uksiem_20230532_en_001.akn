@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryMemorandum" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryMemorandum" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/uksi/2023/532/memorandum/1" />
           <FRBRuri value="http://www.legislation.gov.uk/id/uksi/2023/532/memorandum/1" />
-          <FRBRdate date="2026-03-31" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/government/uk" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2023/532/memorandum/1/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2023/532/memorandum/1/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2023-05-12</dc:modified>
         <dc:title>Explanatory Memorandum The Social Security (Habitual Residence and Past Presence) (Amendment) Regulations 2023</dc:title>
         <dc:description>Explanatory Memorandum The Social Security (Habitual Residence and Past Presence) (Amendment) Regulations 2023</dc:description>
@@ -37,22 +37,22 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/uksi/2023/532</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/uksi/2023/532" />
         <dc:identifier>http://www.legislation.gov.uk/id/uksi/2023/532/memorandum/1</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryMemorandum</ukm:documentMainType>
-        <ukm:date>2023-05-12</ukm:date>
-        <ukm:legislationClass>UnitedKingdomStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2023</ukm:year>
-        <ukm:version>1</ukm:version>
-        <ukm:legislationYear>2023</ukm:legislationYear>
-        <ukm:legislationNumber>532</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryMemorandum" />
+        <ukm:Date Value="2023-05-12" />
+        <ukm:LegislationClass Value="UnitedKingdomStatutoryInstrument" />
+        <ukm:Year Value="2023" />
+        <ukm:Version Value="1" />
+        <ukm:LegislationYear Value="2023" />
+        <ukm:LegislationNumber Value="532" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="39" />
           <ukm:BodyParagraphs Value="39" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>f5d4e01783efad239a4ed2d000373fa59114d283394e1a30ad1d9bc74712936d</ukm:hash>
+        <uk:hash>f5d4e01783efad239a4ed2d000373fa59114d283394e1a30ad1d9bc74712936d</uk:hash>
       </proprietary>
     </meta>
     <preface>

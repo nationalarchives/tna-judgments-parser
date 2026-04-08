@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2025/50/impacts/2025/16/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2025/50/impacts/2025/16/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-01-21</dc:modified>
         <dc:title>Impact Assessment The Registrar (Identity Verification and Authorised Corporate Service Providers) Regulations 2025</dc:title>
         <dc:description>Impact Assessment The Registrar (Identity Verification and Authorised Corporate Service Providers) Regulations 2025</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/uksi/2025/50</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/uksi/2025/50" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2025/16</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>Department for Business and Trade</ukm:department>
-        <ukm:date>2025-01-20</ukm:date>
-        <ukm:pdfDate>2025-01-23</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2025</ukm:year>
-        <ukm:number>16</ukm:number>
-        <ukm:legislationYear>2025</ukm:legislationYear>
-        <ukm:legislationNumber>50</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="Department for Business and Trade" />
+        <ukm:Date Value="2025-01-20" />
+        <ukm:PdfDate Value="2025-01-23" />
+        <ukm:LegislationClass Value="UnitedKingdomStatutoryInstrument" />
+        <ukm:Year Value="2025" />
+        <ukm:Number Value="16" />
+        <ukm:LegislationYear Value="2025" />
+        <ukm:LegislationNumber Value="50" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="236" />
           <ukm:BodyParagraphs Value="236" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="1" />
         </ukm:Statistics>
-        <ukm:hash>5580df3d2e16452ec8865cd382f0d009254355e99b0692c6fc4ffb60c21962cc</ukm:hash>
+        <uk:hash>5580df3d2e16452ec8865cd382f0d009254355e99b0692c6fc4ffb60c21962cc</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -106,7 +106,7 @@
       </toc>
       <level>
         <content>
-          <table ukm:widths="1.38in 1.57in 1.39in 0.57in 2.26in 0.01in">
+          <table uk:widths="1.38in 1.57in 1.39in 0.57in 2.26in 0.01in">
             <tr>
               <td colspan="3">
                 <p><b>Title:</b><b> </b><docTitle><b>The Registrar (Identity Verification and Authorised Corporate Service Providers) Regulations 2025</b></docTitle></p>
@@ -119,7 +119,7 @@
                 <p><b>Other departments or agencies: </b><b> </b><inline name="otherDepartments">Companies House  <b>     </b></inline></p>
               </td>
               <td colspan="3">
-                <table ukm:widths="2.88in">
+                <table uk:widths="2.88in">
                   <tr>
                     <td>
                       <p>Impact Assessment (IA)</p>
@@ -243,7 +243,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.18in">
+          <table uk:widths="7.18in">
             <tr>
               <td>
                 <p><b>What are the policy objectives of the action or intervention and the intended effects?</b></p>
@@ -256,7 +256,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.18in">
+          <table uk:widths="7.18in">
             <tr>
               <td>
                 <p><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option</b></p>
@@ -269,10 +269,10 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.18in">
+          <table uk:widths="7.18in">
             <tr>
               <td>
-                <table ukm:widths="4.34in 0.76in 0.6in 0.24in 0.44in 0.82in">
+                <table uk:widths="4.34in 0.76in 0.6in 0.24in 0.44in 0.82in">
                   <tr>
                     <td colspan="2">
                       <p>Is this measure likely to impact on international trade and investment? </p>
@@ -323,7 +323,7 @@
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></p>
-          <table ukm:widths="3.33in 1.59in 0.89in 1.28in">
+          <table uk:widths="3.33in 1.59in 0.89in 1.28in">
             <tr>
               <td>
                 <p>Signed by the responsible Minister of State, DBT, Kevin Hollinrake</p>
@@ -349,7 +349,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT</b></p>
-            <table ukm:widths="0.97in 0.87in 1.1in 1.14in 1.26in 1.82in">
+            <table uk:widths="0.97in 0.87in 1.1in 1.14in 1.26in 1.82in">
               <tr>
                 <td rowspan="2">
                   <p><b>Price Base Year  </b>2019</p>
@@ -376,7 +376,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.41in 1.3in 0.53in 1.9in 1.18in 0.85in">
+            <table uk:widths="1.41in 1.3in 0.53in 1.9in 1.18in 0.85in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -560,7 +560,7 @@
         <paragraph>
           <intro>
             <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
-            <table ukm:widths="1.37in 1.27in 1.18in 3.34in">
+            <table uk:widths="1.37in 1.27in 1.18in 3.34in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual) £m: </b><authorialNote marker="2"><p /></authorialNote></p>
@@ -640,7 +640,7 @@
           <num>4.</num>
           <content>
             <p>The estimated costs for each of the measures within the reform package are summarised in Figure 1.</p>
-            <table ukm:widths="1.25in 3.58in 0.99in 1.27in">
+            <table uk:widths="1.25in 3.58in 0.99in 1.27in">
               <tr>
                 <td>
                   <p><b>Measure</b></p>
@@ -1115,7 +1115,7 @@
         <paragraph>
           <content>
             <p><b>Figure 2: Annual user benefits by 'total use' of Companies House data</b><authorialNote marker="13"><p> See Table 2.2. of <a href="https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits"><u>https://www.gov.uk/government/publications/companies-house-data-valuing-the-user-benefits</u></a></p></authorialNote></p>
-            <table ukm:widths="1.47in 1.12in 1.12in 1.12in 1.12in 1.12in">
+            <table uk:widths="1.47in 1.12in 1.12in 1.12in 1.12in 1.12in">
               <tr>
                 <td rowspan="2">
                   <p><b>Company information and data attribute</b></p>
@@ -1786,7 +1786,7 @@
         <paragraph>
           <content>
             <p><b>Figure 3: Estimated stock of officers by Spring 2025 who must identity verify </b></p>
-            <table ukm:widths="3.87in 3.21in">
+            <table uk:widths="3.87in 3.21in">
               <tr>
                 <td>
                   <p><b>Verifier</b></p>
@@ -1963,7 +1963,7 @@
         <paragraph>
           <content>
             <p><b>Figure 3.1: Breakdown of the stock of unique officers</b></p>
-            <table ukm:widths="2.09in 1.66in 1.66in 1.66in">
+            <table uk:widths="2.09in 1.66in 1.66in 1.66in">
               <tr>
                 <td>
                   <p><b>Verifier</b></p>
@@ -2079,7 +2079,7 @@
         <paragraph>
           <content>
             <p><b>Figure 4: Estimated flow of new unique officers appointed each year, 2017-2023 </b><authorialNote marker="40"><p> From 1st April to 31st March</p></authorialNote></p>
-            <table ukm:widths="0.77in 0.9in 0.9in 0.9in 0.9in 0.9in 0.9in 0.9in">
+            <table uk:widths="0.77in 0.9in 0.9in 0.9in 0.9in 0.9in 0.9in 0.9in">
               <tr>
                 <td>
                   <p />
@@ -2220,7 +2220,7 @@
         <paragraph>
           <content>
             <p><b>Figure 5: Estimated flow of new officers who must identity verify each year</b></p>
-            <table ukm:widths="0.78in 0.63in 0.63in 0.64in 0.64in 0.64in 0.64in 0.64in 0.64in 0.64in 0.64in">
+            <table uk:widths="0.78in 0.63in 0.63in 0.64in 0.64in 0.64in 0.64in 0.64in 0.64in 0.64in 0.64in">
               <tr>
                 <td>
                   <p />
@@ -2451,7 +2451,7 @@
         <paragraph>
           <content>
             <p><b>Figure 6: Estimated stock of appointments</b></p>
-            <table ukm:widths="2.85in 4.23in">
+            <table uk:widths="2.85in 4.23in">
               <tr>
                 <td>
                   <p />
@@ -2552,7 +2552,7 @@
         <paragraph>
           <content>
             <p><b>Figure 7: Estimated flow of new appointments</b></p>
-            <table ukm:widths="0.88in 0.62in 0.62in 0.62in 0.62in 0.62in 0.62in 0.62in 0.62in 0.62in 0.62in">
+            <table uk:widths="0.88in 0.62in 0.62in 0.62in 0.62in 0.62in 0.62in 0.62in 0.62in 0.62in 0.62in">
               <tr>
                 <td>
                   <p />
@@ -3199,7 +3199,7 @@
         <paragraph>
           <content>
             <p><b>Figure 8: Cost to XML software providers who opt to continue as intermediaries</b> <b><i>(per entity cost)</i></b></p>
-            <table ukm:widths="3.15in 1.31in 1.31in 1.31in">
+            <table uk:widths="3.15in 1.31in 1.31in 1.31in">
               <tr>
                 <td>
                   <p />
@@ -3379,7 +3379,7 @@
         <paragraph>
           <content>
             <p><b>Figure 9: Summary of cost estimates for introducing identity verification and ACSPs over 10-year appraisal period</b></p>
-            <table ukm:widths="2.16in 1.64in 1.64in 1.64in">
+            <table uk:widths="2.16in 1.64in 1.64in 1.64in">
               <tr>
                 <td>
                   <p />
@@ -3448,7 +3448,7 @@
         <paragraph>
           <content>
             <p><b>Figure 9.1: Individual Costs</b></p>
-            <table ukm:widths="2.06in 1.97in 1.01in 1.01in 1.01in">
+            <table uk:widths="2.06in 1.97in 1.01in 1.01in 1.01in">
               <tr>
                 <td colspan="2">
                   <p />
@@ -3975,7 +3975,7 @@
         <paragraph>
           <intro>
             <p><b>Figure 10: Theory of Change</b></p>
-            <table ukm:widths="5.31in">
+            <table uk:widths="5.31in">
               <tr>
                 <td>
                   <p><b>Inputs</b></p>
@@ -3997,7 +3997,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="4.8in">
+            <table uk:widths="4.8in">
               <tr>
                 <td>
                   <p><b>Outputs</b></p>
@@ -4015,7 +4015,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="5.21in">
+            <table uk:widths="5.21in">
               <tr>
                 <td>
                   <p><b>Outcomes</b></p>
@@ -4031,7 +4031,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="4.51in">
+            <table uk:widths="4.51in">
               <tr>
                 <td>
                   <p><b>Impact</b></p>
@@ -4060,7 +4060,7 @@
         <paragraph>
           <content>
             <p><b>Figure 9.2: Introduction of IDV over 10-year appraisal period</b></p>
-            <table ukm:widths="4.16in 3.17in 3.17in">
+            <table uk:widths="4.16in 3.17in 3.17in">
               <tr>
                 <td>
                   <p />
@@ -4106,7 +4106,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="4.16in 3.17in 3.17in">
+            <table uk:widths="4.16in 3.17in 3.17in">
               <tr>
                 <td>
                   <p />
@@ -4163,7 +4163,7 @@
         <paragraph>
           <content>
             <p><b>Figure 9.4: Summary of annual total costs for IDV and ACSPs </b></p>
-            <table ukm:widths="0.95in 0.96in 0.96in 0.96in 0.96in 0.96in 0.96in 0.96in 0.96in 0.96in 0.95in">
+            <table uk:widths="0.95in 0.96in 0.96in 0.96in 0.96in 0.96in 0.96in 0.96in 0.96in 0.96in 0.95in">
               <tr>
                 <td>
                   <p />

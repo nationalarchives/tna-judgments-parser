@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2016/249/impacts/2016/52/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2016-02-26</dc:modified>
         <dc:title>Impact Assessment The Care Quality Commission (Fees) (Reviews and Performance Assessments) Regulations 2016</dc:title>
         <dc:description>Impact Assessment The Care Quality Commission (Fees) (Reviews and Performance Assessments) Regulations 2016</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/uksi/2016/249</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/uksi/2016/249" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2016/52</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>Department of Health</ukm:department>
-        <ukm:date>2016-02-25</ukm:date>
-        <ukm:pdfDate>2016-03-01</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2016</ukm:year>
-        <ukm:number>52</ukm:number>
-        <ukm:legislationYear>2016</ukm:legislationYear>
-        <ukm:legislationNumber>249</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="Department of Health" />
+        <ukm:Date Value="2016-02-25" />
+        <ukm:PdfDate Value="2016-03-01" />
+        <ukm:LegislationClass Value="UnitedKingdomStatutoryInstrument" />
+        <ukm:Year Value="2016" />
+        <ukm:Number Value="52" />
+        <ukm:LegislationYear Value="2016" />
+        <ukm:LegislationNumber Value="249" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="100" />
           <ukm:BodyParagraphs Value="100" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="2" />
         </ukm:Statistics>
-        <ukm:hash>e949d2fd1ad7950a3b614ee2a7dbe638578364f2e3b33b6da66f74b81cc20f26</ukm:hash>
+        <uk:hash>e949d2fd1ad7950a3b614ee2a7dbe638578364f2e3b33b6da66f74b81cc20f26</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -87,7 +87,7 @@
       </toc>
       <level>
         <content>
-          <table ukm:widths="4.25in 2.85in">
+          <table uk:widths="4.25in 2.85in">
             <tr>
               <td>
                 <p><b>Title:</b></p>
@@ -99,7 +99,7 @@
                 <p>The Care Quality Commission</p>
               </td>
               <td>
-                <table ukm:widths="2.84in">
+                <table uk:widths="2.84in">
                   <tr>
                     <td>
                       <p>Impact Assessment (IA)</p>
@@ -183,7 +183,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="1.28in 1.22in 1.75in 1.38in 1.46in">
+          <table uk:widths="1.28in 1.22in 1.75in 1.38in 1.46in">
             <tr>
               <td colspan="5">
                 <p><b>Cost of Preferred (or more likely) Option</b></p>
@@ -237,7 +237,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.09in">
+          <table uk:widths="7.09in">
             <tr>
               <td>
                 <p><b>What are the policy objectives and the intended effects?</b></p>
@@ -250,7 +250,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.09in">
+          <table uk:widths="7.09in">
             <tr>
               <td>
                 <p><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option (further details in Evidence Base)</b></p>
@@ -263,7 +263,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.09in">
+          <table uk:widths="7.09in">
             <tr>
               <td>
                 <p><b>Will the policy be reviewed?  </b>It <b>will not</b> be reviewed.<b> </b><b> If applicable, set review date:  </b><b>Month</b>/<b>Year</b></p>
@@ -274,7 +274,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="3.67in 0.68in 0.68in 0.68in 0.24in 0.44in 0.68in">
+          <table uk:widths="3.67in 0.68in 0.68in 0.68in 0.24in 0.44in 0.68in">
             <tr>
               <td colspan="3">
                 <p>Does implementation go beyond minimum EU requirements?</p>
@@ -321,7 +321,7 @@
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that (a) it represents a fair and reasonable view of the expected costs, benefits and impact of the policy, and (b) that the benefits justify the costs.</i></b></p>
-          <table ukm:widths="2.95in 1.88in 0.59in 1.4in">
+          <table uk:widths="2.95in 1.88in 0.59in 1.4in">
             <tr>
               <td>
                 <p>Signed by the responsible Minister:</p>
@@ -353,7 +353,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT</b></p>
-            <table ukm:widths="0.88in 0.88in 1in 1.25in 1.27in 1.83in">
+            <table uk:widths="0.88in 0.88in 1in 1.25in 1.27in 1.83in">
               <tr>
                 <td rowspan="2">
                   <p><b>Price Base Year  </b>NA</p>
@@ -380,7 +380,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.39in 1.35in 0.55in 1.99in 1.23in 0.6in">
+            <table uk:widths="1.39in 1.35in 0.55in 1.99in 1.23in 0.6in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -547,7 +547,7 @@
         <paragraph>
           <content>
             <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
-            <table ukm:widths="1.38in 1.5in 1.38in 1.38in 1.47in">
+            <table uk:widths="1.38in 1.5in 1.38in 1.38in 1.47in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual) £m: </b></p>
@@ -593,7 +593,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT</b></p>
-            <table ukm:widths="0.88in 0.88in 1in 1.25in 1.27in 1.83in">
+            <table uk:widths="0.88in 0.88in 1in 1.25in 1.27in 1.83in">
               <tr>
                 <td rowspan="2">
                   <p><b>Price Base Year  </b>2015</p>
@@ -620,7 +620,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.39in 1.35in 0.55in 1.99in 1.23in 0.6in">
+            <table uk:widths="1.39in 1.35in 0.55in 1.99in 1.23in 0.6in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -787,7 +787,7 @@
         <paragraph>
           <content>
             <p><b>BUSINESS ASSESSMENT (Option 2)</b></p>
-            <table ukm:widths="1.38in 1.5in 1.38in 1.38in 1.47in">
+            <table uk:widths="1.38in 1.5in 1.38in 1.38in 1.47in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual) £m: </b></p>
@@ -919,7 +919,7 @@
           <num>8.</num>
           <content>
             <p>Separately the CQC also published a series of Impact Assessments that examined the impact of their new inspection and registration processes<authorialNote marker="1"><p> For example, please see <a href="http://www.cqc.org.uk/sites/default/files/20141003_final_asc_ria_final_1.pdf"><u>http://www.cqc.org.uk/sites/default/files/20141003_final_asc_ria_final_1.pdf</u></a> </p></authorialNote>. The CQC have conducted new style inspections and issued performance ratings since the start of 2014 for NHS trusts, GPs and adult social care since October 2014, and progress to date as at  January 2016 is as follows:   </p>
-            <table ukm:widths="2.14in 2.14in 2.14in">
+            <table uk:widths="2.14in 2.14in 2.14in">
               <tr>
                 <td>
                   <p>Sector</p>
@@ -1087,7 +1087,7 @@
           <num>13.</num>
           <content>
             <p>The CQC’s budget history between 2013/14 and 2015/16, split between GIA and fee income, is summarised in the following table.</p>
-            <table ukm:widths="2.5in 1.33in 1.33in 1.33in">
+            <table uk:widths="2.5in 1.33in 1.33in 1.33in">
               <tr>
                 <td>
                   <p />
@@ -1465,7 +1465,7 @@
           <num>40.</num>
           <content>
             <p>In terms of the impact of these fee rises on private and third sector organisations specifically, we use the following assumptions about the split of public and private organisations within each sector that the CQC regulates:</p>
-            <table ukm:widths="1in 0.75in 5.43in">
+            <table uk:widths="1in 0.75in 5.43in">
               <tr>
                 <td>
                   <p> <b>Sector</b></p>
@@ -1630,7 +1630,7 @@
           <subparagraph>
             <content>
               <p>However, this figure represents the potential gross annual health impact. To estimate the net annual health impact, we would also need to consider whether the increased fee costs for providers also result in any additional health or societal impacts. This in turn will depend on how providers respond to the fee increases as follows:</p>
-              <table ukm:widths="2.33in 4.44in">
+              <table uk:widths="2.33in 4.44in">
                 <tr>
                   <td>
                     <p><b>Provider response</b></p>
@@ -1688,7 +1688,7 @@
           <num>50.</num>
           <content>
             <p>The likelihood of providers taking each of these actions, and the subsequent impacts of these actions depends on the specifics of the sector being considered. Although it is not possible to fully quantify the net impacts, Annex A provides a fuller assessment of the likely impacts in each sector. By monetising the potential health impacts using a standard societal valuation of £60,000 per Quality Adjusted Life Year, we present below the potential rate of NPV estimates by sector, if these additional health impacts were also to be taken into consideration:</p>
-            <table ukm:widths="3.47in 3.47in">
+            <table uk:widths="3.47in 3.47in">
               <tr>
                 <td>
                   <p><b>Sector</b></p>
@@ -1868,7 +1868,7 @@
           <num>61.</num>
           <content>
             <p>This estimate is similar to that obtained from the BIS Annual Business Population Survey, which found that in 2013, there were approximately 50,000 employers in England with the Standard Industrial Classification (SIC2007) Human Health and Social Work Activities, of which 94% would be considered a small or micro business.</p>
-            <table ukm:widths="3.01in 1.56in">
+            <table uk:widths="3.01in 1.56in">
               <tr>
                 <td colspan="2">
                   <p><b>Count of number of private businesses within SIC2007 Q - Human Health and Social Work Activities in England</b></p>
@@ -1974,7 +1974,7 @@
           <num>62.</num>
           <content>
             <p>Although not an exact indicator of the number of employees, from CQC’s directory of registered providers as at 1st January 2016, 85% of providers registered with CQC only had one registered location:</p>
-            <table ukm:widths="1.4in 1.29in 0.67in">
+            <table uk:widths="1.4in 1.29in 0.67in">
               <tr>
                 <td>
                   <p><b>Number of locations</b></p>

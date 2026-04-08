@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2015/627/impacts/2015/171/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2015-03-18</dc:modified>
         <dc:title>Impact Assessment The Planning (Hazardous Substances) Regulations 2015</dc:title>
         <dc:description>Impact Assessment The Planning (Hazardous Substances) Regulations 2015</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/uksi/2015/627</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/uksi/2015/627" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2015/171</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>Department for Communities and Local Government</ukm:department>
-        <ukm:date>2015-03-18</ukm:date>
-        <ukm:pdfDate>2015-03-24</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2015</ukm:year>
-        <ukm:number>171</ukm:number>
-        <ukm:legislationYear>2015</ukm:legislationYear>
-        <ukm:legislationNumber>627</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="Department for Communities and Local Government" />
+        <ukm:Date Value="2015-03-18" />
+        <ukm:PdfDate Value="2015-03-24" />
+        <ukm:LegislationClass Value="UnitedKingdomStatutoryInstrument" />
+        <ukm:Year Value="2015" />
+        <ukm:Number Value="171" />
+        <ukm:LegislationYear Value="2015" />
+        <ukm:LegislationNumber Value="627" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="89" />
           <ukm:BodyParagraphs Value="89" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>dbe7302994466773bf2f445debd5f6faf260249b661a14d9c990801100c4c829</ukm:hash>
+        <uk:hash>dbe7302994466773bf2f445debd5f6faf260249b661a14d9c990801100c4c829</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -80,7 +80,7 @@
       </toc>
       <level>
         <content>
-          <table ukm:widths="4.25in 2.85in">
+          <table uk:widths="4.25in 2.85in">
             <tr>
               <td>
                 <p><b>Title:</b></p>
@@ -91,7 +91,7 @@
                 <p><b>Other departments or agencies: </b></p>
               </td>
               <td>
-                <table ukm:widths="2.84in">
+                <table uk:widths="2.84in">
                   <tr>
                     <td>
                       <p>Impact Assessment (IA)</p>
@@ -175,7 +175,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="1.38in 1.12in 1.75in 1.38in 1.46in">
+          <table uk:widths="1.38in 1.12in 1.75in 1.38in 1.46in">
             <tr>
               <td colspan="5">
                 <p><b>Cost of Preferred (or more likely) Option</b></p>
@@ -227,7 +227,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.09in">
+          <table uk:widths="7.09in">
             <tr>
               <td>
                 <p><b>What are the policy objectives and the intended effects?</b></p>
@@ -239,7 +239,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.09in">
+          <table uk:widths="7.09in">
             <tr>
               <td>
                 <p><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option (further details in Evidence Base)</b></p>
@@ -253,7 +253,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.09in">
+          <table uk:widths="7.09in">
             <tr>
               <td>
                 <p><b>Will the policy be reviewed?  </b>It <b>will</b> be reviewed.<b> </b><b> If applicable, set review date:  </b><b>06</b>/<b>2020</b></p>
@@ -264,7 +264,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="3.67in 0.68in 0.68in 0.68in 0.24in 0.44in 0.68in">
+          <table uk:widths="3.67in 0.68in 0.68in 0.68in 0.24in 0.44in 0.68in">
             <tr>
               <td colspan="3">
                 <p>Does implementation go beyond minimum EU requirements?</p>
@@ -311,7 +311,7 @@
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that (a) it represents a fair and reasonable view of the expected costs, benefits and impact of the policy, and (b) that the benefits justify the costs.</i></b></p>
-          <table ukm:widths="3.34in 1.88in 0.49in 1.4in">
+          <table uk:widths="3.34in 1.88in 0.49in 1.4in">
             <tr>
               <td>
                 <p><b><i>Signed by the responsible Minister:</i></b></p>
@@ -342,7 +342,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT</b></p>
-            <table ukm:widths="0.88in 0.88in 1in 1.25in 1.27in 1.83in">
+            <table uk:widths="0.88in 0.88in 1in 1.25in 1.27in 1.83in">
               <tr>
                 <td rowspan="2">
                   <p><b>Price Base Year  </b>2014</p>
@@ -369,7 +369,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.39in 1.35in 0.55in 1.99in 1.23in 0.6in">
+            <table uk:widths="1.39in 1.35in 0.55in 1.99in 1.23in 0.6in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -539,7 +539,7 @@
         <paragraph>
           <content>
             <p><b>BUSINESS ASSESSMENT (Option 3)</b></p>
-            <table ukm:widths="1.38in 1.5in 1.38in 1.38in 1.47in">
+            <table uk:widths="1.38in 1.5in 1.38in 1.38in 1.47in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual) £m: </b></p>
@@ -851,7 +851,7 @@
           <num>23.</num>
           <content>
             <p>The Department has sought to identify monetised estimates of the savings to business where possible. However in view of the evidence available, proxy measures have been relied on as appropriate to indicate the likely scale of benefit rather than producing estimates that risk misrepresenting the monetary value of the costs and benefits of these deregulatory changes. </p>
-            <table ukm:widths="0.27in 1.87in 2.66in 2.26in">
+            <table uk:widths="0.27in 1.87in 2.66in 2.26in">
               <tr>
                 <td colspan="4">
                   <p><b>Outline: Key impacts on business of deregulatory measures</b></p>

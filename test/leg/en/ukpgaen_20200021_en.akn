@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2020/21/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2020/21/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2020/21/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2020/21/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2025-08-01</dc:modified>
         <dc:title>Explanatory Notes Agriculture Act 2020</dc:title>
         <dc:description>Explanatory Notes Agriculture Act 2020</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2020/21</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2020/21" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2020/21/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2020-12-08</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2020</ukm:legislationYear>
-        <ukm:legislationNumber>21</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2020-12-08" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2020" />
+        <ukm:LegislationNumber Value="21" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="547" />
           <ukm:BodyParagraphs Value="547" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>3c86f1f54fa6cfb5f869063fa1114398beff86b69df68019df9858891a0b664f</ukm:hash>
+        <uk:hash>3c86f1f54fa6cfb5f869063fa1114398beff86b69df68019df9858891a0b664f</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -119,7 +119,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -1188,7 +1188,7 @@
               <num>131 </num>
               <content>
                 <p>The horizontal legislation concerns the financing, management and monitoring of the CAP. It is known as the horizontal legislation because it applies to schemes and measures that were established under the CAP: Direct Payments, Rural Development programmes and Common Market Organisation measures, such as the fruit and vegetable Producer Organisations (see section 15). For a fuller explanation of the scope and purpose of the horizontal legislation, please see Boxes 1 &amp; 2.</p>
-                <table ukm:widths="5.41in">
+                <table uk:widths="5.41in">
                   <tr>
                     <td>
                       <p>Box 1: The horizontal legislation</p>
@@ -1270,7 +1270,7 @@
               <num>140 </num>
               <content>
                 <p>Section 16 provides the Secretary of State with the power to modify or repeal retained EU legislation relating to rural development in England. The power allows some existing rural development agreements to be extended with fewer restrictions, to be shortened and for agreements to be converted or adjusted into new agreements set up under Chapter 1 of this Act. It also allows the duration of the current Rural Development Programme for England to be extended and its budget to be increased and expressed in a currency other than Euros in the retained EU legislation. This section will not be used to introduce any new schemes, as they will be covered under section 1. </p>
-                <table ukm:widths="5.51in">
+                <table uk:widths="5.51in">
                   <tr>
                     <td>
                       <p>Box 3: Pillar 2</p>
@@ -2085,7 +2085,7 @@
             <heading><b>Chapter 3: Producer Organisations</b></heading>
             <level>
               <content>
-                <table ukm:widths="5.48in">
+                <table uk:widths="5.48in">
                   <tr>
                     <td>
                       <p>Box 4: Producer Organisations</p>
@@ -2483,7 +2483,7 @@
           <paragraph>
             <content>
               <p>Section 37: Marketing standards</p>
-              <table ukm:widths="5.51in">
+              <table uk:widths="5.51in">
                 <tr>
                   <td>
                     <p>Box 5: Marketing Standards</p>
@@ -2673,7 +2673,7 @@
           <paragraph>
             <content>
               <p>Section 40: Carcass classification</p>
-              <table ukm:widths="5.48in">
+              <table uk:widths="5.48in">
                 <tr>
                   <td>
                     <p>Box 6: Carcass classification</p>
@@ -2798,7 +2798,7 @@
             <num>351 </num>
             <content>
               <p>This section ensures that all support schemes are properly classified (as amber, green or blue box), and if they fall into the amber box, that they do not cause the UK to breach its Aggregate Measurement of Support (AMS) commitment (See Boxes 7-10). This section also ensures that the UK is able to meet its obligations to make notifications required under the AoA and respond to any challenges from other WTO members.</p>
-              <table ukm:widths="5.8in">
+              <table uk:widths="5.8in">
                 <tr>
                   <td>
                     <p>Box 7: Green box</p>
@@ -4440,7 +4440,7 @@
         <heading><b>Annex A - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="2.06in 1.18in 1.18in 0.89in 1.58in">
+            <table uk:widths="2.06in 1.18in 1.18in 0.89in 1.58in">
               <tr>
                 <th>
                   <p><b>Provision </b></p>
@@ -4995,7 +4995,7 @@
           <num>540 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
-            <table ukm:widths="1.75in 1.48in 3.22in">
+            <table uk:widths="1.75in 1.48in 3.22in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -5224,7 +5224,7 @@
           <num>541 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament. </p>
-            <table ukm:widths="1.07in 1.08in 1.08in 1.08in 1.08in 1.08in">
+            <table uk:widths="1.07in 1.08in 1.08in 1.08in 1.08in 1.08in">
               <tr>
                 <td>
                   <p><b>Section of the Act</b></p>

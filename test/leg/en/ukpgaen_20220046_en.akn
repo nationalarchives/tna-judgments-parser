@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/46/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/46/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/46/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/46/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2023-01-19</dc:modified>
         <dc:title>Explanatory Notes Product Security and Telecommunications Infrastructure Act 2022</dc:title>
         <dc:description>Explanatory Notes Product Security and Telecommunications Infrastructure Act 2022</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2022/46</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2022/46" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2022/46/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2023-03-02</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2022</ukm:legislationYear>
-        <ukm:legislationNumber>46</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2023-03-02" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2022" />
+        <ukm:LegislationNumber Value="46" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="351" />
           <ukm:BodyParagraphs Value="351" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>d41f378007898f344d5be88b67a7b96b8ac3ff3bd0fd8ca59e698c4049ad3b46</ukm:hash>
+        <uk:hash>d41f378007898f344d5be88b67a7b96b8ac3ff3bd0fd8ca59e698c4049ad3b46</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -103,7 +103,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.15in 3.15in">
+          <table uk:widths="3.15in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -413,7 +413,7 @@
               <num>38 </num>
               <content>
                 <p>Subsection (6) sets out that regulations under Section 1 are subject to the affirmative resolution procedure, unless they only make limited variations as specified in subsection (5), in which case the negative resolution procedure applies.</p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Example exercise of power: future security requirements</p>
@@ -517,7 +517,7 @@
               <num>50 </num>
               <content>
                 <p>Regulations made by the power in this Section are subject to the negative resolution procedure when varying a description of a product, or, specifying any description of a product which is covered by equivalent requirements relating to security. All other regulations made under the Section are subject to the affirmative resolution procedure.</p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Example exercise of power: Future exceptions for the purposes of avoiding dual regulation</p>
@@ -562,7 +562,7 @@
               <num>55 </num>
               <content>
                 <p>Subsection (6) provides that a person will not be considered a distributor if they make the product available by performing a contract consisting of or including the installation of the product in a building or structure. This only applies if products identical to the installed product are or have been made available to consumers outside of such a contract for their installation.</p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Examples of when smart products are integrated into the performance of a contract</p>
@@ -649,7 +649,7 @@
               <num>65 </num>
               <content>
                 <p>Subsection (7) provides a power for the Secretary of State to state that a manufacturer has complied with the statement of compliance duty when certain conditions are met.</p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Examples of potential use of statement of compliance regulation-making powers</p>
@@ -669,7 +669,7 @@
               <num>66 </num>
               <content>
                 <p>Subsection (2) sets out a requirement for manufacturers to take all reasonable steps to investigate whether there is a compliance failure in relation to a product if they are informed that there is, or may be, a compliance failure relating to a product and if they are aware or ought to be aware that the product is or will be a UK consumer connectable product as defined in Section 54.</p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Example: a third party identifies a compliance failure</p>
@@ -1252,7 +1252,7 @@
               <num>144 </num>
               <content>
                 <p>Subsection (8) provides that if there is an urgent need to give a recall notice, then the requirements in subsections (6) and (7) do not apply. </p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Example of issuing a recall notice</p>
@@ -1272,7 +1272,7 @@
               <num>145 </num>
               <content>
                 <p>This Section provides the Secretary of State with power to vary or revoke an enforcement notice, as long as the changes do not make the notice more onerous than the original notice.</p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Example of varying a stop notice</p>
@@ -1824,7 +1824,7 @@
               <num>216 </num>
               <content>
                 <p>Subsection (2) provides the enforcement authority, as defined in Section 56, with a power to issue guidance on the exercise of any of its enforcement functions.</p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Example of guidance supporting the enforcement function</p>
@@ -1867,7 +1867,7 @@
               <num>221 </num>
               <content>
                 <p>Subsection (10) provides a power for the Secretary of State to make regulations to repeal the conditions in subsections (2)(b) and (3)(b) which prevent duties from applying to used products and to amend any provisions of the product security part of the Act that are necessary or appropriate consequent to the repeal of subsections (2)(b) and (3)(b). Regulations made in the exercise of this power will be subject to the affirmative resolution procedure by virtue of subsection (11).</p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Example of when a product sold to businesses may also be a “UK consumer connectable product”</p>
@@ -1955,7 +1955,7 @@
               <num>233 </num>
               <content>
                 <p>Subsection (11) distinguishes between retailers who supply products to customers (e.g. by selling the products) and companies that finance purchases of products (e.g. a financing company providing the funds to purchase a product). The effect of this provision is that retailers are treated as distributors, but financial companies are not.</p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Example of when consumer connectable products are “supplied”</p>
@@ -2022,7 +2022,7 @@
               <num>239 </num>
               <content>
                 <p>Subsection (5) confirms that the new Code rights inserted into paragraph 3 do not automatically apply to existing agreements under Part 2 of the Code, and also do not affect any rights already granted in an agreement under Part 2 of the Code.</p>
-                <table ukm:widths="4.66in">
+                <table uk:widths="4.66in">
                   <tr>
                     <td>
                       <p>Example: Sharing apparatus between operators</p>
@@ -2929,7 +2929,7 @@
           <num>346 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act’s passage through Parliament.</p>
-            <table ukm:widths="2.48in 1.08in 2.04in">
+            <table uk:widths="2.48in 1.08in 2.04in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -3142,7 +3142,7 @@
           <num>347 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
-            <table ukm:widths="1.08in 1.08in 1.08in 1.08in 1.08in 0.78in">
+            <table uk:widths="1.08in 1.08in 1.08in 1.08in 1.08in 0.78in">
               <tr>
                 <td>
                   <p><b>Section of the Act</b></p>

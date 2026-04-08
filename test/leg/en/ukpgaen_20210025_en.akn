@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2021/25/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2021/25/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2021/25/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2021/25/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2021-05-14</dc:modified>
         <dc:title>Explanatory Notes National Security and Investment Act 2021</dc:title>
         <dc:description>Explanatory Notes National Security and Investment Act 2021</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2021/25</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2021/25" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2021/25/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2021-05-17</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2021</ukm:legislationYear>
-        <ukm:legislationNumber>25</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2021-05-17" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2021" />
+        <ukm:LegislationNumber Value="25" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="190" />
           <ukm:BodyParagraphs Value="190" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>935d97da831b6157bf87af48c6321fe5b597588213a4028183fc2149056e291f</ukm:hash>
+        <uk:hash>935d97da831b6157bf87af48c6321fe5b597588213a4028183fc2149056e291f</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -106,7 +106,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.15in 3.15in">
+          <table uk:widths="3.15in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -518,7 +518,7 @@
             <num>43 </num>
             <content>
               <p>The table below summarises and compares the Enterprise Act 2002 framework for national security public interest interventions and the new National Security and Investment regime. Further detail on the current framework for national security interventions under the Enterprise Act can be found on the legislation.gov.uk site and in CMA guidance (<a href="https://www.gov.uk/government/publications/mergers-guidance-on-the-cmas-jurisdiction-and-procedure"><u>CMA2, Mergers: Guidance on the CMA’s jurisdiction and procedure</u></a>). Detail on the National Security and Investment Regime is contained in the “Commentary on Provisions” section.</p>
-              <table ukm:widths="1.26in 2.56in 2.76in">
+              <table uk:widths="1.26in 2.56in 2.76in">
                 <tr>
                   <th colspan="3">
                     <p><b>Table 1: Comparison between national security interventions under the Enterprise Act 2002 and the National Security and Investment Regime</b></p>
@@ -895,7 +895,7 @@
               <num>73 </num>
               <content>
                 <p>Paragraph 3 provides for interests or rights held indirectly to be in scope of the regime. This means that a person holding an interest or right in a parent entity of an entity or a chain of entities is, depending on the circumstances in sub-paragraph (2)(a) or (2)(b) being satisfied, treated as holding the interest or right in the entity at the bottom of the chain. If an entity is part of a chain of entities, a person will exercise the right indirectly if each entity in the chain has a majority stake in the entity immediately below it in the chain, and the last entity in the chain has the right in question (sub-paragraph (2)(b)). Sub-paragraph (3) defines “majority stake” by reference to a majority of voting rights, dominant influence or control, and the right to appoint or remove a majority of the board of directors.</p>
-                <table ukm:widths="4.99in">
+                <table uk:widths="4.99in">
                   <tr>
                     <td>
                       <p>Example A: Indirect holdings</p>
@@ -929,7 +929,7 @@
               <num>77 </num>
               <content>
                 <p>Paragraph 11 provides for the circumstances in which two or more persons are deemed to be acting with common purpose and are therefore each deemed to be holding the collective interests and rights that each person holds individually.</p>
-                <table ukm:widths="4.99in">
+                <table uk:widths="4.99in">
                   <tr>
                     <td>
                       <p>Example B: Common purpose</p>
@@ -1396,7 +1396,7 @@
               <num>132 </num>
               <content>
                 <p>The table below summarises the offences set out in Sections 32-35.</p>
-                <table ukm:widths="2.49in 4in">
+                <table uk:widths="2.49in 4in">
                   <tr>
                     <th>
                       <p><b>Offence</b></p>
@@ -2066,7 +2066,7 @@
           <num>186 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
-            <table ukm:widths="1.72in 1.45in 3.13in">
+            <table uk:widths="1.72in 1.45in 3.13in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>

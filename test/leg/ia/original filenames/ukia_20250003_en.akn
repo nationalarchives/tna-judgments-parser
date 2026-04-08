@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ImpactAssessment" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ImpactAssessment" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348267174/impacts/2025/3/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348267174/impacts/2025/3/data.akn" />
-          <FRBRdate date="2026-03-31" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2024-12-12</dc:modified>
         <dc:title>Impact Assessment The Online Safety Act 2023 (Category 1, Category 2A and Category 2B Threshold Conditions) Regulations 2025</dc:title>
         <dc:description>Impact Assessment The Online Safety Act 2023 (Category 1, Category 2A and Category 2B Threshold Conditions) Regulations 2025</dc:description>
@@ -37,25 +37,25 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>Better Regulation Executive</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukdsi/2025/9780348267174</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukdsi/2025/9780348267174" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukia/2025/3</dc:identifier>
-        <ukm:documentStage>Final</ukm:documentStage>
-        <ukm:documentMainType>UnitedKingdomImpactAssessment</ukm:documentMainType>
-        <ukm:department>Department for Science, Innovation and Technology</ukm:department>
-        <ukm:date>2024-12-12</ukm:date>
-        <ukm:pdfDate>2024-12-16</ukm:pdfDate>
-        <ukm:legislationClass>UnitedKingdomDraftStatutoryInstrument</ukm:legislationClass>
-        <ukm:year>2025</ukm:year>
-        <ukm:number>3</ukm:number>
-        <ukm:legislationYear>2025</ukm:legislationYear>
-        <ukm:legislationNumber>9780348267174</ukm:legislationNumber>
+        <ukm:DocumentStage Value="Final" />
+        <ukm:DocumentMainType Value="UnitedKingdomImpactAssessment" />
+        <ukm:Department Value="Department for Science, Innovation and Technology" />
+        <ukm:Date Value="2024-12-12" />
+        <ukm:PdfDate Value="2024-12-16" />
+        <ukm:LegislationClass Value="UnitedKingdomDraftStatutoryInstrument" />
+        <ukm:Year Value="2025" />
+        <ukm:Number Value="3" />
+        <ukm:LegislationYear Value="2025" />
+        <ukm:LegislationNumber Value="9780348267174" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="81" />
           <ukm:BodyParagraphs Value="81" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="1" />
         </ukm:Statistics>
-        <ukm:hash>1a619fc1ed64b5376dcc2957f5815e758e06446138fb89acc1dd450a80a33d42</ukm:hash>
+        <uk:hash>1a619fc1ed64b5376dcc2957f5815e758e06446138fb89acc1dd450a80a33d42</uk:hash>
       </proprietary>
     </meta>
     <mainBody>
@@ -88,7 +88,7 @@
       </toc>
       <level>
         <content>
-          <table ukm:widths="1.44in 1.44in 1.44in 1.44in 1.44in">
+          <table uk:widths="1.44in 1.44in 1.44in 1.44in 1.44in">
             <tr>
               <td colspan="3">
                 <p><b> Title:</b>    Online Safety Act (2023) Categorisation Thresholds</p>
@@ -98,7 +98,7 @@
                 <p><b>Other departments or agencies:        </b></p>
               </td>
               <td colspan="2">
-                <table ukm:widths="2.84in">
+                <table uk:widths="2.84in">
                   <tr>
                     <td>
                       <p>Impact Assessment (IA)</p>
@@ -229,7 +229,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.38in">
+          <table uk:widths="7.38in">
             <tr>
               <td>
                 <p><b>What are the policy objectives of the action or intervention and the intended effects?</b></p>
@@ -251,7 +251,7 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.38in">
+          <table uk:widths="7.38in">
             <tr>
               <td>
                 <p><b>What policy options have been considered, including any alternatives to regulation? Please justify preferred option (further details in Evidence Base)</b></p>
@@ -268,10 +268,10 @@
       </level>
       <level>
         <content>
-          <table ukm:widths="7.18in">
+          <table uk:widths="7.18in">
             <tr>
               <td>
-                <table ukm:widths="4.34in 0.76in 0.6in 0.24in 0.51in 0.75in">
+                <table uk:widths="4.34in 0.76in 0.6in 0.24in 0.51in 0.75in">
                   <tr>
                     <td colspan="2">
                       <p>Is this measure likely to impact on international trade and investment? </p>
@@ -323,7 +323,7 @@
       <paragraph>
         <content>
           <p><b><i>I have read the Impact Assessment and I am satisfied that, given the available evidence, it represents a reasonable view of the likely costs, benefits and impact of the leading options.</i></b></p>
-          <table ukm:widths="3.33in 1.59in 0.89in 1.28in">
+          <table uk:widths="3.33in 1.59in 0.89in 1.28in">
             <tr>
               <td>
                 <p>Signed by the responsible: <b>Rt Hon Peter Kyle MP, Secretary of State for Science, Innovation and Technology</b><b> </b></p>
@@ -360,7 +360,7 @@
         <paragraph>
           <content>
             <p><b>FULL ECONOMIC ASSESSMENT</b></p>
-            <table ukm:widths="0.97in 0.87in 1in 1.24in 1.26in 1.82in">
+            <table uk:widths="0.97in 0.87in 1in 1.24in 1.26in 1.82in">
               <tr>
                 <td>
                   <p><b>Price Base Year:  2020</b></p>
@@ -390,7 +390,7 @@
                 </td>
               </tr>
             </table>
-            <table ukm:widths="1.46in 1.35in 0.55in 1.98in 1.23in 0.59in">
+            <table uk:widths="1.46in 1.35in 0.55in 1.98in 1.23in 0.59in">
               <tr>
                 <td>
                   <p><b>COSTS (£m)</b></p>
@@ -558,7 +558,7 @@
         <paragraph>
           <content>
             <p><b>BUSINESS ASSESSMENT (Option 1)</b></p>
-            <table ukm:widths="1.37in 1.27in 1.18in 3.34in">
+            <table uk:widths="1.37in 1.27in 1.18in 3.34in">
               <tr>
                 <td colspan="3">
                   <p><b>Direct impact on business (Equivalent Annual) £m: </b></p>
@@ -756,7 +756,7 @@
           <subparagraph>
             <content>
               <p><b>Table 1 – Aggregated cost of familiarisation with unpublished guidance on the categorised firms’ duties</b></p>
-              <table ukm:widths="3.63in 0.98in 0.98in 0.98in">
+              <table uk:widths="3.63in 0.98in 0.98in 0.98in">
                 <tr>
                   <td>
                     <p />
@@ -803,7 +803,7 @@
           <subparagraph>
             <content>
               <p><b>Table 2 – Change in number of providers in scope since Enactment IA, by category</b></p>
-              <table ukm:widths="1.32in 1.32in 1.32in 1.32in 1.32in">
+              <table uk:widths="1.32in 1.32in 1.32in 1.32in 1.32in">
                 <tr>
                   <td>
                     <p />
@@ -883,7 +883,7 @@
             <subparagraph>
               <content>
                 <p><b>Table 3 – Revised aggregated compliance costs, applying category providers ratios to Enactment IA cost estimates</b></p>
-                <table ukm:widths="3.63in 0.98in 0.98in 0.98in">
+                <table uk:widths="3.63in 0.98in 0.98in 0.98in">
                   <tr>
                     <td>
                       <p />
@@ -1051,7 +1051,7 @@
           <subparagraph>
             <content>
               <p><b>Table 4 – Reduction in aggregated compliance costs estimates compared with OSA Enactment IA</b></p>
-              <table ukm:widths="3.63in 0.98in 0.98in 0.98in">
+              <table uk:widths="3.63in 0.98in 0.98in 0.98in">
                 <tr>
                   <td>
                     <p />
@@ -1122,7 +1122,7 @@
           <subparagraph>
             <content>
               <p><b>Table 5 – Category 1 revised aggregated compliance costs estimates</b></p>
-              <table ukm:widths="3.55in 0.97in 0.98in 1.08in">
+              <table uk:widths="3.55in 0.97in 0.98in 1.08in">
                 <tr>
                   <td>
                     <p />
@@ -1289,7 +1289,7 @@
           <subparagraph>
             <content>
               <p><b>Table 6 – Category 2A revised aggregated compliance costs estimates</b></p>
-              <table ukm:widths="3.63in 0.98in 0.98in 0.98in">
+              <table uk:widths="3.63in 0.98in 0.98in 0.98in">
                 <tr>
                   <td>
                     <p />
@@ -1386,7 +1386,7 @@
           <subparagraph>
             <content>
               <p><b>Table 7 – Category 2B revised aggregated compliance costs estimates</b></p>
-              <table ukm:widths="3.63in 0.98in 0.98in 0.98in">
+              <table uk:widths="3.63in 0.98in 0.98in 0.98in">
                 <tr>
                   <td>
                     <p />
@@ -1551,7 +1551,7 @@
           <subparagraph>
             <content>
               <p><b> Table 8 – Headline estimates of aggregated costs to business, by category</b></p>
-              <table ukm:widths="3.63in 0.98in 0.98in 0.98in">
+              <table uk:widths="3.63in 0.98in 0.98in 0.98in">
                 <tr>
                   <td>
                     <p />
@@ -1797,7 +1797,7 @@
         <paragraph>
           <content>
             <p><b><u>Annex A: Additional duties for Categorised services </u></b></p>
-            <table ukm:widths="1.64in 1.64in 1.64in 1.65in">
+            <table uk:widths="1.64in 1.64in 1.64in 1.65in">
               <tr>
                 <td>
                   <p> </p>

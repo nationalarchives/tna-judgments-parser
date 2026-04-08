@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2018/30/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2018/30/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2018/30/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2018/30/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2019-01-08</dc:modified>
         <dc:title>Explanatory Notes Ivory Act 2018</dc:title>
         <dc:description>Explanatory Notes Ivory Act 2018</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2018/30</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2018/30" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2018/30/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2019-01-11</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2018</ukm:legislationYear>
-        <ukm:legislationNumber>30</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2019-01-11" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2018" />
+        <ukm:LegislationNumber Value="30" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="213" />
           <ukm:BodyParagraphs Value="213" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="7" />
         </ukm:Statistics>
-        <ukm:hash>7ca512bd807164ac2340c360d5f6b885b6c45ddfe34ff5fb0e8b01333591f75c</ukm:hash>
+        <uk:hash>7ca512bd807164ac2340c360d5f6b885b6c45ddfe34ff5fb0e8b01333591f75c</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -114,7 +114,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.22in 3.22in">
+          <table uk:widths="3.22in 3.22in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -567,7 +567,7 @@
             <num>37 </num>
             <content>
               <p>Subsection (5) confers a power on the appropriate national authority, through regulations, to prescribe and keep updated the names of institutions which will provide advice to the Secretary of State on whether ivory items meet the criteria for this exemption. These “prescribed institutions” will hold specialist expertise in ivory items, and this expertise will cover a range of disciplines or periods, for example oriental art, medieval art, renaissance art or in scientific, musical and nautical instruments. Subsection (6) ensures that consent from those individuals responsible for the institution is required prior to it being prescribed in the regulations. </p>
-              <table ukm:widths="5.3in">
+              <table uk:widths="5.3in">
                 <tr>
                   <td>
                     <p><b>An illustrative example of the type of item that may be considered exempt under the rarest and most important items category. Assessments will be subject to the detailed criteria set out in any statutory guidance, to be issued in due course. </b></p>
@@ -768,7 +768,7 @@
             <num>56 </num>
             <content>
               <p>A portrait miniature is a portrait created in the 18th and 19th centuries and typically painted on a thin sheet of ivory, along with other materials, such as vellum. These ivory sheets were generally 1mm thick prior to the 1760s, after which the sheets could be cut more thinly. With regard to portrait miniatures, the term “miniature” does not indicate size but instead the technique used and as a result these items can range in size. An example is provided below.</p>
-              <table ukm:widths="5.42in">
+              <table uk:widths="5.42in">
                 <tr>
                   <td>
                     <p>Illustrative examples of portrait miniatures which may, subject to any advice which may be published, qualify under the portrait miniature exemption.</p>
@@ -851,7 +851,7 @@
             <num>60 </num>
             <content>
               <p>If all conditions outlined in subsection (1) are satisfied, dealing in that ivory item is permitted under the <i>de minimis</i> exemption. If one or more of these conditions are not met, that item is not exempt under the prohibition and dealing in the item is prohibited, unless the item qualifies under another exemption. </p>
-              <table ukm:widths="5.79in">
+              <table uk:widths="5.79in">
                 <tr>
                   <td>
                     <p><b>Illustrative examples of pre-1947 items with low ivory content which may, subject to any advice which may be published, qualify under the pre-1947 item with low ivory content exemption.</b></p>
@@ -911,7 +911,7 @@
             <num>63 </num>
             <content>
               <p>The Act does not prohibit the use of a musical instrument containing ivory in a paid or unpaid public performance (this is the case regardless of whether the instrument would meet the exemption). The Act also does not prohibit a person from taking a fee to instruct another person in an instrument (e.g. by teaching a pupil to play a piano using one that has ivory keys).The general prohibition is on dealing and as such the use or transport of musical instruments for non-commercial purposes is not affected by the Act. The EU Wildlife Trade Regulations would continue to apply, for example, to non-commercial cross-border movement of musical instruments. Any certificates or permits required under the EU Wildlife Trade regulations would continue to be required in addition to any necessary registration under the Act. </p>
-              <table ukm:widths="6.29in">
+              <table uk:widths="6.29in">
                 <tr>
                   <td>
                     <p><b>Illustrative example of a musical instrument which may, subject to any advice that may be published, qualify under the musical instrument exemption.</b></p>
@@ -1292,7 +1292,7 @@
             <num>89 </num>
             <content>
               <p>Subsection (4) specifies that a summary conviction, could be applied to offences under this prohibition. These sanctions cannot exceed the maximum sanctions applicable for summary convictions in each of areas of the Devolved Administrations. The maximum sanctions applied on indictment and on summary convictions are as follows:</p>
-              <table ukm:widths="1.18in 1.48in 1.51in 1.64in">
+              <table uk:widths="1.18in 1.48in 1.51in 1.64in">
                 <tr>
                   <td>
                     <p><b>Maximum penalty on conviction on indictment</b></p>
@@ -1674,7 +1674,7 @@
             <num>127 </num>
             <content>
               <p>Subsection (4) provides for the maximum penalties for both offences, as follows –</p>
-              <table ukm:widths="1.61in 2.1in 2.1in">
+              <table uk:widths="1.61in 2.1in 2.1in">
                 <tr>
                   <td>
                     <p><b>Maximum penalty on summary conviction in England and Wales</b></p>
@@ -2197,7 +2197,7 @@
           <num>179 </num>
           <content>
             <p>This extends and applies to the United Kingdom.</p>
-            <table ukm:widths="1.26in 1.26in 1.26in 1.26in 1.26in">
+            <table uk:widths="1.26in 1.26in 1.26in 1.26in 1.26in">
               <tr>
                 <td>
                   <p><b>Provision</b></p>
@@ -2478,7 +2478,7 @@
           <num>180 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Act's passage through Parliament.</p>
-            <table ukm:widths="2.1in 2.1in 2.1in">
+            <table uk:widths="2.1in 2.1in 2.1in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -2647,7 +2647,7 @@
           <num>181 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
-            <table ukm:widths="1.57in 1.57in 1.57in 1.57in">
+            <table uk:widths="1.57in 1.57in 1.57in 1.57in">
               <tr>
                 <td>
                   <p><b>Section in the Act</b></p>

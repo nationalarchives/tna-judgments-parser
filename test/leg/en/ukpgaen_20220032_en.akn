@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2022/32/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2022/32/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2022/32/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2022/32/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2022-07-27</dc:modified>
         <dc:title>Explanatory Notes Police, Crime, Sentencing and Courts Act 2022</dc:title>
         <dc:description>Explanatory Notes Police, Crime, Sentencing and Courts Act 2022</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2022/32</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2022/32" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2022/32/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2022-06-23</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2022</ukm:legislationYear>
-        <ukm:legislationNumber>32</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2022-06-23" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2022" />
+        <ukm:LegislationNumber Value="32" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="1520" />
           <ukm:BodyParagraphs Value="1520" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>6c645c7dd15ced690775dcef1a96baa15059bb501923e952310d4b344c91d905</ukm:hash>
+        <uk:hash>6c645c7dd15ced690775dcef1a96baa15059bb501923e952310d4b344c91d905</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -117,7 +117,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.15in 3.15in">
+          <table uk:widths="3.15in 3.15in">
             <tr>
               <td>
                 <p>Subject</p>
@@ -12082,7 +12082,7 @@
         <heading><b>Annex A – Glossary</b></heading>
         <level>
           <content>
-            <table ukm:widths="3.34in 3.34in">
+            <table uk:widths="3.34in 3.34in">
               <tr>
                 <td>
                   <p>AFA 2006</p>
@@ -12635,7 +12635,7 @@
         <heading><b>Annex B – Pre-charge bail authorisation requirements</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.38in 1.38in 1.38in 1.38in 1.38in">
+            <table uk:widths="1.38in 1.38in 1.38in 1.38in 1.38in">
               <tr>
                 <td>
                   <p>Months</p>
@@ -12898,7 +12898,7 @@
         <heading><b>Annex C - Changes to the Rehabilitation of Offenders Act 1974</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.3in 0.94in 0.95in 1.24in 0.92in 0.89in">
+            <table uk:widths="1.3in 0.94in 0.95in 1.24in 0.92in 0.89in">
               <tr>
                 <td colspan="3">
                   <p><b>Existing Regime (England &amp; Wales)</b></p>
@@ -13041,7 +13041,7 @@
         <heading><b>Annex D - Territorial extent and application in the United Kingdom</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.08in 1.18in 1.16in 0.9in 0.98in">
+            <table uk:widths="1.08in 1.18in 1.16in 0.9in 0.98in">
               <tr>
                 <th>
                   <p><b>Provision</b></p>
@@ -14512,7 +14512,7 @@
         <heading><b>Annex E – Hansard References</b></heading>
         <level>
           <content>
-            <table ukm:widths="2.2in 2in 2.1in">
+            <table uk:widths="2.2in 2in 2.1in">
               <tr>
                 <td>
                   <p><b>Stage</b></p>
@@ -15189,7 +15189,7 @@
         <heading><b>Annex F – Progress of Bill Table</b></heading>
         <level>
           <content>
-            <table ukm:widths="1.04in 1.04in 1.04in 1.04in 1.04in 1.04in">
+            <table uk:widths="1.04in 1.04in 1.04in 1.04in 1.04in 1.04in">
               <tr>
                 <td>
                   <p><b>Section of the Act</b></p>

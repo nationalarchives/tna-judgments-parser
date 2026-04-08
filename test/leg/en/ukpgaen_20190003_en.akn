@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="ExplanatoryNotes" xmlns:ukm="https://legislation.gov.uk/akn" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <doc name="ExplanatoryNotes" xmlns:uk="https://legislation.gov.uk/akn">
     <meta>
       <identification source="#tna">
         <FRBRWork>
           <FRBRthis value="http://www.legislation.gov.uk/id/ukpga/2019/3/notes" />
           <FRBRuri value="http://www.legislation.gov.uk/id/ukpga/2019/3/notes" />
-          <FRBRdate date="2026-04-02" name="generated" />
+          <FRBRdate date="2026-04-08" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/legislature/UnitedKingdomParliament" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukpga/2019/3/notes/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukpga/2019/3/notes/data.akn" />
-          <FRBRdate date="2026-04-02" name="transform" />
+          <FRBRdate date="2026-04-08" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -28,8 +28,8 @@
       <references source="#tna">
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
-      <proprietary source="#">
-        <ukm:parser>1.6.1</ukm:parser>
+      <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <ukm:Parser Value="1.6.1" />
         <dc:modified>2019-03-06</dc:modified>
         <dc:title>Explanatory Notes Counter-Terrorism and Border Security Act 2019</dc:title>
         <dc:description>Explanatory Notes Counter-Terrorism and Border Security Act 2019</dc:description>
@@ -37,20 +37,20 @@
         <dc:format>application/akn+xml</dc:format>
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer of Acts of Parliament</dc:publisher>
-        <ukm:legislation>http://www.legislation.gov.uk/id/ukpga/2019/3</ukm:legislation>
+        <ukm:Legislation Value="http://www.legislation.gov.uk/id/ukpga/2019/3" />
         <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2019/3/notes</dc:identifier>
-        <ukm:documentMainType>UnitedKingdomExplanatoryNotes</ukm:documentMainType>
-        <ukm:date>2019-03-12</ukm:date>
-        <ukm:legislationClass>UnitedKingdomPublicGeneralAct</ukm:legislationClass>
-        <ukm:legislationYear>2019</ukm:legislationYear>
-        <ukm:legislationNumber>3</ukm:legislationNumber>
+        <ukm:DocumentMainType Value="UnitedKingdomExplanatoryNotes" />
+        <ukm:Date Value="2019-03-12" />
+        <ukm:LegislationClass Value="UnitedKingdomPublicGeneralAct" />
+        <ukm:LegislationYear Value="2019" />
+        <ukm:LegislationNumber Value="3" />
         <ukm:Statistics>
           <ukm:TotalParagraphs Value="255" />
           <ukm:BodyParagraphs Value="255" />
           <ukm:ScheduleParagraphs Value="0" />
           <ukm:TotalImages Value="0" />
         </ukm:Statistics>
-        <ukm:hash>73ec61d67eae8b73f889a1b3b0e787974a0ed094f9c3d5e5931fc8e32c714a06</ukm:hash>
+        <uk:hash>73ec61d67eae8b73f889a1b3b0e787974a0ed094f9c3d5e5931fc8e32c714a06</uk:hash>
       </proprietary>
     </meta>
     <preface>
@@ -111,7 +111,7 @@
       <paragraph>
         <content>
           <p><b>Table of Contents</b></p>
-          <table ukm:widths="3.15in 3.15in">
+          <table uk:widths="3.15in 3.15in">
             <tr>
               <td>
                 <p><b>Subject</b></p>
@@ -770,7 +770,7 @@
               <num>56 </num>
               <content>
                 <p>Subsections (2), (3), (4), (6) and (7) increase the maximum penalty for five terrorism offences, as follows:</p>
-                <table ukm:widths="2.04in 2.01in 2.01in">
+                <table uk:widths="2.04in 2.01in 2.01in">
                   <tr>
                     <td>
                       <p><b>Offence</b></p>
@@ -974,7 +974,7 @@
               <num>69 </num>
               <content>
                 <p>Amendments to sections 224, 226A and 226B of the 2003 Act (made by subsections (2) to (4)) provide that the EDS regime, with an extended licence period of up to eight years, applies to the offences in the new Part 3.</p>
-                <table ukm:widths="5.8in">
+                <table uk:widths="5.8in">
                   <tr>
                     <td>
                       <p><b>Extended determinate sentences – example</b></p>
@@ -996,7 +996,7 @@
               <num>71 </num>
               <content>
                 <p>Subsection (6) inserts the offences listed in paragraph 69 above into Schedule 18A of the 2003 Act. As a result, a person convicted of such an offence in the circumstances described in paragraph 71 will receive a SOPC.</p>
-                <table ukm:widths="5.83in">
+                <table uk:widths="5.83in">
                   <tr>
                     <td>
                       <p><b>Sentence for offenders of particular concern – example</b></p>
@@ -1064,7 +1064,7 @@
               <num>79 </num>
               <content>
                 <p>The extension period is set by the courts and must not exceed five years for violent offences or eight years for sexual offences, but must be a period considered necessary for the purpose of protecting members of the public from further serious offences. Offenders serving an ECS will be referred to the Parole Commissioners for Northern Ireland approximately six months prior to the mid-point of their sentence and must demonstrate that they can be safely released into the community. If the Parole Commissioners direct release the offender will remain on licence for the remainder of the custodial term as well as the extension period set by the court. </p>
-                <table ukm:widths="5.83in">
+                <table uk:widths="5.83in">
                   <tr>
                     <td>
                       <p><b>Extended Custodial Sentences - example</b></p>
@@ -1103,7 +1103,7 @@
               <num>83 </num>
               <content>
                 <p>Part 4 of the 2008 Act makes provision about the notification of information to the police by certain individuals (aged 16 or over) convicted of relevant terrorism offences (listed in section 41) or terrorism-related offences (as provided for in section 42). The notification requirements apply to a person who: (a) is convicted of a relevant offence and receives a sentence of imprisonment or detention for a period or term of 12 months or more in relation to that offence; or (b) is convicted, found not guilty by reason of insanity or found to be under a disability and to have done the act charged in respect of such an offence punishable by 12 months’ imprisonment or more and is made subject to a hospital order. When in the community, such individuals – registered terrorist offenders (“RTOs”) - must provide the police with certain personal information, notify any changes to this information, confirm its accuracy periodically and notify any foreign travel. The period for which the notification requirement applies varies depending on the length of the sentence triggering the requirement, as follows:</p>
-                <table ukm:widths="1.34in 1.62in 1.43in 1.34in">
+                <table uk:widths="1.34in 1.62in 1.43in 1.34in">
                   <tr>
                     <td>
                       <p><b>Length of sentence </b></p>
@@ -1349,7 +1349,7 @@
               <num>99 </num>
               <content>
                 <p>Section 22C of the 1984 Act makes provision for ATTROs and Anti-Terrorism Traffic Regulation Notices (“ATTRNs”). These are in effect a sub-category of TROs/TRNs and rely on the underlying powers in sections 1, 6 and 14 of the 1984 Act to make permanent or temporary TROs and TRNs, as appropriate. A permanent ATTRO may be made under section 1(1)(a) for the purpose of avoiding or reducing, or reducing the likelihood of, danger connected with terrorism, or under section 1(1)(b) for the purpose of preventing or reducing damage connected with terrorism (section 22C(1) and (2)). Permanent ATTROs may be made in Greater London for the same reasons under the corresponding power in section 6 (section 22C(3)). A temporary ATTRO or ATTRN may be made under section 14 for a purpose relating to danger or damage connected with terrorism (section 22C(4) and (5)). “Terrorism” has the same meaning as in section 1 of the 2000 Act. </p>
-                <table ukm:widths="5.93in">
+                <table uk:widths="5.93in">
                   <tr>
                     <td>
                       <p>Section 1 of the 2000 Act - Terrorism: interpretation</p>
@@ -2625,7 +2625,7 @@
         <heading><b>Annex A – Glossary</b></heading>
         <level>
           <content>
-            <table ukm:widths="3.15in 3.15in">
+            <table uk:widths="3.15in 3.15in">
               <tr>
                 <td>
                   <p>ATTRNs</p>
@@ -2840,7 +2840,7 @@
         <paragraph>
           <content>
             <p><b>Individuals convicted of an offence</b></p>
-            <table ukm:widths="3.15in 3.15in">
+            <table uk:widths="3.15in 3.15in">
               <tr>
                 <td>
                   <p />
@@ -2885,7 +2885,7 @@
         <paragraph>
           <content>
             <p><b>Individuals not convicted of an offence</b></p>
-            <table ukm:widths="3.15in 3.15in">
+            <table uk:widths="3.15in 3.15in">
               <tr>
                 <td>
                   <p />
@@ -2948,7 +2948,7 @@
           <num>247 </num>
           <content>
             <p>Subject to certain exceptions (see paragraph 18 above), the provisions of the Bill extend and apply to England and Wales, Scotland and Northern Ireland.</p>
-            <table ukm:widths="0.76in 0.69in 0.69in 0.69in 0.95in">
+            <table uk:widths="0.76in 0.69in 0.69in 0.69in 0.95in">
               <tr>
                 <th>
                   <p><b>Provision</b></p>
@@ -3418,7 +3418,7 @@
           <num>248 </num>
           <content>
             <p>The following table sets out the dates and Hansard references for each stage of the Bill’s passage through Parliament.</p>
-            <table ukm:widths="1.87in 1.87in 2.26in">
+            <table uk:widths="1.87in 1.87in 2.26in">
               <tr>
                 <th>
                   <p><b>Stage</b></p>
@@ -3681,7 +3681,7 @@
           <num>249 </num>
           <content>
             <p>This Annex shows how each section and Schedule of the Act was numbered during the passage of the Bill through Parliament.</p>
-            <table ukm:widths="0.89in 0.89in 0.89in 0.89in 0.89in 0.89in 0.89in">
+            <table uk:widths="0.89in 0.89in 0.89in 0.89in 0.89in 0.89in 0.89in">
               <tr>
                 <th>
                   <p><b>Section of the Act</b></p>
