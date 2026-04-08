@@ -15,7 +15,7 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 namespace Backlog.Src;
 
 /// <summary>
-/// This is the main entry point to the bulk backlog parsing process
+///     This is the main entry point to the bulk backlog parsing process
 /// </summary>
 internal class BacklogParserWorker(
     ILogger<BacklogParserWorker> logger,
@@ -28,7 +28,8 @@ internal class BacklogParserWorker(
 {
     public int Run(bool isDryRun, uint? id, string pathToCourtMetadataFile, bool autoPublish, string pathToOutputFolder)
     {
-        var lines = csvMetadataReader.Read(pathToCourtMetadataFile, out var csvParseErrors);
+        var lines = csvMetadataReader.Read(pathToCourtMetadataFile, out var skippedCsvLineIdentifiers,
+            out var csvParseErrors);
         if (lines.Count == 0)
         {
             logger.LogCritical("No valid records found in the metadata file");
@@ -47,7 +48,6 @@ internal class BacklogParserWorker(
         }
 
         var alreadyDoneLines = new List<CsvLine>();
-        var markedAsSkipLines = new List<CsvLine>();
         var successfulNewLines = new List<CsvLine>();
         var failedToProcessLines = new List<(CsvLine line, Exception exception)>();
 
@@ -57,13 +57,6 @@ internal class BacklogParserWorker(
 
             try
             {
-                if (line.Skip)
-                {
-                    logger.LogWarning("Skipping {LineId} because it was marked to skip in the csv", line.id);
-                    markedAsSkipLines.Add(line);
-                    continue;
-                }
-
                 if (tracker.WasDone(line))
                 {
                     logger.LogWarning("Skipping {LineId} because it was previously processed", line.id);
@@ -105,8 +98,8 @@ internal class BacklogParserWorker(
             }
         }
 
-        LogFinalStatistics(logger, markedAsSkipLines, alreadyDoneLines, successfulNewLines, lines,
-            failedToProcessLines, csvParseErrors);
+        LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, lines, failedToProcessLines, csvParseErrors,
+            skippedCsvLineIdentifiers);
 
         if (failedToProcessLines.Count > 0 || csvParseErrors.Count > 0)
         {
@@ -116,14 +109,14 @@ internal class BacklogParserWorker(
         return 0;
     }
 
-    private static void LogFinalStatistics(ILogger logger, List<CsvLine> markedAsSkipLines,
-        List<CsvLine> alreadyDoneLines,
+    private static void LogFinalStatistics(ILogger logger, List<CsvLine> alreadyDoneLines,
         List<CsvLine> successfulNewLines, List<CsvLine> parsedLinesFromCsv,
-        List<(CsvLine line, Exception exception)> failedToProcessLines,
-        List<string> csvParseErrors)
+        List<(CsvLine line, Exception exception)> failedToProcessLines, List<string> csvParseErrors,
+        List<string> skippedCsvLineIdentifiers)
     {
-        var markedAsSkipIds = markedAsSkipLines.Any()
-            ? $"[{string.Join(", ", markedAsSkipLines.Select(l => l.id))}]"
+        var numSkippedCsvLines = skippedCsvLineIdentifiers.Count;
+        var markedAsSkipIds = numSkippedCsvLines > 0
+            ? $"[{string.Join(", ", skippedCsvLineIdentifiers)}]"
             : string.Empty;
 
         logger.LogInformation("""
@@ -133,10 +126,10 @@ internal class BacklogParserWorker(
                                 - {MarkedToSkipLineCount} lines were marked in the csv to skip {MarkedToSkipIds}
                                 - {AlreadyDoneLineCount} lines were skipped because they had been processed in a previous run
                               """,
-            markedAsSkipLines.Count + alreadyDoneLines.Count + successfulNewLines.Count,
+            numSkippedCsvLines + alreadyDoneLines.Count + successfulNewLines.Count,
             parsedLinesFromCsv.Count + csvParseErrors.Count,
             successfulNewLines.Count,
-            markedAsSkipLines.Count, markedAsSkipIds,
+            numSkippedCsvLines, markedAsSkipIds,
             alreadyDoneLines.Count
         );
 
@@ -224,7 +217,7 @@ internal class BacklogParserWorker(
                     Court = csvLine.Court,
                     Date = csvLine.DecisionDateTime.ToString("yyyy-MM-dd"),
                     Name = csvLine.FirstPartyName + " v " + csvLine.Respondent,
-                JurisdictionShortNames = csvLine.Jurisdictions.ToList(),
+                    JurisdictionShortNames = csvLine.Jurisdictions.ToList(),
                     Extensions = new Api.Extensions
                     {
                         SourceFormat = mimeType,
@@ -239,9 +232,12 @@ internal class BacklogParserWorker(
             };
 
             response = parser.Parse(request);
-            
+
             if (response.Xml.Contains("<header />"))
-                throw new NotSupportedException("Couldn't parse header - try updating titles used to identify the end of header in OptimizedUKUTParser.titles");
+            {
+                throw new NotSupportedException(
+                    "Couldn't parse header - try updating titles used to identify the end of header in OptimizedUKUTParser.titles");
+            }
         }
 
         return response;
