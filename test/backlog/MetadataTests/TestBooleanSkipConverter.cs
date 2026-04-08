@@ -17,6 +17,7 @@ public class TestBooleanSkipConverter
 
     [Theory]
     [InlineData("")]
+    [InlineData("\u00A0")]
     [InlineData("   ")]
     [InlineData("n")]
     [InlineData("N")]
