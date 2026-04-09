@@ -70,6 +70,10 @@ namespace test.backlog.EndToEndTests
             dataDir = testDataDirectory.GetDirectories(testCaseName).SingleOrDefault()?.FullName
                       ?? throw new DirectoryNotFoundException($"Could not find {testCaseName} directory");
 
+            // Ensure court document directory exists
+            var courtDocumentsDir = Path.Combine(dataDir, "court_documents");
+            Directory.CreateDirectory(courtDocumentsDir); //creates the folder if it doesn't exist
+            
             // Create the output directory - input directories should already exist with test data
             outputDir = Path.Combine(dataDir, "output");
             Directory.CreateDirectory(outputDir);
