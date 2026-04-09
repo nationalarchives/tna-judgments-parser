@@ -54,7 +54,8 @@ public class TestRead : IDisposable
             """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors);
+        var result =
+            csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors, out _);
         Assert.Empty(csvParseErrors);
 
         var parsedLine = Assert.Single(result);
@@ -87,7 +88,8 @@ public class TestRead : IDisposable
              """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors);
+        var result =
+            csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors, out _);
 
         Assert.Empty(csvParseErrors);
         Assert.Empty(skippedCsvLineIdentifiers);
@@ -114,13 +116,32 @@ public class TestRead : IDisposable
              """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors);
+        var result =
+            csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors, out _);
 
         Assert.Empty(csvParseErrors);
         Assert.Empty(result);
         Assert.Single(skippedCsvLineIdentifiers);
     }
 
+    [Fact]
+    public void Read_WithVarietyOfRows_OutputsFullRowCount()
+    {
+        using var csvStream = new StringReader(
+            """
+            id,FilePath,Extension,decision_datetime,CaseNo,court,appellants,respondent,skip
+            123 , this_is_a_good_unskipped_line.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department,
+            124 , this_is_a_good_skipped_line.pdf , .pdf , 2025-01-15 09:00:00 , IA/2025/001,UKUT-IAC , Smith , Secretary of State for the Home Department,skip me
+            125, missing_extension_skipped_line.docx  ,  ,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,skip me
+            126, missing_extension_unskipped_line.docx  ,  ,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,
+            """
+        );
+        
+        _ = csvMetadataReader.Read(csvStream, out _, out _, out var fullRowCount);
+
+        Assert.Equal(4, fullRowCount);
+    }
+    
     [Fact]
     public void Read_WithDodgySkippedLines_DoesNotOutputValidationErrors()
     {
@@ -136,7 +157,8 @@ public class TestRead : IDisposable
             """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors);
+        var result =
+            csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors, out _);
 
         // Assert that the good line is returned
         var parsedLine = Assert.Single(result);
@@ -175,7 +197,7 @@ public class TestRead : IDisposable
             csvWithMissingColumn
         );
 
-        var result = csvMetadataReader.Read(csvStream, out _, out var csvParseErrors);
+        var result = csvMetadataReader.Read(csvStream, out _, out var csvParseErrors, out _);
 
         Assert.Empty(result);
         Assert.All(csvParseErrors, csvParseError => Assert.Contains(missingColumn, csvParseError));
@@ -202,7 +224,7 @@ public class TestRead : IDisposable
              """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out _, out _);
+        var result = csvMetadataReader.Read(csvStream, out _, out _, out _);
 
         var line = Assert.Single(result);
         Assert.Equal(expectedJurisdictions, line.Jurisdictions);
@@ -220,7 +242,7 @@ public class TestRead : IDisposable
             """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out _, out _);
+        var result = csvMetadataReader.Read(csvStream, out _, out _, out _);
 
         Assert.Collection(result,
             line => Assert.Equivalent(new Dictionary<string, string>
@@ -302,7 +324,7 @@ public class TestRead : IDisposable
         using var csvStream = new StringReader(csvContent);
 
         // Act
-        var result = csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out _);
+        var result = csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out _, out _);
 
         // Assert - results
         CsvMetadataLineHelper.AssertCsvLinesMatch(result,
@@ -527,7 +549,7 @@ public class TestRead : IDisposable
             """
         );
 
-        var validLines = csvMetadataReader.Read(csvStream, out _, out var failedToParseLines);
+        var validLines = csvMetadataReader.Read(csvStream, out _, out var failedToParseLines, out _);
 
         Assert.Equal(3, validLines.Count);
         Assert.Equal(5, failedToParseLines.Count);
@@ -556,7 +578,7 @@ public class TestRead : IDisposable
         using var csvStream = new StringReader(csvContent);
 
         //Act
-        var result = csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out _);
+        var result = csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out _, out _);
 
         CsvMetadataLineHelper.AssertCsvLinesMatch(result,
             new CsvLine
@@ -607,7 +629,8 @@ public class TestRead : IDisposable
              """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out _, out var csvParseErrors);
+        var result =
+            csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors, out _);
 
         Assert.Empty(csvParseErrors);
         var line = Assert.Single(result);
@@ -639,7 +662,7 @@ public class TestRead : IDisposable
              """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out _, out var csvParseErrors);
+        var result = csvMetadataReader.Read(csvStream, out _, out var csvParseErrors, out _);
 
         Assert.Empty(result);
         var error = Assert.Single(csvParseErrors);
@@ -655,7 +678,7 @@ public class TestRead : IDisposable
         // Act & Assert
         Assert.Throws<FileNotFoundException>(() =>
         {
-            _ = csvMetadataReader.Read(nonExistentPath, out _, out _);
+            _ = csvMetadataReader.Read(nonExistentPath, out _, out _, out _);
         });
     }
 
@@ -668,7 +691,7 @@ public class TestRead : IDisposable
                 "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary");
 
         // Act
-        var lines = csvMetadataReader.Read(emptyCsvPath, out _, out _);
+        var lines = csvMetadataReader.Read(emptyCsvPath, out _, out _, out _);
 
         // Assert
         Assert.Empty(lines);
@@ -684,7 +707,7 @@ public class TestRead : IDisposable
         var expectedHash = BacklogParserWorker.Hash(File.ReadAllBytes(csvPath));
 
         // Act
-        var result = csvMetadataReader.Read(csvPath, out _, out _);
+        var result = csvMetadataReader.Read(csvPath, out _, out _, out _);
 
         // Assert
         var line = Assert.Single(result);
@@ -701,7 +724,7 @@ public class TestRead : IDisposable
         using var reader = new StringReader(csvContent);
 
         // Act
-        var result = csvMetadataReader.Read(reader, out _, out _);
+        var result = csvMetadataReader.Read(reader, out _, out _, out _);
 
         // Assert
         var line = Assert.Single(result);

@@ -24,17 +24,17 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
     private string csvHash = "unknown";
 
     internal List<CsvLine> Read(string csvPath, out List<string> skippedCsvLineIdentifiers,
-        out List<string> csvParseErrors)
+        out List<string> csvParseErrors, out int numAllLinesInCsv)
     {
         csvName = Path.GetFileName(csvPath);
         csvHash = BacklogParserWorker.Hash(File.ReadAllBytes(csvPath));
 
         using var streamReader = new StreamReader(csvPath);
-        return Read(streamReader, out skippedCsvLineIdentifiers, out csvParseErrors);
+        return Read(streamReader, out skippedCsvLineIdentifiers, out csvParseErrors, out numAllLinesInCsv);
     }
 
     internal List<CsvLine> Read(TextReader textReader, out List<string> skippedCsvLineIdentifiers,
-        out List<string> csvParseErrors)
+        out List<string> csvParseErrors, out int numAllLinesInCsv)
     {
         var config = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
@@ -51,6 +51,7 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
         var records = new List<CsvLine>();
         skippedCsvLineIdentifiers = [];
         csvParseErrors = [];
+        numAllLinesInCsv = 0;
 
         // Read the header first
         csv.Read();
@@ -59,75 +60,70 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
         // Now read data rows
         while (csv.Read())
         {
-            try
+            numAllLinesInCsv++;
+            var currentLineNumber = csv.Context.Parser!.Row;
+
+            var successfullyRetrievedSkipField = csv.TryGetField<bool>(
+                nameof(CsvLine.Skip),
+                csv.Context.TypeConverterCache.GetConverter<BooleanSkipConverter>(),
+                out var skipFieldValue
+            );
+
+            if (successfullyRetrievedSkipField && skipFieldValue)
             {
-                try
-                {
-                    var record = csv.GetRecord<CsvLine>();
-
-                    if (record.Skip)
-                    {
-                        skippedCsvLineIdentifiers.Add($"Line {csv.Context.Parser!.Row}");
-                        logger.LogWarning("Skipping {LineId} because it was marked to skip in the csv", record.id);
-                        continue;
-                    }
-
-                    // Use DataAnnotations validation
-                    var validationContext = new ValidationContext(record);
-                    var validationResults = new List<ValidationResult>();
-
-                    if (Validator.TryValidateObject(record, validationContext, validationResults, true))
-                    {
-                        records.Add(record);
-                        continue;
-                    }
-
-                    var validationErrors = string.Join(", ", validationResults.Where(r => r != ValidationResult.Success)
-                                                                              .Select(r => r.ErrorMessage));
-                    SkipOrRecordCsvParseError(csvParseErrors, skippedCsvLineIdentifiers, csv, validationErrors);
-                }
-                catch (FieldValidationException ex) //created by failed `Validate`s in `CsvLineMap`
-                {
-                    SkipOrRecordCsvParseError(csvParseErrors, skippedCsvLineIdentifiers, csv,
-                        $"\"{ex.Field}\" failed validation with message: {GetCsvHelperExceptionMessage(ex)}");
-                }
+                skippedCsvLineIdentifiers.Add($"Line {currentLineNumber}");
+                logger.LogInformation("Skipping line {LineNumber} because it was marked to skip in the csv",
+                    currentLineNumber);
+                continue;
             }
-            catch (TypeConverterException ex)
+
+            var processCsvRecordResult = ProcessCsvRecord(csv);
+
+            switch (processCsvRecordResult)
             {
-                SkipOrRecordCsvParseError(csvParseErrors, skippedCsvLineIdentifiers, csv,
-                    $"Could not convert field `{ex.MemberMapData.Member?.Name ?? "unknown"}` with value \"{ex.Text}\" to type `{ex.MemberMapData.Type.Name}`");
-            }
-            catch (CsvHelperException ex)
-            {
-                SkipOrRecordCsvParseError(csvParseErrors, skippedCsvLineIdentifiers, csv,
-                    GetCsvHelperExceptionMessage(ex));
-            }
-            catch (Exception ex)
-            {
-                logger.LogCritical(ex, "Critical issue: {ParseError}",
-                    CreateParseErrorWithRowInformation(csv, ex.Message));
+                case { ErrorMessage: { } errorMessage, Record: null }:
+                    csvParseErrors.Add($"Line {currentLineNumber}: {errorMessage} [{csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty)}]");
+                    break;
+                case { Record: { } record, ErrorMessage: null }:
+                    records.Add(record);
+                    break;
+                default:
+                    throw new NotSupportedException("ProcessCsvRecord always returns either a record or an error message");
             }
         }
 
         return records;
     }
 
-    private static void SkipOrRecordCsvParseError(List<string> csvParseErrors, List<string> skippedCsvLineIdentifiers,
-        CsvReader csv, string errorMessage)
+    private static (CsvLine? Record, string? ErrorMessage) ProcessCsvRecord(CsvReader csv)
     {
-        var successfullyRetrievedSkipField = csv.TryGetField<bool>(
-            nameof(CsvLine.Skip),
-            csv.Context.TypeConverterCache.GetConverter<BooleanSkipConverter>(),
-            out var skipFieldValue
-        );
+        try
+        {
+            var record = csv.GetRecord<CsvLine>();
 
-        if (successfullyRetrievedSkipField && skipFieldValue)
-        {
-            skippedCsvLineIdentifiers.Add($"Line {csv.Context.Parser!.Row}");
+            // Use DataAnnotations validation
+            var validationResults = new List<ValidationResult>();
+
+            if (Validator.TryValidateObject(record, new ValidationContext(record), validationResults, true))
+            {
+                return (record, null);
+            }
+
+            return (null, string.Join(", ", validationResults.Where(r => r != ValidationResult.Success)
+                                                             .Select(r => r.ErrorMessage)));
         }
-        else
+        catch (FieldValidationException ex) //created by failed `Validate`s in `CsvLineMap`
         {
-            csvParseErrors.Add(CreateParseErrorWithRowInformation(csv, errorMessage));
+            return (null, $"\"{ex.Field}\" failed validation with message: {GetCsvHelperExceptionMessage(ex)}");
+        }
+        catch (TypeConverterException ex)
+        {
+            return (null,
+                $"Could not convert field `{ex.MemberMapData.Member?.Name ?? "unknown"}` with value \"{ex.Text}\" to type `{ex.MemberMapData.Type.Name}`");
+        }
+        catch (CsvHelperException ex)
+        {
+            return (null, GetCsvHelperExceptionMessage(ex));
         }
     }
 
@@ -138,12 +134,6 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger)
     private static string GetCsvHelperExceptionMessage(CsvHelperException ex)
     {
         return ex.Message.Substring(0, ex.Message.IndexOf(Environment.NewLine, StringComparison.Ordinal));
-    }
-
-    private static string CreateParseErrorWithRowInformation(CsvReader csv, string errorMessage)
-    {
-        return
-            $"Line {csv.Context.Parser!.Row}: {errorMessage} [{csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty)}]";
     }
 
     private sealed class CsvLineMap : ClassMap<CsvLine>

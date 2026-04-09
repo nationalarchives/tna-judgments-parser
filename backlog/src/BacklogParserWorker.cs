@@ -29,7 +29,7 @@ internal class BacklogParserWorker(
     public int Run(bool isDryRun, uint? id, string pathToCourtMetadataFile, bool autoPublish, string pathToOutputFolder)
     {
         var lines = csvMetadataReader.Read(pathToCourtMetadataFile, out var skippedCsvLineIdentifiers,
-            out var csvParseErrors);
+            out var csvParseErrors, out var numAllLinesInCsv);
         if (lines.Count == 0)
         {
             logger.LogCritical("No valid records found in the metadata file");
@@ -59,7 +59,7 @@ internal class BacklogParserWorker(
             {
                 if (tracker.WasDone(line))
                 {
-                    logger.LogWarning("Skipping {LineId} because it was previously processed", line.id);
+                    logger.LogInformation("Skipping {LineId} because it was previously processed", line.id);
                     alreadyDoneLines.Add(line);
                     continue;
                 }
@@ -98,8 +98,8 @@ internal class BacklogParserWorker(
             }
         }
 
-        LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, lines, failedToProcessLines, csvParseErrors,
-            skippedCsvLineIdentifiers);
+        LogFinalStatistics(logger, alreadyDoneLines, successfulNewLines, failedToProcessLines, csvParseErrors,
+            skippedCsvLineIdentifiers, numAllLinesInCsv);
 
         if (failedToProcessLines.Count > 0 || csvParseErrors.Count > 0)
         {
@@ -110,9 +110,8 @@ internal class BacklogParserWorker(
     }
 
     private static void LogFinalStatistics(ILogger logger, List<CsvLine> alreadyDoneLines,
-        List<CsvLine> successfulNewLines, List<CsvLine> parsedLinesFromCsv,
-        List<(CsvLine line, Exception exception)> failedToProcessLines, List<string> csvParseErrors,
-        List<string> skippedCsvLineIdentifiers)
+        List<CsvLine> successfulNewLines, List<(CsvLine line, Exception exception)> failedToProcessLines,
+        List<string> csvParseErrors, List<string> skippedCsvLineIdentifiers, int numAllLinesInCsv)
     {
         var numSkippedCsvLines = skippedCsvLineIdentifiers.Count;
         var markedAsSkipIds = numSkippedCsvLines > 0
@@ -127,7 +126,7 @@ internal class BacklogParserWorker(
                                 - {AlreadyDoneLineCount} lines were skipped because they had been processed in a previous run
                               """,
             numSkippedCsvLines + alreadyDoneLines.Count + successfulNewLines.Count,
-            parsedLinesFromCsv.Count + csvParseErrors.Count,
+            numAllLinesInCsv,
             successfulNewLines.Count,
             numSkippedCsvLines, markedAsSkipIds,
             alreadyDoneLines.Count

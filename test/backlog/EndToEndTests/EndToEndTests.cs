@@ -223,13 +223,13 @@ namespace test.backlog.EndToEndTests
             Assert.True(trackerLines[0].Contains("some-uuid-1"), "First line should be the pre-existing entry");
 
             // Log file should mention skips
-            ConsolidatedLogger.VerifyLog("Skipping 103 because it was marked to skip in the csv", LogLevel.Warning)
-                              .VerifyLog("Skipping 100 because it was previously processed", LogLevel.Warning)
+            ConsolidatedLogger.VerifyLog("Skipping line 5 because it was marked to skip in the csv", LogLevel.Information)
+                              .VerifyLog("Skipping 100 because it was previously processed", LogLevel.Information)
                               .VerifyLog("""
                                          ---------------------------
                                          Successfully processed 4 of 4 csv lines, of which:
                                            - 2 lines were new
-                                           - 1 lines were marked in the csv to skip [103]
+                                           - 1 lines were marked in the csv to skip [Line 5]
                                            - 1 lines were skipped because they had been processed in a previous run
                                          """, LogLevel.Information);
         }
