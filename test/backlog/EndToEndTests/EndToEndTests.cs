@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
+using Microsoft.Extensions.Logging;
+
 using Xunit;
 
 using Metadata = UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata;
@@ -215,17 +217,17 @@ namespace test.backlog.EndToEndTests
             // Should have the original entry plus new entries
             Assert.True(trackerLines.Length > 1, "Tracker should have original entry plus new entries");
             Assert.True(trackerLines[0].Contains("some-uuid-1"), "First line should be the pre-existing entry");
-            
+
             // Log file should mention skips
-            var logContent = GetLogContent(dataDir);
-            Assert.Contains("Skipping line 5 because it was marked to skip in the csv", logContent);
-            Assert.Contains("Skipping 100 because it was previously processed", logContent);
-            Assert.Contains("""
-                            Successfully processed 4 of 4 csv lines, of which:
-                              - 2 lines were new
-                              - 1 lines were marked in the csv to skip [Line 5]
-                              - 1 lines were skipped because they had been processed in a previous run
-                            """, logContent);
+            ConsolidatedLogger.VerifyLog("Skipping 103 because it was marked to skip in the csv", LogLevel.Warning)
+                              .VerifyLog("Skipping 100 because it was previously processed", LogLevel.Warning)
+                              .VerifyLog("""
+                                         ---------------------------
+                                         Successfully processed 4 of 4 csv lines, of which:
+                                           - 2 lines were new
+                                           - 1 lines were marked in the csv to skip [103]
+                                           - 1 lines were skipped because they had been processed in a previous run
+                                         """, LogLevel.Information);
         }
 
         [Fact]
@@ -258,6 +260,7 @@ namespace test.backlog.EndToEndTests
 
             // Assert
             Assert.Equal(1, exitCode);
+            ConsolidatedLogger.VerifyLog("No valid records found in the metadata file", LogLevel.Critical);
         }
 
         [Fact]

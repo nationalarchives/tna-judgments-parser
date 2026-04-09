@@ -169,12 +169,12 @@ public class Program
     }
 
 
-    private static List<(Type serviceType, object instance)> _dependencyInjectionOverrides = [];
+    private static List<(Type serviceType, object instance, bool replace)> _dependencyInjectionOverrides = [];
 
     /// <summary>
     ///     Allow services like S3 to be mocked, but only during tests
     /// </summary>
-    internal static List<(Type serviceType, object instance)> DependencyInjectionOverrides =>
+    internal static List<(Type serviceType, object instance, bool replace)> DependencyInjectionOverrides =>
         IsTest()
             ? _dependencyInjectionOverrides
             : throw new InvalidOperationException("Cannot use dependency injection overrides in production");
@@ -215,9 +215,13 @@ public class Program
 
     private static void OverrideDependencyInjection(ServiceCollection services)
     {
-        foreach (var (serviceType, instance) in DependencyInjectionOverrides)
+        foreach (var (serviceType, instance, replace) in DependencyInjectionOverrides)
         {
-            services.RemoveAll(serviceType);
+            if (replace)
+            {
+                services.RemoveAll(serviceType);
+            }
+
             services.AddSingleton(serviceType, instance);
         }
     }

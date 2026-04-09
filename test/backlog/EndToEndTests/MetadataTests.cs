@@ -8,6 +8,10 @@ using System.Xml;
 
 using Backlog.Csv;
 
+using Microsoft.Extensions.Logging;
+
+using UK.Gov.Legislation.Judgments;
+
 using Xunit;
 
 namespace test.backlog.EndToEndTests;
@@ -223,10 +227,7 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
 
         //Assert
         Assert.True(exitCode != 0, "Expected program to error but it exited successfully");
-        Assert.Contains(
-            "MetadataConflictException: Jurisdictions found in document are missing in supplied outside metadata",
-            GetLogContent(tempDataDir!)
-        );
+        ConsolidatedLogger.VerifyLog<MetadataConflictException>("Jurisdictions found in document are missing in supplied outside metadata", LogLevel.Error);
     }
 
     [Fact]
