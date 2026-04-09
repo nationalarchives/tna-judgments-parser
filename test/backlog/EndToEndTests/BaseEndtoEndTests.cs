@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using Amazon.S3;
 
@@ -16,11 +17,11 @@ public abstract class BaseEndToEndTests : IDisposable
 {
     protected readonly MockS3Client mockS3Client = new();
     protected readonly FakeTimeProvider fakeTimeProvider = new();
-    protected readonly ITestOutputHelper TestOutputHelper;
+    private readonly ITestOutputHelper testOutputHelper;
     
     protected BaseEndToEndTests(ITestOutputHelper testOutputHelper)
     {
-        TestOutputHelper = testOutputHelper;
+        this.testOutputHelper = testOutputHelper;
 
         // Ensure environment is clean before running any tests
         CleanEnvironmentVariables();
@@ -83,6 +84,13 @@ public abstract class BaseEndToEndTests : IDisposable
         Assert.True(exitCode == 0, "Program should exit successfully");
     }
 
+    protected static string GetLogContent(string dataDirectory)
+    {
+        var logFilePath = Directory.GetFiles(dataDirectory, "log*.txt").Single();
+        var logContent = File.ReadAllText(logFilePath);
+        return logContent;
+    }
+    
     protected static string GetUuidFromKey(string capturedKey)
     {
         var capturedUuid = capturedKey.Substring(0, capturedKey.Length - 7); // Remove .tar.gz
@@ -100,7 +108,7 @@ public abstract class BaseEndToEndTests : IDisposable
         foreach (var line in lines)
         {
             var numberedLine = $"{currentLineNumber}: {line}";
-            TestOutputHelper.WriteLine(numberedLine);
+            testOutputHelper.WriteLine(numberedLine);
             currentLineNumber++;
         }
     }

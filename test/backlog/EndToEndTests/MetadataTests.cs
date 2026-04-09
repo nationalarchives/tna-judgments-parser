@@ -225,7 +225,8 @@ TEST1,{originalFileName},File,1024,{hmctsFilePath}{originalFileName},Crown Copyr
         Assert.True(exitCode != 0, "Expected program to error but it exited successfully");
         Assert.Contains(
             "MetadataConflictException: Jurisdictions found in document are missing in supplied outside metadata",
-            TestOutputHelper.Output);
+            GetLogContent(tempDataDir!)
+        );
     }
 
     [Fact]

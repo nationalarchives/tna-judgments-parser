@@ -215,6 +215,17 @@ namespace test.backlog.EndToEndTests
             // Should have the original entry plus new entries
             Assert.True(trackerLines.Length > 1, "Tracker should have original entry plus new entries");
             Assert.True(trackerLines[0].Contains("some-uuid-1"), "First line should be the pre-existing entry");
+            
+            // Log file should mention skips
+            var logContent = GetLogContent(dataDir);
+            Assert.Contains("Skipping line 5 because it was marked to skip in the csv", logContent);
+            Assert.Contains("Skipping 100 because it was previously processed", logContent);
+            Assert.Contains("""
+                            Successfully processed 4 of 4 csv lines, of which:
+                              - 2 lines were new
+                              - 1 lines were marked in the csv to skip [Line 5]
+                              - 1 lines were skipped because they had been processed in a previous run
+                            """, logContent);
         }
 
         [Fact]
