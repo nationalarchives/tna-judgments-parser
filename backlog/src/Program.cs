@@ -189,7 +189,7 @@ public class Program
             loggingBuilder.AddConsole()
                           .AddFile(logFilePath,
                               outputTemplate:
-                              "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message}{NewLine}{Exception}");
+                              "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:w4}] {Message:lj}{NewLine}{Exception}");
         });
         services
             .AddSingleton<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator,
