@@ -6,8 +6,14 @@ using System.IO;
 
 using Amazon.S3;
 
-using Xunit;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Time.Testing;
+
+using Moq;
+
+using test.Mocks;
+
+using Xunit;
 
 namespace test.backlog.EndToEndTests;
 
@@ -16,20 +22,33 @@ public abstract class BaseEndToEndTests : IDisposable
 {
     protected readonly MockS3Client mockS3Client = new();
     protected readonly FakeTimeProvider fakeTimeProvider = new();
-    protected readonly ITestOutputHelper TestOutputHelper;
-    
+    private readonly ITestOutputHelper testOutputHelper;
+    protected readonly MockLogger<BaseEndToEndTests> ConsolidatedLogger = new();
+
     protected BaseEndToEndTests(ITestOutputHelper testOutputHelper)
     {
-        TestOutputHelper = testOutputHelper;
+        this.testOutputHelper = testOutputHelper;
 
         // Ensure environment is clean before running any tests
         CleanEnvironmentVariables();
 
-        // Configure S3 client
+        // Clear lingering overrides from previous tests (overrides are in a static context)
         Environment.SetEnvironmentVariable("IS_TEST", "true");
+        Backlog.Src.Program.DependencyInjectionOverrides.Clear();
+        
+        // Configure S3 client
         Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
-        Backlog.Src.Program.DependencyInjectionOverrides.Add((typeof(IAmazonS3), mockS3Client.Object));
-        Backlog.Src.Program.DependencyInjectionOverrides.Add((typeof(TimeProvider), fakeTimeProvider ));
+        Backlog.Src.Program.DependencyInjectionOverrides.Add((typeof(IAmazonS3), mockS3Client.Object, true));
+
+        // Control time
+        Backlog.Src.Program.DependencyInjectionOverrides.Add((typeof(TimeProvider), fakeTimeProvider, true));
+
+        // Mock logger
+        var mockLoggerProvider = new Mock<ILoggerProvider>();
+        mockLoggerProvider.Setup(x => x.CreateLogger(It.IsAny<string>())).Returns(() => ConsolidatedLogger.Object);
+
+        Backlog.Src.Program.DependencyInjectionOverrides.Add(
+            (typeof(ILoggerProvider), mockLoggerProvider.Object, false));
     }
 
     public void Dispose()
@@ -40,6 +59,7 @@ public abstract class BaseEndToEndTests : IDisposable
 
     protected virtual void Dispose(bool disposing)
     {
+        Backlog.Src.Program.DependencyInjectionOverrides.Clear();
         CleanEnvironmentVariables();
     }
 
@@ -100,7 +120,7 @@ public abstract class BaseEndToEndTests : IDisposable
         foreach (var line in lines)
         {
             var numberedLine = $"{currentLineNumber}: {line}";
-            TestOutputHelper.WriteLine(numberedLine);
+            testOutputHelper.WriteLine(numberedLine);
             currentLineNumber++;
         }
     }

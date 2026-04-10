@@ -207,27 +207,27 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator)
         if (string.IsNullOrEmpty(meta.DocumentType))
             logger.LogWarning("The document type is null");
         else
-            logger.LogInformation("The document type is {}", meta.DocumentType);
+            logger.LogInformation("The document type is {DocumentType}", meta.DocumentType);
         if (string.IsNullOrEmpty(URI.ExtractShortURIComponent(meta.Uri)))
-            logger.LogWarning("The {} uri is null", meta.DocumentType);
+            logger.LogWarning("The {DocumentType} uri is null", meta.DocumentType);
         else
-            logger.LogInformation("The {} uri is {}", meta.DocumentType, meta.Uri);
+            logger.LogInformation("The {DocumentType} uri is {Uri}", meta.DocumentType, meta.Uri);
         if (meta.Court is null)
             logger.LogWarning("The court is null");
         else
-            logger.LogInformation("The court is {}", meta.Court);
+            logger.LogInformation("The court is {Court}", meta.Court);
         if (meta.Cite is null)
             logger.LogWarning("The case citation is null");
         else
-            logger.LogInformation("The case citation is {}", meta.Cite);
+            logger.LogInformation("The case citation is {Cite}", meta.Cite);
         if (meta.Date is null)
-            logger.LogWarning("The {} date is null", meta.DocumentType);
+            logger.LogWarning("The {DocumentType} date is null", meta.DocumentType);
         else
-            logger.LogInformation("The {} date is {}", meta.DocumentType, meta.Date);
+            logger.LogInformation("The {DocumentType} date is {Date}", meta.DocumentType, meta.Date);
         if (meta.Name is null)
-            logger.LogWarning("The {} name is null", meta.DocumentType);
+            logger.LogWarning("The {DocumentType} name is null", meta.DocumentType);
         else
-            logger.LogInformation("The {} name is {}", meta.DocumentType, meta.Name);
+            logger.LogInformation("The {DocumentType} name is {Name}", meta.DocumentType, meta.Name);
     }
 
 }
