@@ -1,5 +1,6 @@
 
 using System.IO;
+using System.Xml;
 
 using DocumentFormat.OpenXml.Packaging;
 
@@ -40,6 +41,12 @@ class Helper : BaseHelper {
 
     protected override IDocument ParseDocument(WordprocessingDocument docx, string filename = null) {
         return TranspositionNotes.Parser.Parse(docx, filename);
+    }
+
+    protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
+        TocGenerator.Generate(xml, "The whole Transposition Note",
+            skipIfNoStructuralEntries: true,
+            strategy: TocGenerator.TocStrategy.BoldTitleDocumentOrder);
     }
 
 }

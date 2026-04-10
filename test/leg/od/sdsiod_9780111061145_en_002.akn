@@ -4,22 +4,22 @@
     <meta>
       <identification source="#tna">
         <FRBRWork>
-          <FRBRthis value="http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other/2" />
-          <FRBRuri value="http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other/2" />
+          <FRBRthis value="http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other-document/2" />
+          <FRBRuri value="http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other-document/2" />
           <FRBRdate date="2026-04-10" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/government/scotland" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
-          <FRBRthis value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other/2" />
-          <FRBRuri value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other/2" />
+          <FRBRthis value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/2" />
+          <FRBRuri value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/2" />
           <FRBRdate date="2024-10-22T08:00:00Z" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
-          <FRBRthis value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other/2/data.akn" />
-          <FRBRuri value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other/2/data.akn" />
+          <FRBRthis value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/2/data.akn" />
+          <FRBRuri value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/2/data.akn" />
           <FRBRdate date="2026-04-10" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
@@ -38,7 +38,7 @@
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer for Scotland</dc:publisher>
         <ukm:Legislation Value="http://www.legislation.gov.uk/id/sdsi/2025/9780111061145" />
-        <dc:identifier>http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other/2</dc:identifier>
+        <dc:identifier>http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other-document/2</dc:identifier>
         <ukm:DocumentMainType Value="ScottishDraftOtherDocument" />
         <ukm:Date Value="2024-11-01" />
         <ukm:LegislationClass Value="ScottishDraftStatutoryInstrument" />
@@ -55,6 +55,14 @@
       </proprietary>
     </meta>
     <mainBody>
+      <toc>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/2" level="1"><inline name="tocHeading">The whole Document</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/2/paragraph/1" level="2"><inline name="tocHeading">1. Summary of aims and expected outcomes of strategy, proposal, programme or policy</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/2/paragraph/2" level="2"><inline name="tocHeading">2. Summary of evidence</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/2/paragraph/3" level="2"><inline name="tocHeading">3. Summary of assessment findings</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/2/paragraph/4" level="2"><inline name="tocHeading">4. Recommendations and conclusions</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/2/paragraph/5" level="2"><inline name="tocHeading">5. Sign off</inline></tocItem>
+      </toc>
       <level>
         <content>
           <p><b>Fairer Scotland Duty Assessment</b></p>
@@ -65,7 +73,7 @@
           <p><b>The Disability Assistance (Scottish Adult Disability Living Allowance) Regulations 2025</b></p>
         </content>
       </level>
-      <paragraph>
+      <paragraph eId="paragraph_1">
         <num><b>1.</b></num>
         <content>
           <p><b>Summary of aims and expected outcomes of strategy, proposal, programme or policy</b></p>
@@ -175,7 +183,7 @@
           </content>
         </paragraph>
       </level>
-      <paragraph>
+      <paragraph eId="paragraph_2">
         <num><b>2.</b></num>
         <content>
           <p><b>Summary of evidence </b></p>
@@ -232,7 +240,7 @@
           <p>Poverty amongst disabled people is likely to be exacerbated in light of the COVID-19 pandemic. UNICEF highlighted that: ‘In the context of the COVID-19 pandemic, persons with disabilities may have increased risk’.<authorialNote marker="15"><p> COVID-19 response considerations for people with disabilities - <a href="https://www.unicef.org/media/125956/file/COVID-19-response-considerations-for-people-with-disabilities-190320.pdf">https://www.unicef.org/media/125956/file/COVID-19-response-considerations-for-people-with-disabilities-190320.pdf</a> </p></authorialNote> The report also makes connections between the pandemic and poverty, with disabled people likely to be disproportionately impacted.</p>
         </content>
       </level>
-      <paragraph>
+      <paragraph eId="paragraph_3">
         <num><b>3.</b></num>
         <content>
           <p><b>Summary of assessment findings</b></p>
@@ -638,7 +646,7 @@
           <p>Where someone in receipt of Scottish Adult Disability Living Allowance does decide to apply to Adult Disability Payment, they will have both rates of the mobility component available to them when their Adult Disability Payment award is first determined, regardless of age. This is consistent with the Disability Living Allowance to Personal Independence Payment journey as currently administered by the Department for Work and Pensions. However, after a prescribed period we intend to limit the rates of the mobility component for those over the relevant age, to ensure consistency across Scottish disability benefits.   More detail of our approach can be found in the Equality Impact Assessment published alongside this Fairer Scotland Duty Assessment.</p>
         </content>
       </level>
-      <paragraph>
+      <paragraph eId="paragraph_4">
         <num><b>4.</b></num>
         <content>
           <p><b>Recommendations and conclusions</b></p>
@@ -649,7 +657,7 @@
           <p>This Fairer Scotland Duty has identified that overall, the introduction of Scottish Adult Disability Living Allowance to replace Disability Living Allowance, together with the provisions for safe and secure case transfer, is likely to have a positive impact on reducing inequality and tackling poverty for disabled people in Scotland.</p>
         </content>
       </level>
-      <paragraph>
+      <paragraph eId="paragraph_5">
         <num><b>5.</b></num>
         <content>
           <p><b>Sign off </b></p>

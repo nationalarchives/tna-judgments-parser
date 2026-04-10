@@ -110,7 +110,7 @@ public class LegislativeDocumentConfig {
             SectionTitleStyle = "EMSectionTitle",
             Level1SubheadingStyle = "EMLevel1Subheading",
             Level2SubheadingStyle = "EMLevel2Subheading",
-            UriSuffix = "/transposition",
+            UriSuffix = "/transposition-note",
             DefaultDocumentType = "TranspositionNote",
             DocumentTypeMapping = new System.Collections.Generic.Dictionary<string, string> {
                 { "Transposition Note", "TranspositionNote" },
@@ -147,7 +147,7 @@ public class LegislativeDocumentConfig {
             SectionTitleStyle = "EMSectionTitle",
             Level1SubheadingStyle = "EMLevel1Subheading",
             Level2SubheadingStyle = "EMLevel2Subheading",
-            UriSuffix = "/other",
+            UriSuffix = "/other-document",
             DefaultDocumentType = "OtherDocument",
             DocumentTypeMapping = new System.Collections.Generic.Dictionary<string, string>()
         };

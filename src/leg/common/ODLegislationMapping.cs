@@ -58,7 +58,7 @@ internal static partial class ODLegislationMapping {
 
     /// <summary>
     /// Builds the short URI component for an Other Document.
-    /// Format: {legislation-type}/{leg-year}/{leg-number}/other/{version}
+    /// Format: {legislation-type}/{leg-year}/{leg-number}/other-document/{version}
     /// </summary>
     public static string BuildShortUriComponent(ODMappingRecord record) {
         if (record is null)
@@ -72,7 +72,7 @@ internal static partial class ODLegislationMapping {
             throw new ArgumentException($"Failed to parse legislation URI for OD: {record.LegislationUri}");
 
         var (type, legYear, legNumber) = components.Value;
-        return $"{type}/{legYear}/{legNumber}/other/{record.OdVersion}";
+        return $"{type}/{legYear}/{legNumber}/other-document/{record.OdVersion}";
     }
 
     /// <summary>

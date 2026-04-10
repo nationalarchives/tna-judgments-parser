@@ -4,22 +4,22 @@
     <meta>
       <identification source="#tna">
         <FRBRWork>
-          <FRBRthis value="http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other/4" />
-          <FRBRuri value="http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other/4" />
+          <FRBRthis value="http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other-document/4" />
+          <FRBRuri value="http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other-document/4" />
           <FRBRdate date="2026-04-10" name="generated" />
           <FRBRauthor href="http://www.legislation.gov.uk/id/government/scotland" />
           <FRBRcountry value="GB-UKM" />
         </FRBRWork>
         <FRBRExpression>
-          <FRBRthis value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other/4" />
-          <FRBRuri value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other/4" />
+          <FRBRthis value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/4" />
+          <FRBRuri value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/4" />
           <FRBRdate date="2024-10-31T10:37:00Z" name="lastModified" />
           <FRBRauthor href="#" />
           <FRBRlanguage language="en" />
         </FRBRExpression>
         <FRBRManifestation>
-          <FRBRthis value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other/4/data.akn" />
-          <FRBRuri value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other/4/data.akn" />
+          <FRBRthis value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/4/data.akn" />
+          <FRBRuri value="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/4/data.akn" />
           <FRBRdate date="2026-04-10" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
@@ -38,7 +38,7 @@
         <dc:language>en</dc:language>
         <dc:publisher>King's Printer for Scotland</dc:publisher>
         <ukm:Legislation Value="http://www.legislation.gov.uk/id/sdsi/2025/9780111061145" />
-        <dc:identifier>http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other/4</dc:identifier>
+        <dc:identifier>http://www.legislation.gov.uk/id/sdsi/2025/9780111061145/other-document/4</dc:identifier>
         <ukm:DocumentMainType Value="ScottishDraftOtherDocument" />
         <ukm:Date Value="2024-11-01" />
         <ukm:LegislationClass Value="ScottishDraftStatutoryInstrument" />
@@ -55,6 +55,15 @@
       </proprietary>
     </meta>
     <mainBody>
+      <toc>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/4" level="1"><inline name="tocHeading">The whole Document</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/4/paragraph/1" level="2"><inline name="tocHeading">1. Contact and schedule information</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/4/paragraph/2" level="2"><inline name="tocHeading">2. Introductory information</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/4/paragraph/3" level="2"><inline name="tocHeading">3. Data Controllers</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/4/paragraph/4" level="2"><inline name="tocHeading">4. Consultation</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/4/paragraph/5" level="2"><inline name="tocHeading">5. Further assessment and risk identification</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/sdsi/2025/9780111061145/other-document/4/paragraph/6" level="2"><inline name="tocHeading">6. Risk Assessment</inline></tocItem>
+      </toc>
       <level>
         <content>
           <table uk:widths="6.17in">
@@ -79,7 +88,7 @@
           </table>
         </content>
       </level>
-      <paragraph>
+      <paragraph eId="paragraph_1">
         <num><b>1.</b></num>
         <content>
           <p><b>Contact and schedule information</b></p>
@@ -147,7 +156,7 @@
           </table>
         </content>
       </paragraph>
-      <paragraph>
+      <paragraph eId="paragraph_2">
         <num><b>2.</b></num>
         <content>
           <p><b>Introductory information</b></p>
@@ -312,7 +321,7 @@
           </table>
         </content>
       </paragraph>
-      <paragraph>
+      <paragraph eId="paragraph_3">
         <num><b>3.</b></num>
         <content>
           <p><b>Data Controllers </b></p>
@@ -447,7 +456,7 @@
           </table>
         </content>
       </paragraph>
-      <paragraph>
+      <paragraph eId="paragraph_4">
         <num><b>4.</b></num>
         <content>
           <p><b>Consultation</b></p>
@@ -537,7 +546,7 @@
           </table>
         </content>
       </paragraph>
-      <paragraph>
+      <paragraph eId="paragraph_5">
         <num><b>5.</b></num>
         <content>
           <p><b>Further assessment and risk identification</b></p>
@@ -783,7 +792,7 @@
           </table>
         </content>
       </paragraph>
-      <paragraph>
+      <paragraph eId="paragraph_6">
         <num><b>6.</b></num>
         <content>
           <p><b>Risk Assessment</b></p>

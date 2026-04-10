@@ -43,7 +43,8 @@ internal static partial class TNLegislationMapping {
 
     /// <summary>
     /// Builds the short URI component for a Transposition Note.
-    /// Format: {legislation-type}/{leg-year}/{leg-number}/transposition
+    /// Format: {legislation-type}/{leg-year}/{leg-number}/transposition-note/1
+    /// TN is unversioned but the spec-mandated URI still includes a counter segment.
     /// </summary>
     public static string BuildShortUriComponent(TNMappingRecord record) {
         if (record is null)
@@ -57,7 +58,7 @@ internal static partial class TNLegislationMapping {
             throw new ArgumentException($"Failed to parse legislation URI for TN: {record.LegislationUri}");
 
         var (type, legYear, legNumber) = components.Value;
-        return $"{type}/{legYear}/{legNumber}/transposition";
+        return $"{type}/{legYear}/{legNumber}/transposition-note/1";
     }
 
     /// <summary>
