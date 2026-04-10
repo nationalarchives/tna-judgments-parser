@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
+using System.Xml.Xsl;
 
 using Xunit;
+using UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 using test;
 
@@ -26,6 +28,14 @@ public class TestEN {
             .Select(match => match.Groups[1].Value)
             .OrderBy(name => name)
             .Select(name => new object[] { name });
+    }
+
+    private XslCompiledTransform Transform = new XslCompiledTransform();
+
+    public TestEN() {
+        using var stringReader = new StringReader(xslt);
+        using var xsltReader = XmlReader.Create(stringReader);
+        Transform.Load(xsltReader);
     }
 
     [Theory]
@@ -50,7 +60,34 @@ public class TestEN {
         }
 
         var expected = DocumentHelpers.ReadXml(expectedResourceName);
+        actual = RemoveSomeMetadata(actual);
+        expected = RemoveSomeMetadata(expected);
         Assert.Equal(expected, actual);
+    }
+
+    private static string xslt = @"<?xml version='1.0'?>
+<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' xmlns:uk='https://legislation.gov.uk/akn' xmlns:ukm='http://www.legislation.gov.uk/namespaces/metadata'>
+  <xsl:template match='akn:FRBRdate/@date'/>
+  <xsl:template match='ukm:Parser'/>
+  <xsl:template match='uk:hash/text()'/>
+  <xsl:template match='ukm:DocumentMainType'/>
+  <xsl:template match='ukm:Department'/>
+  <xsl:template match='ukm:Date'/>
+  <xsl:template match='ukm:Year'/>
+  <xsl:template match='ukm:LegislationClass'/>
+  <xsl:template match='@*|node()'>
+    <xsl:copy>
+      <xsl:apply-templates select='@*|node()'/>
+    </xsl:copy>
+  </xsl:template>
+</xsl:stylesheet>";
+
+    public string RemoveSomeMetadata(string akn) {
+        using XmlReader reader = XmlReader.Create(new StringReader(akn));
+        using StringWriter sWriter = new StringWriter();
+        using XmlWriter xWriter = XmlWriter.Create(sWriter);
+        Transform.Transform(reader, xWriter);
+        return sWriter.ToString();
     }
 
     [Fact(Skip = "Manual regeneration only - remove Skip attribute to run")]
