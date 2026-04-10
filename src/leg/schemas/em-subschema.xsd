@@ -22,6 +22,9 @@
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="ExplanatoryMemorandum" />
                     <xs:enumeration value="PolicyNote" />
+                    <xs:enumeration value="TranspositionNote" />
+                    <xs:enumeration value="CodeOfPractice" />
+                    <xs:enumeration value="OtherDocument" />
                     <xs:enumeration value="annex" />
                 </xs:restriction>
             </xs:simpleType>

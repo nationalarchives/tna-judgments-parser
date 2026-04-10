@@ -100,6 +100,58 @@ public class LegislativeDocumentConfig {
             }
         };
     }
+
+    /// <summary>
+    /// Creates configuration for Transposition Notes
+    /// </summary>
+    public static LegislativeDocumentConfig ForTranspositionNotes() {
+        return new LegislativeDocumentConfig {
+            DocumentTitles = new[] { "Transposition Note", "TRANSPOSITION NOTE" },
+            SectionTitleStyle = "EMSectionTitle",
+            Level1SubheadingStyle = "EMLevel1Subheading",
+            Level2SubheadingStyle = "EMLevel2Subheading",
+            UriSuffix = "/transposition",
+            DefaultDocumentType = "TranspositionNote",
+            DocumentTypeMapping = new System.Collections.Generic.Dictionary<string, string> {
+                { "Transposition Note", "TranspositionNote" },
+                { "TRANSPOSITION NOTE", "TranspositionNote" }
+            }
+        };
+    }
+
+    /// <summary>
+    /// Creates configuration for Codes of Practice
+    /// </summary>
+    public static LegislativeDocumentConfig ForCodesOfPractice() {
+        return new LegislativeDocumentConfig {
+            DocumentTitles = new[] { "Code of Practice", "CODE OF PRACTICE" },
+            SectionTitleStyle = "EMSectionTitle",
+            Level1SubheadingStyle = "EMLevel1Subheading",
+            Level2SubheadingStyle = "EMLevel2Subheading",
+            UriSuffix = "/code-of-practice",
+            DefaultDocumentType = "CodeOfPractice",
+            DocumentTypeMapping = new System.Collections.Generic.Dictionary<string, string> {
+                { "Code of Practice", "CodeOfPractice" },
+                { "CODE OF PRACTICE", "CodeOfPractice" }
+            }
+        };
+    }
+
+    /// <summary>
+    /// Creates configuration for Other Documents (catch-all for associated documents
+    /// stored as ukm:OtherDocument in legislation.gov.uk's MarkLogic metadata).
+    /// </summary>
+    public static LegislativeDocumentConfig ForOtherDocuments() {
+        return new LegislativeDocumentConfig {
+            DocumentTitles = System.Array.Empty<string>(),
+            SectionTitleStyle = "EMSectionTitle",
+            Level1SubheadingStyle = "EMLevel1Subheading",
+            Level2SubheadingStyle = "EMLevel2Subheading",
+            UriSuffix = "/other",
+            DefaultDocumentType = "OtherDocument",
+            DocumentTypeMapping = new System.Collections.Generic.Dictionary<string, string>()
+        };
+    }
 }
 
 }
